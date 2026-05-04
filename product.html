@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>商品詳細 | FANZA動画ランキング</title>
+<link rel="stylesheet" href="css/style.css">
+<style>
+.breadcrumb{font-size:.82rem;color:var(--mute);margin-bottom:20px}
+.breadcrumb a{color:var(--mute)}
+.breadcrumb a:hover{color:var(--accent2)}
+.campaign-box{background:#1f0a0f;border:1px solid var(--accent);border-radius:8px;padding:12px 16px;margin-bottom:16px;color:#ff9999;font-size:.88rem}
+.review-box{background:var(--bg3);border-radius:8px;padding:16px;margin-top:12px}
+.review-avg{font-size:2rem;font-weight:900;color:var(--gold)}
+.product-detail{display:grid;grid-template-columns:1fr 1.5fr;gap:32px;background:var(--bg2);border-radius:12px;padding:32px;border:1px solid var(--border)}
+.detail-img img{width:100%;max-width:340px;border-radius:8px}
+.detail-title{font-size:1.3rem;font-weight:700;margin-bottom:16px}
+.detail-price-big{font-size:2rem;font-weight:900;color:var(--accent);margin-bottom:8px}
+.btn-buy-large{display:block;padding:16px;background:linear-gradient(135deg,#ff3366,#cc0033);color:#fff;text-align:center;font-size:1.1rem;font-weight:900;border-radius:10px;margin-bottom:16px;transition:opacity .2s}
+.btn-buy-large:hover{opacity:.85;color:#fff}
+.detail-meta dt{font-size:.8rem;color:var(--mute);margin-top:10px}
+.detail-meta dd{font-size:.92rem;color:var(--text)}
+.detail-meta dd a{color:var(--accent2)}
+.sample-images{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.sample-images img{width:calc(33% - 6px);border-radius:6px;cursor:pointer;transition:opacity .2s}
+.sample-images img:hover{opacity:.8}
+.video-wrap{margin-top:12px}
+.video-wrap video{width:100%;border-radius:8px}
+@media(max-width:700px){.product-detail{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <div class="site-logo"><a href="home.html" style="color:inherit;text-decoration:none">FANZA動画ランキング</a></div>
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="検索..." autocomplete="off">
+      <button onclick="doSearch()">🔍 検索</button>
+    </div>
+  </div>
+</header>
+
+<div class="page-wrapper" style="grid-template-columns:1fr">
+  <main class="main-content">
+    <div class="breadcrumb">
+      <a href="home.html">TOP</a> › <a href="home.html" id="floorLink">動画</a> › <span id="breadTitle">読み込み中...</span>
+    </div>
+    <div id="content">
+      <div class="loading"><div class="spinner"></div><p>商品情報を取得中...</p></div>
+    </div>
+  </main>
+</div>
+
+<footer class="site-footer">
+  <p>当サイトはFANZA（DMM.com）のアフィリエイトプログラムを利用しています。</p>
+  <div class="footer-copy">© 2026 FANZA動画ランキング All Rights Reserved.</div>
+</footer>
+
+<script src="js/dmm-api.js"></script>
+<script>
+if(localStorage.getItem('age_verified')!=='yes') location.href='index.html';
+
+const esc = s => String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+const names = arr => (arr||[]).map(a=>esc(a.name)).join('、');
+const stars = avg => { const n=Math.round(parseFloat(avg)); return'★'.repeat(n)+'☆'.repeat(5-n); };
+
+function doSearch(){
+    const q = document.getElementById('searchInput').value.trim();
+    if(q) location.href = 'home.html?keyword=' + encodeURIComponent(q);
+}
+document.getElementById('searchInput').addEventListener('keydown',e=>{ if(e.key==='Enter') doSearch(); });
+
+async function loadProduct(){
+    const p     = new URLSearchParams(location.search);
+    const cid   = p.get('cid');
+    const floor = p.get('floor') || 'videoa';
+
+    if(!cid){ location.href='home.html'; return; }
+    document.getElementById('floorLink').href = 'home.html?floor=' + floor;
+
+    try {
+        const data   = await DMM.fetch({ floor, cid, hits: 1, offset: 1 });
+        const item   = data?.result?.items?.[0];
+        if(!item) throw new Error('商品が見つかりません');
+
+        document.title = item.title + ' | FANZA動画ランキング';
+        document.getElementById('breadTitle').textContent = item.title.slice(0,30) + (item.title.length>30?'...':'');
+
+        const imgLarge  = item.imageURL?.large  || item.imageURL?.list || '';
+        const imgList   = item.imageURL?.list   || '';
+        const price     = item.prices?.price    || '';
+        const listPrice = item.prices?.list_price || '';
+        const url       = item.affiliateURL || item.URL || '#';
+        const review    = item.review;
+        const campaign  = item.campaign;
+        const sampleS   = item.sampleImageURL?.sample_s?.image || [];
+        const sampleL   = item.sampleImageURL?.sample_l?.image || [];
+        const movies    = item.sampleMovieURL || {};
+
+        const movieSrc = movies.size_560_360 || movies.size_476_306 || Object.values(movies)[0] || '';
+
+        document.getElementById('content').innerHTML = `
+        ${campaign ? `<div class="campaign-box">🎉 <strong>キャンペーン：</strong>${esc(campaign.title)}（${esc((campaign.date_begin||'').slice(0,10))} 〜 ${esc((campaign.date_end||'').slice(0,10))}）</div>` : ''}
+
+        <div class="product-detail">
+          <div>
+            ${imgLarge ? `<div class="detail-img"><img src="${esc(imgLarge)}" alt="${esc(item.title)}"></div>` : ''}
+
+            ${movieSrc ? `
+            <div class="video-wrap">
+              <p style="font-size:.8rem;color:var(--mute);margin-bottom:6px">▶ サンプル動画</p>
+              <video controls preload="none" poster="${esc(imgList)}">
+                <source src="${esc(movieSrc)}" type="video/mp4">
+              </video>
+            </div>` : ''}
+
+            ${sampleS.length ? `
+            <p style="font-size:.8rem;color:var(--mute);margin:14px 0 6px">📷 サンプル画像</p>
+            <div class="sample-images">
+              ${sampleS.slice(0,6).map((s,i)=>`<img src="${esc(s)}" alt="サンプル${i+1}" onclick="window.open('${esc(sampleL[i]||s)}')" loading="lazy">`).join('')}
+            </div>` : ''}
+          </div>
+
+          <div>
+            <h1 class="detail-title">${esc(item.title)}</h1>
+
+            <div class="detail-price-big">
+              ¥${esc(price)}
+              ${listPrice && listPrice!==price ? `<span style="font-size:1rem;color:var(--mute);text-decoration:line-through;margin-left:8px">¥${esc(listPrice)}</span>` : ''}
+            </div>
+
+            <a class="btn-buy-large" href="${esc(url)}" target="_blank" rel="noopener">🎬 FANZAで視聴・購入する</a>
+
+            ${review?.count>0 ? `
+            <div class="review-box">
+              <span class="review-avg">${esc(review.average)}</span>
+              <span style="color:var(--gold);font-size:1.3rem">${stars(review.average)}</span>
+              <span style="color:var(--mute);font-size:.82rem">（${esc(String(review.count))}件のレビュー）</span>
+            </div>` : ''}
+
+            <dl class="detail-meta">
+              ${(item.iteminfo?.actress||[]).length ? `<dt>出演女優</dt><dd>${(item.iteminfo.actress).map(a=>`<a href="home.html?floor=${floor}&article=actress&article_id=${esc(String(a.id))}">${esc(a.name)}</a>`).join(' ')}</dd>` : ''}
+              ${(item.iteminfo?.maker||[]).length   ? `<dt>メーカー</dt><dd>${names(item.iteminfo.maker)}</dd>` : ''}
+              ${(item.iteminfo?.label||[]).length   ? `<dt>レーベル</dt><dd>${names(item.iteminfo.label)}</dd>` : ''}
+              ${(item.iteminfo?.series||[]).length  ? `<dt>シリーズ</dt><dd>${(item.iteminfo.series).map(s=>`<a href="home.html?floor=${floor}&article=series&article_id=${esc(String(s.id))}">${esc(s.name)}</a>`).join(' ')}</dd>` : ''}
+              ${(item.iteminfo?.genre||[]).length   ? `<dt>ジャンル</dt><dd>${(item.iteminfo.genre).map(g=>`<a href="home.html?floor=${floor}&article=genre&article_id=${esc(String(g.id))}">${esc(g.name)}</a>`).join(' ')}</dd>` : ''}
+              ${item.volume ? `<dt>収録時間</dt><dd>${esc(String(item.volume))}分</dd>` : ''}
+              ${item.date   ? `<dt>発売日</dt><dd>${esc(item.date.slice(0,10))}</dd>` : ''}
+              ${item.content_id ? `<dt>品番</dt><dd>${esc(item.content_id)}</dd>` : ''}
+            </dl>
+
+            <a class="btn-buy-large" href="${esc(url)}" target="_blank" rel="noopener" style="margin-top:24px">✓ FANZAで購入・視聴する</a>
+            <p style="font-size:.75rem;color:var(--mute);text-align:center;margin-top:8px">※ 当サイトはFANZAアフィリエイトプログラムを利用しています</p>
+          </div>
+        </div>`;
+    } catch(e){
+        document.getElementById('content').innerHTML = `<div class="loading"><p style="color:#ff6688">⚠️ 商品情報の取得に失敗しました<br><small>${esc(e.message)}</small></p><a href="home.html" style="color:var(--accent2)">← TOPに戻る</a></div>`;
+    }
+}
+
+loadProduct();
+</script>
+</body>
+</html>

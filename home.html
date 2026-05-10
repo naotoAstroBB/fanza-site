@@ -6,193 +6,127 @@
 <meta name="robots" content="noindex, nofollow">
 <title>FANZA動画ランキング | アダルト動画・グッズ総合サイト</title>
 <link rel="stylesheet" href="css/style.css">
-<style>
-/* ウィジェット用スタイル調整 */
-.widget-section {
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 24px;
-  margin-bottom: 32px;
-}
-.widget-section .section-header {
-  margin-bottom: 20px;
-}
-/* DMM ウィジェットの背景を透過 */
-.dmm-widget-placement {
-  display: block !important;
-  background: transparent !important;
-}
-</style>
 </head>
 <body>
 
-<!-- ヘッダー -->
 <header class="site-header">
   <div class="header-inner">
-    <div class="site-logo">
-      <a href="home.html" style="color:inherit;text-decoration:none">FANZA動画ランキング</a>
-      <span> - FANZA厳選</span>
-    </div>
+    <div class="site-logo"><a href="home.html" style="color:inherit;text-decoration:none">FANZA動画ランキング</a><span> - FANZA厳選</span></div>
     <div class="search-bar">
       <input type="text" id="searchInput" placeholder="女優名・タイトル・キーワードで検索..." autocomplete="off">
-      <button onclick="doSearch()">🔍 検索</button>
+      <button onclick="App.doSearch()">🔍 検索</button>
+    </div>
+    <div class="header-stats">
+      総商品数 <span id="todayCount" style="color:#ff6699;font-weight:700">読込中...</span>
     </div>
   </div>
 </header>
 
-<!-- ナビ -->
 <nav class="site-nav">
   <div class="nav-inner">
-    <div class="nav-btn active">🎬 動画（アダルト）</div>
-    <div class="nav-btn">🎌 アニメ動画</div>
-    <div class="nav-btn">📚 電子書籍</div>
-    <div class="nav-btn">🛍️ グッズ</div>
-    <div class="nav-btn">📦 通販</div>
-    <div class="nav-btn">⭐ 新着</div>
-    <div class="nav-btn">🏆 ランキング</div>
-    <div class="nav-btn">🔥 セール中</div>
+    <div class="nav-btn active" onclick="App.setFloor('videoa',this)">🎬 動画（アダルト）</div>
+    <div class="nav-btn" onclick="App.setFloor('anime',this)">🎌 アニメ動画</div>
+    <div class="nav-btn" onclick="App.setFloor('book',this)">📚 電子書籍</div>
+    <div class="nav-btn" onclick="App.setFloor('goods',this)">🛍️ グッズ</div>
+    <div class="nav-btn" onclick="App.setFloor('mono',this)">📦 通販</div>
+    <div class="nav-btn" onclick="App.setSort('date',this)">⭐ 新着</div>
+    <div class="nav-btn" onclick="App.setSort('rank',this)">🏆 ランキング</div>
   </div>
 </nav>
 
-<!-- ティッカー -->
 <div class="ticker">
   <div class="ticker-label">🔥 INFO</div>
-  <div class="ticker-text">
+  <div class="ticker-text" id="tickerText">
     FANZA厳選作品を毎日更新中！人気女優・新作・セール情報をお届けします。&nbsp;&nbsp;&nbsp;
     FANZA厳選作品を毎日更新中！人気女優・新作・セール情報をお届けします。
   </div>
 </div>
 
-<!-- ヒーローバナー -->
 <div class="hero">
   <div class="hero-inner">
     <div class="hero-main">
-      <div class="tag">🏆 FANZA 厳選アフィリエイトサイト</div>
-      <h2>人気アダルト動画・グッズを<br>毎日更新でお届け！</h2>
-      <p>ランキング・新着・セール情報を厳選してご紹介</p>
-      <a class="hero-btn" href="https://al.fanza.co.jp/?lurl=https%3A%2F%2Fwww.dmm.co.jp%2Fdigital%2Fvideoa%2F&af_id=saaaaaaya-001&ch=top" target="_blank" rel="noopener">FANZA で見る →</a>
+      <div class="tag">🏆 今週の人気No.1</div>
+      <h2 id="heroTitle">読み込み中...</h2>
+      <p id="heroSub">FANZA厳選作品</p>
+      <a id="heroBtn" class="hero-btn" href="#" target="_blank" rel="noopener">FANZAで見る →</a>
     </div>
     <div class="hero-side">
-      <div class="hero-card pink">
+      <div class="hero-card pink" onclick="App.setSort('date')">
         <div class="badge">NEW</div>
         <div class="card-icon">⭐</div>
         <h3>今週の新着作品</h3>
-        <p>毎日新作追加中</p>
+        <p>最新作品を毎日追加中</p>
       </div>
-      <div class="hero-card purple">
-        <div class="card-icon">🔥</div>
-        <h3>セール・割引情報</h3>
-        <p>お得な作品を厳選</p>
+      <div class="hero-card purple" onclick="App.setFloor('goods')">
+        <div class="card-icon">🛍️</div>
+        <h3>グッズ・通販</h3>
+        <p>アダルトグッズも充実</p>
       </div>
     </div>
   </div>
 </div>
 
-<!-- メインレイアウト -->
 <div class="page-wrapper">
-
-  <!-- サイドバー -->
   <aside class="sidebar">
     <div class="sidebar-section">
-      <h3>カテゴリ</h3>
-      <div class="sidebar-link active">🎬 動画（アダルト）</div>
-      <div class="sidebar-link">🎌 アニメ動画</div>
-      <div class="sidebar-link">📚 電子書籍</div>
-      <div class="sidebar-link">🛍️ グッズ</div>
-      <div class="sidebar-link">📦 通販</div>
+      <h3>並び替え</h3>
+      <select class="sort-select" id="sortSelect" onchange="App.setSort(this.value)">
+        <option value="rank">🏆 人気順</option>
+        <option value="date">🆕 新着順</option>
+        <option value="review">⭐ レビュー高い順</option>
+        <option value="-price">💰 価格安い順</option>
+        <option value="price">💰 価格高い順</option>
+      </select>
     </div>
     <div class="sidebar-section">
       <h3>ジャンル</h3>
-      <div class="sidebar-link">🌟 巨乳</div>
-      <div class="sidebar-link">💫 美少女</div>
-      <div class="sidebar-link">📹 ハイビジョン</div>
-      <div class="sidebar-link">👑 単体作品</div>
-      <div class="sidebar-link">🎯 素人</div>
-      <div class="sidebar-link">💕 中出し</div>
-      <div class="sidebar-link">🏠 人妻・主婦</div>
-      <div class="sidebar-link">👔 OL</div>
-      <div class="sidebar-link">🎭 コスプレ</div>
+      <div class="sidebar-link active" onclick="App.clearFilter(this)">📌 すべて</div>
+      <div class="sidebar-link" onclick="App.setGenre('4002',this)">🌟 巨乳</div>
+      <div class="sidebar-link" onclick="App.setGenre('4007',this)">💫 美少女</div>
+      <div class="sidebar-link" onclick="App.setGenre('4049',this)">📹 ハイビジョン</div>
+      <div class="sidebar-link" onclick="App.setGenre('4013',this)">👑 単体作品</div>
+      <div class="sidebar-link" onclick="App.setGenre('4017',this)">🎯 素人</div>
+      <div class="sidebar-link" onclick="App.setGenre('4028',this)">💕 中出し</div>
+      <div class="sidebar-link" onclick="App.setGenre('4065',this)">🏠 人妻・主婦</div>
+      <div class="sidebar-link" onclick="App.setGenre('4051',this)">👔 OL</div>
+      <div class="sidebar-link" onclick="App.setGenre('4061',this)">🎭 コスプレ</div>
     </div>
     <div class="sidebar-section">
-      <h3>FANZA リンク</h3>
-      <a class="sidebar-link" href="https://al.fanza.co.jp/?lurl=https%3A%2F%2Fwww.dmm.co.jp%2Fdigital%2Fvideoa%2F&af_id=saaaaaaya-001" target="_blank" rel="noopener">🏆 人気ランキング</a>
-      <a class="sidebar-link" href="https://al.fanza.co.jp/?lurl=https%3A%2F%2Fwww.dmm.co.jp%2Fdigital%2Fvideoa%2F-%2Flist%2F%3Fsort%3Ddate&af_id=saaaaaaya-001" target="_blank" rel="noopener">🆕 新着作品</a>
-      <a class="sidebar-link" href="https://al.fanza.co.jp/?lurl=https%3A%2F%2Fwww.dmm.co.jp%2Fdigital%2Fvideoa%2F-%2Flist%2F%3Fsort%3Dreview&af_id=saaaaaaya-001" target="_blank" rel="noopener">⭐ レビュー高い順</a>
+      <h3>サービス</h3>
+      <div class="sidebar-link active" onclick="App.setFloor('videoa',this)">🎬 動画</div>
+      <div class="sidebar-link" onclick="App.setFloor('anime',this)">🎌 アニメ</div>
+      <div class="sidebar-link" onclick="App.setFloor('book',this)">📚 電子書籍</div>
+      <div class="sidebar-link" onclick="App.setFloor('goods',this)">🛍️ グッズ</div>
+      <div class="sidebar-link" onclick="App.setFloor('mono',this)">📦 通販</div>
     </div>
   </aside>
 
-  <!-- メインコンテンツ -->
   <main class="main-content">
-
-    <!-- ★ DMM公式ウィジェット（実商品・画像・アフィリリンク自動表示）★ -->
-    <div class="widget-section">
-      <div class="section-header">
-        <div class="section-title">🏆 FANZA 厳選作品</div>
-      </div>
-
-      <ins class="dmm-widget-placement"
-           data-id="6d59bf9dc03b108649c2884d34845e82"
-           style="background:transparent;display:block"></ins>
-      <script src="https://widget-view.dmm.co.jp/js/placement.js"
-              class="dmm-widget-scripts"
-              data-id="6d59bf9dc03b108649c2884d34845e82"></script>
+    <div class="section-header">
+      <div class="section-title" id="sectionTitle">読み込み中...</div>
     </div>
-
-    <!-- FANZA への誘導バナー -->
-    <div style="background:linear-gradient(135deg,#1a0015,#0d0020);border:1px solid #3a0030;border-radius:12px;padding:28px;text-align:center;margin-bottom:32px">
-      <div style="font-size:1.2rem;font-weight:900;margin-bottom:8px">もっと見たい方は FANZA へ</div>
-      <p style="color:#888;font-size:.88rem;margin-bottom:16px">50,000作品以上のアダルト動画・グッズが揃っています</p>
-      <a href="https://al.fanza.co.jp/?lurl=https%3A%2F%2Fwww.dmm.co.jp%2Fdigital%2Fvideoa%2F&af_id=saaaaaaya-001&ch=banner"
-         target="_blank" rel="noopener"
-         style="display:inline-block;padding:14px 40px;background:linear-gradient(135deg,#ff3366,#cc0033);color:#fff;font-weight:900;font-size:1rem;border-radius:10px;text-decoration:none">
-        🎬 FANZA で全作品を見る →
-      </a>
+    <div class="product-grid" id="productGrid">
+      <div class="loading"><div class="spinner"></div><p>商品を取得中...</p></div>
     </div>
-
+    <div class="pagination" id="pagination"></div>
   </main>
 </div>
 
-<!-- フッター -->
 <footer class="site-footer">
   <div class="footer-logo">FANZA動画ランキング</div>
   <div class="footer-nav">
     <a href="home.html">TOP</a>
+    <a href="#" onclick="App.setSort('rank')">ランキング</a>
+    <a href="#" onclick="App.setSort('date')">新着</a>
+    <a href="#" onclick="App.setFloor('goods')">グッズ</a>
     <a href="#">プライバシーポリシー</a>
     <a href="#">免責事項</a>
-    <a href="#">お問い合わせ</a>
   </div>
   <p>当サイトはFANZA（DMM.com）のアフィリエイトプログラムを利用しています。</p>
-  <p style="margin-top:4px;font-size:.78rem;color:#555">掲載されている商品情報・価格は予告なく変更される場合があります。</p>
   <div class="footer-copy">© 2026 FANZA動画ランキング All Rights Reserved.</div>
 </footer>
 
-<script>
-// 年齢確認チェック
-if(localStorage.getItem('age_verified') !== 'yes') location.href = 'index.html';
-
-// ナビクリック
-document.querySelectorAll('.nav-btn, .sidebar-link').forEach(b => {
-  b.addEventListener('click', function() {
-    const group = this.closest('.sidebar-section, .nav-inner');
-    if (group) group.querySelectorAll('.nav-btn, .sidebar-link').forEach(x => x.classList.remove('active'));
-    this.classList.add('active');
-  });
-});
-
-function doSearch() {
-  const q = document.getElementById('searchInput').value.trim();
-  if (q) {
-    const url = 'https://al.fanza.co.jp/?lurl=' +
-      encodeURIComponent('https://www.dmm.co.jp/digital/videoa/-/list/?searchstr=' + encodeURIComponent(q)) +
-      '&af_id=saaaaaaya-001&ch=search';
-    window.open(url, '_blank');
-  }
-}
-document.getElementById('searchInput').addEventListener('keydown', e => {
-  if (e.key === 'Enter') doSearch();
-});
-</script>
-
+<script src="js/dmm-api.js"></script>
+<script src="js/app.js"></script>
 </body>
 </html>

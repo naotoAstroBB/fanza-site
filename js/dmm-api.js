@@ -1,49 +1,32 @@
-// DMM FANZA API クライアント（JSONP方式）
+// DMM FANZA データ読み込み（GitHub Actions が生成した JSON ファイルを使用）
 const DMM = {
-    API_ID:       'UXJdpULBN1sPyNKKPPHU',
-    AFFILIATE_ID: 'saaaaaaya-990',   // API専用ID（末尾990〜999）
-    BASE_URL:     'https://api.dmm.com/affiliate/v3/ItemList',
-    _cbIndex: 0,
-
-    fetch(params) {
-        return new Promise((resolve, reject) => {
-            const cbName = `_dmmCb${this._cbIndex++}`;
-
-            const timeout = setTimeout(() => {
-                delete window[cbName];
-                if (script.parentNode) script.remove();
-                reject(new Error('タイムアウト'));
-            }, 12000);
-
-            window[cbName] = (data) => {
-                clearTimeout(timeout);
-                delete window[cbName];
-                if (script.parentNode) script.remove();
-                resolve(data);
-            };
-
-            const qs = new URLSearchParams({
-                api_id:       this.API_ID,
-                affiliate_id: this.AFFILIATE_ID,
-                site:         'FANZA',
-                service:      'digital',
-                output:       'json',
-                callback:     cbName,
-                floor:        'videoa',
-                sort:         'rank',
-                hits:         24,
-                offset:       1,
-                ...params,
-            });
-
-            const script = document.createElement('script');
-            script.src = `${this.BASE_URL}?${qs.toString()}`;
-            script.onerror = () => {
-                clearTimeout(timeout);
-                delete window[cbName];
-                reject(new Error('API読み込みエラー'));
-            };
-            document.head.appendChild(script);
-        });
+    // ソート・フロアに対応するデータファイルマップ
+    files: {
+        'rank':    'data/rank.json',
+        'date':    'data/new.json',
+        'review':  'data/review.json',
+        'anime':   'data/anime.json',
     },
+    genreFiles: {
+        '4002': 'data/genre_busty.json',    // 巨乳
+        '4017': 'data/genre_amateur.json',  // 素人
+        '4065': 'data/genre_wife.json',     // 人妻
+    },
+
+    async fetch(params) {
+        // ジャンル指定あり
+        if (params.article_id && this.genreFiles[params.article_id]) {
+            const res = await window.fetch(this.genreFiles[params.article_id]);
+            if (!res.ok) throw new Error(`データ取得失敗: ${res.status}`);
+            return await res.json();
+        }
+
+        // ソート・フロア指定
+        const key = params.floor === 'anime' ? 'anime' : (params.sort || 'rank');
+        const file = this.files[key] || this.files['rank'];
+
+        const res = await window.fetch(file);
+        if (!res.ok) throw new Error(`データ取得失敗: ${res.status}`);
+        return await res.json();
+    }
 };

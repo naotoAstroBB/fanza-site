@@ -1,0 +1,59 @@
+name: Fetch FANZA Products
+
+on:
+  schedule:
+    - cron: '0 * * * *'   # 毎時間自動実行
+  workflow_dispatch:        # 手動実行ボタンあり
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Fetch DMM API - 人気順（動画）
+        run: |
+          curl -s "https://api.dmm.com/affiliate/v3/ItemList?api_id=UXJdpULBN1sPyNKKPPHU&affiliate_id=saaaaaaya-990&site=FANZA&service=digital&floor=videoa&hits=24&sort=rank&output=json" \
+            > data/rank.json
+
+      - name: Fetch DMM API - 新着順（動画）
+        run: |
+          curl -s "https://api.dmm.com/affiliate/v3/ItemList?api_id=UXJdpULBN1sPyNKKPPHU&affiliate_id=saaaaaaya-990&site=FANZA&service=digital&floor=videoa&hits=24&sort=date&output=json" \
+            > data/new.json
+
+      - name: Fetch DMM API - レビュー高い順
+        run: |
+          curl -s "https://api.dmm.com/affiliate/v3/ItemList?api_id=UXJdpULBN1sPyNKKPPHU&affiliate_id=saaaaaaya-990&site=FANZA&service=digital&floor=videoa&hits=24&sort=review&output=json" \
+            > data/review.json
+
+      - name: Fetch DMM API - 巨乳ジャンル
+        run: |
+          curl -s "https://api.dmm.com/affiliate/v3/ItemList?api_id=UXJdpULBN1sPyNKKPPHU&affiliate_id=saaaaaaya-990&site=FANZA&service=digital&floor=videoa&hits=24&sort=rank&article=genre&article_id=4002&output=json" \
+            > data/genre_busty.json
+
+      - name: Fetch DMM API - 素人ジャンル
+        run: |
+          curl -s "https://api.dmm.com/affiliate/v3/ItemList?api_id=UXJdpULBN1sPyNKKPPHU&affiliate_id=saaaaaaya-990&site=FANZA&service=digital&floor=videoa&hits=24&sort=rank&article=genre&article_id=4017&output=json" \
+            > data/genre_amateur.json
+
+      - name: Fetch DMM API - 人妻ジャンル
+        run: |
+          curl -s "https://api.dmm.com/affiliate/v3/ItemList?api_id=UXJdpULBN1sPyNKKPPHU&affiliate_id=saaaaaaya-990&site=FANZA&service=digital&floor=videoa&hits=24&sort=rank&article=genre&article_id=4065&output=json" \
+            > data/genre_wife.json
+
+      - name: Fetch DMM API - アニメ
+        run: |
+          curl -s "https://api.dmm.com/affiliate/v3/ItemList?api_id=UXJdpULBN1sPyNKKPPHU&affiliate_id=saaaaaaya-990&site=FANZA&service=digital&floor=anime&hits=24&sort=rank&output=json" \
+            > data/anime.json
+
+      - name: Commit and push
+        run: |
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git add data/
+          git diff --staged --quiet || git commit -m "chore: update product data $(date +'%Y-%m-%d %H:%M')"
+          git push

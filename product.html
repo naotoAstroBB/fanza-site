@@ -81,7 +81,7 @@ async function loadProduct(){
     document.getElementById('floorLink').href = 'home.html?floor=' + floor;
 
     try {
-        const data   = await DMM.fetch({ floor, cid, hits: 1, offset: 1 });
+        const data   = await DMM.fetchByCid(cid, floor);
         const item   = data?.result?.items?.[0];
         if(!item) throw new Error('商品が見つかりません');
 
@@ -111,9 +111,8 @@ async function loadProduct(){
             ${movieSrc ? `
             <div class="video-wrap">
               <p style="font-size:.8rem;color:var(--mute);margin-bottom:6px">▶ サンプル動画</p>
-              <video controls preload="none" poster="${esc(imgList)}">
-                <source src="${esc(movieSrc)}" type="video/mp4">
-              </video>
+              <iframe src="${esc(movieSrc)}" allowfullscreen frameborder="0" scrolling="no"
+                style="width:100%;height:300px;border-radius:8px;background:#000"></iframe>
             </div>` : ''}
 
             ${sampleS.length ? `

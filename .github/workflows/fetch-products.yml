@@ -2,7 +2,7 @@ name: Fetch FANZA Products
 
 on:
   schedule:
-    - cron: '0 * * * *'
+    - cron: '*/30 * * * *'
   workflow_dispatch:
 
 jobs:
@@ -16,7 +16,7 @@ jobs:
 
       - name: Fetch products
         run: |
-          BASE="https://api.dmm.com/affiliate/v3/ItemList?api_id=UXJdpULBN1sPyNKKPPHU&affiliate_id=saaaaaaya-990&site=FANZA&service=digital&output=json&hits=24"
+          BASE="https://api.dmm.com/affiliate/v3/ItemList?api_id=UXJdpULBN1sPyNKKPPHU&affiliate_id=saaaaaaya-990&site=FANZA&service=digital&output=json&hits=100"
 
           # ソート別
           curl -sf "$BASE&floor=videoa&sort=rank"   -o data/rank.json   || echo '{"result":{"status":404}}' > data/rank.json
@@ -25,7 +25,7 @@ jobs:
 
           # フロア別
           curl -sf "$BASE&floor=anime&sort=rank"    -o data/anime.json  || echo '{"result":{"status":404}}' > data/anime.json
-          curl -sf "https://api.dmm.com/affiliate/v3/ItemList?api_id=UXJdpULBN1sPyNKKPPHU&affiliate_id=saaaaaaya-990&site=FANZA&service=mono&floor=goods&output=json&hits=24&sort=rank" \
+          curl -sf "https://api.dmm.com/affiliate/v3/ItemList?api_id=UXJdpULBN1sPyNKKPPHU&affiliate_id=saaaaaaya-990&site=FANZA&service=mono&floor=goods&output=json&hits=100&sort=rank" \
             -o data/goods.json || echo '{"result":{"status":404}}' > data/goods.json
 
           # ジャンル別 (全ジャンル対応)

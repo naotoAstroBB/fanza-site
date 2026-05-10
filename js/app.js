@@ -33,6 +33,9 @@ const App = {
             document.getElementById('sortSelect').value = this.sort;
         }
 
+        // ESCキーでサンプルモーダルを閉じる
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') this.closeSample(); });
+
         await this.loadHero();
         this.loadActressRanking();   // 並列で読み込み
         this.loadNewActresses();
@@ -94,20 +97,31 @@ const App = {
         if (!grid) return;
         grid.innerHTML = '<div class="loading"><div class="spinner"></div><p>商品を取得中...</p></div>';
 
-        const offset = (this.page - 1) * this.hitsPerPage + 1;
-        const params = { floor: this.floor, sort: this.sort, hits: this.hitsPerPage, offset };
-        if (this.keyword) params.keyword = this.keyword;
-        if (this.genre)   { params.article = 'genre'; params.article_id = this.genre; }
+        const params = { floor: this.floor, sort: this.sort };
+        if (this.genre) { params.article = 'genre'; params.article_id = this.genre; }
 
         try {
-            const data  = await DMM.fetch(params);
+            const data   = await DMM.fetch(params);
             const result = data?.result;
             if (!result || result.status !== 200) throw new Error('APIエラー: ' + JSON.stringify(result));
 
-            this.total = result.total_count;
-            this.renderGrid(grid, result.items || []);
+            let items = result.items || [];
+
+            // キーワードフィルタ（クライアント側）
+            if (this.keyword) {
+                const kw = this.keyword.toLowerCase();
+                items = items.filter(item =>
+                    (item.title || '').toLowerCase().includes(kw) ||
+                    (item.iteminfo?.actress || []).some(a => a.name.includes(this.keyword))
+                );
+            }
+
+            // クライアント側ページネーション
+            this.total = items.length;
+            const start = (this.page - 1) * this.hitsPerPage;
+            this.renderGrid(grid, items.slice(start, start + this.hitsPerPage));
             this.renderPagination();
-            this.updateTitle(result);
+            this.updateTitle({ ...result, total_count: this.total });
         } catch(e) {
             grid.innerHTML = `<div class="loading"><p style="color:#ff6688">⚠️ 商品取得に失敗しました<br><small>${e.message}</small></p></div>`;
         }
@@ -135,6 +149,8 @@ const App = {
         const rankBadge = i < 3
             ? `<div class="rank-badge ${['rank-1','rank-2','rank-3'][i]}">${['🥇','🥈','🥉'][i]}</div>`
             : (i < 10 ? `<div class="rank-badge rank-other">${i+1}</div>` : '');
+        const mv = item.sampleMovieURL;
+        const sampleUrl = mv ? (mv.size_560_360 || mv.size_476_306 || mv.size_644_414 || mv.size_720_480 || '') : '';
 
         return `
         <div class="product-card" onclick="location.href='product.html?cid=${this.esc(item.content_id)}&floor=${this.floor}'">
@@ -145,6 +161,7 @@ const App = {
             }
             ${rankBadge}
             ${campaign ? `<span class="badge-sale">SALE</span>` : (isNew ? `<span class="badge-new">NEW</span>` : '')}
+            ${sampleUrl ? `<button class="card-sample-btn" onclick="event.stopPropagation();App.openSample('${this.esc(sampleUrl)}','${title}')" title="サンプル再生">▶</button>` : ''}
           </div>
           <div class="card-body">
             <div class="card-title">${title}</div>
@@ -288,6 +305,25 @@ const App = {
         } catch(e) {
             if (el) el.innerHTML = '<span class="actress-empty">準備中</span>';
         }
+    },
+
+    openSample(url, title) {
+        const modal = document.getElementById('sampleModal');
+        const iframe = document.getElementById('sampleIframe');
+        const label = document.getElementById('sampleModalTitle');
+        if (!modal || !iframe) return;
+        if (label) label.textContent = title || 'サンプル動画';
+        iframe.src = url;
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    },
+
+    closeSample() {
+        const modal = document.getElementById('sampleModal');
+        const iframe = document.getElementById('sampleIframe');
+        if (modal) modal.classList.remove('active');
+        if (iframe) iframe.src = '';
+        document.body.style.overflow = '';
     },
 
     isNew(dateStr) {

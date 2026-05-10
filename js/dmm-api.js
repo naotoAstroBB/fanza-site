@@ -21,40 +21,74 @@ const DMM = {
         '1008': 'data/genre_ol.json',        // OL
         '4031': 'data/genre_cosplay.json',   // コスプレ
     },
-
     actressFiles: {
         'popular': 'data/actress_popular.json',
         'new':     'data/actress_new.json',
     },
 
-    async fetchActress(type = 'popular') {
-        const file = this.actressFiles[type] || this.actressFiles['popular'];
-        const res = await fetch(file + '?_=' + Math.floor(Date.now() / 60000));
-        if (!res.ok) throw new Error(`女優データ取得失敗 (${res.status}): ${file}`);
+    // ===== 内部キャッシュ =====
+    _cache: {},
+    _cacheTs: {},
+
+    async _loadFile(file) {
+        const key = file.split('?')[0];
+        const now = Date.now();
+        // 1分以内に読んだファイルはキャッシュから返す
+        if (this._cache[key] && (now - (this._cacheTs[key] || 0)) < 60000) {
+            return this._cache[key];
+        }
+        const res = await fetch(key + '?_=' + Math.floor(now / 60000));
+        if (!res.ok) throw new Error(`データ取得失敗 (${res.status}): ${key}`);
         const data = await res.json();
-        if (data?.result?.status === 404) throw new Error('女優データが準備されていません');
+        this._cache[key] = data;
+        this._cacheTs[key] = now;
         return data;
     },
 
-    async fetch(params = {}) {
-        let file;
+    // ===== 商品IDで全JSONを横断検索 =====
+    async fetchByCid(cid, floor) {
+        const allFiles = [
+            ...Object.values(this.sortFiles),
+            ...(floor && this.floorFiles[floor] ? [this.floorFiles[floor]] : []),
+            ...Object.values(this.genreFiles),
+        ];
+        // 並列フェッチ → 最初に見つかった商品を返す
+        const results = await Promise.allSettled(
+            allFiles.map(f =>
+                this._loadFile(f).then(d =>
+                    (d?.result?.items || []).find(i => i.content_id === cid) || null
+                ).catch(() => null)
+            )
+        );
+        const item = results.map(r => r.value).find(v => v);
+        if (item) return { result: { status: 200, items: [item], total_count: 1, result_count: 1 } };
+        throw new Error('商品データが見つかりません (cid: ' + cid + ')');
+    },
 
-        // ジャンル指定
+    // ===== 女優データ取得 =====
+    async fetchActress(type = 'popular') {
+        return this._loadFile(this.actressFiles[type] || this.actressFiles['popular'])
+            .then(data => {
+                if (data?.result?.status === 404) throw new Error('女優データが準備されていません');
+                return data;
+            });
+    },
+
+    // ===== 商品リスト取得（静的JSONから） =====
+    async fetch(params = {}) {
+        // cid指定は横断検索へ
+        if (params.cid) return this.fetchByCid(params.cid, params.floor);
+
+        let file;
         if (params.article_id && this.genreFiles[params.article_id]) {
             file = this.genreFiles[params.article_id];
-        }
-        // フロア指定（アニメ・グッズ）
-        else if (params.floor && this.floorFiles[params.floor]) {
+        } else if (params.floor && this.floorFiles[params.floor]) {
             file = this.floorFiles[params.floor];
-        }
-        // ソート指定
-        else {
+        } else {
             file = this.sortFiles[params.sort] || this.sortFiles['rank'];
         }
 
-        const res = await fetch(file + '?_=' + Math.floor(Date.now() / 60000)); // 1分キャッシュ
-        if (!res.ok) throw new Error(`データ取得失敗 (${res.status}): ${file}`);
-        const data = await res.json();
+        const data = await this._loadFile(file);
         if (data?.result?.status === 404) throw new Error('データが準備されていません');
         return data;
     }

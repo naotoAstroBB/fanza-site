@@ -30,15 +30,15 @@ jobs:
 
           # ジャンル別 (全ジャンル対応)
           for row in \
-            "4002:genre_busty" \
-            "4007:genre_bishoujo" \
-            "4049:genre_hd" \
-            "4013:genre_single" \
-            "4017:genre_amateur" \
-            "4028:genre_creampie" \
-            "4065:genre_wife" \
-            "4051:genre_ol" \
-            "4061:genre_cosplay"; do
+            "2001:genre_busty" \
+            "1027:genre_bishoujo" \
+            "6533:genre_hd" \
+            "4025:genre_single" \
+            "4024:genre_amateur" \
+            "5001:genre_creampie" \
+            "1039:genre_wife" \
+            "1008:genre_ol" \
+            "4031:genre_cosplay"; do
             ID="${row%%:*}"; FILE="data/${row##*:}.json"
             curl -sf "$BASE&floor=videoa&sort=rank&article=genre&article_id=$ID" -o "$FILE" \
               || echo '{"result":{"status":404}}' > "$FILE"

@@ -11,15 +11,15 @@ const DMM = {
         'mono':  'data/goods.json',
     },
     genreFiles: {
-        '4002': 'data/genre_busty.json',
-        '4007': 'data/genre_bishoujo.json',
-        '4049': 'data/genre_hd.json',
-        '4013': 'data/genre_single.json',
-        '4017': 'data/genre_amateur.json',
-        '4028': 'data/genre_creampie.json',
-        '4065': 'data/genre_wife.json',
-        '4051': 'data/genre_ol.json',
-        '4061': 'data/genre_cosplay.json',
+        '2001': 'data/genre_busty.json',     // 巨乳
+        '1027': 'data/genre_bishoujo.json',  // 美少女
+        '6533': 'data/genre_hd.json',        // ハイビジョン
+        '4025': 'data/genre_single.json',    // 単体作品
+        '4024': 'data/genre_amateur.json',   // 素人
+        '5001': 'data/genre_creampie.json',  // 中出し
+        '1039': 'data/genre_wife.json',      // 人妻・主婦
+        '1008': 'data/genre_ol.json',        // OL
+        '4031': 'data/genre_cosplay.json',   // コスプレ
     },
 
     async fetch(params = {}) {

@@ -27,6 +27,11 @@
 .sample-images img:hover{opacity:.8}
 .video-wrap{margin-top:12px}
 .video-wrap video{width:100%;border-radius:8px}
+.btn-fav-detail{
+  padding:10px 18px;background:#1a1a1a;border:1px solid #333;color:#ccc;
+  font-size:.88rem;font-weight:700;border-radius:8px;cursor:pointer;transition:all .2s;
+}
+.btn-fav-detail:hover,.btn-fav-detail.active{background:var(--accent);border-color:var(--accent);color:#fff;}
 @media(max-width:700px){.product-detail{grid-template-columns:1fr}}
 </style>
 </head>
@@ -58,6 +63,7 @@
   <div class="footer-copy">© 2026 FANZA動画ランキング All Rights Reserved.</div>
 </footer>
 
+<script src="js/storage.js"></script>
 <script src="js/dmm-api.js"></script>
 <script>
 if(localStorage.getItem('age_verified')!=='yes') location.href='index.html';
@@ -101,6 +107,14 @@ async function loadProduct(){
 
         const movieSrc = movies.size_560_360 || movies.size_476_306 || Object.values(movies)[0] || '';
 
+        // 履歴に保存
+        Hist.add(item, floor);
+
+        const pageUrl  = location.href;
+        const shareText= encodeURIComponent(item.title + ' #FANZA');
+        const shareUrl = 'https://twitter.com/intent/tweet?text=' + shareText + '&url=' + encodeURIComponent(pageUrl);
+        const isFav    = Fav.has(item.content_id);
+
         document.getElementById('content').innerHTML = `
         ${campaign ? `<div class="campaign-box">🎉 <strong>キャンペーン：</strong>${esc(campaign.title)}（${esc((campaign.date_begin||'').slice(0,10))} 〜 ${esc((campaign.date_end||'').slice(0,10))}）</div>` : ''}
 
@@ -132,6 +146,17 @@ async function loadProduct(){
 
             <a class="btn-buy-large" href="${esc(url)}" target="_blank" rel="noopener">🎬 FANZAで視聴・購入する</a>
 
+            <!-- お気に入り & シェアボタン -->
+            <div style="display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap">
+              <button id="favBtn" class="btn-fav-detail ${isFav?'active':''}"
+                onclick="toggleFavDetail(this,'${esc(item.content_id)}')">
+                ${isFav ? '❤️ お気に入り済み' : '🤍 お気に入りに追加'}
+              </button>
+              <a class="btn-share-x" href="${esc(shareUrl)}" target="_blank" rel="noopener">
+                𝕏 Xでシェア
+              </a>
+            </div>
+
             ${review?.count>0 ? `
             <div class="review-box">
               <span class="review-avg">${esc(review.average)}</span>
@@ -154,9 +179,82 @@ async function loadProduct(){
             <p style="font-size:.75rem;color:var(--mute);text-align:center;margin-top:8px">※ 当サイトはFANZAアフィリエイトプログラムを利用しています</p>
           </div>
         </div>`;
+
+        // 関連作品を非同期で読み込む
+        loadRelated(item, floor);
     } catch(e){
         document.getElementById('content').innerHTML = `<div class="loading"><p style="color:#ff6688">⚠️ 商品情報の取得に失敗しました<br><small>${esc(e.message)}</small></p><a href="home.html" style="color:var(--accent2)">← TOPに戻る</a></div>`;
     }
+}
+
+// ===== お気に入りトグル（詳細ページ）=====
+function toggleFavDetail(btn, cid) {
+    // itemはDOMから再構築は難しいのでlocalStorageのみ更新
+    const favs = Fav.get();
+    const exists = favs.some(f => f.cid === cid);
+    if (exists) {
+        Fav.remove(cid);
+        btn.textContent = '🤍 お気に入りに追加';
+        btn.classList.remove('active');
+    } else {
+        // 最低限の情報でお気に入り追加
+        const img  = document.querySelector('.detail-img img')?.src || '';
+        const title = document.querySelector('.detail-title')?.textContent || '';
+        const url  = document.querySelector('.btn-buy-large')?.href || '#';
+        const p = new URLSearchParams(location.search);
+        const list = Fav.get();
+        list.unshift({ cid, title, img, url, floor: p.get('floor')||'videoa', ts: Date.now() });
+        if (list.length > 100) list.length = 100;
+        Fav.save(list);
+        btn.textContent = '❤️ お気に入り済み';
+        btn.classList.add('active');
+    }
+}
+
+// ===== 関連作品表示 =====
+async function loadRelated(item, floor) {
+    const actressIds = new Set((item.iteminfo?.actress || []).map(a => a.id));
+    if (!actressIds.size) return;
+
+    const allFiles = [
+        ...Object.values(DMM.sortFiles),
+        ...Object.values(DMM.genreFiles),
+    ];
+    const results = await Promise.allSettled(allFiles.map(f => DMM._loadFile(f).catch(() => null)));
+
+    const seen    = new Set([item.content_id]);
+    const related = [];
+    for (const r of results) {
+        if (!r.value) continue;
+        for (const prod of (r.value?.result?.items || [])) {
+            if (seen.has(prod.content_id)) continue;
+            const pIds = (prod.iteminfo?.actress || []).map(a => a.id);
+            if (pIds.some(id => actressIds.has(id))) {
+                seen.add(prod.content_id);
+                related.push(prod);
+                if (related.length >= 12) break;
+            }
+        }
+        if (related.length >= 12) break;
+    }
+    if (!related.length) return;
+
+    const section = document.createElement('div');
+    section.className = 'related-section';
+    section.innerHTML = `
+        <h3 class="related-title">🎬 関連作品</h3>
+        <div class="related-scroll">
+            ${related.map(p => {
+                const img   = esc(p.imageURL?.list || '');
+                const ptitle = esc(p.title || '');
+                const href  = `product.html?cid=${esc(p.content_id)}&floor=${esc(floor)}`;
+                return `<a class="mini-card" href="${href}">
+                    ${img ? `<img src="${img}" alt="${ptitle}" loading="lazy">` : ''}
+                    <div class="mini-card-title">${ptitle}</div>
+                </a>`;
+            }).join('')}
+        </div>`;
+    document.querySelector('.page-wrapper .main-content')?.appendChild(section);
 }
 
 loadProduct();

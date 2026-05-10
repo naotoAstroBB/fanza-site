@@ -29,6 +29,7 @@
     <div class="nav-btn" onclick="App.setFloor('goods',this)">🛍️ グッズ・通販</div>
     <div class="nav-btn" onclick="App.setSort('date',this)">⭐ 新着</div>
     <div class="nav-btn" onclick="App.setSort('rank',this)">🏆 ランキング</div>
+    <div class="nav-btn" onclick="App.setSale(this)">🔥 SALE</div>
   </div>
 </nav>
 
@@ -68,6 +69,27 @@
 
   </div>
 </div>
+
+<!-- 最近見た作品 -->
+<section class="actress-section" id="historySection" style="display:none">
+  <div class="actress-section-inner">
+    <div class="actress-section-header">
+      <span class="actress-section-title">🕐 最近見た作品</span>
+    </div>
+    <div class="actress-scroll" id="historyList"></div>
+  </div>
+</section>
+
+<!-- お気に入り -->
+<section class="actress-section" id="favoritesSection" style="display:none">
+  <div class="actress-section-inner">
+    <div class="actress-section-header">
+      <span class="actress-section-title">❤️ お気に入り</span>
+      <span id="favCount" style="font-size:.75rem;color:#555;margin-left:auto"></span>
+    </div>
+    <div class="actress-scroll" id="favoritesList"></div>
+  </div>
+</section>
 
 <!-- 人気女優ランキング -->
 <section class="actress-section">
@@ -137,6 +159,25 @@
   </main>
 </div>
 
+<!-- ボトムナビゲーション（スマホのみ表示） -->
+<nav class="bottom-nav">
+  <a href="home.html" class="bottom-nav-item active">
+    <span class="bn-icon">🏠</span><span>ホーム</span>
+  </a>
+  <button class="bottom-nav-item" onclick="App.setSort('rank',this)">
+    <span class="bn-icon">🏆</span><span>ランキング</span>
+  </button>
+  <button class="bottom-nav-item" onclick="App.setSort('date',this)">
+    <span class="bn-icon">🆕</span><span>新着</span>
+  </button>
+  <button class="bottom-nav-item" onclick="App.setSale(this)">
+    <span class="bn-icon">🔥</span><span>SALE</span>
+  </button>
+  <button class="bottom-nav-item" onclick="document.getElementById('favoritesSection')?.scrollIntoView({behavior:'smooth'})">
+    <span class="bn-icon">❤️</span><span>お気に入り</span>
+  </button>
+</nav>
+
 <footer class="site-footer">
   <div class="footer-logo">FANZA動画ランキング</div>
   <div class="footer-nav">
@@ -162,6 +203,7 @@
   </div>
 </div>
 
+<script src="js/storage.js"></script>
 <script src="js/dmm-api.js"></script>
 <script src="js/app.js"></script>
 </body>

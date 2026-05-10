@@ -8,14 +8,18 @@ if (location.pathname.includes('home') || location.pathname.includes('product'))
 }
 
 const App = {
-    floor:   'videoa',
-    sort:    'rank',
-    keyword: '',
-    genre:   '',
-    page:    1,
-    hitsPerPage: 24,
-    total:   0,
+    floor:        'videoa',
+    sort:         'rank',
+    keyword:      '',
+    genre:        '',
+    page:         1,
+    hitsPerPage:  24,
+    total:        0,
+    showSale:     false,
+    _saleItems:   [],
+    _currentItems:[],
 
+    // ===== 初期化 =====
     async init() {
         const p = new URLSearchParams(location.search);
         this.floor   = p.get('floor')   || 'videoa';
@@ -36,12 +40,68 @@ const App = {
         // ESCキーでサンプルモーダルを閉じる
         document.addEventListener('keydown', e => { if (e.key === 'Escape') this.closeSample(); });
 
+        // スワイプ操作（スマホ横スワイプでページ送り）
+        this.initSwipe();
+
+        // ストレージセクション（履歴・お気に入り）
+        this.loadStorageSections();
+
         await this.loadHero();
-        this.loadActressRanking();   // 並列で読み込み
+        this.loadActressRanking();
         this.loadNewActresses();
         await this.fetchProducts();
     },
 
+    // ===== スワイプ操作 =====
+    initSwipe() {
+        let startX = 0, startY = 0;
+        document.addEventListener('touchstart', e => {
+            startX = e.touches[0].clientX;
+            startY = e.touches[0].clientY;
+        }, { passive: true });
+        document.addEventListener('touchend', e => {
+            const dx = e.changedTouches[0].clientX - startX;
+            const dy = e.changedTouches[0].clientY - startY;
+            // 横スワイプ判定（横移動 > 80px かつ縦より横が大きい）
+            if (Math.abs(dx) > 80 && Math.abs(dx) > Math.abs(dy) * 2) {
+                const totalPages = Math.ceil(this.total / this.hitsPerPage);
+                if (dx < 0 && this.page < totalPages) this.goPage(this.page + 1);
+                else if (dx > 0 && this.page > 1)     this.goPage(this.page - 1);
+            }
+        }, { passive: true });
+    },
+
+    // ===== 履歴・お気に入りセクション =====
+    loadStorageSections() {
+        // 履歴
+        const hist = Hist.get();
+        const histSection = document.getElementById('historySection');
+        if (histSection && hist.length) {
+            histSection.style.display = '';
+            this.renderMiniCards('historyList', hist);
+        }
+        // お気に入り
+        const favs = Fav.get();
+        const favSection = document.getElementById('favoritesSection');
+        const favCount = document.getElementById('favCount');
+        if (favSection && favs.length) {
+            favSection.style.display = '';
+            if (favCount) favCount.textContent = favs.length + '件';
+            this.renderMiniCards('favoritesList', favs);
+        }
+    },
+
+    renderMiniCards(containerId, items) {
+        const el = document.getElementById(containerId);
+        if (!el) return;
+        el.innerHTML = items.slice(0, 20).map(item => `
+            <a class="mini-card" href="product.html?cid=${this.esc(item.cid)}&floor=${this.esc(item.floor)}">
+                ${item.img ? `<img src="${this.esc(item.img)}" alt="${this.esc(item.title)}" loading="lazy">` : '<div class="mini-card-no-img">🎬</div>'}
+                <div class="mini-card-title">${this.esc(item.title)}</div>
+            </a>`).join('');
+    },
+
+    // ===== ヒーローバナー =====
     async loadHero() {
         try {
             const data = await DMM.fetch({ sort: 'rank' });
@@ -52,7 +112,6 @@ const App = {
             const cnt = document.getElementById('todayCount');
             if (cnt) cnt.textContent = total.toLocaleString() + '件';
 
-            // ヒーローメイン（1位商品・画像背景）
             const top = items[0];
             const heroMain = document.querySelector('.hero-main');
             const imgLarge = top.imageURL?.large || top.imageURL?.list || '';
@@ -75,7 +134,6 @@ const App = {
             const priceEl = document.getElementById('heroPrice');
             if (priceEl) priceEl.textContent = top.prices?.price ? '¥' + top.prices.price + '〜' : '';
 
-            // サブヒーロー（2〜4位のサムネ）
             const subGrid = document.getElementById('heroSubGrid');
             if (subGrid && items.length >= 4) {
                 subGrid.innerHTML = items.slice(1, 4).map((item, i) => {
@@ -92,6 +150,7 @@ const App = {
         } catch(e) { /* ヒーロー失敗は無視 */ }
     },
 
+    // ===== 商品一覧取得（クライアント側ページネーション）=====
     async fetchProducts() {
         const grid = document.getElementById('productGrid');
         if (!grid) return;
@@ -116,7 +175,7 @@ const App = {
                 );
             }
 
-            // クライアント側ページネーション
+            this._currentItems = items;
             this.total = items.length;
             const start = (this.page - 1) * this.hitsPerPage;
             this.renderGrid(grid, items.slice(start, start + this.hitsPerPage));
@@ -127,6 +186,43 @@ const App = {
         }
     },
 
+    // ===== セールフィルタ =====
+    async setSale(el) {
+        this.showSale = true;
+        this.genre    = '';
+        this.keyword  = '';
+        this.page     = 1;
+        if (el) {
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+            el.classList.add('active');
+        }
+        const grid = document.getElementById('productGrid');
+        if (!grid) return;
+        grid.innerHTML = '<div class="loading"><div class="spinner"></div><p>セール商品を取得中...</p></div>';
+
+        // 全JSONから campaign 付きアイテムを収集
+        const files = [...Object.values(DMM.sortFiles), ...Object.values(DMM.genreFiles)];
+        const results = await Promise.allSettled(files.map(f => DMM._loadFile(f)));
+        const seen = new Set();
+        const saleItems = [];
+        for (const r of results) {
+            if (r.status !== 'fulfilled') continue;
+            for (const item of (r.value?.result?.items || [])) {
+                if (item.campaign && !seen.has(item.content_id)) {
+                    seen.add(item.content_id);
+                    saleItems.push(item);
+                }
+            }
+        }
+        this._saleItems   = saleItems;
+        this._currentItems = saleItems;
+        this.total = saleItems.length;
+        this.renderGrid(grid, saleItems.slice(0, this.hitsPerPage));
+        this.renderPagination();
+        const title = document.getElementById('sectionTitle');
+        if (title) title.textContent = `🔥 セール中 — ${saleItems.length}件`;
+    },
+
     renderGrid(grid, items) {
         if (!items.length) {
             grid.innerHTML = '<div class="loading"><p>該当商品が見つかりませんでした</p></div>';
@@ -135,6 +231,7 @@ const App = {
         grid.innerHTML = items.map((item, i) => this.cardHTML(item, i)).join('');
     },
 
+    // ===== 商品カード =====
     cardHTML(item, i) {
         const img       = item.imageURL?.list || item.imageURL?.small || '';
         const title     = this.esc(item.title || '');
@@ -149,8 +246,9 @@ const App = {
         const rankBadge = i < 3
             ? `<div class="rank-badge ${['rank-1','rank-2','rank-3'][i]}">${['🥇','🥈','🥉'][i]}</div>`
             : (i < 10 ? `<div class="rank-badge rank-other">${i+1}</div>` : '');
-        const mv = item.sampleMovieURL;
-        const sampleUrl = mv ? (mv.size_560_360 || mv.size_476_306 || mv.size_644_414 || mv.size_720_480 || '') : '';
+        const mv        = item.sampleMovieURL;
+        const sampleUrl = mv ? (mv.size_560_360 || mv.size_476_306 || mv.size_644_414 || '') : '';
+        const isFav     = Fav.has(item.content_id);
 
         return `
         <div class="product-card" onclick="location.href='product.html?cid=${this.esc(item.content_id)}&floor=${this.floor}'">
@@ -162,6 +260,8 @@ const App = {
             ${rankBadge}
             ${campaign ? `<span class="badge-sale">SALE</span>` : (isNew ? `<span class="badge-new">NEW</span>` : '')}
             ${sampleUrl ? `<button class="card-sample-btn" onclick="event.stopPropagation();App.openSample('${this.esc(sampleUrl)}','${title}')" title="サンプル再生">▶</button>` : ''}
+            <button class="fav-btn ${isFav ? 'active' : ''}" title="${isFav ? 'お気に入り解除' : 'お気に入りに追加'}"
+              onclick="event.stopPropagation();App.toggleFav(this,'${this.esc(item.content_id)}')">${isFav ? '❤️' : '🤍'}</button>
           </div>
           <div class="card-body">
             <div class="card-title">${title}</div>
@@ -178,6 +278,40 @@ const App = {
         </div>`;
     },
 
+    // ===== お気に入りトグル =====
+    toggleFav(btn, cid) {
+        const item = this._currentItems.find(i => i.content_id === cid)
+                  || this._saleItems.find(i => i.content_id === cid);
+        if (!item) return;
+        const isNow = Fav.toggle(item, this.floor);
+        btn.classList.toggle('active', isNow);
+        btn.textContent = isNow ? '❤️' : '🤍';
+        btn.title = isNow ? 'お気に入り解除' : 'お気に入りに追加';
+        // お気に入りセクションを更新
+        this.loadStorageSections();
+    },
+
+    // ===== サンプル動画モーダル =====
+    openSample(url, title) {
+        const modal  = document.getElementById('sampleModal');
+        const iframe = document.getElementById('sampleIframe');
+        const label  = document.getElementById('sampleModalTitle');
+        if (!modal || !iframe) return;
+        if (label) label.textContent = title || 'サンプル動画';
+        iframe.src = url;
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    },
+
+    closeSample() {
+        const modal  = document.getElementById('sampleModal');
+        const iframe = document.getElementById('sampleIframe');
+        if (modal)  modal.classList.remove('active');
+        if (iframe) iframe.src = '';
+        document.body.style.overflow = '';
+    },
+
+    // ===== ページネーション =====
     renderPagination() {
         const el = document.getElementById('pagination');
         if (!el) return;
@@ -208,7 +342,15 @@ const App = {
     goPage(n) {
         this.page = n;
         window.scrollTo({ top: 0, behavior: 'smooth' });
-        this.fetchProducts();
+        if (this.showSale) {
+            // セールページネーションはメモリ上のデータを使う
+            const grid  = document.getElementById('productGrid');
+            const start = (n - 1) * this.hitsPerPage;
+            this.renderGrid(grid, this._saleItems.slice(start, start + this.hitsPerPage));
+            this.renderPagination();
+        } else {
+            this.fetchProducts();
+        }
     },
 
     updateTitle(result) {
@@ -222,15 +364,17 @@ const App = {
     doSearch() {
         const input = document.getElementById('searchInput');
         if (input) this.keyword = input.value.trim();
-        this.page = 1;
+        this.page     = 1;
+        this.showSale = false;
         this.fetchProducts();
     },
 
     setFloor(floor, el) {
-        this.floor   = floor;
-        this.keyword = '';
-        this.genre   = '';
-        this.page    = 1;
+        this.floor    = floor;
+        this.keyword  = '';
+        this.genre    = '';
+        this.page     = 1;
+        this.showSale = false;
         if (el) {
             document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
             el.classList.add('active');
@@ -239,15 +383,21 @@ const App = {
     },
 
     setSort(sort, el) {
-        this.sort = sort;
-        this.page = 1;
+        this.sort     = sort;
+        this.page     = 1;
+        this.showSale = false;
         if (document.getElementById('sortSelect')) document.getElementById('sortSelect').value = sort;
+        if (el) {
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+            el.classList.add('active');
+        }
         this.fetchProducts();
     },
 
     setGenre(id, el) {
-        this.genre = id;
-        this.page  = 1;
+        this.genre    = id;
+        this.page     = 1;
+        this.showSale = false;
         if (el) {
             el.closest('.sidebar-section').querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
             el.classList.add('active');
@@ -256,9 +406,10 @@ const App = {
     },
 
     clearFilter(el) {
-        this.genre   = '';
-        this.keyword = '';
-        this.page    = 1;
+        this.genre    = '';
+        this.keyword  = '';
+        this.page     = 1;
+        this.showSale = false;
         if (el) {
             el.closest('.sidebar-section').querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
             el.classList.add('active');
@@ -266,6 +417,7 @@ const App = {
         this.fetchProducts();
     },
 
+    // ===== 女優セクション =====
     async loadActressRanking() {
         await this._renderActresses('actressRankList', 'popular', true);
     },
@@ -278,12 +430,9 @@ const App = {
         const el = document.getElementById(containerId);
         if (!el) return;
         try {
-            const data = await DMM.fetchActress(type);
+            const data     = await DMM.fetchActress(type);
             const actresses = data?.result?.actress || [];
-            if (!actresses.length) {
-                el.innerHTML = '<span class="actress-empty">データ準備中</span>';
-                return;
-            }
+            if (!actresses.length) { el.innerHTML = '<span class="actress-empty">データ準備中</span>'; return; }
             el.innerHTML = actresses.map((a, i) => {
                 const img  = a.imageURL?.small || '';
                 const name = this.esc(a.name || '');
@@ -294,9 +443,7 @@ const App = {
                 return `
                 <a class="actress-card" href="${url}" target="_blank" rel="noopener">
                     <div class="actress-photo">
-                        ${img
-                            ? `<img src="${this.esc(img)}" alt="${name}" loading="lazy">`
-                            : `<div class="actress-no-img">👩</div>`}
+                        ${img ? `<img src="${this.esc(img)}" alt="${name}" loading="lazy">` : `<div class="actress-no-img">👩</div>`}
                         ${badge}
                     </div>
                     <div class="actress-name">${name}</div>
@@ -307,25 +454,7 @@ const App = {
         }
     },
 
-    openSample(url, title) {
-        const modal = document.getElementById('sampleModal');
-        const iframe = document.getElementById('sampleIframe');
-        const label = document.getElementById('sampleModalTitle');
-        if (!modal || !iframe) return;
-        if (label) label.textContent = title || 'サンプル動画';
-        iframe.src = url;
-        modal.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    },
-
-    closeSample() {
-        const modal = document.getElementById('sampleModal');
-        const iframe = document.getElementById('sampleIframe');
-        if (modal) modal.classList.remove('active');
-        if (iframe) iframe.src = '';
-        document.body.style.overflow = '';
-    },
-
+    // ===== ユーティリティ =====
     isNew(dateStr) {
         if (!dateStr) return false;
         return (Date.now() - new Date(dateStr).getTime()) < 7 * 24 * 60 * 60 * 1000;

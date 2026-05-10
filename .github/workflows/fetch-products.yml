@@ -44,6 +44,41 @@ jobs:
               || echo '{"result":{"status":404}}' > "$FILE"
           done
 
+      - name: Fetch actress data
+        run: |
+          API="https://api.dmm.com/affiliate/v3/ActressSearch?api_id=UXJdpULBN1sPyNKKPPHU&affiliate_id=saaaaaaya-990&site=FANZA&hits=1&output=json"
+
+          build_actress_json() {
+            local IDS="$1"
+            local OUT="$2"
+            local JSON="["
+            local first=true
+            for ID in $IDS; do
+              [ "$ID" = "null" ] || [ -z "$ID" ] && continue
+              DATA=$(curl -sf "${API}&actress_id=${ID}")
+              ACTRESS=$(echo "$DATA" | jq '.result.actress[0] // empty' 2>/dev/null)
+              if [ -n "$ACTRESS" ] && [ "$ACTRESS" != "null" ]; then
+                [ "$first" = true ] && first=false || JSON="${JSON},"
+                JSON="${JSON}${ACTRESS}"
+              fi
+              sleep 0.15
+            done
+            JSON="${JSON}]"
+            echo "{\"result\":{\"status\":200,\"actress\":${JSON}}}" > "$OUT"
+          }
+
+          # 人気女優：rank.jsonの商品から女優IDを抽出（先頭女優を優先、重複除去）
+          POPULAR_IDS=$(jq -r '.result.items[] | .iteminfo.actress[0]?.id | tostring' data/rank.json 2>/dev/null \
+            | awk '!seen[$0]++ && $0 != "null"' | head -15)
+          build_actress_json "$POPULAR_IDS" data/actress_popular.json \
+            || echo '{"result":{"status":404}}' > data/actress_popular.json
+
+          # 新着女優：new.jsonの商品から女優IDを抽出
+          NEW_IDS=$(jq -r '.result.items[] | .iteminfo.actress[0]?.id | tostring' data/new.json 2>/dev/null \
+            | awk '!seen[$0]++ && $0 != "null"' | head -15)
+          build_actress_json "$NEW_IDS" data/actress_new.json \
+            || echo '{"result":{"status":404}}' > data/actress_new.json
+
       - name: Commit
         run: |
           git config user.email "github-actions[bot]@users.noreply.github.com"

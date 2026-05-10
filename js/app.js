@@ -34,6 +34,8 @@ const App = {
         }
 
         await this.loadHero();
+        this.loadActressRanking();   // 並列で読み込み
+        this.loadNewActresses();
         await this.fetchProducts();
     },
 
@@ -245,6 +247,47 @@ const App = {
             el.classList.add('active');
         }
         this.fetchProducts();
+    },
+
+    async loadActressRanking() {
+        await this._renderActresses('actressRankList', 'popular', true);
+    },
+
+    async loadNewActresses() {
+        await this._renderActresses('actressNewList', 'new', false);
+    },
+
+    async _renderActresses(containerId, type, showRank) {
+        const el = document.getElementById(containerId);
+        if (!el) return;
+        try {
+            const data = await DMM.fetchActress(type);
+            const actresses = data?.result?.actress || [];
+            if (!actresses.length) {
+                el.innerHTML = '<span class="actress-empty">データ準備中</span>';
+                return;
+            }
+            el.innerHTML = actresses.map((a, i) => {
+                const img  = a.imageURL?.small || '';
+                const name = this.esc(a.name || '');
+                const url  = this.esc(a.listURL?.digital || '#');
+                const badge = showRank
+                    ? `<div class="actress-rank-badge">${i + 1}位</div>`
+                    : `<div class="actress-new-badge">NEW</div>`;
+                return `
+                <a class="actress-card" href="${url}" target="_blank" rel="noopener">
+                    <div class="actress-photo">
+                        ${img
+                            ? `<img src="${this.esc(img)}" alt="${name}" loading="lazy">`
+                            : `<div class="actress-no-img">👩</div>`}
+                        ${badge}
+                    </div>
+                    <div class="actress-name">${name}</div>
+                </a>`;
+            }).join('');
+        } catch(e) {
+            if (el) el.innerHTML = '<span class="actress-empty">準備中</span>';
+        }
     },
 
     isNew(dateStr) {

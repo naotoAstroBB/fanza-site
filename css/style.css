@@ -370,33 +370,53 @@ a:hover { color: #fff; }
     background: #0d0d0d;
 }
 
-/* ===== ヒーローサブカード（2〜4位）旧定義削除 ===== */
-.hero-sub-card {
-    display: flex; align-items: center; gap: 10px;
-    background: rgba(255,255,255,.05); border: 1px solid #2a2a2a;
-    border-radius: 8px; padding: 8px; text-decoration: none;
-    transition: all .2s; position: relative; overflow: hidden;
+/* ===== 女優セクション ===== */
+.actress-section { background: #0f0f0f; border-bottom: 1px solid #1e1e1e; }
+.actress-section-inner { max-width: 1280px; margin: 0 auto; padding: 16px 20px; }
+.actress-section-header { display: flex; align-items: center; margin-bottom: 12px; }
+.actress-section-title { font-size: .9rem; font-weight: 700; color: #fff; }
+.actress-scroll {
+    display: flex; gap: 14px; overflow-x: auto; padding-bottom: 6px;
+    scrollbar-width: thin; scrollbar-color: #333 transparent;
 }
-.hero-sub-card:hover { background: rgba(255,51,102,.1); border-color: #ff3366; }
-.hero-sub-card img {
-    width: 60px; height: 80px; object-fit: cover;
-    border-radius: 4px; flex-shrink: 0;
+.actress-scroll::-webkit-scrollbar { height: 4px; }
+.actress-scroll::-webkit-scrollbar-track { background: transparent; }
+.actress-scroll::-webkit-scrollbar-thumb { background: #333; border-radius: 2px; }
+.actress-card {
+    flex: 0 0 88px; text-align: center; text-decoration: none;
+    transition: transform .2s;
 }
-.hero-sub-rank {
-    position: absolute; top: 4px; left: 4px;
+.actress-card:hover { transform: translateY(-3px); }
+.actress-photo {
+    position: relative; width: 72px; height: 72px; margin: 0 auto 6px;
+}
+.actress-photo img {
+    width: 72px; height: 72px; border-radius: 50%; object-fit: cover;
+    border: 2px solid #333; transition: border-color .2s;
+}
+.actress-card:hover .actress-photo img { border-color: var(--accent); }
+.actress-no-img {
+    width: 72px; height: 72px; border-radius: 50%;
+    background: #222; display: flex; align-items: center; justify-content: center;
+    font-size: 1.8rem; border: 2px solid #333;
+}
+.actress-rank-badge {
+    position: absolute; bottom: -2px; right: -4px;
     background: var(--accent); color: #fff;
-    font-size: .65rem; font-weight: 900;
-    padding: 2px 6px; border-radius: 3px;
+    font-size: .58rem; font-weight: 900;
+    padding: 1px 5px; border-radius: 10px;
+    border: 1.5px solid #0f0f0f;
 }
-.hero-sub-title {
-    font-size: .75rem; color: #ccc; line-height: 1.4;
-    display: -webkit-box; -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical; overflow: hidden;
+.actress-new-badge {
+    position: absolute; bottom: -2px; right: -4px;
+    background: #0099ff; color: #fff;
+    font-size: .58rem; font-weight: 900;
+    padding: 1px 5px; border-radius: 10px;
+    border: 1.5px solid #0f0f0f;
 }
-.hero-sub-card-placeholder {
-    height: 96px; background: #1a1a1a; border-radius: 8px;
-    border: 1px solid #222;
-}
+.actress-name { font-size: .72rem; color: #ccc; line-height: 1.3; word-break: break-all; }
+.actress-loading { color: #444; font-size: .8rem; padding: 20px 0; }
+.actress-empty { color: #444; font-size: .8rem; }
 
 /* ===== レスポンシブ ===== */
 @media (max-width: 900px) {

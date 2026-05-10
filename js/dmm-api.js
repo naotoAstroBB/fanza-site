@@ -22,6 +22,20 @@ const DMM = {
         '4031': 'data/genre_cosplay.json',   // コスプレ
     },
 
+    actressFiles: {
+        'popular': 'data/actress_popular.json',
+        'new':     'data/actress_new.json',
+    },
+
+    async fetchActress(type = 'popular') {
+        const file = this.actressFiles[type] || this.actressFiles['popular'];
+        const res = await fetch(file + '?_=' + Math.floor(Date.now() / 60000));
+        if (!res.ok) throw new Error(`女優データ取得失敗 (${res.status}): ${file}`);
+        const data = await res.json();
+        if (data?.result?.status === 404) throw new Error('女優データが準備されていません');
+        return data;
+    },
+
     async fetch(params = {}) {
         let file;
 

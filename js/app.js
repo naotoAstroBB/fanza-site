@@ -57,21 +57,18 @@ const App = {
                 heroMain.style.backgroundSize = 'cover';
                 heroMain.style.backgroundPosition = 'center top';
             }
-            const titleEl = document.getElementById('heroTitle');
-            const subEl   = document.getElementById('heroSub');
-            const btnEl   = document.getElementById('heroBtn');
-            const priceEl = document.getElementById('heroPrice');
+            document.getElementById('heroTitle').textContent = top.title;
 
-            if (titleEl) titleEl.textContent = top.title;
+            const subEl = document.getElementById('heroSub');
             if (subEl) {
                 const actresses = (top.iteminfo?.actress || []).slice(0,2).map(a=>a.name).join(' / ');
-                subEl.textContent = actresses ? '出演：' + actresses : (top.iteminfo?.genre?.[0]?.name || 'FANZA厳選作品');
+                subEl.textContent = actresses ? '出演：' + actresses : '';
             }
-            if (btnEl) {
-                btnEl.href = top.affiliateURL || top.URL || '#';
-                btnEl.target = '_blank';
-            }
-            if (priceEl && top.prices?.price) priceEl.textContent = '¥' + top.prices.price;
+            const btnEl = document.getElementById('heroBtn');
+            if (btnEl) btnEl.href = top.affiliateURL || top.URL || '#';
+
+            const priceEl = document.getElementById('heroPrice');
+            if (priceEl) priceEl.textContent = top.prices?.price ? '¥' + top.prices.price + '〜' : '';
 
             // サブヒーロー（2〜4位のサムネ）
             const subGrid = document.getElementById('heroSubGrid');

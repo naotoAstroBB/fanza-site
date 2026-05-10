@@ -34,31 +34,32 @@
 
 <div class="ticker">
   <div class="ticker-label">🔥 INFO</div>
-  <div class="ticker-text" id="tickerText">
-    FANZA厳選作品を毎日更新中！人気女優・新作・セール情報をお届けします。&nbsp;&nbsp;&nbsp;
-    FANZA厳選作品を毎日更新中！人気女優・新作・セール情報をお届けします。
+  <div class="ticker-wrap">
+    <span class="ticker-text">
+      FANZA厳選作品を毎日更新中！人気女優・新作・セール情報をお届けします。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      FANZA厳選作品を毎日更新中！人気女優・新作・セール情報をお届けします。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </span>
   </div>
 </div>
 
 <div class="hero">
   <div class="hero-inner">
 
-    <!-- メインバナー（1位商品・背景画像） -->
-    <div class="hero-main">
-      <div class="tag">🏆 人気ランキング 1位</div>
-      <h2 id="heroTitle">読み込み中...</h2>
-      <p id="heroSub">FANZA厳選作品</p>
-      <div style="display:flex;align-items:center;gap:16px;margin-top:12px;flex-wrap:wrap">
-        <a id="heroBtn" class="hero-btn" href="#" target="_blank" rel="noopener">🎬 FANZAで見る →</a>
-        <span id="heroPrice" style="font-size:1.1rem;font-weight:900;color:#ffcc00"></span>
+    <!-- 左：1位商品（背景画像） -->
+    <div class="hero-main" id="heroMain">
+      <div class="hero-tag">🏆 人気ランキング 1位</div>
+      <div class="hero-title" id="heroTitle">読み込み中...</div>
+      <div class="hero-actress" id="heroSub"></div>
+      <div class="hero-footer">
+        <a class="hero-btn" id="heroBtn" href="#" target="_blank" rel="noopener">🎬 FANZAで見る →</a>
+        <span class="hero-price" id="heroPrice"></span>
       </div>
     </div>
 
-    <!-- サブランキング（2〜4位） -->
+    <!-- 右：2〜4位 -->
     <div class="hero-side">
-      <div style="font-size:.78rem;color:#666;margin-bottom:8px;padding-left:4px">2〜4位</div>
-      <div id="heroSubGrid" style="display:flex;flex-direction:column;gap:8px">
-        <!-- JS で生成 -->
+      <div class="hero-side-label">2〜4位</div>
+      <div id="heroSubGrid">
         <div class="hero-sub-card-placeholder"></div>
         <div class="hero-sub-card-placeholder"></div>
         <div class="hero-sub-card-placeholder"></div>

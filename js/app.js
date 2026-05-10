@@ -39,19 +39,53 @@ const App = {
 
     async loadHero() {
         try {
-            const data = await DMM.fetch({ floor: this.floor, sort: 'rank', hits: 1, offset: 1 });
-            const item = data?.result?.items?.[0];
-            if (!item) return;
-            const el = document.getElementById('heroTitle');
-            const sub = document.getElementById('heroSub');
-            const btn = document.getElementById('heroBtn');
+            const data = await DMM.fetch({ sort: 'rank' });
+            const items = data?.result?.items;
+            if (!items?.length) return;
+
+            const total = data.result.total_count;
             const cnt = document.getElementById('todayCount');
-            if (el) el.textContent = item.title;
-            if (sub && item.iteminfo?.actress?.length) sub.textContent = '出演：' + item.iteminfo.actress.slice(0,2).map(a=>a.name).join(' / ');
-            if (btn) btn.href = item.affiliateURL || item.URL || '#';
-            if (cnt) {
-                const total = data.result.total_count;
-                cnt.textContent = total.toLocaleString() + '件';
+            if (cnt) cnt.textContent = total.toLocaleString() + '件';
+
+            // ヒーローメイン（1位商品・画像背景）
+            const top = items[0];
+            const heroMain = document.querySelector('.hero-main');
+            const imgLarge = top.imageURL?.large || top.imageURL?.list || '';
+            if (heroMain && imgLarge) {
+                heroMain.style.backgroundImage =
+                    `linear-gradient(to right, rgba(10,0,5,0.92) 40%, rgba(10,0,5,0.5) 100%), url('${imgLarge}')`;
+                heroMain.style.backgroundSize = 'cover';
+                heroMain.style.backgroundPosition = 'center top';
+            }
+            const titleEl = document.getElementById('heroTitle');
+            const subEl   = document.getElementById('heroSub');
+            const btnEl   = document.getElementById('heroBtn');
+            const priceEl = document.getElementById('heroPrice');
+
+            if (titleEl) titleEl.textContent = top.title;
+            if (subEl) {
+                const actresses = (top.iteminfo?.actress || []).slice(0,2).map(a=>a.name).join(' / ');
+                subEl.textContent = actresses ? '出演：' + actresses : (top.iteminfo?.genre?.[0]?.name || 'FANZA厳選作品');
+            }
+            if (btnEl) {
+                btnEl.href = top.affiliateURL || top.URL || '#';
+                btnEl.target = '_blank';
+            }
+            if (priceEl && top.prices?.price) priceEl.textContent = '¥' + top.prices.price;
+
+            // サブヒーロー（2〜4位のサムネ）
+            const subGrid = document.getElementById('heroSubGrid');
+            if (subGrid && items.length >= 4) {
+                subGrid.innerHTML = items.slice(1, 4).map((item, i) => {
+                    const img = item.imageURL?.list || item.imageURL?.small || '';
+                    const url = item.affiliateURL || item.URL || '#';
+                    return `
+                    <a href="${this.esc(url)}" target="_blank" rel="noopener" class="hero-sub-card">
+                        ${img ? `<img src="${this.esc(img)}" alt="${this.esc(item.title)}" loading="lazy">` : ''}
+                        <div class="hero-sub-rank">${i + 2}位</div>
+                        <div class="hero-sub-title">${this.esc(item.title)}</div>
+                    </a>`;
+                }).join('');
             }
         } catch(e) { /* ヒーロー失敗は無視 */ }
     },

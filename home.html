@@ -44,25 +44,29 @@
 
 <div class="hero">
   <div class="hero-inner">
+
+    <!-- メインバナー（1位商品・背景画像） -->
     <div class="hero-main">
-      <div class="tag">🏆 今週の人気No.1</div>
+      <div class="tag">🏆 人気ランキング 1位</div>
       <h2 id="heroTitle">読み込み中...</h2>
       <p id="heroSub">FANZA厳選作品</p>
-      <a id="heroBtn" class="hero-btn" href="#" target="_blank" rel="noopener">FANZAで見る →</a>
+      <div style="display:flex;align-items:center;gap:16px;margin-top:12px;flex-wrap:wrap">
+        <a id="heroBtn" class="hero-btn" href="#" target="_blank" rel="noopener">🎬 FANZAで見る →</a>
+        <span id="heroPrice" style="font-size:1.1rem;font-weight:900;color:#ffcc00"></span>
+      </div>
     </div>
+
+    <!-- サブランキング（2〜4位） -->
     <div class="hero-side">
-      <div class="hero-card pink" onclick="App.setSort('date')">
-        <div class="badge">NEW</div>
-        <div class="card-icon">⭐</div>
-        <h3>今週の新着作品</h3>
-        <p>最新作品を毎日追加中</p>
-      </div>
-      <div class="hero-card purple" onclick="App.setFloor('goods')">
-        <div class="card-icon">🛍️</div>
-        <h3>グッズ・通販</h3>
-        <p>アダルトグッズも充実</p>
+      <div style="font-size:.78rem;color:#666;margin-bottom:8px;padding-left:4px">2〜4位</div>
+      <div id="heroSubGrid" style="display:flex;flex-direction:column;gap:8px">
+        <!-- JS で生成 -->
+        <div class="hero-sub-card-placeholder"></div>
+        <div class="hero-sub-card-placeholder"></div>
+        <div class="hero-sub-card-placeholder"></div>
       </div>
     </div>
+
   </div>
 </div>
 

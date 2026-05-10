@@ -2,8 +2,8 @@ name: Fetch FANZA Products
 
 on:
   schedule:
-    - cron: '0 * * * *'   # 毎時間自動実行
-  workflow_dispatch:        # 手動実行ボタンあり
+    - cron: '0 * * * *'
+  workflow_dispatch:
 
 jobs:
   fetch:
@@ -12,45 +12,39 @@ jobs:
       contents: write
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Fetch DMM API - 人気順（動画）
+      - name: Fetch products
         run: |
-          curl -s "https://api.dmm.com/affiliate/v3/ItemList?api_id=UXJdpULBN1sPyNKKPPHU&affiliate_id=saaaaaaya-990&site=FANZA&service=digital&floor=videoa&hits=24&sort=rank&output=json" \
-            > data/rank.json
+          BASE="https://api.dmm.com/affiliate/v3/ItemList?api_id=UXJdpULBN1sPyNKKPPHU&affiliate_id=saaaaaaya-990&site=FANZA&service=digital&output=json&hits=24"
 
-      - name: Fetch DMM API - 新着順（動画）
-        run: |
-          curl -s "https://api.dmm.com/affiliate/v3/ItemList?api_id=UXJdpULBN1sPyNKKPPHU&affiliate_id=saaaaaaya-990&site=FANZA&service=digital&floor=videoa&hits=24&sort=date&output=json" \
-            > data/new.json
+          # ソート別
+          curl -sf "$BASE&floor=videoa&sort=rank"   -o data/rank.json   || echo '{"result":{"status":404}}' > data/rank.json
+          curl -sf "$BASE&floor=videoa&sort=date"   -o data/new.json    || echo '{"result":{"status":404}}' > data/new.json
+          curl -sf "$BASE&floor=videoa&sort=review" -o data/review.json || echo '{"result":{"status":404}}' > data/review.json
 
-      - name: Fetch DMM API - レビュー高い順
-        run: |
-          curl -s "https://api.dmm.com/affiliate/v3/ItemList?api_id=UXJdpULBN1sPyNKKPPHU&affiliate_id=saaaaaaya-990&site=FANZA&service=digital&floor=videoa&hits=24&sort=review&output=json" \
-            > data/review.json
+          # フロア別
+          curl -sf "$BASE&floor=anime&sort=rank"    -o data/anime.json  || echo '{"result":{"status":404}}' > data/anime.json
+          curl -sf "https://api.dmm.com/affiliate/v3/ItemList?api_id=UXJdpULBN1sPyNKKPPHU&affiliate_id=saaaaaaya-990&site=FANZA&service=mono&floor=goods&output=json&hits=24&sort=rank" \
+            -o data/goods.json || echo '{"result":{"status":404}}' > data/goods.json
 
-      - name: Fetch DMM API - 巨乳ジャンル
-        run: |
-          curl -s "https://api.dmm.com/affiliate/v3/ItemList?api_id=UXJdpULBN1sPyNKKPPHU&affiliate_id=saaaaaaya-990&site=FANZA&service=digital&floor=videoa&hits=24&sort=rank&article=genre&article_id=4002&output=json" \
-            > data/genre_busty.json
+          # ジャンル別 (全ジャンル対応)
+          for row in \
+            "4002:genre_busty" \
+            "4007:genre_bishoujo" \
+            "4049:genre_hd" \
+            "4013:genre_single" \
+            "4017:genre_amateur" \
+            "4028:genre_creampie" \
+            "4065:genre_wife" \
+            "4051:genre_ol" \
+            "4061:genre_cosplay"; do
+            ID="${row%%:*}"; FILE="data/${row##*:}.json"
+            curl -sf "$BASE&floor=videoa&sort=rank&article=genre&article_id=$ID" -o "$FILE" \
+              || echo '{"result":{"status":404}}' > "$FILE"
+          done
 
-      - name: Fetch DMM API - 素人ジャンル
-        run: |
-          curl -s "https://api.dmm.com/affiliate/v3/ItemList?api_id=UXJdpULBN1sPyNKKPPHU&affiliate_id=saaaaaaya-990&site=FANZA&service=digital&floor=videoa&hits=24&sort=rank&article=genre&article_id=4017&output=json" \
-            > data/genre_amateur.json
-
-      - name: Fetch DMM API - 人妻ジャンル
-        run: |
-          curl -s "https://api.dmm.com/affiliate/v3/ItemList?api_id=UXJdpULBN1sPyNKKPPHU&affiliate_id=saaaaaaya-990&site=FANZA&service=digital&floor=videoa&hits=24&sort=rank&article=genre&article_id=4065&output=json" \
-            > data/genre_wife.json
-
-      - name: Fetch DMM API - アニメ
-        run: |
-          curl -s "https://api.dmm.com/affiliate/v3/ItemList?api_id=UXJdpULBN1sPyNKKPPHU&affiliate_id=saaaaaaya-990&site=FANZA&service=digital&floor=anime&hits=24&sort=rank&output=json" \
-            > data/anime.json
-
-      - name: Commit and push
+      - name: Commit
         run: |
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git config user.name "github-actions[bot]"

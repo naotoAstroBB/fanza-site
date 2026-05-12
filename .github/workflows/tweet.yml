@@ -4,11 +4,12 @@ on:
   schedule:
     - cron: '0 23 * * *'   # 08:00 JST  ランキング投稿
     - cron: '0 3 * * *'    # 12:00 JST  人気女優投稿
+    - cron: '0 6 * * *'    # 15:00 JST  マンガ投稿
     - cron: '0 12 * * *'   # 21:00 JST  新着・セール投稿
   workflow_dispatch:
     inputs:
       tweet_type:
-        description: 'rank（ランキング） / actress（女優） / new（新着）/ 空欄=自動'
+        description: 'rank / actress / manga / new / 空欄=自動判定'
         required: false
         default: ''
       dry_run:
@@ -24,10 +25,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 1  # 最新コミットのみ
+          fetch-depth: 1
 
       - name: Pull latest data
-        run: git pull --rebase origin main || true  # fetch-productsが直前に走った場合に備えて最新データを取得
+        run: git pull --rebase origin main || true
 
       - name: Set up Python
         uses: actions/setup-python@v5

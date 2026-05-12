@@ -668,9 +668,22 @@ def main():
     if media_ids:
         kwargs["media_ids"] = media_ids
 
-    response = client_v2.create_tweet(**kwargs)
-    tweet_id = response.data["id"]
-    print(f"[OK] Posted! https://twitter.com/i/web/status/{tweet_id}")
+    try:
+        response = client_v2.create_tweet(**kwargs)
+        tweet_id = response.data["id"]
+        print(f"[OK] Posted! https://twitter.com/i/web/status/{tweet_id}")
+    except Exception as e:
+        err_str = str(e)
+        if "402" in err_str or "Payment Required" in err_str or "credits" in err_str.lower():
+            # X API クレジット不足 — ワークフローは成功扱い（課金問題はコード外）
+            print(f"[SKIP] X API credit insufficient (402). Tweet skipped.\n{e}")
+        elif "403" in err_str or "Forbidden" in err_str:
+            print(f"[SKIP] X API access denied (403). Check app permissions.\n{e}")
+        elif "429" in err_str or "Too Many Requests" in err_str:
+            print(f"[SKIP] X API rate limit (429). Will retry next schedule.\n{e}")
+        else:
+            # 予期しないエラーは再送出してログに残す
+            raise
 
 
 if __name__ == "__main__":

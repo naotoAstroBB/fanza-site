@@ -315,8 +315,9 @@ const App = {
             this.renderPagination();
             this.updateTitle({ ...result, total_count: this.total });
         } catch(e) {
-            if (titleEl) titleEl.textContent = (this._floorLabels[this.floor] || this.floor) + ' — 取得失敗';
-            grid.innerHTML = `<div class="loading"><p style="color:#ff6688">⚠️ 商品取得に失敗しました<br><small>${e.message}</small></p></div>`;
+            if (titleEl) titleEl.textContent = (this._floorLabels[this.floor] || this.floor);
+            const msg = this._emptyMsg();
+            grid.innerHTML = `<div class="loading"><p style="font-size:1.5rem;margin-bottom:12px">${msg.icon}</p><p>${msg.text}</p><p style="font-size:.8rem;color:var(--mute);margin-top:8px">${msg.sub}</p></div>`;
         }
     },
 
@@ -357,12 +358,29 @@ const App = {
         if (title) title.textContent = `🔥 セール中 — ${saleItems.length}件`;
     },
 
-    renderGrid(grid, items) {
+    renderGrid(grid, items, emptyMsg) {
         if (!items.length) {
-            grid.innerHTML = '<div class="loading"><p>該当商品が見つかりませんでした</p></div>';
+            const msg = emptyMsg || this._emptyMsg();
+            grid.innerHTML = `<div class="loading"><p style="font-size:1.5rem;margin-bottom:12px">${msg.icon}</p><p>${msg.text}</p><p style="font-size:.8rem;color:var(--mute);margin-top:8px">${msg.sub}</p></div>`;
             return;
         }
         grid.innerHTML = items.map((item, i) => this.cardHTML(item, i)).join('');
+    },
+
+    // 空データ時のメッセージをフロア・状況で切り替え
+    _emptyMsg() {
+        const msgs = {
+            book:   { icon:'📚', text:'マンガデータを準備中です',       sub:'次回の自動更新（30分以内）で表示されます' },
+            anime:  { icon:'🎌', text:'アニメデータを準備中です',       sub:'次回の自動更新（30分以内）で表示されます' },
+            goods:  { icon:'🛍️', text:'グッズデータを準備中です',       sub:'次回の自動更新（30分以内）で表示されます' },
+            genre:  { icon:'🔍', text:'このジャンルのデータを準備中です', sub:'次回の自動更新（30分以内）で表示されます' },
+            search: { icon:'🔍', text:'該当する作品が見つかりませんでした', sub:'別のキーワードや女優名で検索してみてください' },
+            sale:   { icon:'🔥', text:'現在セール中の作品はありません',   sub:'セール情報は随時更新されます' },
+        };
+        if (this.keyword)           return msgs.search;
+        if (this.showSale)          return msgs.sale;
+        if (this.genre)             return msgs.genre;
+        return msgs[this.floor]    || { icon:'📭', text:'データを準備中です', sub:'次回の自動更新（30分以内）で表示されます' };
     },
 
     // ===== 商品カード =====

@@ -23,6 +23,9 @@ const DMM = {
         '1039': 'data/genre_wife.json',      // 人妻・主婦
         '1008': 'data/genre_ol.json',        // OL
         '4031': 'data/genre_cosplay.json',   // コスプレ
+        '4050': 'data/genre_debut.json',     // 新人
+        '1020': 'data/genre_gal.json',       // ギャル
+        '4032': 'data/genre_foreign.json',   // 外国人
     },
     actressFiles: {
         'popular': 'data/actress_popular.json',
@@ -33,6 +36,10 @@ const DMM = {
     _cache: {},
     _cacheTs: {},
 
+    _empty() {
+        return { result: { status: 200, items: [], total_count: 0, result_count: 0 } };
+    },
+
     async _loadFile(file) {
         const key = file.split('?')[0];
         const now = Date.now();
@@ -40,12 +47,30 @@ const DMM = {
         if (this._cache[key] && (now - (this._cacheTs[key] || 0)) < 60000) {
             return this._cache[key];
         }
-        const res = await fetch(key + '?_=' + Math.floor(now / 60000));
-        if (!res.ok) throw new Error(`データ取得失敗 (${res.status}): ${key}`);
-        const data = await res.json();
-        this._cache[key] = data;
-        this._cacheTs[key] = now;
-        return data;
+        try {
+            const res = await fetch(key + '?_=' + Math.floor(now / 60000));
+            // 404など失敗時は空データを返す（エラーを表面に出さない）
+            if (!res.ok) {
+                const empty = this._empty();
+                this._cache[key] = empty;
+                this._cacheTs[key] = now;
+                return empty;
+            }
+            const data = await res.json();
+            // 404ステータスのJSONも空データとして扱う
+            if (data?.result?.status === 404) {
+                const empty = this._empty();
+                this._cache[key] = empty;
+                this._cacheTs[key] = now;
+                return empty;
+            }
+            this._cache[key] = data;
+            this._cacheTs[key] = now;
+            return data;
+        } catch(e) {
+            // ネットワークエラー等は空データを返す
+            return this._empty();
+        }
     },
 
     // ===== 商品IDで全JSONを横断検索 =====
@@ -94,8 +119,6 @@ const DMM = {
             file = this.sortFiles[params.sort] || this.sortFiles['rank'];
         }
 
-        const data = await this._loadFile(file);
-        if (data?.result?.status === 404) throw new Error('データが準備されていません');
-        return data;
+        return await this._loadFile(file);
     }
 };

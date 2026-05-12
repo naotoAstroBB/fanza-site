@@ -79,7 +79,10 @@ print('Icons generated')
             "5001:genre_creampie" \
             "1039:genre_wife" \
             "1008:genre_ol" \
-            "4031:genre_cosplay"; do
+            "4031:genre_cosplay" \
+            "4050:genre_debut" \
+            "1020:genre_gal" \
+            "4032:genre_foreign"; do
             ID="${row%%:*}"; FILE="data/${row##*:}.json"
             curl -sf "$BASE&floor=videoa&sort=rank&article=genre&article_id=$ID" -o "$FILE" \
               || echo '{"result":{"status":404}}' > "$FILE"

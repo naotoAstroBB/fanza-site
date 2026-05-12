@@ -15,39 +15,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Generate PWA icons (初回のみ)
-        run: |
-          if [ ! -f icons/icon-192.png ]; then
-            mkdir -p icons
-            # ImageMagickで簡易アイコン生成（ピンク背景に白F）
-            convert -size 192x192 xc:'#ff3366' \
-              -fill white -font DejaVu-Sans-Bold -pointsize 100 \
-              -gravity Center -annotate 0 'F' icons/icon-192.png 2>/dev/null || \
-            python3 -c "
-import struct, zlib, base64
-def png(w,h,data):
-    def chunk(t,d):
-        c=struct.pack('>I',len(d))+t+d
-        return c+struct.pack('>I',zlib.crc32(c[4:])&0xffffffff)
-    raw=b''
-    for y in range(h):
-        raw+=b'\x00'
-        for x in range(w): raw+=bytes(data[y*w+x])
-    sig=b'\x89PNG\r\n\x1a\n'
-    ihdr=chunk(b'IHDR',struct.pack('>IIBBBBB',w,h,8,2,0,0,0))
-    idat=chunk(b'IDAT',zlib.compress(raw))
-    iend=chunk(b'IEND',b'')
-    return sig+ihdr+idat+iend
-r,g,b=255,51,102
-d=[[r,g,b]]*192*192
-with open('icons/icon-192.png','wb') as f: f.write(png(192,192,d))
-d2=[[r,g,b]]*512*512
-with open('icons/icon-512.png','wb') as f: f.write(png(512,512,d2))
-print('Icons generated')
-" && echo "Icons ready"
-            convert -size 512x512 xc:'#ff3366' \
-              -fill white -font DejaVu-Sans-Bold -pointsize 260 \
-              -gravity Center -annotate 0 'F' icons/icon-512.png 2>/dev/null || true
-          fi
+        run: python3 scripts/gen_icons.py
 
       - name: Fetch products
         run: |

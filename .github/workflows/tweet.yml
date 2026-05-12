@@ -23,6 +23,11 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 1  # 最新コミットのみ
+
+      - name: Pull latest data
+        run: git pull --rebase origin main || true  # fetch-productsが直前に走った場合に備えて最新データを取得
 
       - name: Set up Python
         uses: actions/setup-python@v5

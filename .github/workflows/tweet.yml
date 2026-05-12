@@ -35,8 +35,8 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Install tweepy
-        run: pip install tweepy --quiet
+      - name: Install dependencies
+        run: pip install tweepy requests --quiet
 
       - name: Post tweet
         env:

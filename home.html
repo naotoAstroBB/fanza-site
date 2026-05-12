@@ -5,6 +5,34 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
 <title>FANZA動画ランキング | アダルト動画・グッズ総合サイト</title>
+
+<!-- OGP -->
+<meta property="og:title" content="FANZA動画ランキング">
+<meta property="og:description" content="FANZA厳選！人気AV動画・アニメ・マンガ・グッズのランキングサイト。無料サンプル動画あり。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://naotoastrobb.github.io/fanza-site/home.html">
+<meta property="og:image" content="https://naotoastrobb.github.io/fanza-site/icons/icon-512.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="FANZA動画ランキング">
+<meta name="twitter:description" content="FANZA厳選！人気AV動画・アニメ・マンガ・グッズのランキングサイト。">
+<meta name="twitter:image" content="https://naotoastrobb.github.io/fanza-site/icons/icon-512.png">
+
+<!-- PWA -->
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#ff3366">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="FANZAランク">
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX');
+</script>
+
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -13,8 +41,9 @@
 <header class="site-header">
   <div class="header-inner">
     <div class="site-logo"><a href="home.html" style="color:inherit;text-decoration:none">FANZA動画ランキング</a><span> - FANZA厳選</span></div>
-    <div class="search-bar">
+    <div class="suggest-wrap">
       <input type="text" id="searchInput" placeholder="女優名・タイトル・キーワードで検索..." autocomplete="off">
+      <div class="suggest-dropdown" id="suggestDropdown"></div>
       <button onclick="App.doSearch()">🔍 検索</button>
     </div>
     <div class="header-stats">
@@ -156,6 +185,14 @@
     <div class="section-header">
       <div class="section-title" id="sectionTitle">読み込み中...</div>
     </div>
+    <!-- ランキングタブ（videoa時のみ表示） -->
+    <div class="rank-tabs" id="rankTabs">
+      <button class="rank-tab active" onclick="App.setSort('rank',this)">🏆 人気順</button>
+      <button class="rank-tab" onclick="App.setSort('review',this)">⭐ 高評価</button>
+      <button class="rank-tab" onclick="App.setSort('date',this)">🆕 新着</button>
+      <button class="rank-tab" onclick="App.setSort('price',this)">💰 価格安い順</button>
+      <button class="rank-tab" onclick="App.setSort('-price',this)">💎 価格高い順</button>
+    </div>
     <div class="product-grid" id="productGrid">
       <div class="loading"><div class="spinner"></div><p>商品を取得中...</p></div>
     </div>
@@ -189,8 +226,8 @@
     <a href="#" onclick="App.setSort('rank')">ランキング</a>
     <a href="#" onclick="App.setSort('date')">新着</a>
     <a href="#" onclick="App.setFloor('goods')">グッズ</a>
-    <a href="#">プライバシーポリシー</a>
-    <a href="#">免責事項</a>
+    <a href="privacy.html">プライバシーポリシー</a>
+    <a href="disclaimer.html">免責事項</a>
   </div>
   <p>当サイトはFANZA（DMM.com）のアフィリエイトプログラムを利用しています。</p>
   <div class="footer-copy">© 2026 FANZA動画ランキング All Rights Reserved.</div>
@@ -207,8 +244,17 @@
   </div>
 </div>
 
+<!-- トースト通知 -->
+<div class="toast-wrap" id="toastWrap"></div>
+
 <script src="js/storage.js"></script>
 <script src="js/dmm-api.js"></script>
 <script src="js/app.js"></script>
+<script>
+// PWA Service Worker 登録
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/fanza-site/sw.js').catch(() => {});
+}
+</script>
 </body>
 </html>

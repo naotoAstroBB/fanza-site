@@ -14,8 +14,46 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Generate PWA icons (初回のみ)
+        run: |
+          if [ ! -f icons/icon-192.png ]; then
+            mkdir -p icons
+            # ImageMagickで簡易アイコン生成（ピンク背景に白F）
+            convert -size 192x192 xc:'#ff3366' \
+              -fill white -font DejaVu-Sans-Bold -pointsize 100 \
+              -gravity Center -annotate 0 'F' icons/icon-192.png 2>/dev/null || \
+            python3 -c "
+import struct, zlib, base64
+def png(w,h,data):
+    def chunk(t,d):
+        c=struct.pack('>I',len(d))+t+d
+        return c+struct.pack('>I',zlib.crc32(c[4:])&0xffffffff)
+    raw=b''
+    for y in range(h):
+        raw+=b'\x00'
+        for x in range(w): raw+=bytes(data[y*w+x])
+    sig=b'\x89PNG\r\n\x1a\n'
+    ihdr=chunk(b'IHDR',struct.pack('>IIBBBBB',w,h,8,2,0,0,0))
+    idat=chunk(b'IDAT',zlib.compress(raw))
+    iend=chunk(b'IEND',b'')
+    return sig+ihdr+idat+iend
+r,g,b=255,51,102
+d=[[r,g,b]]*192*192
+with open('icons/icon-192.png','wb') as f: f.write(png(192,192,d))
+d2=[[r,g,b]]*512*512
+with open('icons/icon-512.png','wb') as f: f.write(png(512,512,d2))
+print('Icons generated')
+" && echo "Icons ready"
+            convert -size 512x512 xc:'#ff3366' \
+              -fill white -font DejaVu-Sans-Bold -pointsize 260 \
+              -gravity Center -annotate 0 'F' icons/icon-512.png 2>/dev/null || true
+          fi
+
       - name: Fetch products
         run: |
+          # 前回のランキングを保存（順位変動バッジ用）
+          cp data/rank.json data/rank_prev.json 2>/dev/null || true
+
           BASE="https://api.dmm.com/affiliate/v3/ItemList?api_id=UXJdpULBN1sPyNKKPPHU&affiliate_id=saaaaaaya-990&site=FANZA&service=digital&output=json&hits=100"
 
           # ソート別
@@ -86,6 +124,6 @@ jobs:
         run: |
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git config user.name "github-actions[bot]"
-          git add data/
+          git add data/ icons/
           git diff --staged --quiet || git commit -m "chore: update product data $(date +'%Y-%m-%d %H:%M')"
           git push

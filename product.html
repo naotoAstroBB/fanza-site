@@ -5,6 +5,25 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
 <title>商品詳細 | FANZA動画ランキング</title>
+
+<!-- OGP（JS側で動的更新） -->
+<meta property="og:title" content="FANZA動画ランキング" id="ogTitle">
+<meta property="og:description" content="FANZA厳選アダルト動画の商品詳細ページ" id="ogDesc">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://naotoastrobb.github.io/fanza-site/icons/icon-512.png" id="ogImage">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="FANZA動画ランキング" id="twTitle">
+<meta name="twitter:image" content="" id="twImage">
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX');
+</script>
+
 <link rel="stylesheet" href="css/style.css">
 <style>
 .breadcrumb{font-size:.82rem;color:var(--mute);margin-bottom:20px}
@@ -93,6 +112,15 @@ async function loadProduct(){
 
         document.title = item.title + ' | FANZA動画ランキング';
         document.getElementById('breadTitle').textContent = item.title.slice(0,30) + (item.title.length>30?'...':'');
+
+        // OGP動的更新
+        const ogImg = item.imageURL?.large || item.imageURL?.list || '';
+        const setMeta = (id, val) => { const el = document.getElementById(id); if(el) el.setAttribute('content', val); };
+        setMeta('ogTitle',  item.title + ' | FANZA動画ランキング');
+        setMeta('ogDesc',   item.title);
+        setMeta('ogImage',  ogImg);
+        setMeta('twTitle',  item.title + ' | FANZA動画ランキング');
+        setMeta('twImage',  ogImg);
 
         const imgLarge  = item.imageURL?.large  || item.imageURL?.list || '';
         const imgList   = item.imageURL?.list   || '';

@@ -25,6 +25,11 @@ except ImportError:
     print("tweepy not installed. Run: pip install tweepy")
     sys.exit(1)
 
+try:
+    import requests
+except ImportError:
+    requests = None
+
 JST      = timezone(timedelta(hours=9))
 SITE_URL = "https://naotoastrobb.github.io/fanza-site/home.html"
 
@@ -55,7 +60,8 @@ def now_pick(items, salt=""):
 
 # ===== Twitterクライアント =====
 
-def get_client():
+def get_clients():
+    """v1.1（画像アップロード用）とv2（ツイート投稿用）の両クライアントを返す"""
     required = [
         "TWITTER_API_KEY", "TWITTER_API_SECRET",
         "TWITTER_ACCESS_TOKEN", "TWITTER_ACCESS_TOKEN_SECRET",
@@ -64,12 +70,41 @@ def get_client():
     if missing:
         print(f"[ERROR] Missing secrets: {', '.join(missing)}")
         sys.exit(1)
-    return tweepy.Client(
-        consumer_key=os.environ["TWITTER_API_KEY"],
-        consumer_secret=os.environ["TWITTER_API_SECRET"],
-        access_token=os.environ["TWITTER_ACCESS_TOKEN"],
-        access_token_secret=os.environ["TWITTER_ACCESS_TOKEN_SECRET"],
+
+    api_key    = os.environ["TWITTER_API_KEY"]
+    api_secret = os.environ["TWITTER_API_SECRET"]
+    acc_token  = os.environ["TWITTER_ACCESS_TOKEN"]
+    acc_secret = os.environ["TWITTER_ACCESS_TOKEN_SECRET"]
+
+    # v2 Client（ツイート投稿）
+    client_v2 = tweepy.Client(
+        consumer_key=api_key, consumer_secret=api_secret,
+        access_token=acc_token, access_token_secret=acc_secret,
     )
+
+    # v1.1 API（メディアアップロード）
+    auth    = tweepy.OAuth1UserHandler(api_key, api_secret, acc_token, acc_secret)
+    api_v1  = tweepy.API(auth)
+
+    return client_v2, api_v1
+
+
+def upload_image(api_v1, image_url):
+    """商品画像をダウンロードしてTwitterにアップロード、media_idを返す"""
+    if not requests or not image_url:
+        return None
+    try:
+        r = requests.get(image_url, timeout=15, headers={"User-Agent": "Mozilla/5.0"})
+        if r.status_code != 200:
+            print(f"[WARN] Image download failed: {r.status_code}")
+            return None
+        import io
+        media = api_v1.media_upload(filename="thumb.jpg", file=io.BytesIO(r.content))
+        print(f"[INFO] Image uploaded: media_id={media.media_id_string}")
+        return media.media_id_string
+    except Exception as e:
+        print(f"[WARN] Image upload failed: {e}")
+        return None
 
 
 # ============================================================
@@ -455,117 +490,114 @@ def build_rank_tweet():
     """🏆 ランキング作品 — 上位20件から毎回ローテーション"""
     data = load_json("data/rank.json")
     if not data:
-        return None
+        return None, None
     items = data["result"].get("items", [])
     if not items:
-        return None
+        return None, None
 
     pool    = items[:min(20, len(items))]
     item    = now_pick(pool, salt="rank_item")
 
-    title   = item.get("title", "")[:28]
-    names   = [a["name"] for a in (item.get("iteminfo") or {}).get("actress", [])[:2]]
-    actress = ("\n出演：" + "・".join(names)) if names else ""
-    price   = (item.get("prices") or {}).get("price", "")
-    price_s = (f"\n💰 ¥{price}〜\n") if price else "\n"
+    title     = item.get("title", "")[:28]
+    names     = [a["name"] for a in (item.get("iteminfo") or {}).get("actress", [])[:2]]
+    actress   = ("\n出演：" + "・".join(names)) if names else ""
+    price     = (item.get("prices") or {}).get("price", "")
+    price_s   = (f"\n💰 ¥{price}〜\n") if price else "\n"
+    image_url = item.get("imageURL", {}).get("large") or item.get("imageURL", {}).get("list") or ""
 
     tmpl = now_pick(RANK_TEMPLATES, salt="rank_tmpl")
-    return tmpl.format(title=title, actress=actress, price=price_s, url=SITE_URL)
+    text = tmpl.format(title=title, actress=actress, price=price_s, url=SITE_URL)
+    return text, image_url
 
 
 def build_actress_tweet():
     """👑 人気女優TOP5"""
     data = load_json("data/actress_popular.json")
     if not data:
-        return None
+        return None, None
     actresses = data["result"].get("actress", [])[:5]
     if not actresses:
-        return None
+        return None, None
 
     medals  = ["🥇", "🥈", "🥉", "4位", "5位"]
     ranking = "\n".join(f"{medals[i]} {a.get('name','')}" for i, a in enumerate(actresses))
 
+    # 1位女優の画像を使用
+    image_url = actresses[0].get("imageURL", {}).get("large") or actresses[0].get("imageURL", {}).get("small") or ""
+
     tmpl = now_pick(ACTRESS_TEMPLATES, salt="actress_tmpl")
-    return tmpl.format(ranking=ranking, url=SITE_URL)
+    text = tmpl.format(ranking=ranking, url=SITE_URL)
+    return text, image_url
 
 
 def build_new_tweet():
     """🆕 新着 or 🔥 セール作品 — 毎回違う作品をローテーション"""
     data = load_json("data/new.json")
     if not data:
-        return None
+        return None, None
     items = data["result"].get("items", [])
     if not items:
-        return None
+        return None, None
 
     sale_items = [i for i in items if i.get("campaign")]
     is_sale    = bool(sale_items)
     pool       = sale_items if is_sale else items
 
-    item    = now_pick(pool[:min(30, len(pool))], salt="new_item")
-
-    title   = item.get("title", "")[:28]
-    names   = [a["name"] for a in (item.get("iteminfo") or {}).get("actress", [])[:2]]
-    actress = ("\n出演：" + "・".join(names)) if names else ""
-    campaign = item.get("campaign") or {}
-    date_str = (item.get("date") or "")[:10]
+    item      = now_pick(pool[:min(30, len(pool))], salt="new_item")
+    title     = item.get("title", "")[:28]
+    names     = [a["name"] for a in (item.get("iteminfo") or {}).get("actress", [])[:2]]
+    actress   = ("\n出演：" + "・".join(names)) if names else ""
+    campaign  = item.get("campaign") or {}
+    date_str  = (item.get("date") or "")[:10]
+    image_url = item.get("imageURL", {}).get("large") or item.get("imageURL", {}).get("list") or ""
 
     if is_sale:
         camp_line = f"🎉 {campaign.get('title', 'セール開催中！')}\n"
         tmpl = now_pick(SALE_TEMPLATES, salt="sale_tmpl")
-        return tmpl.format(title=title, actress=actress, campaign=camp_line, url=SITE_URL)
+        text = tmpl.format(title=title, actress=actress, campaign=camp_line, url=SITE_URL)
     else:
         date_line = (f"\n📅 発売：{date_str}") if date_str else ""
         tmpl = now_pick(NEW_TEMPLATES, salt="new_tmpl")
-        return tmpl.format(title=title, actress=actress, date_line=date_line, url=SITE_URL)
+        text = tmpl.format(title=title, actress=actress, date_line=date_line, url=SITE_URL)
+    return text, image_url
 
 
 def build_manga_tweet():
     """📚 マンガ — ランキング/新着を自動切替、毎回違う作品"""
     data_rank = load_json("data/manga.json")
-    data_new  = load_json("data/new.json")  # new.jsonにもbook floor作品が混じる場合あり
-
-    # manga.jsonを優先使用
-    if data_rank:
-        items_rank = data_rank["result"].get("items", [])
-    else:
-        items_rank = []
-
-    # 投稿時刻の時間帯でランキング/新着を切替（偶数時=ランキング、奇数時=新着）
-    hour_jst = datetime.now(JST).hour
-    use_new  = (hour_jst % 2 == 1) and len(items_rank) > 0
-
-    if use_new and items_rank:
-        # 新着寄りの作品（後半から）
-        pool = items_rank[len(items_rank)//2:]
-        if not pool:
-            pool = items_rank
-        item = now_pick(pool, salt="manga_new_item")
-
-        title   = item.get("title", "")[:28]
-        authors = [a["name"] for a in (item.get("iteminfo") or {}).get("author", [])[:1]]
-        author  = ("\n著者：" + "・".join(authors)) if authors else ""
-        date_str = (item.get("date") or "")[:10]
-        date_line = (f"\n📅 発売：{date_str}") if date_str else ""
-
-        tmpl = now_pick(MANGA_NEW_TEMPLATES, salt="manga_new_tmpl")
-        return tmpl.format(title=title, author=author, date_line=date_line, url=SITE_URL)
-
-    elif items_rank:
-        # ランキング上位から選択
-        pool = items_rank[:min(20, len(items_rank))]
-        item = now_pick(pool, salt="manga_rank_item")
-
-        title   = item.get("title", "")[:28]
-        authors = [a["name"] for a in (item.get("iteminfo") or {}).get("author", [])[:1]]
-        author  = ("\n著者：" + "・".join(authors)) if authors else ""
-
-        tmpl = now_pick(MANGA_RANK_TEMPLATES, salt="manga_rank_tmpl")
-        return tmpl.format(title=title, author=author, url=SITE_URL)
-
-    else:
+    if not data_rank:
         print("[WARN] manga.json not found or empty, skipping manga tweet")
-        return None
+        return None, None
+
+    items_rank = data_rank["result"].get("items", [])
+    if not items_rank:
+        return None, None
+
+    hour_jst = datetime.now(JST).hour
+    use_new  = (hour_jst % 2 == 1)
+
+    if use_new:
+        pool = items_rank[len(items_rank)//2:] or items_rank
+        item = now_pick(pool, salt="manga_new_item")
+        title     = item.get("title", "")[:28]
+        authors   = [a["name"] for a in (item.get("iteminfo") or {}).get("author", [])[:1]]
+        author    = ("\n著者：" + "・".join(authors)) if authors else ""
+        date_str  = (item.get("date") or "")[:10]
+        date_line = (f"\n📅 発売：{date_str}") if date_str else ""
+        image_url = item.get("imageURL", {}).get("large") or item.get("imageURL", {}).get("list") or ""
+        tmpl = now_pick(MANGA_NEW_TEMPLATES, salt="manga_new_tmpl")
+        text = tmpl.format(title=title, author=author, date_line=date_line, url=SITE_URL)
+    else:
+        pool      = items_rank[:min(20, len(items_rank))]
+        item      = now_pick(pool, salt="manga_rank_item")
+        title     = item.get("title", "")[:28]
+        authors   = [a["name"] for a in (item.get("iteminfo") or {}).get("author", [])[:1]]
+        author    = ("\n著者：" + "・".join(authors)) if authors else ""
+        image_url = item.get("imageURL", {}).get("large") or item.get("imageURL", {}).get("list") or ""
+        tmpl = now_pick(MANGA_RANK_TEMPLATES, salt="manga_rank_tmpl")
+        text = tmpl.format(title=title, author=author, url=SITE_URL)
+
+    return text, image_url
 
 
 # ============================================================
@@ -603,7 +635,8 @@ def main():
         "new":     build_new_tweet,
         "manga":   build_manga_tweet,
     }
-    text = builders.get(tweet_type, build_rank_tweet)()
+    result = builders.get(tweet_type, build_rank_tweet)()
+    text, image_url = result if isinstance(result, tuple) else (result, None)
 
     if not text:
         print("[ERROR] Could not build tweet content. Data file may be missing.")
@@ -614,13 +647,28 @@ def main():
         text = text[:257] + "..."
 
     print(f"[INFO] Tweet ({len(text)} chars):\n{'─'*40}\n{text}\n{'─'*40}")
+    if image_url:
+        print(f"[INFO] Image URL: {image_url}")
 
     if os.environ.get("DRY_RUN", "").lower() == "true":
         print("[DRY RUN] Skipping actual post.")
         return
 
-    client   = get_client()
-    response = client.create_tweet(text=text)
+    client_v2, api_v1 = get_clients()
+
+    # 画像アップロード
+    media_ids = None
+    if image_url:
+        mid = upload_image(api_v1, image_url)
+        if mid:
+            media_ids = [mid]
+
+    # ツイート投稿
+    kwargs = {"text": text}
+    if media_ids:
+        kwargs["media_ids"] = media_ids
+
+    response = client_v2.create_tweet(**kwargs)
     tweet_id = response.data["id"]
     print(f"[OK] Posted! https://twitter.com/i/web/status/{tweet_id}")
 

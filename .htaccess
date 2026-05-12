@@ -1,0 +1,36 @@
+# ===== FANZA アフィリエイトサイト .htaccess =====
+
+Options -Indexes
+ServerSignature Off
+
+# PHP エラー非表示（本番環境）
+php_flag display_errors off
+
+# デフォルトページ
+DirectoryIndex index.php
+
+# キャッシュ設定
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/jpeg "access plus 7 days"
+    ExpiresByType image/png  "access plus 7 days"
+    ExpiresByType text/css   "access plus 1 day"
+    ExpiresByType application/javascript "access plus 1 day"
+</IfModule>
+
+# Gzip圧縮
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/css application/javascript application/json
+</IfModule>
+
+# セキュリティヘッダー
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set Referrer-Policy "no-referrer-when-downgrade"
+</IfModule>
+
+# config.php への直接アクセス禁止
+<Files "config.php">
+    Require all denied
+</Files>

@@ -27,29 +27,138 @@ const App = {
         this.keyword = p.get('keyword') || '';
         this.page    = parseInt(p.get('page') || '1');
 
-        if (document.getElementById('searchInput')) {
-            document.getElementById('searchInput').value = this.keyword;
-            document.getElementById('searchInput').addEventListener('keydown', e => {
-                if (e.key === 'Enter') this.doSearch();
+        const searchEl = document.getElementById('searchInput');
+        if (searchEl) {
+            searchEl.value = this.keyword;
+            searchEl.addEventListener('keydown', e => {
+                if (e.key === 'Enter') { this.closeSuggest(); this.doSearch(); }
+                if (e.key === 'Escape') this.closeSuggest();
+            });
+            searchEl.addEventListener('input', () => this.onSuggestInput());
+            searchEl.addEventListener('focus', () => this.onSuggestInput());
+            document.addEventListener('click', e => {
+                if (!e.target.closest('.suggest-wrap')) this.closeSuggest();
             });
         }
         if (document.getElementById('sortSelect')) {
             document.getElementById('sortSelect').value = this.sort;
         }
 
-        // ESCキーでサンプルモーダルを閉じる
         document.addEventListener('keydown', e => { if (e.key === 'Escape') this.closeSample(); });
-
-        // スワイプ操作（スマホ横スワイプでページ送り）
         this.initSwipe();
-
-        // ストレージセクション（履歴・お気に入り）
         this.loadStorageSections();
+        this.updateRankTabs();
 
         await this.loadHero();
         this.loadActressRanking();
         this.loadNewActresses();
         await this.fetchProducts();
+        this.checkSaleToast();  // お気に入りセール通知
+    },
+
+    // ===== 検索サジェスト =====
+    _suggestActresses: [],
+    async loadSuggestData() {
+        if (this._suggestActresses.length) return;
+        try {
+            const [pop, newA] = await Promise.allSettled([
+                DMM.fetchActress('popular'),
+                DMM.fetchActress('new'),
+            ]);
+            const all = [
+                ...(pop.value?.result?.actress || []),
+                ...(newA.value?.result?.actress || []),
+            ];
+            const seen = new Set();
+            this._suggestActresses = all.filter(a => {
+                if (seen.has(a.id)) return false;
+                seen.add(a.id); return true;
+            });
+        } catch(e) {}
+    },
+
+    async onSuggestInput() {
+        await this.loadSuggestData();
+        const q   = (document.getElementById('searchInput')?.value || '').trim();
+        const box = document.getElementById('suggestDropdown');
+        if (!box) return;
+        if (!q) { this.closeSuggest(); return; }
+
+        const matches = this._suggestActresses.filter(a =>
+            (a.name || '').includes(q) || (a.ruby || '').includes(q)
+        ).slice(0, 8);
+
+        if (!matches.length) { this.closeSuggest(); return; }
+
+        box.innerHTML = matches.map(a => {
+            const img  = a.imageURL?.small || '';
+            const name = this.esc(a.name || '');
+            const ruby = this.esc(a.ruby || '');
+            return `<div class="suggest-item" onclick="App.selectSuggest('${this.esc(a.name)}','${a.id}')">
+                ${img ? `<img src="${this.esc(img)}" alt="${name}">` : '<div style="width:32px;height:32px;border-radius:50%;background:#222;display:flex;align-items:center;justify-content:center">👩</div>'}
+                <div><div class="suggest-item-name">${name}</div>${ruby ? `<div class="suggest-item-sub">${ruby}</div>` : ''}</div>
+            </div>`;
+        }).join('');
+        box.classList.add('open');
+    },
+
+    selectSuggest(name, id) {
+        this.closeSuggest();
+        // 女優個別ページへ
+        location.href = `actress.html?id=${encodeURIComponent(id)}&name=${encodeURIComponent(name)}`;
+    },
+
+    closeSuggest() {
+        const box = document.getElementById('suggestDropdown');
+        if (box) box.classList.remove('open');
+    },
+
+    // ===== ランキングタブ表示制御 =====
+    updateRankTabs() {
+        const tabs = document.getElementById('rankTabs');
+        if (!tabs) return;
+        // videoa以外はタブを非表示
+        tabs.style.display = (this.floor === 'videoa' && !this.genre) ? 'flex' : 'none';
+        // アクティブ状態を同期
+        tabs.querySelectorAll('.rank-tab').forEach(btn => {
+            const s = btn.getAttribute('onclick')?.match(/'([^']+)'/)?.[1];
+            btn.classList.toggle('active', s === this.sort);
+        });
+    },
+
+    // ===== セールお気に入りトースト =====
+    async checkSaleToast() {
+        const favs = Fav.get();
+        if (!favs.length) return;
+        try {
+            const data = await DMM._loadFile('data/rank.json');
+            const items = data?.result?.items || [];
+            const saleData = await DMM._loadFile('data/new.json').catch(() => null);
+            const allItems = [...items, ...(saleData?.result?.items || [])];
+            const cidSet = new Set(favs.map(f => f.cid));
+            const onSale = allItems.filter(i => i.campaign && cidSet.has(i.content_id));
+            if (onSale.length) {
+                this.showToast(`🔥 お気に入りの${onSale.length}件がセール中！`, 'sale', () => {
+                    document.getElementById('favoritesSection')?.scrollIntoView({ behavior: 'smooth' });
+                });
+            }
+        } catch(e) {}
+    },
+
+    // ===== トースト表示 =====
+    showToast(msg, type = '', onClick = null) {
+        const wrap = document.getElementById('toastWrap');
+        if (!wrap) return;
+        const el = document.createElement('div');
+        el.className = 'toast' + (type ? ' ' + type : '');
+        el.textContent = msg;
+        if (onClick) el.addEventListener('click', () => { onClick(); el.remove(); });
+        else el.addEventListener('click', () => el.remove());
+        wrap.appendChild(el);
+        setTimeout(() => {
+            el.style.animation = 'toastOut .3s ease forwards';
+            setTimeout(() => el.remove(), 300);
+        }, 5000);
     },
 
     // ===== スワイプ操作 =====
@@ -151,6 +260,8 @@ const App = {
     },
 
     // ===== 商品一覧取得（クライアント側ページネーション）=====
+    _prevRankMap: {},  // content_id → 前回の順位
+
     async fetchProducts() {
         const grid = document.getElementById('productGrid');
         if (!grid) return;
@@ -158,6 +269,22 @@ const App = {
 
         const params = { floor: this.floor, sort: this.sort };
         if (this.genre) { params.article = 'genre'; params.article_id = this.genre; }
+
+        // ランキングタブ状態を更新
+        this.updateRankTabs();
+
+        // 順位変動データ（rank表示時のみ）
+        if (this.sort === 'rank' && this.floor === 'videoa' && !this.genre) {
+            try {
+                const prev = await DMM._loadFile('data/rank_prev.json');
+                this._prevRankMap = {};
+                (prev?.result?.items || []).forEach((item, i) => {
+                    this._prevRankMap[item.content_id] = i + 1;
+                });
+            } catch(e) { this._prevRankMap = {}; }
+        } else {
+            this._prevRankMap = {};
+        }
 
         try {
             const data   = await DMM.fetch(params);
@@ -238,7 +365,8 @@ const App = {
         const price     = item.prices?.price || '';
         const url       = item.affiliateURL || item.URL || '#';
         const review    = item.review;
-        const actresses = (item.iteminfo?.actress || []).slice(0,2).map(a => this.esc(a.name)).join(' / ');
+        const actressObjs = (item.iteminfo?.actress || []).slice(0,2);
+        const actresses = actressObjs.map(a => this.esc(a.name)).join(' / ');
         const isNew     = this.isNew(item.date);
         const campaign  = item.campaign?.title || '';
         const avg       = parseFloat(review?.average || 0);
@@ -250,6 +378,25 @@ const App = {
         const sampleUrl = mv ? (mv.size_560_360 || mv.size_476_306 || mv.size_644_414 || '') : '';
         const isFav     = Fav.has(item.content_id);
 
+        // 順位変動バッジ
+        const curRank  = i + 1;
+        const prevRank = this._prevRankMap[item.content_id];
+        let changeBadge = '';
+        if (prevRank === undefined) {
+            changeBadge = `<div class="rank-change rank-new">NEW</div>`;
+        } else {
+            const diff = prevRank - curRank;
+            if (diff > 0)      changeBadge = `<div class="rank-change rank-up">▲${diff}</div>`;
+            else if (diff < 0) changeBadge = `<div class="rank-change rank-down">▼${Math.abs(diff)}</div>`;
+        }
+        const showChange = Object.keys(this._prevRankMap).length > 0;
+
+        // 女優リンク（女優名クリックで女優ページへ）
+        const actressLinks = actressObjs.map(a =>
+            `<a href="actress.html?id=${this.esc(String(a.id))}&name=${encodeURIComponent(a.name)}"
+               class="card-actress-link" onclick="event.stopPropagation()">${this.esc(a.name)}</a>`
+        ).join(' / ');
+
         return `
         <div class="product-card" onclick="location.href='product.html?cid=${this.esc(item.content_id)}&floor=${this.floor}'">
           <div class="card-img-wrap">
@@ -258,6 +405,7 @@ const App = {
                 : `<div style="height:100%;display:flex;align-items:center;justify-content:center;background:#111;color:#333;font-size:2rem">🎬</div>`
             }
             ${rankBadge}
+            ${showChange ? changeBadge : ''}
             ${campaign ? `<span class="badge-sale">SALE</span>` : (isNew ? `<span class="badge-new">NEW</span>` : '')}
             ${sampleUrl ? `<button class="card-sample-btn" onclick="event.stopPropagation();App.openSample('${this.esc(sampleUrl)}','${title}')" title="サンプル再生">▶</button>` : ''}
             <button class="fav-btn ${isFav ? 'active' : ''}" title="${isFav ? 'お気に入り解除' : 'お気に入りに追加'}"
@@ -265,7 +413,7 @@ const App = {
           </div>
           <div class="card-body">
             <div class="card-title">${title}</div>
-            ${actresses ? `<div class="card-actress">${actresses}</div>` : ''}
+            ${actressLinks ? `<div class="card-actress">${actressLinks}</div>` : ''}
             <div class="card-bottom">
               ${price ? `<div class="card-price">¥${this.esc(price)}</div>` : '<div></div>'}
               ${stars ? `<div class="card-review"><span class="stars">${stars}</span></div>` : ''}
@@ -379,6 +527,7 @@ const App = {
             document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
             el.classList.add('active');
         }
+        this.updateRankTabs();
         this.fetchProducts();
     },
 
@@ -436,14 +585,15 @@ const App = {
             const actresses = data?.result?.actress || [];
             if (!actresses.length) { el.innerHTML = '<span class="actress-empty">データ準備中</span>'; return; }
             el.innerHTML = actresses.map((a, i) => {
-                const img  = a.imageURL?.small || '';
-                const name = this.esc(a.name || '');
-                const url  = this.esc(a.listURL?.digital || '#');
+                const img   = a.imageURL?.small || '';
+                const name  = this.esc(a.name || '');
+                // 女優個別ページへ（サイト内）
+                const href  = `actress.html?id=${this.esc(String(a.id))}&name=${encodeURIComponent(a.name || '')}`;
                 const badge = showRank
                     ? `<div class="actress-rank-badge">${i + 1}位</div>`
                     : `<div class="actress-new-badge">NEW</div>`;
                 return `
-                <a class="actress-card" href="${url}" target="_blank" rel="noopener">
+                <a class="actress-card" href="${href}">
                     <div class="actress-photo">
                         ${img ? `<img src="${this.esc(img)}" alt="${name}" loading="lazy">` : `<div class="actress-no-img">👩</div>`}
                         ${badge}

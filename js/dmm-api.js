@@ -4,9 +4,12 @@ const DMM = {
         'rank':   'data/rank.json',
         'date':   'data/new.json',
         'review': 'data/review.json',
+        'price':  'data/price_asc.json',
+        '-price': 'data/price_desc.json',
     },
     floorFiles: {
         'anime': 'data/anime.json',
+        'book':  'data/manga.json',
         'goods': 'data/goods.json',
         'mono':  'data/goods.json',
     },
@@ -81,10 +84,13 @@ const DMM = {
 
         let file;
         if (params.article_id && this.genreFiles[params.article_id]) {
+            // ジャンル指定：ジャンルJSONを使用
             file = this.genreFiles[params.article_id];
-        } else if (params.floor && this.floorFiles[params.floor]) {
+        } else if (params.floor && params.floor !== 'videoa' && this.floorFiles[params.floor]) {
+            // videoa以外のフロア（anime/book/goods等）：フロアJSONを使用
             file = this.floorFiles[params.floor];
         } else {
+            // videoa or ソート指定：ソートJSONを使用
             file = this.sortFiles[params.sort] || this.sortFiles['rank'];
         }
 

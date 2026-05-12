@@ -19,12 +19,15 @@ jobs:
           BASE="https://api.dmm.com/affiliate/v3/ItemList?api_id=UXJdpULBN1sPyNKKPPHU&affiliate_id=saaaaaaya-990&site=FANZA&service=digital&output=json&hits=100"
 
           # ソート別
-          curl -sf "$BASE&floor=videoa&sort=rank"   -o data/rank.json   || echo '{"result":{"status":404}}' > data/rank.json
-          curl -sf "$BASE&floor=videoa&sort=date"   -o data/new.json    || echo '{"result":{"status":404}}' > data/new.json
-          curl -sf "$BASE&floor=videoa&sort=review" -o data/review.json || echo '{"result":{"status":404}}' > data/review.json
+          curl -sf "$BASE&floor=videoa&sort=rank"   -o data/rank.json      || echo '{"result":{"status":404}}' > data/rank.json
+          curl -sf "$BASE&floor=videoa&sort=date"   -o data/new.json       || echo '{"result":{"status":404}}' > data/new.json
+          curl -sf "$BASE&floor=videoa&sort=review" -o data/review.json    || echo '{"result":{"status":404}}' > data/review.json
+          curl -sf "$BASE&floor=videoa&sort=price"  -o data/price_asc.json || echo '{"result":{"status":404}}' > data/price_asc.json
+          curl -sf "$BASE&floor=videoa&sort=-price" -o data/price_desc.json || echo '{"result":{"status":404}}' > data/price_desc.json
 
           # フロア別
           curl -sf "$BASE&floor=anime&sort=rank"    -o data/anime.json  || echo '{"result":{"status":404}}' > data/anime.json
+          curl -sf "$BASE&floor=book&sort=rank"     -o data/manga.json  || echo '{"result":{"status":404}}' > data/manga.json
           curl -sf "https://api.dmm.com/affiliate/v3/ItemList?api_id=UXJdpULBN1sPyNKKPPHU&affiliate_id=saaaaaaya-990&site=FANZA&service=mono&floor=goods&output=json&hits=100&sort=rank" \
             -o data/goods.json || echo '{"result":{"status":404}}' > data/goods.json
 

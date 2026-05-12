@@ -9,6 +9,7 @@
 </head>
 <body>
 
+<div class="sticky-bar">
 <header class="site-header">
   <div class="header-inner">
     <div class="site-logo"><a href="home.html" style="color:inherit;text-decoration:none">FANZA動画ランキング</a><span> - FANZA厳選</span></div>
@@ -26,12 +27,14 @@
   <div class="nav-inner">
     <div class="nav-btn active" onclick="App.setFloor('videoa',this)">🎬 動画（アダルト）</div>
     <div class="nav-btn" onclick="App.setFloor('anime',this)">🎌 アニメ動画</div>
+    <div class="nav-btn" onclick="App.setFloor('book',this)">📚 マンガ</div>
     <div class="nav-btn" onclick="App.setFloor('goods',this)">🛍️ グッズ・通販</div>
     <div class="nav-btn" onclick="App.setSort('date',this)">⭐ 新着</div>
     <div class="nav-btn" onclick="App.setSort('rank',this)">🏆 ランキング</div>
     <div class="nav-btn" onclick="App.setSale(this)">🔥 SALE</div>
   </div>
 </nav>
+</div>
 
 <div class="ticker">
   <div class="ticker-label">🔥 INFO</div>
@@ -123,27 +126,28 @@
         <option value="rank">🏆 人気順</option>
         <option value="date">🆕 新着順</option>
         <option value="review">⭐ レビュー高い順</option>
-        <option value="-price">💰 価格安い順</option>
-        <option value="price">💰 価格高い順</option>
+        <option value="price">💰 価格安い順</option>
+        <option value="-price">💰 価格高い順</option>
       </select>
     </div>
     <div class="sidebar-section">
       <h3>ジャンル</h3>
       <div class="sidebar-link active" onclick="App.clearFilter(this)">📌 すべて</div>
-      <div class="sidebar-link" onclick="App.setGenre('4002',this)">🌟 巨乳</div>
-      <div class="sidebar-link" onclick="App.setGenre('4007',this)">💫 美少女</div>
-      <div class="sidebar-link" onclick="App.setGenre('4049',this)">📹 ハイビジョン</div>
-      <div class="sidebar-link" onclick="App.setGenre('4013',this)">👑 単体作品</div>
-      <div class="sidebar-link" onclick="App.setGenre('4017',this)">🎯 素人</div>
-      <div class="sidebar-link" onclick="App.setGenre('4028',this)">💕 中出し</div>
-      <div class="sidebar-link" onclick="App.setGenre('4065',this)">🏠 人妻・主婦</div>
-      <div class="sidebar-link" onclick="App.setGenre('4051',this)">👔 OL</div>
-      <div class="sidebar-link" onclick="App.setGenre('4061',this)">🎭 コスプレ</div>
+      <div class="sidebar-link" onclick="App.setGenre('2001',this)">🌟 巨乳</div>
+      <div class="sidebar-link" onclick="App.setGenre('1027',this)">💫 美少女</div>
+      <div class="sidebar-link" onclick="App.setGenre('6533',this)">📹 ハイビジョン</div>
+      <div class="sidebar-link" onclick="App.setGenre('4025',this)">👑 単体作品</div>
+      <div class="sidebar-link" onclick="App.setGenre('4024',this)">🎯 素人</div>
+      <div class="sidebar-link" onclick="App.setGenre('5001',this)">💕 中出し</div>
+      <div class="sidebar-link" onclick="App.setGenre('1039',this)">🏠 人妻・主婦</div>
+      <div class="sidebar-link" onclick="App.setGenre('1008',this)">👔 OL</div>
+      <div class="sidebar-link" onclick="App.setGenre('4031',this)">🎭 コスプレ</div>
     </div>
     <div class="sidebar-section">
       <h3>サービス</h3>
       <div class="sidebar-link active" onclick="App.setFloor('videoa',this)">🎬 動画</div>
       <div class="sidebar-link" onclick="App.setFloor('anime',this)">🎌 アニメ</div>
+      <div class="sidebar-link" onclick="App.setFloor('book',this)">📚 マンガ</div>
       <div class="sidebar-link" onclick="App.setFloor('goods',this)">🛍️ グッズ・通販</div>
     </div>
   </aside>

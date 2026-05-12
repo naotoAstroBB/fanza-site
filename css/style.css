@@ -10,6 +10,8 @@
     --accent2:   #ff6699;
     --text:      #e8e8e8;
     --text-mute: #888;
+    --mute:      #888;
+    --gold:      #ffcc00;
     --border:    #2a2a2a;
     --card-bg:   #1a1a1a;
     --shadow:    0 4px 20px rgba(0,0,0,.6);
@@ -27,11 +29,17 @@ body {
 a { color: var(--accent2); text-decoration: none; }
 a:hover { color: #fff; }
 
+/* ===== スティッキーバー ===== */
+.sticky-bar {
+    position: sticky;
+    top: 0;
+    z-index: 200;
+}
+
 /* ===== ヘッダー ===== */
 .site-header {
     background: #111;
     border-bottom: 2px solid var(--accent);
-    position: sticky; top: 0; z-index: 100;
 }
 .header-inner {
     max-width: 1280px; margin: 0 auto;
@@ -176,6 +184,26 @@ a:hover { color: #fff; }
     font-size: .7rem; font-weight: 700;
     padding: 2px 7px; border-radius: 4px;
 }
+.badge-sale {
+    position: absolute; top: 6px; left: 6px;
+    background: var(--accent); color: #fff;
+    font-size: .7rem; font-weight: 700;
+    padding: 2px 7px; border-radius: 4px;
+}
+
+/* ランクバッジ */
+.rank-badge {
+    position: absolute; top: 6px; left: 6px;
+    min-width: 24px; height: 24px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: .8rem; font-weight: 900;
+    border-radius: 4px; padding: 0 4px;
+    line-height: 1;
+}
+.rank-1 { background: rgba(255,215,0,.2); }
+.rank-2 { background: rgba(192,192,192,.2); }
+.rank-3 { background: rgba(205,127,50,.2); }
+.rank-other { background: rgba(0,0,0,.6); color: #ccc; font-size: .7rem; }
 
 .card-body { padding: 10px; }
 .card-title {
@@ -186,7 +214,8 @@ a:hover { color: #fff; }
     margin-bottom: 6px;
 }
 .card-actress { font-size: .75rem; color: var(--accent2); margin-bottom: 4px; }
-.card-price { font-size: .9rem; font-weight: 700; color: #fff; margin-bottom: 4px; }
+.card-bottom { display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px; }
+.card-price { font-size: .9rem; font-weight: 700; color: #fff; }
 .card-review { font-size: .75rem; color: var(--text-mute); }
 .card-review .stars { color: #ffcc00; }
 
@@ -236,9 +265,11 @@ a:hover { color: #fff; }
     margin-top: 48px; padding: 24px 16px;
     text-align: center; color: var(--text-mute); font-size: .82rem;
 }
-.footer-links { display: flex; justify-content: center; gap: 16px; margin-bottom: 12px; }
-.footer-links a { color: var(--text-mute); }
-.footer-links a:hover { color: var(--accent2); }
+.footer-links, .footer-nav { display: flex; justify-content: center; gap: 16px; margin-bottom: 12px; flex-wrap: wrap; }
+.footer-links a, .footer-nav a { color: var(--text-mute); }
+.footer-links a:hover, .footer-nav a:hover { color: var(--accent2); }
+.footer-logo { font-size: 1.1rem; font-weight: 900; color: var(--accent); margin-bottom: 8px; }
+.footer-copy { margin-top: 8px; }
 
 /* ===== 商品詳細ページ ===== */
 .product-detail {

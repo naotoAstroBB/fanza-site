@@ -356,7 +356,7 @@ const App = {
     updateTitle(result) {
         const el = document.getElementById('sectionTitle');
         if (!el) return;
-        const labels = { videoa:'動画（アダルト）', anime:'アニメ動画', book:'電子書籍', goods:'グッズ', mono:'通販' };
+        const labels = { videoa:'動画（アダルト）', anime:'アニメ動画', book:'マンガ・電子書籍', goods:'グッズ・通販', mono:'グッズ・通販' };
         const kw = this.keyword ? ` "` + this.keyword + `"` : '';
         el.textContent = (labels[this.floor] || '') + kw + ' — ' + result.total_count.toLocaleString() + '件';
     },
@@ -384,6 +384,8 @@ const App = {
 
     setSort(sort, el) {
         this.sort     = sort;
+        this.floor    = 'videoa';  // グッズ等から戻る際にvideoa基準でソート
+        this.genre    = '';
         this.page     = 1;
         this.showSale = false;
         if (document.getElementById('sortSelect')) document.getElementById('sortSelect').value = sort;

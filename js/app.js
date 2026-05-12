@@ -262,10 +262,16 @@ const App = {
     // ===== 商品一覧取得（クライアント側ページネーション）=====
     _prevRankMap: {},  // content_id → 前回の順位
 
+    _floorLabels: { videoa:'動画（アダルト）', anime:'アニメ動画', book:'マンガ・電子書籍', goods:'グッズ・通販', mono:'グッズ・通販' },
+
     async fetchProducts() {
         const grid = document.getElementById('productGrid');
         if (!grid) return;
         grid.innerHTML = '<div class="loading"><div class="spinner"></div><p>商品を取得中...</p></div>';
+
+        // タイトルをすぐ更新（エラー時でも正しいフロア名が出るように）
+        const titleEl = document.getElementById('sectionTitle');
+        if (titleEl) titleEl.textContent = (this._floorLabels[this.floor] || this.floor) + ' — 読み込み中...';
 
         const params = { floor: this.floor, sort: this.sort };
         if (this.genre) { params.article = 'genre'; params.article_id = this.genre; }
@@ -309,6 +315,7 @@ const App = {
             this.renderPagination();
             this.updateTitle({ ...result, total_count: this.total });
         } catch(e) {
+            if (titleEl) titleEl.textContent = (this._floorLabels[this.floor] || this.floor) + ' — 取得失敗';
             grid.innerHTML = `<div class="loading"><p style="color:#ff6688">⚠️ 商品取得に失敗しました<br><small>${e.message}</small></p></div>`;
         }
     },
@@ -504,7 +511,7 @@ const App = {
     updateTitle(result) {
         const el = document.getElementById('sectionTitle');
         if (!el) return;
-        const labels = { videoa:'動画（アダルト）', anime:'アニメ動画', book:'マンガ・電子書籍', goods:'グッズ・通販', mono:'グッズ・通販' };
+        const labels = this._floorLabels;
         const kw = this.keyword ? ` "` + this.keyword + `"` : '';
         el.textContent = (labels[this.floor] || '') + kw + ' — ' + result.total_count.toLocaleString() + '件';
     },

@@ -97,4 +97,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git add data/ icons/
           git diff --staged --quiet || git commit -m "chore: update product data $(date +'%Y-%m-%d %H:%M')"
+          git pull --rebase origin main
           git push

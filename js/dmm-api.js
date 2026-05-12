@@ -23,9 +23,9 @@ const DMM = {
         '1039': 'data/genre_wife.json',      // 人妻・主婦
         '1008': 'data/genre_ol.json',        // OL
         '4031': 'data/genre_cosplay.json',   // コスプレ
-        '4050': 'data/genre_debut.json',     // 新人
-        '1020': 'data/genre_gal.json',       // ギャル
-        '4032': 'data/genre_foreign.json',   // 外国人
+        '6006': 'data/genre_debut.json',     // 新人（デビュー作品）
+        '1034': 'data/genre_gal.json',       // ギャル
+        '4022': 'data/genre_foreign.json',   // 外国人（洋ピン・海外輸入）
     },
     actressFiles: {
         'popular': 'data/actress_popular.json',

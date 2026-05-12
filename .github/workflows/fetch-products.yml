@@ -33,19 +33,9 @@ jobs:
 
           # フロア別
           curl -sf "$BASE&floor=anime&sort=rank"    -o data/anime.json  || echo '{"result":{"status":404}}' > data/anime.json
-          # マンガ/電子書籍（複数フロアを試してデータがあるものを使用）
-          MANGA_URL=""
-          for MFLOOR in ebook book comic; do
-            RESULT=$(curl -s "$BASE&floor=$MFLOOR&sort=rank" 2>/dev/null || echo '{}')
-            COUNT=$(echo "$RESULT" | jq '.result.total_count // 0' 2>/dev/null || echo 0)
-            if [ "${COUNT:-0}" -gt 0 ] 2>/dev/null; then
-              echo "$RESULT" > data/manga.json
-              echo "manga: floor=$MFLOOR, count=$COUNT"
-              MANGA_URL="found"
-              break
-            fi
-          done
-          [ "$MANGA_URL" = "found" ] || echo '{"result":{"status":200,"items":[],"total_count":0,"result_count":0}}' > data/manga.json
+          # マンガ/電子書籍（service=ebook&floor=comic が正解）
+          MANGA_BASE="https://api.dmm.com/affiliate/v3/ItemList?api_id=UXJdpULBN1sPyNKKPPHU&affiliate_id=saaaaaaya-990&site=FANZA&service=ebook&floor=comic&output=json&hits=100"
+          curl -sf "${MANGA_BASE}&sort=rank" -o data/manga.json || echo '{"result":{"status":200,"items":[],"total_count":0,"result_count":0}}' > data/manga.json
           curl -sf "https://api.dmm.com/affiliate/v3/ItemList?api_id=UXJdpULBN1sPyNKKPPHU&affiliate_id=saaaaaaya-990&site=FANZA&service=mono&floor=goods&output=json&hits=100&sort=rank" \
             -o data/goods.json || echo '{"result":{"status":404}}' > data/goods.json
 
@@ -60,9 +50,9 @@ jobs:
             "1039:genre_wife" \
             "1008:genre_ol" \
             "4031:genre_cosplay" \
-            "4050:genre_debut" \
-            "1020:genre_gal" \
-            "4032:genre_foreign"; do
+            "6006:genre_debut" \
+            "1034:genre_gal" \
+            "4022:genre_foreign"; do
             ID="${row%%:*}"; FILE="data/${row##*:}.json"
             curl -sf "$BASE&floor=videoa&sort=rank&article=genre&article_id=$ID" -o "$FILE" \
               || echo '{"result":{"status":404}}' > "$FILE"
@@ -79,7 +69,7 @@ jobs:
             local first=true
             for ID in $IDS; do
               [ "$ID" = "null" ] || [ -z "$ID" ] && continue
-              DATA=$(curl -sf "${API}&actress_id=${ID}")
+              DATA=$(curl -s "${API}&actress_id=${ID}" || echo '{}')
               ACTRESS=$(echo "$DATA" | jq '.result.actress[0] // empty' 2>/dev/null)
               if [ -n "$ACTRESS" ] && [ "$ACTRESS" != "null" ]; then
                 [ "$first" = true ] && first=false || JSON="${JSON},"

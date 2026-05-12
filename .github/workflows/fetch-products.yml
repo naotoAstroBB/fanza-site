@@ -36,8 +36,8 @@ jobs:
           # マンガ/電子書籍（複数フロアを試してデータがあるものを使用）
           MANGA_URL=""
           for MFLOOR in ebook book comic; do
-            RESULT=$(curl -sf "$BASE&floor=$MFLOOR&sort=rank" 2>/dev/null)
-            COUNT=$(echo "$RESULT" | jq '.result.total_count // 0' 2>/dev/null)
+            RESULT=$(curl -s "$BASE&floor=$MFLOOR&sort=rank" 2>/dev/null || echo '{}')
+            COUNT=$(echo "$RESULT" | jq '.result.total_count // 0' 2>/dev/null || echo 0)
             if [ "${COUNT:-0}" -gt 0 ] 2>/dev/null; then
               echo "$RESULT" > data/manga.json
               echo "manga: floor=$MFLOOR, count=$COUNT"

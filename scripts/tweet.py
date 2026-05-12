@@ -31,7 +31,7 @@ except ImportError:
     requests = None
 
 JST      = timezone(timedelta(hours=9))
-SITE_URL = "https://naotoastrobb.github.io/fanza-site/home.html"
+SITE_URL = "https://douga-adult.com"
 
 
 # ===== データ読み込み =====

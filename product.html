@@ -1,17 +1,17 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>商品詳細 | FANZA動画ランキング</title>
+<title>商品詳細 | アダルト動画ランキング</title>
 
 <!-- OGP（JS側で動的更新） -->
-<meta property="og:title" content="FANZA動画ランキング" id="ogTitle">
-<meta property="og:description" content="FANZA厳選アダルト動画の商品詳細ページ" id="ogDesc">
+<meta property="og:title" content="アダルト動画ランキング" id="ogTitle">
+<meta property="og:description" content="厳選アダルト動画の商品詳細ページ" id="ogDesc">
 <meta property="og:type" content="article">
 <meta property="og:image" content="https://douga-adult.com/icons/icon-512.png" id="ogImage">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="FANZA動画ランキング" id="twTitle">
+<meta name="twitter:title" content="アダルト動画ランキング" id="twTitle">
 <meta name="twitter:image" content="" id="twImage">
 
 <!-- Google Analytics -->
@@ -57,7 +57,7 @@
 
 <header class="site-header">
   <div class="header-inner">
-    <div class="site-logo"><a href="home.html" style="color:inherit;text-decoration:none">FANZA動画ランキング</a></div>
+    <div class="site-logo"><a href="home.html" style="color:inherit;text-decoration:none">アダルト動画ランキング</a></div>
     <div class="search-bar">
       <input type="text" id="searchInput" placeholder="検索..." autocomplete="off">
       <button onclick="doSearch()">🔍 検索</button>
@@ -78,7 +78,7 @@
 
 <footer class="site-footer">
   <p>当サイトはFANZA（DMM.com）のアフィリエイトプログラムを利用しています。</p>
-  <div class="footer-copy">© 2026 FANZA動画ランキング All Rights Reserved.</div>
+  <div class="footer-copy">© 2026 アダルト動画ランキング All Rights Reserved.</div>
 </footer>
 
 <script src="js/storage.js"></script>
@@ -109,16 +109,16 @@ async function loadProduct(){
         const item   = data?.result?.items?.[0];
         if(!item) throw new Error('商品が見つかりません');
 
-        document.title = item.title + ' | FANZA動画ランキング';
+        document.title = item.title + ' | アダルト動画ランキング';
         document.getElementById('breadTitle').textContent = item.title.slice(0,30) + (item.title.length>30?'...':'');
 
         // OGP動的更新
         const ogImg = item.imageURL?.large || item.imageURL?.list || '';
         const setMeta = (id, val) => { const el = document.getElementById(id); if(el) el.setAttribute('content', val); };
-        setMeta('ogTitle',  item.title + ' | FANZA動画ランキング');
+        setMeta('ogTitle',  item.title + ' | アダルト動画ランキング');
         setMeta('ogDesc',   item.title);
         setMeta('ogImage',  ogImg);
-        setMeta('twTitle',  item.title + ' | FANZA動画ランキング');
+        setMeta('twTitle',  item.title + ' | アダルト動画ランキング');
         setMeta('twImage',  ogImg);
 
         const imgLarge  = item.imageURL?.large  || item.imageURL?.list || '';
@@ -138,7 +138,7 @@ async function loadProduct(){
         Hist.add(item, floor);
 
         const pageUrl  = location.href;
-        const shareText= encodeURIComponent(item.title + ' #FANZA');
+        const shareText= encodeURIComponent(item.title + ' #アダルト動画');
         const shareUrl = 'https://twitter.com/intent/tweet?text=' + shareText + '&url=' + encodeURIComponent(pageUrl);
         const isFav    = Fav.has(item.content_id);
 
@@ -171,7 +171,7 @@ async function loadProduct(){
               ${listPrice && listPrice!==price ? `<span style="font-size:1rem;color:var(--mute);text-decoration:line-through;margin-left:8px">¥${esc(listPrice)}</span>` : ''}
             </div>
 
-            <a class="btn-buy-large" href="${esc(url)}" target="_blank" rel="noopener">🎬 FANZAで視聴・購入する</a>
+            <a class="btn-buy-large" href="${esc(url)}" target="_blank" rel="noopener">🎬 動画を見る・購入する</a>
 
             <!-- お気に入り & シェアボタン -->
             <div style="display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap">
@@ -202,8 +202,8 @@ async function loadProduct(){
               ${item.content_id ? `<dt>品番</dt><dd>${esc(item.content_id)}</dd>` : ''}
             </dl>
 
-            <a class="btn-buy-large" href="${esc(url)}" target="_blank" rel="noopener" style="margin-top:24px">✓ FANZAで購入・視聴する</a>
-            <p style="font-size:.75rem;color:var(--mute);text-align:center;margin-top:8px">※ 当サイトはFANZAアフィリエイトプログラムを利用しています</p>
+            <a class="btn-buy-large" href="${esc(url)}" target="_blank" rel="noopener" style="margin-top:24px">✓ 動画を見る・購入する</a>
+            <p style="font-size:.75rem;color:var(--mute);text-align:center;margin-top:8px">※ 当サイトはアフィリエイトプログラムを利用しています</p>
           </div>
         </div>`;
 

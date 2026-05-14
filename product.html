@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>商品詳細 | アダルト動画ランキング</title>
+<title>商品詳細 | AV動画ランキング</title>
 
 <!-- OGP（JS側で動的更新） -->
-<meta property="og:title" content="アダルト動画ランキング" id="ogTitle">
+<meta property="og:title" content="AV動画ランキング" id="ogTitle">
 <meta property="og:description" content="厳選アダルト動画の商品詳細ページ" id="ogDesc">
 <meta property="og:type" content="article">
 <meta property="og:image" content="https://douga-adult.com/icons/icon-512.png" id="ogImage">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="アダルト動画ランキング" id="twTitle">
+<meta name="twitter:title" content="AV動画ランキング" id="twTitle">
 <meta name="twitter:image" content="" id="twImage">
 
 <!-- Google Analytics -->
@@ -57,7 +57,7 @@
 
 <header class="site-header">
   <div class="header-inner">
-    <div class="site-logo"><a href="home.html" style="color:inherit;text-decoration:none">アダルト動画ランキング</a></div>
+    <div class="site-logo"><a href="home.html" style="color:inherit;text-decoration:none">AV動画ランキング</a></div>
     <div class="search-bar">
       <input type="text" id="searchInput" placeholder="検索..." autocomplete="off">
       <button onclick="doSearch()">🔍 検索</button>
@@ -78,7 +78,7 @@
 
 <footer class="site-footer">
   <p>当サイトはFANZA（DMM.com）のアフィリエイトプログラムを利用しています。</p>
-  <div class="footer-copy">© 2026 アダルト動画ランキング All Rights Reserved.</div>
+  <div class="footer-copy">© 2026 AV動画ランキング All Rights Reserved.</div>
 </footer>
 
 <script src="js/storage.js"></script>
@@ -109,16 +109,16 @@ async function loadProduct(){
         const item   = data?.result?.items?.[0];
         if(!item) throw new Error('商品が見つかりません');
 
-        document.title = item.title + ' | アダルト動画ランキング';
+        document.title = item.title + ' | AV動画ランキング';
         document.getElementById('breadTitle').textContent = item.title.slice(0,30) + (item.title.length>30?'...':'');
 
         // OGP動的更新
         const ogImg = item.imageURL?.large || item.imageURL?.list || '';
         const setMeta = (id, val) => { const el = document.getElementById(id); if(el) el.setAttribute('content', val); };
-        setMeta('ogTitle',  item.title + ' | アダルト動画ランキング');
+        setMeta('ogTitle',  item.title + ' | AV動画ランキング');
         setMeta('ogDesc',   item.title);
         setMeta('ogImage',  ogImg);
-        setMeta('twTitle',  item.title + ' | アダルト動画ランキング');
+        setMeta('twTitle',  item.title + ' | AV動画ランキング');
         setMeta('twImage',  ogImg);
 
         const imgLarge  = item.imageURL?.large  || item.imageURL?.list || '';

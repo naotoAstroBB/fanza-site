@@ -3,16 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>アダルト動画ランキング | AV動画・アニメ・マンガ・グッズ総合サイト</title>
+<title>AV動画ランキング | 人気・新着・おすすめアダルト動画・AV女優厳選サイト</title>
 
 <!-- OGP -->
-<meta property="og:title" content="アダルト動画ランキング">
+<meta property="og:title" content="AV動画ランキング">
 <meta property="og:description" content="厳選！人気AV動画・アニメ・マンガ・グッズのランキングサイト。無料サンプル動画あり。">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://douga-adult.com/home.html">
 <meta property="og:image" content="https://douga-adult.com/icons/icon-512.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="アダルト動画ランキング">
+<meta name="twitter:title" content="AV動画ランキング">
 <meta name="twitter:description" content="厳選！人気AV動画・アニメ・マンガ・グッズのランキングサイト。">
 <meta name="twitter:image" content="https://douga-adult.com/icons/icon-512.png">
 
@@ -39,7 +39,7 @@
 <div class="sticky-bar">
 <header class="site-header">
   <div class="header-inner">
-    <div class="site-logo"><a href="home.html" style="color:inherit;text-decoration:none">アダルト動画ランキング</a><span> - 厳選</span></div>
+    <div class="site-logo"><a href="home.html" style="color:inherit;text-decoration:none">AV動画ランキング</a><span> - 厳選</span></div>
     <div class="suggest-wrap">
       <input type="text" id="searchInput" placeholder="女優名・タイトル・キーワードで検索..." autocomplete="off">
       <div class="suggest-dropdown" id="suggestDropdown"></div>
@@ -114,11 +114,12 @@
 <!-- お気に入り -->
 <section class="actress-section" id="favoritesSection" style="display:none">
   <div class="actress-section-inner">
-    <div class="actress-section-header">
+    <div class="actress-section-header" onclick="App.toggleFavSection()" style="cursor:pointer;user-select:none">
       <span class="actress-section-title">❤️ お気に入り</span>
       <span id="favCount" style="font-size:.75rem;color:#555;margin-left:auto"></span>
+      <span id="favToggleIcon" style="font-size:.85rem;color:#888;margin-left:8px">▼</span>
     </div>
-    <div class="actress-scroll" id="favoritesList"></div>
+    <div class="actress-scroll" id="favoritesList" style="display:none"></div>
   </div>
 </section>
 
@@ -168,11 +169,12 @@
       <div class="sidebar-link" onclick="App.setGenre('4024',this)">🎯 素人</div>
       <div class="sidebar-link" onclick="App.setGenre('5001',this)">💕 中出し</div>
       <div class="sidebar-link" onclick="App.setGenre('1039',this)">🏠 人妻・主婦</div>
-      <div class="sidebar-link" onclick="App.setGenre('1008',this)">👔 OL</div>
+      <div class="sidebar-link" onclick="App.setGenre('1001',this)">👔 OL</div>
       <div class="sidebar-link" onclick="App.setGenre('4031',this)">🎭 コスプレ</div>
       <div class="sidebar-link" onclick="App.setGenre('6006',this)">🌱 新人</div>
       <div class="sidebar-link" onclick="App.setGenre('1034',this)">💅 ギャル</div>
       <div class="sidebar-link" onclick="App.setGenre('4022',this)">🌍 外国人</div>
+      <div class="sidebar-link" onclick="App.setGenre('4001',this)">⛓️ SM</div>
     </div>
     <div class="sidebar-section">
       <h3>サービス</h3>
@@ -222,7 +224,7 @@
 </nav>
 
 <footer class="site-footer">
-  <div class="footer-logo">アダルト動画ランキング</div>
+  <div class="footer-logo">AV動画ランキング</div>
   <div class="footer-nav">
     <a href="home.html">TOP</a>
     <a href="#" onclick="App.setSort('rank')">ランキング</a>
@@ -232,7 +234,7 @@
     <a href="disclaimer.html">免責事項</a>
   </div>
   <p>当サイトはFANZA（DMM.com）のアフィリエイトプログラムを利用しています。</p>
-  <div class="footer-copy">© 2026 アダルト動画ランキング All Rights Reserved.</div>
+  <div class="footer-copy">© 2026 AV動画ランキング All Rights Reserved.</div>
 </footer>
 
 <!-- サンプル動画モーダル -->

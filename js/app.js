@@ -193,10 +193,14 @@ const App = {
         const favs = Fav.get();
         const favSection = document.getElementById('favoritesSection');
         const favCount = document.getElementById('favCount');
-        if (favSection && favs.length) {
-            favSection.style.display = '';
-            if (favCount) favCount.textContent = favs.length + '件';
-            this.renderMiniCards('favoritesList', favs);
+        if (favSection) {
+            if (favs.length) {
+                favSection.style.display = '';
+                if (favCount) favCount.textContent = favs.length + '件';
+                this.renderMiniCards('favoritesList', favs);
+            } else {
+                favSection.style.display = 'none';
+            }
         }
     },
 
@@ -449,6 +453,16 @@ const App = {
             </a>
           </div>
         </div>`;
+    },
+
+    // ===== お気に入りセクション 開閉 =====
+    toggleFavSection() {
+        const list = document.getElementById('favoritesList');
+        const icon = document.getElementById('favToggleIcon');
+        if (!list) return;
+        const isOpen = list.style.display !== 'none';
+        list.style.display = isOpen ? 'none' : '';
+        if (icon) icon.textContent = isOpen ? '▼' : '▲';
     },
 
     // ===== お気に入りトグル =====

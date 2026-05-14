@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>女優ページ | アダルト動画ランキング</title>
+<title>女優ページ | AV動画ランキング</title>
 <link rel="stylesheet" href="css/style.css">
 <style>
 .actress-hero {
@@ -62,7 +62,7 @@
 
 <header class="site-header">
   <div class="header-inner">
-    <div class="site-logo"><a href="home.html" style="color:inherit;text-decoration:none">アダルト動画ランキング</a></div>
+    <div class="site-logo"><a href="home.html" style="color:inherit;text-decoration:none">AV動画ランキング</a></div>
     <div class="search-bar">
       <input type="text" id="searchInput" placeholder="検索..." autocomplete="off">
       <button onclick="doSearch()">🔍</button>
@@ -107,7 +107,7 @@
     <a href="disclaimer.html">免責事項</a>
   </div>
   <p>当サイトはFANZA（DMM.com）のアフィリエイトプログラムを利用しています。</p>
-  <div class="footer-copy">© 2026 アダルト動画ランキング All Rights Reserved.</div>
+  <div class="footer-copy">© 2026 AV動画ランキング All Rights Reserved.</div>
 </footer>
 
 <script src="js/storage.js"></script>
@@ -135,7 +135,7 @@ document.getElementById('searchInput').addEventListener('keydown', e => { if (e.
 async function loadActressInfo() {
     if (!actressId) { showError('女優IDが指定されていません'); return; }
 
-    document.title = (actressName || '女優') + '出演作品 | アダルト動画ランキング';
+    document.title = (actressName || '女優') + '出演作品 | AV動画ランキング';
     document.getElementById('breadName').textContent = actressName || '女優ページ';
 
     // actress_popular / actress_new からプロフィール情報を探す
@@ -167,7 +167,7 @@ async function loadActressInfo() {
             <a class="actress-fanza-btn" href="${esc(link)}" target="_blank" rel="noopener">🎬 全作品を見る</a>
         </div>`;
 
-    document.title = name + ' 出演作品 | アダルト動画ランキング';
+    document.title = name + ' 出演作品 | AV動画ランキング';
     document.getElementById('breadName').textContent = name;
 
     // 作品を検索

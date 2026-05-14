@@ -21,11 +21,12 @@ const DMM = {
         '4024': 'data/genre_amateur.json',   // 素人
         '5001': 'data/genre_creampie.json',  // 中出し
         '1039': 'data/genre_wife.json',      // 人妻・主婦
-        '1008': 'data/genre_ol.json',        // OL
+        '1001': 'data/genre_ol.json',        // OL
         '4031': 'data/genre_cosplay.json',   // コスプレ
         '6006': 'data/genre_debut.json',     // 新人（デビュー作品）
         '1034': 'data/genre_gal.json',       // ギャル
         '4022': 'data/genre_foreign.json',   // 外国人（洋ピン・海外輸入）
+        '4001': 'data/genre_sm.json',        // SM
     },
     actressFiles: {
         'popular': 'data/actress_popular.json',

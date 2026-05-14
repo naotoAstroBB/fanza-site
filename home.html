@@ -131,6 +131,7 @@
   <div class="actress-section-inner">
     <div class="actress-section-header">
       <span class="actress-section-title">👑 人気女優ランキング TOP15</span>
+      <span class="actress-section-update">🔄 30分毎更新</span>
     </div>
     <div class="actress-scroll" id="actressRankList">
       <span class="actress-loading">読み込み中...</span>
@@ -142,7 +143,8 @@
 <section class="actress-section">
   <div class="actress-section-inner">
     <div class="actress-section-header">
-      <span class="actress-section-title">🌸 今月の新着女優</span>
+      <span class="actress-section-title">🌸 新着女優</span>
+      <span class="actress-section-update">🔄 30分毎更新</span>
     </div>
     <div class="actress-scroll" id="actressNewList">
       <span class="actress-loading">読み込み中...</span>
@@ -207,6 +209,34 @@
   </main>
 </div>
 
+<!-- ジャンルドロワーオーバーレイ -->
+<div class="genre-overlay" id="genreOverlay" onclick="App.closeGenreDrawer()"></div>
+
+<!-- ジャンルドロワー（スマホ用スライドアップ）-->
+<div class="genre-drawer" id="genreDrawer">
+  <div class="genre-drawer-handle"></div>
+  <div class="genre-drawer-header">
+    <span class="genre-drawer-title">🎯 ジャンル選択</span>
+    <button class="genre-drawer-close" onclick="App.closeGenreDrawer()">✕ 閉じる</button>
+  </div>
+  <div class="genre-drawer-body">
+    <button class="genre-chip active" data-genre="" onclick="App.setGenreFromDrawer('')">📌 すべて</button>
+    <button class="genre-chip" data-genre="2001" onclick="App.setGenreFromDrawer('2001')">🌟 巨乳</button>
+    <button class="genre-chip" data-genre="1027" onclick="App.setGenreFromDrawer('1027')">💫 美少女</button>
+    <button class="genre-chip" data-genre="6533" onclick="App.setGenreFromDrawer('6533')">📹 ハイビジョン</button>
+    <button class="genre-chip" data-genre="4025" onclick="App.setGenreFromDrawer('4025')">👑 単体作品</button>
+    <button class="genre-chip" data-genre="4024" onclick="App.setGenreFromDrawer('4024')">🎯 素人</button>
+    <button class="genre-chip" data-genre="5001" onclick="App.setGenreFromDrawer('5001')">💕 中出し</button>
+    <button class="genre-chip" data-genre="1039" onclick="App.setGenreFromDrawer('1039')">🏠 人妻・主婦</button>
+    <button class="genre-chip" data-genre="1001" onclick="App.setGenreFromDrawer('1001')">👔 OL</button>
+    <button class="genre-chip" data-genre="4031" onclick="App.setGenreFromDrawer('4031')">🎭 コスプレ</button>
+    <button class="genre-chip" data-genre="6006" onclick="App.setGenreFromDrawer('6006')">🌱 新人</button>
+    <button class="genre-chip" data-genre="1034" onclick="App.setGenreFromDrawer('1034')">💅 ギャル</button>
+    <button class="genre-chip" data-genre="4022" onclick="App.setGenreFromDrawer('4022')">🌍 外国人</button>
+    <button class="genre-chip" data-genre="4001" onclick="App.setGenreFromDrawer('4001')">⛓️ SM</button>
+  </div>
+</div>
+
 <!-- ボトムナビゲーション（スマホのみ表示） -->
 <nav class="bottom-nav">
   <a href="home.html" class="bottom-nav-item active">
@@ -221,8 +251,8 @@
   <button class="bottom-nav-item" onclick="App.setSale(this)">
     <span class="bn-icon">🔥</span><span>SALE</span>
   </button>
-  <button class="bottom-nav-item" onclick="document.getElementById('favoritesSection')?.scrollIntoView({behavior:'smooth'})">
-    <span class="bn-icon">❤️</span><span>お気に入り</span>
+  <button class="bottom-nav-item" onclick="App.openGenreDrawer()">
+    <span class="bn-icon">🎯</span><span>ジャンル</span>
   </button>
 </nav>
 

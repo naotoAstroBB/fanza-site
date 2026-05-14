@@ -658,18 +658,15 @@ const App = {
         this.sort     = sort;
         this.page     = 1;
         this.showSale = false;
-        // ジャンル選択中はgenre・floorを維持する（ソートのみ変更）
-        // ジャンルなし かつ ナビボタンから呼ばれた場合のみ floor をvideoa にリセット
-        if (!this.genre) {
-            this.floor = 'videoa';
-        }
+        // ジャンル選択中はgenre/floorを維持しsorトのみ変更（ジャンル固定）
+        // ジャンル未選択時のみ floor を videoa にセット
+        if (!this.genre) this.floor = 'videoa';
+
         if (document.getElementById('sortSelect')) document.getElementById('sortSelect').value = sort;
-        if (el) {
-            // ナビバーのボタンの場合だけアクティブ切替（rank-tabはそのまま）
-            if (el.classList.contains('nav-btn')) {
-                document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-                el.classList.add('active');
-            }
+        // ナビバーボタン（.nav-btn）のアクティブ更新（rank-tabは対象外）
+        if (el?.classList.contains('nav-btn')) {
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+            el.classList.add('active');
         }
         this.updateRankTabs();
         this.fetchProducts();
@@ -677,12 +674,19 @@ const App = {
 
     setGenre(id, el) {
         this.genre    = id;
+        this.floor    = 'videoa';
         this.page     = 1;
         this.showSale = false;
+        // サイドバーのアクティブ更新
         if (el) {
             el.closest('.sidebar-section').querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
             el.classList.add('active');
         }
+        // ジャンルドロワーのチップも更新
+        document.querySelectorAll('.genre-chip').forEach(c => {
+            c.classList.toggle('active', c.dataset.genre === id);
+        });
+        this.updateRankTabs();
         this.fetchProducts();
     },
 
@@ -695,7 +699,40 @@ const App = {
             el.closest('.sidebar-section').querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
             el.classList.add('active');
         }
+        document.querySelectorAll('.genre-chip').forEach(c => {
+            c.classList.toggle('active', c.dataset.genre === '');
+        });
+        this.updateRankTabs();
         this.fetchProducts();
+    },
+
+    // ===== ジャンルドロワー（スマホ用）=====
+    openGenreDrawer() {
+        document.getElementById('genreDrawer')?.classList.add('open');
+        document.getElementById('genreOverlay')?.classList.add('open');
+        document.body.style.overflow = 'hidden';
+    },
+
+    closeGenreDrawer() {
+        document.getElementById('genreDrawer')?.classList.remove('open');
+        document.getElementById('genreOverlay')?.classList.remove('open');
+        document.body.style.overflow = '';
+    },
+
+    setGenreFromDrawer(id) {
+        this.closeGenreDrawer();
+        if (id) {
+            this.setGenre(id);
+            // サイドバー側も同期
+            document.querySelectorAll('.sidebar-link').forEach(l => {
+                const onclick = l.getAttribute('onclick') || '';
+                const match = onclick.match(/'(\d+)'/);
+                l.classList.toggle('active', match && match[1] === id);
+            });
+        } else {
+            this.clearFilter();
+            document.querySelectorAll('.sidebar-link').forEach((l, i) => l.classList.toggle('active', i === 0));
+        }
     },
 
     // ===== 女優セクション =====
@@ -714,14 +751,36 @@ const App = {
             const data     = await DMM.fetchActress(type);
             const actresses = data?.result?.actress || [];
             if (!actresses.length) { el.innerHTML = '<span class="actress-empty">データ準備中</span>'; return; }
+
+            // 年齢計算
+            const calcAge = (bday) => {
+                if (!bday) return null;
+                const d = new Date(bday);
+                const today = new Date();
+                let age = today.getFullYear() - d.getFullYear();
+                const m = today.getMonth() - d.getMonth();
+                if (m < 0 || (m === 0 && today.getDate() < d.getDate())) age--;
+                return (age > 0 && age < 70) ? age : null;
+            };
+
             el.innerHTML = actresses.map((a, i) => {
-                const img   = a.imageURL?.small || '';
-                const name  = this.esc(a.name || '');
-                // 女優個別ページへ（サイト内）
-                const href  = `actress.html?id=${this.esc(String(a.id))}&name=${encodeURIComponent(a.name || '')}`;
+                const img  = a.imageURL?.small || '';
+                const name = this.esc(a.name || '');
+                const href = `actress.html?id=${this.esc(String(a.id))}&name=${encodeURIComponent(a.name || '')}`;
                 const badge = showRank
                     ? `<div class="actress-rank-badge">${i + 1}位</div>`
                     : `<div class="actress-new-badge">NEW</div>`;
+
+                // スペック情報
+                const age   = calcAge(a.birthday);
+                const bust  = a.bust  ? `B${a.bust}` + (a.cup ? `(${a.cup})` : '') : '';
+                const waist = a.waist ? `W${a.waist}` : '';
+                const hip   = a.hip   ? `H${a.hip}`   : '';
+                const measurements = [bust, waist, hip].filter(Boolean).join(' ');
+                const height = a.height ? `${a.height}cm` : '';
+                const blood  = a.blood_type && a.blood_type !== '他' ? `${a.blood_type}型` : '';
+                const pref   = a.prefectures ? this.esc(a.prefectures) : '';
+
                 return `
                 <a class="actress-card" href="${href}">
                     <div class="actress-photo">
@@ -729,6 +788,9 @@ const App = {
                         ${badge}
                     </div>
                     <div class="actress-name">${name}</div>
+                    ${age || blood ? `<div class="actress-meta">${[age ? age + '歳' : '', blood].filter(Boolean).join(' · ')}</div>` : ''}
+                    ${height || measurements ? `<div class="actress-stats">${[height, measurements].filter(Boolean).join(' ')}</div>` : ''}
+                    ${pref ? `<div class="actress-pref">📍${pref}</div>` : ''}
                 </a>`;
             }).join('');
         } catch(e) {

@@ -543,7 +543,7 @@ const App = {
             </div>
             ${review?.count ? `<div class="card-review" style="margin-bottom:6px">${avg.toFixed(1)} (${review.count}件)</div>` : ''}
             <a class="btn-buy" href="${this.esc(url)}" target="_blank" rel="noopener" onclick="event.stopPropagation()">
-              FANZAで見る →
+              動画を見る →
             </a>
           </div>
         </div>`;

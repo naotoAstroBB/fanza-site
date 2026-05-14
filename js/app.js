@@ -117,13 +117,29 @@ const App = {
     updateRankTabs() {
         const tabs = document.getElementById('rankTabs');
         if (!tabs) return;
-        // videoa以外はタブを非表示
-        tabs.style.display = (this.floor === 'videoa' && !this.genre) ? 'flex' : 'none';
+        // videoa（ジャンル選択中も含む）で表示
+        tabs.style.display = (this.floor === 'videoa') ? 'flex' : 'none';
         // アクティブ状態を同期
         tabs.querySelectorAll('.rank-tab').forEach(btn => {
             const s = btn.getAttribute('onclick')?.match(/'([^']+)'/)?.[1];
             btn.classList.toggle('active', s === this.sort);
         });
+    },
+
+    // ===== クライアント側ソート（ジャンルデータ用）=====
+    _sortItems(items, sort) {
+        const arr = [...items];
+        switch (sort) {
+            case 'rank':   return arr; // 取得順（rank順）そのまま
+            case 'date':   return arr.sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+            case 'review': return arr.sort((a, b) =>
+                parseFloat(b.review?.average || 0) - parseFloat(a.review?.average || 0));
+            case 'price':  return arr.sort((a, b) =>  // 高い順
+                parseFloat(b.prices?.price || 0) - parseFloat(a.prices?.price || 0));
+            case '-price': return arr.sort((a, b) =>  // 安い順
+                parseFloat(a.prices?.price || 0) - parseFloat(b.prices?.price || 0));
+            default:       return arr;
+        }
     },
 
     // ===== セールお気に入りトースト =====
@@ -372,6 +388,11 @@ const App = {
             if (!result || result.status !== 200) throw new Error('APIエラー: ' + JSON.stringify(result));
 
             let items = result.items || [];
+
+            // ジャンル選択中はクライアント側でソート適用
+            if (this.genre) {
+                items = this._sortItems(items, this.sort);
+            }
 
             // キーワードフィルタ（クライアント側）
             if (this.keyword) {

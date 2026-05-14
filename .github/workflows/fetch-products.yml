@@ -53,7 +53,15 @@ jobs:
             "6006:genre_debut" \
             "1034:genre_gal" \
             "4022:genre_foreign" \
-            "4001:genre_sm"; do
+            "4001:genre_sm" \
+            "4006:genre_nanpa" \
+            "2005:genre_hinyu" \
+            "1018:genre_jk" \
+            "1016:genre_teacher" \
+            "4002:genre_kinshin" \
+            "1028:genre_kuro" \
+            "4007:genre_kikaku" \
+            "5002:genre_fella"; do
             ID="${row%%:*}"; NAME="${row##*:}"
             EMPTY='{"result":{"status":404}}'
             # rank（デフォルト・後方互換）

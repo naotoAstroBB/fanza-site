@@ -27,6 +27,14 @@ const DMM = {
         '1034': 'data/genre_gal.json',       // ギャル
         '4022': 'data/genre_foreign.json',   // 外国人（洋ピン・海外輸入）
         '4001': 'data/genre_sm.json',        // SM
+        '4006': 'data/genre_nanpa.json',    // ナンパ
+        '2005': 'data/genre_hinyu.json',    // 貧乳・微乳
+        '1018': 'data/genre_jk.json',       // 女子校生（ロリ）
+        '1016': 'data/genre_teacher.json',  // 女教師
+        '4002': 'data/genre_kinshin.json',  // 近親相姦
+        '1028': 'data/genre_kuro.json',     // 黒人男優
+        '4007': 'data/genre_kikaku.json',   // 企画
+        '5002': 'data/genre_fella.json',    // フェラ
     },
     actressFiles: {
         'popular': 'data/actress_popular.json',

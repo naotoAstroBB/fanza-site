@@ -157,6 +157,7 @@
     <div class="sidebar-section">
       <h3>並び替え</h3>
       <select class="sort-select" id="sortSelect" onchange="App.setSort(this.value)">
+        <option value="">— なし —</option>
         <option value="rank">🏆 人気順</option>
         <option value="date">🆕 新着順</option>
         <option value="review">⭐ レビュー高い順</option>
@@ -196,6 +197,7 @@
     </div>
     <!-- ランキングタブ（videoa時のみ表示） -->
     <div class="rank-tabs" id="rankTabs">
+      <button class="rank-tab clear-tab" onclick="App.clearSort(this)">✕ なし</button>
       <button class="rank-tab active" onclick="App.setSort('rank',this)">🏆 人気順</button>
       <button class="rank-tab" onclick="App.setSort('review',this)">⭐ 高評価</button>
       <button class="rank-tab" onclick="App.setSort('date',this)">🆕 新着</button>

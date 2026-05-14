@@ -58,22 +58,56 @@ const App = {
 
     // ===== 検索サジェスト =====
     _suggestActresses: [],
+    _suggestLoaded: false,
+
     async loadSuggestData() {
-        if (this._suggestActresses.length) return;
+        if (this._suggestLoaded) return;
+        this._suggestLoaded = true;
         try {
+            // 女優APIデータ（画像・ルビあり）
             const [pop, newA] = await Promise.allSettled([
                 DMM.fetchActress('popular'),
                 DMM.fetchActress('new'),
             ]);
-            const all = [
+            const apiActresses = [
                 ...(pop.value?.result?.actress || []),
                 ...(newA.value?.result?.actress || []),
             ];
+
+            // 商品データ（rank/new）から女優名を補完抽出
+            const productFiles = [
+                'data/rank.json', 'data/new.json', 'data/review.json'
+            ];
+            const productResults = await Promise.allSettled(
+                productFiles.map(f => DMM._loadFile(f))
+            );
+            const extraMap = new Map(); // id → {id, name, ruby, imageURL}
+            for (const r of productResults) {
+                if (r.status !== 'fulfilled') continue;
+                for (const item of (r.value?.result?.items || [])) {
+                    for (const a of (item.iteminfo?.actress || [])) {
+                        if (a.id && !extraMap.has(String(a.id))) {
+                            extraMap.set(String(a.id), {
+                                id:       String(a.id),
+                                name:     a.name || '',
+                                ruby:     a.ruby || '',
+                                imageURL: {}
+                            });
+                        }
+                    }
+                }
+            }
+
+            // 重複除去してマージ（API女優データ優先）
             const seen = new Set();
-            this._suggestActresses = all.filter(a => {
-                if (seen.has(a.id)) return false;
-                seen.add(a.id); return true;
-            });
+            this._suggestActresses = [];
+            for (const a of apiActresses) {
+                const id = String(a.id);
+                if (!seen.has(id)) { seen.add(id); this._suggestActresses.push(a); }
+            }
+            for (const [id, a] of extraMap) {
+                if (!seen.has(id)) { seen.add(id); this._suggestActresses.push(a); }
+            }
         } catch(e) {}
     },
 
@@ -84,9 +118,13 @@ const App = {
         if (!box) return;
         if (!q) { this.closeSuggest(); return; }
 
-        const matches = this._suggestActresses.filter(a =>
-            (a.name || '').includes(q) || (a.ruby || '').includes(q)
-        ).slice(0, 8);
+        // 部分一致：名前・ルビ両方でマッチ（苗字・名前どちらでもヒット）
+        const ql = q.toLowerCase();
+        const matches = this._suggestActresses.filter(a => {
+            const name = (a.name || '').toLowerCase();
+            const ruby = (a.ruby || '').toLowerCase();
+            return name.includes(ql) || ruby.includes(ql);
+        }).slice(0, 10);
 
         if (!matches.length) { this.closeSuggest(); return; }
 
@@ -94,9 +132,17 @@ const App = {
             const img  = a.imageURL?.small || '';
             const name = this.esc(a.name || '');
             const ruby = this.esc(a.ruby || '');
+            // マッチ箇所をハイライト
+            const hlName = name.replace(
+                new RegExp(this.esc(q).replace(/[.*+?^${}()|[\]\\]/g,'\\$&'), 'gi'),
+                m => `<mark>${m}</mark>`
+            );
             return `<div class="suggest-item" onclick="App.selectSuggest('${this.esc(a.name)}','${a.id}')">
-                ${img ? `<img src="${this.esc(img)}" alt="${name}">` : '<div style="width:32px;height:32px;border-radius:50%;background:#222;display:flex;align-items:center;justify-content:center">👩</div>'}
-                <div><div class="suggest-item-name">${name}</div>${ruby ? `<div class="suggest-item-sub">${ruby}</div>` : ''}</div>
+                ${img ? `<img src="${this.esc(img)}" alt="${name}">` : '<div class="suggest-no-img">👩</div>'}
+                <div>
+                    <div class="suggest-item-name">${hlName}</div>
+                    ${ruby ? `<div class="suggest-item-sub">${ruby}</div>` : ''}
+                </div>
             </div>`;
         }).join('');
         box.classList.add('open');
@@ -117,13 +163,27 @@ const App = {
     updateRankTabs() {
         const tabs = document.getElementById('rankTabs');
         if (!tabs) return;
-        // videoa（ジャンル選択中も含む）で表示
         tabs.style.display = (this.floor === 'videoa') ? 'flex' : 'none';
-        // アクティブ状態を同期
         tabs.querySelectorAll('.rank-tab').forEach(btn => {
             const s = btn.getAttribute('onclick')?.match(/'([^']+)'/)?.[1];
-            btn.classList.toggle('active', s === this.sort);
+            // sort='' のとき（なし選択中）は全タブ非アクティブ
+            btn.classList.toggle('active', !!this.sort && s === this.sort);
         });
+        // セレクトボックスも同期
+        const sel = document.getElementById('sortSelect');
+        if (sel) sel.value = this.sort || '';
+    },
+
+    // ===== 並び替え解除（「なし」ボタン）=====
+    clearSort(el) {
+        this.sort     = '';
+        this.page     = 1;
+        this.showSale = false;
+        if (!this.genre) this.floor = 'videoa';
+        const sel = document.getElementById('sortSelect');
+        if (sel) sel.value = '';
+        this.updateRankTabs();
+        this.fetchProducts();
     },
 
     // ===== クライアント側ソート（ジャンルデータ用）=====
@@ -655,11 +715,9 @@ const App = {
     },
 
     setSort(sort, el) {
-        this.sort     = sort;
+        this.sort     = sort || 'rank'; // 空文字はrankとして扱う
         this.page     = 1;
         this.showSale = false;
-        // ジャンル選択中はgenre/floorを維持しsorトのみ変更（ジャンル固定）
-        // ジャンル未選択時のみ floor を videoa にセット
         if (!this.genre) this.floor = 'videoa';
 
         if (document.getElementById('sortSelect')) document.getElementById('sortSelect').value = sort;

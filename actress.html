@@ -174,17 +174,35 @@ async function loadActressInfo() {
     await loadWorks();
 }
 
-// ===== 全JSONから出演作品を収集 =====
+// ===== 出演作品を収集（女優別JSON優先 → 横断検索で補完）=====
 async function loadWorks() {
+    const seen = new Set();
+    let works = [];
+
+    // ① 女優別専用JSONを試みる（最大100件、最新作中心）
+    try {
+        const ts = Math.floor(Date.now() / 60000);
+        const res = await fetch(`data/actress_works_${actressId}.json?_=${ts}`);
+        if (res.ok) {
+            const data = await res.json();
+            if (data?.result?.status === 200 && data.result.items?.length) {
+                for (const item of data.result.items) {
+                    if (!seen.has(item.content_id)) {
+                        seen.add(item.content_id);
+                        works.push(item);
+                    }
+                }
+            }
+        }
+    } catch(e) {}
+
+    // ② 全JSONを横断検索して追加作品を補完
     const allFiles = [
         ...Object.values(DMM.sortFiles),
         ...Object.values(DMM.floorFiles),
         ...Object.values(DMM.genreFiles),
     ];
     const results = await Promise.allSettled(allFiles.map(f => DMM._loadFile(f).catch(() => null)));
-    const seen = new Set();
-    const works = [];
-
     for (const r of results) {
         if (r.status !== 'fulfilled' || !r.value) continue;
         for (const item of (r.value?.result?.items || [])) {
@@ -197,9 +215,12 @@ async function loadWorks() {
         }
     }
 
+    // 新着順にソート
+    works.sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+
     allWorks = works;
     const countEl = document.getElementById('worksCount');
-    if (countEl) countEl.textContent = `（${works.length}件 ※サイト内キャッシュより）`;
+    if (countEl) countEl.textContent = `（${works.length}件）`;
 
     renderWorks(page);
     renderPagination();

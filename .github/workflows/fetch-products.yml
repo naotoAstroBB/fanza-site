@@ -22,13 +22,24 @@ jobs:
           # 前回のランキングを保存（順位変動バッジ用）
           cp data/rank.json data/rank_prev.json 2>/dev/null || true
 
-          BASE="https://api.dmm.com/affiliate/v3/ItemList?api_id=UXJdpULBN1sPyNKKPPHU&affiliate_id=saaaaaaya-990&site=FANZA&service=digital&output=json&hits=100"
+          BASE_URL="https://api.dmm.com/affiliate/v3/ItemList?api_id=UXJdpULBN1sPyNKKPPHU&affiliate_id=saaaaaaya-990&site=FANZA&service=digital&output=json"
+          BASE="$BASE_URL&hits=100"
 
-          # ソート別
-          curl -sf "$BASE&floor=videoa&sort=rank"   -o data/rank.json      || echo '{"result":{"status":404}}' > data/rank.json
-          curl -sf "$BASE&floor=videoa&sort=date"   -o data/new.json       || echo '{"result":{"status":404}}' > data/new.json
-          curl -sf "$BASE&floor=videoa&sort=review" -o data/review.json    || echo '{"result":{"status":404}}' > data/review.json
-          curl -sf "$BASE&floor=videoa&sort=price"  -o data/price_asc.json || echo '{"result":{"status":404}}' > data/price_asc.json
+          # 2ページ取得してmerge（最大200件）
+          merge_fetch() {
+            local OUT="$1" QUERY="$2"
+            curl -sf "${QUERY}&hits=100"            -o /tmp/p1.json 2>/dev/null || echo '{"result":{"items":[]}}' > /tmp/p1.json
+            curl -sf "${QUERY}&hits=100&offset=101" -o /tmp/p2.json 2>/dev/null || echo '{"result":{"items":[]}}' > /tmp/p2.json
+            jq -s '((.[0].result.items//[])+(.[1].result.items//[])) as $it |
+              {result:{status:200,items:$it,total_count:($it|length),result_count:($it|length)}}
+            ' /tmp/p1.json /tmp/p2.json > "$OUT" || echo '{"result":{"status":404}}' > "$OUT"
+          }
+
+          # ソート別（rank/date/review = 200件、price系は100件）
+          merge_fetch data/rank.json   "$BASE_URL&floor=videoa&sort=rank"
+          merge_fetch data/new.json    "$BASE_URL&floor=videoa&sort=date"
+          merge_fetch data/review.json "$BASE_URL&floor=videoa&sort=review"
+          curl -sf "$BASE&floor=videoa&sort=price"  -o data/price_asc.json  || echo '{"result":{"status":404}}' > data/price_asc.json
           curl -sf "$BASE&floor=videoa&sort=-price" -o data/price_desc.json || echo '{"result":{"status":404}}' > data/price_desc.json
 
           # フロア別
@@ -99,23 +110,34 @@ jobs:
             echo "{\"result\":{\"status\":200,\"actress\":${JSON}}}" > "$OUT"
           }
 
-          # 人気女優：rank.jsonの商品から女優IDを抽出（先頭女優を優先、重複除去）
+          # 人気女優：rank.jsonの商品から女優IDを抽出（先頭女優を優先、重複除去）- 30人に拡大
           POPULAR_IDS=$(jq -r '.result.items[] | .iteminfo.actress[0]?.id | tostring' data/rank.json 2>/dev/null \
-            | awk '!seen[$0]++ && $0 != "null"' | head -15)
+            | awk '!seen[$0]++ && $0 != "null"' | head -30)
           build_actress_json "$POPULAR_IDS" data/actress_popular.json \
             || echo '{"result":{"status":404}}' > data/actress_popular.json
 
-          # 新着女優：new.jsonの商品から女優IDを抽出
+          # 新着女優：new.jsonの商品から女優IDを抽出 - 30人に拡大
           NEW_IDS=$(jq -r '.result.items[] | .iteminfo.actress[0]?.id | tostring' data/new.json 2>/dev/null \
-            | awk '!seen[$0]++ && $0 != "null"' | head -15)
+            | awk '!seen[$0]++ && $0 != "null"' | head -30)
           build_actress_json "$NEW_IDS" data/actress_new.json \
             || echo '{"result":{"status":404}}' > data/actress_new.json
 
           # 月間人気女優：ActressSearch API sort=popular で直接取得
           ACTRESS_BASE="https://api.dmm.com/affiliate/v3/ActressSearch?api_id=UXJdpULBN1sPyNKKPPHU&affiliate_id=saaaaaaya-990&site=FANZA&output=json"
-          curl -sf "${ACTRESS_BASE}&sort=popular&hits=20" \
+          curl -sf "${ACTRESS_BASE}&sort=popular&hits=30" \
             -o data/actress_monthly.json \
             || echo '{"result":{"status":404}}' > data/actress_monthly.json
+
+          # 女優別作品JSON（popular + new の女優ID分を個別取得）
+          WORK_BASE="https://api.dmm.com/affiliate/v3/ItemList?api_id=UXJdpULBN1sPyNKKPPHU&affiliate_id=saaaaaaya-990&site=FANZA&service=digital&output=json&floor=videoa&sort=date&article=actress&hits=100"
+          ALL_ACTRESS_IDS=$(jq -r '.result.actress[].id | tostring' data/actress_popular.json data/actress_new.json 2>/dev/null \
+            | awk '!seen[$0]++ && $0 != "null"' | head -40)
+          for AID in $ALL_ACTRESS_IDS; do
+            curl -sf "${WORK_BASE}&article_id=${AID}" \
+              -o "data/actress_works_${AID}.json" \
+              || echo '{"result":{"status":404}}' > "data/actress_works_${AID}.json"
+            sleep 0.2
+          done
 
       - name: Commit
         run: |

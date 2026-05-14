@@ -656,15 +656,22 @@ const App = {
 
     setSort(sort, el) {
         this.sort     = sort;
-        this.floor    = 'videoa';  // グッズ等から戻る際にvideoa基準でソート
-        this.genre    = '';
         this.page     = 1;
         this.showSale = false;
+        // ジャンル選択中はgenre・floorを維持する（ソートのみ変更）
+        // ジャンルなし かつ ナビボタンから呼ばれた場合のみ floor をvideoa にリセット
+        if (!this.genre) {
+            this.floor = 'videoa';
+        }
         if (document.getElementById('sortSelect')) document.getElementById('sortSelect').value = sort;
         if (el) {
-            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-            el.classList.add('active');
+            // ナビバーのボタンの場合だけアクティブ切替（rank-tabはそのまま）
+            if (el.classList.contains('nav-btn')) {
+                document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+                el.classList.add('active');
+            }
         }
+        this.updateRankTabs();
         this.fetchProducts();
     },
 

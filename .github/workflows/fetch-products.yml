@@ -103,6 +103,12 @@ jobs:
           build_actress_json "$NEW_IDS" data/actress_new.json \
             || echo '{"result":{"status":404}}' > data/actress_new.json
 
+          # 月間人気女優：ActressSearch API sort=popular で直接取得
+          ACTRESS_BASE="https://api.dmm.com/affiliate/v3/ActressSearch?api_id=UXJdpULBN1sPyNKKPPHU&affiliate_id=saaaaaaya-990&site=FANZA&output=json"
+          curl -sf "${ACTRESS_BASE}&sort=popular&hits=20" \
+            -o data/actress_monthly.json \
+            || echo '{"result":{"status":404}}' > data/actress_monthly.json
+
       - name: Commit
         run: |
           git config user.email "github-actions[bot]@users.noreply.github.com"

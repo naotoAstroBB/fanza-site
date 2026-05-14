@@ -30,6 +30,7 @@ const DMM = {
     },
     actressFiles: {
         'popular': 'data/actress_popular.json',
+        'monthly': 'data/actress_monthly.json',
         'new':     'data/actress_new.json',
     },
 

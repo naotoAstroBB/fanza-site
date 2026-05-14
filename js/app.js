@@ -50,8 +50,7 @@ const App = {
         this.updateRankTabs();
 
         await this.loadHero();
-        this.loadActressRanking();
-        this.loadNewActresses();
+        this.initActressTabs();
         await this.fetchProducts();
         this.checkSaleToast();  // お気に入りセール通知
     },
@@ -793,13 +792,17 @@ const App = {
         }
     },
 
-    // ===== 女優セクション =====
-    async loadActressRanking() {
-        await this._renderActresses('actressRankList', 'popular', true);
+    // ===== 女優セクション（タブ切替）=====
+    async initActressTabs() {
+        // 初期表示：現在のランキング
+        await this._renderActresses('actressList', 'popular', true);
     },
 
-    async loadNewActresses() {
-        await this._renderActresses('actressNewList', 'new', false);
+    async switchActressTab(type, el) {
+        document.querySelectorAll('.actress-tab').forEach(t => t.classList.remove('active'));
+        if (el) el.classList.add('active');
+        const showRank = (type !== 'new');
+        await this._renderActresses('actressList', type, showRank);
     },
 
     async _renderActresses(containerId, type, showRank) {

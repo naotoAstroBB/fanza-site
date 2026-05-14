@@ -460,6 +460,26 @@ a:hover { color: #fff; }
 .actress-section-inner { max-width: 1280px; margin: 0 auto; padding: 16px 20px; }
 .actress-section-header { display: flex; align-items: center; margin-bottom: 12px; }
 .actress-section-title { font-size: .9rem; font-weight: 700; color: #fff; }
+
+/* ===== 女優タブ ===== */
+.actress-tabs-row {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 12px; gap: 8px; flex-wrap: wrap;
+}
+.actress-tabs {
+    display: flex; gap: 0; border-bottom: 2px solid #1e1e1e;
+    flex: 1; overflow-x: auto; scrollbar-width: none;
+}
+.actress-tabs::-webkit-scrollbar { display: none; }
+.actress-tab {
+    padding: 8px 16px; background: none; border: none;
+    border-bottom: 3px solid transparent; margin-bottom: -2px;
+    color: var(--mute); font-size: .84rem; font-weight: 600;
+    cursor: pointer; transition: all .2s; white-space: nowrap;
+    font-family: inherit;
+}
+.actress-tab:hover { color: var(--accent2); }
+.actress-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
 .actress-scroll {
     display: flex; gap: 14px; overflow-x: auto; padding-bottom: 6px;
     scrollbar-width: thin; scrollbar-color: #333 transparent;

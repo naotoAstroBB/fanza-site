@@ -126,27 +126,18 @@
 </section>
 
 
-<!-- 人気女優ランキング -->
+<!-- 女優ランキング（タブ切替） -->
 <section class="actress-section">
   <div class="actress-section-inner">
-    <div class="actress-section-header">
-      <span class="actress-section-title">👑 人気女優ランキング TOP15</span>
+    <div class="actress-tabs-row">
+      <div class="actress-tabs">
+        <button class="actress-tab active" onclick="App.switchActressTab('popular',this)">🔥 現在のランキング</button>
+        <button class="actress-tab" onclick="App.switchActressTab('monthly',this)">📅 月間人気</button>
+        <button class="actress-tab" onclick="App.switchActressTab('new',this)">🌸 新着女優</button>
+      </div>
       <span class="actress-section-update">🔄 30分毎更新</span>
     </div>
-    <div class="actress-scroll" id="actressRankList">
-      <span class="actress-loading">読み込み中...</span>
-    </div>
-  </div>
-</section>
-
-<!-- 今月の新着女優 -->
-<section class="actress-section">
-  <div class="actress-section-inner">
-    <div class="actress-section-header">
-      <span class="actress-section-title">🌸 新着女優</span>
-      <span class="actress-section-update">🔄 30分毎更新</span>
-    </div>
-    <div class="actress-scroll" id="actressNewList">
+    <div class="actress-scroll" id="actressList">
       <span class="actress-loading">読み込み中...</span>
     </div>
   </div>

@@ -103,6 +103,16 @@ const DMM = {
             });
     },
 
+    // ===== ジャンル×ソートのファイルパスを解決 =====
+    _getGenreFile(genreId, sort) {
+        const rankFile = this.genreFiles[genreId]; // e.g. 'data/genre_ol.json'
+        if (!rankFile) return null;
+        if (!sort || sort === 'rank') return rankFile;
+        // sort='-price' → suffix='pricelow'、それ以外はsort名そのまま
+        const suffix = sort === '-price' ? 'pricelow' : sort;
+        return rankFile.replace('.json', `_${suffix}.json`);
+    },
+
     // ===== 商品リスト取得（静的JSONから） =====
     async fetch(params = {}) {
         // cid指定は横断検索へ
@@ -110,7 +120,11 @@ const DMM = {
 
         let file;
         if (params.article_id && this.genreFiles[params.article_id]) {
-            // ジャンル指定：ジャンルJSONを使用
+            // ジャンル指定：ソート別ファイルを使用（なければrankにフォールバック）
+            const sortFile = this._getGenreFile(params.article_id, params.sort);
+            const data = await this._loadFile(sortFile);
+            if (data?.result?.items?.length > 0) return data;
+            // ソート別ファイル未生成の場合はrankファイルで代替
             file = this.genreFiles[params.article_id];
         } else if (params.floor && params.floor !== 'videoa' && this.floorFiles[params.floor]) {
             // videoa以外のフロア（anime/book/goods等）：フロアJSONを使用

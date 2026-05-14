@@ -39,7 +39,7 @@ jobs:
           curl -sf "https://api.dmm.com/affiliate/v3/ItemList?api_id=UXJdpULBN1sPyNKKPPHU&affiliate_id=saaaaaaya-990&site=FANZA&service=mono&floor=goods&output=json&hits=100&sort=rank" \
             -o data/goods.json || echo '{"result":{"status":404}}' > data/goods.json
 
-          # ジャンル別 (全ジャンル対応)
+          # ジャンル別 - 全ソート種別対応（rank/date/review/price/pricelow）
           for row in \
             "2001:genre_busty" \
             "1027:genre_bishoujo" \
@@ -54,9 +54,18 @@ jobs:
             "1034:genre_gal" \
             "4022:genre_foreign" \
             "4001:genre_sm"; do
-            ID="${row%%:*}"; FILE="data/${row##*:}.json"
-            curl -sf "$BASE&floor=videoa&sort=rank&article=genre&article_id=$ID" -o "$FILE" \
-              || echo '{"result":{"status":404}}' > "$FILE"
+            ID="${row%%:*}"; NAME="${row##*:}"
+            EMPTY='{"result":{"status":404}}'
+            # rank（デフォルト・後方互換）
+            curl -sf "$BASE&floor=videoa&sort=rank&article=genre&article_id=$ID"   -o "data/${NAME}.json"          || echo "$EMPTY" > "data/${NAME}.json"
+            # 新着順
+            curl -sf "$BASE&floor=videoa&sort=date&article=genre&article_id=$ID"   -o "data/${NAME}_date.json"     || echo "$EMPTY" > "data/${NAME}_date.json"
+            # レビュー順
+            curl -sf "$BASE&floor=videoa&sort=review&article=genre&article_id=$ID" -o "data/${NAME}_review.json"   || echo "$EMPTY" > "data/${NAME}_review.json"
+            # 価格高い順（sort=price = 高い順）
+            curl -sf "$BASE&floor=videoa&sort=price&article=genre&article_id=$ID"  -o "data/${NAME}_price.json"    || echo "$EMPTY" > "data/${NAME}_price.json"
+            # 価格安い順（sort=-price = 安い順）
+            curl -sf "$BASE&floor=videoa&sort=-price&article=genre&article_id=$ID" -o "data/${NAME}_pricelow.json" || echo "$EMPTY" > "data/${NAME}_pricelow.json"
           done
 
       - name: Fetch actress data

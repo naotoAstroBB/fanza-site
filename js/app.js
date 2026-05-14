@@ -389,9 +389,12 @@ const App = {
 
             let items = result.items || [];
 
-            // ジャンル選択中はクライアント側でソート適用
-            if (this.genre) {
-                items = this._sortItems(items, this.sort);
+            // ジャンル選択中：サーバーソート済みファイルを優先
+            // ファイル未生成の場合はdmm-api側でrankファイルにフォールバックしているため
+            // クライアント側ソートで補完（移行期間のみ）
+            if (this.genre && this.sort !== 'rank') {
+                const hasProperSort = result.total_count > 0;
+                if (!hasProperSort) items = this._sortItems(items, this.sort);
             }
 
             // キーワードフィルタ（クライアント側）

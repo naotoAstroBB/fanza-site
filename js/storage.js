@@ -62,5 +62,10 @@ const Hist = {
         });
         if (list.length > 30) list.length = 30;
         localStorage.setItem(this.KEY, JSON.stringify(list));
+    },
+
+    remove(cid) {
+        const list = this.get().filter(h => h.cid !== cid);
+        localStorage.setItem(this.KEY, JSON.stringify(list));
     }
 };

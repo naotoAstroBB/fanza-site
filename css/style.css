@@ -649,6 +649,65 @@ a:hover { color: #fff; }
 /* ===== セクションヘッダー拡張 ===== */
 .section-header { margin-bottom: 4px; }
 
+/* ===== お気に入りヘッダーボタン ===== */
+.fav-header-btn {
+    position: relative; background: none; border: none;
+    color: #fff; font-size: 1.3rem; cursor: pointer;
+    padding: 6px 8px; border-radius: 8px;
+    display: flex; align-items: center; gap: 4px;
+    transition: background .15s; flex-shrink: 0;
+}
+.fav-header-btn:hover { background: rgba(255,255,255,.1); }
+.fav-badge {
+    background: var(--accent); color: #fff;
+    font-size: .65rem; font-weight: 900;
+    min-width: 18px; height: 18px;
+    border-radius: 10px; padding: 0 4px;
+    display: flex; align-items: center; justify-content: center;
+}
+
+/* ===== お気に入りパネル（sticky内ドロワー）===== */
+.fav-panel {
+    background: #141414; border-top: 1px solid #2a2a2a;
+    border-bottom: 2px solid var(--accent);
+}
+.fav-panel-inner {
+    max-width: 1280px; margin: 0 auto; padding: 10px 16px 14px;
+}
+.fav-panel-header {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 10px;
+}
+.fav-panel-title { font-size: .88rem; font-weight: 700; color: #fff; }
+.fav-panel-close {
+    background: none; border: 1px solid #333; color: #888;
+    font-size: .75rem; padding: 4px 10px; border-radius: 6px;
+    cursor: pointer; transition: all .15s;
+}
+.fav-panel-close:hover { border-color: var(--accent); color: var(--accent); }
+
+/* ===== ミニカードラッパー（×ボタン用）===== */
+.mini-card-wrap {
+    position: relative; flex: 0 0 96px; display: flex; flex-direction: column;
+}
+.mini-card-wrap .mini-card { flex: 0 0 96px; }
+.mini-card-remove {
+    position: absolute; top: -6px; right: -6px;
+    background: #cc2244; color: #fff;
+    border: none; border-radius: 50%;
+    width: 20px; height: 20px;
+    font-size: .65rem; font-weight: 900;
+    cursor: pointer; z-index: 5;
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; transition: opacity .15s, transform .15s;
+    line-height: 1;
+}
+.mini-card-wrap:hover .mini-card-remove { opacity: 1; }
+/* スマホは常に表示 */
+@media (hover: none) {
+    .mini-card-remove { opacity: 1; }
+}
+
 /* ===== レスポンシブ ===== */
 @media (max-width: 900px) {
     .page-wrapper { grid-template-columns: 1fr; }
@@ -656,13 +715,51 @@ a:hover { color: #fff; }
 }
 @media (max-width: 768px) {
     .bottom-nav { display: flex; }
-    body { padding-bottom: 64px; }
+    body { padding-bottom: 72px; }
     .site-nav { overflow-x: auto; flex-wrap: nowrap; }
+    /* ヒーローをコンパクトに */
+    .hero-inner { grid-template-columns: 1fr; min-height: 180px; }
+    .hero-side { display: none; }
+    .hero-main { padding: 20px 16px; }
+    .hero-title { font-size: 1.05rem; }
 }
 @media (max-width: 600px) {
-    .header-inner { flex-wrap: wrap; }
-    .search-bar { width: 100%; max-width: 100%; order: 3; }
-    .product-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+    /* ヘッダー */
+    .header-inner { flex-wrap: wrap; gap: 8px; padding: 8px 12px; }
+    .site-logo { font-size: 1.1rem; }
+    .site-logo span { display: none; }
+    .suggest-wrap { width: 100%; max-width: 100%; order: 3; flex: unset; }
+    .suggest-wrap input { font-size: .9rem; padding: 9px 10px; }
+    .header-stats { display: none; }
+
+    /* ナビタブ */
+    .nav-btn { padding: 8px 12px; font-size: .82rem; }
+
+    /* 商品グリッド：2列固定 */
+    .product-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .card-title { font-size: .8rem; }
+    .card-body { padding: 8px; }
+
+    /* ランキングタブ横スクロール */
+    .rank-tabs { overflow-x: auto; padding-bottom: 4px; scrollbar-width: none; }
+    .rank-tabs::-webkit-scrollbar { display: none; }
+    .rank-tab { padding: 6px 12px; font-size: .8rem; white-space: nowrap; }
+
+    /* 詳細ページ */
     .product-detail { grid-template-columns: 1fr; }
     #sampleIframe { height: 240px; }
+
+    /* ミニカード */
+    .mini-card-wrap { flex: 0 0 80px; }
+    .mini-card-wrap .mini-card { flex: 0 0 80px; }
+    .mini-card img, .mini-card-no-img { width: 80px; height: 112px; }
+    .mini-card-remove { opacity: 1; width: 22px; height: 22px; font-size: .7rem; }
+
+    /* hero */
+    .hero-main { min-height: 160px; padding: 16px; }
+    .hero-title { font-size: .95rem; }
+    .hero-btn { padding: 8px 16px; font-size: .82rem; }
+
+    /* ticker 非表示 */
+    .ticker { display: none; }
 }

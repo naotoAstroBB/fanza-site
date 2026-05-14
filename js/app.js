@@ -185,33 +185,103 @@ const App = {
         // 履歴
         const hist = Hist.get();
         const histSection = document.getElementById('historySection');
-        if (histSection && hist.length) {
-            histSection.style.display = '';
-            this.renderMiniCards('historyList', hist);
-        }
-        // お気に入り
-        const favs = Fav.get();
-        const favSection = document.getElementById('favoritesSection');
-        const favCount = document.getElementById('favCount');
-        if (favSection) {
-            if (favs.length) {
-                favSection.style.display = '';
-                if (favCount) favCount.textContent = favs.length + '件';
-                this.renderMiniCards('favoritesList', favs);
+        if (histSection) {
+            if (hist.length) {
+                histSection.style.display = '';
+                this.renderMiniCards('historyList', hist, 'hist');
             } else {
-                favSection.style.display = 'none';
+                histSection.style.display = 'none';
+            }
+        }
+        // お気に入り（ヘッダーパネル + バッジ更新）
+        const favs = Fav.get();
+        this._updateFavBadge(favs.length);
+        const favPanelList = document.getElementById('favPanelList');
+        if (favPanelList) {
+            if (favs.length) {
+                this.renderMiniCards('favPanelList', favs, 'fav');
+            } else {
+                favPanelList.innerHTML = '<span style="color:#555;font-size:.85rem;padding:16px 0">お気に入りはまだありません</span>';
+                // パネルも閉じる
+                const panel = document.getElementById('favPanel');
+                if (panel) panel.style.display = 'none';
             }
         }
     },
 
-    renderMiniCards(containerId, items) {
+    _updateFavBadge(count) {
+        const badge = document.getElementById('favBadge');
+        if (!badge) return;
+        if (count > 0) {
+            badge.textContent = count > 99 ? '99+' : count;
+            badge.style.display = '';
+        } else {
+            badge.style.display = 'none';
+        }
+    },
+
+    toggleFavPanel() {
+        const panel = document.getElementById('favPanel');
+        if (!panel) return;
+        const isOpen = panel.style.display !== 'none';
+        if (isOpen) {
+            panel.style.display = 'none';
+        } else {
+            panel.style.display = '';
+            const favs = Fav.get();
+            if (favs.length) {
+                this.renderMiniCards('favPanelList', favs, 'fav');
+            } else {
+                const list = document.getElementById('favPanelList');
+                if (list) list.innerHTML = '<span style="color:#555;font-size:.85rem;padding:16px 0">お気に入りはまだありません</span>';
+            }
+        }
+    },
+
+    removeFavItem(cid) {
+        Fav.remove(cid);
+        const favs = Fav.get();
+        this._updateFavBadge(favs.length);
+        if (favs.length) {
+            this.renderMiniCards('favPanelList', favs, 'fav');
+        } else {
+            const list = document.getElementById('favPanelList');
+            if (list) list.innerHTML = '<span style="color:#555;font-size:.85rem;padding:16px 0">お気に入りはまだありません</span>';
+            const panel = document.getElementById('favPanel');
+            if (panel) panel.style.display = 'none';
+        }
+        // メイン画面のカードのハートボタンも更新
+        document.querySelectorAll('.fav-btn').forEach(btn => {
+            if (btn.dataset.cid === cid) {
+                btn.classList.remove('active');
+                btn.textContent = '🤍';
+            }
+        });
+    },
+
+    removeHistItem(cid) {
+        Hist.remove(cid);
+        const hist = Hist.get();
+        const histSection = document.getElementById('historySection');
+        if (hist.length) {
+            this.renderMiniCards('historyList', hist, 'hist');
+        } else {
+            if (histSection) histSection.style.display = 'none';
+        }
+    },
+
+    renderMiniCards(containerId, items, type = 'fav') {
         const el = document.getElementById(containerId);
         if (!el) return;
-        el.innerHTML = items.slice(0, 20).map(item => `
-            <a class="mini-card" href="product.html?cid=${this.esc(item.cid)}&floor=${this.esc(item.floor)}">
-                ${item.img ? `<img src="${this.esc(item.img)}" alt="${this.esc(item.title)}" loading="lazy">` : '<div class="mini-card-no-img">🎬</div>'}
-                <div class="mini-card-title">${this.esc(item.title)}</div>
-            </a>`).join('');
+        const removeFn = type === 'fav' ? 'App.removeFavItem' : 'App.removeHistItem';
+        el.innerHTML = items.slice(0, 30).map(item => `
+            <div class="mini-card-wrap">
+                <a class="mini-card" href="product.html?cid=${this.esc(item.cid)}&floor=${this.esc(item.floor)}">
+                    ${item.img ? `<img src="${this.esc(item.img)}" alt="${this.esc(item.title)}" loading="lazy">` : '<div class="mini-card-no-img">🎬</div>'}
+                    <div class="mini-card-title">${this.esc(item.title)}</div>
+                </a>
+                <button class="mini-card-remove" onclick="${removeFn}('${this.esc(item.cid)}')" title="削除">✕</button>
+            </div>`).join('');
     },
 
     // ===== ヒーローバナー =====
@@ -453,16 +523,6 @@ const App = {
             </a>
           </div>
         </div>`;
-    },
-
-    // ===== お気に入りセクション 開閉 =====
-    toggleFavSection() {
-        const list = document.getElementById('favoritesList');
-        const icon = document.getElementById('favToggleIcon');
-        if (!list) return;
-        const isOpen = list.style.display !== 'none';
-        list.style.display = isOpen ? 'none' : '';
-        if (icon) icon.textContent = isOpen ? '▼' : '▲';
     },
 
     // ===== お気に入りトグル =====

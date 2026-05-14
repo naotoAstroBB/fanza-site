@@ -43,11 +43,14 @@
     <div class="suggest-wrap">
       <input type="text" id="searchInput" placeholder="女優名・タイトル・キーワードで検索..." autocomplete="off">
       <div class="suggest-dropdown" id="suggestDropdown"></div>
-      <button onclick="App.doSearch()">🔍 検索</button>
+      <button onclick="App.doSearch()">🔍</button>
     </div>
     <div class="header-stats">
       総商品数 <span id="todayCount" style="color:#ff6699;font-weight:700">読込中...</span>
     </div>
+    <button class="fav-header-btn" onclick="App.toggleFavPanel()" title="お気に入り">
+      ❤️ <span class="fav-badge" id="favBadge" style="display:none">0</span>
+    </button>
   </div>
 </header>
 
@@ -62,6 +65,17 @@
     <div class="nav-btn" onclick="App.setSale(this)">🔥 SALE</div>
   </div>
 </nav>
+
+<!-- お気に入りパネル（ヘッダー内ドロワー） -->
+<div class="fav-panel" id="favPanel" style="display:none">
+  <div class="fav-panel-inner">
+    <div class="fav-panel-header">
+      <span class="fav-panel-title">❤️ お気に入り <span id="favBadge2"></span></span>
+      <button class="fav-panel-close" onclick="App.toggleFavPanel()">✕ 閉じる</button>
+    </div>
+    <div class="actress-scroll" id="favPanelList"></div>
+  </div>
+</div>
 </div>
 
 <div class="ticker">
@@ -111,17 +125,6 @@
   </div>
 </section>
 
-<!-- お気に入り -->
-<section class="actress-section" id="favoritesSection" style="display:none">
-  <div class="actress-section-inner">
-    <div class="actress-section-header" onclick="App.toggleFavSection()" style="cursor:pointer;user-select:none">
-      <span class="actress-section-title">❤️ お気に入り</span>
-      <span id="favCount" style="font-size:.75rem;color:#555;margin-left:auto"></span>
-      <span id="favToggleIcon" style="font-size:.85rem;color:#888;margin-left:8px">▼</span>
-    </div>
-    <div class="actress-scroll" id="favoritesList" style="display:none"></div>
-  </div>
-</section>
 
 <!-- 人気女優ランキング -->
 <section class="actress-section">

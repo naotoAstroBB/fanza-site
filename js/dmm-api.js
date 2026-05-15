@@ -13,6 +13,13 @@ const DMM = {
         'goods': 'data/goods.json',
         'mono':  'data/goods.json',
     },
+    // フロア×ソート別ファイル（anime/manga/goods の新着・高評価対応）
+    floorSortFiles: {
+        'anime': { rank: 'data/anime.json',  date: 'data/anime_date.json',  review: 'data/anime_review.json'  },
+        'book':  { rank: 'data/manga.json',  date: 'data/manga_date.json',  review: 'data/manga_review.json'  },
+        'goods': { rank: 'data/goods.json',  date: 'data/goods_date.json',  review: 'data/goods_review.json'  },
+        'mono':  { rank: 'data/goods.json',  date: 'data/goods_date.json',  review: 'data/goods_review.json'  },
+    },
     genreFiles: {
         '2001': 'data/genre_busty.json',     // 巨乳
         '1027': 'data/genre_bishoujo.json',  // 美少女
@@ -135,9 +142,11 @@ const DMM = {
             if (data?.result?.items?.length > 0) return data;
             // ソート別ファイル未生成の場合はrankファイルで代替
             file = this.genreFiles[params.article_id];
-        } else if (params.floor && params.floor !== 'videoa' && this.floorFiles[params.floor]) {
-            // videoa以外のフロア（anime/book/goods等）：フロアJSONを使用
-            file = this.floorFiles[params.floor];
+        } else if (params.floor && params.floor !== 'videoa' && this.floorSortFiles[params.floor]) {
+            // videoa以外のフロア（anime/book/goods等）：ソート別ファイルを使用
+            const sort = params.sort || 'rank';
+            const sortMap = this.floorSortFiles[params.floor];
+            file = sortMap[sort] || sortMap['rank'];
         } else {
             // videoa or ソート指定：ソートJSONを使用
             file = this.sortFiles[params.sort] || this.sortFiles['rank'];

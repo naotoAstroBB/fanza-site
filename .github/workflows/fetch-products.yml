@@ -64,13 +64,23 @@ jobs:
           merge_fetch5 data/new.json    "$BASE_URL&floor=videoa&sort=date"
           merge_fetch5 data/review.json "$BASE_URL&floor=videoa&sort=review"
 
-          # フロア別（3ページ・最大300件）
-          merge_fetch3 data/anime.json "$BASE_URL&floor=anime&sort=rank"
+          # フロア別（3ページ・最大300件）- 人気/新着/高評価の3ソート
+          ANIME_BASE="$BASE_URL&floor=anime"
+          merge_fetch3 data/anime.json        "${ANIME_BASE}&sort=rank"
+          merge_fetch3 data/anime_date.json   "${ANIME_BASE}&sort=date"
+          merge_fetch3 data/anime_review.json "${ANIME_BASE}&sort=review"
+
           # マンガ/電子書籍（service=ebook&floor=comic が正解）
           MANGA_BASE_URL="https://api.dmm.com/affiliate/v3/ItemList?api_id=UXJdpULBN1sPyNKKPPHU&affiliate_id=saaaaaaya-990&site=FANZA&service=ebook&floor=comic&output=json"
-          merge_fetch3 data/manga.json "${MANGA_BASE_URL}&sort=rank"
-          GOODS_URL="https://api.dmm.com/affiliate/v3/ItemList?api_id=UXJdpULBN1sPyNKKPPHU&affiliate_id=saaaaaaya-990&site=FANZA&service=mono&floor=goods&output=json&sort=rank"
-          merge_fetch3 data/goods.json "$GOODS_URL"
+          merge_fetch3 data/manga.json        "${MANGA_BASE_URL}&sort=rank"
+          merge_fetch3 data/manga_date.json   "${MANGA_BASE_URL}&sort=date"
+          merge_fetch3 data/manga_review.json "${MANGA_BASE_URL}&sort=review"
+
+          # グッズ・通販
+          GOODS_BASE="https://api.dmm.com/affiliate/v3/ItemList?api_id=UXJdpULBN1sPyNKKPPHU&affiliate_id=saaaaaaya-990&site=FANZA&service=mono&floor=goods&output=json"
+          merge_fetch3 data/goods.json        "${GOODS_BASE}&sort=rank"
+          merge_fetch3 data/goods_date.json   "${GOODS_BASE}&sort=date"
+          merge_fetch3 data/goods_review.json "${GOODS_BASE}&sort=review"
 
           # ジャンル別 - rank は5ページ（500件）、date/review は3ページ（300件）
           for row in \

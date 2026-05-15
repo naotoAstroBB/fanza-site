@@ -161,9 +161,13 @@ const App = {
 
     // ===== ランキングタブ表示制御 =====
     updateRankTabs() {
-        const tabs = document.getElementById('rankTabs');
+        const tabs      = document.getElementById('rankTabs');
+        const singleBar = document.getElementById('singleWorkBar');
         if (!tabs) return;
-        tabs.style.display = (this.floor === 'videoa') ? 'flex' : 'none';
+        // ランキングタブは全フロアで表示（anime/manga/goodsもソート切替可能に）
+        tabs.style.display = 'flex';
+        // 単体作品フィルタはvideoaのみ
+        if (singleBar) singleBar.style.display = (this.floor === 'videoa') ? '' : 'none';
         tabs.querySelectorAll('.rank-tab').forEach(btn => {
             const s = btn.getAttribute('onclick')?.match(/'([^']+)'/)?.[1];
             // sort='' のとき（なし選択中）は全タブ非アクティブ
@@ -707,11 +711,12 @@ const App = {
     },
 
     setFloor(floor, el) {
-        this.floor    = floor;
-        this.keyword  = '';
-        this.genre    = '';
-        this.page     = 1;
-        this.showSale = false;
+        this.floor      = floor;
+        this.keyword    = '';
+        this.genre      = '';
+        this.page       = 1;
+        this.showSale   = false;
+        this.singleWork = false; // フロア変更時に単体作品フィルタをリセット
         if (el) {
             document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
             el.classList.add('active');
@@ -724,7 +729,10 @@ const App = {
         this.sort     = sort || 'rank'; // 空文字はrankとして扱う
         this.page     = 1;
         this.showSale = false;
-        if (!this.genre) this.floor = 'videoa';
+        // .nav-btn（トップナビ）または .bottom-nav-item（ボトムナビ）からのクリック時のみ
+        // videoa にリセット。rank-tab や sidebar-select からはフロアを維持する
+        const isNavShortcut = el?.classList?.contains('nav-btn') || el?.classList?.contains('bottom-nav-item');
+        if (isNavShortcut && !this.genre) this.floor = 'videoa';
 
         if (document.getElementById('sortSelect')) document.getElementById('sortSelect').value = sort;
         // ナビバーボタン（.nav-btn）のアクティブ更新（rank-tabは対象外）
@@ -864,10 +872,11 @@ const App = {
                 const blood  = a.blood_type && a.blood_type !== '他' ? `${a.blood_type}型` : '';
                 const pref   = a.prefectures ? this.esc(a.prefectures) : '';
 
+                const nameInitial = (a.name || '').charAt(0) || '♀';
                 return `
                 <a class="actress-card" href="${href}">
                     <div class="actress-photo">
-                        ${img ? `<img src="${this.esc(img)}" alt="${name}" loading="lazy">` : `<div class="actress-no-img">👩</div>`}
+                        ${img ? `<img src="${this.esc(img)}" alt="${name}" loading="lazy">` : `<div class="actress-no-img">${nameInitial}</div>`}
                         ${badge}
                     </div>
                     <div class="actress-name">${name}</div>

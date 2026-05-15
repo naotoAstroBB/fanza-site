@@ -503,8 +503,10 @@ a:hover { color: #fff; }
 .actress-card:hover .actress-photo img { border-color: var(--accent); }
 .actress-no-img {
     width: 72px; height: 72px; border-radius: 50%;
-    background: #222; display: flex; align-items: center; justify-content: center;
-    font-size: 1.8rem; border: 2px solid #333;
+    background: linear-gradient(135deg, #4a1530, #8b1a3a);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem; font-weight: 900; color: rgba(255,255,255,.75);
+    border: 2px solid #4a2030; user-select: none;
 }
 .actress-rank-badge {
     position: absolute; bottom: -2px; right: -4px;

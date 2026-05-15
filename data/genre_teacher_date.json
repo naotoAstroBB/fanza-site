@@ -15402,19 +15402,24 @@
           }
         },
         "prices": {
-          "price": "980~",
-          "list_price": "980~",
+          "price": "500~",
+          "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "1380",
-                "list_price": "1380"
+                "price": "980",
+                "list_price": "980"
               },
               {
                 "type": "download",
-                "price": "980",
-                "list_price": "980"
+                "price": "780",
+                "list_price": "780"
+              },
+              {
+                "type": "rp",
+                "price": "500",
+                "list_price": "500"
               }
             ]
           }

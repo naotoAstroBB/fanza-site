@@ -651,12 +651,17 @@ const App = {
         if (total <= 1) { el.innerHTML = ''; return; }
 
         const p = this.page;
+        const isMobile = window.innerWidth < 600;
         let html = `<button class="page-btn" ${p===1?'disabled':''} onclick="App.goPage(${p-1})">‹ 前へ</button>`;
-        this.pageRange(p, total).forEach(n => {
-            html += n === '...'
-                ? `<span class="page-btn" style="cursor:default">…</span>`
-                : `<button class="page-btn ${n===p?'active':''}" onclick="App.goPage(${n})">${n}</button>`;
-        });
+        if (isMobile) {
+            html += `<span class="page-info">${p} / ${total}</span>`;
+        } else {
+            this.pageRange(p, total).forEach(n => {
+                html += n === '...'
+                    ? `<span class="page-btn" style="cursor:default">…</span>`
+                    : `<button class="page-btn ${n===p?'active':''}" onclick="App.goPage(${n})">${n}</button>`;
+            });
+        }
         html += `<button class="page-btn" ${p===total?'disabled':''} onclick="App.goPage(${p+1})">次へ ›</button>`;
         el.innerHTML = html;
     },

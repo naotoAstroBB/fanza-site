@@ -137,6 +137,7 @@
       </div>
       <span class="actress-section-update">🔄 30分毎更新</span>
     </div>
+    <div class="actress-tab-desc" id="actressTabDesc">今週の人気出演女優</div>
     <div class="actress-scroll" id="actressList">
       <span class="actress-loading">読み込み中...</span>
     </div>
@@ -152,8 +153,6 @@
         <option value="rank">🏆 人気順</option>
         <option value="date">🆕 新着順</option>
         <option value="review">⭐ レビュー高い順</option>
-        <option value="price">💎 価格高い順</option>
-        <option value="-price">💰 価格安い順</option>
       </select>
     </div>
     <div class="sidebar-section">
@@ -162,7 +161,6 @@
       <div class="sidebar-link" onclick="App.setGenre('2001',this)">🌟 巨乳</div>
       <div class="sidebar-link" onclick="App.setGenre('1027',this)">💫 美少女</div>
       <div class="sidebar-link" onclick="App.setGenre('6533',this)">📹 ハイビジョン</div>
-      <div class="sidebar-link" onclick="App.setGenre('4025',this)">👑 単体作品</div>
       <div class="sidebar-link" onclick="App.setGenre('4024',this)">🎯 素人</div>
       <div class="sidebar-link" onclick="App.setGenre('5001',this)">💕 中出し</div>
       <div class="sidebar-link" onclick="App.setGenre('1039',this)">🏠 人妻・主婦</div>
@@ -200,8 +198,11 @@
       <button class="rank-tab active" onclick="App.setSort('rank',this)">🏆 人気順</button>
       <button class="rank-tab" onclick="App.setSort('review',this)">⭐ 高評価</button>
       <button class="rank-tab" onclick="App.setSort('date',this)">🆕 新着</button>
-      <button class="rank-tab" onclick="App.setSort('price',this)">💎 価格高い順</button>
-      <button class="rank-tab" onclick="App.setSort('-price',this)">💰 価格安い順</button>
+    </div>
+    <div class="single-work-bar" id="singleWorkBar">
+      <button class="single-work-toggle" id="singleWorkBtn" onclick="App.toggleSingleWork(this)">
+        👑 単体作品のみ
+      </button>
     </div>
     <div class="product-grid" id="productGrid">
       <div class="loading"><div class="spinner"></div><p>商品を取得中...</p></div>
@@ -225,7 +226,6 @@
     <button class="genre-chip" data-genre="2001" onclick="App.setGenreFromDrawer('2001')">🌟 巨乳</button>
     <button class="genre-chip" data-genre="1027" onclick="App.setGenreFromDrawer('1027')">💫 美少女</button>
     <button class="genre-chip" data-genre="6533" onclick="App.setGenreFromDrawer('6533')">📹 ハイビジョン</button>
-    <button class="genre-chip" data-genre="4025" onclick="App.setGenreFromDrawer('4025')">👑 単体作品</button>
     <button class="genre-chip" data-genre="4024" onclick="App.setGenreFromDrawer('4024')">🎯 素人</button>
     <button class="genre-chip" data-genre="5001" onclick="App.setGenreFromDrawer('5001')">💕 中出し</button>
     <button class="genre-chip" data-genre="1039" onclick="App.setGenreFromDrawer('1039')">🏠 人妻・主婦</button>

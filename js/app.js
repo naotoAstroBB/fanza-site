@@ -16,6 +16,7 @@ const App = {
     hitsPerPage:  24,
     total:        0,
     showSale:     false,
+    singleWork:   false,
     _saleItems:   [],
     _currentItems:[],
 
@@ -193,10 +194,6 @@ const App = {
             case 'date':   return arr.sort((a, b) => (b.date || '').localeCompare(a.date || ''));
             case 'review': return arr.sort((a, b) =>
                 parseFloat(b.review?.average || 0) - parseFloat(a.review?.average || 0));
-            case 'price':  return arr.sort((a, b) =>  // 高い順
-                parseFloat(b.prices?.price || 0) - parseFloat(a.prices?.price || 0));
-            case '-price': return arr.sort((a, b) =>  // 安い順
-                parseFloat(a.prices?.price || 0) - parseFloat(b.prices?.price || 0));
             default:       return arr;
         }
     },
@@ -465,6 +462,13 @@ const App = {
                 );
             }
 
+            // 単体作品フィルタ（クライアント側）
+            if (this.singleWork) {
+                items = items.filter(item =>
+                    (item.iteminfo?.genre || []).some(g => String(g.id) === '4025')
+                );
+            }
+
             this._currentItems = items;
             this.total = items.length;
             const start = (this.page - 1) * this.hitsPerPage;
@@ -544,7 +548,6 @@ const App = {
     cardHTML(item, i) {
         const img       = item.imageURL?.list || item.imageURL?.small || '';
         const title     = this.esc(item.title || '');
-        const price     = item.prices?.price || '';
         const url       = item.affiliateURL || item.URL || '#';
         const review    = item.review;
         const actressObjs = (item.iteminfo?.actress || []).slice(0,2);
@@ -597,7 +600,6 @@ const App = {
             <div class="card-title">${title}</div>
             ${actressLinks ? `<div class="card-actress">${actressLinks}</div>` : ''}
             <div class="card-bottom">
-              ${price ? `<div class="card-price">¥${this.esc(price)}</div>` : '<div></div>'}
               ${stars ? `<div class="card-review"><span class="stars">${stars}</span></div>` : ''}
             </div>
             ${review?.count ? `<div class="card-review" style="margin-bottom:6px">${avg.toFixed(1)} (${review.count}件)</div>` : ''}
@@ -763,6 +765,14 @@ const App = {
         this.fetchProducts();
     },
 
+    // ===== 単体作品トグル =====
+    toggleSingleWork(el) {
+        this.singleWork = !this.singleWork;
+        el.classList.toggle('active', this.singleWork);
+        this.page = 1;
+        this.fetchProducts();
+    },
+
     // ===== ジャンルドロワー（スマホ用）=====
     openGenreDrawer() {
         document.getElementById('genreDrawer')?.classList.add('open');
@@ -802,6 +812,13 @@ const App = {
         document.querySelectorAll('.actress-tab').forEach(t => t.classList.remove('active'));
         if (el) el.classList.add('active');
         const showRank = (type !== 'new');
+        const descs = {
+            popular: '今週の人気出演女優',
+            monthly: '今月最も注目される女優',
+            new:     '新人・デビュー女優'
+        };
+        const descEl = document.getElementById('actressTabDesc');
+        if (descEl) descEl.textContent = descs[type] || '';
         await this._renderActresses('actressList', type, showRank);
     },
 

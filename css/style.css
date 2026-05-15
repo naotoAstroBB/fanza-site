@@ -870,3 +870,36 @@ a:hover { color: #fff; }
     /* サクションタイトル */
     .section-title { font-size: .88rem; }
 }
+
+/* ===== 単体作品トグル ===== */
+.single-work-bar {
+    margin-bottom: 12px;
+}
+.single-work-toggle {
+    background: var(--bg2); border: 1.5px solid var(--border);
+    color: var(--mute); font-size: .82rem; font-weight: 700;
+    padding: 6px 16px; border-radius: 20px; cursor: pointer;
+    transition: all .2s; font-family: inherit;
+}
+.single-work-toggle.active {
+    background: linear-gradient(135deg, rgba(255,204,0,.15), rgba(255,204,0,.08));
+    border-color: var(--gold); color: var(--gold);
+}
+.single-work-toggle:hover { border-color: var(--gold); color: var(--gold); }
+
+/* ===== 女優タブ説明 ===== */
+.actress-tab-desc {
+    font-size: .72rem; color: var(--mute);
+    padding: 0 4px 8px; margin-top: -4px;
+}
+
+/* ===== モバイル改善 ===== */
+.genre-chip { min-height: 44px; }
+@media (max-width: 600px) {
+    .genre-chip { min-height: 44px; padding: 10px 14px; }
+    .bottom-nav-item { padding: 10px 0 8px; }
+    .actress-card { flex: 0 0 88px; }
+    .actress-photo { width: 72px; height: 72px; }
+    .actress-photo img { width: 72px; height: 72px; }
+    .actress-no-img { width: 72px; height: 72px; }
+}

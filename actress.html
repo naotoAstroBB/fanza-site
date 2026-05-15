@@ -6,42 +6,80 @@
 <title>女優ページ | AV動画ランキング</title>
 <link rel="stylesheet" href="css/style.css">
 <style>
+/* ===== 女優ヒーローセクション ===== */
 .actress-hero {
     background: var(--bg2); border-bottom: 1px solid var(--border);
-    padding: 32px 20px;
+    padding: 36px 20px 28px;
 }
 .actress-hero-inner {
-    max-width: 900px; margin: 0 auto;
-    display: flex; gap: 28px; align-items: flex-start;
+    max-width: 960px; margin: 0 auto;
+    display: flex; gap: 32px; align-items: flex-start;
 }
+.actress-hero-photo-wrap { flex-shrink: 0; position: relative; }
 .actress-hero-photo {
-    width: 120px; height: 120px; border-radius: 50%;
-    object-fit: cover; border: 3px solid var(--accent); flex-shrink: 0;
+    width: 150px; height: 150px; border-radius: 12px;
+    object-fit: cover; border: 3px solid var(--accent);
+    display: block;
 }
 .actress-hero-no-img {
-    width: 120px; height: 120px; border-radius: 50%;
+    width: 150px; height: 150px; border-radius: 12px;
     background: #222; display: flex; align-items: center;
-    justify-content: center; font-size: 3.5rem;
-    border: 3px solid var(--accent); flex-shrink: 0;
+    justify-content: center; font-size: 4rem;
+    border: 3px solid var(--accent);
 }
 .actress-hero-info { flex: 1; min-width: 0; }
 .actress-hero-name {
-    font-size: 2rem; font-weight: 900; color: #fff; margin-bottom: 4px;
+    font-size: 2.2rem; font-weight: 900; color: #fff;
+    margin-bottom: 2px; line-height: 1.2;
 }
-.actress-hero-ruby { font-size: .85rem; color: var(--mute); margin-bottom: 12px; }
-.actress-hero-meta { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; }
-.actress-meta-tag {
+.actress-hero-ruby {
+    font-size: .85rem; color: var(--mute); margin-bottom: 14px;
+    letter-spacing: .05em;
+}
+
+/* プロフィールグリッド */
+.actress-profile-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 8px;
+    margin-bottom: 16px;
+}
+.actress-profile-item {
     background: var(--bg3); border: 1px solid var(--border);
-    border-radius: 6px; padding: 4px 12px;
-    font-size: .8rem; color: #bbb;
+    border-radius: 8px; padding: 8px 12px;
 }
+.actress-profile-label {
+    font-size: .68rem; color: var(--mute); text-transform: uppercase;
+    letter-spacing: .06em; margin-bottom: 3px;
+}
+.actress-profile-value {
+    font-size: .92rem; color: #eee; font-weight: 600;
+}
+
+/* スリーサイズバー */
+.actress-measure-bar {
+    display: flex; gap: 6px; align-items: center;
+    flex-wrap: wrap; margin-bottom: 16px;
+}
+.actress-measure-chip {
+    background: linear-gradient(135deg, rgba(255,51,102,.18), rgba(255,51,102,.08));
+    border: 1px solid rgba(255,51,102,.35);
+    border-radius: 20px; padding: 4px 14px;
+    font-size: .85rem; color: #ff8aaa; font-weight: 700;
+}
+
+/* アクションボタン */
+.actress-action-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 4px; }
 .actress-fanza-btn {
-    display: inline-block; padding: 10px 22px;
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 10px 20px;
     background: linear-gradient(135deg, #ff3366, #cc0033);
     color: #fff; font-weight: 700; font-size: .9rem;
-    border-radius: 8px; transition: opacity .2s;
+    border-radius: 8px; transition: opacity .2s; white-space: nowrap;
 }
 .actress-fanza-btn:hover { opacity: .85; color: #fff; }
+
+/* 作品セクション */
 .actress-works-section {
     max-width: 1280px; margin: 0 auto; padding: 32px 20px;
 }
@@ -52,9 +90,15 @@
     display: flex; align-items: center; gap: 8px;
 }
 .actress-works-count { font-size: .82rem; color: var(--mute); font-weight: 400; }
-@media(max-width:600px){
-    .actress-hero-inner { flex-direction: column; align-items: center; text-align: center; }
-    .actress-hero-meta { justify-content: center; }
+
+@media(max-width:640px){
+    .actress-hero-inner { flex-direction: column; align-items: center; }
+    .actress-hero-info { text-align: center; }
+    .actress-measure-bar { justify-content: center; }
+    .actress-action-row { justify-content: center; }
+    .actress-profile-grid { grid-template-columns: repeat(3, 1fr); }
+    .actress-hero-name { font-size: 1.7rem; }
+    .actress-hero-photo, .actress-hero-no-img { width: 120px; height: 120px; }
 }
 </style>
 </head>
@@ -154,17 +198,60 @@ async function loadActressInfo() {
     const ruby = actress?.ruby || '';
     const link = actress?.listURL?.digital || `https://www.dmm.co.jp/digital/videoa/-/actress/=/id=${actressId}/`;
 
+    // プロフィール詳細情報を構築
+    const calcAge = (bday) => {
+        if (!bday) return null;
+        const d = new Date(bday);
+        const today = new Date();
+        let age = today.getFullYear() - d.getFullYear();
+        const m = today.getMonth() - d.getMonth();
+        if (m < 0 || (m === 0 && today.getDate() < d.getDate())) age--;
+        return (age > 0 && age < 70) ? age : null;
+    };
+    const age       = actress ? calcAge(actress.birthday) : null;
+    const birthday  = actress?.birthday || '';
+    const bloodType = actress?.blood_type && actress.blood_type !== '他' ? actress.blood_type + '型' : '';
+    const height    = actress?.height ? actress.height + 'cm' : '';
+    const pref      = actress?.prefectures || '';
+    const bust      = actress?.bust  ? 'B' + actress.bust + (actress.cup ? '(' + actress.cup + ')' : '') : '';
+    const waist     = actress?.waist ? 'W' + actress.waist : '';
+    const hip       = actress?.hip   ? 'H' + actress.hip   : '';
+    const measures  = [bust, waist, hip].filter(Boolean);
+
+    const profileItems = [
+        age      ? { label: '年齢', value: age + '歳' }      : null,
+        birthday ? { label: '誕生日', value: birthday }       : null,
+        bloodType? { label: '血液型', value: bloodType }      : null,
+        height   ? { label: '身長', value: height }           : null,
+        pref     ? { label: '出身地', value: esc(pref) }      : null,
+    ].filter(Boolean);
+
     // プロフィール表示
     hero.querySelector('.actress-hero-inner').innerHTML = `
-        ${img
-            ? `<img class="actress-hero-photo" src="${esc(img)}" alt="${esc(name)}">`
-            : `<div class="actress-hero-no-img">👩</div>`
-        }
+        <div class="actress-hero-photo-wrap">
+            ${img
+                ? `<img class="actress-hero-photo" src="${esc(img)}" alt="${esc(name)}">`
+                : `<div class="actress-hero-no-img">👩</div>`
+            }
+        </div>
         <div class="actress-hero-info">
             <div class="actress-hero-name">${esc(name)}</div>
             ${ruby ? `<div class="actress-hero-ruby">${esc(ruby)}</div>` : ''}
-            <div class="actress-hero-meta" id="actressMeta"></div>
-            <a class="actress-fanza-btn" href="${esc(link)}" target="_blank" rel="noopener">🎬 全作品を見る</a>
+            ${profileItems.length ? `
+            <div class="actress-profile-grid">
+                ${profileItems.map(p => `
+                <div class="actress-profile-item">
+                    <div class="actress-profile-label">${p.label}</div>
+                    <div class="actress-profile-value">${p.value}</div>
+                </div>`).join('')}
+            </div>` : ''}
+            ${measures.length ? `
+            <div class="actress-measure-bar">
+                ${measures.map(m => `<span class="actress-measure-chip">${m}</span>`).join('')}
+            </div>` : ''}
+            <div class="actress-action-row">
+                <a class="actress-fanza-btn" href="${esc(link)}" target="_blank" rel="noopener">🎬 全作品を見る</a>
+            </div>
         </div>`;
 
     document.title = name + ' 出演作品 | AV動画ランキング';
@@ -238,26 +325,27 @@ function renderWorks(pg) {
     }
 
     grid.innerHTML = items.map(item => {
-        const img    = esc(item.imageURL?.list || item.imageURL?.small || '');
-        const title  = esc(item.title || '');
-        const price  = item.prices?.price || '';
-        const url    = esc(item.affiliateURL || item.URL || '#');
-        const cid    = esc(item.content_id);
-        const isFav  = Fav.has(item.content_id);
-        const review = item.review;
-        const avg    = parseFloat(review?.average || 0);
-        const stars  = avg ? '★'.repeat(Math.round(avg)) + '☆'.repeat(5 - Math.round(avg)) : '';
+        const img       = esc(item.imageURL?.list || item.imageURL?.small || '');
+        const title     = esc(item.title || '');
+        const url       = esc(item.affiliateURL || item.URL || '#');
+        const cid       = esc(item.content_id);
+        const isFav     = Fav.has(item.content_id);
+        const review    = item.review;
+        const avg       = parseFloat(review?.average || 0);
+        const stars     = avg ? '★'.repeat(Math.round(avg)) + '☆'.repeat(5 - Math.round(avg)) : '';
+        const mv        = item.sampleMovieURL;
+        const sampleUrl = mv ? (mv.size_560_360 || mv.size_476_306 || mv.size_644_414 || '') : '';
         return `
         <div class="product-card" onclick="location.href='product.html?cid=${cid}&floor=${esc(floor)}'">
           <div class="card-img-wrap">
             ${img ? `<img src="${img}" alt="${title}" loading="lazy">` : '<div style="height:100%;display:flex;align-items:center;justify-content:center;background:#111;color:#333;font-size:2rem">🎬</div>'}
+            ${sampleUrl ? `<button class="card-sample-btn" onclick="event.stopPropagation();openSample('${sampleUrl}','${title}')" title="サンプル再生">▶</button>` : ''}
             <button class="fav-btn ${isFav?'active':''}"
               onclick="event.stopPropagation();toggleFav(this,'${cid}',event)">${isFav?'❤️':'🤍'}</button>
           </div>
           <div class="card-body">
             <div class="card-title">${title}</div>
             <div class="card-bottom">
-              ${price ? `<div class="card-price">¥${esc(price)}</div>` : '<div></div>'}
               ${stars ? `<div class="card-review"><span class="stars">${stars}</span></div>` : ''}
             </div>
             <a class="btn-buy" href="${url}" target="_blank" rel="noopener" onclick="event.stopPropagation()">動画を見る →</a>
@@ -298,7 +386,39 @@ function showError(msg) {
     document.getElementById('worksGrid').innerHTML = `<div class="loading"><p style="color:#ff6688">⚠️ ${esc(msg)}</p></div>`;
 }
 
+function openSample(url, title) {
+    const modal  = document.getElementById('sampleModal');
+    const iframe = document.getElementById('sampleIframe');
+    const label  = document.getElementById('sampleModalTitle');
+    if (!modal || !iframe) return;
+    if (label) label.textContent = title || 'サンプル動画';
+    iframe.src = url;
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeSample() {
+    const modal  = document.getElementById('sampleModal');
+    const iframe = document.getElementById('sampleIframe');
+    if (modal)  modal.classList.remove('active');
+    if (iframe) iframe.src = '';
+    document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSample(); });
+
 loadActressInfo();
 </script>
+
+<!-- サンプル動画モーダル -->
+<div id="sampleModal" class="sample-modal" onclick="closeSample()">
+  <div class="sample-modal-inner" onclick="event.stopPropagation()">
+    <div class="sample-modal-header">
+      <span id="sampleModalTitle" class="sample-modal-title"></span>
+      <button class="sample-modal-close" onclick="closeSample()">✕</button>
+    </div>
+    <iframe id="sampleIframe" src="" allowfullscreen frameborder="0" scrolling="no"></iframe>
+  </div>
+</div>
 </body>
 </html>

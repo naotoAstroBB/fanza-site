@@ -64,15 +64,15 @@ jobs:
           merge_fetch5 data/new.json    "$BASE_URL&floor=videoa&sort=date"
           merge_fetch5 data/review.json "$BASE_URL&floor=videoa&sort=review"
 
-          # フロア別（2ページ・最大200件）
-          merge_fetch data/anime.json "$BASE_URL&floor=anime&sort=rank"
+          # フロア別（3ページ・最大300件）
+          merge_fetch3 data/anime.json "$BASE_URL&floor=anime&sort=rank"
           # マンガ/電子書籍（service=ebook&floor=comic が正解）
           MANGA_BASE_URL="https://api.dmm.com/affiliate/v3/ItemList?api_id=UXJdpULBN1sPyNKKPPHU&affiliate_id=saaaaaaya-990&site=FANZA&service=ebook&floor=comic&output=json"
-          merge_fetch data/manga.json "${MANGA_BASE_URL}&sort=rank"
+          merge_fetch3 data/manga.json "${MANGA_BASE_URL}&sort=rank"
           GOODS_URL="https://api.dmm.com/affiliate/v3/ItemList?api_id=UXJdpULBN1sPyNKKPPHU&affiliate_id=saaaaaaya-990&site=FANZA&service=mono&floor=goods&output=json&sort=rank"
-          merge_fetch data/goods.json "$GOODS_URL"
+          merge_fetch3 data/goods.json "$GOODS_URL"
 
-          # ジャンル別 - rank は3ページ（300件）、date/review は2ページ（200件）
+          # ジャンル別 - rank は5ページ（500件）、date/review は3ページ（300件）
           for row in \
             "2001:genre_busty" \
             "1027:genre_bishoujo" \
@@ -96,12 +96,12 @@ jobs:
             "4007:genre_kikaku" \
             "5002:genre_fella"; do
             ID="${row%%:*}"; NAME="${row##*:}"
-            # rank（3ページ・300件）
-            merge_fetch3 "data/${NAME}.json" "$BASE_URL&floor=videoa&sort=rank&article=genre&article_id=$ID"
-            # 新着順（2ページ・200件）
-            merge_fetch "data/${NAME}_date.json" "$BASE_URL&floor=videoa&sort=date&article=genre&article_id=$ID"
-            # レビュー順（2ページ・200件）
-            merge_fetch "data/${NAME}_review.json" "$BASE_URL&floor=videoa&sort=review&article=genre&article_id=$ID"
+            # rank（5ページ・500件）
+            merge_fetch5 "data/${NAME}.json" "$BASE_URL&floor=videoa&sort=rank&article=genre&article_id=$ID"
+            # 新着順（3ページ・300件）
+            merge_fetch3 "data/${NAME}_date.json" "$BASE_URL&floor=videoa&sort=date&article=genre&article_id=$ID"
+            # レビュー順（3ページ・300件）
+            merge_fetch3 "data/${NAME}_review.json" "$BASE_URL&floor=videoa&sort=review&article=genre&article_id=$ID"
           done
 
       - name: Fetch actress data
@@ -148,14 +148,16 @@ jobs:
           # 女優別作品JSON（popular + new + monthly の女優ID分を個別取得・3ページ・最大300件）
           WORK_BASE="https://api.dmm.com/affiliate/v3/ItemList?api_id=UXJdpULBN1sPyNKKPPHU&affiliate_id=saaaaaaya-990&site=FANZA&service=digital&output=json&floor=videoa&sort=date&article=actress"
           ALL_ACTRESS_IDS=$(jq -r '.result.actress[].id | tostring' data/actress_popular.json data/actress_new.json data/actress_monthly.json 2>/dev/null \
-            | awk '!seen[$0]++ && $0 != "null"' | head -80)
+            | awk '!seen[$0]++ && $0 != "null"' | head -100)
           for AID in $ALL_ACTRESS_IDS; do
             curl -sf "${WORK_BASE}&hits=100&article_id=${AID}"            -o /tmp/aw1.json 2>/dev/null || echo '{"result":{"items":[]}}' > /tmp/aw1.json
             curl -sf "${WORK_BASE}&hits=100&offset=101&article_id=${AID}" -o /tmp/aw2.json 2>/dev/null || echo '{"result":{"items":[]}}' > /tmp/aw2.json
             curl -sf "${WORK_BASE}&hits=100&offset=201&article_id=${AID}" -o /tmp/aw3.json 2>/dev/null || echo '{"result":{"items":[]}}' > /tmp/aw3.json
-            jq -s '((.[0].result.items//[])+(.[1].result.items//[])+(.[2].result.items//[])) as $it |
+            curl -sf "${WORK_BASE}&hits=100&offset=301&article_id=${AID}" -o /tmp/aw4.json 2>/dev/null || echo '{"result":{"items":[]}}' > /tmp/aw4.json
+            curl -sf "${WORK_BASE}&hits=100&offset=401&article_id=${AID}" -o /tmp/aw5.json 2>/dev/null || echo '{"result":{"items":[]}}' > /tmp/aw5.json
+            jq -s '((.[0].result.items//[])+(.[1].result.items//[])+(.[2].result.items//[])+(.[3].result.items//[])+(.[4].result.items//[])) as $it |
               {result:{status:200,items:$it,total_count:($it|length),result_count:($it|length)}}
-            ' /tmp/aw1.json /tmp/aw2.json /tmp/aw3.json > "data/actress_works_${AID}.json" \
+            ' /tmp/aw1.json /tmp/aw2.json /tmp/aw3.json /tmp/aw4.json /tmp/aw5.json > "data/actress_works_${AID}.json" \
               || echo '{"result":{"status":404}}' > "data/actress_works_${AID}.json"
             sleep 0.3
           done

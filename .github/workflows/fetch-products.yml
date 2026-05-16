@@ -78,10 +78,10 @@ jobs:
           }
 
           # ========== 動画優先で数十万件規模に拡大 ==========
-          # 動画系 rank/新作/高評価 = 各50ページ・最大5000件（=videoa全体15,000件）
-          merge_fetch_n 50 data/rank.json   "$BASE_URL&floor=videoa&sort=rank"
-          merge_fetch_n 50 data/new.json    "$BASE_URL&floor=videoa&sort=date"
-          merge_fetch_n 50 data/review.json "$BASE_URL&floor=videoa&sort=review"
+          # 動画系 rank/新作/高評価 = 各100ページ・最大10000件（=videoa全体30,000件）
+          merge_fetch_n 100 data/rank.json   "$BASE_URL&floor=videoa&sort=rank"
+          merge_fetch_n 100 data/new.json    "$BASE_URL&floor=videoa&sort=date"
+          merge_fetch_n 100 data/review.json "$BASE_URL&floor=videoa&sort=review"
 
           # アニメ・マンガ・グッズ = 各10ページ・最大1000件 × 3ソート
           ANIME_BASE="$BASE_URL&floor=anime"
@@ -184,10 +184,21 @@ jobs:
           build_actress_json "$MONTHLY_IDS" data/actress_monthly.json \
             || echo '{"result":{"status":404}}' > data/actress_monthly.json
 
+          # ===== 全女優プロフィール一括ファイル =====
+          # 全データから女優ID抽出（出現2回以上=ベテラン/中堅も網羅）して個別プロフィール取得
+          # 写真と詳細情報を女優ページで使えるよう網羅的に
+          ALL_PROFILE_IDS=$(jq -r '.result.items[]? | .iteminfo.actress[]?.id | tostring' data/*.json 2>/dev/null \
+            | grep -v null | sort | uniq -c | sort -rn | awk '$1 >= 2 {print $2}' | head -800)
+          build_actress_json "$ALL_PROFILE_IDS" data/actress_profiles.json \
+            || echo '{"result":{"status":404,"actress":[]}}' > data/actress_profiles.json
+          echo "actress_profiles.json: $(jq '.result.actress | length' data/actress_profiles.json) profiles fetched"
+
           # 女優別作品JSON（popular + new + monthly の女優ID分を個別取得・3ページ・最大300件）
           WORK_BASE="https://api.dmm.com/affiliate/v3/ItemList?api_id=UXJdpULBN1sPyNKKPPHU&affiliate_id=saaaaaaya-990&site=FANZA&service=digital&output=json&floor=videoa&sort=date&article=actress"
-          ALL_ACTRESS_IDS=$(jq -r '.result.actress[].id | tostring' data/actress_popular.json data/actress_new.json data/actress_monthly.json 2>/dev/null \
-            | awk '!seen[$0]++ && $0 != "null"' | head -150)
+          # actress_profiles.json も含めて全女優の作品ファイルを生成（ベテラン女優を網羅）
+          ALL_ACTRESS_IDS=$(jq -r '.result.actress[].id | tostring' \
+            data/actress_popular.json data/actress_new.json data/actress_monthly.json data/actress_profiles.json 2>/dev/null \
+            | awk '!seen[$0]++ && $0 != "null"' | head -300)
           for AID in $ALL_ACTRESS_IDS; do
             curl -sf "${WORK_BASE}&hits=100&article_id=${AID}"            -o /tmp/aw1.json 2>/dev/null || echo '{"result":{"items":[]}}' > /tmp/aw1.json
             curl -sf "${WORK_BASE}&hits=100&offset=101&article_id=${AID}" -o /tmp/aw2.json 2>/dev/null || echo '{"result":{"items":[]}}' > /tmp/aw2.json

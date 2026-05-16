@@ -83,6 +83,10 @@
     background: rgba(255,51,102,.12); border: 1px solid rgba(255,51,102,.25);
     border-radius: 6px; padding: 2px 10px; font-size: .78rem; color: #ff8aaa;
 }
+.actress-works-note {
+    font-size: .7rem; color: var(--mute); opacity: .7;
+    flex-basis: 100%; padding-top: 4px;
+}
 
 /* ジャンルタグ */
 .actress-genre-tags {
@@ -214,11 +218,15 @@ async function loadActressInfo() {
     document.title = (actressName || '女優') + '出演作品 | AV動画ランキング';
     document.getElementById('breadName').textContent = actressName || '女優ページ';
 
-    // actress_popular / actress_new からプロフィール情報を探す
+    // 全プロフィールファイルから女優情報を探す（最も網羅的なactress_profiles.jsonを最優先）
     let actress = null;
-    for (const type of ['popular', 'new']) {
+    const profileFiles = ['data/actress_profiles.json', 'data/actress_popular.json', 'data/actress_monthly.json', 'data/actress_new.json'];
+    for (const fp of profileFiles) {
         try {
-            const data = await DMM.fetchActress(type);
+            const ts = Math.floor(Date.now() / 60000);
+            const res = await fetch(`${fp}?_=${ts}`);
+            if (!res.ok) continue;
+            const data = await res.json();
             const found = (data?.result?.actress || []).find(a => String(a.id) === String(actressId));
             if (found) { actress = found; break; }
         } catch(e) {}
@@ -349,30 +357,16 @@ async function loadWorks() {
     const genreTagsEl = document.getElementById('actressGenreTags');
 
     if (worksBarEl && works.length) {
-        const oldest = works[works.length - 1];
-        const firstDate = oldest?.date ? oldest.date.slice(0, 7) : '';
         const newest = works[0];
         const lastDate  = newest?.date  ? newest.date.slice(0, 7)  : '';
 
-        // キャリア期間（年月計算）
-        let careerStr = '';
-        if (firstDate && lastDate && firstDate !== lastDate) {
-            const [fy, fm] = firstDate.split('-').map(Number);
-            const [ly, lm] = lastDate.split('-').map(Number);
-            const months   = (ly - fy) * 12 + (lm - fm);
-            const years    = Math.floor(months / 12);
-            const remMonths = months % 12;
-            careerStr = years > 0
-                ? `${years}年${remMonths > 0 ? remMonths + 'ヶ月' : ''}以上のキャリア`
-                : `${remMonths}ヶ月のキャリア`;
-        }
-
+        // ※ 「初出演」「キャリア期間」はサイト掲載分の最古作品にすぎず、
+        // ベテラン女優ほど実際の値と乖離するため非表示にする（誤情報になる）
         worksBarEl.innerHTML = `
             <div class="actress-works-bar">
-                <span>📽️ 出演作品 <strong>${works.length}件</strong></span>
-                ${firstDate ? `<span>🎬 初出演 <strong>${firstDate}</strong></span>` : ''}
-                ${lastDate  ? `<span>🆕 最新作 <strong>${lastDate}</strong></span>`  : ''}
-                ${careerStr ? `<span class="actress-career-tag">⏱ ${careerStr}</span>` : ''}
+                <span>📽️ 掲載作品 <strong>${works.length}件</strong></span>
+                ${lastDate ? `<span>🆕 最新作 <strong>${lastDate}</strong></span>` : ''}
+                <span class="actress-works-note">※当サイト掲載分。実際の出演本数はさらに多い場合があります</span>
             </div>`;
     }
 

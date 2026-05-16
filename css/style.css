@@ -1238,6 +1238,36 @@ a:hover { color: #fff; }
     padding: 0 4px 8px; margin-top: -4px;
 }
 
+/* ===== 女優ショートカット行 ===== */
+.actress-shortcut-row {
+    display: flex; align-items: center; gap: 8px;
+    padding: 10px 4px 2px; flex-wrap: wrap;
+}
+.actress-shortcut-label {
+    font-size: .72rem; color: #555; white-space: nowrap;
+}
+.actress-shortcut-chip {
+    display: inline-flex; align-items: center;
+    padding: 5px 12px; border-radius: 16px;
+    background: var(--bg3); border: 1px solid var(--border);
+    color: #bbb; font-size: .78rem; font-weight: 600;
+    text-decoration: none; transition: all .15s; white-space: nowrap;
+}
+.actress-shortcut-chip:hover {
+    border-color: var(--accent2); color: #fff;
+    background: rgba(255,102,153,.1);
+}
+.actress-shortcut-new {
+    border-color: rgba(100,200,255,.3); color: #88ddff;
+}
+.actress-shortcut-new:hover {
+    border-color: #88ddff; background: rgba(100,200,255,.1); color: #fff;
+}
+@media (max-width: 600px) {
+    .actress-shortcut-row { gap: 6px; padding: 8px 4px 2px; }
+    .actress-shortcut-chip { padding: 6px 12px; font-size: .76rem; }
+}
+
 /* ===== モバイル改善 ===== */
 .genre-chip { min-height: 44px; }
 .page-info { color: var(--mute); font-size: .9rem; padding: 0 12px; display:flex; align-items:center; min-height:44px; }

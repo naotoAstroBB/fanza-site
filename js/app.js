@@ -960,6 +960,8 @@ const App = {
     // ===== 女優セクション（ホーム用プレビュー）=====
     // 詳細・全件は actresses.html へ
     async initActressTabs() {
+        const moreLink = document.getElementById('actressMoreLink');
+        if (moreLink) moreLink.href = 'actresses.html?tab=popular';
         await this._renderActresses('actressList', 'popular', true);
     },
 
@@ -972,11 +974,18 @@ const App = {
             monthly: '今月最も注目される女優',
             new:     '新人・デビュー女優'
         };
+        const linkLabels = {
+            popular: '人気ランキング一覧 →',
+            monthly: '月間人気一覧 →',
+            new:     '新人女優一覧 →',
+        };
         const descEl = document.getElementById('actressTabDesc');
         if (descEl) descEl.textContent = descs[type] || '';
-        // 「すべて見る」リンクを現在タブに更新
         const moreLink = document.getElementById('actressMoreLink');
-        if (moreLink) moreLink.href = `actresses.html?tab=${type}`;
+        if (moreLink) {
+            moreLink.href = `actresses.html?tab=${type}`;
+            moreLink.textContent = linkLabels[type] || '一覧へ →';
+        }
         await this._renderActresses('actressList', type, showRank);
     },
 

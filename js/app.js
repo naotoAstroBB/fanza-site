@@ -185,7 +185,8 @@ const App = {
         this.sort     = '';
         this.page     = 1;
         this.showSale = false;
-        if (!this.genre) this.floor = 'videoa';
+        // フロア（videoa/anime/book/goods）は維持する
+        // 並び替えなしの場合は内部的にrank(人気順)のファイルを使用
         const sel = document.getElementById('sortSelect');
         if (sel) sel.value = '';
         this.updateRankTabs();

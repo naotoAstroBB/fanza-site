@@ -69,3 +69,38 @@ const Hist = {
         localStorage.setItem(this.KEY, JSON.stringify(list));
     }
 };
+
+// ===== いいね管理 =====
+const Like = {
+    KEY: 'fanza_likes',
+
+    _set: null,
+
+    _load() {
+        if (!this._set) {
+            try { this._set = new Set(JSON.parse(localStorage.getItem(this.KEY) || '[]')); }
+            catch(e) { this._set = new Set(); }
+        }
+        return this._set;
+    },
+
+    _save() {
+        localStorage.setItem(this.KEY, JSON.stringify([...this._set]));
+    },
+
+    has(cid) {
+        return this._load().has(String(cid));
+    },
+
+    toggle(cid) {
+        const s = this._load();
+        const id = String(cid);
+        if (s.has(id)) { s.delete(id); this._save(); return false; }
+        s.add(id); this._save(); return true;
+    },
+
+    count() {
+        return this._load().size;
+    }
+};
+

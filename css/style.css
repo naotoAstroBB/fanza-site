@@ -247,7 +247,30 @@ a:hover { color: #fff; }
 .card-actress { font-size: .75rem; color: var(--accent2); margin-bottom: 4px; }
 .card-actress-link { color: var(--accent2); text-decoration: none; }
 .card-actress-link:hover { color: #fff; text-decoration: underline; }
-.card-bottom { display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px; }
+.card-bottom { display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px; gap: 4px; }
+
+/* ===== いいねボタン（カード内）===== */
+.like-btn {
+    display: inline-flex; align-items: center; gap: 3px;
+    background: none; border: 1px solid var(--border);
+    border-radius: 12px; padding: 3px 8px;
+    color: var(--text-mute); font-size: .72rem; font-weight: 600;
+    cursor: pointer; transition: all .15s; white-space: nowrap;
+    font-family: inherit; flex-shrink: 0;
+}
+.like-btn:hover {
+    border-color: rgba(255,51,102,.5); color: #ff99bb;
+    background: rgba(255,51,102,.08);
+}
+.like-btn.active {
+    border-color: rgba(255,51,102,.6); color: #ff6699;
+    background: rgba(255,51,102,.1);
+}
+.like-icon { font-size: .85rem; line-height: 1; }
+.like-label { line-height: 1; }
+@media (max-width: 600px) {
+    .like-btn { padding: 4px 8px; min-height: 28px; font-size: .7rem; }
+}
 .card-price { font-size: .9rem; font-weight: 700; color: #fff; }
 .card-review { font-size: .75rem; color: var(--text-mute); }
 .card-review .stars { color: #ffcc00; }

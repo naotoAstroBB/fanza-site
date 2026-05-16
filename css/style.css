@@ -79,8 +79,18 @@ a:hover { color: #fff; }
     max-width: 1280px; margin: 0 auto;
     display: flex; gap: 4px; padding: 0 16px;
     overflow-x: auto; scrollbar-width: none;
+    align-items: center;
 }
 .nav-inner::-webkit-scrollbar { display: none; }
+.nav-group {
+    display: flex; gap: 4px;
+}
+.nav-divider {
+    width: 1px; height: 24px;
+    background: #3a3a3a;
+    margin: 0 8px;
+    flex-shrink: 0;
+}
 .nav-btn {
     padding: 10px 16px; color: var(--text-mute);
     border-bottom: 3px solid transparent;
@@ -89,6 +99,14 @@ a:hover { color: #fff; }
 }
 .nav-btn:hover, .nav-btn.active {
     color: var(--accent); border-bottom-color: var(--accent);
+}
+/* SALEボタンを目立たせる */
+.nav-btn-sale {
+    color: #ff8a3d;
+    font-weight: 700;
+}
+.nav-btn-sale:hover, .nav-btn-sale.active {
+    color: #ffb366; border-bottom-color: #ff8a3d;
 }
 
 /* ===== メインレイアウト ===== */
@@ -758,19 +776,34 @@ a:hover { color: #fff; }
 
 /* ===== お気に入りヘッダーボタン ===== */
 .fav-header-btn {
-    position: relative; background: none; border: none;
-    color: #fff; font-size: 1.3rem; cursor: pointer;
-    padding: 6px 8px; border-radius: 8px;
-    display: flex; align-items: center; gap: 4px;
-    transition: background .15s; flex-shrink: 0;
+    position: relative;
+    background: linear-gradient(135deg, rgba(255,51,102,.15), rgba(255,51,102,.08));
+    border: 1px solid rgba(255,51,102,.4);
+    color: #fff; cursor: pointer;
+    padding: 8px 14px; border-radius: 10px;
+    display: flex; align-items: center; gap: 7px;
+    transition: all .15s; flex-shrink: 0;
+    font-weight: 700; font-size: .88rem;
 }
-.fav-header-btn:hover { background: rgba(255,255,255,.1); }
+.fav-header-btn:hover {
+    background: linear-gradient(135deg, rgba(255,51,102,.3), rgba(255,51,102,.18));
+    border-color: var(--accent);
+    transform: translateY(-1px);
+}
+.fav-icon  { font-size: 1.1rem; line-height: 1; }
+.fav-label { color: #ffd5dd; letter-spacing: .03em; }
 .fav-badge {
     background: var(--accent); color: #fff;
-    font-size: .65rem; font-weight: 900;
-    min-width: 18px; height: 18px;
-    border-radius: 10px; padding: 0 4px;
+    font-size: .7rem; font-weight: 900;
+    min-width: 20px; height: 20px;
+    border-radius: 10px; padding: 0 6px;
     display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 2px 6px rgba(255,51,102,.4);
+}
+@media (max-width: 600px) {
+    .fav-header-btn { padding: 8px 10px; gap: 5px; }
+    .fav-label { display: none; } /* スマホはアイコンのみで省スペース */
+    .fav-icon  { font-size: 1.3rem; }
 }
 
 /* ===== お気に入りパネル（sticky内ドロワー）===== */

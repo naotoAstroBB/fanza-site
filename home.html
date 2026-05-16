@@ -45,21 +45,30 @@
       <div class="suggest-dropdown" id="suggestDropdown"></div>
       <button onclick="App.doSearch()">🔍</button>
     </div>
-    <button class="fav-header-btn" onclick="App.toggleFavPanel()" title="お気に入り">
-      ❤️ <span class="fav-badge" id="favBadge" style="display:none">0</span>
+    <button class="fav-header-btn" onclick="App.toggleFavPanel()" title="お気に入りを開く">
+      <span class="fav-icon">❤️</span>
+      <span class="fav-label">お気に入り</span>
+      <span class="fav-badge" id="favBadge" style="display:none">0</span>
     </button>
   </div>
 </header>
 
 <nav class="site-nav">
   <div class="nav-inner">
-    <div class="nav-btn active" onclick="App.setFloor('videoa',this)">🎬 動画（アダルト）</div>
-    <div class="nav-btn" onclick="App.setFloor('anime',this)">🎌 アニメ動画</div>
-    <div class="nav-btn" onclick="App.setFloor('book',this)">📚 マンガ</div>
-    <div class="nav-btn" onclick="App.setFloor('goods',this)">🛍️ グッズ・通販</div>
-    <div class="nav-btn" onclick="App.setSort('date',this)">⭐ 新作</div>
-    <div class="nav-btn" onclick="App.setSort('rank',this)">🏆 ランキング</div>
-    <div class="nav-btn" onclick="App.setSale(this)">🔥 SALE</div>
+    <!-- フロア切替グループ -->
+    <div class="nav-group nav-group-floor">
+      <div class="nav-btn active" onclick="App.setFloor('videoa',this)">🎬 動画</div>
+      <div class="nav-btn" onclick="App.setFloor('anime',this)">🎌 アニメ</div>
+      <div class="nav-btn" onclick="App.setFloor('book',this)">📚 マンガ</div>
+      <div class="nav-btn" onclick="App.setFloor('goods',this)">🛍️ グッズ</div>
+    </div>
+    <div class="nav-divider"></div>
+    <!-- 特集/ソート グループ -->
+    <div class="nav-group nav-group-feature">
+      <div class="nav-btn" onclick="App.setSort('rank',this)">🏆 ランキング</div>
+      <div class="nav-btn" onclick="App.setSort('date',this)">🆕 新作</div>
+      <div class="nav-btn nav-btn-sale" onclick="App.setSale(this)">🔥 SALE</div>
+    </div>
   </div>
 </nav>
 

@@ -143,9 +143,17 @@ jobs:
           build_actress_json "$POPULAR_IDS" data/actress_popular.json \
             || echo '{"result":{"status":404}}' > data/actress_popular.json
 
-          # 新着女優：new.jsonの商品から女優IDを抽出 - 50人に拡大
-          NEW_IDS=$(jq -r '.result.items[] | .iteminfo.actress[0]?.id | tostring' data/new.json 2>/dev/null \
+          # 新人女優：デビュー作品ジャンル(genre_id=6006)の商品から女優IDを抽出
+          # date順(genre_debut_date.json)を最優先、次にrank順(genre_debut.json)で補完
+          # → 本当のデビュー直後の女優を取得（new.jsonだとベテランが混ざる問題を解消）
+          NEW_IDS=$(jq -r '.result.items[] | .iteminfo.actress[]?.id | tostring' \
+            data/genre_debut_date.json data/genre_debut.json 2>/dev/null \
             | awk '!seen[$0]++ && $0 != "null"' | head -50)
+          # フォールバック：デビューデータが取れない場合のみ new.json から
+          if [ -z "$NEW_IDS" ]; then
+            NEW_IDS=$(jq -r '.result.items[] | .iteminfo.actress[0]?.id | tostring' data/new.json 2>/dev/null \
+              | awk '!seen[$0]++ && $0 != "null"' | head -50)
+          fi
           build_actress_json "$NEW_IDS" data/actress_new.json \
             || echo '{"result":{"status":404}}' > data/actress_new.json
 

@@ -66,14 +66,31 @@ const App = {
         if (this._suggestLoaded) return;
         this._suggestLoaded = true;
         try {
-            // 女優APIデータ（画像・ルビあり）
-            const [pop, newA] = await Promise.allSettled([
+            // 女優APIデータ（画像・ルビあり）+ プロフィール全件
+            const [pop, monthly, newA, profiles] = await Promise.allSettled([
                 DMM.fetchActress('popular'),
+                DMM.fetchActress('monthly'),
                 DMM.fetchActress('new'),
+                DMM._loadFile('data/actress_profiles.json'),
             ]);
+
+            // 全ソースから imageURL マップを構築（id → imageURL）
+            const imageMap = new Map();
+            for (const r of [pop, monthly, newA, profiles]) {
+                if (r.status !== 'fulfilled') continue;
+                for (const a of (r.value?.result?.actress || [])) {
+                    const id = String(a.id);
+                    if (a.imageURL?.small && !imageMap.has(id)) {
+                        imageMap.set(id, a.imageURL);
+                    }
+                }
+            }
+
             const apiActresses = [
                 ...(pop.value?.result?.actress || []),
+                ...(monthly.value?.result?.actress || []),
                 ...(newA.value?.result?.actress || []),
+                ...(profiles.value?.result?.actress || []),
             ];
 
             // 商品データ（rank/new）から女優名を補完抽出
@@ -93,7 +110,7 @@ const App = {
                                 id:       String(a.id),
                                 name:     a.name || '',
                                 ruby:     a.ruby || '',
-                                imageURL: {}
+                                imageURL: imageMap.get(String(a.id)) || {}
                             });
                         }
                     }

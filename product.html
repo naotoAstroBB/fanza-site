@@ -227,7 +227,7 @@ async function loadProduct(){
               </button>
               <button id="favBtn" class="btn-fav-detail ${isFav?'active':''}"
                 onclick="toggleFavDetail(this,'${esc(item.content_id)}')">
-                ${isFav ? '🔖 保存済み' : '🔖 あとで見る'}
+                ${isFav ? '⭐ 保存済み' : '☆ あとで見る'}
               </button>
             </div>
 
@@ -328,7 +328,7 @@ function toggleFavDetail(btn, cid) {
     const exists = favs.some(f => f.cid === cid);
     if (exists) {
         Fav.remove(cid);
-        btn.innerHTML = '🔖 あとで見る';
+        btn.innerHTML = '☆ あとで見る';
         btn.classList.remove('active');
     } else {
         const img  = document.querySelector('.detail-img img')?.src || '';
@@ -339,7 +339,7 @@ function toggleFavDetail(btn, cid) {
         list.unshift({ cid, title, img, url, floor: p.get('floor')||'videoa', ts: Date.now() });
         if (list.length > 100) list.length = 100;
         Fav.save(list);
-        btn.innerHTML = '🔖 保存済み';
+        btn.innerHTML = '⭐ 保存済み';
         btn.classList.add('active');
     }
 }

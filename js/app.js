@@ -347,7 +347,7 @@ const App = {
         document.querySelectorAll('.fav-btn').forEach(btn => {
             if (btn.dataset.cid === cid) {
                 btn.classList.remove('active');
-                btn.textContent = '🤍';
+                btn.textContent = '☆';
             }
         });
     },
@@ -725,7 +725,7 @@ const App = {
             ${campaign ? `<span class="badge-sale">SALE</span>` : (isNew ? `<span class="badge-new">NEW</span>` : '')}
             ${sampleBtnHtml}
             <button class="fav-btn ${isFav ? 'active' : ''}" title="${isFav ? 'お気に入り解除' : 'お気に入りに追加'}"
-              onclick="event.stopPropagation();App.toggleFav(this,'${this.esc(item.content_id)}')">${isFav ? '❤️' : '🤍'}</button>
+              onclick="event.stopPropagation();App.toggleFav(this,'${this.esc(item.content_id)}')">${isFav ? '⭐' : '☆'}</button>
           </div>
           <div class="card-body">
             <div class="card-title">${title}</div>
@@ -769,7 +769,7 @@ const App = {
         if (!item) return;
         const isNow = Fav.toggle(item, this.floor);
         btn.classList.toggle('active', isNow);
-        btn.textContent = isNow ? '❤️' : '🤍';
+        btn.textContent = isNow ? '⭐' : '☆';
         btn.title = isNow ? 'お気に入り解除' : 'お気に入りに追加';
         // お気に入りセクションを更新
         this.loadStorageSections();

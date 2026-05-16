@@ -588,9 +588,10 @@ const App = {
             : (i < 10 ? `<div class="rank-badge rank-other">${i+1}</div>` : '');
         const mv        = item.sampleMovieURL;
         const sampleUrl = mv ? (mv.size_560_360 || mv.size_476_306 || mv.size_644_414 || '') : '';
-        // マンガのサンプル画像（sample_b 優先、なければ sample_l/sample_s）
-        const sampleImages = item.sampleImageURL?.sample_b?.image
-                          || item.sampleImageURL?.sample_l?.image
+        // マンガの試し読みURL（FANZA公式のtachiyomiページへのリンク）
+        const tachiyomiUrl = item.tachiyomi?.affiliateURL || item.tachiyomi?.URL || '';
+        // 動画系のサンプル画像（マンガ用は別途tachiyomiで対応）
+        const sampleImages = item.sampleImageURL?.sample_l?.image
                           || item.sampleImageURL?.sample_s?.image
                           || [];
         const isFav     = Fav.has(item.content_id);
@@ -605,15 +606,19 @@ const App = {
         };
         const buyText = buyLabels[this.floor] || '作品を見る →';
 
-        // サンプルボタン（動画 or マンガ画像）
+        // サンプルボタン（動画 / マンガ試し読み / 動画系サンプル画像）
         let sampleBtnHtml = '';
         if (sampleUrl) {
+            // 動画サンプル → モーダル再生
             sampleBtnHtml = `<button class="card-sample-btn" onclick="event.stopPropagation();App.openSample('${this.esc(sampleUrl)}','${title}')" title="サンプル再生">▶</button>`;
+        } else if (tachiyomiUrl) {
+            // マンガ試し読み → FANZA公式ページを新規タブで開く
+            sampleBtnHtml = `<a class="card-sample-btn card-sample-book" href="${this.esc(tachiyomiUrl)}" target="_blank" rel="noopener" onclick="event.stopPropagation()" title="試し読み">📖</a>`;
         } else if (sampleImages.length) {
-            // マンガサンプル画像をAppに保存して、ボタンで開く
+            // 動画系のサンプル画像
             this._sampleImagesByCid = this._sampleImagesByCid || {};
             this._sampleImagesByCid[item.content_id] = sampleImages;
-            sampleBtnHtml = `<button class="card-sample-btn card-sample-book" onclick="event.stopPropagation();App.openSampleImages('${this.esc(item.content_id)}','${title}')" title="試し読み">📖</button>`;
+            sampleBtnHtml = `<button class="card-sample-btn" onclick="event.stopPropagation();App.openSampleImages('${this.esc(item.content_id)}','${title}')" title="サンプル画像">🖼</button>`;
         }
 
         // 順位変動バッジ

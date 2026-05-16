@@ -92,10 +92,26 @@ const DMM = {
 
     // ===== 商品IDで全JSONを横断検索 =====
     async fetchByCid(cid, floor) {
+        // 検索対象ファイルを全パターン網羅
+        // 1) sortFiles：videoa の rank/date/review/price
+        // 2) floorSortFiles：anime/manga/goods の rank/date/review 全variants
+        // 3) genreFiles + 派生 (_date/_review)
+        const floorSortVariants = [];
+        Object.values(this.floorSortFiles).forEach(map => {
+            Object.values(map).forEach(f => floorSortVariants.push(f));
+        });
+        const genreVariants = [];
+        Object.values(this.genreFiles).forEach(f => {
+            genreVariants.push(f);
+            genreVariants.push(f.replace('.json', '_date.json'));
+            genreVariants.push(f.replace('.json', '_review.json'));
+        });
         const allFiles = [
-            ...Object.values(this.sortFiles),
-            ...(floor && this.floorFiles[floor] ? [this.floorFiles[floor]] : []),
-            ...Object.values(this.genreFiles),
+            ...new Set([
+                ...Object.values(this.sortFiles),
+                ...floorSortVariants,
+                ...genreVariants,
+            ])
         ];
         // 並列フェッチ → 最初に見つかった商品を返す
         const results = await Promise.allSettled(

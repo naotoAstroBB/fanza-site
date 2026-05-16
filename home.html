@@ -133,16 +133,16 @@
 </section>
 
 
-<!-- 女優ランキング（タブ切替） -->
+<!-- 女優ランキング（プレビュー：詳細は actresses.html へ） -->
 <section class="actress-section">
   <div class="actress-section-inner">
     <div class="actress-tabs-row">
       <div class="actress-tabs">
-        <button class="actress-tab active" onclick="App.switchActressTab('popular',this)">🔥 現在のランキング</button>
+        <button class="actress-tab active" onclick="App.switchActressTab('popular',this)">🔥 ランキング</button>
         <button class="actress-tab" onclick="App.switchActressTab('monthly',this)">📅 月間人気</button>
         <button class="actress-tab" onclick="App.switchActressTab('new',this)">🌸 新人女優</button>
       </div>
-      <span class="actress-section-update">🔄 30分毎更新</span>
+      <a href="actresses.html" class="actress-more-link" id="actressMoreLink">すべて見る →</a>
     </div>
     <div class="actress-tab-desc" id="actressTabDesc">今週の人気出演女優</div>
     <div class="actress-scroll" id="actressList">
@@ -278,6 +278,7 @@
     <a href="home.html">TOP</a>
     <a href="#" onclick="App.setSort('rank')">ランキング</a>
     <a href="#" onclick="App.setSort('date')">新作</a>
+    <a href="actresses.html">女優ランキング</a>
     <a href="#" onclick="App.setFloor('goods')">グッズ</a>
     <a href="privacy.html">プライバシーポリシー</a>
     <a href="disclaimer.html">免責事項</a>

@@ -501,6 +501,22 @@ a:hover { color: #fff; }
 .share-icon-x  { font-family: "Helvetica Neue","Arial Black",sans-serif; font-weight: 900; font-size: 1.15rem; letter-spacing: -.05em; }
 .share-icon-fb { font-family: "Georgia","Times New Roman",serif; font-style: italic; font-weight: 900; font-size: 1.2rem; }
 
+/* 「すべて見る →」リンク（ホームのプレビュー右上） */
+.actress-more-link {
+    color: var(--accent2);
+    font-size: .85rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all .15s;
+    white-space: nowrap;
+    padding: 4px 8px;
+    border-radius: 6px;
+}
+.actress-more-link:hover {
+    color: #fff;
+    background: rgba(255,51,102,.15);
+}
+
 /* ===== 女優ランキング（ポディウム＋グリッド・斬新レイアウト）===== */
 .actress-podium-wrap {
     display: block;

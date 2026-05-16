@@ -304,8 +304,6 @@ const App = {
                 if (panel) panel.style.display = 'none';
             }
         }
-        // いいね（バッジ更新）
-        this._updateLikeBadge(Like.count());
     },
 
     _updateFavBadge(count) {
@@ -737,7 +735,7 @@ const App = {
                class="card-actress-link" onclick="event.stopPropagation()">${this.esc(a.name)}</a>`
         ).join(' / ');
 
-        const isLiked = Like.has(item.content_id);
+        const likeCount = Like.count(item.content_id);
         return `
         <div class="product-card" onclick="location.href='product.html?cid=${this.esc(item.content_id)}&floor=${this.floor}'">
           <div class="card-img-wrap">
@@ -757,10 +755,10 @@ const App = {
             ${actressLinks ? `<div class="card-actress">${actressLinks}</div>` : ''}
             <div class="card-bottom">
               ${stars ? `<div class="card-review"><span class="stars">${stars}</span></div>` : ''}
-              <button class="like-btn ${isLiked ? 'active' : ''}" data-cid="${this.esc(item.content_id)}"
+              <button class="like-btn ${likeCount > 0 ? 'active' : ''}" data-cid="${this.esc(item.content_id)}"
                 onclick="event.stopPropagation();App.toggleLike(this,'${this.esc(item.content_id)}')">
-                <span class="like-icon">${isLiked ? '❤️' : '🤍'}</span>
-                <span class="like-label">${isLiked ? 'いいね済' : 'いいね'}</span>
+                <span class="like-icon">❤️</span>
+                <span class="like-label">${likeCount > 0 ? likeCount : 'いいね'}</span>
               </button>
             </div>
             ${review?.count ? `<div class="card-review" style="margin-bottom:6px">${avg.toFixed(1)} (${review.count}件)</div>` : ''}
@@ -771,83 +769,16 @@ const App = {
         </div>`;
     },
 
-    // ===== いいねトグル =====
+    // ===== いいね（累計カウント）=====
     toggleLike(btn, cid) {
-        const item  = this._currentItems.find(i => i.content_id === cid)
-                   || this._saleItems.find(i => i.content_id === cid);
-        const isNow = item ? Like.toggle(item, this.floor) : Like.toggle(cid);
-        btn.classList.toggle('active', isNow);
+        const n = Like.add(cid);
+        btn.classList.add('active');
         const iconEl  = btn.querySelector('.like-icon');
         const labelEl = btn.querySelector('.like-label');
-        if (iconEl)  iconEl.textContent  = isNow ? '❤️' : '🤍';
-        if (labelEl) labelEl.textContent = isNow ? 'いいね済' : 'いいね';
-        this._updateLikeBadge(Like.count());
-        if (isNow) {
-            btn.animate([
-                { transform: 'scale(1.35)' },
-                { transform: 'scale(1)'    }
-            ], { duration: 250, easing: 'ease-out' });
-        }
-    },
-
-    toggleLikePanel() {
-        const panel = document.getElementById('likePanel');
-        if (!panel) return;
-        const isOpen = panel.style.display !== 'none';
-        if (isOpen) {
-            panel.style.display = 'none';
-        } else {
-            const favPanel = document.getElementById('favPanel');
-            if (favPanel) favPanel.style.display = 'none';
-            panel.style.display = '';
-            const likes = Like.get();
-            const badge2 = document.getElementById('likeBadge2');
-            if (badge2) badge2.textContent = likes.length ? `${likes.length}件` : '';
-            const list = document.getElementById('likePanelList');
-            if (list) {
-                if (likes.length) {
-                    this.renderMiniCards('likePanelList', likes, 'like');
-                } else {
-                    list.innerHTML = '<span style="color:#555;font-size:.85rem;padding:16px 0">いいねした作品はまだありません</span>';
-                }
-            }
-        }
-    },
-
-    removeLikeItem(cid) {
-        Like.remove(cid);
-        const likes = Like.get();
-        this._updateLikeBadge(likes.length);
-        if (likes.length) {
-            this.renderMiniCards('likePanelList', likes, 'like');
-            const badge2 = document.getElementById('likeBadge2');
-            if (badge2) badge2.textContent = `${likes.length}件`;
-        } else {
-            const list = document.getElementById('likePanelList');
-            if (list) list.innerHTML = '<span style="color:#555;font-size:.85rem;padding:16px 0">いいねした作品はまだありません</span>';
-            const panel = document.getElementById('likePanel');
-            if (panel) panel.style.display = 'none';
-        }
-        document.querySelectorAll('.like-btn').forEach(btn => {
-            if (btn.dataset.cid === cid) {
-                btn.classList.remove('active');
-                const iconEl  = btn.querySelector('.like-icon');
-                const labelEl = btn.querySelector('.like-label');
-                if (iconEl)  iconEl.textContent  = '🤍';
-                if (labelEl) labelEl.textContent = 'いいね';
-            }
-        });
-    },
-
-    _updateLikeBadge(count) {
-        const badge = document.getElementById('likeBadge');
-        if (!badge) return;
-        if (count > 0) {
-            badge.textContent = count > 99 ? '99+' : count;
-            badge.style.display = '';
-        } else {
-            badge.style.display = 'none';
-        }
+        if (iconEl)  iconEl.textContent  = '❤️';
+        if (labelEl) labelEl.textContent = n;
+        btn.animate([{ transform: 'scale(1.4)' }, { transform: 'scale(1)' }],
+            { duration: 250, easing: 'ease-out' });
     },
 
     // ===== お気に入りトグル =====

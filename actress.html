@@ -453,7 +453,7 @@ function renderWorks(pg) {
         const stars     = avg ? '★'.repeat(Math.round(avg)) + '☆'.repeat(5 - Math.round(avg)) : '';
         const mv        = item.sampleMovieURL;
         const sampleUrl = mv ? (mv.size_560_360 || mv.size_476_306 || mv.size_644_414 || '') : '';
-        const isLiked = Like.has(item.content_id);
+        const likeCount = Like.count(item.content_id);
         return `
         <div class="product-card" onclick="location.href='product.html?cid=${cid}&floor=${esc(floor)}'">
           <div class="card-img-wrap">
@@ -466,10 +466,10 @@ function renderWorks(pg) {
             <div class="card-title">${title}</div>
             <div class="card-bottom">
               ${stars ? `<div class="card-review"><span class="stars">${stars}</span></div>` : ''}
-              <button class="like-btn ${isLiked?'active':''}"
+              <button class="like-btn ${likeCount>0?'active':''}"
                 onclick="event.stopPropagation();toggleLike(this,'${cid}')">
-                <span class="like-icon">${isLiked?'❤️':'🤍'}</span>
-                <span class="like-label">${isLiked?'いいね済':'いいね'}</span>
+                <span class="like-icon">❤️</span>
+                <span class="like-label">${likeCount>0?likeCount:'いいね'}</span>
               </button>
             </div>
             <a class="btn-buy" href="${url}" target="_blank" rel="noopener" onclick="event.stopPropagation()">動画を見る →</a>
@@ -487,13 +487,10 @@ function toggleFav(btn, cid) {
 }
 
 function toggleLike(btn, cid) {
-    const item  = allWorks.find(i => i.content_id === cid);
-    const isNow = item ? Like.toggle(item, floor) : Like.toggle(cid);
-    btn.classList.toggle('active', isNow);
-    const iconEl  = btn.querySelector('.like-icon');
+    const n = Like.add(cid);
+    btn.classList.add('active');
     const labelEl = btn.querySelector('.like-label');
-    if (iconEl)  iconEl.textContent  = isNow ? '❤️' : '🤍';
-    if (labelEl) labelEl.textContent = isNow ? 'いいね済' : 'いいね';
+    if (labelEl) labelEl.textContent = n;
     btn.animate([{transform:'scale(1.4)'},{transform:'scale(1)'}],{duration:200,easing:'ease-out'});
 }
 

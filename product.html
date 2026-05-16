@@ -225,10 +225,10 @@ async function loadProduct(){
 
             <!-- いいね / お気に入り -->
             <div style="display:flex;gap:10px;margin-bottom:12px;flex-wrap:wrap">
-              <button id="likeBtn" class="btn-like-detail ${Like.has(item.content_id)?'active':''}"
+              <button id="likeBtn" class="btn-like-detail ${Like.count(item.content_id)>0?'active':''}"
                 onclick="toggleLikeDetail(this,'${esc(item.content_id)}')">
-                <span id="likeBtnIcon">${Like.has(item.content_id)?'❤️':'🤍'}</span>
-                <span id="likeBtnLabel">${Like.has(item.content_id)?'いいね済み':'いいね'}</span>
+                <span id="likeBtnIcon">❤️</span>
+                <span id="likeBtnLabel">${Like.count(item.content_id)>0?Like.count(item.content_id):'いいね'}</span>
               </button>
               <button id="favBtn" class="btn-fav-detail ${isFav?'active':''}"
                 onclick="toggleFavDetail(this,'${esc(item.content_id)}')">
@@ -311,25 +311,14 @@ function copyShareLink(btn, encodedUrl) {
     }
 }
 
-// ===== いいねトグル（詳細ページ）=====
+// ===== いいね（詳細ページ・累計カウント）=====
 function toggleLikeDetail(btn, cid) {
-    const img   = document.querySelector('.detail-img img')?.src || '';
-    const title = document.querySelector('.detail-title')?.textContent || '';
-    const url   = document.querySelector('.btn-buy-large')?.href || '#';
-    const p     = new URLSearchParams(location.search);
-    const meta  = { content_id: cid, title, imageURL: { list: img }, affiliateURL: url };
-    const isNow = Like.toggle(meta, p.get('floor') || 'videoa');
-    btn.classList.toggle('active', isNow);
-    const iconEl  = document.getElementById('likeBtnIcon');
+    const n = Like.add(cid);
+    btn.classList.add('active');
     const labelEl = document.getElementById('likeBtnLabel');
-    if (iconEl)  iconEl.textContent  = isNow ? '❤️' : '🤍';
-    if (labelEl) labelEl.textContent = isNow ? 'いいね済み' : 'いいね';
-    if (isNow) {
-        btn.animate([
-            { transform: 'scale(1.25)' },
-            { transform: 'scale(1)'    }
-        ], { duration: 200, easing: 'ease-out' });
-    }
+    if (labelEl) labelEl.textContent = n;
+    btn.animate([{ transform: 'scale(1.25)' }, { transform: 'scale(1)' }],
+        { duration: 200, easing: 'ease-out' });
 }
 
 // ===== お気に入りトグル（詳細ページ）=====

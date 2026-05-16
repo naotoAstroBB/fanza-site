@@ -70,52 +70,44 @@ const Hist = {
     }
 };
 
-// ===== いいね管理 =====
+// ===== いいね管理（累計カウント方式）=====
 const Like = {
     KEY: 'fanza_likes',
+    _data: null,
 
-    get() {
-        try {
-            const arr = JSON.parse(localStorage.getItem(this.KEY) || '[]');
-            // 後方互換: 旧版はCID文字列配列
-            return arr.map(m => typeof m === 'string'
-                ? { cid: m, title: '', img: '', url: '#', floor: 'videoa', ts: 0 }
-                : m);
-        } catch(e) { return []; }
+    _load() {
+        if (!this._data) {
+            try {
+                const raw = JSON.parse(localStorage.getItem(this.KEY) || '{}');
+                if (Array.isArray(raw)) {
+                    // 後方互換: 旧配列形式 → cid: 1 に変換
+                    this._data = {};
+                    for (const m of raw) {
+                        const cid = typeof m === 'string' ? m : m?.cid;
+                        if (cid) this._data[String(cid)] = 1;
+                    }
+                } else {
+                    this._data = raw;
+                }
+            } catch(e) { this._data = {}; }
+        }
+        return this._data;
     },
 
-    _save(list) {
-        localStorage.setItem(this.KEY, JSON.stringify(list));
+    _save() {
+        localStorage.setItem(this.KEY, JSON.stringify(this._data));
     },
 
-    has(cid) {
-        return this.get().some(m => m.cid === String(cid));
+    count(cid) {
+        return this._load()[String(cid)] || 0;
     },
 
-    toggle(item, floor) {
-        const cid  = String(typeof item === 'object' ? item.content_id : item);
-        const all  = this.get();
-        const list = all.filter(m => m.cid !== cid);
-        if (list.length < all.length) { this._save(list); return false; }
-        list.unshift({
-            cid,
-            title: typeof item === 'object' ? (item.title || '') : '',
-            img:   typeof item === 'object' ? (item.imageURL?.list || item.imageURL?.small || '') : '',
-            url:   typeof item === 'object' ? (item.affiliateURL || item.URL || '#') : '#',
-            floor: floor || 'videoa',
-            ts:    Date.now()
-        });
-        if (list.length > 200) list.length = 200;
-        this._save(list);
-        return true;
-    },
-
-    remove(cid) {
-        this._save(this.get().filter(m => m.cid !== String(cid)));
-    },
-
-    count() {
-        return this.get().length;
+    add(cid) {
+        const d = this._load();
+        const id = String(cid);
+        d[id] = (d[id] || 0) + 1;
+        this._save();
+        return d[id];
     }
 };
 

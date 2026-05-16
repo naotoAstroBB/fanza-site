@@ -59,28 +59,44 @@ jobs:
             ' /tmp/p1.json /tmp/p2.json /tmp/p3.json /tmp/p4.json /tmp/p5.json > "$OUT" || echo '{"result":{"status":404}}' > "$OUT"
           }
 
-          # ソート別（rank/date/review = 5ページ・最大500件）
-          merge_fetch5 data/rank.json   "$BASE_URL&floor=videoa&sort=rank"
-          merge_fetch5 data/new.json    "$BASE_URL&floor=videoa&sort=date"
-          merge_fetch5 data/review.json "$BASE_URL&floor=videoa&sort=review"
+          # 10ページ取得してmerge（最大1000件）
+          merge_fetch10() {
+            local OUT="$1" QUERY="$2"
+            for i in 1 2 3 4 5 6 7 8 9 10; do
+              local offset=$(( (i - 1) * 100 + 1 ))
+              [ $i -eq 1 ] && offset=""
+              local off_param=""
+              [ -n "$offset" ] && off_param="&offset=${offset}"
+              curl -sf "${QUERY}&hits=100${off_param}" -o /tmp/p${i}.json 2>/dev/null \
+                || echo '{"result":{"items":[]}}' > /tmp/p${i}.json
+            done
+            jq -s '((.[0].result.items//[])+(.[1].result.items//[])+(.[2].result.items//[])+(.[3].result.items//[])+(.[4].result.items//[])+(.[5].result.items//[])+(.[6].result.items//[])+(.[7].result.items//[])+(.[8].result.items//[])+(.[9].result.items//[])) as $it |
+              {result:{status:200,items:$it,total_count:($it|length),result_count:($it|length)}}
+            ' /tmp/p1.json /tmp/p2.json /tmp/p3.json /tmp/p4.json /tmp/p5.json /tmp/p6.json /tmp/p7.json /tmp/p8.json /tmp/p9.json /tmp/p10.json > "$OUT" || echo '{"result":{"status":404}}' > "$OUT"
+          }
 
-          # フロア別（3ページ・最大300件）- 人気/新着/高評価の3ソート
+          # ソート別（rank/date/review = 10ページ・最大1000件）
+          merge_fetch10 data/rank.json   "$BASE_URL&floor=videoa&sort=rank"
+          merge_fetch10 data/new.json    "$BASE_URL&floor=videoa&sort=date"
+          merge_fetch10 data/review.json "$BASE_URL&floor=videoa&sort=review"
+
+          # フロア別（5ページ・最大500件）- 人気/新着/高評価の3ソート
           ANIME_BASE="$BASE_URL&floor=anime"
-          merge_fetch3 data/anime.json        "${ANIME_BASE}&sort=rank"
-          merge_fetch3 data/anime_date.json   "${ANIME_BASE}&sort=date"
-          merge_fetch3 data/anime_review.json "${ANIME_BASE}&sort=review"
+          merge_fetch5 data/anime.json        "${ANIME_BASE}&sort=rank"
+          merge_fetch5 data/anime_date.json   "${ANIME_BASE}&sort=date"
+          merge_fetch5 data/anime_review.json "${ANIME_BASE}&sort=review"
 
           # マンガ/電子書籍（service=ebook&floor=comic が正解）
           MANGA_BASE_URL="https://api.dmm.com/affiliate/v3/ItemList?api_id=UXJdpULBN1sPyNKKPPHU&affiliate_id=saaaaaaya-990&site=FANZA&service=ebook&floor=comic&output=json"
-          merge_fetch3 data/manga.json        "${MANGA_BASE_URL}&sort=rank"
-          merge_fetch3 data/manga_date.json   "${MANGA_BASE_URL}&sort=date"
-          merge_fetch3 data/manga_review.json "${MANGA_BASE_URL}&sort=review"
+          merge_fetch5 data/manga.json        "${MANGA_BASE_URL}&sort=rank"
+          merge_fetch5 data/manga_date.json   "${MANGA_BASE_URL}&sort=date"
+          merge_fetch5 data/manga_review.json "${MANGA_BASE_URL}&sort=review"
 
           # グッズ・通販
           GOODS_BASE="https://api.dmm.com/affiliate/v3/ItemList?api_id=UXJdpULBN1sPyNKKPPHU&affiliate_id=saaaaaaya-990&site=FANZA&service=mono&floor=goods&output=json"
-          merge_fetch3 data/goods.json        "${GOODS_BASE}&sort=rank"
-          merge_fetch3 data/goods_date.json   "${GOODS_BASE}&sort=date"
-          merge_fetch3 data/goods_review.json "${GOODS_BASE}&sort=review"
+          merge_fetch5 data/goods.json        "${GOODS_BASE}&sort=rank"
+          merge_fetch5 data/goods_date.json   "${GOODS_BASE}&sort=date"
+          merge_fetch5 data/goods_review.json "${GOODS_BASE}&sort=review"
 
           # ジャンル別 - rank は5ページ（500件）、date/review は3ページ（300件）
           for row in \
@@ -108,10 +124,10 @@ jobs:
             ID="${row%%:*}"; NAME="${row##*:}"
             # rank（5ページ・500件）
             merge_fetch5 "data/${NAME}.json" "$BASE_URL&floor=videoa&sort=rank&article=genre&article_id=$ID"
-            # 新着順（3ページ・300件）
-            merge_fetch3 "data/${NAME}_date.json" "$BASE_URL&floor=videoa&sort=date&article=genre&article_id=$ID"
-            # レビュー順（3ページ・300件）
-            merge_fetch3 "data/${NAME}_review.json" "$BASE_URL&floor=videoa&sort=review&article=genre&article_id=$ID"
+            # 新作順（5ページ・500件）
+            merge_fetch5 "data/${NAME}_date.json" "$BASE_URL&floor=videoa&sort=date&article=genre&article_id=$ID"
+            # レビュー順（5ページ・500件）
+            merge_fetch5 "data/${NAME}_review.json" "$BASE_URL&floor=videoa&sort=review&article=genre&article_id=$ID"
           done
 
       - name: Fetch actress data
@@ -172,7 +188,7 @@ jobs:
           # 女優別作品JSON（popular + new + monthly の女優ID分を個別取得・3ページ・最大300件）
           WORK_BASE="https://api.dmm.com/affiliate/v3/ItemList?api_id=UXJdpULBN1sPyNKKPPHU&affiliate_id=saaaaaaya-990&site=FANZA&service=digital&output=json&floor=videoa&sort=date&article=actress"
           ALL_ACTRESS_IDS=$(jq -r '.result.actress[].id | tostring' data/actress_popular.json data/actress_new.json data/actress_monthly.json 2>/dev/null \
-            | awk '!seen[$0]++ && $0 != "null"' | head -100)
+            | awk '!seen[$0]++ && $0 != "null"' | head -150)
           for AID in $ALL_ACTRESS_IDS; do
             curl -sf "${WORK_BASE}&hits=100&article_id=${AID}"            -o /tmp/aw1.json 2>/dev/null || echo '{"result":{"items":[]}}' > /tmp/aw1.json
             curl -sf "${WORK_BASE}&hits=100&offset=101&article_id=${AID}" -o /tmp/aw2.json 2>/dev/null || echo '{"result":{"items":[]}}' > /tmp/aw2.json

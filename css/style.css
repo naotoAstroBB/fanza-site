@@ -78,17 +78,21 @@ a:hover { color: #fff; }
 .nav-inner {
     max-width: 1280px; margin: 0 auto;
     display: flex; gap: 4px; padding: 0 16px;
-    overflow-x: auto; scrollbar-width: none;
+    overflow-x: auto; overflow-y: hidden;
+    scrollbar-width: none;
     align-items: center;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
 }
 .nav-inner::-webkit-scrollbar { display: none; }
 .nav-group {
     display: flex; gap: 4px;
+    flex-shrink: 0; flex-wrap: nowrap;
 }
 .nav-divider {
-    width: 1px; height: 24px;
+    width: 1px; height: 22px;
     background: #3a3a3a;
-    margin: 0 8px;
+    margin: 0 6px;
     flex-shrink: 0;
 }
 .nav-btn {
@@ -1013,11 +1017,14 @@ a:hover { color: #fff; }
     .actress-photo { width: 72px; height: 72px; }
     .actress-photo img { width: 72px; height: 72px; }
     .actress-no-img { width: 72px; height: 72px; }
-    /* タップターゲット44px統一 */
+    /* タップターゲット44px統一（ただしナビは少し縮める：横スクロール優先） */
     .fav-btn { width: 40px; height: 40px; top: 4px; right: 4px; }
     .btn-buy { min-height: 44px; padding: 12px 8px; display:flex; align-items:center; justify-content:center; }
     .page-btn { min-height: 44px; padding: 10px 18px; }
     .rank-tab { padding: 10px 14px; min-height: 44px; display:flex; align-items:center; }
-    .nav-btn { padding: 10px 14px; min-height: 44px; }
+    .nav-btn { padding: 8px 12px; min-height: 38px; font-size: .82rem; display: flex; align-items: center; }
+    .nav-divider { display: none; } /* スマホは省スペース：区切り線非表示 */
+    .nav-inner { gap: 2px; padding: 0 8px; }
+    .nav-group { gap: 2px; }
     .single-work-toggle { min-height: 44px; padding: 10px 20px; }
 }

@@ -152,8 +152,22 @@ async function loadProduct(){
         const shareUrl = 'https://twitter.com/intent/tweet?text=' + shareText + '&url=' + encodeURIComponent(pageUrl);
         const isFav    = Fav.has(item.content_id);
 
+        // キャンペーン情報：タイトル or 日付のどちらかが実在する場合のみ表示
+        const hasCampaign = campaign && (
+            (campaign.title && campaign.title.trim()) ||
+            (campaign.date_begin && campaign.date_begin.trim()) ||
+            (campaign.date_end && campaign.date_end.trim())
+        );
+        const campaignHtml = hasCampaign ? (() => {
+            const t  = campaign.title?.trim() || '';
+            const db = (campaign.date_begin||'').slice(0,10);
+            const de = (campaign.date_end  ||'').slice(0,10);
+            const dateStr = (db || de) ? `（${esc(db)} 〜 ${esc(de)}）` : '';
+            return `<div class="campaign-box">🎉 <strong>キャンペーン${t ? '：' : '実施中'}</strong>${esc(t)}${dateStr}</div>`;
+        })() : '';
+
         document.getElementById('content').innerHTML = `
-        ${campaign ? `<div class="campaign-box">🎉 <strong>キャンペーン：</strong>${esc(campaign.title)}（${esc((campaign.date_begin||'').slice(0,10))} 〜 ${esc((campaign.date_end||'').slice(0,10))}）</div>` : ''}
+        ${campaignHtml}
 
         <div class="product-detail">
           <div>

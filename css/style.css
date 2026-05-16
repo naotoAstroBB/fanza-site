@@ -112,6 +112,15 @@ a:hover { color: #fff; }
 .nav-btn-sale:hover, .nav-btn-sale.active {
     color: #ffb366; border-bottom-color: #ff8a3d;
 }
+/* 女優ボタン */
+.nav-btn-actress {
+    color: #cc88ff;
+    font-weight: 700;
+    text-decoration: none;
+}
+.nav-btn-actress:hover, .nav-btn-actress.active {
+    color: #dd99ff; border-bottom-color: #cc88ff;
+}
 
 /* ===== メインレイアウト ===== */
 .page-wrapper {

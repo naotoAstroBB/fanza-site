@@ -117,10 +117,14 @@ function doSearch(){
 }
 document.getElementById('searchInput').addEventListener('keydown',e=>{ if(e.key==='Enter') doSearch(); });
 
+let _productItem = null;
+let _productFloor = 'videoa';
+
 async function loadProduct(){
     const p     = new URLSearchParams(location.search);
     const cid   = p.get('cid');
     const floor = p.get('floor') || 'videoa';
+    _productFloor = floor;
 
     if(!cid){ location.href='home.html'; return; }
     document.getElementById('floorLink').href = 'home.html?floor=' + floor;
@@ -128,6 +132,7 @@ async function loadProduct(){
     try {
         const data   = await DMM.fetchByCid(cid, floor);
         const item   = data?.result?.items?.[0];
+        _productItem = item;
         if(!item) throw new Error('商品が見つかりません');
 
         document.title = item.title + ' | AV動画ランキング';
@@ -329,21 +334,16 @@ function toggleLikeDetail(btn, cid) {
 
 // ===== お気に入りトグル（詳細ページ）=====
 function toggleFavDetail(btn, cid) {
-    const favs = Fav.get();
-    const exists = favs.some(f => f.cid === cid);
-    if (exists) {
+    if (Fav.has(cid)) {
         Fav.remove(cid);
         btn.innerHTML = '☆ あとで見る';
         btn.classList.remove('active');
     } else {
-        const img  = document.querySelector('.detail-img img')?.src || '';
-        const title = document.querySelector('.detail-title')?.textContent || '';
-        const url  = document.querySelector('.btn-buy-large')?.href || '#';
-        const p = new URLSearchParams(location.search);
-        const list = Fav.get();
-        list.unshift({ cid, title, img, url, floor: p.get('floor')||'videoa', ts: Date.now() });
-        if (list.length > 100) list.length = 100;
-        Fav.save(list);
+        const item = _productItem;
+        Fav.add(
+            item || { content_id: cid, title: '', imageURL: {}, affiliateURL: '#', URL: '#' },
+            _productFloor
+        );
         btn.innerHTML = '⭐ 保存済み';
         btn.classList.add('active');
     }

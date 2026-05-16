@@ -338,13 +338,20 @@ const App = {
         if (isOpen) {
             panel.style.display = 'none';
         } else {
+            const likePanel = document.getElementById('likePanel');
+            if (likePanel) likePanel.style.display = 'none';
             panel.style.display = '';
             const favs = Fav.get();
-            if (favs.length) {
-                this.renderMiniCards('favPanelList', favs, 'fav');
-            } else {
-                const list = document.getElementById('favPanelList');
-                if (list) list.innerHTML = '<span style="color:#555;font-size:.85rem;padding:16px 0">お気に入りはまだありません</span>';
+            this._updateFavBadge(favs.length);
+            const badge2 = document.getElementById('favBadge2');
+            if (badge2) badge2.textContent = favs.length ? `${favs.length}件` : '';
+            const list = document.getElementById('favPanelList');
+            if (list) {
+                if (favs.length) {
+                    this.renderMiniCards('favPanelList', favs, 'fav');
+                } else {
+                    list.innerHTML = '<span style="color:#555;font-size:.85rem;padding:16px 0">お気に入りはまだありません</span>';
+                }
             }
         }
     },

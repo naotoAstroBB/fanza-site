@@ -1086,6 +1086,23 @@ a:hover { color: #fff; }
     .like-header-icon { font-size: 1.3rem; }
 }
 
+/* ===== ホームへ戻るボタン（actresses.html）===== */
+.back-header-btn {
+    background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.15);
+    color: #fff; padding: 8px 14px; border-radius: 10px;
+    display: flex; align-items: center; gap: 7px;
+    font-weight: 700; font-size: .88rem; flex-shrink: 0;
+    transition: all .15s;
+}
+.back-header-btn:hover { background: rgba(255,255,255,.12); }
+.back-header-icon { font-size: 1.1rem; line-height: 1; }
+.back-header-label { color: #ccc; letter-spacing: .03em; }
+@media (max-width: 600px) {
+    .back-header-btn { padding: 8px 10px; }
+    .back-header-label { display: none; }
+    .back-header-icon { font-size: 1.3rem; }
+}
+
 /* ===== お気に入りヘッダーボタン ===== */
 .fav-header-btn {
     position: relative;

@@ -460,7 +460,7 @@ function renderWorks(pg) {
             ${img ? `<img src="${img}" alt="${title}" loading="lazy">` : '<div style="height:100%;display:flex;align-items:center;justify-content:center;background:#111;color:#333;font-size:2rem">🎬</div>'}
             ${sampleUrl ? `<button class="card-sample-btn" onclick="event.stopPropagation();openSample('${sampleUrl}','${title}')" title="サンプル再生">▶</button>` : ''}
             <button class="fav-btn ${isFav?'active':''}" data-cid="${cid}"
-              onclick="event.stopPropagation();toggleFav(this,'${cid}',event)">${isFav?'⭐':'☆'}</button>
+              onclick="event.stopPropagation();toggleFav(this,'${cid}')">${isFav?'⭐':'☆'}</button>
           </div>
           <div class="card-body">
             <div class="card-title">${title}</div>

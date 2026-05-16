@@ -1,5 +1,5 @@
 /* ===== FANZA Service Worker ===== */
-const CACHE  = 'fanza-v24';
+const CACHE  = 'fanza-v25';
 const STATIC = [
     '/fanza-site/',
     '/fanza-site/home.html',

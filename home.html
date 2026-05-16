@@ -84,17 +84,6 @@
 </div>
 </div>
 
-<!-- 戻るボタン（同一サイトから来たときのみ表示） -->
-<div class="page-back-bar" id="homeBackBar" style="display:none">
-  <button class="back-btn" onclick="history.back()">← 戻る</button>
-</div>
-<script>
-// 同一オリジンからの遷移のみ戻るボタンを表示（直接アクセス時は非表示）
-if (document.referrer && new URL(document.referrer).origin === location.origin) {
-    document.getElementById('homeBackBar').style.display = '';
-}
-</script>
-
 <div class="ticker">
   <div class="ticker-label">🔥 INFO</div>
   <div class="ticker-wrap">
@@ -132,13 +121,14 @@ if (document.referrer && new URL(document.referrer).origin === location.origin) 
   </div>
 </div>
 
-<!-- 最近見た作品 -->
-<section class="actress-section" id="historySection" style="display:none">
+<!-- 最近見た作品（折りたたみ式・デフォルト閉じ） -->
+<section class="actress-section section-collapsible" id="historySection" style="display:none">
   <div class="actress-section-inner">
-    <div class="actress-section-header">
-      <span class="actress-section-title">🕐 最近見た作品</span>
+    <div class="actress-section-header collapsible-header" onclick="App.toggleHistory()">
+      <span class="actress-section-title">🕐 最近見た作品 <span class="collapse-count" id="historyCount"></span></span>
+      <span class="collapse-arrow" id="historyArrow">▼</span>
     </div>
-    <div class="actress-scroll" id="historyList"></div>
+    <div class="actress-scroll collapsible-body" id="historyList" style="display:none"></div>
   </div>
 </section>
 

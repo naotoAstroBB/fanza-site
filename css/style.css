@@ -501,6 +501,27 @@ a:hover { color: #fff; }
 .share-icon-x  { font-family: "Helvetica Neue","Arial Black",sans-serif; font-weight: 900; font-size: 1.15rem; letter-spacing: -.05em; }
 .share-icon-fb { font-family: "Georgia","Times New Roman",serif; font-style: italic; font-weight: 900; font-size: 1.2rem; }
 
+/* ===== 折りたたみセクション ===== */
+.collapsible-header {
+    cursor: pointer;
+    user-select: none;
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4px 0;
+    transition: opacity .15s;
+}
+.collapsible-header:hover { opacity: .85; }
+.collapse-arrow {
+    color: var(--mute); font-size: .85rem;
+    margin-left: 8px; transition: transform .2s;
+    flex-shrink: 0;
+}
+.collapse-count {
+    color: var(--mute); font-size: .8rem;
+    font-weight: 400; margin-left: 6px;
+}
+
 /* ===== 戻るボタン（全ページ共通） ===== */
 .page-back-bar {
     max-width: 1280px; margin: 0 auto;

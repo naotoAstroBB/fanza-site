@@ -264,9 +264,11 @@ const App = {
         // 履歴
         const hist = Hist.get();
         const histSection = document.getElementById('historySection');
+        const histCount   = document.getElementById('historyCount');
         if (histSection) {
             if (hist.length) {
                 histSection.style.display = '';
+                if (histCount) histCount.textContent = `(${hist.length}件)`;
                 this.renderMiniCards('historyList', hist, 'hist');
             } else {
                 histSection.style.display = 'none';
@@ -297,6 +299,18 @@ const App = {
         } else {
             badge.style.display = 'none';
         }
+    },
+
+    // ===== 「最近見た作品」セクションの折りたたみ =====
+    toggleHistory() {
+        const list  = document.getElementById('historyList');
+        const arrow = document.getElementById('historyArrow');
+        if (!list) return;
+        const isOpen = list.style.display !== 'none';
+        list.style.display  = isOpen ? 'none' : '';
+        if (arrow) arrow.textContent = isOpen ? '▼' : '▲';
+        // 状態を記憶
+        try { localStorage.setItem('historyExpanded', String(!isOpen)); } catch(e) {}
     },
 
     toggleFavPanel() {

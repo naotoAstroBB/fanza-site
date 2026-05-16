@@ -735,7 +735,7 @@ const App = {
                class="card-actress-link" onclick="event.stopPropagation()">${this.esc(a.name)}</a>`
         ).join(' / ');
 
-        const likeCount = Like.count(item.content_id);
+        const isLiked = Like.has(item.content_id);
         return `
         <div class="product-card" onclick="location.href='product.html?cid=${this.esc(item.content_id)}&floor=${this.floor}'">
           <div class="card-img-wrap">
@@ -755,10 +755,10 @@ const App = {
             ${actressLinks ? `<div class="card-actress">${actressLinks}</div>` : ''}
             <div class="card-bottom">
               ${stars ? `<div class="card-review"><span class="stars">${stars}</span></div>` : ''}
-              <button class="like-btn ${likeCount > 0 ? 'active' : ''}" data-cid="${this.esc(item.content_id)}"
+              <button class="like-btn ${isLiked ? 'active' : ''}" data-cid="${this.esc(item.content_id)}"
                 onclick="event.stopPropagation();App.toggleLike(this,'${this.esc(item.content_id)}')">
-                <span class="like-icon">❤️</span>
-                <span class="like-label">${likeCount > 0 ? likeCount : 'いいね'}</span>
+                <span class="like-icon">${isLiked ? '❤️' : '🤍'}</span>
+                <span class="like-label">いいね</span>
               </button>
             </div>
             ${review?.count ? `<div class="card-review" style="margin-bottom:6px">${avg.toFixed(1)} (${review.count}件)</div>` : ''}
@@ -769,14 +769,12 @@ const App = {
         </div>`;
     },
 
-    // ===== いいね（累計カウント）=====
+    // ===== いいね（トグル）=====
     toggleLike(btn, cid) {
-        const n = Like.add(cid);
-        btn.classList.add('active');
-        const iconEl  = btn.querySelector('.like-icon');
-        const labelEl = btn.querySelector('.like-label');
-        if (iconEl)  iconEl.textContent  = '❤️';
-        if (labelEl) labelEl.textContent = n;
+        const isNow = Like.toggle(cid);
+        btn.classList.toggle('active', isNow);
+        const iconEl = btn.querySelector('.like-icon');
+        if (iconEl) iconEl.textContent = isNow ? '❤️' : '🤍';
         btn.animate([{ transform: 'scale(1.4)' }, { transform: 'scale(1)' }],
             { duration: 250, easing: 'ease-out' });
     },

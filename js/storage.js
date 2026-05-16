@@ -70,44 +70,38 @@ const Hist = {
     }
 };
 
-// ===== いいね管理（累計カウント方式）=====
+// ===== いいね管理（トグル方式：1ユーザー1いいね）=====
 const Like = {
     KEY: 'fanza_likes',
-    _data: null,
+    _set: null,
 
     _load() {
-        if (!this._data) {
+        if (!this._set) {
             try {
-                const raw = JSON.parse(localStorage.getItem(this.KEY) || '{}');
+                const raw = JSON.parse(localStorage.getItem(this.KEY) || '[]');
                 if (Array.isArray(raw)) {
-                    // 後方互換: 旧配列形式 → cid: 1 に変換
-                    this._data = {};
-                    for (const m of raw) {
-                        const cid = typeof m === 'string' ? m : m?.cid;
-                        if (cid) this._data[String(cid)] = 1;
-                    }
+                    this._set = new Set(raw.map(m => typeof m === 'string' ? m : m?.cid).filter(Boolean));
                 } else {
-                    this._data = raw;
+                    // 後方互換: 旧オブジェクト形式 {cid: count} → Set に変換
+                    this._set = new Set(Object.keys(raw));
                 }
-            } catch(e) { this._data = {}; }
+            } catch(e) { this._set = new Set(); }
         }
-        return this._data;
+        return this._set;
     },
 
     _save() {
-        localStorage.setItem(this.KEY, JSON.stringify(this._data));
+        localStorage.setItem(this.KEY, JSON.stringify([...this._set]));
     },
 
-    count(cid) {
-        return this._load()[String(cid)] || 0;
+    has(cid) {
+        return this._load().has(String(cid));
     },
 
-    add(cid) {
-        const d = this._load();
-        const id = String(cid);
-        d[id] = (d[id] || 0) + 1;
-        this._save();
-        return d[id];
+    toggle(cid) {
+        const s = this._load(), id = String(cid);
+        if (s.has(id)) { s.delete(id); this._save(); return false; }
+        s.add(id); this._save(); return true;
     }
 };
 

@@ -1049,6 +1049,38 @@ a:hover { color: #fff; }
 /* ===== セクションヘッダー拡張 ===== */
 .section-header { margin-bottom: 4px; }
 
+/* ===== いいねヘッダーボタン ===== */
+.like-header-btn {
+    position: relative;
+    background: linear-gradient(135deg, rgba(255,51,102,.1), rgba(255,51,102,.05));
+    border: 1px solid rgba(255,51,102,.35);
+    color: #fff; cursor: pointer;
+    padding: 8px 14px; border-radius: 10px;
+    display: flex; align-items: center; gap: 7px;
+    transition: all .15s; flex-shrink: 0;
+    font-weight: 700; font-size: .88rem;
+}
+.like-header-btn:hover {
+    background: linear-gradient(135deg, rgba(255,51,102,.25), rgba(255,51,102,.15));
+    border-color: var(--accent);
+    transform: translateY(-1px);
+}
+.like-header-icon { font-size: 1.1rem; line-height: 1; }
+.like-header-label { color: #ffd5dd; letter-spacing: .03em; }
+.like-badge {
+    background: var(--accent); color: #fff;
+    font-size: .7rem; font-weight: 900;
+    min-width: 20px; height: 20px;
+    border-radius: 10px; padding: 0 6px;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 2px 6px rgba(255,51,102,.4);
+}
+@media (max-width: 600px) {
+    .like-header-btn { padding: 8px 10px; gap: 5px; }
+    .like-header-label { display: none; }
+    .like-header-icon { font-size: 1.3rem; }
+}
+
 /* ===== お気に入りヘッダーボタン ===== */
 .fav-header-btn {
     position: relative;

@@ -487,7 +487,8 @@ function toggleFav(btn, cid) {
 }
 
 function toggleLike(btn, cid) {
-    const isNow = Like.toggle(cid);
+    const item  = allWorks.find(i => i.content_id === cid);
+    const isNow = item ? Like.toggle(item, floor) : Like.toggle(cid);
     btn.classList.toggle('active', isNow);
     const iconEl  = btn.querySelector('.like-icon');
     const labelEl = btn.querySelector('.like-label');

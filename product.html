@@ -308,7 +308,12 @@ function copyShareLink(btn, encodedUrl) {
 
 // ===== いいねトグル（詳細ページ）=====
 function toggleLikeDetail(btn, cid) {
-    const isNow = Like.toggle(cid);
+    const img   = document.querySelector('.detail-img img')?.src || '';
+    const title = document.querySelector('.detail-title')?.textContent || '';
+    const url   = document.querySelector('.btn-buy-large')?.href || '#';
+    const p     = new URLSearchParams(location.search);
+    const meta  = { content_id: cid, title, imageURL: { list: img }, affiliateURL: url };
+    const isNow = Like.toggle(meta, p.get('floor') || 'videoa');
     btn.classList.toggle('active', isNow);
     const iconEl  = document.getElementById('likeBtnIcon');
     const labelEl = document.getElementById('likeBtnLabel');

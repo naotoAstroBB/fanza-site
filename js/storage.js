@@ -74,33 +74,48 @@ const Hist = {
 const Like = {
     KEY: 'fanza_likes',
 
-    _set: null,
-
-    _load() {
-        if (!this._set) {
-            try { this._set = new Set(JSON.parse(localStorage.getItem(this.KEY) || '[]')); }
-            catch(e) { this._set = new Set(); }
-        }
-        return this._set;
+    get() {
+        try {
+            const arr = JSON.parse(localStorage.getItem(this.KEY) || '[]');
+            // 後方互換: 旧版はCID文字列配列
+            return arr.map(m => typeof m === 'string'
+                ? { cid: m, title: '', img: '', url: '#', floor: 'videoa', ts: 0 }
+                : m);
+        } catch(e) { return []; }
     },
 
-    _save() {
-        localStorage.setItem(this.KEY, JSON.stringify([...this._set]));
+    _save(list) {
+        localStorage.setItem(this.KEY, JSON.stringify(list));
     },
 
     has(cid) {
-        return this._load().has(String(cid));
+        return this.get().some(m => m.cid === String(cid));
     },
 
-    toggle(cid) {
-        const s = this._load();
-        const id = String(cid);
-        if (s.has(id)) { s.delete(id); this._save(); return false; }
-        s.add(id); this._save(); return true;
+    toggle(item, floor) {
+        const cid  = String(typeof item === 'object' ? item.content_id : item);
+        const all  = this.get();
+        const list = all.filter(m => m.cid !== cid);
+        if (list.length < all.length) { this._save(list); return false; }
+        list.unshift({
+            cid,
+            title: typeof item === 'object' ? (item.title || '') : '',
+            img:   typeof item === 'object' ? (item.imageURL?.list || item.imageURL?.small || '') : '',
+            url:   typeof item === 'object' ? (item.affiliateURL || item.URL || '#') : '#',
+            floor: floor || 'videoa',
+            ts:    Date.now()
+        });
+        if (list.length > 200) list.length = 200;
+        this._save(list);
+        return true;
+    },
+
+    remove(cid) {
+        this._save(this.get().filter(m => m.cid !== String(cid)));
     },
 
     count() {
-        return this._load().size;
+        return this.get().length;
     }
 };
 

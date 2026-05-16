@@ -501,6 +501,168 @@ a:hover { color: #fff; }
 .share-icon-x  { font-family: "Helvetica Neue","Arial Black",sans-serif; font-weight: 900; font-size: 1.15rem; letter-spacing: -.05em; }
 .share-icon-fb { font-family: "Georgia","Times New Roman",serif; font-style: italic; font-weight: 900; font-size: 1.2rem; }
 
+/* ===== 女優ランキング（ポディウム＋グリッド・斬新レイアウト）===== */
+.actress-podium-wrap {
+    display: block;
+    padding: 6px 0;
+    overflow: visible;
+}
+.actress-podium {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-bottom: 18px;
+}
+.actress-podium-card {
+    position: relative;
+    background: linear-gradient(180deg, var(--bg3), var(--bg2));
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px 12px 14px;
+    text-align: center;
+    color: inherit;
+    text-decoration: none;
+    transition: all .2s;
+    overflow: hidden;
+}
+.actress-podium-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 28px rgba(255,51,102,.18);
+    border-color: var(--accent);
+    color: inherit;
+}
+.actress-podium-medal {
+    position: absolute; top: 6px; right: 8px;
+    font-size: 1.7rem; line-height: 1;
+    filter: drop-shadow(0 2px 6px rgba(0,0,0,.5));
+}
+.actress-podium-rank-num {
+    position: absolute; top: 4px; left: 12px;
+    font-size: 2.6rem; font-weight: 900;
+    line-height: 1; opacity: .15;
+    pointer-events: none;
+}
+.actress-podium-photo {
+    width: 110px; height: 110px;
+    margin: 6px auto 12px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid #444;
+    box-shadow: 0 4px 16px rgba(0,0,0,.5);
+}
+.actress-podium-photo img {
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
+}
+.actress-no-img-podium {
+    width: 100%; height: 100%;
+    background: linear-gradient(135deg, #4a1530, #8b1a3a);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2.2rem; font-weight: 900; color: rgba(255,255,255,.75);
+    user-select: none;
+}
+.actress-podium-name {
+    font-size: 1rem; font-weight: 700; color: #fff;
+    margin-bottom: 4px; line-height: 1.3;
+}
+.actress-podium-meta {
+    font-size: .74rem; color: var(--mute); margin-bottom: 3px;
+}
+.actress-podium-measure {
+    font-size: .72rem; color: #ff8aaa; font-weight: 600;
+}
+/* 金/銀/銅アクセント */
+.actress-rank-1 {
+    border-color: rgba(255,215,0,.5);
+    background: linear-gradient(180deg, rgba(255,215,0,.08), var(--bg2));
+}
+.actress-rank-1 .actress-podium-photo { border-color: #ffd700; box-shadow: 0 4px 16px rgba(255,215,0,.3); }
+.actress-rank-1 .actress-podium-rank-num { color: #ffd700; }
+.actress-rank-2 {
+    border-color: rgba(192,192,192,.4);
+    background: linear-gradient(180deg, rgba(192,192,192,.06), var(--bg2));
+}
+.actress-rank-2 .actress-podium-photo { border-color: #c0c0c0; box-shadow: 0 4px 16px rgba(192,192,192,.25); }
+.actress-rank-2 .actress-podium-rank-num { color: #c0c0c0; }
+.actress-rank-3 {
+    border-color: rgba(205,127,50,.4);
+    background: linear-gradient(180deg, rgba(205,127,50,.06), var(--bg2));
+}
+.actress-rank-3 .actress-podium-photo { border-color: #cd7f32; box-shadow: 0 4px 16px rgba(205,127,50,.25); }
+.actress-rank-3 .actress-podium-rank-num { color: #cd7f32; }
+
+/* 4位以降のリストグリッド（FANZA風） */
+.actress-list-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 8px;
+}
+.actress-list-card {
+    display: flex; align-items: center; gap: 12px;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 8px 12px;
+    color: inherit; text-decoration: none;
+    transition: all .15s;
+}
+.actress-list-card:hover {
+    border-color: var(--accent);
+    background: #1f1f1f;
+    color: inherit;
+    transform: translateX(2px);
+}
+.actress-list-rank {
+    font-size: 1.5rem; font-weight: 900;
+    color: var(--mute);
+    min-width: 32px; text-align: center;
+    line-height: 1; font-family: "Georgia", serif;
+}
+.actress-list-photo-wrap { flex-shrink: 0; }
+.actress-list-photo {
+    width: 50px; height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #333;
+    display: block;
+}
+.actress-no-img-list {
+    background: linear-gradient(135deg, #4a1530, #8b1a3a);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; font-weight: 900; color: rgba(255,255,255,.75);
+    user-select: none;
+}
+.actress-list-info { flex: 1; min-width: 0; overflow: hidden; }
+.actress-list-name {
+    font-size: .92rem; font-weight: 700; color: #fff;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    margin-bottom: 2px;
+}
+.actress-list-meta {
+    font-size: .72rem; color: var(--mute);
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.actress-list-measure {
+    font-size: .7rem; color: #ff8aaa; font-weight: 600;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+
+@media (max-width: 600px) {
+    .actress-podium { gap: 6px; }
+    .actress-podium-card { padding: 14px 4px 10px; border-radius: 10px; }
+    .actress-podium-medal { font-size: 1.3rem; top: 4px; right: 4px; }
+    .actress-podium-rank-num { font-size: 1.8rem; top: 2px; left: 6px; }
+    .actress-podium-photo { width: 70px; height: 70px; border-width: 2px; }
+    .actress-no-img-podium { font-size: 1.4rem; }
+    .actress-podium-name { font-size: .82rem; }
+    .actress-podium-meta { font-size: .65rem; }
+    .actress-podium-measure { font-size: .62rem; }
+    .actress-list-grid { grid-template-columns: 1fr; gap: 6px; }
+    .actress-list-card { padding: 7px 10px; }
+    .actress-list-rank { font-size: 1.2rem; min-width: 26px; }
+    .actress-list-photo { width: 44px; height: 44px; }
+}
+
 /* ===== 折りたたみセクション ===== */
 .collapsible-header {
     cursor: pointer;

@@ -982,8 +982,12 @@ const App = {
         if (!el) return;
         try {
             const data     = await DMM.fetchActress(type);
-            const actresses = data?.result?.actress || [];
-            if (!actresses.length) { el.innerHTML = '<span class="actress-empty">データ準備中</span>'; return; }
+            const actresses = (data?.result?.actress || []).slice(0, 24);
+            if (!actresses.length) {
+                el.className = 'actress-scroll';
+                el.innerHTML = '<span class="actress-empty">データ準備中</span>';
+                return;
+            }
 
             // 年齢計算
             const calcAge = (bday) => {
@@ -996,39 +1000,76 @@ const App = {
                 return (age > 0 && age < 70) ? age : null;
             };
 
-            el.innerHTML = actresses.map((a, i) => {
-                const img  = a.imageURL?.small || '';
-                const name = this.esc(a.name || '');
-                const href = `actress.html?id=${this.esc(String(a.id))}&name=${encodeURIComponent(a.name || '')}`;
-                const badge = showRank
-                    ? `<div class="actress-rank-badge">${i + 1}位</div>`
-                    : `<div class="actress-new-badge">NEW</div>`;
-
-                // スペック情報
+            const specs = (a) => {
                 const age   = calcAge(a.birthday);
                 const bust  = a.bust  ? `B${a.bust}` + (a.cup ? `(${a.cup})` : '') : '';
                 const waist = a.waist ? `W${a.waist}` : '';
                 const hip   = a.hip   ? `H${a.hip}`   : '';
-                const measurements = [bust, waist, hip].filter(Boolean).join(' ');
                 const height = a.height ? `${a.height}cm` : '';
                 const blood  = a.blood_type && a.blood_type !== '他' ? `${a.blood_type}型` : '';
-                const pref   = a.prefectures ? this.esc(a.prefectures) : '';
+                return {
+                    meta: [age ? age + '歳' : '', blood, height].filter(Boolean).join(' · '),
+                    measure: [bust, waist, hip].filter(Boolean).join(' '),
+                };
+            };
 
-                const nameInitial = (a.name || '').charAt(0) || '♀';
+            // ===== トップ3：ポディウムカード（金/銀/銅）=====
+            const renderPodium = (a, idx) => {
+                const img  = a.imageURL?.large || a.imageURL?.small || '';
+                const name = this.esc(a.name || '');
+                const href = `actress.html?id=${this.esc(String(a.id))}&name=${encodeURIComponent(a.name || '')}`;
+                const initial = (a.name || '').charAt(0) || '♀';
+                const sp = specs(a);
+                const medals = ['🥇','🥈','🥉'];
                 return `
-                <a class="actress-card" href="${href}">
-                    <div class="actress-photo">
-                        ${img ? `<img src="${this.esc(img)}" alt="${name}" loading="lazy">` : `<div class="actress-no-img">${nameInitial}</div>`}
-                        ${badge}
+                <a class="actress-podium-card actress-rank-${idx + 1}" href="${href}">
+                    <div class="actress-podium-medal">${medals[idx]}</div>
+                    <div class="actress-podium-rank-num">${idx + 1}</div>
+                    <div class="actress-podium-photo">
+                        ${img ? `<img src="${this.esc(img)}" alt="${name}" loading="lazy">` : `<div class="actress-no-img-podium">${initial}</div>`}
                     </div>
-                    <div class="actress-name">${name}</div>
-                    ${age || blood ? `<div class="actress-meta">${[age ? age + '歳' : '', blood].filter(Boolean).join(' · ')}</div>` : ''}
-                    ${height || measurements ? `<div class="actress-stats">${[height, measurements].filter(Boolean).join(' ')}</div>` : ''}
-                    ${pref ? `<div class="actress-pref">📍${pref}</div>` : ''}
+                    <div class="actress-podium-name">${name}</div>
+                    ${sp.meta    ? `<div class="actress-podium-meta">${sp.meta}</div>` : ''}
+                    ${sp.measure ? `<div class="actress-podium-measure">${sp.measure}</div>` : ''}
                 </a>`;
-            }).join('');
+            };
+
+            // ===== 4位以降：リストグリッド（FANZAスタイル）=====
+            const renderListCard = (a, idx) => {
+                const img  = a.imageURL?.small || '';
+                const name = this.esc(a.name || '');
+                const href = `actress.html?id=${this.esc(String(a.id))}&name=${encodeURIComponent(a.name || '')}`;
+                const initial = (a.name || '').charAt(0) || '♀';
+                const sp = specs(a);
+                const rankLabel = showRank ? `${idx + 1}` : '★';
+                return `
+                <a class="actress-list-card" href="${href}">
+                    <div class="actress-list-rank">${rankLabel}</div>
+                    <div class="actress-list-photo-wrap">
+                        ${img ? `<img class="actress-list-photo" src="${this.esc(img)}" alt="${name}" loading="lazy">` : `<div class="actress-list-photo actress-no-img-list">${initial}</div>`}
+                    </div>
+                    <div class="actress-list-info">
+                        <div class="actress-list-name">${name}</div>
+                        ${sp.meta    ? `<div class="actress-list-meta">${sp.meta}</div>` : ''}
+                        ${sp.measure ? `<div class="actress-list-measure">${sp.measure}</div>` : ''}
+                    </div>
+                </a>`;
+            };
+
+            const top3 = showRank ? actresses.slice(0, 3) : [];
+            const rest = showRank ? actresses.slice(3)    : actresses;
+
+            // コンテナクラスを横スクロール→ポディウム+グリッドに切替
+            el.className = 'actress-podium-wrap';
+            el.innerHTML = `
+                ${top3.length ? `<div class="actress-podium">${top3.map((a, i) => renderPodium(a, i)).join('')}</div>` : ''}
+                ${rest.length ? `<div class="actress-list-grid">${rest.map((a, i) => renderListCard(a, showRank ? i + 3 : i)).join('')}</div>` : ''}
+            `;
         } catch(e) {
-            if (el) el.innerHTML = '<span class="actress-empty">準備中</span>';
+            if (el) {
+                el.className = 'actress-scroll';
+                el.innerHTML = '<span class="actress-empty">準備中</span>';
+            }
         }
     },
 

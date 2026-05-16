@@ -931,6 +931,23 @@ a:hover { color: #fff; }
 .bottom-nav-item.active,
 .bottom-nav-item:hover { color: var(--accent); }
 
+/* ===== ジャンルアクティブバッジ ===== */
+.genre-active-badge {
+    margin-bottom: 10px;
+}
+.genre-badge-chip {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,51,102,.12); border: 1.5px solid rgba(255,51,102,.4);
+    color: #ff99bb; font-size: .85rem; font-weight: 700;
+    padding: 6px 12px; border-radius: 20px;
+}
+.genre-badge-clear {
+    background: none; border: none; color: #ff6699;
+    cursor: pointer; font-size: .9rem; padding: 0;
+    line-height: 1; transition: color .15s;
+}
+.genre-badge-clear:hover { color: #fff; }
+
 /* ===== ランキングタブ ===== */
 .rank-tabs {
     display: flex; gap: 4px; margin-bottom: 16px;

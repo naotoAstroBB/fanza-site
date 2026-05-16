@@ -434,6 +434,13 @@ const App = {
     _prevRankMap: {},  // content_id → 前回の順位
 
     _floorLabels: { videoa:'動画（アダルト）', anime:'アニメ動画', book:'マンガ・電子書籍', goods:'グッズ・通販', mono:'グッズ・通販' },
+    _genreLabels: {
+        '2001':'巨乳','1027':'美少女','6533':'ハイビジョン','4024':'素人',
+        '5001':'中出し','1039':'人妻・主婦','1001':'OL','4031':'コスプレ',
+        '6006':'新人','1034':'ギャル','4022':'外国人','4001':'SM',
+        '4006':'ナンパ','2005':'貧乳','1018':'ロリ・女子校生','1016':'女教師',
+        '4002':'近親相姦','1028':'黒人','4007':'企画','5002':'フェラ',
+    },
 
     async fetchProducts() {
         const grid = document.getElementById('productGrid');
@@ -839,16 +846,39 @@ const App = {
     updateTitle(result) {
         const el = document.getElementById('sectionTitle');
         if (!el) return;
-        const labels = this._floorLabels;
+        let prefix;
+        if (this.genre) {
+            prefix = (this._genreLabels[this.genre] || 'ジャンル') + ' ジャンル';
+        } else {
+            prefix = this._floorLabels[this.floor] || '';
+        }
         const kw = this.keyword ? ` "` + this.keyword + `"` : '';
-        el.textContent = (labels[this.floor] || '') + kw + ' — ' + result.total_count.toLocaleString() + '件';
+        el.textContent = prefix + kw + ' — ' + result.total_count.toLocaleString() + '件';
+        this._updateGenreBadge();
+    },
+
+    _updateGenreBadge() {
+        const bar = document.getElementById('genreActiveBadge');
+        if (!bar) return;
+        if (this.genre) {
+            const name = this._genreLabels[this.genre] || 'ジャンル';
+            bar.innerHTML = `<span class="genre-badge-chip">🏷️ ${name} <button class="genre-badge-clear" onclick="App.clearFilter()">✕</button></span>`;
+            bar.style.display = '';
+        } else {
+            bar.style.display = 'none';
+        }
     },
 
     doSearch() {
         const input = document.getElementById('searchInput');
         if (input) this.keyword = input.value.trim();
+        this.genre    = '';
         this.page     = 1;
         this.showSale = false;
+        // ジャンルchipのactive状態もリセット
+        document.querySelectorAll('.genre-chip').forEach(c => c.classList.toggle('active', c.dataset.genre === ''));
+        document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
+        this._updateGenreBadge();
         this.fetchProducts();
     },
 
@@ -887,10 +917,15 @@ const App = {
     },
 
     setGenre(id, el) {
-        this.genre    = id;
-        this.floor    = 'videoa';
-        this.page     = 1;
-        this.showSale = false;
+        this.genre      = id;
+        this.floor      = 'videoa';
+        this.keyword    = '';   // キーワードをクリアしてgenreフィルターを確実に適用
+        this.page       = 1;
+        this.showSale   = false;
+        this.singleWork = false; // 単体作品フィルタもリセット
+        // 検索inputもクリア
+        const searchEl = document.getElementById('searchInput');
+        if (searchEl) searchEl.value = '';
         // サイドバーのアクティブ更新
         if (el) {
             el.closest('.sidebar-section').querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
@@ -905,10 +940,13 @@ const App = {
     },
 
     clearFilter(el) {
-        this.genre    = '';
-        this.keyword  = '';
-        this.page     = 1;
-        this.showSale = false;
+        this.genre      = '';
+        this.keyword    = '';
+        this.singleWork = false;
+        this.page       = 1;
+        this.showSale   = false;
+        const searchEl = document.getElementById('searchInput');
+        if (searchEl) searchEl.value = '';
         if (el) {
             el.closest('.sidebar-section').querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
             el.classList.add('active');
@@ -916,6 +954,7 @@ const App = {
         document.querySelectorAll('.genre-chip').forEach(c => {
             c.classList.toggle('active', c.dataset.genre === '');
         });
+        this._updateGenreBadge();
         this.updateRankTabs();
         this.fetchProducts();
     },

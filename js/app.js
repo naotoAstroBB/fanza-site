@@ -741,7 +741,7 @@ const App = {
             ${showChange ? changeBadge : ''}
             ${campaign ? `<span class="badge-sale">SALE</span>` : (isNew ? `<span class="badge-new">NEW</span>` : '')}
             ${sampleBtnHtml}
-            <button class="fav-btn ${isFav ? 'active' : ''}" title="${isFav ? 'お気に入り解除' : 'お気に入りに追加'}"
+            <button class="fav-btn ${isFav ? 'active' : ''}" data-cid="${this.esc(item.content_id)}" title="${isFav ? 'お気に入り解除' : 'お気に入りに追加'}"
               onclick="event.stopPropagation();App.toggleFav(this,'${this.esc(item.content_id)}')">${isFav ? '⭐' : '☆'}</button>
           </div>
           <div class="card-body">

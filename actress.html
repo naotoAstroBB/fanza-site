@@ -453,18 +453,24 @@ function renderWorks(pg) {
         const stars     = avg ? '★'.repeat(Math.round(avg)) + '☆'.repeat(5 - Math.round(avg)) : '';
         const mv        = item.sampleMovieURL;
         const sampleUrl = mv ? (mv.size_560_360 || mv.size_476_306 || mv.size_644_414 || '') : '';
+        const isLiked = Like.has(item.content_id);
         return `
         <div class="product-card" onclick="location.href='product.html?cid=${cid}&floor=${esc(floor)}'">
           <div class="card-img-wrap">
             ${img ? `<img src="${img}" alt="${title}" loading="lazy">` : '<div style="height:100%;display:flex;align-items:center;justify-content:center;background:#111;color:#333;font-size:2rem">🎬</div>'}
             ${sampleUrl ? `<button class="card-sample-btn" onclick="event.stopPropagation();openSample('${sampleUrl}','${title}')" title="サンプル再生">▶</button>` : ''}
-            <button class="fav-btn ${isFav?'active':''}"
-              onclick="event.stopPropagation();toggleFav(this,'${cid}',event)">${isFav?'❤️':'🤍'}</button>
+            <button class="fav-btn ${isFav?'active':''}" data-cid="${cid}"
+              onclick="event.stopPropagation();toggleFav(this,'${cid}',event)">${isFav?'⭐':'☆'}</button>
           </div>
           <div class="card-body">
             <div class="card-title">${title}</div>
             <div class="card-bottom">
               ${stars ? `<div class="card-review"><span class="stars">${stars}</span></div>` : ''}
+              <button class="like-btn ${isLiked?'active':''}"
+                onclick="event.stopPropagation();toggleLike(this,'${cid}')">
+                <span class="like-icon">${isLiked?'❤️':'🤍'}</span>
+                <span class="like-label">${isLiked?'いいね済':'いいね'}</span>
+              </button>
             </div>
             <a class="btn-buy" href="${url}" target="_blank" rel="noopener" onclick="event.stopPropagation()">動画を見る →</a>
           </div>
@@ -477,7 +483,17 @@ function toggleFav(btn, cid) {
     if (!item) return;
     const isNow = Fav.toggle(item, floor);
     btn.classList.toggle('active', isNow);
-    btn.textContent = isNow ? '❤️' : '🤍';
+    btn.textContent = isNow ? '⭐' : '☆';
+}
+
+function toggleLike(btn, cid) {
+    const isNow = Like.toggle(cid);
+    btn.classList.toggle('active', isNow);
+    const iconEl  = btn.querySelector('.like-icon');
+    const labelEl = btn.querySelector('.like-label');
+    if (iconEl)  iconEl.textContent  = isNow ? '❤️' : '🤍';
+    if (labelEl) labelEl.textContent = isNow ? 'いいね済' : 'いいね';
+    btn.animate([{transform:'scale(1.4)'},{transform:'scale(1)'}],{duration:200,easing:'ease-out'});
 }
 
 function renderPagination() {

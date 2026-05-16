@@ -370,10 +370,6 @@ const App = {
             const items = data?.result?.items;
             if (!items?.length) return;
 
-            const total = data.result.total_count;
-            const cnt = document.getElementById('todayCount');
-            if (cnt) cnt.textContent = total.toLocaleString() + '件';
-
             const top = items[0];
             const heroMain = document.querySelector('.hero-main');
             const imgLarge = top.imageURL?.large || top.imageURL?.list || '';

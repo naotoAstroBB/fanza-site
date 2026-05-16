@@ -216,11 +216,11 @@ async function loadProduct(){
             </div>` : ''}
 
             <dl class="detail-meta">
-              ${(item.iteminfo?.actress||[]).length ? `<dt>出演女優</dt><dd>${(item.iteminfo.actress).map(a=>`<a href="home.html?floor=${floor}&article=actress&article_id=${esc(String(a.id))}">${esc(a.name)}</a>`).join(' ')}</dd>` : ''}
-              ${(item.iteminfo?.maker||[]).length   ? `<dt>メーカー</dt><dd>${names(item.iteminfo.maker)}</dd>` : ''}
-              ${(item.iteminfo?.label||[]).length   ? `<dt>レーベル</dt><dd>${names(item.iteminfo.label)}</dd>` : ''}
-              ${(item.iteminfo?.series||[]).length  ? `<dt>シリーズ</dt><dd>${(item.iteminfo.series).map(s=>`<a href="home.html?floor=${floor}&article=series&article_id=${esc(String(s.id))}">${esc(s.name)}</a>`).join(' ')}</dd>` : ''}
-              ${(item.iteminfo?.genre||[]).length   ? `<dt>ジャンル</dt><dd>${(item.iteminfo.genre).map(g=>`<a href="home.html?floor=${floor}&article=genre&article_id=${esc(String(g.id))}">${esc(g.name)}</a>`).join(' ')}</dd>` : ''}
+              ${(item.iteminfo?.actress||[]).length ? `<dt>出演女優</dt><dd>${(item.iteminfo.actress).map(a=>`<a class="tag-link" href="actress.html?id=${esc(String(a.id))}&name=${encodeURIComponent(a.name)}">${esc(a.name)}</a>`).join('、 ')}</dd>` : ''}
+              ${(item.iteminfo?.maker||[]).length   ? `<dt>メーカー</dt><dd>${(item.iteminfo.maker).map(m=>`<a class="tag-link" href="home.html?keyword=${encodeURIComponent(m.name)}">${esc(m.name)}</a>`).join('、 ')}</dd>` : ''}
+              ${(item.iteminfo?.label||[]).length   ? `<dt>レーベル</dt><dd>${(item.iteminfo.label).map(l=>`<a class="tag-link" href="home.html?keyword=${encodeURIComponent(l.name)}">${esc(l.name)}</a>`).join('、 ')}</dd>` : ''}
+              ${(item.iteminfo?.series||[]).length  ? `<dt>シリーズ</dt><dd>${(item.iteminfo.series).map(s=>`<a class="tag-link" href="home.html?keyword=${encodeURIComponent(s.name)}">${esc(s.name)}</a>`).join('、 ')}</dd>` : ''}
+              ${(item.iteminfo?.genre||[]).length   ? `<dt>ジャンル</dt><dd class="genre-tag-list">${(item.iteminfo.genre).map(g=>`<a class="tag-chip" href="home.html?keyword=${encodeURIComponent(g.name)}">${esc(g.name)}</a>`).join('')}</dd>` : ''}
               ${item.volume ? `<dt>収録時間</dt><dd>${esc(String(item.volume))}分</dd>` : ''}
               ${item.date   ? `<dt>発売日</dt><dd>${esc(item.date.slice(0,10))}</dd>` : ''}
               ${item.content_id ? `<dt>品番</dt><dd>${esc(item.content_id)}</dd>` : ''}

@@ -434,6 +434,23 @@ const App = {
         const titleEl = document.getElementById('sectionTitle');
         if (titleEl) titleEl.textContent = (this._floorLabels[this.floor] || this.floor) + ' — 読み込み中...';
 
+        // ===== キーワード検索モード（全データ横断検索） =====
+        // 動画/アニメ/マンガ/グッズ/全ジャンル × rank/date/review 全variant
+        // タイトル・女優名・ジャンル名・シリーズ名・メーカー名のいずれかにヒットすれば対象
+        if (this.keyword) {
+            const items = await this._searchAllByKeyword(this.keyword);
+            // 並び替え（新作優先）
+            items.sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+            this._currentItems = items;
+            this.total = items.length;
+            const start = (this.page - 1) * this.hitsPerPage;
+            this.renderGrid(grid, items.slice(start, start + this.hitsPerPage), { icon:'🔍', text:`"${this.keyword}" に該当する作品はありません`, sub:'別のキーワードで検索してみてください' });
+            this.renderPagination();
+            if (titleEl) titleEl.textContent = `🔍 "${this.keyword}" — ${items.length}件`;
+            this.updateRankTabs();
+            return;
+        }
+
         const params = { floor: this.floor, sort: this.sort };
         if (this.genre) { params.article = 'genre'; params.article_id = this.genre; }
 
@@ -480,15 +497,6 @@ const App = {
                     parseFloat(b.review?.average || 0) - parseFloat(a.review?.average || 0));
             }
 
-            // キーワードフィルタ（クライアント側）
-            if (this.keyword) {
-                const kw = this.keyword.toLowerCase();
-                items = items.filter(item =>
-                    (item.title || '').toLowerCase().includes(kw) ||
-                    (item.iteminfo?.actress || []).some(a => a.name.includes(this.keyword))
-                );
-            }
-
             // 単体作品フィルタ（クライアント側）
             if (this.singleWork) {
                 items = items.filter(item =>
@@ -507,6 +515,53 @@ const App = {
             const msg = this._emptyMsg();
             grid.innerHTML = `<div class="loading"><p style="font-size:1.5rem;margin-bottom:12px">${msg.icon}</p><p>${msg.text}</p><p style="font-size:.8rem;color:var(--mute);margin-top:8px">${msg.sub}</p></div>`;
         }
+    },
+
+    // ===== キーワード全データ横断検索 =====
+    // sortFiles + floorSortFiles + genreFiles 全variant を並列ロードし
+    // title/actress/genre/series/maker/label のいずれかにヒットする商品を返す
+    async _searchAllByKeyword(keyword) {
+        const kw = keyword.toLowerCase();
+        // 検索対象ファイル全網羅（重複除去）
+        const floorSortVariants = [];
+        Object.values(DMM.floorSortFiles).forEach(map => {
+            Object.values(map).forEach(f => floorSortVariants.push(f));
+        });
+        const genreVariants = [];
+        Object.values(DMM.genreFiles).forEach(f => {
+            genreVariants.push(f);
+            genreVariants.push(f.replace('.json', '_date.json'));
+            genreVariants.push(f.replace('.json', '_review.json'));
+        });
+        const allFiles = [...new Set([
+            ...Object.values(DMM.sortFiles),
+            ...floorSortVariants,
+            ...genreVariants,
+        ])];
+
+        const results = await Promise.allSettled(
+            allFiles.map(f => DMM._loadFile(f).catch(() => null))
+        );
+        const seen = new Set();
+        const matches = [];
+        for (const r of results) {
+            if (r.status !== 'fulfilled' || !r.value) continue;
+            for (const item of (r.value?.result?.items || [])) {
+                if (seen.has(item.content_id)) continue;
+                const title     = (item.title || '');
+                const actresses = (item.iteminfo?.actress || []).map(a => a.name || '').join(' ');
+                const genres    = (item.iteminfo?.genre   || []).map(g => g.name || '').join(' ');
+                const series    = (item.iteminfo?.series  || []).map(s => s.name || '').join(' ');
+                const makers    = (item.iteminfo?.maker   || []).map(m => m.name || '').join(' ');
+                const labels    = (item.iteminfo?.label   || []).map(l => l.name || '').join(' ');
+                const haystack  = (title + ' ' + actresses + ' ' + genres + ' ' + series + ' ' + makers + ' ' + labels).toLowerCase();
+                if (haystack.includes(kw)) {
+                    seen.add(item.content_id);
+                    matches.push(item);
+                }
+            }
+        }
+        return matches;
     },
 
     // ===== セールフィルタ =====

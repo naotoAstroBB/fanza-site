@@ -90,8 +90,14 @@
 }
 .actress-genre-tag {
     background: var(--bg3); border: 1px solid var(--border);
-    border-radius: 12px; padding: 3px 10px;
-    font-size: .76rem; color: var(--mute);
+    border-radius: 12px; padding: 5px 12px;
+    font-size: .8rem; color: var(--mute);
+    text-decoration: none; cursor: pointer;
+    transition: all .15s;
+}
+.actress-genre-tag:hover {
+    background: var(--accent); border-color: var(--accent);
+    color: #fff;
 }
 
 /* アクションボタン */
@@ -389,7 +395,7 @@ async function loadWorks() {
         if (topGenres.length) {
             genreTagsEl.innerHTML = `
                 <div class="actress-genre-tags">
-                    ${topGenres.map(g => `<span class="actress-genre-tag">${esc(g)}</span>`).join('')}
+                    ${topGenres.map(g => `<a class="actress-genre-tag" href="home.html?keyword=${encodeURIComponent(g)}" title="「${esc(g)}」で検索">${esc(g)}</a>`).join('')}
                 </div>`;
         }
     }

@@ -1,16 +1,16 @@
 /* ===== FANZA Service Worker ===== */
-const CACHE  = 'fanza-v27';
+const CACHE  = 'fanza-v30';
 const STATIC = [
-    '/fanza-site/',
-    '/fanza-site/home.html',
-    '/fanza-site/product.html',
-    '/fanza-site/actress.html',
-    '/fanza-site/actresses.html',
-    '/fanza-site/index.html',
-    '/fanza-site/css/style.css',
-    '/fanza-site/js/storage.js',
-    '/fanza-site/js/dmm-api.js',
-    '/fanza-site/js/app.js',
+    '/',
+    '/home.html',
+    '/product.html',
+    '/actress.html',
+    '/actresses.html',
+    '/index.html',
+    '/css/style.css',
+    '/js/storage.js',
+    '/js/dmm-api.js',
+    '/js/app.js',
 ];
 
 // インストール：静的アセットをキャッシュ

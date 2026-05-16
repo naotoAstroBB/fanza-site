@@ -112,6 +112,15 @@ a:hover { color: #fff; }
 .nav-btn-sale:hover, .nav-btn-sale.active {
     color: #ffb366; border-bottom-color: #ff8a3d;
 }
+/* 女優ボタン */
+.nav-btn-actress {
+    color: #cc88ff;
+    font-weight: 700;
+    text-decoration: none;
+}
+.nav-btn-actress:hover, .nav-btn-actress.active {
+    color: #dd99ff; border-bottom-color: #cc88ff;
+}
 
 /* ===== メインレイアウト ===== */
 .page-wrapper {
@@ -238,7 +247,30 @@ a:hover { color: #fff; }
 .card-actress { font-size: .75rem; color: var(--accent2); margin-bottom: 4px; }
 .card-actress-link { color: var(--accent2); text-decoration: none; }
 .card-actress-link:hover { color: #fff; text-decoration: underline; }
-.card-bottom { display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px; }
+.card-bottom { display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px; gap: 4px; }
+
+/* ===== いいねボタン（カード内）===== */
+.like-btn {
+    display: inline-flex; align-items: center; gap: 3px;
+    background: none; border: 1px solid var(--border);
+    border-radius: 12px; padding: 3px 8px;
+    color: var(--text-mute); font-size: .72rem; font-weight: 600;
+    cursor: pointer; transition: all .15s; white-space: nowrap;
+    font-family: inherit; flex-shrink: 0;
+}
+.like-btn:hover {
+    border-color: rgba(255,51,102,.5); color: #ff99bb;
+    background: rgba(255,51,102,.08);
+}
+.like-btn.active {
+    border-color: rgba(255,51,102,.6); color: #ff6699;
+    background: rgba(255,51,102,.1);
+}
+.like-icon { font-size: .85rem; line-height: 1; }
+.like-label { line-height: 1; }
+@media (max-width: 600px) {
+    .like-btn { padding: 4px 8px; min-height: 28px; font-size: .7rem; }
+}
 .card-price { font-size: .9rem; font-weight: 700; color: #fff; }
 .card-review { font-size: .75rem; color: var(--text-mute); }
 .card-review .stars { color: #ffcc00; }
@@ -922,6 +954,23 @@ a:hover { color: #fff; }
 .bottom-nav-item.active,
 .bottom-nav-item:hover { color: var(--accent); }
 
+/* ===== ジャンルアクティブバッジ ===== */
+.genre-active-badge {
+    margin-bottom: 10px;
+}
+.genre-badge-chip {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,51,102,.12); border: 1.5px solid rgba(255,51,102,.4);
+    color: #ff99bb; font-size: .85rem; font-weight: 700;
+    padding: 6px 12px; border-radius: 20px;
+}
+.genre-badge-clear {
+    background: none; border: none; color: #ff6699;
+    cursor: pointer; font-size: .9rem; padding: 0;
+    line-height: 1; transition: color .15s;
+}
+.genre-badge-clear:hover { color: #fff; }
+
 /* ===== ランキングタブ ===== */
 .rank-tabs {
     display: flex; gap: 4px; margin-bottom: 16px;
@@ -999,6 +1048,60 @@ a:hover { color: #fff; }
 
 /* ===== セクションヘッダー拡張 ===== */
 .section-header { margin-bottom: 4px; }
+
+/* ===== ヘッダー右ボタン群 ===== */
+.header-btns {
+    display: flex; gap: 8px; flex-shrink: 0; align-items: center;
+}
+
+/* ===== いいねヘッダーボタン ===== */
+.like-header-btn {
+    position: relative;
+    background: linear-gradient(135deg, rgba(255,51,102,.1), rgba(255,51,102,.05));
+    border: 1px solid rgba(255,51,102,.35);
+    color: #fff; cursor: pointer;
+    padding: 8px 14px; border-radius: 10px;
+    display: flex; align-items: center; gap: 7px;
+    transition: all .15s; flex-shrink: 0;
+    font-weight: 700; font-size: .88rem;
+}
+.like-header-btn:hover {
+    background: linear-gradient(135deg, rgba(255,51,102,.25), rgba(255,51,102,.15));
+    border-color: var(--accent);
+    transform: translateY(-1px);
+}
+.like-header-icon { font-size: 1.1rem; line-height: 1; }
+.like-header-label { color: #ffd5dd; letter-spacing: .03em; }
+.like-badge {
+    background: var(--accent); color: #fff;
+    font-size: .7rem; font-weight: 900;
+    min-width: 20px; height: 20px;
+    border-radius: 10px; padding: 0 6px;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 2px 6px rgba(255,51,102,.4);
+}
+@media (max-width: 600px) {
+    .like-header-btn { padding: 8px 10px; gap: 5px; }
+    .like-header-label { display: none; }
+    .like-header-icon { font-size: 1.3rem; }
+}
+
+/* ===== ホームへ戻るボタン（actresses.html）===== */
+.back-header-btn {
+    background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.15);
+    color: #fff; padding: 8px 14px; border-radius: 10px;
+    display: flex; align-items: center; gap: 7px;
+    font-weight: 700; font-size: .88rem; flex-shrink: 0;
+    transition: all .15s;
+}
+.back-header-btn:hover { background: rgba(255,255,255,.12); }
+.back-header-icon { font-size: 1.1rem; line-height: 1; }
+.back-header-label { color: #ccc; letter-spacing: .03em; }
+@media (max-width: 600px) {
+    .back-header-btn { padding: 8px 10px; }
+    .back-header-label { display: none; }
+    .back-header-icon { font-size: 1.3rem; }
+}
 
 /* ===== お気に入りヘッダーボタン ===== */
 .fav-header-btn {
@@ -1092,11 +1195,12 @@ a:hover { color: #fff; }
 @media (max-width: 600px) {
     /* ヘッダー */
     .header-inner { flex-wrap: wrap; gap: 8px; padding: 8px 12px; }
-    .site-logo { font-size: 1.1rem; }
+    .site-logo { font-size: 1rem; flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
     .site-logo span { display: none; }
     .suggest-wrap { width: 100%; max-width: 100%; order: 3; flex: unset; }
     .suggest-wrap input { font-size: .9rem; padding: 9px 10px; }
     .header-stats { display: none; }
+    .header-btns { flex-shrink: 0; }
 
     /* ナビタブ */
     .nav-btn { padding: 8px 12px; font-size: .82rem; }
@@ -1227,6 +1331,36 @@ a:hover { color: #fff; }
 .actress-tab-desc {
     font-size: .72rem; color: var(--mute);
     padding: 0 4px 8px; margin-top: -4px;
+}
+
+/* ===== 女優ショートカット行 ===== */
+.actress-shortcut-row {
+    display: flex; align-items: center; gap: 8px;
+    padding: 10px 4px 2px; flex-wrap: wrap;
+}
+.actress-shortcut-label {
+    font-size: .72rem; color: #555; white-space: nowrap;
+}
+.actress-shortcut-chip {
+    display: inline-flex; align-items: center;
+    padding: 5px 12px; border-radius: 16px;
+    background: var(--bg3); border: 1px solid var(--border);
+    color: #bbb; font-size: .78rem; font-weight: 600;
+    text-decoration: none; transition: all .15s; white-space: nowrap;
+}
+.actress-shortcut-chip:hover {
+    border-color: var(--accent2); color: #fff;
+    background: rgba(255,102,153,.1);
+}
+.actress-shortcut-new {
+    border-color: rgba(100,200,255,.3); color: #88ddff;
+}
+.actress-shortcut-new:hover {
+    border-color: #88ddff; background: rgba(100,200,255,.1); color: #fff;
+}
+@media (max-width: 600px) {
+    .actress-shortcut-row { gap: 6px; padding: 8px 4px 2px; }
+    .actress-shortcut-chip { padding: 6px 12px; font-size: .76rem; }
 }
 
 /* ===== モバイル改善 ===== */

@@ -131,8 +131,10 @@ jobs:
 
       - name: Fetch actress data
         run: |
-          API="https://api.dmm.com/affiliate/v3/ActressSearch?api_id=UXJdpULBN1sPyNKKPPHU&affiliate_id=saaaaaaya-990&site=FANZA&hits=1&output=json"
+          ACTRESS_API="https://api.dmm.com/affiliate/v3/ActressSearch?api_id=UXJdpULBN1sPyNKKPPHU&affiliate_id=saaaaaaya-990&site=FANZA&output=json"
+          ACTRESS_SINGLE="${ACTRESS_API}&hits=1"
 
+          # 個別ID指定でプロフィール取得（スリーサイズ等はこの方法でのみ取れる）
           build_actress_json() {
             local IDS="$1"
             local OUT="$2"
@@ -140,7 +142,7 @@ jobs:
             local first=true
             for ID in $IDS; do
               [ "$ID" = "null" ] || [ -z "$ID" ] && continue
-              DATA=$(curl -s "${API}&actress_id=${ID}" || echo '{}')
+              DATA=$(curl -sf "${ACTRESS_SINGLE}&actress_id=${ID}" || echo '{}')
               ACTRESS=$(echo "$DATA" | jq '.result.actress[0] // empty' 2>/dev/null)
               if [ -n "$ACTRESS" ] && [ "$ACTRESS" != "null" ]; then
                 [ "$first" = true ] && first=false || JSON="${JSON},"
@@ -152,50 +154,69 @@ jobs:
             echo "{\"result\":{\"status\":200,\"actress\":${JSON}}}" > "$OUT"
           }
 
-          # 人気女優：rank.jsonの商品から女優IDを抽出（先頭女優を優先、重複除去）- 50人に拡大
-          POPULAR_IDS=$(jq -r '.result.items[] | .iteminfo.actress[0]?.id | tostring' data/rank.json 2>/dev/null \
-            | awk '!seen[$0]++ && $0 != "null"' | head -50)
+          # ===== 人気女優（rank.json全女優を出現頻度順に上位50人）=====
+          POPULAR_IDS=$(jq -r '.result.items[] | .iteminfo.actress[]?.id | tostring' data/rank.json 2>/dev/null \
+            | grep -v null | sort | uniq -c | sort -rn | awk '{print $2}' | head -50)
           build_actress_json "$POPULAR_IDS" data/actress_popular.json \
             || echo '{"result":{"status":404}}' > data/actress_popular.json
+          echo "actress_popular.json: $(jq '.result.actress|length' data/actress_popular.json) 件"
 
-          # 新人女優：ActressSearch APIで「ID降順」=新規登録順に取得（=デビュー直後の女優）
-          # 写真ありで絞り込み。100件取って画像ある女優を上位50人選ぶ
-          ACTRESS_SEARCH="https://api.dmm.com/affiliate/v3/ActressSearch?api_id=UXJdpULBN1sPyNKKPPHU&affiliate_id=saaaaaaya-990&output=json"
-          curl -sf "${ACTRESS_SEARCH}&sort=-id&hits=100" -o /tmp/actress_newest.json 2>/dev/null \
-            || echo '{"result":{"status":404,"actress":[]}}' > /tmp/actress_newest.json
-          # 画像ありかつIDがnullでない女優のみ抽出、最大50人
-          jq '{result: {status: 200, actress: [.result.actress[]? | select(.id != null and .imageURL.small != null)] | .[:50]}}' \
-            /tmp/actress_newest.json > data/actress_new.json 2>/dev/null \
+          # ===== 新人女優（一括APIでID収集→個別fetchでスリーサイズも取得）=====
+          # 一括APIでは測定値が返らないため、IDを取ってから個別lookupに切り替え
+          curl -sf "${ACTRESS_API}&sort=-id&hits=100"          -o /tmp/new_p1.json 2>/dev/null \
+            || echo '{"result":{"actress":[]}}' > /tmp/new_p1.json
+          curl -sf "${ACTRESS_API}&sort=-id&hits=100&offset=101" -o /tmp/new_p2.json 2>/dev/null \
+            || echo '{"result":{"actress":[]}}' > /tmp/new_p2.json
+          NEW_IDS=$(jq -r '.result.actress[]? | select(.id != null and .imageURL.small != null) | .id | tostring' \
+            /tmp/new_p1.json /tmp/new_p2.json 2>/dev/null \
+            | awk '!seen[$0]++' | head -50)
+          build_actress_json "$NEW_IDS" data/actress_new.json \
             || echo '{"result":{"status":404,"actress":[]}}' > data/actress_new.json
-
-          # 念のため：上記が空の場合はデビュージャンル(genre_id=6006)からフォールバック
-          ACTRESS_COUNT=$(jq '.result.actress | length' data/actress_new.json 2>/dev/null || echo 0)
-          if [ "$ACTRESS_COUNT" -lt 10 ]; then
-            NEW_IDS=$(jq -r '.result.items[] | .iteminfo.actress[]?.id | tostring' \
+          # 取得0件の場合はデビュージャンルからフォールバック
+          if [ "$(jq '.result.actress|length' data/actress_new.json 2>/dev/null || echo 0)" -lt 10 ]; then
+            FB_IDS=$(jq -r '.result.items[] | .iteminfo.actress[]?.id | tostring' \
               data/genre_debut_date.json data/genre_debut.json 2>/dev/null \
               | awk '!seen[$0]++ && $0 != "null"' | head -50)
-            build_actress_json "$NEW_IDS" data/actress_new.json \
-              || echo '{"result":{"status":404}}' > data/actress_new.json
+            build_actress_json "$FB_IDS" data/actress_new.json
           fi
+          echo "actress_new.json: $(jq '.result.actress|length' data/actress_new.json) 件"
 
-          # 月間人気女優：review.jsonから女優IDを抽出（より意味のあるデータ）
-          MONTHLY_IDS=$(jq -r '.result.items[] | .iteminfo.actress[0]?.id | tostring' data/review.json 2>/dev/null \
-            | awk '!seen[$0]++ && $0 != "null"' | head -30)
+          # ===== 月間人気女優（review.json全女優を出現頻度順に上位50人）=====
+          MONTHLY_IDS=$(jq -r '.result.items[] | .iteminfo.actress[]?.id | tostring' data/review.json 2>/dev/null \
+            | grep -v null | sort | uniq -c | sort -rn | awk '{print $2}' | head -50)
           build_actress_json "$MONTHLY_IDS" data/actress_monthly.json \
             || echo '{"result":{"status":404}}' > data/actress_monthly.json
+          echo "actress_monthly.json: $(jq '.result.actress|length' data/actress_monthly.json) 件"
 
           # ===== 全女優プロフィール一括ファイル =====
-          # 全データから女優ID抽出（出現2回以上=ベテラン/中堅も網羅）して個別プロフィール取得
-          # 写真と詳細情報を女優ページで使えるよう網羅的に
-          ALL_PROFILE_IDS=$(jq -r '.result.items[]? | .iteminfo.actress[]?.id | tostring' data/*.json 2>/dev/null \
-            | grep -v null | sort | uniq -c | sort -rn | awk '$1 >= 2 {print $2}' | head -800)
+          # Step1: 商品データ全体から女優ID収集（1回以上出現、出現頻度降順）
+          PRODUCT_IDS=$(jq -r '.result.items[]? | .iteminfo.actress[]?.id | tostring' data/rank.json data/new.json data/review.json data/genre_*.json 2>/dev/null \
+            | grep -v null | sort | uniq -c | sort -rn | awk '$1 >= 1 {print $2}')
+
+          # Step2: ActressSearch人気順sweep（最大1500人）でFANZA人気女優を補完
+          # 商品データに出現しない人気女優も捕捉
+          rm -f /tmp/sweep_*.json
+          for i in $(seq 1 15); do
+            OFFSET=$(( (i-1)*100 + 1 ))
+            curl -sf "${ACTRESS_API}&sort=popular&hits=100&offset=${OFFSET}" \
+              -o /tmp/sweep_${i}.json 2>/dev/null \
+              || echo '{"result":{"actress":[]}}' > /tmp/sweep_${i}.json
+          done
+          SWEEP_IDS=$(jq -r '.result.actress[]?.id | tostring' /tmp/sweep_*.json 2>/dev/null | grep -v null)
+
+          # Step3: 両方をマージ（商品頻度順を先頭に、sweep分を補完）、上位1500件に絞る
+          ALL_PROFILE_IDS=$(printf '%s\n' $PRODUCT_IDS $SWEEP_IDS \
+            | awk '!seen[$0]++ && $0 != ""' | head -1500)
+
           build_actress_json "$ALL_PROFILE_IDS" data/actress_profiles.json \
             || echo '{"result":{"status":404,"actress":[]}}' > data/actress_profiles.json
-          echo "actress_profiles.json: $(jq '.result.actress | length' data/actress_profiles.json) profiles fetched"
+          echo "actress_profiles.json: $(jq '.result.actress|length' data/actress_profiles.json) 件"
+          # スリーサイズ取得率をログ出力
+          jq -r '.result.actress | "  bust coverage: \([.[] | select(.bust != null)] | length)/\(length)"' \
+            data/actress_profiles.json 2>/dev/null
 
-          # 女優別作品JSON（popular + new + monthly の女優ID分を個別取得・3ページ・最大300件）
+          # ===== 女優別作品JSON =====
           WORK_BASE="https://api.dmm.com/affiliate/v3/ItemList?api_id=UXJdpULBN1sPyNKKPPHU&affiliate_id=saaaaaaya-990&site=FANZA&service=digital&output=json&floor=videoa&sort=date&article=actress"
-          # actress_profiles.json も含めて全女優の作品ファイルを生成（ベテラン女優を網羅）
           ALL_ACTRESS_IDS=$(jq -r '.result.actress[].id | tostring' \
             data/actress_popular.json data/actress_new.json data/actress_monthly.json data/actress_profiles.json 2>/dev/null \
             | awk '!seen[$0]++ && $0 != "null"' | head -300)

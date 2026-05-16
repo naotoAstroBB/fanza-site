@@ -66,14 +66,31 @@ const App = {
         if (this._suggestLoaded) return;
         this._suggestLoaded = true;
         try {
-            // 女優APIデータ（画像・ルビあり）
-            const [pop, newA] = await Promise.allSettled([
+            // 女優APIデータ（画像・ルビあり）+ プロフィール全件
+            const [pop, monthly, newA, profiles] = await Promise.allSettled([
                 DMM.fetchActress('popular'),
+                DMM.fetchActress('monthly'),
                 DMM.fetchActress('new'),
+                DMM._loadFile('data/actress_profiles.json'),
             ]);
+
+            // 全ソースから imageURL マップを構築（id → imageURL）
+            const imageMap = new Map();
+            for (const r of [pop, monthly, newA, profiles]) {
+                if (r.status !== 'fulfilled') continue;
+                for (const a of (r.value?.result?.actress || [])) {
+                    const id = String(a.id);
+                    if (a.imageURL?.small && !imageMap.has(id)) {
+                        imageMap.set(id, a.imageURL);
+                    }
+                }
+            }
+
             const apiActresses = [
                 ...(pop.value?.result?.actress || []),
+                ...(monthly.value?.result?.actress || []),
                 ...(newA.value?.result?.actress || []),
+                ...(profiles.value?.result?.actress || []),
             ];
 
             // 商品データ（rank/new）から女優名を補完抽出
@@ -93,7 +110,7 @@ const App = {
                                 id:       String(a.id),
                                 name:     a.name || '',
                                 ruby:     a.ruby || '',
-                                imageURL: {}
+                                imageURL: imageMap.get(String(a.id)) || {}
                             });
                         }
                     }
@@ -283,11 +300,12 @@ const App = {
                 this.renderMiniCards('favPanelList', favs, 'fav');
             } else {
                 favPanelList.innerHTML = '<span style="color:#555;font-size:.85rem;padding:16px 0">お気に入りはまだありません</span>';
-                // パネルも閉じる
                 const panel = document.getElementById('favPanel');
                 if (panel) panel.style.display = 'none';
             }
         }
+        // いいね（バッジ更新）
+        this._updateLikeBadge(Like.count());
     },
 
     _updateFavBadge(count) {
@@ -320,13 +338,20 @@ const App = {
         if (isOpen) {
             panel.style.display = 'none';
         } else {
+            const likePanel = document.getElementById('likePanel');
+            if (likePanel) likePanel.style.display = 'none';
             panel.style.display = '';
             const favs = Fav.get();
-            if (favs.length) {
-                this.renderMiniCards('favPanelList', favs, 'fav');
-            } else {
-                const list = document.getElementById('favPanelList');
-                if (list) list.innerHTML = '<span style="color:#555;font-size:.85rem;padding:16px 0">お気に入りはまだありません</span>';
+            this._updateFavBadge(favs.length);
+            const badge2 = document.getElementById('favBadge2');
+            if (badge2) badge2.textContent = favs.length ? `${favs.length}件` : '';
+            const list = document.getElementById('favPanelList');
+            if (list) {
+                if (favs.length) {
+                    this.renderMiniCards('favPanelList', favs, 'fav');
+                } else {
+                    list.innerHTML = '<span style="color:#555;font-size:.85rem;padding:16px 0">お気に入りはまだありません</span>';
+                }
             }
         }
     },
@@ -347,7 +372,7 @@ const App = {
         document.querySelectorAll('.fav-btn').forEach(btn => {
             if (btn.dataset.cid === cid) {
                 btn.classList.remove('active');
-                btn.textContent = '🤍';
+                btn.textContent = '☆';
             }
         });
     },
@@ -366,7 +391,7 @@ const App = {
     renderMiniCards(containerId, items, type = 'fav') {
         const el = document.getElementById(containerId);
         if (!el) return;
-        const removeFn = type === 'fav' ? 'App.removeFavItem' : 'App.removeHistItem';
+        const removeFn = type === 'fav' ? 'App.removeFavItem' : type === 'like' ? 'App.removeLikeItem' : 'App.removeHistItem';
         el.innerHTML = items.slice(0, 30).map(item => `
             <div class="mini-card-wrap">
                 <a class="mini-card" href="product.html?cid=${this.esc(item.cid)}&floor=${this.esc(item.floor)}">
@@ -434,6 +459,13 @@ const App = {
     _prevRankMap: {},  // content_id → 前回の順位
 
     _floorLabels: { videoa:'動画（アダルト）', anime:'アニメ動画', book:'マンガ・電子書籍', goods:'グッズ・通販', mono:'グッズ・通販' },
+    _genreLabels: {
+        '2001':'巨乳','1027':'美少女','6533':'ハイビジョン','4024':'素人',
+        '5001':'中出し','1039':'人妻・主婦','1001':'OL','4031':'コスプレ',
+        '6006':'新人','1034':'ギャル','4022':'外国人','4001':'SM',
+        '4006':'ナンパ','2005':'貧乳','1018':'ロリ・女子校生','1016':'女教師',
+        '4002':'近親相姦','1028':'黒人','4007':'企画','5002':'フェラ',
+    },
 
     async fetchProducts() {
         const grid = document.getElementById('productGrid');
@@ -705,6 +737,7 @@ const App = {
                class="card-actress-link" onclick="event.stopPropagation()">${this.esc(a.name)}</a>`
         ).join(' / ');
 
+        const isLiked = Like.has(item.content_id);
         return `
         <div class="product-card" onclick="location.href='product.html?cid=${this.esc(item.content_id)}&floor=${this.floor}'">
           <div class="card-img-wrap">
@@ -716,14 +749,19 @@ const App = {
             ${showChange ? changeBadge : ''}
             ${campaign ? `<span class="badge-sale">SALE</span>` : (isNew ? `<span class="badge-new">NEW</span>` : '')}
             ${sampleBtnHtml}
-            <button class="fav-btn ${isFav ? 'active' : ''}" title="${isFav ? 'お気に入り解除' : 'お気に入りに追加'}"
-              onclick="event.stopPropagation();App.toggleFav(this,'${this.esc(item.content_id)}')">${isFav ? '❤️' : '🤍'}</button>
+            <button class="fav-btn ${isFav ? 'active' : ''}" data-cid="${this.esc(item.content_id)}" title="${isFav ? 'お気に入り解除' : 'お気に入りに追加'}"
+              onclick="event.stopPropagation();App.toggleFav(this,'${this.esc(item.content_id)}')">${isFav ? '⭐' : '☆'}</button>
           </div>
           <div class="card-body">
             <div class="card-title">${title}</div>
             ${actressLinks ? `<div class="card-actress">${actressLinks}</div>` : ''}
             <div class="card-bottom">
               ${stars ? `<div class="card-review"><span class="stars">${stars}</span></div>` : ''}
+              <button class="like-btn ${isLiked ? 'active' : ''}" data-cid="${this.esc(item.content_id)}"
+                onclick="event.stopPropagation();App.toggleLike(this,'${this.esc(item.content_id)}')">
+                <span class="like-icon">${isLiked ? '❤️' : '🤍'}</span>
+                <span class="like-label">${isLiked ? 'いいね済' : 'いいね'}</span>
+              </button>
             </div>
             ${review?.count ? `<div class="card-review" style="margin-bottom:6px">${avg.toFixed(1)} (${review.count}件)</div>` : ''}
             <a class="btn-buy" href="${this.esc(url)}" target="_blank" rel="noopener" onclick="event.stopPropagation()">
@@ -733,6 +771,85 @@ const App = {
         </div>`;
     },
 
+    // ===== いいねトグル =====
+    toggleLike(btn, cid) {
+        const item  = this._currentItems.find(i => i.content_id === cid)
+                   || this._saleItems.find(i => i.content_id === cid);
+        const isNow = item ? Like.toggle(item, this.floor) : Like.toggle(cid);
+        btn.classList.toggle('active', isNow);
+        const iconEl  = btn.querySelector('.like-icon');
+        const labelEl = btn.querySelector('.like-label');
+        if (iconEl)  iconEl.textContent  = isNow ? '❤️' : '🤍';
+        if (labelEl) labelEl.textContent = isNow ? 'いいね済' : 'いいね';
+        this._updateLikeBadge(Like.count());
+        if (isNow) {
+            btn.animate([
+                { transform: 'scale(1.35)' },
+                { transform: 'scale(1)'    }
+            ], { duration: 250, easing: 'ease-out' });
+        }
+    },
+
+    toggleLikePanel() {
+        const panel = document.getElementById('likePanel');
+        if (!panel) return;
+        const isOpen = panel.style.display !== 'none';
+        if (isOpen) {
+            panel.style.display = 'none';
+        } else {
+            const favPanel = document.getElementById('favPanel');
+            if (favPanel) favPanel.style.display = 'none';
+            panel.style.display = '';
+            const likes = Like.get();
+            const badge2 = document.getElementById('likeBadge2');
+            if (badge2) badge2.textContent = likes.length ? `${likes.length}件` : '';
+            const list = document.getElementById('likePanelList');
+            if (list) {
+                if (likes.length) {
+                    this.renderMiniCards('likePanelList', likes, 'like');
+                } else {
+                    list.innerHTML = '<span style="color:#555;font-size:.85rem;padding:16px 0">いいねした作品はまだありません</span>';
+                }
+            }
+        }
+    },
+
+    removeLikeItem(cid) {
+        Like.remove(cid);
+        const likes = Like.get();
+        this._updateLikeBadge(likes.length);
+        if (likes.length) {
+            this.renderMiniCards('likePanelList', likes, 'like');
+            const badge2 = document.getElementById('likeBadge2');
+            if (badge2) badge2.textContent = `${likes.length}件`;
+        } else {
+            const list = document.getElementById('likePanelList');
+            if (list) list.innerHTML = '<span style="color:#555;font-size:.85rem;padding:16px 0">いいねした作品はまだありません</span>';
+            const panel = document.getElementById('likePanel');
+            if (panel) panel.style.display = 'none';
+        }
+        document.querySelectorAll('.like-btn').forEach(btn => {
+            if (btn.dataset.cid === cid) {
+                btn.classList.remove('active');
+                const iconEl  = btn.querySelector('.like-icon');
+                const labelEl = btn.querySelector('.like-label');
+                if (iconEl)  iconEl.textContent  = '🤍';
+                if (labelEl) labelEl.textContent = 'いいね';
+            }
+        });
+    },
+
+    _updateLikeBadge(count) {
+        const badge = document.getElementById('likeBadge');
+        if (!badge) return;
+        if (count > 0) {
+            badge.textContent = count > 99 ? '99+' : count;
+            badge.style.display = '';
+        } else {
+            badge.style.display = 'none';
+        }
+    },
+
     // ===== お気に入りトグル =====
     toggleFav(btn, cid) {
         const item = this._currentItems.find(i => i.content_id === cid)
@@ -740,7 +857,7 @@ const App = {
         if (!item) return;
         const isNow = Fav.toggle(item, this.floor);
         btn.classList.toggle('active', isNow);
-        btn.textContent = isNow ? '❤️' : '🤍';
+        btn.textContent = isNow ? '⭐' : '☆';
         btn.title = isNow ? 'お気に入り解除' : 'お気に入りに追加';
         // お気に入りセクションを更新
         this.loadStorageSections();
@@ -839,16 +956,39 @@ const App = {
     updateTitle(result) {
         const el = document.getElementById('sectionTitle');
         if (!el) return;
-        const labels = this._floorLabels;
+        let prefix;
+        if (this.genre) {
+            prefix = (this._genreLabels[this.genre] || 'ジャンル') + ' ジャンル';
+        } else {
+            prefix = this._floorLabels[this.floor] || '';
+        }
         const kw = this.keyword ? ` "` + this.keyword + `"` : '';
-        el.textContent = (labels[this.floor] || '') + kw + ' — ' + result.total_count.toLocaleString() + '件';
+        el.textContent = prefix + kw + ' — ' + result.total_count.toLocaleString() + '件';
+        this._updateGenreBadge();
+    },
+
+    _updateGenreBadge() {
+        const bar = document.getElementById('genreActiveBadge');
+        if (!bar) return;
+        if (this.genre) {
+            const name = this._genreLabels[this.genre] || 'ジャンル';
+            bar.innerHTML = `<span class="genre-badge-chip">🏷️ ${name} <button class="genre-badge-clear" onclick="App.clearFilter()">✕</button></span>`;
+            bar.style.display = '';
+        } else {
+            bar.style.display = 'none';
+        }
     },
 
     doSearch() {
         const input = document.getElementById('searchInput');
         if (input) this.keyword = input.value.trim();
+        this.genre    = '';
         this.page     = 1;
         this.showSale = false;
+        // ジャンルchipのactive状態もリセット
+        document.querySelectorAll('.genre-chip').forEach(c => c.classList.toggle('active', c.dataset.genre === ''));
+        document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
+        this._updateGenreBadge();
         this.fetchProducts();
     },
 
@@ -887,10 +1027,15 @@ const App = {
     },
 
     setGenre(id, el) {
-        this.genre    = id;
-        this.floor    = 'videoa';
-        this.page     = 1;
-        this.showSale = false;
+        this.genre      = id;
+        this.floor      = 'videoa';
+        this.keyword    = '';   // キーワードをクリアしてgenreフィルターを確実に適用
+        this.page       = 1;
+        this.showSale   = false;
+        this.singleWork = false; // 単体作品フィルタもリセット
+        // 検索inputもクリア
+        const searchEl = document.getElementById('searchInput');
+        if (searchEl) searchEl.value = '';
         // サイドバーのアクティブ更新
         if (el) {
             el.closest('.sidebar-section').querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
@@ -905,10 +1050,13 @@ const App = {
     },
 
     clearFilter(el) {
-        this.genre    = '';
-        this.keyword  = '';
-        this.page     = 1;
-        this.showSale = false;
+        this.genre      = '';
+        this.keyword    = '';
+        this.singleWork = false;
+        this.page       = 1;
+        this.showSale   = false;
+        const searchEl = document.getElementById('searchInput');
+        if (searchEl) searchEl.value = '';
         if (el) {
             el.closest('.sidebar-section').querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
             el.classList.add('active');
@@ -916,6 +1064,7 @@ const App = {
         document.querySelectorAll('.genre-chip').forEach(c => {
             c.classList.toggle('active', c.dataset.genre === '');
         });
+        this._updateGenreBadge();
         this.updateRankTabs();
         this.fetchProducts();
     },
@@ -960,6 +1109,8 @@ const App = {
     // ===== 女優セクション（ホーム用プレビュー）=====
     // 詳細・全件は actresses.html へ
     async initActressTabs() {
+        const moreLink = document.getElementById('actressMoreLink');
+        if (moreLink) moreLink.href = 'actresses.html?tab=popular';
         await this._renderActresses('actressList', 'popular', true);
     },
 
@@ -972,11 +1123,18 @@ const App = {
             monthly: '今月最も注目される女優',
             new:     '新人・デビュー女優'
         };
+        const linkLabels = {
+            popular: '人気ランキング一覧 →',
+            monthly: '月間人気一覧 →',
+            new:     '新人女優一覧 →',
+        };
         const descEl = document.getElementById('actressTabDesc');
         if (descEl) descEl.textContent = descs[type] || '';
-        // 「すべて見る」リンクを現在タブに更新
         const moreLink = document.getElementById('actressMoreLink');
-        if (moreLink) moreLink.href = `actresses.html?tab=${type}`;
+        if (moreLink) {
+            moreLink.href = `actresses.html?tab=${type}`;
+            moreLink.textContent = linkLabels[type] || '一覧へ →';
+        }
         await this._renderActresses('actressList', type, showRank);
     },
 

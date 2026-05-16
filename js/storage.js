@@ -69,3 +69,53 @@ const Hist = {
         localStorage.setItem(this.KEY, JSON.stringify(list));
     }
 };
+
+// ===== いいね管理 =====
+const Like = {
+    KEY: 'fanza_likes',
+
+    get() {
+        try {
+            const arr = JSON.parse(localStorage.getItem(this.KEY) || '[]');
+            // 後方互換: 旧版はCID文字列配列
+            return arr.map(m => typeof m === 'string'
+                ? { cid: m, title: '', img: '', url: '#', floor: 'videoa', ts: 0 }
+                : m);
+        } catch(e) { return []; }
+    },
+
+    _save(list) {
+        localStorage.setItem(this.KEY, JSON.stringify(list));
+    },
+
+    has(cid) {
+        return this.get().some(m => m.cid === String(cid));
+    },
+
+    toggle(item, floor) {
+        const cid  = String(typeof item === 'object' ? item.content_id : item);
+        const all  = this.get();
+        const list = all.filter(m => m.cid !== cid);
+        if (list.length < all.length) { this._save(list); return false; }
+        list.unshift({
+            cid,
+            title: typeof item === 'object' ? (item.title || '') : '',
+            img:   typeof item === 'object' ? (item.imageURL?.list || item.imageURL?.small || '') : '',
+            url:   typeof item === 'object' ? (item.affiliateURL || item.URL || '#') : '#',
+            floor: floor || 'videoa',
+            ts:    Date.now()
+        });
+        if (list.length > 200) list.length = 200;
+        this._save(list);
+        return true;
+    },
+
+    remove(cid) {
+        this._save(this.get().filter(m => m.cid !== String(cid)));
+    },
+
+    count() {
+        return this.get().length;
+    }
+};
+

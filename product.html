@@ -248,7 +248,12 @@ async function loadProduct(){
               ${(item.iteminfo?.label||[]).length   ? `<dt>レーベル</dt><dd>${(item.iteminfo.label).map(l=>`<a class="tag-link" href="home.html?keyword=${encodeURIComponent(l.name)}">${esc(l.name)}</a>`).join('、 ')}</dd>` : ''}
               ${(item.iteminfo?.series||[]).length  ? `<dt>シリーズ</dt><dd>${(item.iteminfo.series).map(s=>`<a class="tag-link" href="home.html?keyword=${encodeURIComponent(s.name)}">${esc(s.name)}</a>`).join('、 ')}</dd>` : ''}
               ${(item.iteminfo?.genre||[]).length   ? `<dt>ジャンル</dt><dd class="genre-tag-list">${(item.iteminfo.genre).map(g=>`<a class="tag-chip" href="home.html?keyword=${encodeURIComponent(g.name)}">${esc(g.name)}</a>`).join('')}</dd>` : ''}
-              ${item.volume ? `<dt>収録時間</dt><dd>${esc(String(item.volume))}分</dd>` : ''}
+              ${item.volume ? (() => {
+                  // フロア別に表記を切替（マンガはページ数、グッズは非表示）
+                  if (floor === 'book')   return `<dt>ページ数</dt><dd>${esc(String(item.volume))}ページ</dd>`;
+                  if (floor === 'goods' || floor === 'mono') return ''; // グッズは時間概念なし
+                  return `<dt>収録時間</dt><dd>${esc(String(item.volume))}分</dd>`;
+              })() : ''}
               ${item.date   ? `<dt>発売日</dt><dd>${esc(item.date.slice(0,10))}</dd>` : ''}
               ${item.content_id ? `<dt>品番</dt><dd>${esc(item.content_id)}</dd>` : ''}
             </dl>

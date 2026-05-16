@@ -181,7 +181,7 @@ async function loadProduct(){
               ${listPrice && listPrice!==price ? `<span style="font-size:1rem;color:var(--mute);text-decoration:line-through;margin-left:8px">¥${esc(listPrice)}</span>` : ''}
             </div>
 
-            <a class="btn-buy-large" href="${esc(url)}" target="_blank" rel="noopener">🎬 動画を見る・購入する</a>
+            <a class="btn-buy-large" href="${esc(url)}" target="_blank" rel="noopener">${buyText}</a>
 
             <!-- お気に入り -->
             <div style="display:flex;gap:10px;margin-bottom:12px;flex-wrap:wrap">
@@ -226,7 +226,7 @@ async function loadProduct(){
               ${item.content_id ? `<dt>品番</dt><dd>${esc(item.content_id)}</dd>` : ''}
             </dl>
 
-            <a class="btn-buy-large" href="${esc(url)}" target="_blank" rel="noopener" style="margin-top:24px">✓ 動画を見る・購入する</a>
+            <a class="btn-buy-large" href="${esc(url)}" target="_blank" rel="noopener" style="margin-top:24px">✓ ${buyText.replace(/^.{2}\s*/, '')}</a>
             <p style="font-size:.75rem;color:var(--mute);text-align:center;margin-top:8px">※ 当サイトはアフィリエイトプログラムを利用しています</p>
           </div>
         </div>`;

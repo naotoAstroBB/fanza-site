@@ -467,6 +467,18 @@ const App = {
                 if (!hasProperSort) items = this._sortItems(items, this.sort);
             }
 
+            // 新作（date）ソート時は必ずクライアント側で日付降順を保証
+            // FANZA APIの sort=date が完全降順でない場合の保険＋
+            // merge_fetch3で3ページ結合した順序を正しく最新順に並べ替え
+            if (this.sort === 'date') {
+                items = [...items].sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+            }
+            // 高評価（review）ソート時も平均点降順を保証
+            if (this.sort === 'review') {
+                items = [...items].sort((a, b) =>
+                    parseFloat(b.review?.average || 0) - parseFloat(a.review?.average || 0));
+            }
+
             // キーワードフィルタ（クライアント側）
             if (this.keyword) {
                 const kw = this.keyword.toLowerCase();

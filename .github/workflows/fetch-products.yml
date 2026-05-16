@@ -143,19 +143,25 @@ jobs:
           build_actress_json "$POPULAR_IDS" data/actress_popular.json \
             || echo '{"result":{"status":404}}' > data/actress_popular.json
 
-          # 新人女優：デビュー作品ジャンル(genre_id=6006)の商品から女優IDを抽出
-          # date順(genre_debut_date.json)を最優先、次にrank順(genre_debut.json)で補完
-          # → 本当のデビュー直後の女優を取得（new.jsonだとベテランが混ざる問題を解消）
-          NEW_IDS=$(jq -r '.result.items[] | .iteminfo.actress[]?.id | tostring' \
-            data/genre_debut_date.json data/genre_debut.json 2>/dev/null \
-            | awk '!seen[$0]++ && $0 != "null"' | head -50)
-          # フォールバック：デビューデータが取れない場合のみ new.json から
-          if [ -z "$NEW_IDS" ]; then
-            NEW_IDS=$(jq -r '.result.items[] | .iteminfo.actress[0]?.id | tostring' data/new.json 2>/dev/null \
+          # 新人女優：ActressSearch APIで「ID降順」=新規登録順に取得（=デビュー直後の女優）
+          # 写真ありで絞り込み。100件取って画像ある女優を上位50人選ぶ
+          ACTRESS_SEARCH="https://api.dmm.com/affiliate/v3/ActressSearch?api_id=UXJdpULBN1sPyNKKPPHU&affiliate_id=saaaaaaya-990&output=json"
+          curl -sf "${ACTRESS_SEARCH}&sort=-id&hits=100" -o /tmp/actress_newest.json 2>/dev/null \
+            || echo '{"result":{"status":404,"actress":[]}}' > /tmp/actress_newest.json
+          # 画像ありかつIDがnullでない女優のみ抽出、最大50人
+          jq '{result: {status: 200, actress: [.result.actress[]? | select(.id != null and .imageURL.small != null)] | .[:50]}}' \
+            /tmp/actress_newest.json > data/actress_new.json 2>/dev/null \
+            || echo '{"result":{"status":404,"actress":[]}}' > data/actress_new.json
+
+          # 念のため：上記が空の場合はデビュージャンル(genre_id=6006)からフォールバック
+          ACTRESS_COUNT=$(jq '.result.actress | length' data/actress_new.json 2>/dev/null || echo 0)
+          if [ "$ACTRESS_COUNT" -lt 10 ]; then
+            NEW_IDS=$(jq -r '.result.items[] | .iteminfo.actress[]?.id | tostring' \
+              data/genre_debut_date.json data/genre_debut.json 2>/dev/null \
               | awk '!seen[$0]++ && $0 != "null"' | head -50)
+            build_actress_json "$NEW_IDS" data/actress_new.json \
+              || echo '{"result":{"status":404}}' > data/actress_new.json
           fi
-          build_actress_json "$NEW_IDS" data/actress_new.json \
-            || echo '{"result":{"status":404}}' > data/actress_new.json
 
           # 月間人気女優：review.jsonから女優IDを抽出（より意味のあるデータ）
           MONTHLY_IDS=$(jq -r '.result.items[] | .iteminfo.actress[0]?.id | tostring' data/review.json 2>/dev/null \

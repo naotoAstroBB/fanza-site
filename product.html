@@ -128,9 +128,19 @@ async function loadProduct(){
         const url       = item.affiliateURL || item.URL || '#';
         const review    = item.review;
         const campaign  = item.campaign;
-        const sampleS   = item.sampleImageURL?.sample_s?.image || [];
-        const sampleL   = item.sampleImageURL?.sample_l?.image || [];
+        const sampleS   = item.sampleImageURL?.sample_s?.image || item.sampleImageURL?.sample_b?.image || [];
+        const sampleL   = item.sampleImageURL?.sample_l?.image || item.sampleImageURL?.sample_b?.image || [];
         const movies    = item.sampleMovieURL || {};
+
+        // フロア別ボタン文言
+        const buyLabels = {
+            book:  '🎬 試し読み・購入する',
+            goods: '🛍️ 商品ページで購入',
+            mono:  '🛍️ 商品ページで購入',
+            anime: '🎬 動画を見る・購入する',
+            videoa:'🎬 動画を見る・購入する',
+        };
+        const buyText = buyLabels[floor] || '🎬 作品ページへ';
 
         const movieSrc = movies.size_560_360 || movies.size_476_306 || Object.values(movies)[0] || '';
 
@@ -173,15 +183,29 @@ async function loadProduct(){
 
             <a class="btn-buy-large" href="${esc(url)}" target="_blank" rel="noopener">🎬 動画を見る・購入する</a>
 
-            <!-- お気に入り & シェアボタン -->
-            <div style="display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap">
+            <!-- お気に入り -->
+            <div style="display:flex;gap:10px;margin-bottom:12px;flex-wrap:wrap">
               <button id="favBtn" class="btn-fav-detail ${isFav?'active':''}"
                 onclick="toggleFavDetail(this,'${esc(item.content_id)}')">
                 ${isFav ? '❤️ お気に入り済み' : '🤍 お気に入りに追加'}
               </button>
-              <a class="btn-share-x" href="${esc(shareUrl)}" target="_blank" rel="noopener">
-                𝕏 Xでシェア
+            </div>
+
+            <!-- シェアボタン（複数SNS対応・閲覧者本人のアカウントで投稿） -->
+            <div class="share-row">
+              <span class="share-label-text">シェア:</span>
+              <a class="share-btn share-x" href="https://twitter.com/intent/tweet?text=${shareText}&url=${encodeURIComponent(pageUrl)}" target="_blank" rel="noopener" title="Xでシェア">
+                <span class="share-icon-x">X</span>
               </a>
+              <a class="share-btn share-line" href="https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(pageUrl)}&text=${shareText}" target="_blank" rel="noopener" title="LINEで送る">
+                LINE
+              </a>
+              <a class="share-btn share-fb" href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(pageUrl)}" target="_blank" rel="noopener" title="Facebookでシェア">
+                <span class="share-icon-fb">f</span>
+              </a>
+              <button class="share-btn share-copy" onclick="copyShareLink(this,'${encodeURIComponent(pageUrl)}')" title="リンクをコピー">
+                🔗
+              </button>
             </div>
 
             ${review?.count>0 ? `
@@ -211,6 +235,29 @@ async function loadProduct(){
         loadRelated(item, floor);
     } catch(e){
         document.getElementById('content').innerHTML = `<div class="loading"><p style="color:#ff6688">⚠️ 商品情報の取得に失敗しました<br><small>${esc(e.message)}</small></p><a href="home.html" style="color:var(--accent2)">← TOPに戻る</a></div>`;
+    }
+}
+
+// ===== シェアリンクをコピー =====
+function copyShareLink(btn, encodedUrl) {
+    const url = decodeURIComponent(encodedUrl);
+    const orig = btn.innerHTML;
+    const done = () => {
+        btn.innerHTML = '✓ コピー済';
+        btn.classList.add('share-copied');
+        setTimeout(() => { btn.innerHTML = orig; btn.classList.remove('share-copied'); }, 1800);
+    };
+    if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(url).then(done).catch(() => {
+            // フォールバック
+            const ta = document.createElement('textarea');
+            ta.value = url; document.body.appendChild(ta);
+            ta.select(); document.execCommand('copy'); ta.remove(); done();
+        });
+    } else {
+        const ta = document.createElement('textarea');
+        ta.value = url; document.body.appendChild(ta);
+        ta.select(); document.execCommand('copy'); ta.remove(); done();
     }
 }
 

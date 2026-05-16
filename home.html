@@ -290,6 +290,17 @@
   </div>
 </div>
 
+<!-- サンプル画像モーダル（マンガ試し読み等） -->
+<div id="imageSampleModal" class="sample-modal" onclick="App.closeSampleImages()">
+  <div class="sample-modal-inner" onclick="event.stopPropagation()">
+    <div class="sample-modal-header">
+      <span id="imageSampleTitle" class="sample-modal-title"></span>
+      <button class="sample-modal-close" onclick="App.closeSampleImages()">✕</button>
+    </div>
+    <div class="sample-images-container" id="sampleImagesContainer"></div>
+  </div>
+</div>
+
 <!-- トースト通知 -->
 <div class="toast-wrap" id="toastWrap"></div>
 

@@ -45,7 +45,9 @@ const App = {
             document.getElementById('sortSelect').value = this.sort;
         }
 
-        document.addEventListener('keydown', e => { if (e.key === 'Escape') this.closeSample(); });
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') { this.closeSample(); this.closeSampleImages(); }
+        });
         this.initSwipe();
         this.loadStorageSections();
         this.updateRankTabs();
@@ -391,7 +393,15 @@ const App = {
             if (btnEl) btnEl.href = top.affiliateURL || top.URL || '#';
 
             const priceEl = document.getElementById('heroPrice');
-            if (priceEl) priceEl.textContent = top.prices?.price ? '¥' + top.prices.price + '〜' : '';
+            if (priceEl) {
+                if (top.prices?.price) {
+                    // API側で末尾に〜/~/～が含まれる場合があるので除去してから付加
+                    const raw = String(top.prices.price).replace(/[〜~～\s]+$/, '');
+                    priceEl.textContent = '¥' + raw + '〜';
+                } else {
+                    priceEl.textContent = '';
+                }
+            }
 
             const subGrid = document.getElementById('heroSubGrid');
             if (subGrid && items.length >= 4) {
@@ -565,7 +575,33 @@ const App = {
             : (i < 10 ? `<div class="rank-badge rank-other">${i+1}</div>` : '');
         const mv        = item.sampleMovieURL;
         const sampleUrl = mv ? (mv.size_560_360 || mv.size_476_306 || mv.size_644_414 || '') : '';
+        // マンガのサンプル画像（sample_b 優先、なければ sample_l/sample_s）
+        const sampleImages = item.sampleImageURL?.sample_b?.image
+                          || item.sampleImageURL?.sample_l?.image
+                          || item.sampleImageURL?.sample_s?.image
+                          || [];
         const isFav     = Fav.has(item.content_id);
+
+        // フロア別ボタンテキスト
+        const buyLabels = {
+            book:  '試し読み・購入 →',
+            goods: '商品ページへ →',
+            mono:  '商品ページへ →',
+            anime: '動画を見る →',
+            videoa:'動画を見る →',
+        };
+        const buyText = buyLabels[this.floor] || '作品を見る →';
+
+        // サンプルボタン（動画 or マンガ画像）
+        let sampleBtnHtml = '';
+        if (sampleUrl) {
+            sampleBtnHtml = `<button class="card-sample-btn" onclick="event.stopPropagation();App.openSample('${this.esc(sampleUrl)}','${title}')" title="サンプル再生">▶</button>`;
+        } else if (sampleImages.length) {
+            // マンガサンプル画像をAppに保存して、ボタンで開く
+            this._sampleImagesByCid = this._sampleImagesByCid || {};
+            this._sampleImagesByCid[item.content_id] = sampleImages;
+            sampleBtnHtml = `<button class="card-sample-btn card-sample-book" onclick="event.stopPropagation();App.openSampleImages('${this.esc(item.content_id)}','${title}')" title="試し読み">📖</button>`;
+        }
 
         // 順位変動バッジ
         const curRank  = i + 1;
@@ -596,7 +632,7 @@ const App = {
             ${rankBadge}
             ${showChange ? changeBadge : ''}
             ${campaign ? `<span class="badge-sale">SALE</span>` : (isNew ? `<span class="badge-new">NEW</span>` : '')}
-            ${sampleUrl ? `<button class="card-sample-btn" onclick="event.stopPropagation();App.openSample('${this.esc(sampleUrl)}','${title}')" title="サンプル再生">▶</button>` : ''}
+            ${sampleBtnHtml}
             <button class="fav-btn ${isFav ? 'active' : ''}" title="${isFav ? 'お気に入り解除' : 'お気に入りに追加'}"
               onclick="event.stopPropagation();App.toggleFav(this,'${this.esc(item.content_id)}')">${isFav ? '❤️' : '🤍'}</button>
           </div>
@@ -608,7 +644,7 @@ const App = {
             </div>
             ${review?.count ? `<div class="card-review" style="margin-bottom:6px">${avg.toFixed(1)} (${review.count}件)</div>` : ''}
             <a class="btn-buy" href="${this.esc(url)}" target="_blank" rel="noopener" onclick="event.stopPropagation()">
-              動画を見る →
+              ${buyText}
             </a>
           </div>
         </div>`;
@@ -644,6 +680,29 @@ const App = {
         const iframe = document.getElementById('sampleIframe');
         if (modal)  modal.classList.remove('active');
         if (iframe) iframe.src = '';
+        document.body.style.overflow = '';
+    },
+
+    // ===== マンガ等のサンプル画像モーダル =====
+    openSampleImages(cid, title) {
+        const images = (this._sampleImagesByCid || {})[cid] || [];
+        if (!images.length) return;
+        const modal     = document.getElementById('imageSampleModal');
+        const container = document.getElementById('sampleImagesContainer');
+        const label     = document.getElementById('imageSampleTitle');
+        if (!modal || !container) return;
+        if (label) label.textContent = title || 'サンプル';
+        container.innerHTML = images.map((url, idx) =>
+            `<img src="${this.esc(url)}" alt="サンプル${idx+1}" loading="lazy">`
+        ).join('');
+        container.scrollTop = 0;
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    },
+
+    closeSampleImages() {
+        const modal = document.getElementById('imageSampleModal');
+        if (modal) modal.classList.remove('active');
         document.body.style.overflow = '';
     },
 

@@ -150,6 +150,10 @@
   </div>
 </header>
 
+<div class="page-back-bar">
+  <button class="back-btn" onclick="appBack()">← 戻る</button>
+</div>
+
 <!-- パンくず -->
 <div style="background:var(--bg2);border-bottom:1px solid var(--border);padding:8px 20px;font-size:.82rem;color:var(--mute)">
   <a href="home.html" style="color:var(--mute)">TOP</a> › <span id="breadName">女優ページ</span>
@@ -194,6 +198,15 @@
 <script src="js/dmm-api.js"></script>
 <script>
 if (localStorage.getItem('age_verified') !== 'yes') location.href = 'index.html';
+
+// 戻るボタン：同一サイト内からの遷移なら履歴を戻る、そうでなければホームへ
+function appBack() {
+    if (document.referrer && new URL(document.referrer).origin === location.origin) {
+        history.back();
+    } else {
+        location.href = 'home.html';
+    }
+}
 
 const esc = s => String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 

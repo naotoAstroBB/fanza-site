@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AV動画ランキング | 人気・新着・おすすめアダルト動画・AV女優厳選サイト</title>
+<title>AV動画ランキング | 人気・新作・おすすめアダルト動画・AV女優厳選サイト</title>
 
 <!-- OGP -->
 <meta property="og:title" content="AV動画ランキング">
@@ -60,7 +60,7 @@
     <div class="nav-btn" onclick="App.setFloor('anime',this)">🎌 アニメ動画</div>
     <div class="nav-btn" onclick="App.setFloor('book',this)">📚 マンガ</div>
     <div class="nav-btn" onclick="App.setFloor('goods',this)">🛍️ グッズ・通販</div>
-    <div class="nav-btn" onclick="App.setSort('date',this)">⭐ 新着</div>
+    <div class="nav-btn" onclick="App.setSort('date',this)">⭐ 新作</div>
     <div class="nav-btn" onclick="App.setSort('rank',this)">🏆 ランキング</div>
     <div class="nav-btn" onclick="App.setSale(this)">🔥 SALE</div>
   </div>
@@ -133,7 +133,7 @@
       <div class="actress-tabs">
         <button class="actress-tab active" onclick="App.switchActressTab('popular',this)">🔥 現在のランキング</button>
         <button class="actress-tab" onclick="App.switchActressTab('monthly',this)">📅 月間人気</button>
-        <button class="actress-tab" onclick="App.switchActressTab('new',this)">🌸 新着女優</button>
+        <button class="actress-tab" onclick="App.switchActressTab('new',this)">🌸 新人女優</button>
       </div>
       <span class="actress-section-update">🔄 30分毎更新</span>
     </div>
@@ -151,7 +151,7 @@
       <select class="sort-select" id="sortSelect" onchange="App.setSort(this.value)">
         <option value="">— なし —</option>
         <option value="rank">🏆 人気順</option>
-        <option value="date">🆕 新着順</option>
+        <option value="date">🆕 新作順</option>
         <option value="review">⭐ レビュー高い順</option>
       </select>
     </div>
@@ -197,7 +197,7 @@
       <button class="rank-tab clear-tab" onclick="App.clearSort(this)">✕ なし</button>
       <button class="rank-tab active" onclick="App.setSort('rank',this)">🏆 人気順</button>
       <button class="rank-tab" onclick="App.setSort('review',this)">⭐ 高評価</button>
-      <button class="rank-tab" onclick="App.setSort('date',this)">🆕 新着</button>
+      <button class="rank-tab" onclick="App.setSort('date',this)">🆕 新作</button>
     </div>
     <div class="single-work-bar" id="singleWorkBar">
       <button class="single-work-toggle" id="singleWorkBtn" onclick="App.toggleSingleWork(this)">
@@ -255,7 +255,7 @@
     <span class="bn-icon">🏆</span><span>ランキング</span>
   </button>
   <button class="bottom-nav-item" onclick="App.setSort('date',this)">
-    <span class="bn-icon">🆕</span><span>新着</span>
+    <span class="bn-icon">🆕</span><span>新作</span>
   </button>
   <button class="bottom-nav-item" onclick="App.setSale(this)">
     <span class="bn-icon">🔥</span><span>SALE</span>
@@ -270,7 +270,7 @@
   <div class="footer-nav">
     <a href="home.html">TOP</a>
     <a href="#" onclick="App.setSort('rank')">ランキング</a>
-    <a href="#" onclick="App.setSort('date')">新着</a>
+    <a href="#" onclick="App.setSort('date')">新作</a>
     <a href="#" onclick="App.setFloor('goods')">グッズ</a>
     <a href="privacy.html">プライバシーポリシー</a>
     <a href="disclaimer.html">免責事項</a>

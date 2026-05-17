@@ -228,7 +228,7 @@ async function loadProduct(){
               <button id="likeBtn" class="btn-like-detail ${Like.has(item.content_id)?'active':''}"
                 onclick="toggleLikeDetail(this,'${esc(item.content_id)}')">
                 <span id="likeBtnIcon">${Like.has(item.content_id)?'❤️':'🤍'}</span>
-                <span id="likeBtnLabel">いいね</span>
+                <span id="likeBtnLabel">${Like.count(item.content_id)>0?Like.count(item.content_id):'いいね'}</span>
               </button>
               <button id="favBtn" class="btn-fav-detail ${isFav?'active':''}"
                 onclick="toggleFavDetail(this,'${esc(item.content_id)}')">
@@ -311,12 +311,14 @@ function copyShareLink(btn, encodedUrl) {
     }
 }
 
-// ===== いいね（詳細ページ・トグル）=====
+// ===== いいね（詳細ページ・トグル＋累計カウント）=====
 function toggleLikeDetail(btn, cid) {
     const isNow = Like.toggle(cid);
     btn.classList.toggle('active', isNow);
-    const iconEl = document.getElementById('likeBtnIcon');
-    if (iconEl) iconEl.textContent = isNow ? '❤️' : '🤍';
+    const iconEl  = document.getElementById('likeBtnIcon');
+    const labelEl = document.getElementById('likeBtnLabel');
+    if (iconEl)  iconEl.textContent  = isNow ? '❤️' : '🤍';
+    if (labelEl) labelEl.textContent = Like.count(cid) > 0 ? Like.count(cid) : 'いいね';
     btn.animate([{ transform: 'scale(1.25)' }, { transform: 'scale(1)' }],
         { duration: 200, easing: 'ease-out' });
 }

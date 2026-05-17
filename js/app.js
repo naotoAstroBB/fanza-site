@@ -735,7 +735,8 @@ const App = {
                class="card-actress-link" onclick="event.stopPropagation()">${this.esc(a.name)}</a>`
         ).join(' / ');
 
-        const isLiked = Like.has(item.content_id);
+        const isLiked   = Like.has(item.content_id);
+        const likeCount = Like.count(item.content_id);
         return `
         <div class="product-card" onclick="location.href='product.html?cid=${this.esc(item.content_id)}&floor=${this.floor}'">
           <div class="card-img-wrap">
@@ -758,7 +759,7 @@ const App = {
               <button class="like-btn ${isLiked ? 'active' : ''}" data-cid="${this.esc(item.content_id)}"
                 onclick="event.stopPropagation();App.toggleLike(this,'${this.esc(item.content_id)}')">
                 <span class="like-icon">${isLiked ? '❤️' : '🤍'}</span>
-                <span class="like-label">いいね</span>
+                <span class="like-label">${likeCount > 0 ? likeCount : 'いいね'}</span>
               </button>
             </div>
             ${review?.count ? `<div class="card-review" style="margin-bottom:6px">${avg.toFixed(1)} (${review.count}件)</div>` : ''}
@@ -769,12 +770,14 @@ const App = {
         </div>`;
     },
 
-    // ===== いいね（トグル）=====
+    // ===== いいね（トグル＋累計カウント表示）=====
     toggleLike(btn, cid) {
         const isNow = Like.toggle(cid);
         btn.classList.toggle('active', isNow);
-        const iconEl = btn.querySelector('.like-icon');
-        if (iconEl) iconEl.textContent = isNow ? '❤️' : '🤍';
+        const iconEl  = btn.querySelector('.like-icon');
+        const labelEl = btn.querySelector('.like-label');
+        if (iconEl)  iconEl.textContent  = isNow ? '❤️' : '🤍';
+        if (labelEl) labelEl.textContent = Like.count(cid) > 0 ? Like.count(cid) : 'いいね';
         btn.animate([{ transform: 'scale(1.4)' }, { transform: 'scale(1)' }],
             { duration: 250, easing: 'ease-out' });
     },

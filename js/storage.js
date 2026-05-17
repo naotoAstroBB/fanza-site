@@ -70,19 +70,20 @@ const Hist = {
     }
 };
 
-// ===== いいね管理（トグル方式：1ユーザー1いいね）=====
+// ===== いいね管理（トグル方式：1ユーザー1いいね、累計カウント付き）=====
 const Like = {
-    KEY: 'fanza_likes',
-    _set: null,
+    KEY:       'fanza_likes',        // 現在いいね中のcid Set
+    KEY_COUNT: 'fanza_like_counts',  // 累計カウント {[cid]: number}（一方向加算）
+    _set:    null,
+    _counts: null,
 
-    _load() {
+    _loadSet() {
         if (!this._set) {
             try {
                 const raw = JSON.parse(localStorage.getItem(this.KEY) || '[]');
                 if (Array.isArray(raw)) {
                     this._set = new Set(raw.map(m => typeof m === 'string' ? m : m?.cid).filter(Boolean));
                 } else {
-                    // 後方互換: 旧オブジェクト形式 {cid: count} → Set に変換
                     this._set = new Set(Object.keys(raw));
                 }
             } catch(e) { this._set = new Set(); }
@@ -90,18 +91,33 @@ const Like = {
         return this._set;
     },
 
-    _save() {
-        localStorage.setItem(this.KEY, JSON.stringify([...this._set]));
+    _loadCounts() {
+        if (!this._counts) {
+            try {
+                const raw = JSON.parse(localStorage.getItem(this.KEY_COUNT) || '{}');
+                this._counts = (raw && typeof raw === 'object' && !Array.isArray(raw)) ? raw : {};
+            } catch(e) { this._counts = {}; }
+        }
+        return this._counts;
     },
 
-    has(cid) {
-        return this._load().has(String(cid));
-    },
+    _saveSet()    { localStorage.setItem(this.KEY,       JSON.stringify([...this._set])); },
+    _saveCounts() { localStorage.setItem(this.KEY_COUNT, JSON.stringify(this._counts)); },
+
+    has(cid) { return this._loadSet().has(String(cid)); },
+
+    count(cid) { return this._loadCounts()[String(cid)] || 0; },
 
     toggle(cid) {
-        const s = this._load(), id = String(cid);
-        if (s.has(id)) { s.delete(id); this._save(); return false; }
-        s.add(id); this._save(); return true;
+        const s = this._loadSet(), id = String(cid);
+        if (s.has(id)) {
+            s.delete(id); this._saveSet(); return false;
+        }
+        s.add(id); this._saveSet();
+        // 初回いいねのみカウント加算（同一デバイスで最大1）
+        const c = this._loadCounts();
+        if (!c[id]) { c[id] = 1; this._saveCounts(); }
+        return true;
     }
 };
 

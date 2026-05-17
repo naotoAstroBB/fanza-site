@@ -70,52 +70,55 @@ const Hist = {
     }
 };
 
-// ===== いいね管理 =====
+// ===== いいね管理（トグル方式：1ユーザー1いいね、累計カウント付き）=====
 const Like = {
-    KEY: 'fanza_likes',
+    KEY:       'fanza_likes',        // 現在いいね中のcid Set
+    KEY_COUNT: 'fanza_like_counts',  // 累計カウント {[cid]: number}（一方向加算）
+    _set:    null,
+    _counts: null,
 
-    get() {
-        try {
-            const arr = JSON.parse(localStorage.getItem(this.KEY) || '[]');
-            // 後方互換: 旧版はCID文字列配列
-            return arr.map(m => typeof m === 'string'
-                ? { cid: m, title: '', img: '', url: '#', floor: 'videoa', ts: 0 }
-                : m);
-        } catch(e) { return []; }
+    _loadSet() {
+        if (!this._set) {
+            try {
+                const raw = JSON.parse(localStorage.getItem(this.KEY) || '[]');
+                if (Array.isArray(raw)) {
+                    // 旧版: 文字列配列 or オブジェクト配列
+                    this._set = new Set(raw.map(m => typeof m === 'string' ? m : (m?.cid || m?.content_id)).filter(Boolean));
+                } else {
+                    this._set = new Set(Object.keys(raw));
+                }
+            } catch(e) { this._set = new Set(); }
+        }
+        return this._set;
     },
 
-    _save(list) {
-        localStorage.setItem(this.KEY, JSON.stringify(list));
+    _loadCounts() {
+        if (!this._counts) {
+            try {
+                const raw = JSON.parse(localStorage.getItem(this.KEY_COUNT) || '{}');
+                this._counts = (raw && typeof raw === 'object' && !Array.isArray(raw)) ? raw : {};
+            } catch(e) { this._counts = {}; }
+        }
+        return this._counts;
     },
 
-    has(cid) {
-        return this.get().some(m => m.cid === String(cid));
-    },
+    _saveSet()    { localStorage.setItem(this.KEY,       JSON.stringify([...this._set])); },
+    _saveCounts() { localStorage.setItem(this.KEY_COUNT, JSON.stringify(this._counts)); },
 
-    toggle(item, floor) {
-        const cid  = String(typeof item === 'object' ? item.content_id : item);
-        const all  = this.get();
-        const list = all.filter(m => m.cid !== cid);
-        if (list.length < all.length) { this._save(list); return false; }
-        list.unshift({
-            cid,
-            title: typeof item === 'object' ? (item.title || '') : '',
-            img:   typeof item === 'object' ? (item.imageURL?.list || item.imageURL?.small || '') : '',
-            url:   typeof item === 'object' ? (item.affiliateURL || item.URL || '#') : '#',
-            floor: floor || 'videoa',
-            ts:    Date.now()
-        });
-        if (list.length > 200) list.length = 200;
-        this._save(list);
+    has(cid) { return this._loadSet().has(String(cid)); },
+
+    count(cid) { return this._loadCounts()[String(cid)] || 0; },
+
+    toggle(cid) {
+        const s = this._loadSet(), id = String(cid);
+        if (s.has(id)) {
+            s.delete(id); this._saveSet(); return false;
+        }
+        s.add(id); this._saveSet();
+        // 初回いいねのみカウント加算（同一デバイスで最大1）
+        const c = this._loadCounts();
+        if (!c[id]) { c[id] = 1; this._saveCounts(); }
         return true;
-    },
-
-    remove(cid) {
-        this._save(this.get().filter(m => m.cid !== String(cid)));
-    },
-
-    count() {
-        return this.get().length;
     }
 };
 

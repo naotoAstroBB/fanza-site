@@ -46,11 +46,6 @@
       <button onclick="App.doSearch()">🔍</button>
     </div>
     <div class="header-btns">
-      <button class="like-header-btn" onclick="App.toggleLikePanel()" title="いいね一覧">
-        <span class="like-header-icon">❤️</span>
-        <span class="like-header-label">いいね</span>
-        <span class="like-badge" id="likeBadge" style="display:none">0</span>
-      </button>
       <button class="fav-header-btn" onclick="App.toggleFavPanel()" title="お気に入りを開く">
         <span class="fav-icon">⭐</span>
         <span class="fav-label">お気に入り</span>
@@ -91,16 +86,6 @@
   </div>
 </div>
 
-<!-- いいねパネル（ヘッダー内ドロワー） -->
-<div class="fav-panel" id="likePanel" style="display:none">
-  <div class="fav-panel-inner">
-    <div class="fav-panel-header">
-      <span class="fav-panel-title">❤️ いいね済み <span id="likeBadge2"></span></span>
-      <button class="fav-panel-close" onclick="App.toggleLikePanel()">✕ 閉じる</button>
-    </div>
-    <div class="actress-scroll" id="likePanelList"></div>
-  </div>
-</div>
 </div>
 
 <div class="ticker">

@@ -104,6 +104,46 @@
     color: #fff;
 }
 
+/* バイオグラフィーカード */
+.actress-bio-card {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-bottom: 14px;
+}
+.actress-bio-header {
+    display: flex; align-items: center; gap: 8px;
+    font-size: .75rem; color: var(--mute);
+    letter-spacing: .05em; margin-bottom: 8px; font-weight: 600;
+}
+.actress-bio-badge {
+    background: rgba(100,149,237,.15); border: 1px solid rgba(100,149,237,.3);
+    border-radius: 4px; padding: 1px 6px;
+    font-size: .65rem; color: #87b0ff; font-weight: 400;
+}
+.actress-bio-body {
+    font-size: .87rem; color: #ccc; line-height: 1.75;
+    max-height: 6.5em; overflow: hidden; position: relative;
+}
+.actress-bio-body.expanded { max-height: none; }
+.actress-bio-body:not(.expanded)::after {
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+    height: 2.5em;
+    background: linear-gradient(transparent, var(--bg3));
+    pointer-events: none;
+}
+.actress-bio-expand-btn {
+    background: none; border: none; padding: 4px 0;
+    color: var(--accent); font-size: .82rem; cursor: pointer; display: block; margin-top: 4px;
+}
+.actress-bio-wiki-link {
+    display: block; margin-top: 8px; font-size: .76rem; color: var(--mute);
+    text-decoration: none; border-top: 1px solid var(--border); padding-top: 8px;
+}
+.actress-bio-wiki-link:hover { color: var(--accent); }
+
 /* アクションボタン */
 .actress-action-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 4px; }
 .actress-fanza-btn {
@@ -325,6 +365,7 @@ async function loadActressInfo() {
             </div>` : ''}
             <div id="actressWorksBar"></div>
             <div id="actressGenreTags"></div>
+            <div id="actressBio"></div>
             <div class="actress-action-row">
                 <a class="actress-fanza-btn" href="${esc(link)}" target="_blank" rel="noopener">🎬 全作品を見る</a>
             </div>
@@ -333,8 +374,81 @@ async function loadActressInfo() {
     document.title = name + ' 出演作品 | AV動画ランキング';
     document.getElementById('breadName').textContent = name;
 
+    // Wikipedia バイオを非同期で取得（作品ロードと並行）
+    loadWikipediaBio(name, actress?.comment || '');
+
     // 作品を検索
     await loadWorks();
+}
+
+// ===== Wikipedia バイオグラフィー取得 =====
+async function loadWikipediaBio(name, fanzaComment) {
+    const bioEl = document.getElementById('actressBio');
+    if (!bioEl || !name) return;
+
+    let wikiText = '', wikiTitle = '', wikiUrl = '';
+
+    try {
+        const safeFetch = url => Promise.race([
+            fetch(url),
+            new Promise((_, r) => setTimeout(() => r(new Error('timeout')), 7000))
+        ]);
+
+        const sd = await safeFetch(
+            `https://ja.wikipedia.org/w/api.php?action=query&list=search&srsearch=${encodeURIComponent(name)}&srlimit=5&format=json&origin=*`
+        );
+        if (sd.ok) {
+            const sj = await sd.json();
+            const clean = s => s.replace(/[\s　・]/g, '');
+            const cn = clean(name);
+            const hit = (sj?.query?.search || []).find(r => {
+                const ct = clean(r.title);
+                return ct === cn || ct.includes(cn) || cn.includes(ct);
+            });
+            if (hit) {
+                const ed = await safeFetch(
+                    `https://ja.wikipedia.org/w/api.php?action=query&prop=extracts&exintro&titles=${encodeURIComponent(hit.title)}&format=json&origin=*`
+                );
+                if (ed.ok) {
+                    const ej = await ed.json();
+                    const pg = Object.values(ej?.query?.pages || {})[0];
+                    if (pg && !pg.missing && pg.extract) {
+                        wikiText = pg.extract
+                            .replace(/<p[^>]*>/gi, '\n').replace(/<\/p>/gi, '')
+                            .replace(/<br\s*\/?>/gi, '\n').replace(/<[^>]+>/g, '')
+                            .replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&quot;/g,'"').replace(/&#039;/g,"'")
+                            .replace(/\n{3,}/g, '\n\n').trim();
+                        wikiTitle = hit.title;
+                        wikiUrl = `https://ja.wikipedia.org/wiki/${encodeURIComponent(hit.title)}`;
+                    }
+                }
+            }
+        }
+    } catch(e) {}
+
+    const bioText = wikiText || fanzaComment || '';
+    if (!bioText || bioText.length < 20) { bioEl.innerHTML = ''; return; }
+
+    const isWiki = !!wikiText;
+    const PREVIEW = 280;
+    const needsExpand = bioText.length > PREVIEW;
+    const bodyClass = needsExpand ? 'actress-bio-body' : 'actress-bio-body expanded';
+
+    bioEl.innerHTML = `
+        <div class="actress-bio-card">
+            <div class="actress-bio-header">
+                📖 プロフィール${isWiki ? ' <span class="actress-bio-badge">Wikipedia</span>' : ''}
+            </div>
+            <div class="${bodyClass}" id="biobody">${esc(bioText).replace(/\n/g,'<br>')}</div>
+            ${needsExpand ? `<button class="actress-bio-expand-btn" onclick="toggleBioExpand(this)">続きを読む ▼</button>` : ''}
+            ${isWiki ? `<a class="actress-bio-wiki-link" href="${esc(wikiUrl)}" target="_blank" rel="noopener noreferrer">🔗 Wikipedia で詳細を見る（${esc(wikiTitle)}）</a>` : ''}
+        </div>`;
+}
+
+function toggleBioExpand(btn) {
+    const body = document.getElementById('biobody');
+    if (body) body.classList.add('expanded');
+    btn.remove();
 }
 
 // ===== 出演作品を収集（女優別JSON優先 → 横断検索で補完）=====

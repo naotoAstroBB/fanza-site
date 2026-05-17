@@ -1,0 +1,42 @@
+name: Auto Post to SNS
+
+on:
+  schedule:
+    # JST 9:00 / 15:00 / 21:00 (UTC 0:00 / 6:00 / 12:00)
+    - cron: '0 0 * * *'
+    - cron: '0 6 * * *'
+    - cron: '0 12 * * *'
+  workflow_dispatch:
+    inputs:
+      slot:
+        description: 'POST_SLOT (0=朝 1=昼 2=夜)'
+        required: false
+        default: '0'
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Determine slot
+        id: slot
+        run: |
+          HOUR=$(date -u +%H)
+          if   [ "$HOUR" = "00" ]; then echo "slot=0" >> $GITHUB_OUTPUT
+          elif [ "$HOUR" = "06" ]; then echo "slot=1" >> $GITHUB_OUTPUT
+          else                          echo "slot=2" >> $GITHUB_OUTPUT
+          fi
+          # workflow_dispatch overrides
+          if [ -n "${{ github.event.inputs.slot }}" ]; then
+            echo "slot=${{ github.event.inputs.slot }}" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Post to SNS
+        env:
+          POST_SLOT:         ${{ steps.slot.outputs.slot }}
+          BSKY_HANDLE:       ${{ secrets.BSKY_HANDLE }}
+          BSKY_APP_PASSWORD: ${{ secrets.BSKY_APP_PASSWORD }}
+          MISSKEY_INSTANCE:  ${{ secrets.MISSKEY_INSTANCE }}
+          MISSKEY_TOKEN:     ${{ secrets.MISSKEY_TOKEN }}
+        run: node scripts/post_sns.js

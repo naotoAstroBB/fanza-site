@@ -54,6 +54,12 @@ textarea{width:100%;background:#111;border:1px solid #333;color:#eee;border-radi
 textarea:focus{outline:none;border-color:#ff3366}
 .char-count{font-size:.72rem;text-align:right;margin-top:4px;color:#666}
 .char-count.warn{color:#ff8866}
+.pattern-row{margin-bottom:10px}
+.pattern-row label{font-size:.75rem;color:#888;display:block;margin-bottom:5px}
+.pattern-select{width:100%;background:#111;border:1px solid #333;color:#eee;border-radius:7px;padding:7px 10px;font-size:.82rem}
+.pattern-select:focus{outline:none;border-color:#ff3366}
+.regen-btn{background:#2a2a2a;border:1px solid #444;color:#aaa;padding:5px 12px;border-radius:6px;font-size:.78rem;cursor:pointer;margin-top:5px}
+.regen-btn:hover{border-color:#ff3366;color:#fff}
 .platform-btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
 .platform-btns button{flex:1;min-width:100px;padding:10px 8px;border:none;border-radius:9px;font-size:.82rem;font-weight:700;cursor:pointer;transition:opacity .15s}
 .platform-btns button:hover{opacity:.82}
@@ -126,6 +132,33 @@ textarea:focus{outline:none;border-color:#ff3366}
         <span class="url-btn active" id="urlBtnSite" onclick="setUrlType('site')">自サイト</span>
         <span class="url-btn" id="urlBtnFanza" onclick="setUrlType('fanza')">FANZAアフィリ</span>
       </div>
+    </div>
+    <div class="pattern-row">
+      <label>投稿パターン</label>
+      <select class="pattern-select" id="patternSelect" onchange="regenerate()">
+        <option value="-1">🎲 自動選択</option>
+        <option value="0">1. 驚き発見「え、こんなすごかったの」</option>
+        <option value="1">2. ランキング速報「今日のTOP3」</option>
+        <option value="2">3. 個人おすすめ「これ本当に良かった」</option>
+        <option value="3">4. セール・価格推し「この値段はおかしい」</option>
+        <option value="4">5. 女優フィーチャー「この人の話をしたい」</option>
+        <option value="5">6. デビュー・新人「これ絶対伸びる」</option>
+        <option value="6">7. レビュー偉業「○万件で○点」</option>
+        <option value="7">8. 問いかけ「○○派？それとも○○派？」</option>
+        <option value="8">9. 知る人ぞ知る「大きく宣伝されてないけど」</option>
+        <option value="9">10. スペック推し「全部好きなやつだった」</option>
+        <option value="10">11. 深夜投稿「深夜に見るやつ」</option>
+        <option value="11">12. 共感フック「わかる人にはわかる」</option>
+        <option value="12">13. ジャンル特化「○○好きに刺さる」</option>
+        <option value="13">14. 比較おすすめ「○○が好きならこれ」</option>
+        <option value="14">15. 実況・感想「見終わった」</option>
+        <option value="15">16. データ統計「数字で見る名作」</option>
+        <option value="16">17. 週末推薦「週末に見てほしいやつ」</option>
+        <option value="17">18. タイムセール速報「⚡見逃し注意」</option>
+        <option value="18">19. レジェンド推し「この世代に伝えたい」</option>
+        <option value="19">20. シナリオ・妄想「理想が全部詰まってた」</option>
+      </select>
+      <button class="regen-btn" onclick="regenerate()">🔄 再生成</button>
     </div>
     <textarea id="cmpText" oninput="updateCharCount()"></textarea>
     <div class="char-count" id="charCount">0文字</div>
@@ -229,6 +262,147 @@ function getSampleUrl(item) {
   return mv ? (mv.size_560_360 || mv.size_476_306 || mv.size_644_414 || '') : '';
 }
 
+function getActresses(item) { return (item.iteminfo?.actress || []).map(a => a.name); }
+function getGenres(item)   { return (item.iteminfo?.genre   || []).map(g => g.name); }
+
+function makeTags(item, extra = []) {
+  const t = ['#FANZA', '#AV', ...extra];
+  getActresses(item).slice(0,2).forEach(a => t.push('#' + a.replace(/\s/g,'')));
+  getGenres(item).filter(g => !['ハイビジョン','BEST・総集編','独占配信'].includes(g))
+    .slice(0,2).forEach(g => t.push('#' + g.replace(/\s/g,'')));
+  return [...new Set(t)].join(' ');
+}
+
+function reviewStr(item) {
+  const avg = parseFloat(item.review?.average || 0);
+  const cnt = parseInt(item.review?.count || 0);
+  if (!avg) return '';
+  return `${'★'.repeat(Math.min(5,Math.round(avg)))} ${avg}点 (${cnt.toLocaleString()}件)`;
+}
+
+function shortTitle(item, len=28) { return (item.title||'').slice(0,len); }
+
+// 20パターン（nullを返すとスキップ）
+const PATTERNS = [
+  // 1: 驚き発見
+  (item) => {
+    const a = getActresses(item)[0]; if (!a) return null;
+    return `え、${a}ってこんなすごかったの…\n\n知らなかった人多そうだけど\nこれ見たら絶対ハマる\n\n${reviewStr(item)}\n\n👇 サンプル動画あり\n{URL}\n\n${makeTags(item)}`;
+  },
+  // 2: ランキング
+  () => {
+    const top3 = allItems.slice(0,3);
+    const lines = top3.map((x,i) => {
+      const a = getActresses(x)[0]||'---';
+      return `${['🥇','🥈','🥉'][i]} ${a}\n　${shortTitle(x,18)}…\n　${reviewStr(x)}`;
+    }).join('\n\n');
+    return `📊 今日のFANZA人気TOP3\n\n${lines}\n\n詳細・サンプルはこちら\n${SITE}\n\n#FANZAランキング #FANZA #AV`;
+  },
+  // 3: 個人おすすめ
+  (item) => {
+    const a = getActresses(item)[0]||'';
+    return `これ、本当に良かった\n\n${a?a+'の作品だったんだけど':'たまたま見つけたやつ'}\n最初から最後まで全然飽きなかった\n\n${reviewStr(item)}\n\n気になったら見てみて\n{URL}\n\n${makeTags(item)}`;
+  },
+  // 4: セール
+  (item) => {
+    const price = item.prices?.price;
+    return `${price?price+'円の作品がセール中':'セール対象になってた'}\n\n${shortTitle(item)}\n\n${reviewStr(item)}\n\nこのクオリティでこの値段はおかしい\n👇\n{URL}\n\n${makeTags(item,['#FANZAセール'])}`;
+  },
+  // 5: 女優フィーチャー
+  (item) => {
+    const a = getActresses(item)[0]; if (!a) return null;
+    return `${a}の話をしたい\n\n何が好きかって言うと\n全体的にちょうどいいんだよな\n\n作品数も多いし外れがない\n\n最新作はこれ👇\n{URL}\n\n${makeTags(item)}`;
+  },
+  // 6: デビュー・新人
+  (item) => {
+    const a = getActresses(item)[0]||'';
+    return `${a?a+'、':''}これ絶対伸びる\n\nデビューしたてなのに\nもう完成されすぎてる\n\n${reviewStr(item)}\n\n今のうちに見ておいた方がいい\n{URL}\n\n${makeTags(item)}`;
+  },
+  // 7: レビュー偉業
+  (item) => {
+    const avg = parseFloat(item.review?.average||0);
+    const cnt = parseInt(item.review?.count||0);
+    if (avg < 4.0 || cnt < 50) return null;
+    return `レビュー${cnt.toLocaleString()}件で${avg}点\n\nこれがどれだけすごいかわかる人にはわかる\n\nFANZAでこの数字出すのはほぼ不可能に近い\n\n👇 見たら納得する\n{URL}\n\n${makeTags(item)}`;
+  },
+  // 8: 問いかけ
+  (item) => {
+    const gs = getGenres(item).filter(g=>g.length<=6&&!['ハイビジョン','独占配信'].includes(g));
+    if (gs.length < 2) return null;
+    return `${gs[0]}派？それとも${gs[1]}派？\n\nどっちか選べって言われたら困るんだけど\n\nこれはどっちも入ってる最強の作品\n\n{URL}\n\n${makeTags(item)}`;
+  },
+  // 9: 知る人ぞ知る
+  (item) => `知ってる人だけ知ってる名作\n\n大きく宣伝されてないけど\nわかってる人の間では評価高い\n\n${reviewStr(item)}\n\n黙って保存しといて\n{URL}\n\n${makeTags(item)}`,
+  // 10: スペック推し
+  (item) => {
+    const a = getActresses(item)[0]||'';
+    const gs = getGenres(item).filter(g=>['巨乳','美乳','美少女','スレンダー','痴女','人妻'].includes(g));
+    return `${a}${gs.length?'（'+gs[0]+'）':''}\n\nスペック的に全部好きなやつだった\n\n${reviewStr(item)}\n\n確認してみて\n{URL}\n\n${makeTags(item)}`;
+  },
+  // 11: 深夜
+  (item) => `深夜に見るやつ\n\n${shortTitle(item)}\n\n寝れなくなっても知らない\n\n${reviewStr(item)}\n\n{URL}\n\n${makeTags(item)}`,
+  // 12: 共感フック
+  (item) => {
+    const g = getGenres(item).filter(g=>g.length<8&&!['ハイビジョン'].includes(g))[0];
+    if (!g) return null;
+    return `${g}好きはわかってくれると思うんだけど\n\n外れ引いた時の絶望感って\nもう味わいたくないじゃないですか\n\nだからこそこれは自信を持って言える\n\n${reviewStr(item)}\n\n{URL}\n\n${makeTags(item)}`;
+  },
+  // 13: ジャンル特化
+  (item) => {
+    const g = getGenres(item).filter(g=>!['ハイビジョン','BEST・総集編','独占配信'].includes(g))[0];
+    if (!g) return null;
+    const a = getActresses(item)[0]||'';
+    return `${g}が好きな人に刺さる作品見つけた\n\n${a}\n\n${reviewStr(item)}\n\nサンプル動画あるから確認してみて\n{URL}\n\n${makeTags(item)}`;
+  },
+  // 14: 比較おすすめ
+  (item) => {
+    const g = getGenres(item).filter(g=>!['ハイビジョン'].includes(g))[0]||'この系統';
+    return `${g}が好きなら絶対ハマる\n\n他のやつ色々見てきたけどこれが一番クオリティ高かった\n\n${reviewStr(item)}\n\n{URL}\n\n${makeTags(item)}`;
+  },
+  // 15: 実況・感想
+  (item) => {
+    const a = getActresses(item)[0]||'';
+    return `見終わった\n\n${a?a+'、正直なめてたごめん':'これはやばかった'}\n\nサムネで判断してたけど本編の方が全然よかった\n\n${reviewStr(item)}\n\n{URL}\n\n${makeTags(item)}`;
+  },
+  // 16: データ統計
+  (item) => {
+    const cnt = parseInt(item.review?.count||0); const avg = item.review?.average;
+    if (!avg||!cnt) return null;
+    return `数字で見るFANZA名作\n\nレビュー件数：${cnt.toLocaleString()}件\n平均評価：★${avg}点\n\nこの数字が何を意味するかは実際に見た人が一番わかってる\n\n{URL}\n\n${makeTags(item)}`;
+  },
+  // 17: 週末推薦
+  (item) => `週末に見てほしいやつ\n\n${shortTitle(item)}\n\n時間取れる時じゃないともったいない作品\n\n${reviewStr(item)}\n\n{URL}\n\n${makeTags(item)}`,
+  // 18: タイムセール速報
+  (item) => `⚡ 見逃し注意\n\n${shortTitle(item)}\n\n${reviewStr(item)}\n\n今確認しないと後悔するやつ\n👇\n{URL}\n\n${makeTags(item,['#FANZAセール'])}`,
+  // 19: レジェンド推し
+  (item) => {
+    const a = getActresses(item)[0]; if (!a) return null;
+    return `${a}を知らない世代に伝えたい\n\nこの人の作品は時代関係なく刺さる\n\n今見ても全然古くない\nむしろこのクオリティが異常\n\n${reviewStr(item)}\n\n{URL}\n\n${makeTags(item)}`;
+  },
+  // 20: シナリオ・妄想
+  (item) => {
+    const gs = getGenres(item).filter(g=>!['ハイビジョン','BEST・総集編','独占配信'].includes(g));
+    const gStr = gs.slice(0,2).join('×')||'このジャンル';
+    return `${gStr}の理想が全部詰まってた\n\nシチュエーションも\nキャストも\n展開も\n\n全部好きなやつだった\n\n${reviewStr(item)}\n\n{URL}\n\n${makeTags(item)}`;
+  },
+];
+
+function generateText(item, patternIdx) {
+  const url = getPostUrl();
+  if (patternIdx >= 0) {
+    const result = PATTERNS[patternIdx](item);
+    return result ? result.replace('{URL}', url) : generateText(item, -1);
+  }
+  // 自動: ランダムにパターンを試す
+  const start = Math.floor(Math.random() * PATTERNS.length);
+  for (let i = 0; i < PATTERNS.length; i++) {
+    const idx = (start + i) % PATTERNS.length;
+    const result = PATTERNS[idx](item);
+    if (result) return result.replace('{URL}', url);
+  }
+  return `${item.title}\n\n${reviewStr(item)}\n\n${url}\n\n${makeTags(item)}`;
+}
+
 function getActressTags(item) {
   return (item.iteminfo?.actress || []).map(a => '#' + a.name.replace(/\s/g, '')).join(' ');
 }
@@ -323,15 +497,13 @@ function getPostUrl() {
 
 function fillTemplate() {
   if (!currentItem) return;
-  const cfg = getCfg();
-  const tmpl = cfg.template || DEFAULT_TMPL;
-  const title = currentItem.title || '';
-  const url = getPostUrl();
-  const tags = getActressTags(currentItem) + ' #FANZA #AV';
-  const text = tmpl.replace('{title}', title).replace('{url}', url).replace('{tags}', tags);
+  const sel = parseInt(document.getElementById('patternSelect').value, 10);
+  const text = generateText(currentItem, sel);
   document.getElementById('cmpText').value = text;
   updateCharCount();
 }
+
+function regenerate() { fillTemplate(); }
 
 function updateCharCount() {
   const len = document.getElementById('cmpText').value.length;

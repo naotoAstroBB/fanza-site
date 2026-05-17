@@ -193,10 +193,10 @@ jobs:
           PRODUCT_IDS=$(jq -r '.result.items[]? | .iteminfo.actress[]?.id | tostring' data/rank.json data/new.json data/review.json data/genre_*.json 2>/dev/null \
             | grep -v null | sort | uniq -c | sort -rn | awk '$1 >= 1 {print $2}')
 
-          # Step2: ActressSearch人気順sweep（最大1500人）でFANZA人気女優を補完
-          # 商品データに出現しない人気女優も捕捉
+          # Step2: ActressSearch人気順sweep（最大3000人）でFANZA人気女優を補完
+          # 伝説女優（上原亜衣・吉沢明歩 等）も確実にカバー
           rm -f /tmp/sweep_*.json
-          for i in $(seq 1 15); do
+          for i in $(seq 1 30); do
             OFFSET=$(( (i-1)*100 + 1 ))
             curl -sf "${ACTRESS_API}&sort=popular&hits=100&offset=${OFFSET}" \
               -o /tmp/sweep_${i}.json 2>/dev/null \
@@ -204,9 +204,9 @@ jobs:
           done
           SWEEP_IDS=$(jq -r '.result.actress[]?.id | tostring' /tmp/sweep_*.json 2>/dev/null | grep -v null)
 
-          # Step3: 両方をマージ（商品頻度順を先頭に、sweep分を補完）、上位1500件に絞る
+          # Step3: 両方をマージ（商品頻度順を先頭に、sweep分を補完）、上位2500件に絞る
           ALL_PROFILE_IDS=$(printf '%s\n' $PRODUCT_IDS $SWEEP_IDS \
-            | awk '!seen[$0]++ && $0 != ""' | head -1500)
+            | awk '!seen[$0]++ && $0 != ""' | head -2500)
 
           build_actress_json "$ALL_PROFILE_IDS" data/actress_profiles.json \
             || echo '{"result":{"status":404,"actress":[]}}' > data/actress_profiles.json
@@ -219,16 +219,19 @@ jobs:
           WORK_BASE="https://api.dmm.com/affiliate/v3/ItemList?api_id=UXJdpULBN1sPyNKKPPHU&affiliate_id=saaaaaaya-990&site=FANZA&service=digital&output=json&floor=videoa&sort=date&article=actress"
           ALL_ACTRESS_IDS=$(jq -r '.result.actress[].id | tostring' \
             data/actress_popular.json data/actress_new.json data/actress_monthly.json data/actress_profiles.json 2>/dev/null \
-            | awk '!seen[$0]++ && $0 != "null"' | head -300)
+            | awk '!seen[$0]++ && $0 != "null"' | head -500)
           for AID in $ALL_ACTRESS_IDS; do
             curl -sf "${WORK_BASE}&hits=100&article_id=${AID}"            -o /tmp/aw1.json 2>/dev/null || echo '{"result":{"items":[]}}' > /tmp/aw1.json
             curl -sf "${WORK_BASE}&hits=100&offset=101&article_id=${AID}" -o /tmp/aw2.json 2>/dev/null || echo '{"result":{"items":[]}}' > /tmp/aw2.json
             curl -sf "${WORK_BASE}&hits=100&offset=201&article_id=${AID}" -o /tmp/aw3.json 2>/dev/null || echo '{"result":{"items":[]}}' > /tmp/aw3.json
             curl -sf "${WORK_BASE}&hits=100&offset=301&article_id=${AID}" -o /tmp/aw4.json 2>/dev/null || echo '{"result":{"items":[]}}' > /tmp/aw4.json
             curl -sf "${WORK_BASE}&hits=100&offset=401&article_id=${AID}" -o /tmp/aw5.json 2>/dev/null || echo '{"result":{"items":[]}}' > /tmp/aw5.json
-            jq -s '((.[0].result.items//[])+(.[1].result.items//[])+(.[2].result.items//[])+(.[3].result.items//[])+(.[4].result.items//[])) as $it |
-              {result:{status:200,items:$it,total_count:($it|length),result_count:($it|length)}}
-            ' /tmp/aw1.json /tmp/aw2.json /tmp/aw3.json /tmp/aw4.json /tmp/aw5.json > "data/actress_works_${AID}.json" \
+            curl -sf "${WORK_BASE}&hits=100&offset=501&article_id=${AID}" -o /tmp/aw6.json 2>/dev/null || echo '{"result":{"items":[]}}' > /tmp/aw6.json
+            curl -sf "${WORK_BASE}&hits=100&offset=601&article_id=${AID}" -o /tmp/aw7.json 2>/dev/null || echo '{"result":{"items":[]}}' > /tmp/aw7.json
+            curl -sf "${WORK_BASE}&hits=100&offset=701&article_id=${AID}" -o /tmp/aw8.json 2>/dev/null || echo '{"result":{"items":[]}}' > /tmp/aw8.json
+            jq -s '([.[].result.items // []]) | add as $it |
+              {result:{status:200,items:($it//[]),total_count:(($it//[])|length),result_count:(($it//[])|length)}}
+            ' /tmp/aw{1..8}.json > "data/actress_works_${AID}.json" \
               || echo '{"result":{"status":404}}' > "data/actress_works_${AID}.json"
             sleep 0.3
           done

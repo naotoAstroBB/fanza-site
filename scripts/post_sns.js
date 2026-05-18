@@ -88,11 +88,7 @@ ${buildTags(item)}`;
   },
   () => { // 2: ランキングTOP3
     const top = rankItems.slice(0, 3);
-    const lines = top.map((x, i) => `${['🥇','🥈','🥉'][i]} ${getActresses(x)[0]||'---'}
-　${shortTitle(x.title,20)}…
-　${reviewStr(x)}`).join('
-
-');
+    const lines = top.map((x, i) => `${['🥇','🥈','🥉'][i]} ${getActresses(x)[0]||'---'}\n　${shortTitle(x.title,20)}…\n　${reviewStr(x)}`).join('\n\n');
     return `今週ガチで抜けたFANZA作品TOP3
 
 ${lines}
@@ -345,91 +341,6 @@ ${reviewStr(item)}
 ${siteUrl(item)}
 
 ${buildTags(item)}`;
-  },
-]; if (!a) return null;
-    return `え、${a}ってこんなすごかったの…\n\n知らなかった人多そうだけど\nこれ見たら絶対ハマる\n\n${reviewStr(item)}\n👇 サンプル動画あり\n${siteUrl(item)}\n\n${buildTags(item)}`;
-  },
-  () => { // 2: ランキングTOP3
-    const top = rankItems.slice(0, 3);
-    const lines = top.map((x, i) => `${['🥇','🥈','🥉'][i]} ${getActresses(x)[0]||'---'}\n　${shortTitle(x.title,20)}…\n　${reviewStr(x)}`).join('\n\n');
-    return `📊 今日のFANZA人気TOP3\n\n${lines}\n\n詳細・サンプルはこちら\n${SITE}\n\n#FANZAランキング #FANZA #AV #アダルト動画 #エロ動画 #おすすめ`;
-  },
-  (item) => { // 3: 個人おすすめ
-    const a = getActresses(item)[0] || '';
-    return `これ、本当に良かった\n\n${a ? a + 'の作品だったんだけど' : 'たまたま見つけたやつ'}\n最初から最後まで全然飽きなかった\n\n${reviewStr(item)}\n\n気になったら見てみて\n${siteUrl(item)}\n\n${buildTags(item)}`;
-  },
-  (item) => { // 4: セール推し
-    const price = item.prices?.price;
-    return `${price ? price + '円がセール中' : 'セール対象作品'}\n\n${shortTitle(item.title)}\n\n${reviewStr(item)}\n\nこのクオリティでこの値段はおかしい\n${siteUrl(item)}\n\n${buildTags(item, ['FANZAセール', 'セール'])}`;
-  },
-  (item) => { // 5: 女優フィーチャー
-    const a = getActresses(item)[0]; if (!a) return null;
-    return `${a}の話をしたい\n\n何が好きかって言うと全体的にちょうどいいんだよな\n\n作品数も多いし外れがない\n\n最新作はこれ👇\n${siteUrl(item)}\n\n${buildTags(item)}`;
-  },
-  (item) => { // 6: デビュー・新人
-    const a = getActresses(item)[0] || '';
-    return `${a ? a + '、' : ''}これ絶対伸びる\n\nデビューしたてなのにもう完成されすぎてる\n\n${reviewStr(item)}\n\n今のうちに見ておいた方がいい\n${siteUrl(item)}\n\n${buildTags(item, ['新人AV女優', 'デビュー'])}`;
-  },
-  (item) => { // 7: レビュー偉業
-    const avg = parseFloat(item.review?.average || 0);
-    const cnt = parseInt(item.review?.count || 0);
-    if (avg < 4.0 || cnt < 50) return null;
-    return `レビュー${cnt.toLocaleString()}件で${avg}点\n\nFANZAでこの数字出すのはほぼ不可能に近い\n\n👇 見たら納得する\n${siteUrl(item)}\n\n${buildTags(item, ['高評価', '名作'])}`;
-  },
-  (item) => { // 8: 問いかけ
-    const gs = getGenres(item).filter(g => g.length <= 6 && !['ハイビジョン','独占配信'].includes(g));
-    if (gs.length < 2) return null;
-    return `${gs[0]}派？それとも${gs[1]}派？\n\nどっちか選べって言われたら困るんだけど\nこれはどっちも入ってる最強の作品\n\n${siteUrl(item)}\n\n${buildTags(item)}`;
-  },
-  (item) => { // 9: 知る人ぞ知る
-    return `知ってる人だけ知ってる名作\n\n大きく宣伝されてないけどわかってる人の間では評価が高い\n\n${reviewStr(item)}\n\n黙って保存しといて\n${siteUrl(item)}\n\n${buildTags(item, ['名作', '隠れた名作'])}`;
-  },
-  (item) => { // 10: スペック推し
-    const a = getActresses(item)[0] || '';
-    const gs = getGenres(item).filter(g => ['巨乳','美乳','美少女','スレンダー','痴女','人妻'].includes(g));
-    return `${a}${gs[0] ? '（' + gs[0] + '）' : ''}\n\nスペック的に全部好きなやつだった\n\n${reviewStr(item)}\n\n${siteUrl(item)}\n\n${buildTags(item)}`;
-  },
-  (item) => { // 11: 深夜
-    return `深夜に見るやつ\n\n${shortTitle(item.title)}\n\n寝れなくなっても知らない\n\n${reviewStr(item)}\n\n${siteUrl(item)}\n\n${buildTags(item, ['深夜', 'おすすめ'])}`;
-  },
-  (item) => { // 12: 共感フック
-    const g = getGenres(item).filter(g => g.length < 8 && !['ハイビジョン'].includes(g))[0];
-    if (!g) return null;
-    return `${g}好きはわかってくれると思うんだけど\n\n外れ引いた時の絶望感ってもう味わいたくないじゃないですか\n\nだからこそこれは自信を持って言える\n\n${reviewStr(item)}\n\n${siteUrl(item)}\n\n${buildTags(item)}`;
-  },
-  (item) => { // 13: ジャンル特化
-    const g = getGenres(item).filter(g => !['ハイビジョン','BEST・総集編','独占配信'].includes(g))[0];
-    if (!g) return null;
-    return `${g}が好きな人に刺さる作品見つけた\n\n${getActresses(item)[0] || ''}\n\n${reviewStr(item)}\n\nサンプル動画あるから確認してみて\n${siteUrl(item)}\n\n${buildTags(item)}`;
-  },
-  (item) => { // 14: 比較おすすめ
-    const g = getGenres(item).filter(g => !['ハイビジョン'].includes(g))[0] || 'この系統';
-    return `${g}が好きなら絶対ハマる\n\n他のやつ色々見てきたけどこれが一番クオリティ高かった\n\n${reviewStr(item)}\n\n${siteUrl(item)}\n\n${buildTags(item)}`;
-  },
-  (item) => { // 15: 実況・感想
-    const a = getActresses(item)[0] || '';
-    return `見終わった\n\n${a ? a + '、正直なめてたごめん' : 'これはやばかった'}\n\nサムネで判断してたけど本編の方が全然よかった\n\n${reviewStr(item)}\n\n${siteUrl(item)}\n\n${buildTags(item)}`;
-  },
-  (item) => { // 16: データ統計
-    const cnt = parseInt(item.review?.count || 0);
-    const avg = item.review?.average;
-    if (!avg || !cnt) return null;
-    return `数字で見るFANZA名作\n\nレビュー件数：${cnt.toLocaleString()}件\n平均評価：★${avg}点\n\nこの数字が何を意味するかは実際に見た人が一番わかってる\n\n${siteUrl(item)}\n\n${buildTags(item, ['高評価'])}`;
-  },
-  (item) => { // 17: 週末推薦
-    return `週末に見てほしいやつ\n\n${shortTitle(item.title)}\n\n時間取れる時じゃないともったいない作品\n\n${reviewStr(item)}\n\n${siteUrl(item)}\n\n${buildTags(item, ['週末', 'おすすめ'])}`;
-  },
-  (item) => { // 18: タイムセール速報
-    return `⚡ 見逃し注意\n\n${shortTitle(item.title)}\n\n${reviewStr(item)}\n\n今確認しないと後悔するやつ\n${siteUrl(item)}\n\n${buildTags(item, ['FANZAセール', 'セール', '期間限定'])}`;
-  },
-  (item) => { // 19: レジェンド推し
-    const a = getActresses(item)[0]; if (!a) return null;
-    return `${a}を知らない世代に伝えたい\n\nこの人の作品は時代関係なく刺さる\n今見ても全然古くないむしろこのクオリティが異常\n\n${reviewStr(item)}\n\n${siteUrl(item)}\n\n${buildTags(item, ['レジェンド', '名作'])}`;
-  },
-  (item) => { // 20: シナリオ・妄想
-    const gs = getGenres(item).filter(g => !['ハイビジョン','BEST・総集編','独占配信'].includes(g));
-    const gStr = gs.slice(0, 2).join('×') || 'このジャンル';
-    return `${gStr}の理想が全部詰まってた\n\nシチュエーションも\nキャストも\n展開も\n全部好きなやつだった\n\n${reviewStr(item)}\n\n${siteUrl(item)}\n\n${buildTags(item)}`;
   },
 ];
 

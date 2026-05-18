@@ -482,6 +482,80 @@ function uploadBlob(buffer, mime, jwt) {
   });
 }
 
+// ===== トレンドハッシュタグ取得 =====
+function getTrendingTags(jwt) {
+  return new Promise(resolve => {
+    const req = https.request({
+      hostname: 'bsky.social',
+      path: '/xrpc/app.bsky.unspecced.getTrends?limit=20',
+      method: 'GET',
+      headers: { Authorization: `Bearer ${jwt}`, 'Accept': 'application/json' }
+    }, res => {
+      let d = '';
+      res.on('data', c => d += c);
+      res.on('end', () => {
+        try {
+          const trends = JSON.parse(d).trends || [];
+          const tags = trends
+            .map(t => (t.topic || t.hashtag || '').replace(/^#/, ''))
+            .filter(t => t && /[぀-鿿一-鿿]/.test(t))
+            .slice(0, 3);
+          console.log('トレンドタグ:', tags.join(', ') || 'なし');
+          resolve(tags);
+        } catch { resolve([]); }
+      });
+    });
+    req.on('error', () => resolve([]));
+    req.end();
+  });
+}
+
+// ===== サンプル動画URL取得 =====
+function getSampleVideoUrl(item) {
+  const mv = item.sampleMovieURL;
+  if (!mv) return null;
+  return mv.size_720_480 || mv.size_644_414 || mv.size_560_360 || mv.size_476_306 || null;
+}
+
+// ===== Bluesky 動画アップロード =====
+function uploadVideo(buffer, mime, jwt) {
+  return new Promise((resolve, reject) => {
+    const req = https.request({
+      hostname: 'video.bsky.app',
+      path: '/xrpc/app.bsky.video.uploadVideo',
+      method: 'POST',
+      headers: { Authorization: `Bearer ${jwt}`, 'Content-Type': mime, 'Content-Length': buffer.length }
+    }, res => {
+      let d = '';
+      res.on('data', c => d += c);
+      res.on('end', () => {
+        if (res.statusCode >= 400) return reject(new Error(`Video upload ${res.statusCode}: ${d}`));
+        resolve(JSON.parse(d));
+      });
+    });
+    req.on('error', reject);
+    req.write(buffer);
+    req.end();
+  });
+}
+
+async function pollVideoJob(jobId, jwt) {
+  for (let i = 0; i < 20; i++) {
+    await new Promise(r => setTimeout(r, 3000));
+    const status = await new Promise((resolve, reject) => {
+      https.get(
+        `https://video.bsky.app/xrpc/app.bsky.video.getJobStatus?jobId=${encodeURIComponent(jobId)}`,
+        { headers: { Authorization: `Bearer ${jwt}` } },
+        res => { let d = ''; res.on('data', c => d += c); res.on('end', () => resolve(JSON.parse(d))); }
+      ).on('error', reject);
+    });
+    const state = status.jobStatus?.state;
+    if (state === 'JOB_STATE_COMPLETED') return status.jobStatus.blob;
+    if (state === 'JOB_STATE_FAILED') throw new Error('動画処理失敗: ' + (status.jobStatus?.error || ''));
+  }
+  throw new Error('動画ジョブタイムアウト');
+}
+
 // ===== Bluesky 投稿 =====
 async function postBluesky(text, item) {
   const handle = (process.env.BSKY_HANDLE || '').trim();
@@ -492,34 +566,55 @@ async function postBluesky(text, item) {
     { identifier: handle, password: pass });
   console.log('Bluesky: 認証OK');
 
-  const facets = buildFacets(text);
+  // トレンドタグを取得してテキスト末尾に追加
+  const trendTags = await getTrendingTags(auth.accessJwt);
+  const finalText = trendTags.length > 0
+    ? text + '\n' + trendTags.map(t => '#' + t).join(' ')
+    : text;
+
+  const facets = buildFacets(finalText);
   const record = {
     $type: 'app.bsky.feed.post',
-    text,
+    text: finalText,
     createdAt: new Date().toISOString(),
     langs: ['ja'],
     facets,
   };
 
-  // サムネイル付きリンクカード（external embed）を試みる
-  const imgUrl = item.imageURL?.list || item.imageURL?.small || '';
   const postUrl = siteUrl(item);
-  if (imgUrl) {
+  const imgUrl  = item.imageURL?.list || item.imageURL?.small || '';
+  const videoUrl = getSampleVideoUrl(item);
+
+  // 動画埋め込みを最優先で試みる
+  let embedDone = false;
+  if (videoUrl) {
+    try {
+      const { buffer, mime } = await fetchBuffer(videoUrl);
+      if (mime.startsWith('video/') || videoUrl.endsWith('.mp4')) {
+        console.log('Bluesky: 動画アップロード中...');
+        const job = await uploadVideo(buffer, mime.startsWith('video/') ? mime : 'video/mp4', auth.accessJwt);
+        const blob = await pollVideoJob(job.jobId, auth.accessJwt);
+        record.embed = { $type: 'app.bsky.embed.video', video: blob, aspectRatio: { width: 16, height: 9 } };
+        embedDone = true;
+        console.log('Bluesky: 動画埋め込み完了 ✅');
+      }
+    } catch(e) {
+      console.log('Bluesky: 動画取得失敗:', e.message);
+    }
+  }
+
+  // 動画がなければサムネイルカード
+  if (!embedDone && imgUrl) {
     try {
       const { buffer, mime } = await fetchBuffer(imgUrl);
       const blobRes = await uploadBlob(buffer, mime.split(';')[0], auth.accessJwt);
       record.embed = {
         $type: 'app.bsky.embed.external',
-        external: {
-          uri: postUrl,
-          title: item.title || '',
-          description: '詳細・サンプル動画はこちら | douga-adult.com',
-          thumb: blobRes.blob,
-        }
+        external: { uri: postUrl, title: item.title || '', description: 'サンプル動画あり | douga-adult.com', thumb: blobRes.blob }
       };
       console.log('Bluesky: サムネイルカード付き');
     } catch(e) {
-      console.log('Bluesky: サムネイル取得失敗、テキストのみで投稿:', e.message);
+      console.log('Bluesky: サムネイル取得失敗、テキストのみ:', e.message);
     }
   }
 

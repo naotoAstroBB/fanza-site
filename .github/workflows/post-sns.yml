@@ -79,4 +79,3 @@ jobs:
             -d "$BODY" \
             "https://api.github.com/repos/$GITHUB_REPOSITORY/contents/logs/last-run.txt")
           echo "GitHub API status: $HTTP"
-          cat /tmp/api_resp.txt

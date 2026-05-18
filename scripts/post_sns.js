@@ -484,8 +484,8 @@ function uploadBlob(buffer, mime, jwt) {
 
 // ===== Bluesky 投稿 =====
 async function postBluesky(text, item) {
-  const handle = process.env.BSKY_HANDLE;
-  const pass   = process.env.BSKY_APP_PASSWORD;
+  const handle = (process.env.BSKY_HANDLE || '').trim();
+  const pass   = (process.env.BSKY_APP_PASSWORD || '').trim();
   if (!handle || !pass) { console.log('Bluesky: 認証情報なし、スキップ'); return; }
 
   const auth = await request('https://bsky.social/xrpc/com.atproto.server.createSession',

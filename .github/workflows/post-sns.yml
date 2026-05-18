@@ -23,34 +23,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Debug Bluesky auth
-        env:
-          H: ${{ secrets.BSKY_HANDLE }}
-          P: ${{ secrets.BSKY_APP_PASSWORD }}
-        run: |
-          echo "BSKY_HANDLE bytes: $(printf '%s' "$H" | wc -c)"
-          echo "BSKY_APP_PASSWORD bytes: $(printf '%s' "$P" | wc -c)"
-          node -e "
-            const h = process.env.H || '';
-            const p = process.env.P || '';
-            console.log('Handle len:', h.length, '| Pass len:', p.length);
-            console.log('Handle hex:', Buffer.from(h).toString('hex').slice(0,20));
-            console.log('Pass hex (first8):', Buffer.from(p).toString('hex').slice(0,16));
-            const https = require('https');
-            const body = JSON.stringify({identifier: h, password: p});
-            const req = https.request({
-              hostname: 'bsky.social',
-              path: '/xrpc/com.atproto.server.createSession',
-              method: 'POST',
-              headers: {'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(body)}
-            }, res => {
-              let d = '';
-              res.on('data', c => d += c);
-              res.on('end', () => console.log('Auth result:', res.statusCode, d));
-            });
-            req.write(body); req.end();
-          "
-
       - name: Determine slot
         id: slot
         run: |
@@ -63,7 +35,7 @@ jobs:
             echo "slot=${{ github.event.inputs.slot }}" >> $GITHUB_OUTPUT
           fi
 
-      - name: Post to SNS
+      - name: Debug + Post
         continue-on-error: true
         env:
           POST_SLOT:         ${{ steps.slot.outputs.slot }}
@@ -72,8 +44,43 @@ jobs:
           MISSKEY_INSTANCE:  ${{ secrets.MISSKEY_INSTANCE }}
           MISSKEY_TOKEN:     ${{ secrets.MISSKEY_TOKEN }}
         run: |
-          node scripts/post_sns.js > /tmp/sns_log.txt 2>&1
-          echo "EXIT_CODE:$?" >> /tmp/sns_log.txt
+          node - > /tmp/sns_log.txt 2>&1 << 'JSEOF'
+          const https = require('https');
+          const fs = require('fs');
+
+          const h = process.env.BSKY_HANDLE || '';
+          const p = process.env.BSKY_APP_PASSWORD || '';
+          console.log('[DEBUG] Handle len:', h.length, '| Pass len:', p.length);
+          console.log('[DEBUG] Handle:', h);
+          console.log('[DEBUG] Pass first4:', p.slice(0,4));
+
+          // Bluesky auth test
+          const body = JSON.stringify({identifier: h, password: p});
+          const req = https.request({
+            hostname: 'bsky.social',
+            path: '/xrpc/com.atproto.server.createSession',
+            method: 'POST',
+            headers: {'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(body)}
+          }, res => {
+            let d = '';
+            res.on('data', c => d += c);
+            res.on('end', () => {
+              console.log('[DEBUG] Auth status:', res.statusCode);
+              console.log('[DEBUG] Auth response:', d);
+              if (res.statusCode === 200) {
+                console.log('[OK] Auth success - loading main script');
+                require('./scripts/post_sns.js');
+              } else {
+                console.error('[FAIL] Auth failed, stopping.');
+                process.exit(1);
+              }
+            });
+          });
+          req.on('error', e => { console.error('[ERROR]', e.message); process.exit(1); });
+          req.write(body);
+          req.end();
+          JSEOF
+          echo "node_exit:$?" >> /tmp/sns_log.txt
 
       - name: Save log via GitHub API
         if: always()
@@ -96,3 +103,4 @@ jobs:
             -H "Content-Type: application/json" \
             -d "$BODY" \
             "https://api.github.com/repos/$GITHUB_REPOSITORY/contents/logs/last-run.txt" > /dev/null
+          echo "Log saved."

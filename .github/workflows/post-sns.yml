@@ -1,9 +1,6 @@
 name: Auto Post to SNS
 
 on:
-  push:
-    branches: [main]
-    paths: ['.github/workflows/post-sns.yml']
   schedule:
     # JST 9:00 / 15:00 / 21:00 (UTC 0:00 / 6:00 / 12:00)
     - cron: '0 0 * * *'
@@ -37,7 +34,6 @@ jobs:
           fi
 
       - name: Post to SNS
-        id: post
         env:
           POST_SLOT:         ${{ steps.slot.outputs.slot }}
           BSKY_HANDLE:       ${{ secrets.BSKY_HANDLE }}
@@ -47,7 +43,6 @@ jobs:
         run: |
           node scripts/post_sns.js 2>&1 | tee /tmp/sns_log.txt
           EXIT=${PIPESTATUS[0]}
-          echo "exit=$EXIT" >> $GITHUB_OUTPUT
           exit $EXIT
 
       - name: Create issue on failure

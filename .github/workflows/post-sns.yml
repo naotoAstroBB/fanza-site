@@ -21,6 +21,8 @@ on:
 jobs:
   post:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
 
@@ -48,8 +50,9 @@ jobs:
           MISSKEY_INSTANCE:       ${{ secrets.MISSKEY_INSTANCE }}
           MISSKEY_TOKEN:          ${{ secrets.MISSKEY_TOKEN }}
         run: |
+          set -o pipefail
           node scripts/post_sns.js 2>&1 | tee /tmp/sns_output.txt
-          echo "EXIT_CODE:${PIPESTATUS[0]}" >> /tmp/sns_output.txt
+          echo "EXIT_CODE:$?" >> /tmp/sns_output.txt
 
       - name: Save run log
         if: always()

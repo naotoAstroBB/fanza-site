@@ -640,47 +640,7 @@ async function postBluesky(text, item) {
 
 // ===== バズり投稿へのコメント =====
 async function commentOnTrendingPosts(jwt, did) {
-  // トレンドトピックを取得してバズり投稿を探す
-  let trendKeywords = [];
-  try {
-    const trends = await getJson(
-      'https://bsky.social/xrpc/app.bsky.unspecced.getTrends?limit=10',
-      { Authorization: `Bearer ${jwt}` }
-    );
-    trendKeywords = (trends.trends || []).map(t => t.topic || t.hashtag || '').filter(Boolean).slice(0, 5);
-  } catch(e) {
-    console.log('トレンド取得失敗:', e.message);
-  }
-
-  // トレンドキーワードがなければ日本語の一般ワードで検索
-  if (!trendKeywords.length) trendKeywords = ['おはよう', '今日', 'これ', 'やばい'];
-
-  const kw = trendKeywords[SEED % trendKeywords.length];
-  console.log('コメント対象トレンド:', kw);
-
-  let posts = [];
-  try {
-    const res = await getJson(
-      `https://bsky.social/xrpc/app.bsky.feed.searchPosts?q=${encodeURIComponent(kw)}&limit=50&sort=top`,
-      { Authorization: `Bearer ${jwt}` }
-    );
-    posts = (res.posts || [])
-      .filter(p =>
-        p.author.did !== did &&
-        (p.likeCount || 0) + (p.repostCount || 0) >= 1000 &&
-        !p.record?.reply
-      )
-      .sort((a, b) => ((b.likeCount || 0) + (b.repostCount || 0)) - ((a.likeCount || 0) + (a.repostCount || 0)))
-      .slice(0, 2);
-  } catch(e) {
-    console.log('コメント: 投稿検索失敗:', e.message);
-    return;
-  }
-
-  if (!posts.length) { console.log('コメント対象なし（1000いいね未満）'); return; }
-
-  // 自然なコメント（プロフィールへの誘導を意識、AV色なし）
-  const COMMENTS = [
+  const JA_COMMENTS = [
     'わかりみが深すぎる😭',
     'これはバズるのわかる笑',
     'ほんとそれ🙏',
@@ -692,32 +652,95 @@ async function commentOnTrendingPosts(jwt, did) {
     'これ共感しかない',
     'ありがとうございます🙏 癒された',
   ];
+  const EN_COMMENTS = [
+    'this is so relatable lol',
+    'literally cannot stop laughing 😂',
+    'this deserved way more likes fr',
+    'saving this forever ✨',
+    'why is this so accurate 😭',
+    'the internet needed this today',
+    'not me screenshotting this immediately',
+    'okay but why does this hit so hard',
+    'genuinely made my day 🙏',
+    'this is everything right now',
+  ];
 
-  let count = 0;
-  for (const post of posts) {
-    const comment = COMMENTS[(SEED + count * 3) % COMMENTS.length];
-    try {
-      await request('https://bsky.social/xrpc/com.atproto.repo.createRecord', {
-        repo: did,
-        collection: 'app.bsky.feed.post',
-        record: {
-          $type: 'app.bsky.feed.post',
-          text: comment,
-          reply: {
-            root:   { uri: post.uri, cid: post.cid },
-            parent: { uri: post.uri, cid: post.cid }
-          },
-          createdAt: new Date().toISOString(),
-          langs: ['ja']
-        }
-      }, { Authorization: `Bearer ${jwt}` });
-      console.log(`コメント投稿 ✅ (${(post.likeCount||0) + (post.repostCount||0)}いいね) "${comment}"`);
-      count++;
-    } catch(e) {
-      console.log('コメント失敗:', e.message);
+  // トレンドを日本語・英語に分類
+  let jaKeywords = [];
+  let enKeywords = [];
+  try {
+    const trends = await getJson(
+      'https://bsky.social/xrpc/app.bsky.unspecced.getTrends?limit=20',
+      { Authorization: `Bearer ${jwt}` }
+    );
+    for (const t of (trends.trends || [])) {
+      const kw = (t.topic || t.hashtag || '').replace(/^#/, '').trim();
+      if (!kw) continue;
+      if (/^[A-Za-z0-9 _]+$/.test(kw)) enKeywords.push(kw);
+      else jaKeywords.push(kw);
     }
+  } catch(e) {
+    console.log('トレンド取得失敗:', e.message);
   }
-  console.log(`コメント完了: ${count}件`);
+
+  if (!jaKeywords.length) jaKeywords = ['おはよう', '今日', 'これ', 'やばい'];
+  if (!enKeywords.length) enKeywords = ['today', 'trending', 'lol', 'omg'];
+
+  async function commentOnKeyword(kw, comments, lang) {
+    console.log(`コメント対象トレンド[${lang}]: ${kw}`);
+    let posts = [];
+    try {
+      const res = await getJson(
+        `https://bsky.social/xrpc/app.bsky.feed.searchPosts?q=${encodeURIComponent(kw)}&limit=50&sort=top`,
+        { Authorization: `Bearer ${jwt}` }
+      );
+      posts = (res.posts || [])
+        .filter(p =>
+          p.author.did !== did &&
+          (p.likeCount || 0) + (p.repostCount || 0) >= 1000 &&
+          !p.record?.reply
+        )
+        .sort((a, b) => ((b.likeCount || 0) + (b.repostCount || 0)) - ((a.likeCount || 0) + (a.repostCount || 0)))
+        .slice(0, 2);
+    } catch(e) {
+      console.log(`コメント[${lang}]: 投稿検索失敗:`, e.message);
+      return 0;
+    }
+    if (!posts.length) { console.log(`コメント対象なし[${lang}]（1000いいね未満）`); return 0; }
+
+    let count = 0;
+    for (const post of posts) {
+      const comment = comments[(SEED + count * 3) % comments.length];
+      try {
+        await request('https://bsky.social/xrpc/com.atproto.repo.createRecord', {
+          repo: did,
+          collection: 'app.bsky.feed.post',
+          record: {
+            $type: 'app.bsky.feed.post',
+            text: comment,
+            reply: {
+              root:   { uri: post.uri, cid: post.cid },
+              parent: { uri: post.uri, cid: post.cid }
+            },
+            createdAt: new Date().toISOString(),
+            langs: [lang]
+          }
+        }, { Authorization: `Bearer ${jwt}` });
+        console.log(`コメント投稿[${lang}] ✅ (${(post.likeCount||0)+(post.repostCount||0)}いいね) "${comment}"`);
+        count++;
+      } catch(e) {
+        console.log(`コメント失敗[${lang}]:`, e.message);
+      }
+    }
+    return count;
+  }
+
+  const jaKw = jaKeywords[SEED % jaKeywords.length];
+  const enKw = enKeywords[(SEED + 1) % enKeywords.length];
+
+  const jaCount = await commentOnKeyword(jaKw, JA_COMMENTS, 'ja');
+  const enCount = await commentOnKeyword(enKw, EN_COMMENTS, 'en');
+  console.log(`コメント完了: 日本語${jaCount}件 / 英語${enCount}件`);
 }
 
 // ===== 英語トレンドタグ取得 =====

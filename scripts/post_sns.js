@@ -450,7 +450,7 @@ function buildFacets(text) {
   const facets = [];
 
   // ハッシュタグ facet（検索対応）
-  const tagRe = /#[\w぀-ゟ゠-ヿ一-龯ｦ-ﾟ]+/g;
+  const tagRe = /#[\w぀-ゟ゠-ヿ一-鿿ｦ-ﾟ]+/g;
   let m;
   while ((m = tagRe.exec(text)) !== null) {
     const before = Buffer.from(text.slice(0, m.index), 'utf8').length;
@@ -513,7 +513,7 @@ function getTrendingTags(jwt) {
           const trends = JSON.parse(d).trends || [];
           const tags = trends
             .map(t => (t.topic || t.hashtag || '').replace(/^#/, ''))
-            .filter(t => t && /[぀-鿿一-鿿]/.test(t))
+            .filter(t => t && /[぀-ゟ゠-ヿ一-鿿]/.test(t))
             .slice(0, 3);
           console.log('トレンドタグ:', tags.join(', ') || 'なし');
           resolve(tags);
@@ -659,7 +659,6 @@ async function commentOnTrendingPosts(jwt, did) {
     'this is everything right now',
   ];
 
-  // トレンドを日本語・英語に分類
   let jaKeywords = [];
   let enKeywords = [];
   try {
@@ -753,7 +752,7 @@ function getEnglishTrendingTags(jwt) {
           const trends = JSON.parse(d).trends || [];
           const tags = trends
             .map(t => (t.topic || t.hashtag || '').replace(/^#/, ''))
-            .filter(t => t && /^[A-Za-z0-9_]+$/.test(t))  // 英語のみ
+            .filter(t => t && /^[A-Za-z0-9_]+$/.test(t))
             .slice(0, 3);
           console.log('英語トレンドタグ:', tags.join(', ') || 'なし');
           resolve(tags);
@@ -810,7 +809,6 @@ function generateEnglishText(item) {
 async function postBlueskyEnglish(item, auth) {
   let text = generateEnglishText(item);
 
-  // 英語トレンドタグ取得・追加
   const trendTags = await getEnglishTrendingTags(auth.accessJwt);
   const staticTags = ['#JAV', '#NSFW', '#AdultContent', '#JapaneseAdult'];
   const allTags = [...new Set([...staticTags, ...trendTags.map(t => '#' + t)])].slice(0, 6);
@@ -820,12 +818,11 @@ async function postBlueskyEnglish(item, auth) {
   const record = {
     $type: 'app.bsky.feed.post',
     text,
-    createdAt: new Date(Date.now() + 2000).toISOString(),  // 2秒ずらす
+    createdAt: new Date(Date.now() + 2000).toISOString(),
     langs: ['en'],
     facets,
   };
 
-  // サムネイルカード
   const imgUrl = item.imageURL?.list || item.imageURL?.small || '';
   if (imgUrl) {
     try {
@@ -879,7 +876,6 @@ async function postTwitter(text) {
     .map(k => `${encodeURIComponent(k)}="${encodeURIComponent(oauthParams[k])}"`)
     .join(', ');
 
-  // X は280文字制限（URLは23文字固定カウントのため270で切り詰め）
   const tweetText = text.slice(0, 270);
 
   await request(url, { text: tweetText }, { Authorization: authHeader });

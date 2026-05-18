@@ -638,41 +638,64 @@ async function postBluesky(text, item) {
   console.log('Bluesky: 投稿完了 ✅');
 }
 
-// ===== トレンド投稿へのコメント =====
+// ===== バズり投稿へのコメント =====
 async function commentOnTrendingPosts(jwt, did) {
-  const keywords = ['#AV', '#FANZA', '#エロ動画', '#巨乳', '#美少女'];
-  const kw = keywords[SEED % keywords.length];
+  // トレンドトピックを取得してバズり投稿を探す
+  let trendKeywords = [];
+  try {
+    const trends = await getJson(
+      'https://bsky.social/xrpc/app.bsky.unspecced.getTrends?limit=10',
+      { Authorization: `Bearer ${jwt}` }
+    );
+    trendKeywords = (trends.trends || []).map(t => t.topic || t.hashtag || '').filter(Boolean).slice(0, 5);
+  } catch(e) {
+    console.log('トレンド取得失敗:', e.message);
+  }
+
+  // トレンドキーワードがなければ日本語の一般ワードで検索
+  if (!trendKeywords.length) trendKeywords = ['おはよう', '今日', 'これ', 'やばい'];
+
+  const kw = trendKeywords[SEED % trendKeywords.length];
+  console.log('コメント対象トレンド:', kw);
 
   let posts = [];
   try {
     const res = await getJson(
-      `https://bsky.social/xrpc/app.bsky.feed.searchPosts?q=${encodeURIComponent(kw)}&limit=30&sort=top`,
+      `https://bsky.social/xrpc/app.bsky.feed.searchPosts?q=${encodeURIComponent(kw)}&limit=50&sort=top`,
       { Authorization: `Bearer ${jwt}` }
     );
     posts = (res.posts || [])
       .filter(p =>
         p.author.did !== did &&
         (p.likeCount || 0) + (p.repostCount || 0) >= 1000 &&
-        !p.record?.reply  // リプライでなくトップ投稿のみ
+        !p.record?.reply
       )
       .sort((a, b) => ((b.likeCount || 0) + (b.repostCount || 0)) - ((a.likeCount || 0) + (a.repostCount || 0)))
       .slice(0, 2);
   } catch(e) {
-    console.log('コメント: トレンド取得失敗:', e.message);
+    console.log('コメント: 投稿検索失敗:', e.message);
     return;
   }
 
+  if (!posts.length) { console.log('コメント対象なし（1000いいね未満）'); return; }
+
+  // 自然なコメント（プロフィールへの誘導を意識、AV色なし）
   const COMMENTS = [
-    `これは確かに！同じ系統でもっとえろいやつ見つけたいなら ${SITE} 覗いてみて`,
-    `わかる🔥 うちのサイトにも似た雰囲気の作品まとめてあるよ→ ${SITE}`,
-    `好みが合う✨ このジャンル好きならここも絶対刺さる→ ${SITE}`,
-    `それな！サンプルで既に最高なやつ集めてるから→ ${SITE}`,
-    `同士がいた！この系統なら外れなしの作品揃えてるよ ${SITE}`,
+    'わかりみが深すぎる😭',
+    'これはバズるのわかる笑',
+    'ほんとそれ🙏',
+    'センスありすぎ✨',
+    'こういうの好きすぎる😂',
+    '深夜に見てよかった',
+    '刺さりすぎて保存した',
+    'なんでこんなにわかるの笑',
+    'これ共感しかない',
+    'ありがとうございます🙏 癒された',
   ];
 
   let count = 0;
   for (const post of posts) {
-    const comment = COMMENTS[(SEED + count) % COMMENTS.length];
+    const comment = COMMENTS[(SEED + count * 3) % COMMENTS.length];
     try {
       await request('https://bsky.social/xrpc/com.atproto.repo.createRecord', {
         repo: did,
@@ -688,7 +711,7 @@ async function commentOnTrendingPosts(jwt, did) {
           langs: ['ja']
         }
       }, { Authorization: `Bearer ${jwt}` });
-      console.log(`コメント投稿 ✅ (likes:${post.likeCount||0}) ${post.uri}`);
+      console.log(`コメント投稿 ✅ (${(post.likeCount||0) + (post.repostCount||0)}いいね) "${comment}"`);
       count++;
     } catch(e) {
       console.log('コメント失敗:', e.message);

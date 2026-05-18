@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // SNS自動投稿スクリプト（リーチ最大化版）
-// 環境変数: BSKY_HANDLE, BSKY_APP_PASSWORD, MISSKEY_INSTANCE, MISSKEY_TOKEN, POST_SLOT
+// 環境変数: BSKY_HANDLE, BSKY_APP_PASSWORD, X_API_KEY, X_API_SECRET, X_ACCESS_TOKEN, X_ACCESS_TOKEN_SECRET, MISSKEY_INSTANCE, MISSKEY_TOKEN, POST_SLOT
 
 const fs     = require('fs');
 const https  = require('https');

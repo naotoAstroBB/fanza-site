@@ -19,9 +19,11 @@ jobs:
   post:
     runs-on: ubuntu-latest
     permissions:
-      issues: write
+      contents: write
     steps:
       - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Determine slot
         id: slot
@@ -44,19 +46,16 @@ jobs:
           MISSKEY_INSTANCE:  ${{ secrets.MISSKEY_INSTANCE }}
           MISSKEY_TOKEN:     ${{ secrets.MISSKEY_TOKEN }}
         run: |
-          node scripts/post_sns.js 2>&1 | tee /tmp/sns_log.txt || true
+          node scripts/post_sns.js > /tmp/sns_log.txt 2>&1
+          echo "EXIT:$?" >> /tmp/sns_log.txt
 
-      - name: Report result (always)
+      - name: Save log to repo
         if: always()
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const fs = require('fs');
-            let log = '(no log)';
-            try { log = fs.readFileSync('/tmp/sns_log.txt', 'utf8'); } catch(e) { log = 'log read error: ' + e.message; }
-            await github.rest.issues.create({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              title: '[DEBUG] SNS run ' + new Date().toISOString(),
-              body: '```\n' + log.slice(0, 6000) + '\n```'
-            });
+        run: |
+          mkdir -p logs
+          cp /tmp/sns_log.txt logs/last-run.txt 2>/dev/null || echo '(no output)' > logs/last-run.txt
+          git config user.email "actions@github.com"
+          git config user.name "GitHub Actions"
+          git add logs/last-run.txt
+          git diff --staged --quiet || git commit -m "log: SNS run $(date -u '+%Y-%m-%d %H:%M UTC')"
+          git push origin main

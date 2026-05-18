@@ -23,14 +23,33 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Check secrets
+      - name: Debug Bluesky auth
         env:
-          BSKY_HANDLE:       ${{ secrets.BSKY_HANDLE }}
-          BSKY_APP_PASSWORD: ${{ secrets.BSKY_APP_PASSWORD }}
+          H: ${{ secrets.BSKY_HANDLE }}
+          P: ${{ secrets.BSKY_APP_PASSWORD }}
         run: |
-          echo "BSKY_HANDLE set: $([ -n "$BSKY_HANDLE" ] && echo YES || echo NO)"
-          echo "BSKY_APP_PASSWORD set: $([ -n "$BSKY_APP_PASSWORD" ] && echo YES || echo NO)"
-          echo "Node: $(node --version)"
+          echo "BSKY_HANDLE bytes: $(printf '%s' "$H" | wc -c)"
+          echo "BSKY_APP_PASSWORD bytes: $(printf '%s' "$P" | wc -c)"
+          node -e "
+            const h = process.env.H || '';
+            const p = process.env.P || '';
+            console.log('Handle len:', h.length, '| Pass len:', p.length);
+            console.log('Handle hex:', Buffer.from(h).toString('hex').slice(0,20));
+            console.log('Pass hex (first8):', Buffer.from(p).toString('hex').slice(0,16));
+            const https = require('https');
+            const body = JSON.stringify({identifier: h, password: p});
+            const req = https.request({
+              hostname: 'bsky.social',
+              path: '/xrpc/com.atproto.server.createSession',
+              method: 'POST',
+              headers: {'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(body)}
+            }, res => {
+              let d = '';
+              res.on('data', c => d += c);
+              res.on('end', () => console.log('Auth result:', res.statusCode, d));
+            });
+            req.write(body); req.end();
+          "
 
       - name: Determine slot
         id: slot
@@ -72,10 +91,8 @@ jobs:
           else
             BODY=$(python3 -c "import json; print(json.dumps({'message':'log: SNS run','content':'$ENCODED'}))")
           fi
-          HTTP=$(curl -s -o /tmp/api_resp.txt -w "%{http_code}" \
-            -X PUT \
+          curl -s -X PUT \
             -H "Authorization: token $GITHUB_TOKEN" \
             -H "Content-Type: application/json" \
             -d "$BODY" \
-            "https://api.github.com/repos/$GITHUB_REPOSITORY/contents/logs/last-run.txt")
-          echo "GitHub API status: $HTTP"
+            "https://api.github.com/repos/$GITHUB_REPOSITORY/contents/logs/last-run.txt" > /dev/null

@@ -550,8 +550,7 @@ async function postMisskey(text) {
   console.log(text);
   console.log('--- 文字数:', text.length, '---');
 
-  await Promise.allSettled([
-    postBluesky(text, item),
-    postMisskey(text),
-  ]);
-})();
+  // Bluesky は必須（失敗したら exit 1）、Misskey はオプション
+  await postBluesky(text, item);
+  await postMisskey(text).catch(e => console.error('Misskey エラー (続行):', e.message));
+})().catch(e => { console.error('致命的エラー:', e.message); process.exit(1); });

@@ -1,6 +1,9 @@
 name: Auto Post to SNS
 
 on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/post-sns.yml']
   schedule:
     # JST 9:00 / 15:00 / 21:00 (UTC 0:00 / 6:00 / 12:00)
     - cron: '0 0 * * *'
@@ -27,16 +30,29 @@ jobs:
           elif [ "$HOUR" = "06" ]; then echo "slot=1" >> $GITHUB_OUTPUT
           else                          echo "slot=2" >> $GITHUB_OUTPUT
           fi
-          # workflow_dispatch overrides
           if [ -n "${{ github.event.inputs.slot }}" ]; then
             echo "slot=${{ github.event.inputs.slot }}" >> $GITHUB_OUTPUT
           fi
 
       - name: Post to SNS
+        id: post
         env:
           POST_SLOT:         ${{ steps.slot.outputs.slot }}
           BSKY_HANDLE:       ${{ secrets.BSKY_HANDLE }}
           BSKY_APP_PASSWORD: ${{ secrets.BSKY_APP_PASSWORD }}
           MISSKEY_INSTANCE:  ${{ secrets.MISSKEY_INSTANCE }}
           MISSKEY_TOKEN:     ${{ secrets.MISSKEY_TOKEN }}
-        run: node scripts/post_sns.js
+        run: |
+          node scripts/post_sns.js 2>&1 | tee /tmp/sns_log.txt
+          echo "exit=${PIPESTATUS[0]}" >> $GITHUB_OUTPUT
+
+      - name: Save log to repo
+        if: always()
+        run: |
+          mkdir -p logs
+          cp /tmp/sns_log.txt logs/last-run.txt || echo '(no output)' > logs/last-run.txt
+          git config user.email "actions@github.com"
+          git config user.name "GitHub Actions"
+          git add logs/last-run.txt
+          git diff --staged --quiet || git commit -m "log: SNS post $(date -u '+%Y-%m-%d %H:%M UTC')"
+          git push

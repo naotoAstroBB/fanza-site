@@ -19,6 +19,8 @@ on:
 jobs:
   post:
     runs-on: ubuntu-latest
+    permissions:
+      issues: write
     steps:
       - uses: actions/checkout@v4
 
@@ -44,15 +46,21 @@ jobs:
           MISSKEY_TOKEN:     ${{ secrets.MISSKEY_TOKEN }}
         run: |
           node scripts/post_sns.js 2>&1 | tee /tmp/sns_log.txt
-          echo "exit=${PIPESTATUS[0]}" >> $GITHUB_OUTPUT
+          EXIT=${PIPESTATUS[0]}
+          echo "exit=$EXIT" >> $GITHUB_OUTPUT
+          exit $EXIT
 
-      - name: Save log to repo
-        if: always()
-        run: |
-          mkdir -p logs
-          cp /tmp/sns_log.txt logs/last-run.txt || echo '(no output)' > logs/last-run.txt
-          git config user.email "actions@github.com"
-          git config user.name "GitHub Actions"
-          git add logs/last-run.txt
-          git diff --staged --quiet || git commit -m "log: SNS post $(date -u '+%Y-%m-%d %H:%M UTC')"
-          git push
+      - name: Create issue on failure
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            let log = '(no log)';
+            try { log = fs.readFileSync('/tmp/sns_log.txt', 'utf8'); } catch {}
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: 'SNS post failed ' + new Date().toISOString(),
+              body: '```\n' + log.slice(0, 6000) + '\n```'
+            });

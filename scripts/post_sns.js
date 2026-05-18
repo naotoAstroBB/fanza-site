@@ -161,12 +161,45 @@ const PATTERNS = [
   },
 ];
 
+// ===== アルゴリズム分析：商品特性×時間帯から最適パターンを選択 =====
+function analyzeItem(item) {
+  const avg     = parseFloat(item.review?.average || 0);
+  const cnt     = parseInt(item.review?.count     || 0);
+  const genres  = getGenres(item);
+  const hasActress = getActresses(item).length > 0;
+  const isDebut = genres.includes('デビュー作品');
+  const hasBest = genres.includes('BEST・総集編');
+  const jst     = new Date(Date.now() + 9 * 3600000);
+  const hour    = jst.getUTCHours();
+  const dow     = jst.getUTCDay(); // 0=日, 6=土
+  const isLate  = hour >= 22 || hour <= 3;
+  const isWeekend = dow === 0 || dow === 6;
+
+  const priority = [];
+  if (isLate)                    priority.push(10);      // 深夜型
+  if (isWeekend)                 priority.push(16);      // 週末推薦
+  if (slot === 0)                priority.push(1);       // 朝はランキング
+  if (isDebut && hasActress)     priority.push(5);       // デビュー
+  if (avg >= 4.7 && cnt >= 200)  priority.push(6);       // レビュー偉業
+  if (avg >= 4.5 && cnt >= 100)  priority.push(15);      // データ統計
+  if (hasBest)                   priority.push(8);       // 知る人ぞ知る
+  if (hasActress && avg >= 4.2)  priority.push(0, 4);    // 驚き・女優
+  if (genres.length >= 2)        priority.push(7, 12);   // ジャンル活用
+  if (cnt >= 300)                priority.push(15, 6);   // 実績重視
+
+  // 残りをシードでシャッフルして補完
+  const remaining = [...Array(PATTERNS.length).keys()].filter(i => !priority.includes(i));
+  remaining.sort((a, b) => (hash(String(SEED + a * 97)) % 100) - (hash(String(SEED + b * 97)) % 100));
+
+  return [...new Set([...priority, ...remaining])];
+}
+
 function generateText(item) {
-  const start = SEED % PATTERNS.length;
-  for (let i = 0; i < PATTERNS.length; i++) {
-    const idx = (start + i) % PATTERNS.length;
+  const order = analyzeItem(item);
+  console.log(`分析 優先パターン: ${order.slice(0, 5).map(i => i + 1).join(' → ')}`);
+  for (const idx of order) {
     const result = PATTERNS[idx](item);
-    if (result) { console.log(`パターン${idx + 1} 使用`); return result.trim(); }
+    if (result) { console.log(`パターン${idx + 1} 採用`); return result.trim(); }
   }
   return `${item.title}\n\n${reviewStr(item)}\n\n${siteUrl(item)}\n\n${buildTags(item)}`.trim();
 }

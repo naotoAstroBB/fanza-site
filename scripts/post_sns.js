@@ -75,6 +75,278 @@ function siteUrl(item)  { return `${SITE}/product.html?cid=${item.content_id}`; 
 const PATTERNS = [
   (item) => { // 1: 驚き発見
     const a = getActresses(item)[0]; if (!a) return null;
+    return `${a}がエロすぎてやばい
+
+これ知らないのはもったいない
+サンプルだけでも抜ける自信ある
+
+${reviewStr(item)}
+👇 サンプル動画あり
+${siteUrl(item)}
+
+${buildTags(item)}`;
+  },
+  () => { // 2: ランキングTOP3
+    const top = rankItems.slice(0, 3);
+    const lines = top.map((x, i) => `${['🥇','🥈','🥉'][i]} ${getActresses(x)[0]||'---'}
+　${shortTitle(x.title,20)}…
+　${reviewStr(x)}`).join('
+
+');
+    return `今週ガチで抜けたFANZA作品TOP3
+
+${lines}
+
+サンプル・詳細はこちら
+${SITE}
+
+#FANZAランキング #FANZA #AV #エロ動画 #抜ける #おすすめ`;
+  },
+  (item) => { // 3: 個人おすすめ
+    const a = getActresses(item)[0] || '';
+    return `正直に言う
+
+${a ? a + 'のこれ' : 'これ'}、想像以上にえろかった
+
+最初から最後まで全部いい
+サンプルで既に満足度高い
+
+${reviewStr(item)}
+${siteUrl(item)}
+
+${buildTags(item)}`;
+  },
+  (item) => { // 4: セール推し
+    const price = item.prices?.price;
+    return `${price ? price + '円でこのエロさ' : 'セール中のやつ'}はコスパおかしい
+
+${shortTitle(item.title)}
+
+${reviewStr(item)}
+
+今のうちに抑えといて
+${siteUrl(item)}
+
+${buildTags(item, ['FANZAセール', 'セール'])}`;
+  },
+  (item) => { // 5: 女優フィーチャー
+    const a = getActresses(item)[0]; if (!a) return null;
+    return `${a}の何がやばいって
+
+えろいのに上品なんだよな
+
+そのギャップにやられてる人が多いんだと思う
+
+最新作👇
+${siteUrl(item)}
+
+${buildTags(item)}`;
+  },
+  (item) => { // 6: デビュー・新人
+    const a = getActresses(item)[0] || '';
+    return `${a ? a + ' ' : ''}デビューしたて
+
+なのにこのエロさはずるい
+
+経験値じゃなくて
+生まれ持ったやつだと思う
+
+${reviewStr(item)}
+${siteUrl(item)}
+
+${buildTags(item, ['新人AV女優', 'デビュー'])}`;
+  },
+  (item) => { // 7: レビュー偉業
+    const avg = parseFloat(item.review?.average || 0);
+    const cnt = parseInt(item.review?.count || 0);
+    if (avg < 4.0 || cnt < 50) return null;
+    return `${cnt.toLocaleString()}人が抜いて${avg}点
+
+この数字が全部物語ってる
+
+文句なしの名作エロ
+
+👇 騙されたと思って見て
+${siteUrl(item)}
+
+${buildTags(item, ['高評価', '名作'])}`;
+  },
+  (item) => { // 8: 問いかけ
+    const gs = getGenres(item).filter(g => g.length <= 6 && !['ハイビジョン','独占配信'].includes(g));
+    if (gs.length < 2) return null;
+    return `${gs[0]}と${gs[1]}どっちが好き？
+
+どっちも捨てられない人のために
+どっちも全部入ってる作品持ってきた
+
+これはずるい
+${siteUrl(item)}
+
+${buildTags(item)}`;
+  },
+  (item) => { // 9: 知る人ぞ知る
+    return `表に出てないけどえろい名作
+
+派手に宣伝されてないのに
+わかってる人がずっと見てる
+
+${reviewStr(item)}
+
+こっそり保存しといて
+${siteUrl(item)}
+
+${buildTags(item, ['名作', '隠れた名作'])}`;
+  },
+  (item) => { // 10: スペック推し
+    const a = getActresses(item)[0] || '';
+    const gs = getGenres(item).filter(g => ['巨乳','美乳','美少女','スレンダー','痴女','人妻'].includes(g));
+    return `${a}の${gs[0] || 'このスペック'}がえろすぎる件
+
+全部ちょうどいいんだよな
+ちょうどいいってのが一番やばい
+
+${reviewStr(item)}
+${siteUrl(item)}
+
+${buildTags(item)}`;
+  },
+  (item) => { // 11: 深夜
+    return `深夜限定で流すやつ
+
+${shortTitle(item.title)}
+
+これ見たあとすぐ寝れる人いたら教えて
+
+${reviewStr(item)}
+${siteUrl(item)}
+
+${buildTags(item, ['深夜', 'えろい'])}`;
+  },
+  (item) => { // 12: 共感フック
+    const g = getGenres(item).filter(g => g.length < 8 && !['ハイビジョン'].includes(g))[0];
+    if (!g) return null;
+    return `${g}好きって外れるとほんとにきついよね
+
+だから信頼できるやつだけ紹介したくて
+
+これは間違いない
+マジでえろい
+
+${reviewStr(item)}
+${siteUrl(item)}
+
+${buildTags(item)}`;
+  },
+  (item) => { // 13: ジャンル特化
+    const g = getGenres(item).filter(g => !['ハイビジョン','BEST・総集編','独占配信'].includes(g))[0];
+    if (!g) return null;
+    const a = getActresses(item)[0] || '';
+    return `${g}のエロさをちゃんとわかってる人向け
+
+${a}
+
+サンプルだけでも見る価値ある
+
+${reviewStr(item)}
+${siteUrl(item)}
+
+${buildTags(item)}`;
+  },
+  (item) => { // 14: 比較おすすめ
+    const g = getGenres(item).filter(g => !['ハイビジョン'].includes(g))[0] || 'このジャンル';
+    return `${g}で抜くならこれ一択
+
+色々試してきたけど
+えろさのレベルが違う
+
+${reviewStr(item)}
+${siteUrl(item)}
+
+${buildTags(item)}`;
+  },
+  (item) => { // 15: 実況・感想
+    const a = getActresses(item)[0] || '';
+    return `さっき見終わった
+
+${a ? a + 'にごめんなさいしたくなった' : 'これはやばかった'}
+
+なめてたのに途中から全力になってた
+
+${reviewStr(item)}
+${siteUrl(item)}
+
+${buildTags(item)}`;
+  },
+  (item) => { // 16: データ統計
+    const cnt = parseInt(item.review?.count || 0);
+    const avg = item.review?.average;
+    if (!avg || !cnt) return null;
+    return `${cnt.toLocaleString()}人が見て${avg}点
+
+どれだけえろいかは数字を見ればわかる
+
+これが全部語ってる
+
+${siteUrl(item)}
+
+${buildTags(item, ['高評価'])}`;
+  },
+  (item) => { // 17: 週末推薦
+    return `今週末に見るべき一本
+
+${shortTitle(item.title)}
+
+時間たっぷりある日に見ないともったいない
+そういうえろさがある
+
+${reviewStr(item)}
+${siteUrl(item)}
+
+${buildTags(item, ['週末'])}`;
+  },
+  (item) => { // 18: タイムセール速報
+    return `⚡ 今すぐ見て
+
+${shortTitle(item.title)}
+
+このえろさでこの値段は正気じゃない
+
+${reviewStr(item)}
+${siteUrl(item)}
+
+${buildTags(item, ['FANZAセール', 'セール'])}`;
+  },
+  (item) => { // 19: レジェンド推し
+    const a = getActresses(item)[0]; if (!a) return null;
+    return `${a}のえろさは時代を超える
+
+何年経っても色褪せない
+むしろ今見た方が刺さる
+
+これはレジェンド
+
+${reviewStr(item)}
+${siteUrl(item)}
+
+${buildTags(item, ['レジェンド', '名作'])}`;
+  },
+  (item) => { // 20: シナリオ・妄想
+    const gs = getGenres(item).filter(g => !['ハイビジョン','BEST・総集編','独占配信'].includes(g));
+    const gStr = gs.slice(0, 2).join('×') || 'このジャンル';
+    return `${gStr}でこんなにえろい作品あったんだ
+
+シチュエーションも
+展開も
+全部ツボだった
+
+妄想が止まらなくなる
+
+${reviewStr(item)}
+${siteUrl(item)}
+
+${buildTags(item)}`;
+  },
+]; if (!a) return null;
     return `え、${a}ってこんなすごかったの…\n\n知らなかった人多そうだけど\nこれ見たら絶対ハマる\n\n${reviewStr(item)}\n👇 サンプル動画あり\n${siteUrl(item)}\n\n${buildTags(item)}`;
   },
   () => { // 2: ランキングTOP3

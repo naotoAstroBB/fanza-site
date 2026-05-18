@@ -395,6 +395,20 @@ function selectItem() {
 }
 
 // ===== HTTP =====
+function getJson(url, headers = {}) {
+  return new Promise((resolve, reject) => {
+    const u = new URL(url);
+    https.get({ hostname: u.hostname, path: u.pathname + u.search, headers: { 'Accept': 'application/json', ...headers } }, res => {
+      let buf = '';
+      res.on('data', c => buf += c);
+      res.on('end', () => {
+        if (res.statusCode >= 400) return reject(new Error(`HTTP ${res.statusCode}: ${buf}`));
+        try { resolve(JSON.parse(buf)); } catch { resolve(buf); }
+      });
+    }).on('error', reject);
+  });
+}
+
 function request(url, body, headers = {}) {
   return new Promise((resolve, reject) => {
     const u = new URL(url);
@@ -624,6 +638,172 @@ async function postBluesky(text, item) {
   console.log('Bluesky: 投稿完了 ✅');
 }
 
+// ===== トレンド投稿へのコメント =====
+async function commentOnTrendingPosts(jwt, did) {
+  const keywords = ['#AV', '#FANZA', '#エロ動画', '#巨乳', '#美少女'];
+  const kw = keywords[SEED % keywords.length];
+
+  let posts = [];
+  try {
+    const res = await getJson(
+      `https://bsky.social/xrpc/app.bsky.feed.searchPosts?q=${encodeURIComponent(kw)}&limit=30&sort=top`,
+      { Authorization: `Bearer ${jwt}` }
+    );
+    posts = (res.posts || [])
+      .filter(p =>
+        p.author.did !== did &&
+        (p.likeCount || 0) + (p.repostCount || 0) >= 1000 &&
+        !p.record?.reply  // リプライでなくトップ投稿のみ
+      )
+      .sort((a, b) => ((b.likeCount || 0) + (b.repostCount || 0)) - ((a.likeCount || 0) + (a.repostCount || 0)))
+      .slice(0, 2);
+  } catch(e) {
+    console.log('コメント: トレンド取得失敗:', e.message);
+    return;
+  }
+
+  const COMMENTS = [
+    `これは確かに！同じ系統でもっとえろいやつ見つけたいなら ${SITE} 覗いてみて`,
+    `わかる🔥 うちのサイトにも似た雰囲気の作品まとめてあるよ→ ${SITE}`,
+    `好みが合う✨ このジャンル好きならここも絶対刺さる→ ${SITE}`,
+    `それな！サンプルで既に最高なやつ集めてるから→ ${SITE}`,
+    `同士がいた！この系統なら外れなしの作品揃えてるよ ${SITE}`,
+  ];
+
+  let count = 0;
+  for (const post of posts) {
+    const comment = COMMENTS[(SEED + count) % COMMENTS.length];
+    try {
+      await request('https://bsky.social/xrpc/com.atproto.repo.createRecord', {
+        repo: did,
+        collection: 'app.bsky.feed.post',
+        record: {
+          $type: 'app.bsky.feed.post',
+          text: comment,
+          reply: {
+            root:   { uri: post.uri, cid: post.cid },
+            parent: { uri: post.uri, cid: post.cid }
+          },
+          createdAt: new Date().toISOString(),
+          langs: ['ja']
+        }
+      }, { Authorization: `Bearer ${jwt}` });
+      console.log(`コメント投稿 ✅ (likes:${post.likeCount||0}) ${post.uri}`);
+      count++;
+    } catch(e) {
+      console.log('コメント失敗:', e.message);
+    }
+  }
+  console.log(`コメント完了: ${count}件`);
+}
+
+// ===== 英語トレンドタグ取得 =====
+function getEnglishTrendingTags(jwt) {
+  return new Promise(resolve => {
+    const req = https.request({
+      hostname: 'bsky.social',
+      path: '/xrpc/app.bsky.unspecced.getTrends?limit=20',
+      method: 'GET',
+      headers: { Authorization: `Bearer ${jwt}`, Accept: 'application/json' }
+    }, res => {
+      let d = '';
+      res.on('data', c => d += c);
+      res.on('end', () => {
+        try {
+          const trends = JSON.parse(d).trends || [];
+          const tags = trends
+            .map(t => (t.topic || t.hashtag || '').replace(/^#/, ''))
+            .filter(t => t && /^[A-Za-z0-9_]+$/.test(t))  // 英語のみ
+            .slice(0, 3);
+          console.log('英語トレンドタグ:', tags.join(', ') || 'なし');
+          resolve(tags);
+        } catch { resolve([]); }
+      });
+    });
+    req.on('error', () => resolve([]));
+    req.end();
+  });
+}
+
+// ===== 英語ポスト生成 =====
+const EN_PATTERNS = [
+  (item) => {
+    const a = getActresses(item)[0];
+    const avg = parseFloat(item.review?.average || 0);
+    const cnt = parseInt(item.review?.count || 0);
+    return `${a ? a + ' is insane 🔥\n\n' : ''}This one hit different\n\n${cnt > 0 ? `⭐${avg} from ${cnt.toLocaleString()} reviews` : ''}\nSample clip available 👇\n${siteUrl(item)}`;
+  },
+  (item) => {
+    const top = rankItems.slice(0, 3);
+    const lines = top.map((x, i) => `${['🥇','🥈','🥉'][i]} ${getActresses(x)[0] || 'Unknown'} — ${(x.title||'').slice(0,25)}...`).join('\n');
+    return `Top 3 JAV picks right now 🎌\n\n${lines}\n\nFull list + samples:\n${SITE}`;
+  },
+  (item) => {
+    const gs = getGenres(item).filter(g => !['ハイビジョン','独占配信'].includes(g));
+    const g = gs[0] || '';
+    const a = getActresses(item)[0] || '';
+    return `If you're into ${g || 'JAV'}, this is the one\n\n${a}\n\nRatings don't lie 👇\n${siteUrl(item)}`;
+  },
+  (item) => {
+    const avg = parseFloat(item.review?.average || 0);
+    const cnt = parseInt(item.review?.count || 0);
+    if (!avg || !cnt) return `Hidden gem 💎\n\nNot talked about enough\nBut the people who found it know\n\n${siteUrl(item)}`;
+    return `${cnt.toLocaleString()} people rated this ⭐${avg}\n\nThat number says everything\n\nJAV doesn't get better than this 👇\n${siteUrl(item)}`;
+  },
+  (item) => {
+    const a = getActresses(item)[0];
+    return `Just finished watching\n\n${a ? a + ' — I was NOT ready' : 'This was NOT what I expected'}\n\nLegit top tier\n${siteUrl(item)}`;
+  },
+  (item) => {
+    const a = getActresses(item)[0];
+    return `${a ? a + ' is the reason' : 'This is the reason'} I can't sleep tonight 😭\n\nFree sample on site 👇\n${siteUrl(item)}`;
+  },
+];
+
+function generateEnglishText(item) {
+  const idx = SEED % EN_PATTERNS.length;
+  const result = EN_PATTERNS[idx](item);
+  return (result || `${item.title}\n\n${siteUrl(item)}`).trim();
+}
+
+// ===== Bluesky 英語投稿 =====
+async function postBlueskyEnglish(item, auth) {
+  let text = generateEnglishText(item);
+
+  // 英語トレンドタグ取得・追加
+  const trendTags = await getEnglishTrendingTags(auth.accessJwt);
+  const staticTags = ['#JAV', '#NSFW', '#AdultContent', '#JapaneseAdult'];
+  const allTags = [...new Set([...staticTags, ...trendTags.map(t => '#' + t)])].slice(0, 6);
+  text = text + '\n\n' + allTags.join(' ');
+
+  const facets = buildFacets(text);
+  const record = {
+    $type: 'app.bsky.feed.post',
+    text,
+    createdAt: new Date(Date.now() + 2000).toISOString(),  // 2秒ずらす
+    langs: ['en'],
+    facets,
+  };
+
+  // サムネイルカード
+  const imgUrl = item.imageURL?.list || item.imageURL?.small || '';
+  if (imgUrl) {
+    try {
+      const { buffer, mime } = await fetchBuffer(imgUrl);
+      const blobRes = await uploadBlob(buffer, mime.split(';')[0], auth.accessJwt);
+      record.embed = {
+        $type: 'app.bsky.embed.external',
+        external: { uri: siteUrl(item), title: item.title || '', description: 'Sample video available | douga-adult.com', thumb: blobRes.blob }
+      };
+    } catch(e) { console.log('英語投稿サムネ失敗:', e.message); }
+  }
+
+  await request('https://bsky.social/xrpc/com.atproto.repo.createRecord',
+    { repo: auth.did, collection: 'app.bsky.feed.post', record },
+    { Authorization: `Bearer ${auth.accessJwt}` });
+  console.log('Bluesky 英語投稿完了 ✅');
+}
+
 // ===== Misskey 投稿 =====
 async function postMisskey(text) {
   const instance = (process.env.MISSKEY_INSTANCE || '').replace(/^https?:\/\//, '').replace(/\/$/, '');
@@ -645,7 +825,20 @@ async function postMisskey(text) {
   console.log(text);
   console.log('--- 文字数:', text.length, '---');
 
-  // Bluesky は必須（失敗したら exit 1）、Misskey はオプション
+  // Bluesky 投稿（必須）→ トレンドへのコメント → Misskey（オプション）
+  const bskyAuth = await (async () => {
+    const handle = (process.env.BSKY_HANDLE || '').trim();
+    const pass   = (process.env.BSKY_APP_PASSWORD || '').trim();
+    if (!handle || !pass) return null;
+    return request('https://bsky.social/xrpc/com.atproto.server.createSession', { identifier: handle, password: pass });
+  })();
+
+  if (!bskyAuth) { console.error('Bluesky: 認証情報なし'); process.exit(1); }
+
   await postBluesky(text, item);
+  await postBlueskyEnglish(item, bskyAuth)
+    .catch(e => console.error('英語投稿エラー (続行):', e.message));
+  await commentOnTrendingPosts(bskyAuth.accessJwt, bskyAuth.did)
+    .catch(e => console.error('コメント機能エラー (続行):', e.message));
   await postMisskey(text).catch(e => console.error('Misskey エラー (続行):', e.message));
 })().catch(e => { console.error('致命的エラー:', e.message); process.exit(1); });

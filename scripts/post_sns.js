@@ -572,14 +572,7 @@ async function pollVideoJob(jobId, jwt) {
 }
 
 // ===== Bluesky 投稿 =====
-async function postBluesky(text, item) {
-  const handle = (process.env.BSKY_HANDLE || '').trim();
-  const pass   = (process.env.BSKY_APP_PASSWORD || '').trim();
-  if (!handle || !pass) { console.log('Bluesky: 認証情報なし、スキップ'); return; }
-
-  const auth = await request('https://bsky.social/xrpc/com.atproto.server.createSession',
-    { identifier: handle, password: pass });
-  console.log('Bluesky: 認証OK');
+async function postBluesky(text, item, auth) {
 
   // トレンドタグを取得してテキスト末尾に追加
   const trendTags = await getTrendingTags(auth.accessJwt);
@@ -914,21 +907,30 @@ async function postMisskey(text) {
   console.log(text);
   console.log('--- 文字数:', text.length, '---');
 
-  // Bluesky 投稿（必須）→ トレンドへのコメント → Misskey（オプション）
-  const bskyAuth = await (async () => {
+  // Bluesky 認証（失敗してもX/Misskeyは続行）
+  let bskyAuth = null;
+  try {
     const handle = (process.env.BSKY_HANDLE || '').trim();
     const pass   = (process.env.BSKY_APP_PASSWORD || '').trim();
-    if (!handle || !pass) return null;
-    return request('https://bsky.social/xrpc/com.atproto.server.createSession', { identifier: handle, password: pass });
-  })();
+    if (handle && pass) {
+      bskyAuth = await request('https://bsky.social/xrpc/com.atproto.server.createSession', { identifier: handle, password: pass });
+      console.log('Bluesky: 認証OK');
+    } else {
+      console.log('Bluesky: 認証情報なし、スキップ');
+    }
+  } catch(e) {
+    console.error('Bluesky: 認証失敗 (続行):', e.message);
+  }
 
-  if (!bskyAuth) { console.error('Bluesky: 認証情報なし'); process.exit(1); }
+  if (bskyAuth) {
+    await postBluesky(text, item, bskyAuth)
+      .catch(e => console.error('Bluesky JP投稿エラー (続行):', e.message));
+    await postBlueskyEnglish(item, bskyAuth)
+      .catch(e => console.error('英語投稿エラー (続行):', e.message));
+    await commentOnTrendingPosts(bskyAuth.accessJwt, bskyAuth.did)
+      .catch(e => console.error('コメント機能エラー (続行):', e.message));
+  }
 
-  await postBluesky(text, item);
-  await postBlueskyEnglish(item, bskyAuth)
-    .catch(e => console.error('英語投稿エラー (続行):', e.message));
-  await commentOnTrendingPosts(bskyAuth.accessJwt, bskyAuth.did)
-    .catch(e => console.error('コメント機能エラー (続行):', e.message));
   await postTwitter(text).catch(e => console.error('X エラー (続行):', e.message));
   await postMisskey(text).catch(e => console.error('Misskey エラー (続行):', e.message));
 })().catch(e => { console.error('致命的エラー:', e.message); process.exit(1); });

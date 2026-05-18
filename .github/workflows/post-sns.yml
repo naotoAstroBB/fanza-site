@@ -33,9 +33,13 @@ jobs:
 
       - name: Post to SNS
         env:
-          POST_SLOT:         ${{ steps.slot.outputs.slot }}
-          BSKY_HANDLE:       ${{ secrets.BSKY_HANDLE }}
-          BSKY_APP_PASSWORD: ${{ secrets.BSKY_APP_PASSWORD }}
-          MISSKEY_INSTANCE:  ${{ secrets.MISSKEY_INSTANCE }}
-          MISSKEY_TOKEN:     ${{ secrets.MISSKEY_TOKEN }}
+          POST_SLOT:              ${{ steps.slot.outputs.slot }}
+          BSKY_HANDLE:            ${{ secrets.BSKY_HANDLE }}
+          BSKY_APP_PASSWORD:      ${{ secrets.BSKY_APP_PASSWORD }}
+          X_API_KEY:              ${{ secrets.X_API_KEY }}
+          X_API_SECRET:           ${{ secrets.X_API_SECRET }}
+          X_ACCESS_TOKEN:         ${{ secrets.X_ACCESS_TOKEN }}
+          X_ACCESS_TOKEN_SECRET:  ${{ secrets.X_ACCESS_TOKEN_SECRET }}
+          MISSKEY_INSTANCE:       ${{ secrets.MISSKEY_INSTANCE }}
+          MISSKEY_TOKEN:          ${{ secrets.MISSKEY_TOKEN }}
         run: node scripts/post_sns.js

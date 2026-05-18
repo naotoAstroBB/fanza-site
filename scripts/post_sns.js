@@ -2,9 +2,10 @@
 // SNS自動投稿スクリプト（リーチ最大化版）
 // 環境変数: BSKY_HANDLE, BSKY_APP_PASSWORD, MISSKEY_INSTANCE, MISSKEY_TOKEN, POST_SLOT
 
-const fs    = require('fs');
-const https = require('https');
-const http  = require('http');
+const fs     = require('fs');
+const https  = require('https');
+const http   = require('http');
+const crypto = require('crypto');
 
 const SITE = 'https://douga-adult.com';
 
@@ -850,6 +851,48 @@ async function postBlueskyEnglish(item, auth) {
   console.log('Bluesky 英語投稿完了 ✅');
 }
 
+// ===== X (Twitter) 投稿 =====
+async function postTwitter(text) {
+  const apiKey    = (process.env.X_API_KEY            || '').trim();
+  const apiSecret = (process.env.X_API_SECRET         || '').trim();
+  const accToken  = (process.env.X_ACCESS_TOKEN       || '').trim();
+  const accSecret = (process.env.X_ACCESS_TOKEN_SECRET || '').trim();
+  if (!apiKey || !apiSecret || !accToken || !accSecret) {
+    console.log('X: 認証情報なし、スキップ');
+    return;
+  }
+
+  const url   = 'https://api.twitter.com/2/tweets';
+  const nonce = crypto.randomBytes(16).toString('hex');
+  const ts    = Math.floor(Date.now() / 1000).toString();
+
+  const oauthParams = {
+    oauth_consumer_key:     apiKey,
+    oauth_nonce:            nonce,
+    oauth_signature_method: 'HMAC-SHA1',
+    oauth_timestamp:        ts,
+    oauth_token:            accToken,
+    oauth_version:          '1.0',
+  };
+
+  const paramStr = Object.keys(oauthParams).sort()
+    .map(k => `${encodeURIComponent(k)}=${encodeURIComponent(oauthParams[k])}`)
+    .join('&');
+  const base   = `POST&${encodeURIComponent(url)}&${encodeURIComponent(paramStr)}`;
+  const sigKey = `${encodeURIComponent(apiSecret)}&${encodeURIComponent(accSecret)}`;
+  oauthParams.oauth_signature = crypto.createHmac('sha1', sigKey).update(base).digest('base64');
+
+  const authHeader = 'OAuth ' + Object.keys(oauthParams).sort()
+    .map(k => `${encodeURIComponent(k)}="${encodeURIComponent(oauthParams[k])}"`)
+    .join(', ');
+
+  // X は280文字制限（URLは23文字固定カウントのため270で切り詰め）
+  const tweetText = text.slice(0, 270);
+
+  await request(url, { text: tweetText }, { Authorization: authHeader });
+  console.log('X: 投稿完了 ✅');
+}
+
 // ===== Misskey 投稿 =====
 async function postMisskey(text) {
   const instance = (process.env.MISSKEY_INSTANCE || '').replace(/^https?:\/\//, '').replace(/\/$/, '');
@@ -886,5 +929,6 @@ async function postMisskey(text) {
     .catch(e => console.error('英語投稿エラー (続行):', e.message));
   await commentOnTrendingPosts(bskyAuth.accessJwt, bskyAuth.did)
     .catch(e => console.error('コメント機能エラー (続行):', e.message));
+  await postTwitter(text).catch(e => console.error('X エラー (続行):', e.message));
   await postMisskey(text).catch(e => console.error('Misskey エラー (続行):', e.message));
 })().catch(e => { console.error('致命的エラー:', e.message); process.exit(1); });

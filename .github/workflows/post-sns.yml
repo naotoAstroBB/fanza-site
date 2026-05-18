@@ -1,10 +1,8 @@
 name: Auto Post to SNS
 
 on:
-  push:
-    branches: [main]
-    paths: ['.github/workflows/post-sns.yml']
   schedule:
+    # JST 9:00 / 15:00 / 21:00 (UTC 0:00 / 6:00 / 12:00)
     - cron: '0 0 * * *'
     - cron: '0 6 * * *'
     - cron: '0 12 * * *'
@@ -18,8 +16,6 @@ on:
 jobs:
   post:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
       - uses: actions/checkout@v4
 
@@ -36,35 +32,10 @@ jobs:
           fi
 
       - name: Post to SNS
-        continue-on-error: true
         env:
           POST_SLOT:         ${{ steps.slot.outputs.slot }}
           BSKY_HANDLE:       ${{ secrets.BSKY_HANDLE }}
           BSKY_APP_PASSWORD: ${{ secrets.BSKY_APP_PASSWORD }}
           MISSKEY_INSTANCE:  ${{ secrets.MISSKEY_INSTANCE }}
           MISSKEY_TOKEN:     ${{ secrets.MISSKEY_TOKEN }}
-        run: |
-          node scripts/post_sns.js > /tmp/sns_log.txt 2>&1
-          echo "EXIT_CODE:$?" >> /tmp/sns_log.txt
-
-      - name: Save log via GitHub API
-        if: always()
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          LOG=$(cat /tmp/sns_log.txt 2>/dev/null || echo 'NO LOG FILE')
-          ENCODED=$(printf '%s' "$LOG" | base64 | tr -d '\n')
-          EXISTING_SHA=$(curl -sf \
-            -H "Authorization: token $GITHUB_TOKEN" \
-            "https://api.github.com/repos/$GITHUB_REPOSITORY/contents/logs/last-run.txt" \
-            | python3 -c "import sys,json; print(json.load(sys.stdin).get('sha',''))" 2>/dev/null || echo '')
-          if [ -n "$EXISTING_SHA" ]; then
-            BODY=$(python3 -c "import json; print(json.dumps({'message':'log: SNS run','content':'$ENCODED','sha':'$EXISTING_SHA'}))")
-          else
-            BODY=$(python3 -c "import json; print(json.dumps({'message':'log: SNS run','content':'$ENCODED'}))")
-          fi
-          curl -s -X PUT \
-            -H "Authorization: token $GITHUB_TOKEN" \
-            -H "Content-Type: application/json" \
-            -d "$BODY" \
-            "https://api.github.com/repos/$GITHUB_REPOSITORY/contents/logs/last-run.txt" > /dev/null
+        run: node scripts/post_sns.js

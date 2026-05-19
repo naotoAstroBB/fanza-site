@@ -54,6 +54,15 @@ jobs:
           node scripts/post_sns.js 2>&1 | tee /tmp/sns_output.txt
           echo "EXIT_CODE:$?" >> /tmp/sns_output.txt
 
+      - name: Commit commented-posts cache
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add logs/commented-posts.json 2>/dev/null || true
+          git diff --cached --quiet || git commit -m "ci: update commented-posts cache [skip ci]"
+          git pull --rebase origin main && git push origin main || true
+
       - name: Save run log
         if: always()
         env:

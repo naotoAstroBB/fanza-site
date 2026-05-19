@@ -661,6 +661,30 @@ const CATEGORY_COMMENTS = {
   general_en:  ['this deserved way more likes', 'saving this forever ✨', 'the internet needed this today', 'okay but why does this hit so hard', 'this is everything right now', 'genuinely love this'],
 };
 
+// ===== コメント済みURIキャッシュ（重複投稿防止） =====
+const COMMENTED_FILE = 'logs/commented-posts.json';
+const COMMENTED_TTL  = 30 * 24 * 60 * 60 * 1000; // 30日
+
+function loadCommentedPosts() {
+  try {
+    if (fs.existsSync(COMMENTED_FILE)) {
+      const data = JSON.parse(fs.readFileSync(COMMENTED_FILE, 'utf8'));
+      const cutoff = Date.now() - COMMENTED_TTL;
+      return Array.isArray(data) ? data.filter(e => e.ts > cutoff) : [];
+    }
+  } catch(e) {}
+  return [];
+}
+
+function saveCommentedPosts(entries) {
+  try {
+    fs.mkdirSync('logs', { recursive: true });
+    fs.writeFileSync(COMMENTED_FILE, JSON.stringify(entries.slice(-500), null, 2));
+  } catch(e) {
+    console.log('コメント済みリスト保存失敗:', e.message);
+  }
+}
+
 // ===== バズり投稿へのコメント =====
 async function commentOnTrendingPosts(jwt, did) {
 
@@ -684,6 +708,11 @@ async function commentOnTrendingPosts(jwt, did) {
   if (!jaKeywords.length) jaKeywords = ['おはよう', '今日', 'これ', 'やばい'];
   if (!enKeywords.length) enKeywords = ['today', 'trending', 'lol', 'omg'];
 
+  // コメント済みURIをロード（重複防止）
+  const commentedEntries = loadCommentedPosts();
+  const commentedUris = new Set(commentedEntries.map(e => e.uri));
+  console.log(`コメント済みキャッシュ: ${commentedUris.size}件`);
+
   async function findAndComment(keywords, lang) {
     for (const kw of keywords) {
       console.log(`コメント対象トレンド[${lang}]: ${kw}`);
@@ -697,7 +726,8 @@ async function commentOnTrendingPosts(jwt, did) {
           .filter(p =>
             p.author.did !== did &&
             (p.likeCount || 0) + (p.repostCount || 0) >= 300 &&
-            !p.record?.reply
+            !p.record?.reply &&
+            !commentedUris.has(p.uri)   // ← 既コメント済みをスキップ
           )
           .sort((a, b) => ((b.likeCount || 0) + (b.repostCount || 0)) - ((a.likeCount || 0) + (a.repostCount || 0)))
           .slice(0, 2);
@@ -705,7 +735,7 @@ async function commentOnTrendingPosts(jwt, did) {
         console.log(`コメント[${lang}]: 検索失敗:`, e.message);
         continue;
       }
-      if (!posts.length) { console.log(`コメント対象なし[${lang}]（300いいね未満）、次のキーワードへ`); continue; }
+      if (!posts.length) { console.log(`コメント対象なし[${lang}]（スキップ済みor300いいね未満）、次のキーワードへ`); continue; }
 
       let count = 0;
       for (const post of posts) {
@@ -729,6 +759,10 @@ async function commentOnTrendingPosts(jwt, did) {
             }
           }, { Authorization: `Bearer ${jwt}` });
           console.log(`コメント投稿[${lang}] ✅ (${(post.likeCount||0)+(post.repostCount||0)}いいね)`);
+          // キャッシュに追加（二重防止）
+          commentedEntries.push({ uri: post.uri, ts: Date.now() });
+          commentedUris.add(post.uri);
+          saveCommentedPosts(commentedEntries);
           count++;
         } catch(e) {
           console.log(`コメント失敗[${lang}]:`, e.message);

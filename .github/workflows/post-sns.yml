@@ -72,5 +72,5 @@ jobs:
             curl -s -X PUT -H "Authorization: token $GITHUB_TOKEN" \
               -H "Content-Type: application/json" \
               "https://api.github.com/repos/${{ github.repository }}/contents/logs/last-run.txt" \
-              -d "{\"message\":\"ci: create run log\",\"content\":\"$CONTENT\"}"
+              -d "{\"message\":\"ci: update run log\",\"content\":\"$CONTENT\"}"
           fi

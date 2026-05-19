@@ -81,11 +81,10 @@ jobs:
             ' $files > "$OUT" 2>/dev/null || echo '{"result":{"status":404}}' > "$OUT"
           }
 
-          # ========== 動画優先で数十万件規模に拡大 ==========
-          # 動画系 rank/新作/高評価 = 各100ページ・最大10000件（=videoa全体30,000件）
-          merge_fetch_n 100 data/rank.json   "$BASE_URL&floor=videoa&sort=rank"
-          merge_fetch_n 100 data/new.json    "$BASE_URL&floor=videoa&sort=date"
-          merge_fetch_n 100 data/review.json "$BASE_URL&floor=videoa&sort=review"
+          # ========== 動画 rank/新作/高評価 ==========
+          merge_fetch_n 30 data/rank.json   "$BASE_URL&floor=videoa&sort=rank"
+          merge_fetch_n 30 data/new.json    "$BASE_URL&floor=videoa&sort=date"
+          merge_fetch_n 30 data/review.json "$BASE_URL&floor=videoa&sort=review"
 
           # アニメ・マンガ・グッズ = 各10ページ・最大1000件 × 3ソート
           ANIME_BASE="$BASE_URL&floor=anime"
@@ -103,7 +102,8 @@ jobs:
           merge_fetch_n 10 data/goods_date.json   "${GOODS_BASE}&sort=date"
           merge_fetch_n 10 data/goods_review.json "${GOODS_BASE}&sort=review"
 
-          # ジャンル別 - rank/date=50ページ(5000件)、review=30ページ(3000件)
+          # ジャンル別 - rank/date=10ページ(1000件)、review=5ページ(500件)
+          # ※ページ数削減で全ステップを2時間以内に収める
           for row in \
             "2001:genre_busty" \
             "1027:genre_bishoujo" \
@@ -157,13 +157,12 @@ jobs:
             "4011:genre_ojiri_feti" \
             "4133:genre_nurse"; do
             ID="${row%%:*}"; NAME="${row##*:}"
-            # 動画ジャンル別：人気/新作=50ページ(5000件)、高評価=30ページ(3000件)
-            merge_fetch_n 50 "data/${NAME}.json"        "$BASE_URL&floor=videoa&sort=rank&article=genre&article_id=$ID"
-            merge_fetch_n 50 "data/${NAME}_date.json"   "$BASE_URL&floor=videoa&sort=date&article=genre&article_id=$ID"
-            merge_fetch_n 30 "data/${NAME}_review.json" "$BASE_URL&floor=videoa&sort=review&article=genre&article_id=$ID"
+            merge_fetch_n 10 "data/${NAME}.json"        "$BASE_URL&floor=videoa&sort=rank&article=genre&article_id=$ID"
+            merge_fetch_n 10 "data/${NAME}_date.json"   "$BASE_URL&floor=videoa&sort=date&article=genre&article_id=$ID"
+            merge_fetch_n 5  "data/${NAME}_review.json" "$BASE_URL&floor=videoa&sort=review&article=genre&article_id=$ID"
           done
 
-          # ===== メーカー別（上位AVメーカー）rank/date=50ページ、review=20ページ =====
+          # ===== メーカー別（上位AVメーカー）rank/date=20ページ、review=10ページ =====
           for row in \
             "3152:maker_s1" \
             "1509:maker_moodyz" \
@@ -178,9 +177,9 @@ jobs:
             "4641:maker_das" \
             "40003:maker_deeps"; do
             ID="${row%%:*}"; NAME="${row##*:}"
-            merge_fetch_n 50 "data/${NAME}.json"        "$BASE_URL&floor=videoa&sort=rank&article=maker&article_id=$ID"
-            merge_fetch_n 50 "data/${NAME}_date.json"   "$BASE_URL&floor=videoa&sort=date&article=maker&article_id=$ID"
-            merge_fetch_n 20 "data/${NAME}_review.json" "$BASE_URL&floor=videoa&sort=review&article=maker&article_id=$ID"
+            merge_fetch_n 20 "data/${NAME}.json"        "$BASE_URL&floor=videoa&sort=rank&article=maker&article_id=$ID"
+            merge_fetch_n 20 "data/${NAME}_date.json"   "$BASE_URL&floor=videoa&sort=date&article=maker&article_id=$ID"
+            merge_fetch_n 10 "data/${NAME}_review.json" "$BASE_URL&floor=videoa&sort=review&article=maker&article_id=$ID"
           done
 
       - name: Fetch actress data
@@ -263,9 +262,9 @@ jobs:
           done
           SWEEP_IDS=$(jq -r '.result.actress[]?.id | tostring' /tmp/sweep_*.json 2>/dev/null | grep -v null)
 
-          # マージ（レジェンド先頭→商品頻度順→sweep補完）上位5000件
+          # マージ（レジェンド先頭→商品頻度順→sweep補完）上位2000件
           ALL_PROFILE_IDS=$(printf '%s\n' $LEGEND_IDS $PRODUCT_IDS $SWEEP_IDS \
-            | awk '!seen[$0]++ && $0 != ""' | head -5000)
+            | awk '!seen[$0]++ && $0 != ""' | head -2000)
 
           build_actress_json "$ALL_PROFILE_IDS" data/actress_profiles.json \
             || echo '{"result":{"status":404,"actress":[]}}' > data/actress_profiles.json
@@ -280,7 +279,7 @@ jobs:
           # Step2: LEGEND + 出現頻度上位をAPIから追加取得（ローカルにない作品を補完）
           echo "上位女優分をAPIから追加取得中（15ページ=1500作品まで）..."
           WORK_BASE="https://api.dmm.com/affiliate/v3/ItemList?api_id=UXJdpULBN1sPyNKKPPHU&affiliate_id=saaaaaaya-990&site=FANZA&service=digital&output=json&floor=videoa&sort=date&article=actress"
-          API_TARGET_IDS=$(printf '%s\n' $LEGEND_IDS $PRODUCT_IDS | awk '!seen[$0]++ && $0 != ""' | head -200)
+          API_TARGET_IDS=$(printf '%s\n' $LEGEND_IDS $PRODUCT_IDS | awk '!seen[$0]++ && $0 != ""' | head -100)
           for AID in $API_TARGET_IDS; do
             rm -f /tmp/aw_*.json
             for p in $(seq 1 15); do

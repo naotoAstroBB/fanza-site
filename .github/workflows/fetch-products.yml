@@ -1,6 +1,10 @@
 name: Fetch FANZA Products
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/fetch-products.yml'
   schedule:
     - cron: '*/30 * * * *'
   workflow_dispatch:

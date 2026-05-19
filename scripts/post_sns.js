@@ -366,21 +366,23 @@ async function postBluesky(text, item, auth) {
   // サンプル画像ギャラリー（最大4枚）を最優先で試みる
   let embedDone = false;
   if (sampleImgs.length > 0) {
-    try {
-      const blobs = [];
-      for (const url of sampleImgs.slice(0, 4)) {
+    const blobs = [];
+    for (const url of sampleImgs.slice(0, 4)) {
+      try {
         const { buffer, mime } = await fetchBuffer(url);
         const blobRes = await uploadBlob(buffer, mime.split(';')[0] || 'image/jpeg', auth.accessJwt);
         blobs.push(blobRes.blob);
+      } catch(e) {
+        console.log('Bluesky: 画像1枚スキップ:', e.message);
       }
+    }
+    if (blobs.length > 0) {
       record.embed = {
         $type: 'app.bsky.embed.images',
         images: blobs.map(blob => ({ image: blob, alt: item.title || '' }))
       };
       embedDone = true;
       console.log(`Bluesky: サンプル画像${blobs.length}枚ギャラリー ✅`);
-    } catch(e) {
-      console.log('Bluesky: 画像ギャラリー失敗:', e.message);
     }
   }
 
@@ -607,19 +609,21 @@ async function postBlueskyEnglish(item, auth) {
   const mainImgUrlEn = item.imageURL?.large || item.imageURL?.list || item.imageURL?.small || '';
   let enEmbedDone = false;
   if (sampleImgsEn.length > 0) {
-    try {
-      const blobs = [];
-      for (const url of sampleImgsEn.slice(0, 4)) {
+    const blobs = [];
+    for (const url of sampleImgsEn.slice(0, 4)) {
+      try {
         const { buffer, mime } = await fetchBuffer(url);
         const blobRes = await uploadBlob(buffer, mime.split(';')[0] || 'image/jpeg', auth.accessJwt);
         blobs.push(blobRes.blob);
-      }
+      } catch(e) { console.log('英語投稿画像1枚スキップ:', e.message); }
+    }
+    if (blobs.length > 0) {
       record.embed = {
         $type: 'app.bsky.embed.images',
         images: blobs.map(blob => ({ image: blob, alt: item.title || '' }))
       };
       enEmbedDone = true;
-    } catch(e) { console.log('英語投稿ギャラリー失敗:', e.message); }
+    }
   }
   if (!enEmbedDone && mainImgUrlEn) {
     try {
@@ -676,8 +680,7 @@ async function postTwitter(text) {
   // URLにref付与してバリエーションを持たせる（同一URL連投によるスパム判定回避）
   const ref = `tw${slot}${SEED % 99}`;
   const tweetText = text
-    .replace(/(https?:\/\/[^\s\n]+\?[^\s\n]+)/g, `$1&ref=${ref}`)
-    .replace(/(https?:\/\/[^\s\n]+)(?!\?)/g, `$1?ref=${ref}`)
+    .replace(/https?:\/\/[^\s\n]+/g, url => url.includes('?') ? `${url}&ref=${ref}` : `${url}?ref=${ref}`)
     .slice(0, 270);
 
   // possibly_sensitive: true でセンシティブフラグを付与

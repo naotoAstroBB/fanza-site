@@ -18,16 +18,14 @@ const newItems    = loadJSON('data/new.json')?.result?.items    || [];
 const reviewItems = loadJSON('data/review.json')?.result?.items || [];
 if (!rankItems.length) { console.error('データなし'); process.exit(1); }
 
-// ===== シード（日付×スロットで決定論的に選択）=====
+// ===== シード（毎回ランダムに選択）=====
 function hash(str) {
   let h = 5381;
   for (let i = 0; i < str.length; i++) h = ((h * 33) ^ str.charCodeAt(i)) >>> 0;
   return h;
 }
-const jst     = new Date(Date.now() + 9 * 3600000);
-const dateStr = jst.toISOString().slice(0, 10);
 const slot    = parseInt(process.env.POST_SLOT || '0', 10);
-const SEED    = hash(dateStr + '-' + slot);
+const SEED    = Math.floor(Math.random() * 0xFFFFFFFF);
 
 // ===== ヘルパー =====
 function getActresses(item) { return (item.iteminfo?.actress || []).map(a => a.name); }

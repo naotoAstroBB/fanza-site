@@ -876,9 +876,15 @@ async function postTwitter(text) {
     .map(k => `${encodeURIComponent(k)}="${encodeURIComponent(oauthParams[k])}"`)
     .join(', ');
 
-  const tweetText = text.slice(0, 270);
+  // URLにref付与してバリエーションを持たせる（同一URL連投によるスパム判定回避）
+  const ref = `tw${slot}${SEED % 99}`;
+  const tweetText = text
+    .replace(/(https?:\/\/[^\s\n]+\?[^\s\n]+)/g, `$1&ref=${ref}`)
+    .replace(/(https?:\/\/[^\s\n]+)(?!\?)/g, `$1?ref=${ref}`)
+    .slice(0, 270);
 
-  await request(url, { text: tweetText }, { Authorization: authHeader });
+  // possibly_sensitive: true でセンシティブフラグを付与
+  await request(url, { text: tweetText, possibly_sensitive: true }, { Authorization: authHeader });
   console.log('X: 投稿完了 ✅');
 }
 

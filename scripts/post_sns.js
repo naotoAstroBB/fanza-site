@@ -407,32 +407,39 @@ async function postBluesky(text, item, auth) {
   console.log('Bluesky: 投稿完了 ✅');
 }
 
+// ===== 投稿内容カテゴリ判定 =====
+function categorizePost(text) {
+  if (!text) return 'general';
+  if (/サッカー|野球|バスケ|ラグビー|スポーツ|試合|優勝|決勝|選手|ゴール|W杯|オリンピック|得点|監督|チーム/.test(text)) return 'sports_ja';
+  if (/映画|ドラマ|アニメ|音楽|ライブ|コンサート|俳優|歌手|推し|アイドル|舞台|新曲|MV/.test(text)) return 'ent_ja';
+  if (/食べ|飯|料理|ランチ|ディナー|美味|グルメ|カフェ|うまい|おいしい|レシピ|スイーツ/.test(text)) return 'food_ja';
+  if (/泣いた|感動|嬉しい|楽しい|幸せ|つらい|切ない|尊い|ほっこり|癒|泣ける/.test(text)) return 'emotional_ja';
+  if (/かわいい|可愛い|萌え|もふもふ|ふわふわ|癒し|ねこ|犬|ペット/.test(text)) return 'cute_ja';
+  if (/soccer|football|basketball|baseball|nba|nfl|sports|match|game|goal|score|championship|tournament/i.test(text)) return 'sports_en';
+  if (/movie|film|anime|music|concert|actor|singer|album|drama|netflix|series|episode/i.test(text)) return 'ent_en';
+  if (/food|eating|delicious|lunch|dinner|restaurant|cafe|coffee|recipe|cook|baking/i.test(text)) return 'food_en';
+  if (/emotional|crying|heartwarming|touching|beautiful|inspiring|moved me/i.test(text)) return 'emotional_en';
+  if (/cute|adorable|lovely|wholesome|precious|puppy|kitten|cat|dog/i.test(text)) return 'cute_en';
+  return /[ぁ-ゖァ-ヶ一-鿿]/.test(text) ? 'general_ja' : 'general_en';
+}
+
+const CATEGORY_COMMENTS = {
+  sports_ja:   ['これ熱すぎる🔥', 'やばすぎて声でた', '感動した😭', 'リアルタイムで見てよかった', '鳥肌たった', '最高の瞬間すぎる'],
+  ent_ja:      ['センスありすぎ😭', 'これは名作', '何回見ても好き', '沼った', 'ずっと聴いてる', 'これ好きな人と仲良くなれる'],
+  food_ja:     ['美味しそうすぎる😭', 'これ絶対食べたい', '真似したい', 'レシピ教えてほしい🙏', '天才的なやつ', '今すぐ食べたい'],
+  emotional_ja:['わかりすぎて泣いた', 'これ共感しかない', '心に刺さった', '深夜に見たのミスった😭', '保存した', 'ほんとにそれ'],
+  cute_ja:     ['可愛すぎて無理😭', '癒されすぎる', '尊い🙏', '何回見ても飽きない', '元気もらえた', 'ありがとうこの投稿'],
+  general_ja:  ['わかりみが深すぎる', 'これはバズるの納得', 'センスある', '刺さりすぎた', 'なんでこんなにわかるの笑', '深夜に見てよかった'],
+  sports_en:   ['this is absolutely insane 🔥', 'no way this happened', 'legendary moment', 'what a performance', 'chills literally', 'history right here'],
+  ent_en:      ['this is everything ✨', 'okay this is literally perfect', 'saving this forever', 'obsessed with this', 'on repeat', 'this is the one'],
+  food_en:     ['this looks so good 😭', 'need this immediately', "okay i'm hungry now", 'recipe please 🙏', 'making this tonight', 'literal perfection'],
+  emotional_en:['this hit different', 'why is this so accurate 😭', 'needed to hear this today', 'this is so real', 'not me tearing up', 'genuinely made my day'],
+  cute_en:     ['this is so adorable 😭', 'absolutely precious', 'needed this today 🙏', 'cannot handle how cute this is', 'my heart ✨', 'wholesome content only'],
+  general_en:  ['this deserved way more likes', 'saving this forever ✨', 'the internet needed this today', 'okay but why does this hit so hard', 'this is everything right now', 'genuinely love this'],
+};
+
 // ===== バズり投稿へのコメント =====
 async function commentOnTrendingPosts(jwt, did) {
-  const JA_COMMENTS = [
-    'わかりみが深すぎる😭',
-    'これはバズるのわかる笑',
-    'ほんとそれ🙏',
-    'センスありすぎ✨',
-    'こういうの好きすぎる😂',
-    '深夜に見てよかった',
-    '刺さりすぎて保存した',
-    'なんでこんなにわかるの笑',
-    'これ共感しかない',
-    'ありがとうございます🙏 癒された',
-  ];
-  const EN_COMMENTS = [
-    'this is so relatable lol',
-    'literally cannot stop laughing 😂',
-    'this deserved way more likes fr',
-    'saving this forever ✨',
-    'why is this so accurate 😭',
-    'the internet needed this today',
-    'not me screenshotting this immediately',
-    'okay but why does this hit so hard',
-    'genuinely made my day 🙏',
-    'this is everything right now',
-  ];
 
   let jaKeywords = [];
   let enKeywords = [];
@@ -454,8 +461,7 @@ async function commentOnTrendingPosts(jwt, did) {
   if (!jaKeywords.length) jaKeywords = ['おはよう', '今日', 'これ', 'やばい'];
   if (!enKeywords.length) enKeywords = ['today', 'trending', 'lol', 'omg'];
 
-  async function findAndComment(keywords, comments, lang) {
-    // キーワードを順に試して最初に投稿が見つかったもので実行
+  async function findAndComment(keywords, lang) {
     for (const kw of keywords) {
       console.log(`コメント対象トレンド[${lang}]: ${kw}`);
       let posts = [];
@@ -464,7 +470,6 @@ async function commentOnTrendingPosts(jwt, did) {
           `https://bsky.social/xrpc/app.bsky.feed.searchPosts?q=${encodeURIComponent(kw)}&limit=50&sort=top`,
           { Authorization: `Bearer ${jwt}` }
         );
-        // 閾値: 300以上（Blueskyのスケール感に合わせて調整）
         posts = (res.posts || [])
           .filter(p =>
             p.author.did !== did &&
@@ -481,7 +486,10 @@ async function commentOnTrendingPosts(jwt, did) {
 
       let count = 0;
       for (const post of posts) {
-        const comment = comments[(SEED + count * 3) % comments.length];
+        const cat = categorizePost(post.record?.text || '');
+        const pool = CATEGORY_COMMENTS[cat] || CATEGORY_COMMENTS[lang === 'ja' ? 'general_ja' : 'general_en'];
+        const comment = pool[(SEED + count * 7) % pool.length];
+        console.log(`  カテゴリ[${cat}] → "${comment}"`);
         try {
           await request('https://bsky.social/xrpc/com.atproto.repo.createRecord', {
             repo: did,
@@ -497,7 +505,7 @@ async function commentOnTrendingPosts(jwt, did) {
               langs: [lang]
             }
           }, { Authorization: `Bearer ${jwt}` });
-          console.log(`コメント投稿[${lang}] ✅ (${(post.likeCount||0)+(post.repostCount||0)}いいね) "${comment}"`);
+          console.log(`コメント投稿[${lang}] ✅ (${(post.likeCount||0)+(post.repostCount||0)}いいね)`);
           count++;
         } catch(e) {
           console.log(`コメント失敗[${lang}]:`, e.message);
@@ -509,13 +517,88 @@ async function commentOnTrendingPosts(jwt, did) {
     return 0;
   }
 
-  // JA: トレンドから最大5キーワード試行、EN: 最大5キーワード試行
-  const jaKws = jaKeywords.slice(0, 5);
-  const enKws = enKeywords.slice(0, 5);
-
-  const jaCount = await findAndComment(jaKws, JA_COMMENTS, 'ja');
-  const enCount = await findAndComment(enKws, EN_COMMENTS, 'en');
+  const jaCount = await findAndComment(jaKeywords.slice(0, 5), 'ja');
+  const enCount = await findAndComment(enKeywords.slice(0, 5), 'en');
   console.log(`コメント完了: 日本語${jaCount}件 / 英語${enCount}件`);
+}
+
+// ===== 自分の投稿へのリプライに自動返信 =====
+async function replyToNotifications(jwt, did) {
+  let notifications = [];
+  try {
+    const res = await getJson(
+      'https://bsky.social/xrpc/app.bsky.notification.listNotifications?limit=25',
+      { Authorization: `Bearer ${jwt}` }
+    );
+    notifications = (res.notifications || []).filter(n =>
+      n.reason === 'reply' && !n.isRead && n.author.did !== did
+    );
+  } catch(e) {
+    console.log('通知取得失敗:', e.message);
+    return;
+  }
+
+  if (!notifications.length) { console.log('新規リプライなし'); return; }
+  console.log(`新規リプライ: ${notifications.length}件`);
+
+  const JA_REPLIES = [
+    'ありがとうございます🙏 他の作品もぜひ！',
+    '嬉しいです！気になる作品はこちらも→',
+    'コメントありがとう😊 また来てください！',
+    'ありがとうございます✨ サンプルもあるのでどうぞ',
+    '見てくれてありがとう🙏',
+  ];
+  const EN_REPLIES = [
+    'Thanks so much! 🙏 More content available ✨',
+    'Appreciate it! Glad you liked it 😊',
+    'Thank you! Check out more on the site 👇',
+    'Thanks for the kind words 🙏',
+    'Really appreciate it ✨ More picks available!',
+  ];
+
+  let count = 0;
+  for (const notif of notifications.slice(0, 5)) {
+    const replyText = notif.record?.text || '';
+    const isJa = /[ぁ-ゖァ-ヶ一-鿿]/.test(replyText);
+    const pool = isJa ? JA_REPLIES : EN_REPLIES;
+    const reply = pool[(SEED + count * 11) % pool.length];
+
+    const parentUri = notif.uri;
+    const parentCid = notif.cid;
+    const rootUri = notif.record?.reply?.root?.uri || parentUri;
+    const rootCid = notif.record?.reply?.root?.cid || parentCid;
+
+    try {
+      await request('https://bsky.social/xrpc/com.atproto.repo.createRecord', {
+        repo: did,
+        collection: 'app.bsky.feed.post',
+        record: {
+          $type: 'app.bsky.feed.post',
+          text: reply,
+          reply: {
+            root:   { uri: rootUri,   cid: rootCid },
+            parent: { uri: parentUri, cid: parentCid }
+          },
+          createdAt: new Date().toISOString(),
+          langs: [isJa ? 'ja' : 'en']
+        }
+      }, { Authorization: `Bearer ${jwt}` });
+      console.log(`自動リプライ ✅ [${isJa ? 'ja' : 'en'}] "${reply}"`);
+      count++;
+    } catch(e) {
+      console.log('自動リプライ失敗:', e.message);
+    }
+  }
+
+  // 既読にする
+  try {
+    await request('https://bsky.social/xrpc/app.bsky.notification.updateSeen',
+      { seenAt: new Date().toISOString() },
+      { Authorization: `Bearer ${jwt}` }
+    );
+  } catch(e) { /* ignore */ }
+
+  console.log(`自動リプライ完了: ${count}件`);
 }
 
 // ===== 英語トレンドタグ取得 =====
@@ -731,6 +814,8 @@ async function postMisskey(text) {
       .catch(e => console.error('英語投稿エラー (続行):', e.message));
     await commentOnTrendingPosts(bskyAuth.accessJwt, bskyAuth.did)
       .catch(e => console.error('コメント機能エラー (続行):', e.message));
+    await replyToNotifications(bskyAuth.accessJwt, bskyAuth.did)
+      .catch(e => console.error('自動リプライエラー (続行):', e.message));
   }
 
   await postTwitter(text).catch(e => console.error('X エラー (続行):', e.message));

@@ -1529,6 +1529,37 @@ async function postTwitter(text) {
   console.log('X: 投稿完了 ✅');
 }
 
+// ===== Threads 投稿 =====
+// 顔画像URL: https://douga-adult.com/data/faces/actress_{id}.jpg (fetch-productsで生成済み)
+async function postThreads(text, imageUrl = null) {
+  const userId = (process.env.THREADS_USER_ID || '').trim();
+  const token  = (process.env.THREADS_TOKEN   || '').trim();
+  if (!userId || !token) { console.log('Threads: 認証情報なし、スキップ'); return; }
+
+  const base = `https://graph.threads.net/v1.0/${userId}`;
+
+  // Threads: 500文字制限（超過は末尾カット）
+  const threadsText = text.slice(0, 498);
+
+  // Step 1: メディアコンテナ作成
+  const containerPayload = { text: threadsText, access_token: token };
+  if (imageUrl) {
+    containerPayload.media_type = 'IMAGE';
+    containerPayload.image_url  = imageUrl;
+  } else {
+    containerPayload.media_type = 'TEXT';
+  }
+
+  const containerRes = await request(`${base}/threads`, containerPayload);
+  const creationId = containerRes.id;
+  if (!creationId) throw new Error(`Threads コンテナ作成失敗: ${JSON.stringify(containerRes)}`);
+
+  // Step 2: 公開（作成後1秒待機推奨）
+  await new Promise(r => setTimeout(r, 1500));
+  await request(`${base}/threads_publish`, { creation_id: creationId, access_token: token });
+  console.log(`Threads: 投稿完了 ✅ (${imageUrl ? '画像付き' : 'テキストのみ'})`);
+}
+
 // ===== Misskey 投稿 =====
 async function postMisskey(text) {
   const instance = (process.env.MISSKEY_INSTANCE || '').replace(/^https?:\/\//, '').replace(/\/$/, '');
@@ -1637,4 +1668,11 @@ async function postMisskey(text) {
 
   await postTwitter(text).catch(e => console.error('X エラー (続行):', e.message));
   await postMisskey(text).catch(e => console.error('Misskey エラー (続行):', e.message));
+
+  // Threads: 女優紹介は顔クロップ画像付き、商品はテキストのみ
+  const threadsImageUrl = (type === 'actress_intro' && actress?.id)
+    ? `${SITE}/data/faces/actress_${actress.id}.jpg`
+    : null;
+  await postThreads(text, threadsImageUrl)
+    .catch(e => console.error('Threads エラー (続行):', e.message));
 })().catch(e => { console.error('致命的エラー:', e.message); process.exit(1); });

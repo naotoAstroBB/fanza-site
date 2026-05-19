@@ -49,6 +49,8 @@ jobs:
           X_ACCESS_TOKEN_SECRET:  ${{ secrets.X_ACCESS_TOKEN_SECRET }}
           MISSKEY_INSTANCE:       ${{ secrets.MISSKEY_INSTANCE }}
           MISSKEY_TOKEN:          ${{ secrets.MISSKEY_TOKEN }}
+          THREADS_USER_ID:        ${{ secrets.THREADS_USER_ID }}
+          THREADS_TOKEN:          ${{ secrets.THREADS_TOKEN }}
         run: |
           set -o pipefail
           node scripts/post_sns.js 2>&1 | tee /tmp/sns_output.txt

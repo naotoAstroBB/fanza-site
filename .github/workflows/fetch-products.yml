@@ -310,6 +310,11 @@ jobs:
           done
           echo "女優別作品インデックス完了: $(ls data/actress_works_*.json 2>/dev/null | wc -l) 人分"
 
+      - name: Process actress face images
+        run: |
+          pip install opencv-python-headless pillow -q
+          python3 scripts/process_actress_faces.py
+
       - name: Commit
         run: |
           git config user.email "github-actions[bot]@users.noreply.github.com"

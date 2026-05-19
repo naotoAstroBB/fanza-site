@@ -452,60 +452,67 @@ async function commentOnTrendingPosts(jwt, did) {
   if (!jaKeywords.length) jaKeywords = ['おはよう', '今日', 'これ', 'やばい'];
   if (!enKeywords.length) enKeywords = ['today', 'trending', 'lol', 'omg'];
 
-  async function commentOnKeyword(kw, comments, lang) {
-    console.log(`コメント対象トレンド[${lang}]: ${kw}`);
-    let posts = [];
-    try {
-      const res = await getJson(
-        `https://bsky.social/xrpc/app.bsky.feed.searchPosts?q=${encodeURIComponent(kw)}&limit=50&sort=top`,
-        { Authorization: `Bearer ${jwt}` }
-      );
-      posts = (res.posts || [])
-        .filter(p =>
-          p.author.did !== did &&
-          (p.likeCount || 0) + (p.repostCount || 0) >= 1000 &&
-          !p.record?.reply
-        )
-        .sort((a, b) => ((b.likeCount || 0) + (b.repostCount || 0)) - ((a.likeCount || 0) + (a.repostCount || 0)))
-        .slice(0, 2);
-    } catch(e) {
-      console.log(`コメント[${lang}]: 投稿検索失敗:`, e.message);
-      return 0;
-    }
-    if (!posts.length) { console.log(`コメント対象なし[${lang}]（1000いいね未満）`); return 0; }
-
-    let count = 0;
-    for (const post of posts) {
-      const comment = comments[(SEED + count * 3) % comments.length];
+  async function findAndComment(keywords, comments, lang) {
+    // キーワードを順に試して最初に投稿が見つかったもので実行
+    for (const kw of keywords) {
+      console.log(`コメント対象トレンド[${lang}]: ${kw}`);
+      let posts = [];
       try {
-        await request('https://bsky.social/xrpc/com.atproto.repo.createRecord', {
-          repo: did,
-          collection: 'app.bsky.feed.post',
-          record: {
-            $type: 'app.bsky.feed.post',
-            text: comment,
-            reply: {
-              root:   { uri: post.uri, cid: post.cid },
-              parent: { uri: post.uri, cid: post.cid }
-            },
-            createdAt: new Date().toISOString(),
-            langs: [lang]
-          }
-        }, { Authorization: `Bearer ${jwt}` });
-        console.log(`コメント投稿[${lang}] ✅ (${(post.likeCount||0)+(post.repostCount||0)}いいね) "${comment}"`);
-        count++;
+        const res = await getJson(
+          `https://bsky.social/xrpc/app.bsky.feed.searchPosts?q=${encodeURIComponent(kw)}&limit=50&sort=top`,
+          { Authorization: `Bearer ${jwt}` }
+        );
+        // 閾値: 300以上（Blueskyのスケール感に合わせて調整）
+        posts = (res.posts || [])
+          .filter(p =>
+            p.author.did !== did &&
+            (p.likeCount || 0) + (p.repostCount || 0) >= 300 &&
+            !p.record?.reply
+          )
+          .sort((a, b) => ((b.likeCount || 0) + (b.repostCount || 0)) - ((a.likeCount || 0) + (a.repostCount || 0)))
+          .slice(0, 2);
       } catch(e) {
-        console.log(`コメント失敗[${lang}]:`, e.message);
+        console.log(`コメント[${lang}]: 検索失敗:`, e.message);
+        continue;
       }
+      if (!posts.length) { console.log(`コメント対象なし[${lang}]（300いいね未満）、次のキーワードへ`); continue; }
+
+      let count = 0;
+      for (const post of posts) {
+        const comment = comments[(SEED + count * 3) % comments.length];
+        try {
+          await request('https://bsky.social/xrpc/com.atproto.repo.createRecord', {
+            repo: did,
+            collection: 'app.bsky.feed.post',
+            record: {
+              $type: 'app.bsky.feed.post',
+              text: comment,
+              reply: {
+                root:   { uri: post.uri, cid: post.cid },
+                parent: { uri: post.uri, cid: post.cid }
+              },
+              createdAt: new Date().toISOString(),
+              langs: [lang]
+            }
+          }, { Authorization: `Bearer ${jwt}` });
+          console.log(`コメント投稿[${lang}] ✅ (${(post.likeCount||0)+(post.repostCount||0)}いいね) "${comment}"`);
+          count++;
+        } catch(e) {
+          console.log(`コメント失敗[${lang}]:`, e.message);
+        }
+      }
+      return count;
     }
-    return count;
+    console.log(`コメント対象なし[${lang}]（全キーワード試行済み）`);
+    return 0;
   }
 
-  const jaKw = jaKeywords[SEED % jaKeywords.length];
-  const enKw = enKeywords[(SEED + 1) % enKeywords.length];
+  // JA: トレンドから最大5キーワード試行、EN: 最大5キーワード試行
+  const jaKws = jaKeywords.slice(0, 5);
+  const enKws = enKeywords.slice(0, 5);
 
-  const jaCount = await commentOnKeyword(jaKw, JA_COMMENTS, 'ja');
-  const enCount = await commentOnKeyword(enKw, EN_COMMENTS, 'en');
+  const jaCount = await findAndComment(jaKws, JA_COMMENTS, 'ja');
+  const enCount = await findAndComment(enKws, EN_COMMENTS, 'en');
   console.log(`コメント完了: 日本語${jaCount}件 / 英語${enCount}件`);
 }
 

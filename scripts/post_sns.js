@@ -13,10 +13,22 @@ const SITE = 'https://douga-adult.com';
 function loadJSON(path) {
   try { return JSON.parse(fs.readFileSync(path, 'utf8')); } catch { return null; }
 }
-const rankItems   = loadJSON('data/rank.json')?.result?.items   || [];
-const newItems    = loadJSON('data/new.json')?.result?.items    || [];
-const reviewItems = loadJSON('data/review.json')?.result?.items || [];
+const rankItems      = loadJSON('data/rank.json')?.result?.items        || [];
+const newItems       = loadJSON('data/new.json')?.result?.items         || [];
+const reviewItems    = loadJSON('data/review.json')?.result?.items      || [];
+const actressPopular = loadJSON('data/actress_popular.json')?.result?.actress || [];
+const actressNew     = loadJSON('data/actress_new.json')?.result?.actress     || [];
+const actressMonthly = loadJSON('data/actress_monthly.json')?.result?.actress || [];
 if (!rankItems.length) { console.error('データなし'); process.exit(1); }
+
+// 商品の経過日数（古い商品をフィルタするため）
+function itemAgeDays(item) {
+  const d = new Date((item.date || '').replace(/\//g, '-'));
+  return isNaN(d.getTime()) ? 9999 : (Date.now() - d.getTime()) / 86400000;
+}
+
+// 投稿モード: 0-2=商品, 3=女優ランキング, 4=新人女優
+const POST_MODE = Math.floor(Math.random() * 5);
 
 // ===== シード（毎回ランダムに選択）=====
 function hash(str) {
@@ -427,11 +439,56 @@ function generateText(item) {
   return `${item.title}\n\n${reviewStr(item)}\n\n${siteUrl(item)}\n\n${buildTags(item)}`.trim();
 }
 
-// ===== 商品選択 =====
+// ===== 女優関連ヘルパー =====
+function actressMeasures(a) {
+  const parts = [];
+  if (a.height) parts.push(`身長${a.height}cm`);
+  if (a.bust && a.waist && a.hip) parts.push(`B${a.bust} W${a.waist} H${a.hip}`);
+  return parts.join(' / ');
+}
+function actressSiteUrl(a, work) {
+  return work ? siteUrl(work) : `${SITE}/?q=${encodeURIComponent(a.name)}`;
+}
+// 読み込み済みデータから女優の代表作を探す
+function findActressWork(actressId) {
+  const id = String(actressId);
+  for (const pool of [newItems, rankItems, reviewItems]) {
+    const found = pool.find(item =>
+      item.content_id &&
+      (item.iteminfo?.actress || []).some(a => String(a.id) === id)
+    );
+    if (found) return found;
+  }
+  return null;
+}
+
+// ===== 商品選択（日付フィルタ付き）=====
 function selectItem() {
-  const pools = [rankItems, newItems, reviewItems];
-  const pool  = pools[slot % 3].filter(x => x.content_id);
-  return pool[SEED % pool.length];
+  const rawPool = [rankItems, newItems, reviewItems][slot % 3];
+  const maxAge  = (slot % 3) === 1 ? 180 : 730; // new=6ヶ月, rank/review=2年
+  const filtered = rawPool.filter(x => x.content_id && itemAgeDays(x) <= maxAge);
+  const pool = filtered.length >= 10 ? filtered : rawPool.filter(x => x.content_id);
+  const item = pool[SEED % pool.length];
+  console.log(`商品選択: モード${slot % 3} 対象${pool.length}件 (フィルタ後${filtered.length}件) 日付:${item?.date || 'N/A'}`);
+  return item;
+}
+
+// ===== 投稿データ選択（モード分岐）=====
+function selectPostData() {
+  if (POST_MODE >= 3) {
+    const iNew = POST_MODE === 4;
+    const list = iNew ? actressNew : (actressPopular.length ? actressPopular : actressMonthly);
+    if (list.length > 0) {
+      const actress = list[(SEED >> 3) % list.length];
+      if (actress) {
+        const work = findActressWork(actress.id);
+        console.log(`女優モード: ${iNew ? '新人' : 'ランキング'} ${actress.name} 代表作:${work?.title?.slice(0,20) || 'なし'}`);
+        return { type: iNew ? 'actress_new' : 'actress_rank', actress, item: work };
+      }
+    }
+  }
+  const item = selectItem();
+  return { type: 'product', actress: null, item };
 }
 
 // ===== HTTP =====
@@ -987,6 +1044,166 @@ function generateEnglishText(item) {
   return (result || `${item.title}\n\n${siteUrl(item)}`).trim();
 }
 
+// ===== 女優特化パターン（日本語・❤︎口調）=====
+const ACTRESS_PATTERNS_JA = [
+  (a, work) => { // 0: ランキング推し
+    const m = actressMeasures(a);
+    const url = actressSiteUrl(a, work);
+    const hook = rv(['えろさが次元違いすぎる❤︎','この子やばすぎない？❤︎','知らないのはもったいなすぎる❤︎'], 0);
+    return `女優ランキング上位の子❤︎\n\n${a.name}\n${m ? m + '\n' : ''}${hook}\n\nサンプルで確認して👇\n${url}\n\n#${a.name.replace(/\s/g,'')} #AV女優 #女優ランキング #FANZA #エロ動画`;
+  },
+  (a, work) => { // 1: 新人発見
+    const m = actressMeasures(a);
+    const url = actressSiteUrl(a, work);
+    const body = rv([
+      `デビューしたてなのにこのえろさって反則じゃない？❤︎`,
+      `新人なのに経験値が段違い❤︎ これからが楽しみすぎる`,
+      `デビュー作品なのにもう完成されてる❤︎ えろすぎて笑える`,
+    ], 0);
+    return `新人AV女優さん発見した❤︎\n\n${a.name}\n${m ? m + '\n' : ''}\n${body}\n\n👇 サンプルあり\n${url}\n\n#新人AV女優 #デビュー #FANZA #${a.name.replace(/\s/g,'')}`;
+  },
+  (a, work) => { // 2: スリーサイズ推し
+    if (!a.bust) return null;
+    const url = actressSiteUrl(a, work);
+    const body = rv([
+      `この体型のえろさ、わかる人いる？❤︎\n\nスリーサイズが全部ちょうどいいんだよね`,
+      `B${a.bust} W${a.waist} H${a.hip} って何なの❤︎\n\nスペックが完璧すぎて困る`,
+      `スリーサイズだけで全部わかる❤︎\n\nこういう子が一番えろい`,
+    ], 0);
+    return `${a.name}のスペックが好きすぎる❤︎\n\nB${a.bust} W${a.waist} H${a.hip}${a.height ? ` / ${a.height}cm` : ''}\n\n${body}\n\n${url}\n\n#${a.name.replace(/\s/g,'')} #AV女優 #FANZA #巨乳`;
+  },
+  (a, work) => { // 3: 月間おすすめ
+    const url = actressSiteUrl(a, work);
+    const open = rv(['今月イチ推しの女優さん❤︎','最近ずっとハマってる女優さん❤︎','この子のこと毎日考えてる❤︎'], 0);
+    const body = rv([
+      `もっとたくさんの人に知ってほしい\nえろさが格別なんだよね`,
+      `えろいのに品があるって最高じゃない\nそのギャップがたまらない`,
+      `この子を知らずにAV語れないと思う\nそれくらいえろい`,
+    ], 1);
+    return `${open}\n\n${a.name}\n\n${body}\n\n👇 最新作はこちら\n${url}\n\n#${a.name.replace(/\s/g,'')} #AV女優 #FANZA #おすすめ女優`;
+  },
+  (a, work) => { // 4: 推し活口調
+    const url = actressSiteUrl(a, work);
+    const body = rv([
+      `えろいだけじゃなくて\n雰囲気とか表情とかも全部好き❤︎`,
+      `この子のえろさがわかる人と繋がりたい❤︎\nファンが多いのちゃんとわかる`,
+      `毎回期待を超えてくる❤︎\nこういう子が本当にえろい`,
+    ], 0);
+    return `${a.name}のことずっと推してる❤︎\n\n${body}\n\n${url}\n\n#${a.name.replace(/\s/g,'')} #AV女優 #推し #FANZA`;
+  },
+  (a, work) => { // 5: えろすぎ発見
+    const url = actressSiteUrl(a, work);
+    const hook = rv(['えろすぎて発信せずにいられなかった❤︎','やばすぎて黙ってられない❤︎','みんなに知らせたくなった❤︎'], 0);
+    return `${a.name}\n\n${hook}\n\nサンプルだけでも見てほしい\nこのえろさ、言葉にならない\n\n${url}\n\n#${a.name.replace(/\s/g,'')} #AV女優 #えろい #FANZA #アダルト動画`;
+  },
+  (a, work) => { // 6: ランキング形式
+    const top = actressPopular.slice(0, 3).filter(x => x?.name);
+    if (top.length < 3) return null;
+    const lines = top.map((x, i) => `${['🥇','🥈','🥉'][i]} ${x.name}${actressMeasures(x) ? ' / ' + actressMeasures(x) : ''}`).join('\n');
+    return `今月の女優ランキングTOP3❤︎\n\n${lines}\n\nえろすぎる子たちが勢揃いだよ💕\n${SITE}\n\n#女優ランキング #AV女優 #FANZA #AV #エロ動画`;
+  },
+  (a, work) => { // 7: 身長フィーチャー
+    const url = actressSiteUrl(a, work);
+    const body = rv([
+      `小柄なのに${rv(['えろさが大きすぎる','えろすぎる雰囲気が出てる','スタイルは抜群'], 1)}❤︎`,
+      `このサイズ感が好きすぎる❤︎\nえろさとかわいさが同居してる`,
+      `身長は関係ない証明してくれる❤︎\nえろさに身長は関係ない`,
+    ], 0);
+    return `${a.name}${a.height ? `（${a.height}cm）` : ''}\n\n${body}\n\n${url}\n\n#${a.name.replace(/\s/g,'')} #AV女優 #FANZA #かわいい #えろい`;
+  },
+  (a, work) => { // 8: 今週ベスト
+    const url = actressSiteUrl(a, work);
+    const title = work ? `「${work.title?.slice(0, 20)}…」` : '';
+    return `今週一番気になってる女優さん❤︎\n\n${a.name}\n${title}\n\n${rv(['えろさのレベルが他と違う','この子だけ何か持ってる','見るたびに新しい発見がある'], 0)}\n\n${url}\n\n#${a.name.replace(/\s/g,'')} #AV女優 #今週のおすすめ #FANZA`;
+  },
+  (a, work) => { // 9: 共感フック
+    const url = actressSiteUrl(a, work);
+    return `${a.name}が好きな人❤︎\n\n${rv(['この気持ち絶対わかってくれる','同じ気持ちの人いるよね','これがわかる人と仲良くなりたい'], 0)}\n\nえろさとかわいさが完璧に共存してる💕\n\n${url}\n\n#${a.name.replace(/\s/g,'')} #AV女優 #FANZA`;
+  },
+  (a, work) => { // 10: 表情推し
+    const url = actressSiteUrl(a, work);
+    return `${a.name}の表情がえろすぎる❤︎\n\n${rv(['顔だけで全部持ってかれる','表情の演技が神がかってる','ここまで表情えろい子なかなかいない'], 0)}\n\n${rv(['サンプルだけでも確認して','騙されたと思って見て'], 1)}\n${url}\n\n#${a.name.replace(/\s/g,'')} #AV女優 #FANZA #えろい`;
+  },
+  (a, work) => { // 11: あなたにも知ってほしい
+    const m = actressMeasures(a);
+    const url = actressSiteUrl(a, work);
+    const body = rv([
+      `もっと有名になっていいと思う\nえろさがトップクラスだから❤︎`,
+      `知る人ぞ知る存在だったけど\nもうみんなに知ってほしい❤︎`,
+      `好きすぎて黙ってられなくなった❤︎\nこのえろさ、広まってほしい`,
+    ], 0);
+    return `${a.name}のこと知ってほしい❤︎\n${m ? m + '\n' : ''}\n${body}\n\n${url}\n\n#${a.name.replace(/\s/g,'')} #AV女優 #FANZA #おすすめ`;
+  },
+];
+
+// ===== 女優特化パターン（英語・❤︎口調）=====
+const EN_ACTRESS_PATTERNS = [
+  (a, work) => { // 0: Ranking feature
+    const m = actressMeasures(a);
+    const url = actressSiteUrl(a, work);
+    return `Top ranked actress right now ❤︎\n\n${a.name}${m ? '\n' + m : ''}\n\n${rv(['The reason she\'s #1 is obvious','Rankings don\'t lie','She earned every spot'], 0)}\n\n${url}\n\n#JAV #AVactress #FANZA #Ranking`;
+  },
+  (a, work) => { // 1: New debut
+    const url = actressSiteUrl(a, work);
+    return `Just debuted and already this good?? ❤︎\n\n${a.name}\n\n${rv(['New to the scene but zero rookie energy','Debut energy but pro-level everything','How is this her first work??'], 0)}\n\n${url}\n\n#NewActress #JAVdebut #FANZA #JAV`;
+  },
+  (a, work) => { // 2: Stats/measurements
+    if (!a.bust) return null;
+    const url = actressSiteUrl(a, work);
+    return `${a.name} ❤︎\nB${a.bust} W${a.waist} H${a.hip}${a.height ? ` / ${a.height}cm` : ''}\n\n${rv(['That body should be illegal','Perfect specs don\'t exi—','I\'m not okay and that\'s fine'], 0)}\n\n${url}\n\n#JAV #AVactress #FANZA #JAVgirl`;
+  },
+  (a, work) => { // 3: Monthly obsession
+    const url = actressSiteUrl(a, work);
+    return `My current obsession ❤︎\n\n${a.name}\n\n${rv(['Can\'t stop watching her work','She has something the others don\'t','Every video is better than the last'], 0)}\n\n${url}\n\n#JAV #FANZA #AVactress #Recommend`;
+  },
+  (a, work) => { // 4: Fan voice
+    const url = actressSiteUrl(a, work);
+    return `Been a fan of ${a.name} for a while ❤︎\n\n${rv(['And she keeps getting better','Every time she surprises me','The gap between cute and hot is criminal'], 0)}\n\nLatest work 👇\n${url}\n\n#JAV #${a.name.replace(/\s/g,'_')} #FANZA #AVactress`;
+  },
+  (a, work) => { // 5: Can't keep quiet
+    const url = actressSiteUrl(a, work);
+    return `Had to share this ❤︎\n\n${a.name} is ${rv(['genuinely something else','on another level entirely','not fair to the others'], 0)}\n\n${rv(['Sample clip alone is worth it','You\'ll understand once you see it','Trust me on this one'], 1)}\n${url}\n\n#JAV #FANZA #AVactress #MustWatch`;
+  },
+  (a, work) => { // 6: Top 3 ranking
+    const top = actressPopular.slice(0, 3).filter(x => x?.name);
+    if (top.length < 3) return null;
+    const lines = top.map((x, i) => `${['🥇','🥈','🥉'][i]} ${x.name}`).join('\n');
+    return `This month's actress ranking ❤︎\n\n${lines}\n\nAll of them have free samples 💕\n${SITE}\n\n#JAV #AVactress #FANZA #Ranking #TopJAV`;
+  },
+  (a, work) => { // 7: Expression/face
+    const url = actressSiteUrl(a, work);
+    return `${a.name}'s expressions are unreal ❤︎\n\n${rv(['Face alone carries the whole video','The way she looks at the camera...','Her expressions are honestly art'], 0)}\n\n${url}\n\n#JAV #AVactress #FANZA #JAVgirl`;
+  },
+  (a, work) => { // 8: Hidden gem vibe
+    const url = actressSiteUrl(a, work);
+    return `${rv(['Not enough people talk about','Criminally underrated:','Someone has to say it —'], 0)} ${a.name} ❤︎\n\n${rv(['She deserves way more attention','One of the best out there','This level of talent can\'t stay hidden'], 0)}\n\n${url}\n\n#JAV #FANZA #AVactress #HiddenGem`;
+  },
+  (a, work) => { // 9: Connect with fans
+    const url = actressSiteUrl(a, work);
+    return `Anyone else into ${a.name}? ❤︎\n\n${rv(['She has a quality I can\'t explain','The vibe is unlike anyone else','Cute AND hot AND talented — rare'], 0)}\n\n${url}\n\n#JAV #FANZA #AVactress #${a.name.replace(/\s/g,'_')}`;
+  },
+];
+
+function generateActressText(actress, work) {
+  const order = [...Array(ACTRESS_PATTERNS_JA.length).keys()];
+  order.sort((a, b) => (hash(String(SEED + a * 41)) % 100) - (hash(String(SEED + b * 41)) % 100));
+  for (const idx of order) {
+    const result = ACTRESS_PATTERNS_JA[idx](actress, work);
+    if (result) { console.log(`女優JA パターン${idx} 採用`); return result.trim(); }
+  }
+  return `${actress.name}\n\nえろすぎる女優さん❤︎\n\n${actressSiteUrl(actress, work)}\n\n#${actress.name.replace(/\s/g,'')} #AV女優 #FANZA`.trim();
+}
+
+function generateActressTextEn(actress, work) {
+  const order = [...Array(EN_ACTRESS_PATTERNS.length).keys()];
+  order.sort((a, b) => (hash(String(SEED + a * 53)) % 100) - (hash(String(SEED + b * 53)) % 100));
+  for (const idx of order) {
+    const result = EN_ACTRESS_PATTERNS[idx](actress, work);
+    if (result) { console.log(`女優EN パターン${idx} 採用`); return result.trim(); }
+  }
+  return `${actress.name} ❤︎\n\n${rv(['Absolutely stunning','Cannot look away','Truly something else'], 0)}\n\n${actressSiteUrl(actress, work)}\n\n#JAV #FANZA #AVactress`.trim();
+}
+
 // ===== Bluesky 英語投稿 =====
 async function postBlueskyEnglish(item, auth) {
   let text = generateEnglishText(item);
@@ -1101,13 +1318,36 @@ async function postMisskey(text) {
 
 // ===== メイン =====
 (async () => {
-  const item = selectItem();
-  if (!item) { console.error('商品が見つかりません'); process.exit(1); }
+  const postData = selectPostData();
+  const { type, actress, item } = postData;
 
-  const text = generateText(item);
-  console.log('--- 投稿内容 ---');
+  if (!item && !actress) { console.error('投稿データが見つかりません'); process.exit(1); }
+
+  // テキスト生成（投稿タイプ別）
+  let text, textEn;
+  if (type === 'actress_rank' || type === 'actress_new') {
+    text   = generateActressText(actress, item);
+    textEn = generateActressTextEn(actress, item);
+    console.log(`--- 女優投稿 [${type}]: ${actress.name} ---`);
+  } else {
+    text   = generateText(item);
+    textEn = null; // postBlueskyEnglish内で生成
+    console.log('--- 商品投稿 ---');
+  }
   console.log(text);
   console.log('--- 文字数:', text.length, '---');
+
+  // postBluesky/postBlueskyEnglishに渡すitemを解決
+  // 女優投稿でworkがない場合は画像なし用の合成itemを作る
+  const postItem = item || {
+    content_id: `actress_${actress.id}`,
+    title: actress.name,
+    imageURL: actress.imageURL,
+    sampleImageURL: null,
+    iteminfo: { actress: [{ id: actress.id, name: actress.name }] },
+    review: null,
+    date: null,
+  };
 
   // Bluesky 認証（失敗してもX/Misskeyは続行）
   let bskyAuth = null;
@@ -1125,10 +1365,18 @@ async function postMisskey(text) {
   }
 
   if (bskyAuth) {
-    await postBluesky(text, item, bskyAuth)
+    await postBluesky(text, postItem, bskyAuth)
       .catch(e => console.error('Bluesky JP投稿エラー (続行):', e.message));
-    await postBlueskyEnglish(item, bskyAuth)
-      .catch(e => console.error('英語投稿エラー (続行):', e.message));
+
+    // 英語投稿：女優モードは独自テキスト、商品モードは既存関数
+    if (textEn) {
+      await postBluesky(textEn, postItem, bskyAuth)
+        .catch(e => console.error('Bluesky EN女優投稿エラー (続行):', e.message));
+    } else {
+      await postBlueskyEnglish(postItem, bskyAuth)
+        .catch(e => console.error('英語投稿エラー (続行):', e.message));
+    }
+
     await commentOnTrendingPosts(bskyAuth.accessJwt, bskyAuth.did)
       .catch(e => console.error('コメント機能エラー (続行):', e.message));
     await replyToNotifications(bskyAuth.accessJwt, bskyAuth.did)

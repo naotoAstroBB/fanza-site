@@ -27,8 +27,8 @@ function itemAgeDays(item) {
   return isNaN(d.getTime()) ? 9999 : (Date.now() - d.getTime()) / 86400000;
 }
 
-// 投稿モード: 0-2=商品, 3=女優ランキング, 4=新人女優
-const POST_MODE = Math.floor(Math.random() * 5);
+// 投稿モード: 0-2=商品, 3=女優ランキング, 4=新人女優, 5=女優紹介
+const POST_MODE = Math.floor(Math.random() * 6);
 
 // ===== シード（毎回ランダムに選択）=====
 function hash(str) {
@@ -473,8 +473,38 @@ function selectItem() {
   return item;
 }
 
+// 女優の全出演作品数・最高評価作・最新作をまとめて取得
+function getActressStats(actressId) {
+  const id = String(actressId);
+  const all = [...rankItems, ...newItems, ...reviewItems].filter(item =>
+    item.content_id &&
+    (item.iteminfo?.actress || []).some(a => String(a.id) === id)
+  );
+  const unique = [...new Map(all.map(x => [x.content_id, x])).values()];
+  const topRated = unique
+    .filter(x => parseFloat(x.review?.average || 0) >= 4.0)
+    .sort((a, b) => parseFloat(b.review?.average || 0) - parseFloat(a.review?.average || 0))[0];
+  const newest = unique
+    .filter(x => x.date)
+    .sort((a, b) => b.date.localeCompare(a.date))[0];
+  return { count: unique.length, topRated: topRated || newest, newest };
+}
+
 // ===== 投稿データ選択（モード分岐）=====
 function selectPostData() {
+  if (POST_MODE === 5) {
+    // 女優紹介モード：popular/monthly/new からランダムに選択
+    const allLists = [actressPopular, actressMonthly, actressNew].filter(l => l.length > 0);
+    if (allLists.length > 0) {
+      const list = allLists[(SEED >> 6) % allLists.length];
+      const actress = list[(SEED >> 3) % list.length];
+      if (actress) {
+        const stats = getActressStats(actress.id);
+        console.log(`女優紹介モード: ${actress.name} 作品数:${stats.count}`);
+        return { type: 'actress_intro', actress, item: stats.topRated || stats.newest, stats };
+      }
+    }
+  }
   if (POST_MODE >= 3) {
     const iNew = POST_MODE === 4;
     const list = iNew ? actressNew : (actressPopular.length ? actressPopular : actressMonthly);
@@ -1204,6 +1234,200 @@ function generateActressTextEn(actress, work) {
   return `${actress.name} ❤︎\n\n${rv(['Absolutely stunning','Cannot look away','Truly something else'], 0)}\n\n${actressSiteUrl(actress, work)}\n\n#JAV #FANZA #AVactress`.trim();
 }
 
+// ===== 女優紹介パターン（日本語）=====
+const ACTRESS_INTRO_PATTERNS_JA = [
+  (a, stats) => { // 0: プロフィール全部入り
+    const m = actressMeasures(a);
+    const work = stats.topRated || stats.newest;
+    const url = actressSiteUrl(a, work);
+    const cnt = stats.count;
+    const lines = [
+      `✨ 女優紹介 ✨`,
+      ``,
+      `${a.name}`,
+      m ? m : null,
+      a.height ? `身長 ${a.height}cm` : null,
+      cnt > 0 ? `出演作品 ${cnt}本以上` : null,
+      ``,
+      rv([
+        `${a.name ? a.name + 'の' : ''}えろさが好きすぎて紹介せずにいられなかった❤︎`,
+        `この子のことをもっと知ってほしくて❤︎`,
+        `えろすぎて黙ってられなくなった❤︎`,
+      ], 0),
+      ``,
+      `作品はこちら👇`,
+      url,
+      ``,
+      `#${a.name.replace(/\s/g,'')} #AV女優 #FANZA #女優紹介 #エロ動画`,
+    ].filter(x => x !== null).join('\n');
+    return lines;
+  },
+  (a, stats) => { // 1: スリーサイズ特集
+    if (!a.bust) return null;
+    const work = stats.topRated || stats.newest;
+    const url = actressSiteUrl(a, work);
+    const body = rv([
+      `B${a.bust} W${a.waist} H${a.hip}${a.height ? ` 身長${a.height}cm` : ''}\n\nこのスペックが全部天然って意味わかんない❤︎\nえろい女の子はスリーサイズに出るよね`,
+      `B${a.bust} W${a.waist} H${a.hip}${a.height ? ` / ${a.height}cm` : ''}\n\nこの数字が全部ちょうどいい❤︎\nどこも足りないとこがない`,
+      `スリーサイズB${a.bust} W${a.waist} H${a.hip}\n\nこれは反則❤︎ えろいポイント全部揃ってる`,
+    ], 0);
+    return `${a.name}のプロフィール気になってた人❤︎\n\n${body}\n\n最新作はこちら👇\n${url}\n\n#${a.name.replace(/\s/g,'')} #AV女優 #スリーサイズ #FANZA`;
+  },
+  (a, stats) => { // 2: 代表作つき紹介
+    const work = stats.topRated;
+    if (!work) return null;
+    const avg = parseFloat(work.review?.average || 0);
+    const cnt2 = parseInt(work.review?.count || 0);
+    const url = siteUrl(work);
+    return `${a.name}を知らない人へ❤︎\n\n${actressMeasures(a) ? actressMeasures(a) + '\n\n' : ''}代表作：「${work.title?.slice(0, 24)}…」\n${avg && cnt2 ? `⭐${avg}（${cnt2.toLocaleString()}人評価）\n` : ''}\n${rv(['えろすぎてファンが多いのちゃんとわかる','この作品だけで好きになれる','初めて見るならこれ一択'], 0)}❤︎\n\n${url}\n\n#${a.name.replace(/\s/g,'')} #AV女優 #代表作 #FANZA`;
+  },
+  (a, stats) => { // 3: 新人紹介スペシャル
+    const m = actressMeasures(a);
+    const work = stats.newest;
+    const url = actressSiteUrl(a, work);
+    const body = rv([
+      `デビューしたてなのにこのプロフィールって❤︎\nこれから絶対注目の子だよ`,
+      `新人なのにすでに完成されてる❤︎\nこれからが楽しみすぎる`,
+      `まだそんなに知られてないから今のうちにチェックして❤︎`,
+    ], 0);
+    return `新人AV女優紹介❤︎\n\n${a.name}\n${m ? m + '\n' : ''}\n${body}\n\nデビュー作はこちら👇\n${url}\n\n#新人AV女優 #${a.name.replace(/\s/g,'')} #デビュー #FANZA #AV女優`;
+  },
+  (a, stats) => { // 4: えろいポイント解説
+    const m = actressMeasures(a);
+    const work = stats.topRated || stats.newest;
+    const url = actressSiteUrl(a, work);
+    const traits = [];
+    if (a.bust && parseInt(a.bust) >= 90) traits.push('爆乳');
+    else if (a.bust && parseInt(a.bust) >= 80) traits.push('巨乳');
+    if (a.height && parseInt(a.height) <= 155) traits.push('小柄');
+    else if (a.height && parseInt(a.height) >= 165) traits.push('スレンダー長身');
+    const traitStr = traits.length > 0 ? traits.join('×') + 'という' : '';
+    return `${a.name}のえろいポイント教える❤︎\n\n${m ? m + '\n\n' : ''}${traitStr}スペックと\nあの表情と雰囲気が全部合わさってる\n\nこれは反則❤︎\n\n${url}\n\n#${a.name.replace(/\s/g,'')} #AV女優 #FANZA #えろい`;
+  },
+  (a, stats) => { // 5: 作品数自慢
+    if (stats.count < 5) return null;
+    const work = stats.topRated || stats.newest;
+    const url = actressSiteUrl(a, work);
+    return `${a.name}の作品が${stats.count}本以上あるって知ってた？❤︎\n\n${actressMeasures(a) ? actressMeasures(a) + '\n\n' : ''}それだけ${rv(['人気がある証拠','ファンが多い証明','えろい証拠'], 0)}\nどれから見ても間違いない❤︎\n\n${url}\n\n#${a.name.replace(/\s/g,'')} #AV女優 #FANZA`;
+  },
+];
+
+// ===== 女優紹介パターン（英語）=====
+const EN_ACTRESS_INTRO_PATTERNS = [
+  (a, stats) => { // 0: Full profile
+    const m = actressMeasures(a);
+    const work = stats.topRated || stats.newest;
+    const url = actressSiteUrl(a, work);
+    const cnt = stats.count;
+    return `✨ Actress Spotlight ✨\n\n${a.name}${m ? '\n' + m : ''}${a.height ? '\nHeight: ' + a.height + 'cm' : ''}${cnt > 0 ? '\n' + cnt + '+ works' : ''}\n\n${rv(['She has something the others simply don\'t ❤︎','Once you know, you can\'t unknow ❤︎','The reason she has so many fans ❤︎'], 0)}\n\nCheck her out 👇\n${url}\n\n#JAV #AVactress #FANZA #ActressSpotlight`;
+  },
+  (a, stats) => { // 1: Measurements feature
+    if (!a.bust) return null;
+    const work = stats.topRated || stats.newest;
+    const url = actressSiteUrl(a, work);
+    return `${a.name} ❤︎\n\nB${a.bust} / W${a.waist} / H${a.hip}${a.height ? '\nHeight: ' + a.height + 'cm' : ''}\n\n${rv(['Those numbers are not normal','That body is genuinely unfair','This is peak ❤︎'], 0)}\n\n${url}\n\n#JAV #AVactress #FANZA #JAVgirl`;
+  },
+  (a, stats) => { // 2: Best work intro
+    const work = stats.topRated;
+    if (!work) return null;
+    const avg = parseFloat(work.review?.average || 0);
+    const url = siteUrl(work);
+    return `New to ${a.name}? Start here ❤︎\n\n${actressMeasures(a) ? actressMeasures(a) + '\n\n' : ''}Best work: "${work.title?.slice(0, 28)}…"\n${avg ? '⭐' + avg + '\n' : ''}\n${rv(['This one will make you a fan immediately','You\'ll understand the hype after 5 minutes','Certified perfect introduction'], 0)}\n\n${url}\n\n#JAV #AVactress #FANZA #ActressIntro`;
+  },
+  (a, stats) => { // 3: New debut
+    const m = actressMeasures(a);
+    const work = stats.newest;
+    const url = actressSiteUrl(a, work);
+    return `Just debuted: ${a.name} ❤︎\n${m ? '\n' + m + '\n' : ''}\n${rv(['Brand new but already at this level??','Debut energy that doesn\'t feel like a debut','Fresh face, zero rookie mistakes'], 0)}\n\nDebut work 👇\n${url}\n\n#NewActress #JAVdebut #FANZA #JAV #AVactress`;
+  },
+];
+
+function generateActressIntroText(actress, stats) {
+  const order = [...Array(ACTRESS_INTRO_PATTERNS_JA.length).keys()];
+  order.sort((a, b) => (hash(String(SEED + a * 67)) % 100) - (hash(String(SEED + b * 67)) % 100));
+  for (const idx of order) {
+    const result = ACTRESS_INTRO_PATTERNS_JA[idx](actress, stats);
+    if (result) { console.log(`女優紹介JA パターン${idx} 採用`); return result.trim(); }
+  }
+  const m = actressMeasures(actress);
+  return `${actress.name} ❤︎\n${m ? '\n' + m + '\n' : ''}\nえろすぎる女優さん紹介するね\n\n${actressSiteUrl(actress, stats.topRated || stats.newest)}\n\n#${actress.name.replace(/\s/g,'')} #AV女優 #FANZA`.trim();
+}
+
+function generateActressIntroTextEn(actress, stats) {
+  const order = [...Array(EN_ACTRESS_INTRO_PATTERNS.length).keys()];
+  order.sort((a, b) => (hash(String(SEED + a * 71)) % 100) - (hash(String(SEED + b * 71)) % 100));
+  for (const idx of order) {
+    const result = EN_ACTRESS_INTRO_PATTERNS[idx](actress, stats);
+    if (result) { console.log(`女優紹介EN パターン${idx} 採用`); return result.trim(); }
+  }
+  return `${actress.name} ❤︎\n\n${rv(['Absolutely gorgeous','A must-follow actress','Truly one of the best'], 0)}\n\n${actressSiteUrl(actress, stats.topRated)}\n\n#JAV #FANZA #AVactress`.trim();
+}
+
+// ===== Bluesky 女優紹介投稿（プロフィール画像＋作品サンプル混合ギャラリー）=====
+async function postActressIntro(text, actress, stats, auth) {
+  const trendTags = await getTrendingTags(auth.accessJwt);
+  const finalText = trendTags.length > 0
+    ? text + '\n' + trendTags.map(t => '#' + t).join(' ')
+    : text;
+
+  const facets = buildFacets(finalText);
+  const record = {
+    $type: 'app.bsky.feed.post',
+    text: finalText,
+    createdAt: new Date().toISOString(),
+    langs: ['ja'],
+    facets,
+  };
+
+  // 画像構成: 1枚目=女優プロフィール写真, 2-4枚目=代表作サンプル画像
+  const blobs = [];
+  const profileImgUrl = actress.imageURL?.large || actress.imageURL?.small || '';
+  if (profileImgUrl) {
+    try {
+      const { buffer, mime } = await fetchBuffer(profileImgUrl);
+      const blobRes = await uploadBlob(buffer, mime.split(';')[0] || 'image/jpeg', auth.accessJwt);
+      blobs.push({ blob: blobRes.blob, alt: actress.name });
+    } catch(e) { console.log('女優プロフィール画像スキップ:', e.message); }
+  }
+
+  const work = stats.topRated || stats.newest;
+  if (work) {
+    const sampleImgs = work.sampleImageURL?.sample_l?.image || [];
+    for (const url of sampleImgs.slice(0, 4 - blobs.length)) {
+      if (blobs.length >= 4) break;
+      try {
+        const { buffer, mime } = await fetchBuffer(url);
+        const blobRes = await uploadBlob(buffer, mime.split(';')[0] || 'image/jpeg', auth.accessJwt);
+        blobs.push({ blob: blobRes.blob, alt: work.title || actress.name });
+      } catch(e) { console.log('女優紹介サンプル画像スキップ:', e.message); }
+    }
+    // サンプルがなければパッケージ画像
+    if (blobs.length < 2) {
+      const pkgUrl = work.imageURL?.large || work.imageURL?.list || '';
+      if (pkgUrl) {
+        try {
+          const { buffer, mime } = await fetchBuffer(pkgUrl);
+          const blobRes = await uploadBlob(buffer, mime.split(';')[0] || 'image/jpeg', auth.accessJwt);
+          blobs.push({ blob: blobRes.blob, alt: work.title || actress.name });
+        } catch(e) { console.log('パッケージ画像スキップ:', e.message); }
+      }
+    }
+  }
+
+  if (blobs.length > 0) {
+    record.embed = {
+      $type: 'app.bsky.embed.images',
+      images: blobs.map(b => ({ image: b.blob, alt: b.alt })),
+    };
+    console.log(`女優紹介: ${blobs.length}枚ギャラリー ✅`);
+  }
+
+  await request('https://bsky.social/xrpc/com.atproto.repo.createRecord',
+    { repo: auth.did, collection: 'app.bsky.feed.post', record },
+    { Authorization: `Bearer ${auth.accessJwt}` });
+  console.log('Bluesky 女優紹介投稿完了 ✅');
+}
+
 // ===== Bluesky 英語投稿 =====
 async function postBlueskyEnglish(item, auth) {
   let text = generateEnglishText(item);
@@ -1325,7 +1549,12 @@ async function postMisskey(text) {
 
   // テキスト生成（投稿タイプ別）
   let text, textEn;
-  if (type === 'actress_rank' || type === 'actress_new') {
+  const stats = postData.stats || null;
+  if (type === 'actress_intro') {
+    text   = generateActressIntroText(actress, stats);
+    textEn = generateActressIntroTextEn(actress, stats);
+    console.log(`--- 女優紹介投稿: ${actress.name} ---`);
+  } else if (type === 'actress_rank' || type === 'actress_new') {
     text   = generateActressText(actress, item);
     textEn = generateActressTextEn(actress, item);
     console.log(`--- 女優投稿 [${type}]: ${actress.name} ---`);
@@ -1338,13 +1567,12 @@ async function postMisskey(text) {
   console.log('--- 文字数:', text.length, '---');
 
   // postBluesky/postBlueskyEnglishに渡すitemを解決
-  // 女優投稿でworkがない場合は画像なし用の合成itemを作る
   const postItem = item || {
-    content_id: `actress_${actress.id}`,
-    title: actress.name,
-    imageURL: actress.imageURL,
+    content_id: `actress_${actress?.id}`,
+    title: actress?.name || '',
+    imageURL: actress?.imageURL,
     sampleImageURL: null,
-    iteminfo: { actress: [{ id: actress.id, name: actress.name }] },
+    iteminfo: { actress: [{ id: actress?.id, name: actress?.name }] },
     review: null,
     date: null,
   };
@@ -1365,16 +1593,40 @@ async function postMisskey(text) {
   }
 
   if (bskyAuth) {
-    await postBluesky(text, postItem, bskyAuth)
-      .catch(e => console.error('Bluesky JP投稿エラー (続行):', e.message));
+    // 女優紹介モードは専用関数（プロフィール画像＋作品画像の混合ギャラリー）
+    if (type === 'actress_intro') {
+      await postActressIntro(text, actress, stats, bskyAuth)
+        .catch(e => console.error('Bluesky 女優紹介エラー (続行):', e.message));
+      const enText = textEn;
+      // EN版も女優紹介専用関数で投稿（ギャラリーは共通）
+      if (enText) {
+        const enRecord = {
+          $type: 'app.bsky.feed.post',
+          text: enText + '\n\n#JAV #AVactress #FANZA #ActressSpotlight',
+          createdAt: new Date().toISOString(),
+          langs: ['en'],
+          facets: buildFacets(enText),
+        };
+        await request('https://bsky.social/xrpc/com.atproto.repo.createRecord',
+          { repo: bskyAuth.did, collection: 'app.bsky.feed.post', record: enRecord },
+          { Authorization: `Bearer ${bskyAuth.accessJwt}` })
+          .catch(e => console.error('Bluesky EN女優紹介エラー (続行):', e.message));
+        console.log('Bluesky EN女優紹介投稿完了 ✅');
+      }
+    } else {
+      await postBluesky(text, postItem, bskyAuth)
+        .catch(e => console.error('Bluesky JP投稿エラー (続行):', e.message));
+    }
 
     // 英語投稿：女優モードは独自テキスト、商品モードは既存関数
-    if (textEn) {
-      await postBluesky(textEn, postItem, bskyAuth)
-        .catch(e => console.error('Bluesky EN女優投稿エラー (続行):', e.message));
-    } else {
-      await postBlueskyEnglish(postItem, bskyAuth)
-        .catch(e => console.error('英語投稿エラー (続行):', e.message));
+    if (type !== 'actress_intro') {
+      if (textEn) {
+        await postBluesky(textEn, postItem, bskyAuth)
+          .catch(e => console.error('Bluesky EN女優投稿エラー (続行):', e.message));
+      } else {
+        await postBlueskyEnglish(postItem, bskyAuth)
+          .catch(e => console.error('英語投稿エラー (続行):', e.message));
+      }
     }
 
     await commentOnTrendingPosts(bskyAuth.accessJwt, bskyAuth.did)

@@ -341,52 +341,6 @@ function getTrendingTags(jwt) {
   });
 }
 
-// ===== サンプル動画URL取得 =====
-function getSampleVideoUrl(item) {
-  const mv = item.sampleMovieURL;
-  if (!mv) return null;
-  return mv.size_720_480 || mv.size_644_414 || mv.size_560_360 || mv.size_476_306 || null;
-}
-
-// ===== Bluesky 動画アップロード =====
-function uploadVideo(buffer, mime, jwt) {
-  return new Promise((resolve, reject) => {
-    const req = https.request({
-      hostname: 'video.bsky.app',
-      path: '/xrpc/app.bsky.video.uploadVideo',
-      method: 'POST',
-      headers: { Authorization: `Bearer ${jwt}`, 'Content-Type': mime, 'Content-Length': buffer.length }
-    }, res => {
-      let d = '';
-      res.on('data', c => d += c);
-      res.on('end', () => {
-        if (res.statusCode >= 400) return reject(new Error(`Video upload ${res.statusCode}: ${d}`));
-        resolve(JSON.parse(d));
-      });
-    });
-    req.on('error', reject);
-    req.write(buffer);
-    req.end();
-  });
-}
-
-async function pollVideoJob(jobId, jwt) {
-  for (let i = 0; i < 20; i++) {
-    await new Promise(r => setTimeout(r, 3000));
-    const status = await new Promise((resolve, reject) => {
-      https.get(
-        `https://video.bsky.app/xrpc/app.bsky.video.getJobStatus?jobId=${encodeURIComponent(jobId)}`,
-        { headers: { Authorization: `Bearer ${jwt}` } },
-        res => { let d = ''; res.on('data', c => d += c); res.on('end', () => resolve(JSON.parse(d))); }
-      ).on('error', reject);
-    });
-    const state = status.jobStatus?.state;
-    if (state === 'JOB_STATE_COMPLETED') return status.jobStatus.blob;
-    if (state === 'JOB_STATE_FAILED') throw new Error('動画処理失敗: ' + (status.jobStatus?.error || ''));
-  }
-  throw new Error('動画ジョブタイムアウト');
-}
-
 // ===== Bluesky 投稿 =====
 async function postBluesky(text, item, auth) {
 
@@ -405,32 +359,35 @@ async function postBluesky(text, item, auth) {
     facets,
   };
 
-  const postUrl = siteUrl(item);
-  const imgUrl  = item.imageURL?.list || item.imageURL?.small || '';
-  const videoUrl = getSampleVideoUrl(item);
+  const postUrl  = siteUrl(item);
+  const sampleImgs = item.sampleImageURL?.sample_l?.image || [];
+  const mainImgUrl = item.imageURL?.large || item.imageURL?.list || item.imageURL?.small || '';
 
-  // 動画埋め込みを最優先で試みる
+  // サンプル画像ギャラリー（最大4枚）を最優先で試みる
   let embedDone = false;
-  if (videoUrl) {
+  if (sampleImgs.length > 0) {
     try {
-      const { buffer, mime } = await fetchBuffer(videoUrl);
-      if (mime.startsWith('video/') || videoUrl.endsWith('.mp4')) {
-        console.log('Bluesky: 動画アップロード中...');
-        const job = await uploadVideo(buffer, mime.startsWith('video/') ? mime : 'video/mp4', auth.accessJwt);
-        const blob = await pollVideoJob(job.jobId, auth.accessJwt);
-        record.embed = { $type: 'app.bsky.embed.video', video: blob, aspectRatio: { width: 16, height: 9 } };
-        embedDone = true;
-        console.log('Bluesky: 動画埋め込み完了 ✅');
+      const blobs = [];
+      for (const url of sampleImgs.slice(0, 4)) {
+        const { buffer, mime } = await fetchBuffer(url);
+        const blobRes = await uploadBlob(buffer, mime.split(';')[0] || 'image/jpeg', auth.accessJwt);
+        blobs.push(blobRes.blob);
       }
+      record.embed = {
+        $type: 'app.bsky.embed.images',
+        images: blobs.map(blob => ({ image: blob, alt: item.title || '' }))
+      };
+      embedDone = true;
+      console.log(`Bluesky: サンプル画像${blobs.length}枚ギャラリー ✅`);
     } catch(e) {
-      console.log('Bluesky: 動画取得失敗:', e.message);
+      console.log('Bluesky: 画像ギャラリー失敗:', e.message);
     }
   }
 
-  // 動画がなければサムネイルカード
-  if (!embedDone && imgUrl) {
+  // フォールバック: 高画質パッケージ画像でリンクカード
+  if (!embedDone && mainImgUrl) {
     try {
-      const { buffer, mime } = await fetchBuffer(imgUrl);
+      const { buffer, mime } = await fetchBuffer(mainImgUrl);
       const blobRes = await uploadBlob(buffer, mime.split(';')[0], auth.accessJwt);
       record.embed = {
         $type: 'app.bsky.embed.external',
@@ -639,10 +596,27 @@ async function postBlueskyEnglish(item, auth) {
     facets,
   };
 
-  const imgUrl = item.imageURL?.list || item.imageURL?.small || '';
-  if (imgUrl) {
+  const sampleImgsEn = item.sampleImageURL?.sample_l?.image || [];
+  const mainImgUrlEn = item.imageURL?.large || item.imageURL?.list || item.imageURL?.small || '';
+  let enEmbedDone = false;
+  if (sampleImgsEn.length > 0) {
     try {
-      const { buffer, mime } = await fetchBuffer(imgUrl);
+      const blobs = [];
+      for (const url of sampleImgsEn.slice(0, 4)) {
+        const { buffer, mime } = await fetchBuffer(url);
+        const blobRes = await uploadBlob(buffer, mime.split(';')[0] || 'image/jpeg', auth.accessJwt);
+        blobs.push(blobRes.blob);
+      }
+      record.embed = {
+        $type: 'app.bsky.embed.images',
+        images: blobs.map(blob => ({ image: blob, alt: item.title || '' }))
+      };
+      enEmbedDone = true;
+    } catch(e) { console.log('英語投稿ギャラリー失敗:', e.message); }
+  }
+  if (!enEmbedDone && mainImgUrlEn) {
+    try {
+      const { buffer, mime } = await fetchBuffer(mainImgUrlEn);
       const blobRes = await uploadBlob(buffer, mime.split(';')[0], auth.accessJwt);
       record.embed = {
         $type: 'app.bsky.embed.external',

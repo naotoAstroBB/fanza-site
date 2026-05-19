@@ -99,7 +99,7 @@ jobs:
           merge_fetch_n 10 data/goods_date.json   "${GOODS_BASE}&sort=date"
           merge_fetch_n 10 data/goods_review.json "${GOODS_BASE}&sort=review"
 
-          # ジャンル別 - rank は5ページ（500件）、date/review は3ページ（300件）
+          # ジャンル別 - rank/date=50ページ(5000件)、review=30ページ(3000件)
           for row in \
             "2001:genre_busty" \
             "1027:genre_bishoujo" \
@@ -121,12 +121,62 @@ jobs:
             "4002:genre_kinshin" \
             "1028:genre_kuro" \
             "4007:genre_kikaku" \
-            "5002:genre_fella"; do
+            "5002:genre_fella" \
+            "1031:genre_chijo" \
+            "1014:genre_milf" \
+            "2006:genre_slender" \
+            "4106:genre_kijo" \
+            "4111:genre_ntr" \
+            "4030:genre_hard" \
+            "5022:genre_3p4p" \
+            "5016:genre_shio" \
+            "5019:genre_paizuri" \
+            "102:genre_binyuu" \
+            "48:genre_seifuku" \
+            "6002:genre_hamesatsu" \
+            "2024:genre_ojiri" \
+            "1033:genre_onesan" \
+            "5023:genre_gansha" \
+            "4005:genre_ranko" \
+            "5004:genre_tekoki" \
+            "1019:genre_joshi_daigaku" \
+            "6968:genre_acme" \
+            "5057:genre_lotion" \
+            "28:genre_shuchi" \
+            "4059:genre_kiss" \
+            "1069:genre_furin" \
+            "5068:genre_irama" \
+            "27:genre_hazukashime" \
+            "4023:genre_docu" \
+            "5063:genre_shukan" \
+            "4114:genre_drama" \
+            "4011:genre_ojiri_feti" \
+            "4133:genre_nurse"; do
             ID="${row%%:*}"; NAME="${row##*:}"
-            # 動画ジャンル別：人気=20ページ(2000件)、新作/高評価=15ページ(1500件) ← 動画優先で増量
-            merge_fetch_n 20 "data/${NAME}.json"        "$BASE_URL&floor=videoa&sort=rank&article=genre&article_id=$ID"
-            merge_fetch_n 15 "data/${NAME}_date.json"   "$BASE_URL&floor=videoa&sort=date&article=genre&article_id=$ID"
-            merge_fetch_n 15 "data/${NAME}_review.json" "$BASE_URL&floor=videoa&sort=review&article=genre&article_id=$ID"
+            # 動画ジャンル別：人気/新作=50ページ(5000件)、高評価=30ページ(3000件)
+            merge_fetch_n 50 "data/${NAME}.json"        "$BASE_URL&floor=videoa&sort=rank&article=genre&article_id=$ID"
+            merge_fetch_n 50 "data/${NAME}_date.json"   "$BASE_URL&floor=videoa&sort=date&article=genre&article_id=$ID"
+            merge_fetch_n 30 "data/${NAME}_review.json" "$BASE_URL&floor=videoa&sort=review&article=genre&article_id=$ID"
+          done
+
+          # ===== メーカー別（上位AVメーカー）rank/date=50ページ、review=20ページ =====
+          for row in \
+            "3152:maker_s1" \
+            "1509:maker_moodyz" \
+            "45276:maker_sod" \
+            "2661:maker_madonna" \
+            "1219:maker_ideapocket" \
+            "4469:maker_kawaii" \
+            "1227:maker_attackers" \
+            "5032:maker_ebody" \
+            "40488:maker_faleno" \
+            "6329:maker_fitch" \
+            "4641:maker_das" \
+            "40003:maker_deeps"; do
+            ID="${row%%:*}"; NAME="${row##*:}"
+            merge_fetch_n 50 "data/${NAME}.json"        "$BASE_URL&floor=videoa&sort=rank&article=maker&article_id=$ID"
+            merge_fetch_n 50 "data/${NAME}_date.json"   "$BASE_URL&floor=videoa&sort=date&article=maker&article_id=$ID"
+            merge_fetch_n 20 "data/${NAME}_review.json" "$BASE_URL&floor=videoa&sort=review&article=maker&article_id=$ID"
           done
 
       - name: Fetch actress data

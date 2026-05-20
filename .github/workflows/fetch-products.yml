@@ -257,7 +257,8 @@ jobs:
             data/rank.json data/new.json data/review.json data/genre_*.json 2>/dev/null \
             | grep -v null | sort | uniq -c | sort -rn | awk '$1 >= 1 {print $2}')
 
-          # ActressSearch人気順sweep（60ページ=6000人・伝説女優も確実にカバー）
+          # ===== 全女優プロフィール: sweepデータを直接保存（個別2000回APIコール廃止）=====
+          # sweep60ページ(最大6000人)のデータをそのままactress_profiles.jsonに保存
           rm -f /tmp/sweep_*.json
           for i in $(seq 1 60); do
             OFFSET=$(( (i-1)*100 + 1 ))
@@ -265,15 +266,25 @@ jobs:
               -o /tmp/sweep_${i}.json 2>/dev/null \
               || echo '{"result":{"actress":[]}}' > /tmp/sweep_${i}.json
           done
-          SWEEP_IDS=$(jq -r '.result.actress[]?.id | tostring' /tmp/sweep_*.json 2>/dev/null | grep -v null)
 
-          # マージ（レジェンド先頭→商品頻度順→sweep補完）上位2000件
-          ALL_PROFILE_IDS=$(printf '%s\n' $LEGEND_IDS $PRODUCT_IDS $SWEEP_IDS \
-            | awk '!seen[$0]++ && $0 != ""' | head -2000)
+          jq -s '
+            [.[].result.actress // []] | add | map(select(.id != null)) | unique_by(.id) |
+            {result:{status:200, actress:.}}
+          ' /tmp/sweep_*.json > data/actress_profiles.json
 
-          build_actress_json "$ALL_PROFILE_IDS" data/actress_profiles.json \
-            || echo '{"result":{"status":404,"actress":[]}}' > data/actress_profiles.json
-          jq -r '"actress_profiles: \(.result.actress|length)件 / bust有: \([.result.actress[] | select(.bust != null)]|length)件"' \
+          # LEGENDでsweepにいない女優だけ個別取得して追加
+          SWEEP_IDS=$(jq -r '.result.actress[].id | tostring' data/actress_profiles.json | sort)
+          MISSING_LEGENDS=$(comm -23 <(printf '%s\n' $LEGEND_IDS | sort) <(echo "$SWEEP_IDS"))
+          if [ -n "$MISSING_LEGENDS" ]; then
+            echo "LEGEND補完: $(echo "$MISSING_LEGENDS" | wc -w)人"
+            build_actress_json "$MISSING_LEGENDS" /tmp/legend_add.json
+            jq -s '[.[].result.actress // []] | add | map(select(.id != null)) | unique_by(.id) |
+              {result:{status:200, actress:.}}' \
+              data/actress_profiles.json /tmp/legend_add.json > /tmp/profiles_merged.json
+            mv /tmp/profiles_merged.json data/actress_profiles.json
+          fi
+
+          jq -r '"actress_profiles: \(.result.actress|length)件 / 画像有: \([.result.actress[] | select(.imageURL.small != null)]|length)件"' \
             data/actress_profiles.json 2>/dev/null
 
           # ===== 女優別作品インデックス =====

@@ -6,7 +6,7 @@ on:
     paths:
       - '.github/workflows/fetch-products.yml'
   schedule:
-    - cron: '*/30 * * * *'
+    - cron: '0 */6 * * *'  # 6時間ごと（ワークフロー完了に最大2h要するため30分では完了前にキャンセルされる）
   workflow_dispatch:
 
 concurrency:
@@ -309,11 +309,6 @@ jobs:
             sleep 0.3
           done
           echo "女優別作品インデックス完了: $(ls data/actress_works_*.json 2>/dev/null | wc -l) 人分"
-
-      - name: Process actress face images
-        run: |
-          pip install opencv-python-headless pillow -q
-          python3 scripts/process_actress_faces.py
 
       - name: Commit
         run: |

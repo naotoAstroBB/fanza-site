@@ -1,36 +1,14 @@
-商品選択: モード2 対象4440件 (フィルタ後4440件) 日付:2025-08-16 00:00:00
-分析 優先パターン: 11 → 1 → 5 → 8 → 13
-パターン11 採用
---- 商品投稿 ---
-寝る前に見るやつじゃなかった
+/home/runner/work/fanza-site/fanza-site/scripts/post_sns.js:745
+  food_en:     ['this looks SO good omg 😭', 'need this in my life immediately', "okay i'm actually hungry now lol", 'recipe please i'm begging 🙏', 'making this tonight for real', 'literal perfection 😭💕'],
+                                                                                                                                      ^
 
-【4K】あなたのお悩み…お背中と一緒にお流しいたします 
+SyntaxError: Unexpected identifier 'm'
+    at wrapSafe (node:internal/modules/cjs/loader:1464:18)
+    at Module._compile (node:internal/modules/cjs/loader:1495:20)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1623:10)
+    at Module.load (node:internal/modules/cjs/loader:1266:32)
+    at Module._load (node:internal/modules/cjs/loader:1091:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)
+    at node:internal/main/run_main_module:28:49
 
-翌朝後悔するやつ
-
-★★★★★ 5点 (9件)
-https://douga-adult.com/product.html?cid=mase00075
-
-#FANZA #AV #アダルト動画 #エロ動画 #深夜 #えろい #大槻ひびき #素人 #単体作品
---- 文字数: 172 ---
-Bluesky: 認証OK
-トレンドタグ: なし
-Bluesky: サンプル画像4枚ギャラリー ✅
-Bluesky: 投稿完了 ✅
-英語トレンドタグ: tennessee, booksky, bezos
-Bluesky 英語投稿完了 ✅
-コメント済みキャッシュ: 37件
-コメント対象トレンド[ja]: おはよう
-  カテゴリ[general_ja] → "これはバズるの納得"
-コメント投稿[ja] ✅ (361いいね)
-コメント対象トレンド[en]: barney frank
-  カテゴリ[general_en] → "saving this forever ✨"
-コメント投稿[en] ✅ (4041いいね)
-  カテゴリ[general_en] → "the internet needed this today"
-コメント投稿[en] ✅ (1215いいね)
-コメント完了: 日本語1件 / 英語2件
-新規リプライなし
-X エラー (続行): HTTP 402: {"account_id":2054187541557899264,"title":"CreditsDepleted","detail":"Your enrolled account [2054187541557899264] does not have any credits to fulfill this request.","type":"https://api.twitter.com/2/problems/credits"}
-Misskey: 認証情報なし、スキップ
-Threads エラー (続行): HTTP 400: {"error":{"message":"Unsupported post request. Object with ID 'AlIODkXKDHHasvD29SiWqH-' does not exist, cannot be loaded due to missing permissions, or does not support this operation","type":"THApiException","code":100,"error_subcode":33,"fbtrace_id":"Alc9jwkY5mjEkvKSVcduvvh"}}
-EXIT_CODE:0
+Node.js v20.20.2

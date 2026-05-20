@@ -734,18 +734,18 @@ function categorizePost(text) {
 }
 
 const CATEGORY_COMMENTS = {
-  sports_ja:   ['これ熱すぎる🔥', 'やばすぎて声でた', '感動した😭', 'リアルタイムで見てよかった', '鳥肌たった', '最高の瞬間すぎる'],
-  ent_ja:      ['センスありすぎ😭', 'これは名作', '何回見ても好き', '沼った', 'ずっと聴いてる', 'これ好きな人と仲良くなれる'],
-  food_ja:     ['美味しそうすぎる😭', 'これ絶対食べたい', '真似したい', 'レシピ教えてほしい🙏', '天才的なやつ', '今すぐ食べたい'],
-  emotional_ja:['わかりすぎて泣いた', 'これ共感しかない', '心に刺さった', '深夜に見たのミスった😭', '保存した', 'ほんとにそれ'],
-  cute_ja:     ['可愛すぎて無理😭', '癒されすぎる', '尊い🙏', '何回見ても飽きない', '元気もらえた', 'ありがとうこの投稿'],
-  general_ja:  ['わかりみが深すぎる', 'これはバズるの納得', 'センスある', '刺さりすぎた', 'なんでこんなにわかるの笑', '深夜に見てよかった'],
-  sports_en:   ['this is absolutely insane 🔥', 'no way this happened', 'legendary moment', 'what a performance', 'chills literally', 'history right here'],
-  ent_en:      ['this is everything ✨', 'okay this is literally perfect', 'saving this forever', 'obsessed with this', 'on repeat', 'this is the one'],
-  food_en:     ['this looks so good 😭', 'need this immediately', "okay i'm hungry now", 'recipe please 🙏', 'making this tonight', 'literal perfection'],
-  emotional_en:['this hit different', 'why is this so accurate 😭', 'needed to hear this today', 'this is so real', 'not me tearing up', 'genuinely made my day'],
-  cute_en:     ['this is so adorable 😭', 'absolutely precious', 'needed this today 🙏', 'cannot handle how cute this is', 'my heart ✨', 'wholesome content only'],
-  general_en:  ['this deserved way more likes', 'saving this forever ✨', 'the internet needed this today', 'okay but why does this hit so hard', 'this is everything right now', 'genuinely love this'],
+  sports_ja:   ['えー！！すごすぎる🔥', 'やばい鳥肌たった😭', 'リアルタイムで見てよかった💕', '最高の瞬間すぎて泣きそう😭', '感動して声でた🔥', 'これはテンション上がりすぎる！'],
+  ent_ja:      ['センスよすぎてため息でた😭', 'これ大好きです💕', '何回でも見れるやつ', '沼りました完全に笑', 'ずっと聴いてます💕', 'これ好きな人と絶対仲良くなれる'],
+  food_ja:     ['絶対おいしいやつじゃん😭💕', '食べたすぎて無理！', '真似してみます🙏', 'レシピ教えてほしいです💕', '天才が作るやつ', '今すぐ食べに行きたい'],
+  emotional_ja:['わかりすぎて泣いた😭', 'これ刺さりすぎる…', 'ほんとにそれなんよ…', '深夜に見てしまった😭', '保存させてもらいました', '共感しかないんですが'],
+  cute_ja:     ['可愛すぎて無理です😭💕', '癒されすぎる…ありがとう', '尊い🙏✨', '何回見ても飽きない', '元気もらえました💕', 'この投稿に感謝しかない'],
+  general_ja:  ['これわかりすぎて保存した😭', 'バズるの納得すぎる', 'センスありすぎる…', '刺さりすぎてスクショした', 'なんでこんなにわかるの笑', '深夜に見てよかったやつ'],
+  sports_en:   ['omg this is absolutely insane 🔥', 'no way this actually happened??', 'legendary moment i can\'t 😭', 'what a performance honestly', 'chills all over 😭🔥', 'history happening right here'],
+  ent_en:      ['this is literally everything ✨', 'okay this is actually perfect', 'saving this forever i love it 💕', 'fully obsessed honestly', 'been on repeat all day', 'this is the one for real'],
+  food_en:     ['this looks SO good omg 😭', 'need this in my life immediately', "okay i'm actually hungry now lol", 'recipe please i'm begging 🙏', 'making this tonight for real', 'literal perfection 😭💕'],
+  emotional_en:['this hit different 😭', 'why is this so accurate omg', 'needed to hear this today 💕', 'this is so real it hurts', 'not me actually tearing up 😭', 'genuinely made my whole day'],
+  cute_en:     ['this is SO adorable i can\'t 😭', 'absolutely precious 💕', 'needed this today thank you 🙏', 'i cannot handle how cute this is', 'my heart is so full ✨💕', 'pure wholesome content 💕'],
+  general_en:  ['this deserved way more likes honestly', 'saving this forever ✨', 'the internet really needed this today', 'okay but why does this hit so hard 😭', 'this is everything right now 💕', 'genuinely love this so much 😭'],
 };
 
 // ===== コメント済みURIキャッシュ（重複投稿防止） =====
@@ -866,6 +866,62 @@ async function commentOnTrendingPosts(jwt, did) {
   console.log(`コメント完了: 日本語${jaCount}件 / 英語${enCount}件`);
 }
 
+// ===== リプライ内容を文脈解釈して返信文を生成 =====
+function buildReplyToFan(replyText, rootText, idx) {
+  const isJa = /[ぁ-ゖァ-ヶ一-鿿]/.test(replyText);
+  const pick  = (arr) => arr[idx % arr.length];
+  const t     = replyText;
+
+  if (isJa) {
+    if (/エグい|えぐい/.test(t))
+      return pick(['でしょ！？😍 ほんとに反則ですよね💕', 'わかります！！あのシーンが特にやばかった💕', 'えぐいって言ってもらえると嬉しいです😭💕']);
+    if (/ヤバい|やばい|やばすぎ|ヤバすぎ/.test(t))
+      return pick(['ですよね！！😍 見てるこっちもドキドキです💕', 'やばいよね〜😳 サンプルの時点でもう…💕', '共感してもらえて嬉しいです🥺💕']);
+    if (/可愛い|かわいい|かわいすぎ|可愛すぎ/.test(t))
+      return pick(['ですよね💕 笑顔がとくに好きで🥰', 'そう！！かわいすぎるんです😭', `かわいいって言ってもらえて嬉しいです💕 もっと作品見てほしい！ ${SITE}`]);
+    if (/エロい|えろい|えっち|エッチ|ドスケベ/.test(t))
+      return pick(['照れますね😳💕', 'そういってもらえると嬉しいです💕', 'ですよね〜…目が離せないやつ💕']);
+    if (/爆乳|おっぱい|巨乳|デカい|でかい/.test(t))
+      return pick(['迫力がすごすぎるんですよね😳💕', 'ほんと反則スタイルで💕', 'あれは見るしかないやつですよね💕']);
+    if (/スタイル|くびれ|ボディ|細い/.test(t))
+      return pick(['ですよね…スタイルよすぎて💕', '反則級のボディしてますよね💕', 'スタイルのよさが異常なんです💕']);
+    if (/好き|すき|推し|ファン/.test(t))
+      return `嬉しい〜！！💕 もっと作品あるのでぜひ→ ${SITE}`;
+    if (/最高|さいこう/.test(t))
+      return pick([`最高って言ってもらえると嬉しい😭💕 もっと見てほしいです！ ${SITE}`, 'ほんとに最高なんですよね😭💕']);
+    if (/気になる|見たい|みたい|欲しい/.test(t))
+      return `ぜひ見てほしいです😍💕 こちら→ ${SITE}`;
+    if (/すごい|凄い|すごすぎ/.test(t))
+      return pick(['ですよね😍 すごいんですよ💕', 'わかります！ほんとすごくて💕']);
+    if (/笑|ｗ+/.test(t))
+      return pick(['笑ってもらえて嬉しいです😂💕', '笑笑 でも本当にそう😂💕']);
+    return pick([
+      `コメントありがとうございます😊💕 他の作品もぜひ→ ${SITE}`,
+      '見てくれてありがとうございます🙏💕',
+      `嬉しいです！！ また来てください😍💕 ${SITE}`,
+    ]);
+  } else {
+    const rt = t.toLowerCase();
+    if (/omg|wtf|insane|holy|unreal|crazy/.test(rt))
+      return pick(['RIGHT?? 😍 she really said no mercy 💕', 'i know!! 😳💕 i can\'t look away either', 'EXACTLY 😭💕 she\'s on another level']);
+    if (/cute|adorable|pretty|gorgeous/.test(rt))
+      return pick(['she really is 🥰💕', 'the cutest honestly 🥰', 'right?? her smile is everything 💕']);
+    if (/hot|sexy|fire|incredible|amazing/.test(rt))
+      return pick([`I KNOW 😳💕 unfair honestly → ${SITE}`, 'she really said no flaws 💕', 'that\'s exactly what i thought 💕']);
+    if (/love|obsessed|fav|favorite|best/.test(rt))
+      return `same honestly 💕 more of her here → ${SITE}`;
+    if (/lol|lmao|haha|😂|😭/.test(rt))
+      return pick(['😂💕 right though', 'lmaoo 💕 but also… correct 😳']);
+    if (/want|interested|where|link|more/.test(rt))
+      return `right here 👉 ${SITE} 💕`;
+    return pick([
+      `thanks for watching!! 💕 more here → ${SITE}`,
+      'appreciate it so much!! 💕',
+      `glad you liked it 😊💕 check out more → ${SITE}`,
+    ]);
+  }
+}
+
 // ===== 自分の投稿へのリプライに自動返信 =====
 async function replyToNotifications(jwt, did) {
   let notifications = [];
@@ -885,32 +941,27 @@ async function replyToNotifications(jwt, did) {
   if (!notifications.length) { console.log('新規リプライなし'); return; }
   console.log(`新規リプライ: ${notifications.length}件`);
 
-  const JA_REPLIES = [
-    `ありがとうございます🙏 他の作品もぜひ！ ${SITE}`,
-    `嬉しいです！気になる作品はこちらも👉 ${SITE}`,
-    'コメントありがとう😊 また来てください！',
-    `ありがとうございます✨ サンプルもあるのでどうぞ👇 ${SITE}`,
-    '見てくれてありがとう🙏',
-  ];
-  const EN_REPLIES = [
-    `Thanks so much! 🙏 More picks here → ${SITE}`,
-    'Appreciate it! Glad you liked it 😊',
-    `Thank you! Check out more 👇 ${SITE}`,
-    'Thanks for the kind words 🙏',
-    `Really appreciate it ✨ More content → ${SITE}`,
-  ];
-
   let count = 0;
   for (const notif of notifications.slice(0, 5)) {
     const replyText = notif.record?.text || '';
-    const isJa = /[ぁ-ゖァ-ヶ一-鿿]/.test(replyText);
-    const pool = isJa ? JA_REPLIES : EN_REPLIES;
-    const reply = pool[(SEED + count * 11) % pool.length];
+    const isJa     = /[ぁ-ゖァ-ヶ一-鿿]/.test(replyText);
 
     const parentUri = notif.uri;
     const parentCid = notif.cid;
-    const rootUri = notif.record?.reply?.root?.uri || parentUri;
-    const rootCid = notif.record?.reply?.root?.cid || parentCid;
+    const rootUri   = notif.record?.reply?.root?.uri || parentUri;
+    const rootCid   = notif.record?.reply?.root?.cid || parentCid;
+
+    // 元投稿のテキストを取得して文脈に使う（失敗しても続行）
+    let rootPostText = '';
+    try {
+      const threadRes = await getJson(
+        `https://bsky.social/xrpc/app.bsky.feed.getPostThread?uri=${encodeURIComponent(rootUri)}&depth=0`,
+        { Authorization: `Bearer ${jwt}` }
+      );
+      rootPostText = threadRes.thread?.post?.record?.text || '';
+    } catch(e) { /* 文脈取得失敗は無視 */ }
+
+    const reply = buildReplyToFan(replyText, rootPostText, SEED + count * 11);
 
     try {
       await request('https://bsky.social/xrpc/com.atproto.repo.createRecord', {

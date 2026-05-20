@@ -18,6 +18,10 @@ on:
         required: false
         default: '0'
 
+concurrency:
+  group: post-sns
+  cancel-in-progress: true
+
 jobs:
   post:
     runs-on: ubuntu-latest

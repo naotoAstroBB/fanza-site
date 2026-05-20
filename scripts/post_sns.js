@@ -742,7 +742,7 @@ const CATEGORY_COMMENTS = {
   general_ja:  ['これわかりすぎて保存した😭', 'バズるの納得すぎる', 'センスありすぎる…', '刺さりすぎてスクショした', 'なんでこんなにわかるの笑', '深夜に見てよかったやつ'],
   sports_en:   ['omg this is absolutely insane 🔥', 'no way this actually happened??', 'legendary moment i can\'t 😭', 'what a performance honestly', 'chills all over 😭🔥', 'history happening right here'],
   ent_en:      ['this is literally everything ✨', 'okay this is actually perfect', 'saving this forever i love it 💕', 'fully obsessed honestly', 'been on repeat all day', 'this is the one for real'],
-  food_en:     ['this looks SO good omg 😭', 'need this in my life immediately', "okay i'm actually hungry now lol", 'recipe please i'm begging 🙏', 'making this tonight for real', 'literal perfection 😭💕'],
+  food_en:     ['this looks SO good omg 😭', 'need this in my life immediately', "okay i'm actually hungry now lol", "recipe please i'm begging 🙏", 'making this tonight for real', 'literal perfection 😭💕'],
   emotional_en:['this hit different 😭', 'why is this so accurate omg', 'needed to hear this today 💕', 'this is so real it hurts', 'not me actually tearing up 😭', 'genuinely made my whole day'],
   cute_en:     ['this is SO adorable i can\'t 😭', 'absolutely precious 💕', 'needed this today thank you 🙏', 'i cannot handle how cute this is', 'my heart is so full ✨💕', 'pure wholesome content 💕'],
   general_en:  ['this deserved way more likes honestly', 'saving this forever ✨', 'the internet really needed this today', 'okay but why does this hit so hard 😭', 'this is everything right now 💕', 'genuinely love this so much 😭'],

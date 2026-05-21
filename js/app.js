@@ -114,15 +114,16 @@ const App = {
                 } catch(e) {}
             }
 
-            // 重複除去してマージ（API女優データ優先）
+            // 重複除去してマージ（API女優データ優先、画像ありのみ採用）
             const seen = new Set();
             this._suggestActresses = [];
             for (const a of apiActresses) {
                 const id = String(a.id);
-                if (!seen.has(id)) { seen.add(id); this._suggestActresses.push(a); }
+                if (!seen.has(id) && a.imageURL?.small) { seen.add(id); this._suggestActresses.push(a); }
             }
             for (const [id, a] of extraMap) {
-                if (!seen.has(id)) { seen.add(id); this._suggestActresses.push(a); }
+                // 画像URLがある場合のみ追加（プレースホルダー表示を防ぐ）
+                if (!seen.has(id) && a.imageURL?.small) { seen.add(id); this._suggestActresses.push(a); }
             }
         } catch(e) {}
     },
@@ -496,9 +497,31 @@ const App = {
             this._currentItems = items;
             this.total = items.length;
             const start = (this.page - 1) * this.hitsPerPage;
-            this.renderGrid(grid, items.slice(start, start + this.hitsPerPage), { icon:'🔍', text:`"${this.keyword}" に該当する作品はありません`, sub:'別のキーワードで検索してみてください' });
+
+            if (items.length === 0) {
+                // 0件のとき：メッセージ + ランキング上位をおすすめとして表示
+                try {
+                    const rankData = await DMM._loadFile('data/rank.json'); // 通常キャッシュ済み
+                    const rankItems = (rankData?.result?.items || []).slice(0, 12);
+                    grid.innerHTML = `
+                        <div style="grid-column:1/-1;text-align:center;padding:28px 16px 16px">
+                            <p style="font-size:2rem;margin-bottom:10px">🔍</p>
+                            <p style="font-weight:bold;font-size:1.05rem;margin-bottom:4px">「${this.esc(this.keyword)}」に一致する作品はありません</p>
+                            <p style="font-size:.82rem;color:var(--mute)">別のキーワードや女優名で検索してみてください</p>
+                        </div>
+                        <div style="grid-column:1/-1;padding:10px 4px 14px;font-size:.85rem;font-weight:bold;color:var(--mute);border-top:1px solid var(--border)">📊 こちらもおすすめ — 人気ランキング</div>
+                        ${rankItems.map((item, i) => this.cardHTML(item, i)).join('')}
+                    `;
+                } catch(e) {
+                    this.renderGrid(grid, [], { icon:'🔍', text:`「${this.esc(this.keyword)}」に該当する作品はありません`, sub:'別のキーワードで検索してみてください' });
+                }
+            } else {
+                this.renderGrid(grid, items.slice(start, start + this.hitsPerPage));
+            }
             this.renderPagination();
-            if (titleEl) titleEl.textContent = `🔍 "${this.keyword}" — ${items.length}件`;
+            if (titleEl) titleEl.textContent = items.length === 0
+                ? `🔍 "${this.esc(this.keyword)}" — 0件`
+                : `🔍 "${this.esc(this.keyword)}" — ${items.length}件`;
             this.updateRankTabs();
             return;
         }

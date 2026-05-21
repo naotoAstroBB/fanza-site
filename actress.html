@@ -183,8 +183,9 @@
 <header class="site-header">
   <div class="header-inner">
     <div class="site-logo"><a href="home.html" style="color:inherit;text-decoration:none">AV動画ランキング</a></div>
-    <div class="search-bar">
-      <input type="text" id="searchInput" placeholder="検索..." autocomplete="off">
+    <div class="suggest-wrap">
+      <input type="text" id="searchInput" placeholder="女優名・タイトル・キーワードで検索..." autocomplete="off">
+      <div class="suggest-dropdown" id="suggestDropdown"></div>
       <button onclick="doSearch()">🔍</button>
     </div>
   </div>
@@ -282,6 +283,67 @@ function doSearch() {
     const q = document.getElementById('searchInput').value.trim();
     if (q) location.href = 'home.html?keyword=' + encodeURIComponent(q);
 }
+
+// ===== 検索サジェスト =====
+let _suggestActresses = null;
+let _suggestLoadPromise = null;
+
+async function loadSuggestData() {
+    if (_suggestActresses) return;
+    if (_suggestLoadPromise) { await _suggestLoadPromise; return; }
+    _suggestLoadPromise = (async () => {
+        try {
+            const ts = Math.floor(Date.now() / 60000);
+            const res = await fetch(`data/actress_profiles.json?_=${ts}`);
+            if (res.ok) {
+                const data = await res.json();
+                _suggestActresses = (data?.result?.actress || []).filter(a => a.imageURL?.small);
+            }
+        } catch(e) {}
+        if (!_suggestActresses) _suggestActresses = [];
+    })();
+    await _suggestLoadPromise;
+}
+
+async function onSuggestInput() {
+    await loadSuggestData();
+    const q   = (document.getElementById('searchInput')?.value || '').trim();
+    const box = document.getElementById('suggestDropdown');
+    if (!box) return;
+    if (!q) { closeSuggest(); return; }
+    const ql = q.toLowerCase();
+    const matches = (_suggestActresses || []).filter(a => {
+        const name = (a.name || '').toLowerCase();
+        const ruby = (a.ruby || '').toLowerCase();
+        return name.includes(ql) || ruby.includes(ql);
+    }).slice(0, 10);
+    if (!matches.length) { closeSuggest(); return; }
+    const safeQ = q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    box.innerHTML = matches.map(a => {
+        const img  = a.imageURL?.small || '';
+        const name = esc(a.name || '');
+        const ruby = esc(a.ruby || '');
+        const hlName = name.replace(new RegExp(safeQ, 'gi'), m => `<mark>${m}</mark>`);
+        return `<div class="suggest-item" onclick="selectSuggest('${esc(a.name)}','${a.id}')">
+            ${img ? `<img src="${esc(img)}" alt="${name}">` : '<div class="suggest-no-img">👩</div>'}
+            <div><div class="suggest-item-name">${hlName}</div>${ruby ? `<div class="suggest-item-sub">${ruby}</div>` : ''}</div>
+        </div>`;
+    }).join('');
+    box.classList.add('open');
+}
+
+function closeSuggest() {
+    document.getElementById('suggestDropdown')?.classList.remove('open');
+}
+
+function selectSuggest(name, id) {
+    closeSuggest();
+    location.href = `actress.html?id=${encodeURIComponent(id)}&name=${encodeURIComponent(name)}`;
+}
+
+document.getElementById('searchInput').addEventListener('input',  () => onSuggestInput());
+document.getElementById('searchInput').addEventListener('focus',  () => onSuggestInput());
+document.addEventListener('click', e => { if (!e.target.closest('.suggest-wrap')) closeSuggest(); });
 document.getElementById('searchInput').addEventListener('keydown', e => { if (e.key === 'Enter') doSearch(); });
 
 // ===== 女優情報を表示 =====

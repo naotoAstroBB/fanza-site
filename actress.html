@@ -332,10 +332,10 @@ async function loadSuggestData() {
                 if (!seen.has(id) && a.name) { seen.add(id); _suggestActresses.push(a); }
             }
 
-            // ③ rank.json がキャッシュ済みなら名前を補完（追加ロード不要）
-            const cached = DMM._cache['data/rank.json'];
-            if (cached) {
-                for (const item of (cached?.result?.items || [])) {
+            // ③ キャッシュ済みの全データファイルから名前を補完（追加ロード不要）
+            for (const [cacheKey, cached] of Object.entries(DMM._cache)) {
+                if (cacheKey.includes('actress_') || !cached?.result?.items) continue;
+                for (const item of cached.result.items) {
                     for (const a of (item.iteminfo?.actress || [])) {
                         const id = String(a.id);
                         if (a.id && a.name && !seen.has(id)) {
@@ -587,11 +587,8 @@ async function loadWorks() {
         }
     } catch(e) {}
 
-    // ② 専用JSONにデータがある場合は補完スキップ
-    // rank/new/review は各65MB、makerFiles は各12MB×16本 = 最大388MB になるため
-    // actress_works_{id}.json がある女優（上位400名）ではロードしない
+    // ② 専用JSONがない・空の場合: rank.json → makerFiles の順に検索
     if (works.length === 0) {
-        // 専用JSONがない女優のみ rank.json 1本で補完（new/review/makerFiles は使用しない）
         try {
             const d = await DMM._loadFile('data/rank.json');
             for (const item of (d?.result?.items || [])) {
@@ -602,10 +599,31 @@ async function loadWorks() {
                     works.push(item);
                 }
             }
-            // rank.json は以降 actress.html では不要なのでキャッシュを解放
             delete DMM._cache['data/rank.json'];
             delete DMM._cacheTs['data/rank.json'];
         } catch(e) {}
+    }
+
+    // ③ rank.json でも見つからない場合はmakerFilesを順次検索（引退女優対応）
+    // 各ファイルは処理後にキャッシュ解放してメモリを解放
+    if (works.length === 0) {
+        for (const f of DMM.makerFiles) {
+            try {
+                const d = await DMM._loadFile(f);
+                for (const item of (d?.result?.items || [])) {
+                    if (seen.has(item.content_id)) continue;
+                    const ids = (item.iteminfo?.actress || []).map(a => String(a.id));
+                    if (ids.includes(String(actressId))) {
+                        seen.add(item.content_id);
+                        works.push(item);
+                    }
+                }
+            } catch(e) {}
+            const ck = f.split('?')[0];
+            delete DMM._cache[ck];
+            delete DMM._cacheTs[ck];
+            if (works.length >= 20) break;
+        }
     }
 
     // 新着順にソート

@@ -106,11 +106,11 @@ const App = {
                 if (!seen.has(id) && a.name) { seen.add(id); this._suggestActresses.push(a); }
             }
 
-            // ③ fetchProducts()でキャッシュ済みの rank.json から名前を補完
-            // 追加ロード不要（既存キャッシュを流用してメモリ増加なし）
-            const cached = DMM._cache['data/rank.json'];
-            if (cached) {
-                for (const item of (cached?.result?.items || [])) {
+            // ③ キャッシュ済みの全データファイルから名前を補完（追加ロード不要）
+            // rank.json だけでなく new/review/maker 等のキャッシュも活用
+            for (const [cacheKey, cached] of Object.entries(DMM._cache)) {
+                if (cacheKey.includes('actress_') || !cached?.result?.items) continue;
+                for (const item of cached.result.items) {
                     for (const a of (item.iteminfo?.actress || [])) {
                         const id = String(a.id);
                         if (a.id && a.name && !seen.has(id)) {

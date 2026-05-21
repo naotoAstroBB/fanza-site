@@ -278,15 +278,20 @@ jobs:
             data/maker_madonna.json data/maker_ideapocket.json data/maker_faleno.json \
             data/maker_kawaii.json data/maker_attackers.json data/maker_ebody.json \
             data/maker_fitch.json data/maker_das.json data/maker_deeps.json \
+            data/maker_wanz.json data/maker_maxing.json data/maker_dod.json \
+            data/maker_prestige.json data/maker_das.json \
             data/genre_single.json data/genre_busty.json data/genre_bishoujo.json \
             data/genre_amateur.json data/genre_wife.json data/genre_milf.json \
+            data/genre_ol.json data/genre_jk.json data/genre_teacher.json \
+            data/genre_lez.json data/genre_debut.json data/genre_cosplay.json \
+            data/genre_gal.json data/genre_chijo.json data/genre_slender.json \
             2>/dev/null \
             | grep -v null | sort | uniq -c | sort -rn | awk '{print $2}')
 
-          # LEGEND + 高頻度女優 上位1400件（重複除去）を個別APIコール
-          # 約0.15s × 1400 ≈ 3.5分。画像あり1200件以上を想定
+          # LEGEND + 高頻度女優 上位3000件（重複除去）を個別APIコール
+          # 約0.15s × 3000 ≈ 7.5分。画像あり2500件以上を想定
           PROFILE_IDS=$(printf '%s\n' $LEGEND_IDS $PRODUCT_IDS | \
-            awk '!seen[$0]++ && $0 != "" && $0 != "null"' | head -1400)
+            awk '!seen[$0]++ && $0 != "" && $0 != "null"' | head -3000)
           echo "対象女優数: $(echo "$PROFILE_IDS" | wc -w) 人"
           build_actress_json "$PROFILE_IDS" data/actress_profiles.json
 
@@ -301,7 +306,7 @@ jobs:
           # Step2: LEGEND + 出現頻度上位をAPIから追加取得（ローカルにない作品を補完）
           echo "上位女優分をAPIから追加取得中（15ページ=1500作品まで）..."
           WORK_BASE="https://api.dmm.com/affiliate/v3/ItemList?api_id=UXJdpULBN1sPyNKKPPHU&affiliate_id=saaaaaaya-990&site=FANZA&service=digital&output=json&floor=videoa&sort=date&article=actress"
-          API_TARGET_IDS=$(printf '%s\n' $LEGEND_IDS $PRODUCT_IDS | awk '!seen[$0]++ && $0 != ""' | head -100)
+          API_TARGET_IDS=$(printf '%s\n' $LEGEND_IDS $PRODUCT_IDS | awk '!seen[$0]++ && $0 != ""' | head -300)
           for AID in $API_TARGET_IDS; do
             rm -f /tmp/aw_*.json
             for p in $(seq 1 15); do

@@ -87,9 +87,9 @@ jobs:
           }
 
           # ========== 動画 rank/新作/高評価 ==========
-          merge_fetch_n 50 data/rank.json   "$BASE_URL&floor=videoa&sort=rank"
-          merge_fetch_n 50 data/new.json    "$BASE_URL&floor=videoa&sort=date"
-          merge_fetch_n 50 data/review.json "$BASE_URL&floor=videoa&sort=review"
+          merge_fetch_n 100 data/rank.json   "$BASE_URL&floor=videoa&sort=rank"
+          merge_fetch_n 100 data/new.json    "$BASE_URL&floor=videoa&sort=date"
+          merge_fetch_n 100 data/review.json "$BASE_URL&floor=videoa&sort=review"
 
           # アニメ・マンガ・グッズ = 各10ページ・最大1000件 × 3ソート
           ANIME_BASE="$BASE_URL&floor=anime"
@@ -107,7 +107,7 @@ jobs:
           merge_fetch_n 10 data/goods_date.json   "${GOODS_BASE}&sort=date"
           merge_fetch_n 10 data/goods_review.json "${GOODS_BASE}&sort=review"
 
-          # ジャンル別 - rank/date=15ページ(1500件)、review=8ページ(800件)
+          # ジャンル別 - rank/date=20ページ(2000件)、review=12ページ(1200件)
           for row in \
             "2001:genre_busty" \
             "1027:genre_bishoujo" \
@@ -170,9 +170,9 @@ jobs:
             "5059:genre_denma" \
             "5025:genre_bukake"; do
             ID="${row%%:*}"; NAME="${row##*:}"
-            merge_fetch_n 15 "data/${NAME}.json"        "$BASE_URL&floor=videoa&sort=rank&article=genre&article_id=$ID"
-            merge_fetch_n 15 "data/${NAME}_date.json"   "$BASE_URL&floor=videoa&sort=date&article=genre&article_id=$ID"
-            merge_fetch_n 8  "data/${NAME}_review.json" "$BASE_URL&floor=videoa&sort=review&article=genre&article_id=$ID"
+            merge_fetch_n 20 "data/${NAME}.json"        "$BASE_URL&floor=videoa&sort=rank&article=genre&article_id=$ID"
+            merge_fetch_n 20 "data/${NAME}_date.json"   "$BASE_URL&floor=videoa&sort=date&article=genre&article_id=$ID"
+            merge_fetch_n 12 "data/${NAME}_review.json" "$BASE_URL&floor=videoa&sort=review&article=genre&article_id=$ID"
           done
 
           # ========== VR動画 ==========
@@ -194,7 +194,11 @@ jobs:
             "40488:maker_faleno" \
             "6329:maker_fitch" \
             "4641:maker_das" \
-            "40003:maker_deeps"; do
+            "40003:maker_deeps" \
+            "65:maker_prestige" \
+            "45:maker_maxing" \
+            "25:maker_dod" \
+            "1060:maker_wanz"; do
             ID="${row%%:*}"; NAME="${row##*:}"
             merge_fetch_n 20 "data/${NAME}.json"        "$BASE_URL&floor=videoa&sort=rank&article=maker&article_id=$ID"
             merge_fetch_n 20 "data/${NAME}_date.json"   "$BASE_URL&floor=videoa&sort=date&article=maker&article_id=$ID"

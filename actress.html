@@ -293,11 +293,62 @@ async function loadSuggestData() {
     if (_suggestLoadPromise) { await _suggestLoadPromise; return; }
     _suggestLoadPromise = (async () => {
         try {
-            const ts = Math.floor(Date.now() / 60000);
-            const res = await fetch(`data/actress_profiles.json?_=${ts}`);
-            if (res.ok) {
-                const data = await res.json();
-                _suggestActresses = (data?.result?.actress || []).filter(a => a.imageURL?.small);
+            // 複数APIファイルを並行ロード（各ファイルは小サイズ、メモリ問題なし）
+            const [pop, monthly, newA, profiles] = await Promise.allSettled([
+                DMM._loadFile('data/actress_popular.json'),
+                DMM._loadFile('data/actress_monthly.json'),
+                DMM._loadFile('data/actress_new.json'),
+                DMM._loadFile('data/actress_profiles.json'),
+            ]);
+
+            // imageURL マップ構築
+            const imageMap = new Map();
+            for (const r of [pop, monthly, newA, profiles]) {
+                if (r.status !== 'fulfilled') continue;
+                for (const a of (r.value?.result?.actress || [])) {
+                    const id = String(a.id);
+                    if (a.imageURL?.small && !imageMap.has(id)) imageMap.set(id, a.imageURL);
+                }
+            }
+
+            const apiActresses = [
+                ...(pop.value?.result?.actress || []),
+                ...(monthly.value?.result?.actress || []),
+                ...(newA.value?.result?.actress || []),
+                ...(profiles.value?.result?.actress || []),
+            ];
+
+            const seen = new Set();
+            _suggestActresses = [];
+
+            // ① 画像ありの女優を優先追加
+            for (const a of apiActresses) {
+                const id = String(a.id);
+                if (!seen.has(id) && a.imageURL?.small) { seen.add(id); _suggestActresses.push(a); }
+            }
+            // ② 画像なしでも名前・ルビがある女優を追加
+            for (const a of apiActresses) {
+                const id = String(a.id);
+                if (!seen.has(id) && a.name) { seen.add(id); _suggestActresses.push(a); }
+            }
+
+            // ③ rank.json がキャッシュ済みなら名前を補完（追加ロード不要）
+            const cached = DMM._cache['data/rank.json'];
+            if (cached) {
+                for (const item of (cached?.result?.items || [])) {
+                    for (const a of (item.iteminfo?.actress || [])) {
+                        const id = String(a.id);
+                        if (a.id && a.name && !seen.has(id)) {
+                            seen.add(id);
+                            _suggestActresses.push({
+                                id:       String(a.id),
+                                name:     a.name,
+                                ruby:     a.ruby || '',
+                                imageURL: imageMap.get(id) || undefined,
+                            });
+                        }
+                    }
+                }
             }
         } catch(e) {}
         if (!_suggestActresses) _suggestActresses = [];

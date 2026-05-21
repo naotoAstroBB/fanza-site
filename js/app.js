@@ -75,6 +75,16 @@ const App = {
                 DMM._loadFile('data/actress_profiles.json'),
             ]);
 
+            // 全ソースから imageURL マップを構築（id → imageURL）
+            const imageMap = new Map();
+            for (const r of [pop, monthly, newA, profiles]) {
+                if (r.status !== 'fulfilled') continue;
+                for (const a of (r.value?.result?.actress || [])) {
+                    const id = String(a.id);
+                    if (a.imageURL?.small && !imageMap.has(id)) imageMap.set(id, a.imageURL);
+                }
+            }
+
             const apiActresses = [
                 ...(pop.value?.result?.actress || []),
                 ...(monthly.value?.result?.actress || []),
@@ -84,9 +94,36 @@ const App = {
 
             const seen = new Set();
             this._suggestActresses = [];
+
+            // ① 画像ありの女優を優先追加（APIファイルから）
             for (const a of apiActresses) {
                 const id = String(a.id);
                 if (!seen.has(id) && a.imageURL?.small) { seen.add(id); this._suggestActresses.push(a); }
+            }
+            // ② 画像なしでも名前・ルビがある女優を追加（APIファイルから）
+            for (const a of apiActresses) {
+                const id = String(a.id);
+                if (!seen.has(id) && a.name) { seen.add(id); this._suggestActresses.push(a); }
+            }
+
+            // ③ fetchProducts()でキャッシュ済みの rank.json から名前を補完
+            // 追加ロード不要（既存キャッシュを流用してメモリ増加なし）
+            const cached = DMM._cache['data/rank.json'];
+            if (cached) {
+                for (const item of (cached?.result?.items || [])) {
+                    for (const a of (item.iteminfo?.actress || [])) {
+                        const id = String(a.id);
+                        if (a.id && a.name && !seen.has(id)) {
+                            seen.add(id);
+                            this._suggestActresses.push({
+                                id:       String(a.id),
+                                name:     a.name,
+                                ruby:     a.ruby || '',
+                                imageURL: imageMap.get(id) || undefined,
+                            });
+                        }
+                    }
+                }
             }
         } catch(e) {}
     },

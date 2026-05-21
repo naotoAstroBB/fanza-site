@@ -133,30 +133,35 @@ const DMM = {
 
     // ===== 商品IDで全JSONを横断検索 =====
     async fetchByCid(cid, floor) {
-        // 検索対象ファイルを全パターン網羅
-        // 1) sortFiles：videoa の rank/date/review/price
-        // 2) floorSortFiles：anime/manga/goods の rank/date/review 全variants
-        // 3) genreFiles + 派生 (_date/_review)
-        const floorSortVariants = [];
-        Object.values(this.floorSortFiles).forEach(map => {
-            Object.values(map).forEach(f => floorSortVariants.push(f));
-        });
-        const genreVariants = [];
-        Object.values(this.genreFiles).forEach(f => {
-            genreVariants.push(f);
-            genreVariants.push(f.replace('.json', '_date.json'));
-            genreVariants.push(f.replace('.json', '_review.json'));
-        });
-        const allFiles = [
-            ...new Set([
-                ...Object.values(this.sortFiles),
-                ...floorSortVariants,
-                ...genreVariants,
-            ])
+        // Step1: メインファイルを優先検索（rank/new/review は10000件ずつあるため大半はここでヒット）
+        const mainFiles = [
+            ...Object.values(this.sortFiles),
+            ...Object.values(this.floorSortFiles).flatMap(m => Object.values(m)),
         ];
-        // 並列フェッチ → 最初に見つかった商品を返す
+        for (const f of mainFiles) {
+            try {
+                const d = await this._loadFile(f);
+                const item = (d?.result?.items || []).find(i => i.content_id === cid);
+                if (item) return { result: { status: 200, items: [item], total_count: 1, result_count: 1 } };
+            } catch(e) {}
+        }
+
+        // Step2: メーカーファイルを検索（メインに未収録の古い作品カバー）
+        const makerFiles = Object.keys(this.genreFiles)
+            .filter(k => this.genreFiles[k].includes('maker_'))
+            .map(k => this.genreFiles[k]);
+        for (const f of [...new Set(makerFiles)]) {
+            try {
+                const d = await this._loadFile(f);
+                const item = (d?.result?.items || []).find(i => i.content_id === cid);
+                if (item) return { result: { status: 200, items: [item], total_count: 1, result_count: 1 } };
+            } catch(e) {}
+        }
+
+        // Step3: ジャンルファイル（rankのみ、_date/_reviewは省略して負荷削減）
+        const genreRankFiles = [...new Set(Object.values(this.genreFiles))];
         const results = await Promise.allSettled(
-            allFiles.map(f =>
+            genreRankFiles.map(f =>
                 this._loadFile(f).then(d =>
                     (d?.result?.items || []).find(i => i.content_id === cid) || null
                 ).catch(() => null)

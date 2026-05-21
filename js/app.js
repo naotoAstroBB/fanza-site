@@ -66,25 +66,14 @@ const App = {
         if (this._suggestLoaded) return;
         this._suggestLoaded = true;
         try {
-            // 女優APIデータ（画像・ルビあり）+ プロフィール全件
+            // 女優APIデータ（画像・ルビあり）+ プロフィール全件のみ使用
+            // rank/new/review（各65MB）は女優サジェストに不要なためロードしない
             const [pop, monthly, newA, profiles] = await Promise.allSettled([
                 DMM.fetchActress('popular'),
                 DMM.fetchActress('monthly'),
                 DMM.fetchActress('new'),
                 DMM._loadFile('data/actress_profiles.json'),
             ]);
-
-            // 全ソースから imageURL マップを構築（id → imageURL）
-            const imageMap = new Map();
-            for (const r of [pop, monthly, newA, profiles]) {
-                if (r.status !== 'fulfilled') continue;
-                for (const a of (r.value?.result?.actress || [])) {
-                    const id = String(a.id);
-                    if (a.imageURL?.small && !imageMap.has(id)) {
-                        imageMap.set(id, a.imageURL);
-                    }
-                }
-            }
 
             const apiActresses = [
                 ...(pop.value?.result?.actress || []),
@@ -93,36 +82,10 @@ const App = {
                 ...(profiles.value?.result?.actress || []),
             ];
 
-            // 商品データ（rank/new/review）から女優名を補完抽出
-            // 各65MBのため逐次ロードしてピーク使用メモリを抑制
-            const extraMap = new Map(); // id → {id, name, ruby, imageURL}
-            for (const f of ['data/rank.json', 'data/new.json', 'data/review.json']) {
-                try {
-                    const d = await DMM._loadFile(f);
-                    for (const item of (d?.result?.items || [])) {
-                        for (const a of (item.iteminfo?.actress || [])) {
-                            if (a.id && !extraMap.has(String(a.id))) {
-                                extraMap.set(String(a.id), {
-                                    id:       String(a.id),
-                                    name:     a.name || '',
-                                    ruby:     a.ruby || '',
-                                    imageURL: imageMap.get(String(a.id)) || {}
-                                });
-                            }
-                        }
-                    }
-                } catch(e) {}
-            }
-
-            // 重複除去してマージ（API女優データ優先、画像ありのみ採用）
             const seen = new Set();
             this._suggestActresses = [];
             for (const a of apiActresses) {
                 const id = String(a.id);
-                if (!seen.has(id) && a.imageURL?.small) { seen.add(id); this._suggestActresses.push(a); }
-            }
-            for (const [id, a] of extraMap) {
-                // 画像URLがある場合のみ追加（プレースホルダー表示を防ぐ）
                 if (!seen.has(id) && a.imageURL?.small) { seen.add(id); this._suggestActresses.push(a); }
             }
         } catch(e) {}
@@ -226,9 +189,7 @@ const App = {
         if (!favs.length) return;
         try {
             const data = await DMM._loadFile('data/rank.json');
-            const items = data?.result?.items || [];
-            const saleData = await DMM._loadFile('data/new.json').catch(() => null);
-            const allItems = [...items, ...(saleData?.result?.items || [])];
+            const allItems = data?.result?.items || [];
             const cidSet = new Set(favs.map(f => f.cid));
             const onSale = allItems.filter(i => i.campaign && cidSet.has(i.content_id));
             if (onSale.length) {
@@ -563,19 +524,17 @@ const App = {
                 // 10件以上絞り込めた場合のみ適用（メタデータ欠落への保険）
                 if (verified.length >= 10) items = verified;
 
-                // ジャンルファイルのアイテムが少ない場合はrank/new/reviewからも補完
-                // 各65MBのため Promise.all ではなく逐次ロードしてピーク使用メモリを抑制
+                // ジャンルファイルのアイテムが少ない場合はrank.jsonからも補完
+                // new/review は rank と大部分重複するためスキップ
                 if (items.length < 200) {
                     try {
                         const seen = new Set(items.map(x => x.content_id));
-                        for (const f of ['data/rank.json', 'data/new.json', 'data/review.json']) {
-                            const d = await DMM._loadFile(f);
-                            for (const item of (d?.result?.items || [])) {
-                                if (!seen.has(item.content_id) &&
-                                    (item.iteminfo?.genre || []).some(g => String(g.id) === gid)) {
-                                    seen.add(item.content_id);
-                                    items = [...items, item];
-                                }
+                        const d = await DMM._loadFile('data/rank.json');
+                        for (const item of (d?.result?.items || [])) {
+                            if (!seen.has(item.content_id) &&
+                                (item.iteminfo?.genre || []).some(g => String(g.id) === gid)) {
+                                seen.add(item.content_id);
+                                items = [...items, item];
                             }
                         }
                     } catch(e) { /* 補完失敗は無視 */ }
@@ -625,10 +584,10 @@ const App = {
     // ===== キーワード全データ横断検索 =====
     async _searchAllByKeyword(keyword) {
         const kw = keyword.toLowerCase();
-        // rank/new/review（各65MB）+ makerファイル（各12MB×16本）を逐次ロード
-        // Promise.all 並列ではなくメモリピークを抑えるため1本ずつ処理
+        // rank.json（65MB）+ makerFiles（各12MB）を逐次ロード
+        // 処理後にキャッシュを即削除することで 1ファイル分のメモリしか保持しない
         const searchFiles = [
-            ...Object.values(DMM.sortFiles),
+            DMM.sortFiles['rank'],
             ...DMM.makerFiles,
         ];
 
@@ -652,6 +611,10 @@ const App = {
                     }
                 }
             } catch(e) {}
+            // 処理済みファイルをキャッシュから削除してGCが即回収できるようにする
+            const cacheKey = f.split('?')[0];
+            delete DMM._cache[cacheKey];
+            delete DMM._cacheTs[cacheKey];
         }
         return matches;
     },

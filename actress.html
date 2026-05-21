@@ -551,6 +551,9 @@ async function loadWorks() {
                     works.push(item);
                 }
             }
+            // rank.json は以降 actress.html では不要なのでキャッシュを解放
+            delete DMM._cache['data/rank.json'];
+            delete DMM._cacheTs['data/rank.json'];
         } catch(e) {}
     }
 

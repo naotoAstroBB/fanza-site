@@ -235,7 +235,7 @@ const App = {
             const onSale = allItems.filter(i => i.campaign && cidSet.has(i.content_id));
             if (onSale.length) {
                 this.showToast(`🔥 お気に入りの${onSale.length}件がセール中！`, 'sale', () => {
-                    document.getElementById('favoritesSection')?.scrollIntoView({ behavior: 'smooth' });
+                    this.toggleFavPanel();
                 });
             }
         } catch(e) {}
@@ -336,8 +336,6 @@ const App = {
         if (isOpen) {
             panel.style.display = 'none';
         } else {
-            const likePanel = document.getElementById('likePanel');
-            if (likePanel) likePanel.style.display = 'none';
             panel.style.display = '';
             const favs = Fav.get();
             this._updateFavBadge(favs.length);
@@ -372,6 +370,13 @@ const App = {
                 btn.classList.remove('active');
                 btn.textContent = '☆';
             }
+        });
+    },
+
+    removeLikeItem(cid) {
+        if (Like.has(cid)) Like.toggle(cid);
+        document.querySelectorAll('.like-btn').forEach(btn => {
+            if (btn.dataset.cid === cid) btn.classList.remove('active');
         });
     },
 

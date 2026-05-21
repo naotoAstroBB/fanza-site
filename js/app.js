@@ -601,29 +601,16 @@ const App = {
     },
 
     // ===== キーワード全データ横断検索 =====
-    // sortFiles + floorSortFiles + genreFiles 全variant を並列ロードし
-    // title/actress/genre/series/maker/label のいずれかにヒットする商品を返す
     async _searchAllByKeyword(keyword) {
         const kw = keyword.toLowerCase();
-        // 検索対象ファイル全網羅（重複除去）
-        const floorSortVariants = [];
-        Object.values(DMM.floorSortFiles).forEach(map => {
-            Object.values(map).forEach(f => floorSortVariants.push(f));
-        });
-        const genreVariants = [];
-        Object.values(DMM.genreFiles).forEach(f => {
-            genreVariants.push(f);
-            genreVariants.push(f.replace('.json', '_date.json'));
-            genreVariants.push(f.replace('.json', '_review.json'));
-        });
-        const allFiles = [...new Set([
+        // rank/new/review（各62MB×3）+ makerファイル のみ検索（genreFiles×3の~1GBは省略）
+        const searchFiles = [
             ...Object.values(DMM.sortFiles),
-            ...floorSortVariants,
-            ...genreVariants,
-        ])];
+            ...DMM.makerFiles,
+        ];
 
         const results = await Promise.allSettled(
-            allFiles.map(f => DMM._loadFile(f).catch(() => null))
+            searchFiles.map(f => DMM._loadFile(f).catch(() => null))
         );
         const seen = new Set();
         const matches = [];
@@ -661,8 +648,8 @@ const App = {
         if (!grid) return;
         grid.innerHTML = '<div class="loading"><div class="spinner"></div><p>セール商品を取得中...</p></div>';
 
-        // 全JSONから campaign 付きアイテムを収集
-        const files = [...Object.values(DMM.sortFiles), ...Object.values(DMM.genreFiles)];
+        // rank/new/review のみ検索（genreFiles66ファイル並列は省略）
+        const files = Object.values(DMM.sortFiles);
         const results = await Promise.allSettled(files.map(f => DMM._loadFile(f)));
         const seen = new Set();
         const saleItems = [];

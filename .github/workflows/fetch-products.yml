@@ -1,4 +1,4 @@
-name: Fetch FANZA Products  # triggered
+name: Fetch FANZA Products
 
 on:
   push:
@@ -11,7 +11,7 @@ on:
 
 concurrency:
   group: fetch-products
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   fetch:

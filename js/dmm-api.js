@@ -151,12 +151,11 @@ const DMM = {
 
     // ===== 商品IDで全JSONを横断検索 =====
     async fetchByCid(cid, floor) {
-        // Step1: メインファイルを優先検索（rank/new/review は10000件ずつあるため大半はここでヒット）
-        const mainFiles = [
-            ...Object.values(this.sortFiles),
-            ...Object.values(this.floorSortFiles).flatMap(m => Object.values(m)),
-        ];
-        for (const f of mainFiles) {
+        // Step1: フロアに応じたファイルのみ逐次検索（余分なフロアファイルをロードしない）
+        const floorFiles = (floor && floor !== 'videoa' && this.floorSortFiles[floor])
+            ? Object.values(this.floorSortFiles[floor])
+            : Object.values(this.sortFiles);
+        for (const f of floorFiles) {
             try {
                 const d = await this._loadFile(f);
                 const item = (d?.result?.items || []).find(i => i.content_id === cid);

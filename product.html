@@ -345,23 +345,17 @@ async function loadRelated(item, floor) {
     const actressIds = new Set((item.iteminfo?.actress || []).map(a => a.id));
     if (!actressIds.size) return;
 
-    const allFiles = [
-        ...Object.values(DMM.sortFiles),
-        ...Object.values(DMM.genreFiles),
-    ];
-    const results = await Promise.allSettled(allFiles.map(f => DMM._loadFile(f).catch(() => null)));
-
+    // fetchByCid で既にロード済みのキャッシュデータのみ使用（追加ファイルロードなし）
     const seen    = new Set([item.content_id]);
     const related = [];
-    for (const r of results) {
-        if (!r.value) continue;
-        for (const prod of (r.value?.result?.items || [])) {
+    for (const key of Object.keys(DMM._cache)) {
+        const data = DMM._cache[key];
+        for (const prod of (data?.result?.items || [])) {
             if (seen.has(prod.content_id)) continue;
             const pIds = (prod.iteminfo?.actress || []).map(a => a.id);
             if (pIds.some(id => actressIds.has(id))) {
                 seen.add(prod.content_id);
                 related.push(prod);
-                if (related.length >= 12) break;
             }
         }
         if (related.length >= 12) break;

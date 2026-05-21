@@ -89,6 +89,24 @@ const DMM = {
         'monthly': 'data/actress_monthly.json',
         'new':     'data/actress_new.json',
     },
+    makerFiles: [
+        'data/maker_s1.json',
+        'data/maker_moodyz.json',
+        'data/maker_madonna.json',
+        'data/maker_ideapocket.json',
+        'data/maker_faleno.json',
+        'data/maker_prestige.json',
+        'data/maker_maxing.json',
+        'data/maker_dod.json',
+        'data/maker_wanz.json',
+        'data/maker_das.json',
+        'data/maker_sod.json',
+        'data/maker_attackers.json',
+        'data/maker_deeps.json',
+        'data/maker_fitch.json',
+        'data/maker_kawaii.json',
+        'data/maker_ebody.json',
+    ],
 
     // ===== 内部キャッシュ =====
     _cache: {},
@@ -146,11 +164,8 @@ const DMM = {
             } catch(e) {}
         }
 
-        // Step2: メーカーファイルを検索（メインに未収録の古い作品カバー）
-        const makerFiles = Object.keys(this.genreFiles)
-            .filter(k => this.genreFiles[k].includes('maker_'))
-            .map(k => this.genreFiles[k]);
-        for (const f of [...new Set(makerFiles)]) {
+        // Step2: メーカーファイルを逐次検索（大半のメーカー作品はここでヒット）
+        for (const f of this.makerFiles) {
             try {
                 const d = await this._loadFile(f);
                 const item = (d?.result?.items || []).find(i => i.content_id === cid);
@@ -158,17 +173,15 @@ const DMM = {
             } catch(e) {}
         }
 
-        // Step3: ジャンルファイル（rankのみ、_date/_reviewは省略して負荷削減）
+        // Step3: ジャンルファイルを逐次検索（並列ではなく1件ずつ → メモリ節約）
         const genreRankFiles = [...new Set(Object.values(this.genreFiles))];
-        const results = await Promise.allSettled(
-            genreRankFiles.map(f =>
-                this._loadFile(f).then(d =>
-                    (d?.result?.items || []).find(i => i.content_id === cid) || null
-                ).catch(() => null)
-            )
-        );
-        const item = results.map(r => r.value).find(v => v);
-        if (item) return { result: { status: 200, items: [item], total_count: 1, result_count: 1 } };
+        for (const f of genreRankFiles) {
+            try {
+                const d = await this._loadFile(f);
+                const item = (d?.result?.items || []).find(i => i.content_id === cid);
+                if (item) return { result: { status: 200, items: [item], total_count: 1, result_count: 1 } };
+            } catch(e) {}
+        }
         throw new Error('商品データが見つかりません (cid: ' + cid + ')');
     },
 

@@ -12,36 +12,77 @@ const DMM = {
         'book':  'data/manga.json',
         'goods': 'data/goods.json',
         'mono':  'data/goods.json',
+        'vr':    'data/vr.json',
     },
-    // フロア×ソート別ファイル（anime/manga/goods の新着・高評価対応）
+    // フロア×ソート別ファイル（anime/manga/goods/vr の新着・高評価対応）
     floorSortFiles: {
         'anime': { rank: 'data/anime.json',  date: 'data/anime_date.json',  review: 'data/anime_review.json'  },
         'book':  { rank: 'data/manga.json',  date: 'data/manga_date.json',  review: 'data/manga_review.json'  },
         'goods': { rank: 'data/goods.json',  date: 'data/goods_date.json',  review: 'data/goods_review.json'  },
         'mono':  { rank: 'data/goods.json',  date: 'data/goods_date.json',  review: 'data/goods_review.json'  },
+        'vr':    { rank: 'data/vr.json',     date: 'data/vr_date.json',     review: 'data/vr_review.json'     },
     },
     genreFiles: {
-        '2001': 'data/genre_busty.json',     // 巨乳
-        '1027': 'data/genre_bishoujo.json',  // 美少女
-        '6533': 'data/genre_hd.json',        // ハイビジョン
-        '4025': 'data/genre_single.json',    // 単体作品
-        '4024': 'data/genre_amateur.json',   // 素人
-        '5001': 'data/genre_creampie.json',  // 中出し
-        '1039': 'data/genre_wife.json',      // 人妻・主婦
-        '1001': 'data/genre_ol.json',        // OL
-        '4031': 'data/genre_cosplay.json',   // コスプレ
-        '6006': 'data/genre_debut.json',     // 新人（デビュー作品）
-        '1034': 'data/genre_gal.json',       // ギャル
-        '4022': 'data/genre_foreign.json',   // 外国人（洋ピン・海外輸入）
-        '4001': 'data/genre_sm.json',        // SM
-        '4006': 'data/genre_nanpa.json',    // ナンパ
-        '2005': 'data/genre_hinyu.json',    // 貧乳・微乳
-        '1018': 'data/genre_jk.json',       // 女子校生（ロリ）
-        '1016': 'data/genre_teacher.json',  // 女教師
-        '4002': 'data/genre_kinshin.json',  // 近親相姦
-        '1028': 'data/genre_kuro.json',     // 黒人男優
-        '4007': 'data/genre_kikaku.json',   // 企画
-        '5002': 'data/genre_fella.json',    // フェラ
+        '2001': 'data/genre_busty.json',      // 巨乳
+        '1027': 'data/genre_bishoujo.json',   // 美少女
+        '6533': 'data/genre_hd.json',         // ハイビジョン
+        '4025': 'data/genre_single.json',     // 単体作品
+        '4024': 'data/genre_amateur.json',    // 素人
+        '5001': 'data/genre_creampie.json',   // 中出し
+        '1039': 'data/genre_wife.json',       // 人妻・主婦
+        '1001': 'data/genre_ol.json',         // OL
+        '4031': 'data/genre_cosplay.json',    // コスプレ
+        '6006': 'data/genre_debut.json',      // 新人（デビュー作品）
+        '1034': 'data/genre_gal.json',        // ギャル
+        '4022': 'data/genre_foreign.json',    // 外国人
+        '4001': 'data/genre_sm.json',         // SM
+        '4006': 'data/genre_nanpa.json',      // ナンパ
+        '2005': 'data/genre_hinyu.json',      // 貧乳・微乳
+        '1018': 'data/genre_jk.json',         // 女子校生
+        '1016': 'data/genre_teacher.json',    // 女教師
+        '4002': 'data/genre_kinshin.json',    // 近親相姦
+        '1028': 'data/genre_kuro.json',       // 黒人男優
+        '4007': 'data/genre_kikaku.json',     // 企画
+        '5002': 'data/genre_fella.json',      // フェラ
+        '1031': 'data/genre_chijo.json',      // 痴女
+        '1014': 'data/genre_milf.json',       // 熟女
+        '2006': 'data/genre_slender.json',    // スレンダー
+        '4106': 'data/genre_kijo.json',       // 騎乗位
+        '4111': 'data/genre_ntr.json',        // NTR・寝取られ
+        '4030': 'data/genre_hard.json',       // ハード系
+        '5022': 'data/genre_3p4p.json',       // 3P・4P
+        '5016': 'data/genre_shio.json',       // 潮吹き
+        '5019': 'data/genre_paizuri.json',    // パイズリ
+        '102':  'data/genre_binyuu.json',     // 美乳
+        '48':   'data/genre_seifuku.json',    // 制服
+        '6002': 'data/genre_hamesatsu.json',  // ハメ撮り
+        '2024': 'data/genre_ojiri.json',      // お尻
+        '1033': 'data/genre_onesan.json',     // お姉さん
+        '5023': 'data/genre_gansha.json',     // 顔射
+        '4005': 'data/genre_ranko.json',      // 乱交
+        '5004': 'data/genre_tekoki.json',     // 手コキ
+        '1019': 'data/genre_joshi.json',      // 女子大生
+        '6968': 'data/genre_acme.json',       // アクメ・潮吹き
+        '5057': 'data/genre_lotion.json',     // ローション
+        '28':   'data/genre_shuchi.json',     // 羞恥
+        '4059': 'data/genre_kiss.json',       // キス・接吻
+        '1069': 'data/genre_furin.json',      // 不倫
+        '5068': 'data/genre_irama.json',      // イラマチオ
+        '27':   'data/genre_hazukashime.json',// 恥辱
+        '4023': 'data/genre_docu.json',       // ドキュメント
+        '5063': 'data/genre_shukan.json',     // 女性向け
+        '4114': 'data/genre_drama.json',      // ドラマ
+        '4011': 'data/genre_ojiri_feti.json', // 尻フェチ
+        '4133': 'data/genre_nurse.json',      // 看護師
+        '1013': 'data/genre_lez.json',        // レズ・百合
+        '5006': 'data/genre_anal.json',       // アナル
+        '4009': 'data/genre_roshutsu.json',   // 露出
+        '4008': 'data/genre_ryoujoku.json',   // 陵辱
+        '4021': 'data/genre_kousoku.json',    // 拘束
+        '4010': 'data/genre_kankin.json',     // 監禁
+        '5029': 'data/genre_ashikoki.json',   // 足コキ
+        '5059': 'data/genre_denma.json',      // 電マ
+        '5025': 'data/genre_bukake.json',     // ぶっかけ
     },
     actressFiles: {
         'popular': 'data/actress_popular.json',

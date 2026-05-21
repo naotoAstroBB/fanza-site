@@ -114,302 +114,363 @@ const PATTERNS = [
   },
   () => { // 1: ランキングTOP3
     const top = rankItems.slice(0, 3);
-    const lines = top.map((x, i) => `${['🥇','🥈','🥉'][i]} ${getActresses(x)[0]||'---'}\n　${shortTitle(x.title,20)}…\n　${reviewStr(x)}`).join('\n\n');
-    const head = rv(['今週ガチで抜けたFANZA作品TOP3','今月バズってるFANZA作品TOP3','えろさで選ぶFANZAランキングTOP3','抜けると評判のFANZA作品TOP3'], 0);
-    return `${head}\n\n${lines}\n\nサンプル・詳細はこちら\n${SITE}\n\n#FANZAランキング #FANZA #AV #エロ動画 #抜ける #おすすめ`;
+    if (top.length < 3) return null;
+    const head = rv(['正直に言うと今月一番抜けたのはこの3本','えろさで選んだランキングを教える','個人的にやばかった作品TOP3'], 0);
+    const lines = top.map((x, i) => {
+      const a = getActresses(x)[0] || shortTitle(x.title, 12);
+      return `${['①','②','③'][i]} ${a}${reviewStr(x) ? '\n　' + reviewStr(x) : ''}`;
+    }).join('\n\n');
+    return `${head}\n\n${lines}\n\n全部サンプル無料で見れる\n${SITE}\n\n#FANZA #AV #おすすめ #ランキング`;
   },
-  (item) => { // 2: 個人おすすめ
-    const a = getActresses(item)[0] || '';
-    const hook = rv(['正直に言う','これだけ言わせて','聞いてほしいんだけど'], 0);
-    const body = rv([
-      `${a ? a + 'のこれ' : 'これ'}、想像以上にえろかった\n\n最初から最後まで全部いい\nサンプルで既に満足度高い`,
-      `${a ? a + 'のやつ' : 'これ'}見てたんだけど\n\n予想の3倍えろかった\nなめてたのにやられた`,
-      `${a || 'これ'}がえろかった話をする\n\nサンプルだけで満足できるレベルじゃない`,
-    ], 1);
-    return `${hook}\n\n${body}\n\n${reviewStr(item)}\n${siteUrl(item)}\n\n${buildTags(item)}`;
-  },
-  (item) => { // 3: セール推し
-    const price = item.prices?.price;
-    const head = price ? `${price}円でこのえろさは${rv(['コスパおかしい','頭おかしい','正気じゃない'], 0)}` : `セール中のやつ${rv(['えろすぎる','やばすぎる'], 0)}`;
-    return `${head}\n\n${shortTitle(item.title)}\n\n${reviewStr(item)}\n\n今のうちに抑えといて\n${siteUrl(item)}\n\n${buildTags(item, ['FANZAセール', 'セール'])}`;
-  },
-  (item) => { // 4: 女優フィーチャー
+  (item) => { // 2: 女優没入
     const a = getActresses(item)[0]; if (!a) return null;
     const body = rv([
-      `えろいのに上品なんだよな\n\nそのギャップにやられてる人が多いんだと思う`,
-      `えろさの種類が${rv(['他の人と違う','ちょっと特別','最高にいい'], 1)}\n\nこれがわかる人とは仲良くなれる`,
-      `なんか${rv(['品がある','雰囲気がある','独特の色気がある'], 1)}んだよな\nえろさと上品さが両立してる`,
+      `見てる間ずっと${a}のことしか考えられなかった\n\nこれって沼にはまってるってこと？`,
+      `${a}の世界に完全に引き込まれてた\n\n気づいたら最初から見直してた`,
+      `${a}を一度でも見たら他の人で満足できなくなる\n\nこれが本当に困ってる`,
     ], 0);
-    return `${a}の何がやばいって\n\n${body}\n\n最新作👇\n${siteUrl(item)}\n\n${buildTags(item)}`;
+    return `${body}\n\n${reviewStr(item)}\n${siteUrl(item)}\n\n${buildTags(item)}`;
+  },
+  (item) => { // 3: 深夜告白
+    const a = getActresses(item)[0] || '';
+    const body = rv([
+      `誰にも言えないことを深夜に言う\n\n${a ? a + 'の' : 'この'}作品が頭から離れない\n\n何回でも見てしまう`,
+      `夜中だからこそ正直に言う\n\n${a || 'これ'}えろすぎて\n定期的に見返してるやつ`,
+      `深夜の独り言\n\n${a ? a + 'にときめいてる自分がいる' : 'えろいの見つけてしまった'}\n\n誰かわかってくれる人いる？`,
+    ], 0);
+    return `${body}\n\n${reviewStr(item)}\n${siteUrl(item)}\n\n${buildTags(item, ['深夜'])}`;
+  },
+  (item) => { // 4: サンプルで瀕死
+    const a = getActresses(item)[0] || '';
+    const body = rv([
+      `サンプルだけで既に限界\n\n本編どうするつもりなの`,
+      `サンプル見ただけで頭おかしくなりそうだった\n\n本編見たら終わる自信がある`,
+      `無料のサンプルで既にこれ\n\n本編の破壊力が怖すぎる`,
+    ], 0);
+    return `${a || 'これ'}\n\n${body}\n\n👇 まずサンプルだけでもいいから見て\n${siteUrl(item)}\n\n${buildTags(item)}`;
   },
   (item) => { // 5: デビュー・新人
     const a = getActresses(item)[0] || '';
     const body = rv([
-      `なのにこのえろさはずるい\n\n経験値じゃなくて\n生まれ持ったやつだと思う`,
-      `なのにこの${rv(['えろさ','完成度','やばさ'], 0)}は何？\n\nこれから絶対${rv(['くる','バズる','伸びる'], 1)}やつだ`,
-      `なのに${rv(['最初から','もう','いきなり'], 0)}えろすぎる\nデビューしたての顔と体がたまらない`,
+      `デビューしたてなのにこのえろさは反則すぎる\n\nこれは才能だと思う`,
+      `初めての作品でここまでできるの\n\nなんか悔しいくらいえろい`,
+      `デビュー作でこのクオリティ\n\n最初から全力で来てる子が好きすぎる`,
     ], 0);
-    return `${a ? a + ' ' : ''}デビューしたて\n\n${body}\n\n${reviewStr(item)}\n${siteUrl(item)}\n\n${buildTags(item, ['新人AV女優', 'デビュー'])}`;
+    return `${a ? a + ' ' : ''}デビュー作\n\n${body}\n\n${reviewStr(item)}\n${siteUrl(item)}\n\n${buildTags(item, ['新人AV女優', 'デビュー'])}`;
   },
-  (item) => { // 6: レビュー偉業
+  (item) => { // 6: 高評価の理由語り
     const avg = parseFloat(item.review?.average || 0);
     const cnt = parseInt(item.review?.count || 0);
     if (avg < 4.0 || cnt < 50) return null;
-    const body = rv([
-      `この数字が全部物語ってる\n\n文句なしの名作エロ`,
-      `嘘をつかない数字\nこれだけ見てえろくないわけがない`,
-      `${cnt.toLocaleString()}人が正直に評価した結果\nこの点数は${rv(['本物','納得','間違いない'], 1)}`,
-    ], 0);
-    return `${cnt.toLocaleString()}人が抜いて${avg}点\n\n${body}\n\n👇 騙されたと思って見て\n${siteUrl(item)}\n\n${buildTags(item, ['高評価', '名作'])}`;
-  },
-  (item) => { // 7: 問いかけ
-    const gs = getGenres(item).filter(g => g.length <= 6 && !['ハイビジョン','独占配信'].includes(g));
-    if (gs.length < 2) return null;
-    const body = rv([
-      `どっちも捨てられない人のために\nどっちも全部入ってる作品持ってきた\n\nこれはずるい`,
-      `両方好きな人向けに\n全部入りの作品見つけた\n\nありがとうって言いたくなる`,
-    ], 0);
-    return `${gs[0]}と${gs[1]}どっちが好き？\n\n${body}\n${siteUrl(item)}\n\n${buildTags(item)}`;
-  },
-  (item) => { // 8: 知る人ぞ知る
-    const body = rv([
-      `派手に宣伝されてないのに\nわかってる人がずっと見てる`,
-      `宣伝してないのに口コミだけで広まってる\nそういうやつって大体間違いない`,
-    ], 0);
-    return `表に出てないけどえろい名作\n\n${body}\n\n${reviewStr(item)}\n\nこっそり保存しといて\n${siteUrl(item)}\n\n${buildTags(item, ['名作', '隠れた名作'])}`;
-  },
-  (item) => { // 9: スペック推し
-    const a = getActresses(item)[0] || '';
-    const gs = getGenres(item).filter(g => ['巨乳','美乳','美少女','スレンダー','痴女','人妻'].includes(g));
-    const body = rv([
-      `全部ちょうどいいんだよな\nちょうどいいってのが一番やばい`,
-      `えろいポイントが全部揃ってる\n何一つ文句がない`,
-      `スペックが完璧すぎる\nこれを求めてたって感じがする`,
-    ], 0);
-    return `${a}の${gs[0] || 'このスペック'}がえろすぎる件\n\n${body}\n\n${reviewStr(item)}\n${siteUrl(item)}\n\n${buildTags(item)}`;
-  },
-  (item) => { // 10: 深夜
-    const time = rv(['深夜限定で流すやつ','夜中に見るやつ','深夜3時に見つけたやつ','寝る前に見るやつじゃなかった'], 0);
-    const after = rv(['これ見たあとすぐ寝れる人いたら教えて','眠れなくなっても知らない','翌朝後悔するやつ'], 1);
-    return `${time}\n\n${shortTitle(item.title)}\n\n${after}\n\n${reviewStr(item)}\n${siteUrl(item)}\n\n${buildTags(item, ['深夜', 'えろい'])}`;
-  },
-  (item) => { // 11: 共感フック
-    const g = getGenres(item).filter(g => g.length < 8 && !['ハイビジョン'].includes(g))[0];
-    if (!g) return null;
-    const body = rv([
-      `だから信頼できるやつだけ紹介したくて\n\nこれは間違いない\nマジでえろい`,
-      `だから厳選したやつだけ貼る\n\nこれは外れない`,
-    ], 0);
-    return `${g}好きって外れるとほんとにきついよね\n\n${body}\n\n${reviewStr(item)}\n${siteUrl(item)}\n\n${buildTags(item)}`;
-  },
-  (item) => { // 12: ジャンル特化
-    const g = getGenres(item).filter(g => !['ハイビジョン','BEST・総集編','独占配信'].includes(g))[0];
-    if (!g) return null;
     const a = getActresses(item)[0] || '';
     const body = rv([
-      `サンプルだけでも見る価値ある`,
-      `${g}のえろさをわかってる人なら絶対好き`,
-      `これのえろさが伝わってほしい`,
+      `なんでこんなに評価高いのか見てみたら\n\nなるほどってなった\n\nえろさが本物だった`,
+      `${cnt.toLocaleString()}人がこの点数つけた理由\n\n見たらわかった`,
+      `この評価数で${avg}点\n\n嘘じゃないの実際に見てわかった`,
     ], 0);
-    return `${g}のエロさをちゃんとわかってる人向け\n\n${a}\n\n${body}\n\n${reviewStr(item)}\n${siteUrl(item)}\n\n${buildTags(item)}`;
+    return `${a || shortTitle(item.title, 15)}\n\n${body}\n\n${reviewStr(item)}\n${siteUrl(item)}\n\n${buildTags(item, ['高評価', '名作'])}`;
   },
-  (item) => { // 13: 比較おすすめ
-    const g = getGenres(item).filter(g => !['ハイビジョン'].includes(g))[0] || 'このジャンル';
-    const body = rv([
-      `色々試してきたけど\nえろさのレベルが違う`,
-      `いろいろ見てきたけど\nこれ超えるやつまだ出会えてない`,
-      `散々探し回ってたけど\nこれで全部解決した`,
-    ], 0);
-    return `${g}で抜くならこれ一択\n\n${body}\n\n${reviewStr(item)}\n${siteUrl(item)}\n\n${buildTags(item)}`;
-  },
-  (item) => { // 14: 実況・感想
-    const a = getActresses(item)[0] || '';
-    const body = rv([
-      `${a ? a + 'にごめんなさいしたくなった' : 'これはやばかった'}`,
-      `${a ? a + 'に全部持ってかれた' : '全部持ってかれた'}`,
-      `${a ? a + 'が予想以上すぎた' : '予想の倍えろかった'}`,
-    ], 0);
-    return `さっき見終わった\n\n${body}\n\nなめてたのに途中から全力になってた\n\n${reviewStr(item)}\n${siteUrl(item)}\n\n${buildTags(item)}`;
-  },
-  (item) => { // 15: データ統計
-    const cnt = parseInt(item.review?.count || 0);
-    const avg = item.review?.average;
-    if (!avg || !cnt) return null;
-    const body = rv([
-      `どれだけえろいかは数字を見ればわかる\n\nこれが全部語ってる`,
-      `嘘をつかない数字\nえろさは正直に出る`,
-      `これだけの人が見てこの点数\nもう語ることはない`,
-    ], 0);
-    return `${cnt.toLocaleString()}人が見て${avg}点\n\n${body}\n\n${siteUrl(item)}\n\n${buildTags(item, ['高評価'])}`;
-  },
-  (item) => { // 16: 週末推薦
-    const body = rv([
-      `時間たっぷりある日に見ないともったいない\nそういうえろさがある`,
-      `これは時間確保して見るやつ\n\n途中で止められないから`,
-      `週末の夜に全部見てほしい\n後悔しないと思う`,
-    ], 0);
-    return `今週末に見るべき一本\n\n${shortTitle(item.title)}\n\n${body}\n\n${reviewStr(item)}\n${siteUrl(item)}\n\n${buildTags(item, ['週末'])}`;
-  },
-  (item) => { // 17: タイムセール速報
-    const body = rv([
-      `このえろさでこの値段は正気じゃない`,
-      `この値段でここまで見れるの頭おかしい`,
-      `コスパが完全に壊れてる`,
-    ], 0);
-    return `⚡ 今すぐ見て\n\n${shortTitle(item.title)}\n\n${body}\n\n${reviewStr(item)}\n${siteUrl(item)}\n\n${buildTags(item, ['FANZAセール', 'セール'])}`;
-  },
-  (item) => { // 18: レジェンド推し
+  (item) => { // 7: ジャンル×女優
     const a = getActresses(item)[0]; if (!a) return null;
-    const body = rv([
-      `何年経っても色褪せない\nむしろ今見た方が刺さる`,
-      `時代を超えるえろさってあるんだと思った\nこれがそれ`,
-    ], 0);
-    return `${a}のえろさは時代を超える\n\n${body}\n\nこれはレジェンド\n\n${reviewStr(item)}\n${siteUrl(item)}\n\n${buildTags(item, ['レジェンド', '名作'])}`;
-  },
-  (item) => { // 19: シナリオ・妄想
-    const gs = getGenres(item).filter(g => !['ハイビジョン','BEST・総集編','独占配信'].includes(g));
-    const gStr = gs.slice(0, 2).join('×') || 'このジャンル';
-    const body = rv([
-      `シチュエーションも\n展開も\n全部ツボだった\n\n妄想が止まらなくなる`,
-      `設定が完璧すぎる\nこういうのを求めてた`,
-      `全部の要素がちょうどよくて\n見終わったあと余韻がすごかった`,
-    ], 0);
-    return `${gStr}でこんなにえろい作品あったんだ\n\n${body}\n\n${reviewStr(item)}\n${siteUrl(item)}\n\n${buildTags(item)}`;
-  },
-  // ===== 20〜 追加パターン =====
-  (item) => { // 20: 超短パンチ
-    const a = getActresses(item)[0] || shortTitle(item.title, 15);
-    return `${a}\n\n${rv(['えろすぎ','やばすぎ','すごすぎ','最高すぎ'], 0)}\n\n${rv(['見て','保存して','見てほしい'], 1)}\n${siteUrl(item)}\n\n${buildTags(item)}`;
-  },
-  (item) => { // 21: タイムライン風
-    const a = getActresses(item)[0] || '';
-    const time = rv(['昨夜','今朝','さっき','深夜に','週末に'], 0);
-    const reaction = rv(['時間溶けた','寝れなかった','後悔はしてない','止まらなかった','最高だった'], 1);
-    return `${time}${a ? a + 'のやつ' : 'これ'}見てた\n\n${reaction}\n\n${reviewStr(item)}\n${siteUrl(item)}\n\n${buildTags(item)}`;
-  },
-  (item) => { // 22: 後悔・発見
-    const a = getActresses(item)[0] || '';
-    const open = rv(['なんで今まで見てなかったんだろ','もっと早く見ればよかった','今更見たけど最高だった','ようやく見た'], 0);
-    return `${open}\n\n${a || shortTitle(item.title, 20)}\n\n${reviewStr(item)}\n${siteUrl(item)}\n\n${buildTags(item)}`;
-  },
-  (item) => { // 23: 問いかけ2
-    const a = getActresses(item)[0]; if (!a) return null;
-    const ask = rv([`${a}好きな人いる？`,`${a}知ってる人いる？`,`${a}のファンいる？`], 0);
-    return `${ask}\n\nこれ${rv(['絶対見て','ぜひ見て','見てほしい'], 1)}\n\n${reviewStr(item)}\n${siteUrl(item)}\n\n${buildTags(item)}`;
-  },
-  (item) => { // 24: ミニマル
-    const a = getActresses(item)[0];
-    const rev = reviewStr(item);
-    return `${a ? a + '\n\n' : ''}${rev ? rev + '\n\n' : ''}${rv(['貼っとく','とりあえず共有','残しとく'], 0)}\n${siteUrl(item)}\n\n${buildTags(item)}`;
-  },
-  (item) => { // 25: 発見スタイル
-    const a = getActresses(item)[0] || '';
-    const open = rv(['こんな作品あったの知らなかった','これ知らなかった','発見してしまった','これ見つけてしまった'], 0);
-    const body = rv(['サンプルの時点でもう無理','サンプルで既に満足できるやつ','見てよかった'], 1);
-    return `${open}\n\n${a || shortTitle(item.title, 20)}\n\n${body}\n\n${reviewStr(item)}\n${siteUrl(item)}\n\n${buildTags(item)}`;
-  },
-  (item) => { // 26: 深夜保存
-    return `${rv(['深夜に','夜中に','朝方に'], 0)}保存したやつ${rv(['共有する','貼る','残しとく'], 1)}\n\n${shortTitle(item.title)}\n\n${reviewStr(item)}\n${siteUrl(item)}\n\n${buildTags(item, ['深夜'])}`;
-  },
-  (item) => { // 27: 寝れない系
-    const a = getActresses(item)[0] || '';
-    const result = rv(['眠れなくなった','やられた','時間溶かされた'], 0);
-    return `寝る前に見るやつじゃなかった\n\n${a ? a + 'に' : ''}${result}\n\n${reviewStr(item)}\n${siteUrl(item)}\n\n${buildTags(item)}`;
-  },
-  (item) => { // 28: 今週ベスト
-    const a = getActresses(item)[0] || '';
-    return `今週見た中で${rv(['ダントツ','断トツ','一番'], 0)}えろかった\n\n${a || shortTitle(item.title, 20)}\n\n${reviewStr(item)}\n${siteUrl(item)}\n\n${buildTags(item)}`;
-  },
-  (item) => { // 29: えろさ一択
-    const g = getGenres(item).filter(g => !['ハイビジョン','独占配信'].includes(g))[0];
-    return `${rv(['抜きたい人へ','えろいの探してる人へ','このジャンル好きな人へ'], 0)}\n\n${g ? g + 'ならこれ' : 'これ一択'}\n\n${reviewStr(item)}\n${siteUrl(item)}\n\n${buildTags(item)}`;
-  },
-  (item) => { // 30: 相談風
-    const cnt = parseInt(item.review?.count || 0);
-    if (!cnt) return null;
-    return `ちょっと聞いていい？\n\nこれ${cnt.toLocaleString()}人が評価してる作品なんだけど\n\n見た人いる？\nえろくない？\n\n${siteUrl(item)}\n\n${buildTags(item)}`;
-  },
-  (item) => { // 31: 語彙力なくなる
-    const a = getActresses(item)[0] || '';
-    return `${a ? a + 'を見て' : 'これ見て'}語彙力なくなった\n\n${rv(['えろい','やばい','すごい'], 0)}\n\nそれしか言えない\n\n${reviewStr(item)}\n${siteUrl(item)}\n\n${buildTags(item)}`;
-  },
-  (item) => { // 32: 比較できないやつ
-    return `${rv(['今まで見た中で','いろいろ見てきたけど','色々試したけど'], 0)}\n\nこれを超えるやつ${rv(['まだ出会えてない','なかなかない'], 1)}\n\n${reviewStr(item)}\n${siteUrl(item)}\n\n${buildTags(item)}`;
-  },
-  (item) => { // 33: サンプル推し
-    const a = getActresses(item)[0] || '';
-    return `${a || 'これ'}のサンプルが${rv(['もう無理','やばすぎる','えぐすぎる'], 0)}\n\n本編どうなるんだって話\n\n${reviewStr(item)}\n👇 サンプル無料\n${siteUrl(item)}\n\n${buildTags(item)}`;
-  },
-  (item) => { // 34: ジャンル最強
     const g = getGenres(item).filter(g => !['ハイビジョン','独占配信','BEST・総集編'].includes(g))[0];
     if (!g) return null;
-    return `${g}でここまで${rv(['えろいのは','完璧なのは'], 0)}${rv(['初めて見た','なかなかない'], 1)}\n\n${reviewStr(item)}\n${siteUrl(item)}\n\n${buildTags(item)}`;
+    const body = rv([
+      `${g}×${a}の組み合わせを考えた人天才だと思う\n\nどっちも好きなのにこんな形で来るの`,
+      `${a}で${g}って聞いただけで無理だったのに\n\n実際に見たらもっと無理だった`,
+      `${g}が好きな人に${a}を組み合わせたらどうなるか\n\nその答えがここにある`,
+    ], 0);
+    return `${body}\n\n${reviewStr(item)}\n${siteUrl(item)}\n\n${buildTags(item)}`;
   },
-  (item) => { // 35: 今日のおすすめ
-    return `今日の${rv(['おすすめ','一本','セレクト'], 0)}\n\n${shortTitle(item.title)}\n\n${reviewStr(item)}\n${siteUrl(item)}\n\n${buildTags(item)}`;
-  },
-  (item) => { // 36: えろい理由語り
-    const a = getActresses(item)[0]; if (!a) return null;
-    const gs = getGenres(item).filter(g => ['巨乳','美乳','美少女','スレンダー','痴女','人妻','ギャル','素人'].includes(g));
-    const trait = gs[0] || rv(['顔','体','雰囲気','演技'], 0);
-    return `${a}がえろい理由\n\n${trait}が${rv(['最高','やばい','たまらない','完璧'], 1)}だから\n\nそれに尽きる\n\n${reviewStr(item)}\n${siteUrl(item)}\n\n${buildTags(item)}`;
-  },
-  (item) => { // 37: 圧倒された
+  (item) => { // 8: 隠れた名作
     const a = getActresses(item)[0] || '';
-    return `${a ? a + 'に' : ''}${rv(['圧倒された','完全にやられた','持ってかれた','引き込まれた'], 0)}\n\n${rv(['最初の5分で引き込まれた','途中から止まらなかった','気づいたら全部見てた'], 1)}\n\n${reviewStr(item)}\n${siteUrl(item)}\n\n${buildTags(item)}`;
+    const body = rv([
+      `あんまり話題になってないけど\n\nこれ知ってる人は絶対わかってる\n\nえろさの質が違う`,
+      `大きく宣伝されてないのに\n\n見た人全員が評価してる\n\nそういう作品が一番信頼できる`,
+      `話題にならないのが不思議なくらい\n\nこっそり布教してる`,
+    ], 0);
+    return `${a ? a + '\n\n' : ''}表に出てないけどえろい名作\n\n${body}\n\n${reviewStr(item)}\n${siteUrl(item)}\n\n${buildTags(item, ['名作', '隠れた名作'])}`;
   },
-  (item) => { // 38: 保存案件
-    return `${rv(['これは保存案件','これ保存しといて','これ絶対保存して'], 0)}\n\n${shortTitle(item.title)}\n\n${reviewStr(item)}\n${siteUrl(item)}\n\n${buildTags(item)}`;
-  },
-  (item) => { // 39: 素直な感想
+  (item) => { // 9: 身体的反応
     const a = getActresses(item)[0] || '';
-    return `${rv(['素直に言う','正直に言う','ぶっちゃけ'], 0)}\n\n${a ? a + 'の新作' : 'これ'}えろすぎて${rv(['困った','びっくりした','嬉しかった'], 1)}\n\n${reviewStr(item)}\n${siteUrl(item)}\n\n${buildTags(item)}`;
+    const gs = getGenres(item).filter(g => ['巨乳','美乳','スレンダー','美脚','くびれ','巨尻'].includes(g));
+    const part = gs[0] || rv(['顔','体つき','雰囲気'], 0);
+    const body = rv([
+      `${part}を見てたら体の反応が止まらなかった\n\nこういう正直な感じがえろいと思う`,
+      `${part}に視線が吸い込まれて\n\n気づいたら再生し直してた`,
+      `${part}がこんなにえろいの\n\nずっと見ていられる`,
+    ], 0);
+    return `${a ? a + 'の' : ''}${part}\n\n${body}\n\n${reviewStr(item)}\n${siteUrl(item)}\n\n${buildTags(item)}`;
   },
-  (item) => { // 40: 時間帯別
-    const hour = new Date(Date.now() + 9*3600000).getUTCHours();
-    const timeStr = hour >= 22 || hour <= 3 ? '深夜' : hour < 12 ? '朝' : hour < 18 ? '昼' : '夜';
-    return `${timeStr}に見るやつ\n\n${shortTitle(item.title)}\n\n${reviewStr(item)}\n${siteUrl(item)}\n\n${buildTags(item)}`;
-  },
-  (item) => { // 41: 推薦状スタイル
+  (item) => { // 10: 時間帯リアル（JST参照）
+    const jst = new Date(Date.now() + 9 * 3600000);
+    const h = jst.getUTCHours();
+    const timeTag = h >= 0 && h <= 4 ? `${h}時に投稿してるんだけど`
+      : h >= 23 ? `もう${h}時なのに`
+      : h < 7 ? `朝${h}時から`
+      : h < 12 ? `午前中から`
+      : h < 18 ? `昼間から`
+      : `夜${h - 12}時から`;
     const a = getActresses(item)[0] || '';
-    return `${a || 'この作品'}を推薦します\n\n${rv(['サンプルだけでも見てください','まずサンプルを見てほしい'], 0)}\n\n絶対に${rv(['後悔しない','損しない','満足できる'], 1)}\n\n${reviewStr(item)}\n${siteUrl(item)}\n\n${buildTags(item)}`;
+    const body = rv([
+      `こんな時間にえろいの見てる自分を許してほしい`,
+      `こんな時間に紹介するの我慢できなかった`,
+      `こんな時間まで見てた`,
+    ], 0);
+    return `${timeTag}\n\n${body}\n\n${a || shortTitle(item.title, 20)}\n\n${reviewStr(item)}\n${siteUrl(item)}\n\n${buildTags(item, ['深夜'])}`;
   },
-  (item) => { // 42: 数字だけで語る
+  (item) => { // 11: 共感フック
+    const g = getGenres(item).filter(g => g.length < 8 && !['ハイビジョン','独占配信','BEST・総集編'].includes(g))[0];
+    const body = rv([
+      `${g ? g + 'が好きな人はもう見てると思うけど' : 'えろいの好きな人はもう見てると思うけど'}\n\nまだの人は今すぐ見て\n\nこれが正解`,
+      `${g ? g + 'でハマってる人いる？' : 'えろいの探してる人いる？'}\n\nわかる人に教えたい\n\nこれが最高だと思う`,
+      `${g || 'このジャンル'}好きな人と語りたいんだけど\n\nまず見てきてほしい\n\nそれから話しよう`,
+    ], 0);
+    return `${body}\n\n${reviewStr(item)}\n${siteUrl(item)}\n\n${buildTags(item)}`;
+  },
+  (item) => { // 12: 見た後余韻
+    const a = getActresses(item)[0] || '';
+    const body = rv([
+      `見終わったあとの余韻がやばい\n\nしばらく何もできなかった\n\nこういう作品に出会えると嬉しい`,
+      `見終わってからずっと頭に残ってる\n\n${a ? a + 'のことばかり考えてしまう' : 'あのシーンが頭から離れない'}`,
+      `余韻があって眠れない\n\nなんか満足と物足りなさが同時にある\n\nわかる人いる？`,
+    ], 0);
+    return `${body}\n\n${reviewStr(item)}\n${siteUrl(item)}\n\n${buildTags(item)}`;
+  },
+  (item) => { // 13: もっと早く見ればよかった
+    const a = getActresses(item)[0] || '';
+    const body = rv([
+      `なんでもっと早く見なかったんだろ\n\n${a ? a + 'の良さを知らなかったのがもったいない' : 'このえろさをずっと知らなかったのがもったいない'}`,
+      `今更見たけど\n\nこれ全部知らなかったの損しすぎてた`,
+      `${a ? a + 'を' : 'これを'}今まで見てなかったの後悔してる\n\nもっと早く誰かに教えてほしかった`,
+    ], 0);
+    return `${body}\n\n${reviewStr(item)}\n${siteUrl(item)}\n\n${buildTags(item)}`;
+  },
+  (item) => { // 14: リアルタイム感想
+    const a = getActresses(item)[0] || '';
+    const acts = rv([
+      `${rv(['うわこれ','あ、これ','え、'], 0)}${rv(['やばい','えろい','無理'], 1)}\n\n思わず投稿した`,
+      `見てる途中で投稿してる\n\n止まれないけど誰かに言いたかった`,
+      `リアルタイムで見てるんだけど\n\nこれは我慢できなかった`,
+    ], 0);
+    return `${acts}\n\n${a || shortTitle(item.title, 20)}\n\n${reviewStr(item)}\n${siteUrl(item)}\n\n${buildTags(item)}`;
+  },
+  (item) => { // 15: データで証明
     const avg = parseFloat(item.review?.average || 0);
     const cnt = parseInt(item.review?.count || 0);
     if (!avg || !cnt) return null;
-    return `${avg}点\n${cnt.toLocaleString()}人評価\n\nこれが全部\n\n${siteUrl(item)}\n\n${buildTags(item)}`;
+    const body = rv([
+      `${cnt.toLocaleString()}人が正直に評価して${avg}点\n\nこれが全てを語ってる\n\n私が説明するより数字を見て`,
+      `嘘をつかない数字がこれ\n\n${cnt.toLocaleString()}人評価で${avg}点\n\nこれを見ないのはもったいない`,
+      `${avg}点\n${cnt.toLocaleString()}件のレビュー\n\nえろさは正直に数字に出る`,
+    ], 0);
+    return `${body}\n\n${siteUrl(item)}\n\n${buildTags(item, ['高評価'])}`;
   },
-  (item) => { // 43: 女優×ジャンルクロス
+  (item) => { // 16: 週末推薦
+    const a = getActresses(item)[0] || '';
+    const body = rv([
+      `時間のある週末に見てほしい\n\n途中で止めることたぶんできないから`,
+      `週末に全部見て\n\n${a ? a + 'の世界に浸る時間を作って' : 'えろさに浸る時間を作って'}`,
+      `今週末のために取っておいてた\n\nゆっくり楽しんでほしい`,
+    ], 0);
+    return `週末に見てほしいやつ\n\n${a || shortTitle(item.title, 20)}\n\n${body}\n\n${reviewStr(item)}\n${siteUrl(item)}\n\n${buildTags(item, ['週末'])}`;
+  },
+  (item) => { // 17: 表情・演技に注目
+    const a = getActresses(item)[0] || '';
+    const body = rv([
+      `${a ? a + 'の表情が' : '表情が'}えろすぎて目線が外せなかった\n\nこういう演技できる人って本当に特別`,
+      `顔の表情を追いながら見てたら\n\n止まれなくなった\n\n目が離せないえろさがある`,
+      `${a ? a + 'の' : 'この'}本番中の表情\n\n演技とリアルの境目がわからなくなってくる`,
+    ], 0);
+    return `${body}\n\n${reviewStr(item)}\n${siteUrl(item)}\n\n${buildTags(item)}`;
+  },
+  (item) => { // 18: レジェンド
     const a = getActresses(item)[0]; if (!a) return null;
-    const g = getGenres(item).filter(g => !['ハイビジョン','独占配信'].includes(g))[0];
-    if (!g) return null;
-    return `${a}×${g}\n\nこの組み合わせが${rv(['最高','たまらない','やばい','最強'], 0)}\n\n${reviewStr(item)}\n${siteUrl(item)}\n\n${buildTags(item)}`;
+    const body = rv([
+      `${a}のえろさは時代を超えてる\n\n何年経っても見るたびに新しい発見がある`,
+      `${a}を知らない人に教えたい\n\n今見ても全然古さを感じない\n\nそれがレジェンドってこと`,
+      `${a}の全盛期の作品\n\nこれを超えるものがまだ出てきてない`,
+    ], 0);
+    return `${body}\n\n${reviewStr(item)}\n${siteUrl(item)}\n\n${buildTags(item, ['レジェンド', '名作'])}`;
   },
-  (item) => { // 44: リアルタイム風
-    return `今これ見てる\n\n${shortTitle(item.title)}\n\n${rv(['えろすぎて震えてる','最高すぎて止まれない','やばすぎてツイートした'], 0)}\n\n${siteUrl(item)}\n\n${buildTags(item)}`;
+  (item) => { // 19: シナリオに弱い
+    const gs = getGenres(item).filter(g => !['ハイビジョン','BEST・総集編','独占配信'].includes(g));
+    const gStr = gs.slice(0, 2).join('×') || 'このシチュエーション';
+    const body = rv([
+      `${gStr}っていうシチュエーションに弱い\n\n妄想が止まらなくなる\n\nこういうの待ってた`,
+      `${gStr}の展開に心が持っていかれた\n\nシナリオが完璧すぎる`,
+      `こういう設定を考えた人天才\n\n${gStr}の組み合わせがこんなにえろいとは`,
+    ], 0);
+    return `${body}\n\n${reviewStr(item)}\n${siteUrl(item)}\n\n${buildTags(item)}`;
   },
-  (item) => { // 45: わかってる人向け
-    const g = getGenres(item).filter(g => !['ハイビジョン','独占配信','BEST・総集編'].includes(g))[0];
+  (item) => { // 20: 一言の衝撃
     const a = getActresses(item)[0] || '';
-    return `${g || 'このジャンル'}がわかってる人だけ見てほしい\n\n${a}\n\n${rv(['これのえろさが伝わってほしい','わかる人と語りたい'], 0)}\n\n${reviewStr(item)}\n${siteUrl(item)}\n\n${buildTags(item)}`;
+    const punch = rv(['えろすぎた','やばかった','頭おかしくなった','最高だった','無理だった'], 0);
+    const sub = rv(['それだけ','それに尽きる','語彙力が消えた','言葉にならない'], 1);
+    return `${a ? a + '\n\n' : ''}${punch}\n\n${sub}\n\n${reviewStr(item)}\n${siteUrl(item)}\n\n${buildTags(item)}`;
   },
-  (item) => { // 46: 余韻系
+  (item) => { // 21: 時系列リアル
     const a = getActresses(item)[0] || '';
-    return `${a ? a + 'を見た余韻が' : '余韻が'}${rv(['すごい','やばい','抜けない'], 0)}\n\n${rv(['しばらく頭から離れない','ずっとリピートしてる','何回でも見れる'], 1)}\n\n${reviewStr(item)}\n${siteUrl(item)}\n\n${buildTags(item)}`;
+    const start = rv(['最初の数分で', '冒頭から', '序盤から'], 0);
+    const mid = rv(['途中で一時停止して深呼吸した', '中盤で心拍数上がってた', '途中から止まれなくなってた'], 1);
+    const end = rv(['見終わったあとしばらく動けなかった', '最後まで見て後悔はなかった', '全部見て満足した'], 2);
+    return `${a ? a + 'を見た記録\n\n' : 'これを見た記録\n\n'}${start}引き込まれて\n${mid}\n${end}\n\n${reviewStr(item)}\n${siteUrl(item)}\n\n${buildTags(item)}`;
   },
-  (item) => { // 47: 質問→回答スタイル
-    const g = getGenres(item).filter(g => !['ハイビジョン','独占配信'].includes(g))[0] || 'AV';
+  (item) => { // 22: 発見・共有
     const a = getActresses(item)[0] || '';
-    return `${g}でえろい作品を探してる人へ\n\n答え：${a || shortTitle(item.title, 15)}\n\n${reviewStr(item)}\n${siteUrl(item)}\n\n${buildTags(item)}`;
+    const open = rv(['これ知ってる人いる？','これ見てる人いる？','みんな知ってた？'], 0);
+    const body = rv([
+      `知らなかったら今すぐ見て\n\nえろさの質が本物`,
+      `まだ見てないなら絶対に見て\n\n後悔しないやつ`,
+      `これを知らない人に教えたくて`,
+    ], 1);
+    return `${open}\n\n${a || shortTitle(item.title, 20)}\n\n${body}\n\n${reviewStr(item)}\n${siteUrl(item)}\n\n${buildTags(item)}`;
   },
-  (item) => { // 48: 告白スタイル
-    const a = getActresses(item)[0] || '';
-    return `${rv(['告白します','言います','認めます'], 0)}\n\n${a ? a + 'のことが' : 'これが'}${rv(['好きすぎる','えろすぎて無理','最高すぎる'], 1)}\n\n${reviewStr(item)}\n${siteUrl(item)}\n\n${buildTags(item)}`;
+  (item) => { // 23: 女優への問いかけ
+    const a = getActresses(item)[0]; if (!a) return null;
+    const q = rv([
+      `${a}ってなんでこんなにえろいんだろ\n\n答えは本編を見ればわかる`,
+      `${a}の魅力ってどこから来てるんだろ\n\n見てれば自然とわかってくる`,
+      `${a}のえろさの理由がわかった気がする\n\nこれ見てたらなんとなく`,
+    ], 0);
+    return `${q}\n\n${reviewStr(item)}\n${siteUrl(item)}\n\n${buildTags(item)}`;
   },
-  (item) => { // 49: シンプル共有
+  (item) => { // 24: ギャップ
     const a = getActresses(item)[0] || '';
-    return `FANZAで${rv(['神作品','えろい作品','おすすめの作品'], 0)}見つけた\n\n${a || shortTitle(item.title, 20)}\n\n${reviewStr(item)}\n${siteUrl(item)}\n\n${buildTags(item)}`;
+    const gs = getGenres(item).filter(g => ['素人','制服','人妻','OL','清楚'].includes(g));
+    const type = gs[0] || '普通に見えて';
+    const body = rv([
+      `${type}なのにこのえろさはずるい\n\nギャップって本当に最強の武器`,
+      `${type}でこんなになるの\n\nギャップにやられてる自分がいる`,
+      `普段の${type}な感じとのギャップが\n\nこんなにえろいとは思わなかった`,
+    ], 0);
+    return `${a ? a + 'の' : ''}ギャップにやられた\n\n${body}\n\n${reviewStr(item)}\n${siteUrl(item)}\n\n${buildTags(item)}`;
+  },
+  (item) => { // 25: 本音スタイル
+    const a = getActresses(item)[0] || '';
+    const body = rv([
+      `正直に言う\n\n${a ? a + 'の新しい作品' : 'これ'}がえろすぎて\n\n定期的に見返してしまう`,
+      `ぶっちゃけ\n\n${a || 'これ'}を知ってから\n\n他のもので満足できなくなった`,
+      `本音を言うと\n\nこれが${rv(['今一番好き','マジでやばい','ずっと見れる'], 1)}\n\n誰かに言いたかった`,
+    ], 0);
+    return `${body}\n\n${reviewStr(item)}\n${siteUrl(item)}\n\n${buildTags(item)}`;
+  },
+  (item) => { // 26: センスある選択
+    const a = getActresses(item)[0] || '';
+    const gs = getGenres(item).filter(g => !['ハイビジョン','独占配信','BEST・総集編'].includes(g));
+    const body = rv([
+      `えろさに目が肥えてきたら\n\nこういう作品が好きになってくる\n\nわかってる人向け`,
+      `なんとなく選んでるわけじゃない\n\nこれがえろさのわかってる人の選択`,
+      `${gs[0] ? gs[0] + 'の良さがわかる人は' : 'えろさを知ってる人は'}たぶん同じものを選ぶと思う`,
+    ], 0);
+    return `${a ? a + '\n\n' : ''}${body}\n\n${reviewStr(item)}\n${siteUrl(item)}\n\n${buildTags(item)}`;
+  },
+  (item) => { // 27: 声・音への言及
+    const a = getActresses(item)[0] || '';
+    const body = rv([
+      `${a ? a + 'の声が' : '声が'}えろすぎて\n\n目を閉じて聞いてるだけでやばかった`,
+      `この${a ? a + 'の' : ''}声と喘ぎ声\n\nイヤホンで聞いたら終わる`,
+      `${a ? a + 'の' : ''}声の質がえろい\n\n音だけ聞いてても全部伝わってくる`,
+    ], 0);
+    return `${body}\n\n${reviewStr(item)}\n${siteUrl(item)}\n\n${buildTags(item)}`;
+  },
+  (item) => { // 28: 連続視聴
+    const a = getActresses(item)[0] || '';
+    const body = rv([
+      `${a ? a + 'の作品' : 'これ'}を見始めたら止まれなくて\n\n気づいたら何時間も経ってた`,
+      `1本のつもりが\n\n${a ? a + 'の' : ''}作品を次々見てしまった\n\nこれは沼`,
+      `見るつもりなかったのに\n\n気づいたら${a ? a + 'の全作品を' : '全部'}チェックしてた`,
+    ], 0);
+    return `${body}\n\n${reviewStr(item)}\n${siteUrl(item)}\n\n${buildTags(item)}`;
+  },
+  (item) => { // 29: シンプル推薦
+    const a = getActresses(item)[0] || '';
+    const g = getGenres(item).filter(g => !['ハイビジョン','独占配信'].includes(g))[0] || '';
+    const body = rv([
+      `見て\n\nえろいから`,
+      `とにかく見て\n\n後悔しないから`,
+      `これだけは見てほしい`,
+    ], 0);
+    return `${g ? g + 'が好きな人へ\n\n' : ''}${a || shortTitle(item.title, 20)}\n\n${body}\n\n${reviewStr(item)}\n${siteUrl(item)}\n\n${buildTags(item)}`;
+  },
+  (item) => { // 30: 女優スペック語り
+    const a = getActresses(item)[0]; if (!a) return null;
+    const gs = getGenres(item).filter(g => ['巨乳','美乳','美少女','スレンダー','ギャル','痴女','人妻','熟女'].includes(g));
+    const trait = gs[0] || rv(['顔','体','色気','雰囲気'], 0);
+    return `${a}がえろい理由\n\n${trait}が${rv(['最高','やばい','たまらない','完璧'], 1)}だから\n\nそれに尽きる\n\n${reviewStr(item)}\n${siteUrl(item)}\n\n${buildTags(item)}`;
+  },
+  (item) => { // 31: コスパ語り
+    const cnt = parseInt(item.review?.count || 0);
+    const body = rv([
+      `${cnt > 0 ? cnt.toLocaleString() + '人が評価してるのに' : ''}サンプルが無料で見れるの\n\nまずサンプルだけでいいから見て`,
+      `えろさのコストパフォーマンスがおかしい\n\nこれで損する人いないと思う`,
+      `サンプル無料で本編もこの内容\n\nFANZAって${rv(['やばい','すごい','太っ腹'], 0)}な`,
+    ], 0);
+    return `${body}\n\n${reviewStr(item)}\n${siteUrl(item)}\n\n${buildTags(item, ['FANZA', 'おすすめ'])}`;
+  },
+  (item) => { // 32: 告白スタイル
+    const a = getActresses(item)[0] || '';
+    const body = rv([
+      `告白します\n\n${a ? a + 'のことが好きすぎる' : 'これが好きすぎる'}\n\n最近ずっと見てる`,
+      `認めます\n\n${a ? a + 'に' : 'これに'}完全にハマってる\n\nもう戻れない`,
+      `言います\n\n${a || 'この作品'}が${rv(['えろすぎて無理','好きすぎる','最高すぎる'], 1)}\n\n誰かに言いたかった`,
+    ], 0);
+    return `${body}\n\n${reviewStr(item)}\n${siteUrl(item)}\n\n${buildTags(item)}`;
+  },
+  (item) => { // 33: 比較・最強宣言
+    const g = getGenres(item).filter(g => !['ハイビジョン','独占配信','BEST・総集編'].includes(g))[0] || '';
+    const body = rv([
+      `色々見てきたけど\n\nこれを超えるやつまだ出会えてない`,
+      `いろいろ試したけど\n\nえろさのレベルが違う`,
+      `散々探し回ってたけど\n\nこれで全部解決した`,
+    ], 0);
+    return `${g ? g + 'ならこれ一択\n\n' : ''}${body}\n\n${reviewStr(item)}\n${siteUrl(item)}\n\n${buildTags(item)}`;
+  },
+  (item) => { // 34: 衝動共有
+    const a = getActresses(item)[0] || '';
+    return `${rv(['さっき','深夜に','今朝','週末に'], 0)}${a ? a + 'のやつ' : 'これ'}見てた\n\n${rv(['時間溶けた','寝れなかった','後悔はしてない','止まらなかった'], 1)}\n\n${reviewStr(item)}\n${siteUrl(item)}\n\n${buildTags(item)}`;
+  },
+  (item) => { // 35: 友達に教えるトーン
+    const a = getActresses(item)[0] || '';
+    const body = rv([
+      `えろいの探してる人がいたら教えてあげてほしい\n\nこれ見て`,
+      `友達に教えるみたいに言う\n\nこれ絶対見たほうがいい`,
+      `誰かに共有したくて\n\nこれが今一番おすすめ`,
+    ], 0);
+    return `${body}\n\n${a || shortTitle(item.title, 20)}\n\n${reviewStr(item)}\n${siteUrl(item)}\n\n${buildTags(item)}`;
+  },
+  (item) => { // 36: 熱く語る
+    const a = getActresses(item)[0] || '';
+    const gs = getGenres(item).filter(g => !['ハイビジョン','独占配信','BEST・総集編'].includes(g));
+    const body = rv([
+      `${gs[0] ? gs[0] + 'がここまでえろくなれるの' : 'これがここまでえろくなれるの'}知らなかった\n\n見てから世界が変わった`,
+      `なんでこんなにえろいのか語らせてほしい\n\n全部が${rv(['ちょうどいい','完璧','最高'], 1)}`,
+      `${a ? a + 'のえろさを' : 'このえろさを'}もっとわかってほしい\n\n一回見たらわかるから`,
+    ], 0);
+    return `${body}\n\n${reviewStr(item)}\n${siteUrl(item)}\n\n${buildTags(item)}`;
+  },
+  (item) => { // 37: 妄想スタート
+    const gs = getGenres(item).filter(g => !['ハイビジョン','独占配信','BEST・総集編'].includes(g));
+    const g = gs[0] || '';
+    const a = getActresses(item)[0] || '';
+    const body = rv([
+      `${g ? g + 'って' : 'こういうの'}妄想したことない？\n\nそれが全部入ってる作品がある`,
+      `頭の中で描いてた${g || 'シチュエーション'}が\n\nそのままになってた`,
+      `${a ? a + 'で' : ''}こういう展開を想像してたことがある\n\nまさにそれがあった`,
+    ], 0);
+    return `${body}\n\n${reviewStr(item)}\n${siteUrl(item)}\n\n${buildTags(item)}`;
+  },
+  (item) => { // 38: 語彙力消滅
+    const a = getActresses(item)[0] || '';
+    return `${a ? a + 'を見て' : 'これ見て'}語彙力なくなった\n\n${rv(['えろい','やばい','すごい'], 0)}\n\nそれしか言えない\n\n${reviewStr(item)}\n${siteUrl(item)}\n\n${buildTags(item)}`;
+  },
+  (item) => { // 39: 女優の魅力を一つだけ語る
+    const a = getActresses(item)[0]; if (!a) return null;
+    const point = rv([
+      `${a}の目線がえろい\n\nカメラを見る瞬間があるんだけど\n\nそこで心臓止まりそうになる`,
+      `${a}の笑い方がえろい\n\n笑顔があるシーンがたまらない`,
+      `${a}の動き方がえろい\n\n全部計算してるのか本能なのかわからない\n\nどちらにしてもやばい`,
+    ], 0);
+    return `${point}\n\n${reviewStr(item)}\n${siteUrl(item)}\n\n${buildTags(item)}`;
   },
 ];
 
@@ -428,15 +489,16 @@ function analyzeItem(item) {
   const isWeekend = dow === 0 || dow === 6;
 
   const priority = [];
-  if (isLate)                    priority.push(10);      // 深夜型
+  if (isLate)                    priority.push(10, 3);   // 深夜型・深夜告白
   if (isWeekend)                 priority.push(16);      // 週末推薦
   if (slot === 0)                priority.push(1);       // 朝はランキング
   if (isDebut && hasActress)     priority.push(5);       // デビュー
-  if (avg >= 4.7 && cnt >= 200)  priority.push(6);       // レビュー偉業
-  if (avg >= 4.5 && cnt >= 100)  priority.push(15);      // データ統計
-  if (hasBest)                   priority.push(8);       // 知る人ぞ知る
-  if (hasActress && avg >= 4.2)  priority.push(0, 4);    // 驚き・女優
-  if (genres.length >= 2)        priority.push(7, 12);   // ジャンル活用
+  if (avg >= 4.7 && cnt >= 200)  priority.push(6, 15);   // 高評価・データ
+  if (avg >= 4.5 && cnt >= 100)  priority.push(15);      // データで証明
+  if (hasBest)                   priority.push(8);       // 隠れた名作
+  if (hasActress && avg >= 4.2)  priority.push(0, 2);    // ジャンル反応・女優没入
+  if (hasActress)                priority.push(17, 27, 39); // 表情・声・魅力
+  if (genres.length >= 2)        priority.push(7, 11);   // ジャンル×女優・共感
   if (cnt >= 300)                priority.push(15, 6);   // 実績重視
 
   // 残りをシードでシャッフルして補完

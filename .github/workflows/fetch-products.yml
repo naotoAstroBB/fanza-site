@@ -87,9 +87,9 @@ jobs:
           }
 
           # ========== 動画 rank/新作/高評価 ==========
-          merge_fetch_n 30 data/rank.json   "$BASE_URL&floor=videoa&sort=rank"
-          merge_fetch_n 30 data/new.json    "$BASE_URL&floor=videoa&sort=date"
-          merge_fetch_n 30 data/review.json "$BASE_URL&floor=videoa&sort=review"
+          merge_fetch_n 50 data/rank.json   "$BASE_URL&floor=videoa&sort=rank"
+          merge_fetch_n 50 data/new.json    "$BASE_URL&floor=videoa&sort=date"
+          merge_fetch_n 50 data/review.json "$BASE_URL&floor=videoa&sort=review"
 
           # アニメ・マンガ・グッズ = 各10ページ・最大1000件 × 3ソート
           ANIME_BASE="$BASE_URL&floor=anime"
@@ -107,8 +107,7 @@ jobs:
           merge_fetch_n 10 data/goods_date.json   "${GOODS_BASE}&sort=date"
           merge_fetch_n 10 data/goods_review.json "${GOODS_BASE}&sort=review"
 
-          # ジャンル別 - rank/date=10ページ(1000件)、review=5ページ(500件)
-          # ※ページ数削減で全ステップを2時間以内に収める
+          # ジャンル別 - rank/date=15ページ(1500件)、review=8ページ(800件)
           for row in \
             "2001:genre_busty" \
             "1027:genre_bishoujo" \
@@ -160,12 +159,27 @@ jobs:
             "5063:genre_shukan" \
             "4114:genre_drama" \
             "4011:genre_ojiri_feti" \
-            "4133:genre_nurse"; do
+            "4133:genre_nurse" \
+            "1013:genre_lez" \
+            "5006:genre_anal" \
+            "4009:genre_roshutsu" \
+            "4008:genre_ryoujoku" \
+            "4021:genre_kousoku" \
+            "4010:genre_kankin" \
+            "5029:genre_ashikoki" \
+            "5059:genre_denma" \
+            "5025:genre_bukake"; do
             ID="${row%%:*}"; NAME="${row##*:}"
-            merge_fetch_n 10 "data/${NAME}.json"        "$BASE_URL&floor=videoa&sort=rank&article=genre&article_id=$ID"
-            merge_fetch_n 10 "data/${NAME}_date.json"   "$BASE_URL&floor=videoa&sort=date&article=genre&article_id=$ID"
-            merge_fetch_n 5  "data/${NAME}_review.json" "$BASE_URL&floor=videoa&sort=review&article=genre&article_id=$ID"
+            merge_fetch_n 15 "data/${NAME}.json"        "$BASE_URL&floor=videoa&sort=rank&article=genre&article_id=$ID"
+            merge_fetch_n 15 "data/${NAME}_date.json"   "$BASE_URL&floor=videoa&sort=date&article=genre&article_id=$ID"
+            merge_fetch_n 8  "data/${NAME}_review.json" "$BASE_URL&floor=videoa&sort=review&article=genre&article_id=$ID"
           done
+
+          # ========== VR動画 ==========
+          VR_BASE="$BASE_URL&floor=videovr"
+          merge_fetch_n 20 data/vr.json        "${VR_BASE}&sort=rank"
+          merge_fetch_n 20 data/vr_date.json   "${VR_BASE}&sort=date"
+          merge_fetch_n 10 data/vr_review.json "${VR_BASE}&sort=review"
 
           # ===== メーカー別（上位AVメーカー）rank/date=20ページ、review=10ページ =====
           for row in \

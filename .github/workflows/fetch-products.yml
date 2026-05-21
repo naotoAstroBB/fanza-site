@@ -266,41 +266,29 @@ jobs:
           build_actress_json "$MONTHLY_IDS" data/actress_monthly.json \
             || echo '{"result":{"status":404,"actress":[]}}' > data/actress_monthly.json
 
-          # ===== 全女優プロフィール（5000件対応・クラッシュ修正済み）=====
-          # 必ず先頭に入れるレジェンド女優ID（retired含む有名女優）
+          # ===== 全女優プロフィール（個別APIコール版：画像1200件以上確保）=====
+          # sweep は出力が不安定（18件しか取れない）なため廃止。
+          # 商品データの高頻度女優IDを抽出して個別 ActressSearch コールに切り替え。
           LEGEND_IDS="1012844 26225 23988 1001592 1004672 15365 1030262 24616 30317 1021359 1030550 1010958 1019549 1006677 1004990 22798 1011880 1013756 1018538 1024751 1015797 1020298"
 
           # 商品データ全体から女優ID収集（出現頻度降順）
           PRODUCT_IDS=$(jq -r '.result.items[]? | .iteminfo.actress[]?.id | tostring' \
-            data/rank.json data/new.json data/review.json data/genre_*.json 2>/dev/null \
-            | grep -v null | sort | uniq -c | sort -rn | awk '$1 >= 1 {print $2}')
+            data/rank.json data/new.json data/review.json \
+            data/maker_s1.json data/maker_moodyz.json data/maker_sod.json \
+            data/maker_madonna.json data/maker_ideapocket.json data/maker_faleno.json \
+            data/maker_kawaii.json data/maker_attackers.json data/maker_ebody.json \
+            data/maker_fitch.json data/maker_das.json data/maker_deeps.json \
+            data/genre_single.json data/genre_busty.json data/genre_bishoujo.json \
+            data/genre_amateur.json data/genre_wife.json data/genre_milf.json \
+            2>/dev/null \
+            | grep -v null | sort | uniq -c | sort -rn | awk '{print $2}')
 
-          # ===== 全女優プロフィール: sweepデータを直接保存（個別2000回APIコール廃止）=====
-          # sweep60ページ(最大6000人)のデータをそのままactress_profiles.jsonに保存
-          rm -f /tmp/sweep_*.json
-          for i in $(seq 1 60); do
-            OFFSET=$(( (i-1)*100 + 1 ))
-            curl -sf "${ACTRESS_API}&sort=popular&hits=100&offset=${OFFSET}" \
-              -o /tmp/sweep_${i}.json 2>/dev/null \
-              || echo '{"result":{"actress":[]}}' > /tmp/sweep_${i}.json
-          done
-
-          jq -s '
-            [.[].result.actress // []] | add | map(select(.id != null)) | unique_by(.id) |
-            {result:{status:200, actress:.}}
-          ' /tmp/sweep_*.json > data/actress_profiles.json
-
-          # LEGENDでsweepにいない女優だけ個別取得して追加
-          SWEEP_IDS=$(jq -r '.result.actress[].id | tostring' data/actress_profiles.json | sort)
-          MISSING_LEGENDS=$(comm -23 <(printf '%s\n' $LEGEND_IDS | sort) <(echo "$SWEEP_IDS"))
-          if [ -n "$MISSING_LEGENDS" ]; then
-            echo "LEGEND補完: $(echo "$MISSING_LEGENDS" | wc -w)人"
-            build_actress_json "$MISSING_LEGENDS" /tmp/legend_add.json
-            jq -s '[.[].result.actress // []] | add | map(select(.id != null)) | unique_by(.id) |
-              {result:{status:200, actress:.}}' \
-              data/actress_profiles.json /tmp/legend_add.json > /tmp/profiles_merged.json
-            mv /tmp/profiles_merged.json data/actress_profiles.json
-          fi
+          # LEGEND + 高頻度女優 上位1400件（重複除去）を個別APIコール
+          # 約0.15s × 1400 ≈ 3.5分。画像あり1200件以上を想定
+          PROFILE_IDS=$(printf '%s\n' $LEGEND_IDS $PRODUCT_IDS | \
+            awk '!seen[$0]++ && $0 != "" && $0 != "null"' | head -1400)
+          echo "対象女優数: $(echo "$PROFILE_IDS" | wc -w) 人"
+          build_actress_json "$PROFILE_IDS" data/actress_profiles.json
 
           jq -r '"actress_profiles: \(.result.actress|length)件 / 画像有: \([.result.actress[] | select(.imageURL.small != null)]|length)件"' \
             data/actress_profiles.json 2>/dev/null

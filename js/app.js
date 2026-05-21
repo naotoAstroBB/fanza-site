@@ -93,28 +93,25 @@ const App = {
                 ...(profiles.value?.result?.actress || []),
             ];
 
-            // 商品データ（rank/new）から女優名を補完抽出
-            const productFiles = [
-                'data/rank.json', 'data/new.json', 'data/review.json'
-            ];
-            const productResults = await Promise.allSettled(
-                productFiles.map(f => DMM._loadFile(f))
-            );
+            // 商品データ（rank/new/review）から女優名を補完抽出
+            // 各65MBのため逐次ロードしてピーク使用メモリを抑制
             const extraMap = new Map(); // id → {id, name, ruby, imageURL}
-            for (const r of productResults) {
-                if (r.status !== 'fulfilled') continue;
-                for (const item of (r.value?.result?.items || [])) {
-                    for (const a of (item.iteminfo?.actress || [])) {
-                        if (a.id && !extraMap.has(String(a.id))) {
-                            extraMap.set(String(a.id), {
-                                id:       String(a.id),
-                                name:     a.name || '',
-                                ruby:     a.ruby || '',
-                                imageURL: imageMap.get(String(a.id)) || {}
-                            });
+            for (const f of ['data/rank.json', 'data/new.json', 'data/review.json']) {
+                try {
+                    const d = await DMM._loadFile(f);
+                    for (const item of (d?.result?.items || [])) {
+                        for (const a of (item.iteminfo?.actress || [])) {
+                            if (a.id && !extraMap.has(String(a.id))) {
+                                extraMap.set(String(a.id), {
+                                    id:       String(a.id),
+                                    name:     a.name || '',
+                                    ruby:     a.ruby || '',
+                                    imageURL: imageMap.get(String(a.id)) || {}
+                                });
+                            }
                         }
                     }
-                }
+                } catch(e) {}
             }
 
             // 重複除去してマージ（API女優データ優先）
@@ -235,7 +232,7 @@ const App = {
             const onSale = allItems.filter(i => i.campaign && cidSet.has(i.content_id));
             if (onSale.length) {
                 this.showToast(`🔥 お気に入りの${onSale.length}件がセール中！`, 'sale', () => {
-                    document.getElementById('favoritesSection')?.scrollIntoView({ behavior: 'smooth' });
+                    this.toggleFavPanel();
                 });
             }
         } catch(e) {}
@@ -336,8 +333,6 @@ const App = {
         if (isOpen) {
             panel.style.display = 'none';
         } else {
-            const likePanel = document.getElementById('likePanel');
-            if (likePanel) likePanel.style.display = 'none';
             panel.style.display = '';
             const favs = Fav.get();
             this._updateFavBadge(favs.length);
@@ -372,6 +367,13 @@ const App = {
                 btn.classList.remove('active');
                 btn.textContent = '☆';
             }
+        });
+    },
+
+    removeLikeItem(cid) {
+        if (Like.has(cid)) Like.toggle(cid);
+        document.querySelectorAll('.like-btn').forEach(btn => {
+            if (btn.dataset.cid === cid) btn.classList.remove('active');
         });
     },
 
@@ -463,6 +465,16 @@ const App = {
         '6006':'新人','1034':'ギャル','4022':'外国人','4001':'SM',
         '4006':'ナンパ','2005':'貧乳','1018':'ロリ・女子校生','1016':'女教師',
         '4002':'近親相姦','1028':'黒人','4007':'企画','5002':'フェラ',
+        '1031':'痴女','1014':'熟女','2006':'スレンダー','48':'制服',
+        '102':'美乳','6002':'ハメ撮り','4106':'騎乗位','4111':'NTR',
+        '5016':'潮吹き','5022':'3P・4P','5019':'パイズリ','5023':'顔射',
+        '4005':'乱交','5004':'手コキ','1013':'レズ','5006':'アナル',
+        '4008':'陵辱','4021':'拘束','4010':'監禁','4009':'露出',
+        '5059':'電マ','5025':'ぶっかけ','5068':'イラマチオ','5057':'ローション',
+        '6968':'アクメ','2024':'お尻','4011':'お尻フェチ','1033':'お姉さん',
+        '1019':'女子大生','4030':'ハード系','4114':'ドラマ','4023':'ドキュメント',
+        '28':'羞恥','27':'恥じらい','4059':'キス・接吻','1069':'不倫',
+        '4025':'単体作品',
     },
 
     async fetchProducts() {
@@ -517,6 +529,36 @@ const App = {
 
             let items = result.items || [];
 
+            // ===== ジャンル絞り込み2次検証 =====
+            // FANZAジャンルファイルは概ねジャンル一致しているが、
+            // iteminfo.genre で実際のタグを照合してより厳密に絞り込む
+            if (this.genre) {
+                const gid = this.genre;
+                const verified = items.filter(item =>
+                    (item.iteminfo?.genre || []).some(g => String(g.id) === gid)
+                );
+                // 10件以上絞り込めた場合のみ適用（メタデータ欠落への保険）
+                if (verified.length >= 10) items = verified;
+
+                // ジャンルファイルのアイテムが少ない場合はrank/new/reviewからも補完
+                // 各65MBのため Promise.all ではなく逐次ロードしてピーク使用メモリを抑制
+                if (items.length < 200) {
+                    try {
+                        const seen = new Set(items.map(x => x.content_id));
+                        for (const f of ['data/rank.json', 'data/new.json', 'data/review.json']) {
+                            const d = await DMM._loadFile(f);
+                            for (const item of (d?.result?.items || [])) {
+                                if (!seen.has(item.content_id) &&
+                                    (item.iteminfo?.genre || []).some(g => String(g.id) === gid)) {
+                                    seen.add(item.content_id);
+                                    items = [...items, item];
+                                }
+                            }
+                        }
+                    } catch(e) { /* 補完失敗は無視 */ }
+                }
+            }
+
             // ジャンル選択中：サーバーソート済みファイルを優先
             // ファイル未生成の場合はdmm-api側でrankファイルにフォールバックしているため
             // クライアント側ソートで補完（移行期間のみ）
@@ -558,48 +600,35 @@ const App = {
     },
 
     // ===== キーワード全データ横断検索 =====
-    // sortFiles + floorSortFiles + genreFiles 全variant を並列ロードし
-    // title/actress/genre/series/maker/label のいずれかにヒットする商品を返す
     async _searchAllByKeyword(keyword) {
         const kw = keyword.toLowerCase();
-        // 検索対象ファイル全網羅（重複除去）
-        const floorSortVariants = [];
-        Object.values(DMM.floorSortFiles).forEach(map => {
-            Object.values(map).forEach(f => floorSortVariants.push(f));
-        });
-        const genreVariants = [];
-        Object.values(DMM.genreFiles).forEach(f => {
-            genreVariants.push(f);
-            genreVariants.push(f.replace('.json', '_date.json'));
-            genreVariants.push(f.replace('.json', '_review.json'));
-        });
-        const allFiles = [...new Set([
+        // rank/new/review（各65MB）+ makerファイル（各12MB×16本）を逐次ロード
+        // Promise.all 並列ではなくメモリピークを抑えるため1本ずつ処理
+        const searchFiles = [
             ...Object.values(DMM.sortFiles),
-            ...floorSortVariants,
-            ...genreVariants,
-        ])];
+            ...DMM.makerFiles,
+        ];
 
-        const results = await Promise.allSettled(
-            allFiles.map(f => DMM._loadFile(f).catch(() => null))
-        );
         const seen = new Set();
         const matches = [];
-        for (const r of results) {
-            if (r.status !== 'fulfilled' || !r.value) continue;
-            for (const item of (r.value?.result?.items || [])) {
-                if (seen.has(item.content_id)) continue;
-                const title     = (item.title || '');
-                const actresses = (item.iteminfo?.actress || []).map(a => a.name || '').join(' ');
-                const genres    = (item.iteminfo?.genre   || []).map(g => g.name || '').join(' ');
-                const series    = (item.iteminfo?.series  || []).map(s => s.name || '').join(' ');
-                const makers    = (item.iteminfo?.maker   || []).map(m => m.name || '').join(' ');
-                const labels    = (item.iteminfo?.label   || []).map(l => l.name || '').join(' ');
-                const haystack  = (title + ' ' + actresses + ' ' + genres + ' ' + series + ' ' + makers + ' ' + labels).toLowerCase();
-                if (haystack.includes(kw)) {
-                    seen.add(item.content_id);
-                    matches.push(item);
+        for (const f of searchFiles) {
+            try {
+                const d = await DMM._loadFile(f);
+                for (const item of (d?.result?.items || [])) {
+                    if (seen.has(item.content_id)) continue;
+                    const title     = (item.title || '');
+                    const actresses = (item.iteminfo?.actress || []).map(a => a.name || '').join(' ');
+                    const genres    = (item.iteminfo?.genre   || []).map(g => g.name || '').join(' ');
+                    const series    = (item.iteminfo?.series  || []).map(s => s.name || '').join(' ');
+                    const makers    = (item.iteminfo?.maker   || []).map(m => m.name || '').join(' ');
+                    const labels    = (item.iteminfo?.label   || []).map(l => l.name || '').join(' ');
+                    const haystack  = (title + ' ' + actresses + ' ' + genres + ' ' + series + ' ' + makers + ' ' + labels).toLowerCase();
+                    if (haystack.includes(kw)) {
+                        seen.add(item.content_id);
+                        matches.push(item);
+                    }
                 }
-            }
+            } catch(e) {}
         }
         return matches;
     },
@@ -618,19 +647,19 @@ const App = {
         if (!grid) return;
         grid.innerHTML = '<div class="loading"><div class="spinner"></div><p>セール商品を取得中...</p></div>';
 
-        // 全JSONから campaign 付きアイテムを収集
-        const files = [...Object.values(DMM.sortFiles), ...Object.values(DMM.genreFiles)];
-        const results = await Promise.allSettled(files.map(f => DMM._loadFile(f)));
+        // rank/new/review のみ検索（各65MBのため逐次ロードしてピーク使用メモリを抑制）
         const seen = new Set();
         const saleItems = [];
-        for (const r of results) {
-            if (r.status !== 'fulfilled') continue;
-            for (const item of (r.value?.result?.items || [])) {
-                if (item.campaign && !seen.has(item.content_id)) {
-                    seen.add(item.content_id);
-                    saleItems.push(item);
+        for (const f of Object.values(DMM.sortFiles)) {
+            try {
+                const d = await DMM._loadFile(f);
+                for (const item of (d?.result?.items || [])) {
+                    if (item.campaign && !seen.has(item.content_id)) {
+                        seen.add(item.content_id);
+                        saleItems.push(item);
+                    }
                 }
-            }
+            } catch(e) {}
         }
         this._saleItems   = saleItems;
         this._currentItems = saleItems;
@@ -778,7 +807,7 @@ const App = {
         const labelEl = btn.querySelector('.like-label');
         if (iconEl)  iconEl.textContent  = isNow ? '❤️' : '🤍';
         if (labelEl) labelEl.textContent = Like.count(cid) > 0 ? Like.count(cid) : 'いいね';
-        btn.animate([{ transform: 'scale(1.4)' }, { transform: 'scale(1)' }],
+        btn.animate([{ transform: 'scale(1.35)' }, { transform: 'scale(1)' }],
             { duration: 250, easing: 'ease-out' });
     },
 

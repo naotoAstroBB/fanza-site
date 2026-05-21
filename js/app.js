@@ -527,6 +527,39 @@ const App = {
 
             let items = result.items || [];
 
+            // ===== ジャンル絞り込み2次検証 =====
+            // FANZAジャンルファイルは概ねジャンル一致しているが、
+            // iteminfo.genre で実際のタグを照合してより厳密に絞り込む
+            if (this.genre) {
+                const gid = this.genre;
+                const verified = items.filter(item =>
+                    (item.iteminfo?.genre || []).some(g => String(g.id) === gid)
+                );
+                // 10件以上絞り込めた場合のみ適用（メタデータ欠落への保険）
+                if (verified.length >= 10) items = verified;
+
+                // ジャンルファイルのアイテムが少ない場合はrank/new/reviewからも補完
+                if (items.length < 200) {
+                    try {
+                        const [rankData, newData, revData] = await Promise.all([
+                            DMM._loadFile('data/rank.json'),
+                            DMM._loadFile('data/new.json'),
+                            DMM._loadFile('data/review.json'),
+                        ]);
+                        const extra = [
+                            ...(rankData?.result?.items || []),
+                            ...(newData?.result?.items  || []),
+                            ...(revData?.result?.items  || []),
+                        ].filter(item =>
+                            (item.iteminfo?.genre || []).some(g => String(g.id) === gid)
+                        );
+                        const seen = new Set(items.map(x => x.content_id));
+                        const merged = [...items, ...extra.filter(x => !seen.has(x.content_id))];
+                        if (merged.length > items.length) items = merged;
+                    } catch(e) { /* 補完失敗は無視 */ }
+                }
+            }
+
             // ジャンル選択中：サーバーソート済みファイルを優先
             // ファイル未生成の場合はdmm-api側でrankファイルにフォールバックしているため
             // クライアント側ソートで補完（移行期間のみ）

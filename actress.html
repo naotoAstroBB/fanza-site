@@ -473,23 +473,25 @@ async function loadWorks() {
         }
     } catch(e) {}
 
-    // ② 全JSONを横断検索して追加作品を補完
-    const allFiles = [
-        ...Object.values(DMM.sortFiles),
-        ...Object.values(DMM.floorFiles),
-        ...Object.values(DMM.genreFiles),
+    // ② キャッシュ済みデータ + rank/new/review のみで補完（genreFiles並列ロードは行わない）
+    const supplementFiles = [
+        'data/rank.json',
+        'data/new.json',
+        'data/review.json',
+        ...DMM.makerFiles,
     ];
-    const results = await Promise.allSettled(allFiles.map(f => DMM._loadFile(f).catch(() => null)));
-    for (const r of results) {
-        if (r.status !== 'fulfilled' || !r.value) continue;
-        for (const item of (r.value?.result?.items || [])) {
-            if (seen.has(item.content_id)) continue;
-            const ids = (item.iteminfo?.actress || []).map(a => String(a.id));
-            if (ids.includes(String(actressId))) {
-                seen.add(item.content_id);
-                works.push(item);
+    for (const f of supplementFiles) {
+        try {
+            const d = await DMM._loadFile(f);
+            for (const item of (d?.result?.items || [])) {
+                if (seen.has(item.content_id)) continue;
+                const ids = (item.iteminfo?.actress || []).map(a => String(a.id));
+                if (ids.includes(String(actressId))) {
+                    seen.add(item.content_id);
+                    works.push(item);
+                }
             }
-        }
+        } catch(e) {}
     }
 
     // 新着順にソート

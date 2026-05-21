@@ -61,7 +61,7 @@ const DMM = {
         '5023': 'data/genre_gansha.json',     // 顔射
         '4005': 'data/genre_ranko.json',      // 乱交
         '5004': 'data/genre_tekoki.json',     // 手コキ
-        '1019': 'data/genre_joshi.json',      // 女子大生
+        '1019': 'data/genre_joshi_daigaku.json', // 女子大生
         '6968': 'data/genre_acme.json',       // アクメ・潮吹き
         '5057': 'data/genre_lotion.json',     // ローション
         '28':   'data/genre_shuchi.json',     // 羞恥

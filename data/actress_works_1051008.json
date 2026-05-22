@@ -355,6 +355,10 @@
         "iteminfo": {
           "genre": [
             {
+              "id": 6609,
+              "name": "16時間以上作品"
+            },
+            {
               "id": 7267,
               "name": "セット商品"
             },
@@ -381,10 +385,6 @@
             {
               "id": 5002,
               "name": "フェラ"
-            },
-            {
-              "id": 6609,
-              "name": "16時間以上作品"
             }
           ],
           "series": [
@@ -44298,10 +44298,6 @@
             {
               "id": 5071,
               "name": "ハーレム"
-            },
-            {
-              "id": 6003,
-              "name": "ベスト・総集編"
             }
           ],
           "series": [
@@ -49116,10 +49112,6 @@
             {
               "id": 7267,
               "name": "セット商品"
-            },
-            {
-              "id": 6003,
-              "name": "ベスト・総集編"
             },
             {
               "id": 300129,
@@ -60679,33 +60671,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "150~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "download",
-                "price": "490",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "stream",
-                "price": "150",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "hd",
-                "price": "635",
+                "price": "1270",
                 "list_price": "1270"
               },
               {
                 "type": "iosdl",
-                "price": "490",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "androiddl",
-                "price": "490",
+                "price": "980",
                 "list_price": "980"
               }
             ]
@@ -60810,14 +60802,7 @@
               "name": "熟れコミ"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-05-20 10:00:00",
-            "date_end": "2026-05-22 09:59:59",
-            "title": "原作コラボ50％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -83088,7 +83073,14 @@
               "name": "みんなのキカタン"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-05-22 10:00:00",
+            "date_end": "2026-05-25 09:59:59",
+            "title": "キャバ・風俗50％OFF"
+          }
+        ]
       }
     ],
     "total_count": 299,

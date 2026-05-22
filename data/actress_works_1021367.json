@@ -5832,23 +5832,23 @@
           }
         },
         "prices": {
-          "price": "350~",
+          "price": "500~",
           "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "896",
+                "price": "1280",
                 "list_price": "1280"
               },
               {
                 "type": "download",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "rp",
-                "price": "350",
+                "price": "500",
                 "list_price": "500"
               }
             ]
@@ -6040,14 +6040,7 @@
               "name": "IP-VR"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-05-20 10:00:00",
-            "date_end": "2026-05-22 09:59:59",
-            "title": "VR独占メーカー30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -8375,28 +8368,28 @@
           }
         },
         "prices": {
-          "price": "500~",
+          "price": "350~",
           "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "8k",
-                "price": "1780",
+                "price": "1246",
                 "list_price": "1780"
               },
               {
                 "type": "hd",
-                "price": "1280",
+                "price": "896",
                 "list_price": "1280"
               },
               {
                 "type": "download",
-                "price": "980",
+                "price": "686",
                 "list_price": "980"
               },
               {
                 "type": "rp",
-                "price": "500",
+                "price": "350",
                 "list_price": "500"
               }
             ]
@@ -8527,7 +8520,14 @@
               "name": "IP-VR"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-05-22 10:00:00",
+            "date_end": "2026-05-25 09:59:59",
+            "title": "VR独占メーカー30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",

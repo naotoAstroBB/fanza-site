@@ -1665,8 +1665,12 @@ async function postThreads(text, imageUrl = null) {
   const token = (process.env.THREADS_TOKEN || '').trim();
   if (!token) { console.log('Threads: 認証情報なし、スキップ'); return; }
 
-  // トークンからユーザーIDを動的取得（THREADS_USER_ID不要）
-  const meRes = await getJson(`https://graph.threads.net/v1.0/me?fields=id&access_token=${token}`);
+  // Authorization: Bearer ヘッダーを使用（access_tokenをJSONボディに入れると OAuthException code:200 になる）
+  const authHeader = { 'Authorization': `Bearer ${token}` };
+
+  // Step 0: ユーザーID取得
+  const meRes = await getJson(`https://graph.threads.net/v1.0/me?fields=id`, authHeader)
+    .catch(e => { throw new Error(`Threads /me 失敗: ${e.message}`); });
   const userId = meRes.id;
   if (!userId) throw new Error(`Threads ユーザーID取得失敗: ${JSON.stringify(meRes)}`);
 
@@ -1676,7 +1680,7 @@ async function postThreads(text, imageUrl = null) {
   const threadsText = text.slice(0, 498);
 
   // Step 1: メディアコンテナ作成
-  const containerPayload = { text: threadsText, access_token: token };
+  const containerPayload = { text: threadsText };
   if (imageUrl) {
     containerPayload.media_type = 'IMAGE';
     containerPayload.image_url  = imageUrl;
@@ -1684,13 +1688,15 @@ async function postThreads(text, imageUrl = null) {
     containerPayload.media_type = 'TEXT';
   }
 
-  const containerRes = await request(`${base}/threads`, containerPayload);
+  const containerRes = await request(`${base}/threads`, containerPayload, authHeader)
+    .catch(e => { throw new Error(`Threads コンテナ作成失敗: ${e.message}`); });
   const creationId = containerRes.id;
-  if (!creationId) throw new Error(`Threads コンテナ作成失敗: ${JSON.stringify(containerRes)}`);
+  if (!creationId) throw new Error(`Threads コンテナIDなし: ${JSON.stringify(containerRes)}`);
 
-  // Step 2: 公開（作成後1秒待機推奨）
+  // Step 2: 公開（作成後1.5秒待機）
   await new Promise(r => setTimeout(r, 1500));
-  await request(`${base}/threads_publish`, { creation_id: creationId, access_token: token });
+  await request(`${base}/threads_publish`, { creation_id: creationId }, authHeader)
+    .catch(e => { throw new Error(`Threads 公開失敗: ${e.message}`); });
   console.log(`Threads: 投稿完了 ✅ (${imageUrl ? '画像付き' : 'テキストのみ'})`);
 }
 

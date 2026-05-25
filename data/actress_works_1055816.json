@@ -4008,29 +4008,34 @@
           }
         },
         "prices": {
-          "price": "1480~",
-          "list_price": "1480~",
+          "price": "700~",
+          "list_price": "700~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "1980",
-                "list_price": "1980"
+                "price": "1680",
+                "list_price": "1680"
               },
               {
                 "type": "download",
-                "price": "1480",
-                "list_price": "1480"
+                "price": "1280",
+                "list_price": "1280"
+              },
+              {
+                "type": "stream",
+                "price": "700",
+                "list_price": "700"
               },
               {
                 "type": "iosdl",
-                "price": "1480",
-                "list_price": "1480"
+                "price": "1280",
+                "list_price": "1280"
               },
               {
                 "type": "androiddl",
-                "price": "1480",
-                "list_price": "1480"
+                "price": "1280",
+                "list_price": "1280"
               }
             ]
           }
@@ -8026,116 +8031,6 @@
               "ruby": "みずのまどか"
             },
             {
-              "id": 1083630,
-              "name": "壬生恋白",
-              "ruby": "みぶこはく"
-            },
-            {
-              "id": 1086597,
-              "name": "さのさとり",
-              "ruby": "さのさとり"
-            },
-            {
-              "id": 1079048,
-              "name": "黒川珠美",
-              "ruby": "くろかわたまみ"
-            },
-            {
-              "id": 1060020,
-              "name": "乃南ゆい",
-              "ruby": "のなんゆい"
-            },
-            {
-              "id": 1071601,
-              "name": "佐々木咲和",
-              "ruby": "ささきさわ"
-            },
-            {
-              "id": 1087962,
-              "name": "立華静音",
-              "ruby": "たちばなしずね"
-            },
-            {
-              "id": 1072355,
-              "name": "天晴乃愛",
-              "ruby": "あまはるのあ"
-            },
-            {
-              "id": 1074076,
-              "name": "鈴音杏夏",
-              "ruby": "すずねきょうか"
-            },
-            {
-              "id": 1076694,
-              "name": "松嶺こはく",
-              "ruby": "まつねこはく"
-            },
-            {
-              "id": 1091937,
-              "name": "天宮奈月",
-              "ruby": "あまみやなつき"
-            },
-            {
-              "id": 1076600,
-              "name": "七尾あやは",
-              "ruby": "ななおあやは"
-            },
-            {
-              "id": 1092911,
-              "name": "朝倉七海",
-              "ruby": "あさくらななみ"
-            },
-            {
-              "id": 1077838,
-              "name": "渡森ちひろ",
-              "ruby": "ともりちひろ"
-            },
-            {
-              "id": 1075122,
-              "name": "七碧のあ",
-              "ruby": "ななみのあ"
-            },
-            {
-              "id": 1076500,
-              "name": "立花まりな",
-              "ruby": "たちばなまりな"
-            },
-            {
-              "id": 1068726,
-              "name": "工藤あかね",
-              "ruby": "くどうあかね"
-            },
-            {
-              "id": 1074538,
-              "name": "若林ゆりな",
-              "ruby": "わかばやしゆりな"
-            },
-            {
-              "id": 29685,
-              "name": "蓬莱かすみ",
-              "ruby": "ほうらいかすみ"
-            },
-            {
-              "id": 1076819,
-              "name": "小松愛依",
-              "ruby": "こまつめい"
-            },
-            {
-              "id": 1072284,
-              "name": "長澤里実",
-              "ruby": "ながさわさとみ"
-            },
-            {
-              "id": 1073499,
-              "name": "夏目みらい",
-              "ruby": "なつめみらい"
-            },
-            {
-              "id": 1059492,
-              "name": "竹内夏希",
-              "ruby": "たけうちなつき"
-            },
-            {
               "id": 1057921,
               "name": "兼咲みゆ（愛乃零、浅見せな）",
               "ruby": "かねさきみゆ（あいのれいあさみせな）"
@@ -8161,9 +8056,119 @@
               "ruby": "あきなゆあん"
             },
             {
+              "id": 1059492,
+              "name": "竹内夏希",
+              "ruby": "たけうちなつき"
+            },
+            {
+              "id": 1073499,
+              "name": "夏目みらい",
+              "ruby": "なつめみらい"
+            },
+            {
+              "id": 1072284,
+              "name": "長澤里実",
+              "ruby": "ながさわさとみ"
+            },
+            {
+              "id": 1076819,
+              "name": "小松愛依",
+              "ruby": "こまつめい"
+            },
+            {
+              "id": 29685,
+              "name": "蓬莱かすみ",
+              "ruby": "ほうらいかすみ"
+            },
+            {
+              "id": 1074538,
+              "name": "若林ゆりな",
+              "ruby": "わかばやしゆりな"
+            },
+            {
+              "id": 1068726,
+              "name": "工藤あかね",
+              "ruby": "くどうあかね"
+            },
+            {
+              "id": 1076500,
+              "name": "立花まりな",
+              "ruby": "たちばなまりな"
+            },
+            {
               "id": 1056045,
               "name": "令和れい",
               "ruby": "れいわれい"
+            },
+            {
+              "id": 1075122,
+              "name": "七碧のあ",
+              "ruby": "ななみのあ"
+            },
+            {
+              "id": 1076600,
+              "name": "七尾あやは",
+              "ruby": "ななおあやは"
+            },
+            {
+              "id": 1091937,
+              "name": "天宮奈月",
+              "ruby": "あまみやなつき"
+            },
+            {
+              "id": 1076694,
+              "name": "松嶺こはく",
+              "ruby": "まつねこはく"
+            },
+            {
+              "id": 1074076,
+              "name": "鈴音杏夏",
+              "ruby": "すずねきょうか"
+            },
+            {
+              "id": 1072355,
+              "name": "天晴乃愛",
+              "ruby": "あまはるのあ"
+            },
+            {
+              "id": 1087962,
+              "name": "立華静音",
+              "ruby": "たちばなしずね"
+            },
+            {
+              "id": 1071601,
+              "name": "佐々木咲和",
+              "ruby": "ささきさわ"
+            },
+            {
+              "id": 1060020,
+              "name": "乃南ゆい",
+              "ruby": "のなんゆい"
+            },
+            {
+              "id": 1079048,
+              "name": "黒川珠美",
+              "ruby": "くろかわたまみ"
+            },
+            {
+              "id": 1086597,
+              "name": "さのさとり",
+              "ruby": "さのさとり"
+            },
+            {
+              "id": 1083630,
+              "name": "壬生恋白",
+              "ruby": "みぶこはく"
+            },
+            {
+              "id": 1092911,
+              "name": "朝倉七海",
+              "ruby": "あさくらななみ"
+            },
+            {
+              "id": 1077838,
+              "name": "渡森ちひろ",
+              "ruby": "ともりちひろ"
             },
             {
               "id": 1073234,
@@ -8787,13 +8792,13 @@
             "delivery": [
               {
                 "type": "hd",
-                "price": "1950",
-                "list_price": "1950"
+                "price": "1450",
+                "list_price": "1450"
               },
               {
                 "type": "download",
-                "price": "1480",
-                "list_price": "1480"
+                "price": "980",
+                "list_price": "980"
               },
               {
                 "type": "stream",
@@ -8802,13 +8807,13 @@
               },
               {
                 "type": "iosdl",
-                "price": "1480",
-                "list_price": "1480"
+                "price": "980",
+                "list_price": "980"
               },
               {
                 "type": "androiddl",
-                "price": "1480",
-                "list_price": "1480"
+                "price": "980",
+                "list_price": "980"
               }
             ]
           }
@@ -23992,6 +23997,326 @@
         "floor_code": "videoa",
         "floor_name": "ビデオ",
         "category_name": "ビデオ (動画)",
+        "content_id": "tics00006",
+        "product_id": "tics00006",
+        "title": "LUNATICS 3周年記念プレミアム作品集10時間980円",
+        "volume": "601",
+        "review": {
+          "count": 17,
+          "average": "4.00"
+        },
+        "URL": "https://video.dmm.co.jp/av/content/?id=tics00006",
+        "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Dtics00006&af_id=saaaaaaya-990&ch=api",
+        "imageURL": {
+          "large": "https://pics.dmm.co.jp/digital/video/tics00006/tics00006pl.jpg",
+          "small": "https://pics.dmm.co.jp/digital/video/tics00006/tics00006ps.jpg",
+          "list": "https://pics.dmm.co.jp/digital/video/tics00006/tics00006pt.jpg"
+        },
+        "sampleImageURL": {
+          "sample_s": {
+            "image": [
+              "https://pics.dmm.co.jp/digital/video/tics00006/tics00006-1.jpg",
+              "https://pics.dmm.co.jp/digital/video/tics00006/tics00006-2.jpg",
+              "https://pics.dmm.co.jp/digital/video/tics00006/tics00006-3.jpg",
+              "https://pics.dmm.co.jp/digital/video/tics00006/tics00006-4.jpg",
+              "https://pics.dmm.co.jp/digital/video/tics00006/tics00006-5.jpg",
+              "https://pics.dmm.co.jp/digital/video/tics00006/tics00006-6.jpg",
+              "https://pics.dmm.co.jp/digital/video/tics00006/tics00006-7.jpg",
+              "https://pics.dmm.co.jp/digital/video/tics00006/tics00006-8.jpg",
+              "https://pics.dmm.co.jp/digital/video/tics00006/tics00006-9.jpg",
+              "https://pics.dmm.co.jp/digital/video/tics00006/tics00006-10.jpg"
+            ]
+          },
+          "sample_l": {
+            "image": [
+              "https://pics.dmm.co.jp/digital/video/tics00006/tics00006jp-1.jpg",
+              "https://pics.dmm.co.jp/digital/video/tics00006/tics00006jp-2.jpg",
+              "https://pics.dmm.co.jp/digital/video/tics00006/tics00006jp-3.jpg",
+              "https://pics.dmm.co.jp/digital/video/tics00006/tics00006jp-4.jpg",
+              "https://pics.dmm.co.jp/digital/video/tics00006/tics00006jp-5.jpg",
+              "https://pics.dmm.co.jp/digital/video/tics00006/tics00006jp-6.jpg",
+              "https://pics.dmm.co.jp/digital/video/tics00006/tics00006jp-7.jpg",
+              "https://pics.dmm.co.jp/digital/video/tics00006/tics00006jp-8.jpg",
+              "https://pics.dmm.co.jp/digital/video/tics00006/tics00006jp-9.jpg",
+              "https://pics.dmm.co.jp/digital/video/tics00006/tics00006jp-10.jpg"
+            ]
+          }
+        },
+        "sampleMovieURL": {
+          "size_476_306": "https://www.dmm.co.jp/litevideo/-/part/=/cid=tics00006/size=476_306/affi_id=saaaaaaya-990/",
+          "size_560_360": "https://www.dmm.co.jp/litevideo/-/part/=/cid=tics00006/size=560_360/affi_id=saaaaaaya-990/",
+          "size_644_414": "https://www.dmm.co.jp/litevideo/-/part/=/cid=tics00006/size=644_414/affi_id=saaaaaaya-990/",
+          "size_720_480": "https://www.dmm.co.jp/litevideo/-/part/=/cid=tics00006/size=720_480/affi_id=saaaaaaya-990/",
+          "pc_flag": 1,
+          "sp_flag": 1
+        },
+        "prices": {
+          "price": "210~",
+          "list_price": "300~",
+          "deliveries": {
+            "delivery": [
+              {
+                "type": "hd",
+                "price": "546",
+                "list_price": "780"
+              },
+              {
+                "type": "download",
+                "price": "336",
+                "list_price": "480"
+              },
+              {
+                "type": "stream",
+                "price": "210",
+                "list_price": "300"
+              },
+              {
+                "type": "iosdl",
+                "price": "336",
+                "list_price": "480"
+              },
+              {
+                "type": "androiddl",
+                "price": "336",
+                "list_price": "480"
+              }
+            ]
+          }
+        },
+        "date": "2024-03-15 10:00:00",
+        "iteminfo": {
+          "genre": [
+            {
+              "id": 6533,
+              "name": "ハイビジョン"
+            },
+            {
+              "id": 6012,
+              "name": "4時間以上作品"
+            },
+            {
+              "id": 4011,
+              "name": "尻フェチ"
+            },
+            {
+              "id": 5001,
+              "name": "中出し"
+            },
+            {
+              "id": 1039,
+              "name": "人妻・主婦"
+            },
+            {
+              "id": 2001,
+              "name": "巨乳"
+            },
+            {
+              "id": 2024,
+              "name": "巨尻"
+            }
+          ],
+          "series": [
+            {
+              "id": 4137944,
+              "name": "LUNATICS●周年記念プレミアム作品集"
+            }
+          ],
+          "maker": [
+            {
+              "id": 6759,
+              "name": "ルナティックス"
+            }
+          ],
+          "actress": [
+            {
+              "id": 1069702,
+              "name": "天馬ゆい",
+              "ruby": "てんまゆい"
+            },
+            {
+              "id": 1036352,
+              "name": "新村あかり",
+              "ruby": "にいむらあかり"
+            },
+            {
+              "id": 1008887,
+              "name": "AIKA",
+              "ruby": "あいか"
+            },
+            {
+              "id": 1047611,
+              "name": "黒川すみれ",
+              "ruby": "くろかわすみれ"
+            },
+            {
+              "id": 1054168,
+              "name": "弥生みづき",
+              "ruby": "やよいみづき"
+            },
+            {
+              "id": 1005334,
+              "name": "神ユキ",
+              "ruby": "じんゆき"
+            },
+            {
+              "id": 1057670,
+              "name": "永野つかさ",
+              "ruby": "ながのつかさ"
+            },
+            {
+              "id": 1069384,
+              "name": "工藤ララ",
+              "ruby": "くどうらら"
+            },
+            {
+              "id": 1056460,
+              "name": "辻井ほのか",
+              "ruby": "つじいほのか"
+            },
+            {
+              "id": 1051394,
+              "name": "山瀬美紀",
+              "ruby": "やませみき"
+            },
+            {
+              "id": 1035931,
+              "name": "玉木くるみ",
+              "ruby": "たまきくるみ"
+            },
+            {
+              "id": 1065404,
+              "name": "蘭華",
+              "ruby": "らんか"
+            },
+            {
+              "id": 1052930,
+              "name": "吉根ゆりあ",
+              "ruby": "よしねゆりあ"
+            },
+            {
+              "id": 1065724,
+              "name": "乙アリス",
+              "ruby": "おつありす"
+            },
+            {
+              "id": 1072360,
+              "name": "倉本すみれ",
+              "ruby": "くらもとすみれ"
+            },
+            {
+              "id": 1044099,
+              "name": "美園和花",
+              "ruby": "みそのわか"
+            },
+            {
+              "id": 1071712,
+              "name": "皇ゆず",
+              "ruby": "すめらぎゆず"
+            },
+            {
+              "id": 1102910,
+              "name": "日泉舞華（日泉舞香）",
+              "ruby": "ひいずみまいか"
+            },
+            {
+              "id": 1070448,
+              "name": "百永さりな",
+              "ruby": "ももながさりな"
+            },
+            {
+              "id": 1060141,
+              "name": "木下ひまり（花沢ひまり）",
+              "ruby": "きのしたひまり（はなざわひまり）"
+            },
+            {
+              "id": 1071048,
+              "name": "水原みその",
+              "ruby": "みずはらみその"
+            },
+            {
+              "id": 1065327,
+              "name": "有岡みう",
+              "ruby": "ありおかみう"
+            },
+            {
+              "id": 1069952,
+              "name": "新井リマ",
+              "ruby": "あらいりま"
+            },
+            {
+              "id": 1060480,
+              "name": "田中ねね",
+              "ruby": "たなかねね"
+            },
+            {
+              "id": 1063058,
+              "name": "三岳ゆうな",
+              "ruby": "みたけゆうな"
+            },
+            {
+              "id": 1068670,
+              "name": "花狩まい",
+              "ruby": "かがりまい"
+            },
+            {
+              "id": 1020973,
+              "name": "推川ゆうり",
+              "ruby": "おしかわゆうり"
+            },
+            {
+              "id": 1068193,
+              "name": "辻さくら",
+              "ruby": "つじさくら"
+            },
+            {
+              "id": 1049908,
+              "name": "渚みつき",
+              "ruby": "なぎさみつき"
+            },
+            {
+              "id": 1061586,
+              "name": "森日向子",
+              "ruby": "もりひなこ"
+            },
+            {
+              "id": 1070842,
+              "name": "結城りの",
+              "ruby": "ゆうきりの"
+            },
+            {
+              "id": 1055816,
+              "name": "もなみ鈴",
+              "ruby": "もなみすず"
+            }
+          ],
+          "director": [
+            {
+              "id": 102350,
+              "name": "ルミナックス",
+              "ruby": "るみなっくす"
+            }
+          ],
+          "label": [
+            {
+              "id": 9249,
+              "name": "LUNATICS"
+            }
+          ]
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-05-20 00:10:00",
+            "date_end": "2026-05-26 23:59:59",
+            "title": "ルナティックス他30％OFF"
+          }
+        ]
+      },
+      {
+        "service_code": "digital",
+        "service_name": "動画",
+        "floor_code": "videoa",
+        "floor_name": "ビデオ",
+        "category_name": "ビデオ (動画)",
         "content_id": "vrkm01282",
         "product_id": "vrkm01282",
         "title": "【VR】最上級騎乗位15タイトル 天井特化アングルVR1400分OVERノーカットSUPER BEST Vol.2",
@@ -34848,7 +35173,7 @@
         }
       }
     ],
-    "total_count": 145,
-    "result_count": 145
+    "total_count": 146,
+    "result_count": 146
   }
 }

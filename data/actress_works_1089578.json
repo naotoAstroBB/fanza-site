@@ -13081,33 +13081,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "300~",
+          "price": "210~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "1180",
+                "price": "826",
                 "list_price": "1180"
               },
               {
                 "type": "download",
-                "price": "790",
+                "price": "553",
                 "list_price": "790"
               },
               {
                 "type": "stream",
-                "price": "300",
+                "price": "210",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "790",
+                "price": "553",
                 "list_price": "790"
               },
               {
                 "type": "androiddl",
-                "price": "790",
+                "price": "553",
                 "list_price": "790"
               }
             ]
@@ -13175,7 +13175,14 @@
               "name": "ティッシュ"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-05-26 00:00:00",
+            "date_end": "2026-05-26 23:59:59",
+            "title": "日替わりセール☆"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -13448,133 +13455,6 @@
           }
         },
         "date": "2025-02-05 18:00:00",
-        "iteminfo": {
-          "genre": [
-            {
-              "id": 6533,
-              "name": "ハイビジョン"
-            },
-            {
-              "id": 6548,
-              "name": "独占配信"
-            },
-            {
-              "id": 4023,
-              "name": "ドキュメンタリー"
-            }
-          ],
-          "series": [
-            {
-              "id": 4472656,
-              "name": "東京スキャンダルクラブ"
-            }
-          ],
-          "maker": [
-            {
-              "id": 310780,
-              "name": "東京スキャンダルクラブ"
-            }
-          ],
-          "actress": [
-            {
-              "id": 1042907,
-              "name": "伊藤舞雪",
-              "ruby": "いとうまゆき"
-            },
-            {
-              "id": 1089578,
-              "name": "長浜みつり",
-              "ruby": "ながはまみつり"
-            },
-            {
-              "id": 1057477,
-              "name": "八木奈々",
-              "ruby": "やぎなな"
-            }
-          ],
-          "label": [
-            {
-              "id": 99999,
-              "name": "----"
-            }
-          ]
-        }
-      },
-      {
-        "service_code": "digital",
-        "service_name": "動画",
-        "floor_code": "videoa",
-        "floor_name": "ビデオ",
-        "category_name": "ビデオ (動画)",
-        "content_id": "tsc00042",
-        "product_id": "tsc00042",
-        "title": "＃42 嘘のような壮絶エロ人生を送るアノ方が降臨するらしい…！？【東京スキャンダルクラブ】",
-        "volume": "36",
-        "review": {
-          "count": 11,
-          "average": "3.45"
-        },
-        "URL": "https://video.dmm.co.jp/av/content/?id=tsc00042",
-        "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Dtsc00042&af_id=saaaaaaya-990&ch=api",
-        "imageURL": {
-          "large": "https://pics.dmm.co.jp/digital/video/tsc00042/tsc00042pl.jpg",
-          "small": "https://pics.dmm.co.jp/digital/video/tsc00042/tsc00042ps.jpg",
-          "list": "https://pics.dmm.co.jp/digital/video/tsc00042/tsc00042pt.jpg"
-        },
-        "sampleImageURL": {
-          "sample_s": {
-            "image": [
-              "https://pics.dmm.co.jp/digital/video/tsc00042/tsc00042-1.jpg",
-              "https://pics.dmm.co.jp/digital/video/tsc00042/tsc00042-2.jpg",
-              "https://pics.dmm.co.jp/digital/video/tsc00042/tsc00042-3.jpg",
-              "https://pics.dmm.co.jp/digital/video/tsc00042/tsc00042-4.jpg",
-              "https://pics.dmm.co.jp/digital/video/tsc00042/tsc00042-5.jpg"
-            ]
-          },
-          "sample_l": {
-            "image": [
-              "https://pics.dmm.co.jp/digital/video/tsc00042/tsc00042jp-1.jpg",
-              "https://pics.dmm.co.jp/digital/video/tsc00042/tsc00042jp-2.jpg",
-              "https://pics.dmm.co.jp/digital/video/tsc00042/tsc00042jp-3.jpg",
-              "https://pics.dmm.co.jp/digital/video/tsc00042/tsc00042jp-4.jpg",
-              "https://pics.dmm.co.jp/digital/video/tsc00042/tsc00042jp-5.jpg"
-            ]
-          }
-        },
-        "prices": {
-          "price": "250~",
-          "list_price": "250~",
-          "deliveries": {
-            "delivery": [
-              {
-                "type": "hd",
-                "price": "500",
-                "list_price": "500"
-              },
-              {
-                "type": "download",
-                "price": "400",
-                "list_price": "400"
-              },
-              {
-                "type": "stream",
-                "price": "250",
-                "list_price": "250"
-              },
-              {
-                "type": "iosdl",
-                "price": "400",
-                "list_price": "400"
-              },
-              {
-                "type": "androiddl",
-                "price": "400",
-                "list_price": "400"
-              }
-            ]
-          }
-        },
-        "date": "2025-01-29 18:00:00",
         "iteminfo": {
           "genre": [
             {
@@ -14891,6 +14771,164 @@
               "id": 110599,
               "name": "U吉",
               "ruby": "ゆーきち"
+            }
+          ],
+          "label": [
+            {
+              "id": 1561,
+              "name": "ティッシュ"
+            }
+          ]
+        }
+      },
+      {
+        "service_code": "digital",
+        "service_name": "動画",
+        "floor_code": "videoa",
+        "floor_name": "ビデオ",
+        "category_name": "ビデオ (動画)",
+        "content_id": "ipzz00221",
+        "product_id": "ipzz00221",
+        "title": "アクメが覚醒する初体験4本番 長浜みつり",
+        "volume": "174",
+        "review": {
+          "count": 93,
+          "average": "4.40"
+        },
+        "URL": "https://video.dmm.co.jp/av/content/?id=ipzz00221",
+        "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Dipzz00221&af_id=saaaaaaya-990&ch=api",
+        "imageURL": {
+          "large": "https://pics.dmm.co.jp/digital/video/ipzz00221/ipzz00221pl.jpg",
+          "small": "https://pics.dmm.co.jp/digital/video/ipzz00221/ipzz00221ps.jpg",
+          "list": "https://pics.dmm.co.jp/digital/video/ipzz00221/ipzz00221pt.jpg"
+        },
+        "sampleImageURL": {
+          "sample_s": {
+            "image": [
+              "https://pics.dmm.co.jp/digital/video/ipzz00221/ipzz00221-1.jpg",
+              "https://pics.dmm.co.jp/digital/video/ipzz00221/ipzz00221-2.jpg",
+              "https://pics.dmm.co.jp/digital/video/ipzz00221/ipzz00221-3.jpg",
+              "https://pics.dmm.co.jp/digital/video/ipzz00221/ipzz00221-4.jpg",
+              "https://pics.dmm.co.jp/digital/video/ipzz00221/ipzz00221-5.jpg",
+              "https://pics.dmm.co.jp/digital/video/ipzz00221/ipzz00221-6.jpg",
+              "https://pics.dmm.co.jp/digital/video/ipzz00221/ipzz00221-7.jpg",
+              "https://pics.dmm.co.jp/digital/video/ipzz00221/ipzz00221-8.jpg",
+              "https://pics.dmm.co.jp/digital/video/ipzz00221/ipzz00221-9.jpg",
+              "https://pics.dmm.co.jp/digital/video/ipzz00221/ipzz00221-10.jpg",
+              "https://pics.dmm.co.jp/digital/video/ipzz00221/ipzz00221-11.jpg",
+              "https://pics.dmm.co.jp/digital/video/ipzz00221/ipzz00221-12.jpg"
+            ]
+          },
+          "sample_l": {
+            "image": [
+              "https://pics.dmm.co.jp/digital/video/ipzz00221/ipzz00221jp-1.jpg",
+              "https://pics.dmm.co.jp/digital/video/ipzz00221/ipzz00221jp-2.jpg",
+              "https://pics.dmm.co.jp/digital/video/ipzz00221/ipzz00221jp-3.jpg",
+              "https://pics.dmm.co.jp/digital/video/ipzz00221/ipzz00221jp-4.jpg",
+              "https://pics.dmm.co.jp/digital/video/ipzz00221/ipzz00221jp-5.jpg",
+              "https://pics.dmm.co.jp/digital/video/ipzz00221/ipzz00221jp-6.jpg",
+              "https://pics.dmm.co.jp/digital/video/ipzz00221/ipzz00221jp-7.jpg",
+              "https://pics.dmm.co.jp/digital/video/ipzz00221/ipzz00221jp-8.jpg",
+              "https://pics.dmm.co.jp/digital/video/ipzz00221/ipzz00221jp-9.jpg",
+              "https://pics.dmm.co.jp/digital/video/ipzz00221/ipzz00221jp-10.jpg",
+              "https://pics.dmm.co.jp/digital/video/ipzz00221/ipzz00221jp-11.jpg",
+              "https://pics.dmm.co.jp/digital/video/ipzz00221/ipzz00221jp-12.jpg"
+            ]
+          }
+        },
+        "sampleMovieURL": {
+          "size_476_306": "https://www.dmm.co.jp/litevideo/-/part/=/cid=ipzz00221/size=476_306/affi_id=saaaaaaya-990/",
+          "size_560_360": "https://www.dmm.co.jp/litevideo/-/part/=/cid=ipzz00221/size=560_360/affi_id=saaaaaaya-990/",
+          "size_644_414": "https://www.dmm.co.jp/litevideo/-/part/=/cid=ipzz00221/size=644_414/affi_id=saaaaaaya-990/",
+          "size_720_480": "https://www.dmm.co.jp/litevideo/-/part/=/cid=ipzz00221/size=720_480/affi_id=saaaaaaya-990/",
+          "pc_flag": 1,
+          "sp_flag": 1
+        },
+        "prices": {
+          "price": "300~",
+          "list_price": "300~",
+          "deliveries": {
+            "delivery": [
+              {
+                "type": "4k",
+                "price": "1880",
+                "list_price": "1880"
+              },
+              {
+                "type": "hd",
+                "price": "1180",
+                "list_price": "1180"
+              },
+              {
+                "type": "download",
+                "price": "790",
+                "list_price": "790"
+              },
+              {
+                "type": "stream",
+                "price": "300",
+                "list_price": "300"
+              },
+              {
+                "type": "iosdl",
+                "price": "790",
+                "list_price": "790"
+              },
+              {
+                "type": "androiddl",
+                "price": "790",
+                "list_price": "790"
+              }
+            ]
+          }
+        },
+        "date": "2024-02-09 10:00:58",
+        "iteminfo": {
+          "genre": [
+            {
+              "id": 6533,
+              "name": "ハイビジョン"
+            },
+            {
+              "id": 79015,
+              "name": "4K"
+            },
+            {
+              "id": 6548,
+              "name": "独占配信"
+            },
+            {
+              "id": 5019,
+              "name": "パイズリ"
+            },
+            {
+              "id": 2001,
+              "name": "巨乳"
+            },
+            {
+              "id": 4025,
+              "name": "単体作品"
+            },
+            {
+              "id": 5063,
+              "name": "主観"
+            },
+            {
+              "id": 1031,
+              "name": "痴女"
+            }
+          ],
+          "maker": [
+            {
+              "id": 1219,
+              "name": "アイデアポケット"
+            }
+          ],
+          "actress": [
+            {
+              "id": 1089578,
+              "name": "長浜みつり",
+              "ruby": "ながはまみつり"
             }
           ],
           "label": [

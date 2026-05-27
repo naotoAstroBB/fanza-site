@@ -2161,28 +2161,28 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "1980~",
+          "price": "1386~",
           "list_price": "1980~",
           "deliveries": {
             "delivery": [
               {
                 "type": "download",
-                "price": "1980",
+                "price": "1386",
                 "list_price": "1980"
               },
               {
                 "type": "hd",
-                "price": "2450",
+                "price": "1715",
                 "list_price": "2450"
               },
               {
                 "type": "iosdl",
-                "price": "1980",
+                "price": "1386",
                 "list_price": "1980"
               },
               {
                 "type": "androiddl",
-                "price": "1980",
+                "price": "1386",
                 "list_price": "1980"
               }
             ]
@@ -2485,7 +2485,14 @@
               "name": "UMANAMI"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-05-27 00:10:00",
+            "date_end": "2026-06-02 23:59:59",
+            "title": "ケイ・エム・プロデュース他30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -4616,33 +4623,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "500~",
+          "price": "350~",
           "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "1950",
+                "price": "1365",
                 "list_price": "1950"
               },
               {
                 "type": "download",
-                "price": "1480",
+                "price": "1036",
                 "list_price": "1480"
               },
               {
                 "type": "stream",
-                "price": "500",
+                "price": "350",
                 "list_price": "500"
               },
               {
                 "type": "iosdl",
-                "price": "1480",
+                "price": "1036",
                 "list_price": "1480"
               },
               {
                 "type": "androiddl",
-                "price": "1480",
+                "price": "1036",
                 "list_price": "1480"
               }
             ]
@@ -4941,7 +4948,14 @@
               "name": "UMANAMI"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-05-27 00:10:00",
+            "date_end": "2026-06-02 23:59:59",
+            "title": "ケイ・エム・プロデュース他30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -6487,56 +6501,6 @@
               "ruby": "ももせゆり"
             },
             {
-              "id": 1015386,
-              "name": "尾上若葉",
-              "ruby": "おのうえわかば"
-            },
-            {
-              "id": 1054439,
-              "name": "妃ひかり",
-              "ruby": "きさきひかり"
-            },
-            {
-              "id": 1001722,
-              "name": "碧しの（篠めぐみ）",
-              "ruby": "あおいしの（しのめぐみ）"
-            },
-            {
-              "id": 1030312,
-              "name": "加藤あやの",
-              "ruby": "かとうあやの"
-            },
-            {
-              "id": 23558,
-              "name": "紺野ひかる",
-              "ruby": "こんのひかる"
-            },
-            {
-              "id": 1068870,
-              "name": "愛月セリア",
-              "ruby": "まなつきせりあ"
-            },
-            {
-              "id": 1052739,
-              "name": "望月あやか",
-              "ruby": "もちづきあやか"
-            },
-            {
-              "id": 1073513,
-              "name": "紫月ゆかり",
-              "ruby": "しづきゆかり"
-            },
-            {
-              "id": 1051877,
-              "name": "逢見リカ",
-              "ruby": "あいみりか"
-            },
-            {
-              "id": 1026902,
-              "name": "武藤あやか",
-              "ruby": "むとうあやか"
-            },
-            {
               "id": 1033869,
               "name": "紗々原ゆり",
               "ruby": "ささはらゆり"
@@ -6560,6 +6524,56 @@
               "id": 1043944,
               "name": "沖田里緒",
               "ruby": "おきたりお"
+            },
+            {
+              "id": 1026902,
+              "name": "武藤あやか",
+              "ruby": "むとうあやか"
+            },
+            {
+              "id": 1051877,
+              "name": "逢見リカ",
+              "ruby": "あいみりか"
+            },
+            {
+              "id": 1068870,
+              "name": "愛月セリア",
+              "ruby": "まなつきせりあ"
+            },
+            {
+              "id": 23558,
+              "name": "紺野ひかる",
+              "ruby": "こんのひかる"
+            },
+            {
+              "id": 1030312,
+              "name": "加藤あやの",
+              "ruby": "かとうあやの"
+            },
+            {
+              "id": 1001722,
+              "name": "碧しの（篠めぐみ）",
+              "ruby": "あおいしの（しのめぐみ）"
+            },
+            {
+              "id": 1054439,
+              "name": "妃ひかり",
+              "ruby": "きさきひかり"
+            },
+            {
+              "id": 1015386,
+              "name": "尾上若葉",
+              "ruby": "おのうえわかば"
+            },
+            {
+              "id": 1052739,
+              "name": "望月あやか",
+              "ruby": "もちづきあやか"
+            },
+            {
+              "id": 1073513,
+              "name": "紫月ゆかり",
+              "ruby": "しづきゆかり"
             },
             {
               "id": 1039995,
@@ -10421,33 +10435,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "350~",
+          "price": "500~",
           "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "1036",
+                "price": "1480",
                 "list_price": "1480"
               },
               {
                 "type": "download",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "stream",
-                "price": "350",
+                "price": "500",
                 "list_price": "500"
               },
               {
                 "type": "iosdl",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "androiddl",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               }
             ]
@@ -10710,14 +10724,7 @@
               "name": "BoinBB/ABC"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-05-20 00:10:00",
-            "date_end": "2026-05-26 23:59:59",
-            "title": "妄想族30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -11799,33 +11806,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "500~",
+          "price": "350~",
           "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "1450",
+                "price": "1015",
                 "list_price": "1450"
               },
               {
                 "type": "download",
-                "price": "980",
+                "price": "686",
                 "list_price": "980"
               },
               {
                 "type": "stream",
-                "price": "500",
+                "price": "350",
                 "list_price": "500"
               },
               {
                 "type": "iosdl",
-                "price": "980",
+                "price": "686",
                 "list_price": "980"
               },
               {
                 "type": "androiddl",
-                "price": "980",
+                "price": "686",
                 "list_price": "980"
               }
             ]
@@ -12194,7 +12201,14 @@
               "name": "UMANAMI"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-05-27 00:10:00",
+            "date_end": "2026-06-02 23:59:59",
+            "title": "ケイ・エム・プロデュース他30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -13883,33 +13897,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "350~",
+          "price": "500~",
           "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "1036",
+                "price": "1480",
                 "list_price": "1480"
               },
               {
                 "type": "download",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "stream",
-                "price": "350",
+                "price": "500",
                 "list_price": "500"
               },
               {
                 "type": "iosdl",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "androiddl",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               }
             ]
@@ -14143,14 +14157,7 @@
               "name": "CRYSTAL EX"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-05-20 00:10:00",
-            "date_end": "2026-05-26 23:59:59",
-            "title": "S-Cute他30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -15203,33 +15210,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "300~",
+          "price": "210~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "980",
+                "price": "686",
                 "list_price": "980"
               },
               {
                 "type": "download",
-                "price": "680",
+                "price": "476",
                 "list_price": "680"
               },
               {
                 "type": "stream",
-                "price": "300",
+                "price": "210",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "680",
+                "price": "476",
                 "list_price": "680"
               },
               {
                 "type": "androiddl",
-                "price": "680",
+                "price": "476",
                 "list_price": "680"
               }
             ]
@@ -15536,7 +15543,14 @@
               "name": "KSB企画/エマニエル"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-05-27 00:10:00",
+            "date_end": "2026-06-02 23:59:59",
+            "title": "エマニエル30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -16724,33 +16738,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "350~",
+          "price": "500~",
           "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "1036",
+                "price": "1480",
                 "list_price": "1480"
               },
               {
                 "type": "download",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "stream",
-                "price": "350",
+                "price": "500",
                 "list_price": "500"
               },
               {
                 "type": "iosdl",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "androiddl",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               }
             ]
@@ -16873,14 +16887,7 @@
               "name": "----"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-05-20 00:10:00",
-            "date_end": "2026-05-26 23:59:59",
-            "title": "妄想族30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -19301,33 +19308,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "download",
-                "price": "336",
+                "price": "480",
                 "list_price": "480"
               },
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "hd",
-                "price": "546",
+                "price": "780",
                 "list_price": "780"
               },
               {
                 "type": "iosdl",
-                "price": "336",
+                "price": "480",
                 "list_price": "480"
               },
               {
                 "type": "androiddl",
-                "price": "336",
+                "price": "480",
                 "list_price": "480"
               }
             ]
@@ -19337,68 +19344,68 @@
         "iteminfo": {
           "genre": [
             {
-              "id": 6533,
-              "name": "ハイビジョン"
-            },
-            {
-              "id": 6012,
-              "name": "4時間以上作品"
-            },
-            {
-              "id": 5001,
-              "name": "中出し"
-            },
-            {
-              "id": 5010,
-              "name": "監禁"
-            },
-            {
-              "id": 5008,
-              "name": "オナニー"
-            },
-            {
-              "id": 4019,
-              "name": "パイパン"
-            },
-            {
-              "id": 5006,
-              "name": "バイブ"
-            },
-            {
-              "id": 2001,
-              "name": "巨乳"
-            },
-            {
-              "id": 6003,
-              "name": "ベスト・総集編"
-            },
-            {
-              "id": 1069,
-              "name": "不倫"
-            },
-            {
-              "id": 5066,
-              "name": "電マ"
-            },
-            {
-              "id": 1039,
-              "name": "人妻・主婦"
-            },
-            {
-              "id": 5016,
-              "name": "潮吹き"
-            },
-            {
-              "id": 1027,
-              "name": "美少女"
+              "id": 1018,
+              "name": "女子校生"
             },
             {
               "id": 1034,
               "name": "ギャル"
             },
             {
-              "id": 1018,
-              "name": "女子校生"
+              "id": 1027,
+              "name": "美少女"
+            },
+            {
+              "id": 5016,
+              "name": "潮吹き"
+            },
+            {
+              "id": 1039,
+              "name": "人妻・主婦"
+            },
+            {
+              "id": 5066,
+              "name": "電マ"
+            },
+            {
+              "id": 1069,
+              "name": "不倫"
+            },
+            {
+              "id": 6003,
+              "name": "ベスト・総集編"
+            },
+            {
+              "id": 2001,
+              "name": "巨乳"
+            },
+            {
+              "id": 5006,
+              "name": "バイブ"
+            },
+            {
+              "id": 4019,
+              "name": "パイパン"
+            },
+            {
+              "id": 5008,
+              "name": "オナニー"
+            },
+            {
+              "id": 5010,
+              "name": "監禁"
+            },
+            {
+              "id": 5001,
+              "name": "中出し"
+            },
+            {
+              "id": 6012,
+              "name": "4時間以上作品"
+            },
+            {
+              "id": 6533,
+              "name": "ハイビジョン"
             }
           ],
           "series": [
@@ -19681,14 +19688,7 @@
               "name": "CRYSTAL EX"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-05-20 00:10:00",
-            "date_end": "2026-05-26 23:59:59",
-            "title": "S-Cute他30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -23169,33 +23169,33 @@
           }
         },
         "prices": {
-          "price": "300~",
+          "price": "210~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "950",
+                "price": "665",
                 "list_price": "950"
               },
               {
                 "type": "download",
-                "price": "580",
+                "price": "405",
                 "list_price": "580"
               },
               {
                 "type": "stream",
-                "price": "300",
+                "price": "210",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "580",
+                "price": "405",
                 "list_price": "580"
               },
               {
                 "type": "androiddl",
-                "price": "580",
+                "price": "405",
                 "list_price": "580"
               }
             ]
@@ -23265,7 +23265,14 @@
               "name": "UMANAMI"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-05-27 00:10:00",
+            "date_end": "2026-06-02 23:59:59",
+            "title": "ケイ・エム・プロデュース他30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -24781,38 +24788,38 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "download",
-                "price": "413",
+                "price": "590",
                 "list_price": "590"
               },
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "4k",
-                "price": "1036",
+                "price": "1480",
                 "list_price": "1480"
               },
               {
                 "type": "hd",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "iosdl",
-                "price": "413",
+                "price": "590",
                 "list_price": "590"
               },
               {
                 "type": "androiddl",
-                "price": "413",
+                "price": "590",
                 "list_price": "590"
               }
             ]
@@ -24915,14 +24922,7 @@
               "name": "MADAM MANIAC"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-05-20 00:10:00",
-            "date_end": "2026-05-26 23:59:59",
-            "title": "S-Cute他30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -26404,33 +26404,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "download",
-                "price": "476",
+                "price": "680",
                 "list_price": "680"
               },
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "476",
+                "price": "680",
                 "list_price": "680"
               },
               {
                 "type": "androiddl",
-                "price": "476",
+                "price": "680",
                 "list_price": "680"
               }
             ]
@@ -26504,14 +26504,7 @@
               "name": "FunCity"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-05-20 00:10:00",
-            "date_end": "2026-05-26 23:59:59",
-            "title": "妄想族30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -27307,23 +27300,23 @@
           }
         },
         "prices": {
-          "price": "305~",
+          "price": "213~",
           "list_price": "305~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "693",
+                "price": "485",
                 "list_price": "693"
               },
               {
                 "type": "download",
-                "price": "590",
+                "price": "413",
                 "list_price": "590"
               },
               {
                 "type": "rp",
-                "price": "305",
+                "price": "213",
                 "list_price": "305"
               }
             ]
@@ -27384,7 +27377,14 @@
               "name": "KMPVR"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-05-27 00:10:00",
+            "date_end": "2026-06-02 23:59:59",
+            "title": "ケイ・エム・プロデュース他30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -27614,33 +27614,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "download",
-                "price": "413",
+                "price": "590",
                 "list_price": "590"
               },
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "hd",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "iosdl",
-                "price": "413",
+                "price": "590",
                 "list_price": "590"
               },
               {
                 "type": "androiddl",
-                "price": "413",
+                "price": "590",
                 "list_price": "590"
               }
             ]
@@ -27707,14 +27707,7 @@
               "name": "パコパコ団とゆかいな仲間たち/妄想族"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-05-20 00:10:00",
-            "date_end": "2026-05-26 23:59:59",
-            "title": "妄想族30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",

@@ -7517,7 +7517,7 @@
             },
             {
               "id": 1044864,
-              "name": "河北彩伽（河北彩花）",
+              "name": "河北彩花（河北彩伽）",
               "ruby": "かわきたさいか"
             },
             {
@@ -13767,28 +13767,28 @@
           }
         },
         "prices": {
-          "price": "300~",
+          "price": "210~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "8k",
-                "price": "980",
+                "price": "686",
                 "list_price": "980"
               },
               {
                 "type": "hd",
-                "price": "780",
+                "price": "546",
                 "list_price": "780"
               },
               {
                 "type": "download",
-                "price": "580",
+                "price": "405",
                 "list_price": "580"
               },
               {
                 "type": "rp",
-                "price": "300",
+                "price": "210",
                 "list_price": "300"
               }
             ]
@@ -13870,7 +13870,14 @@
               "name": "S1 VR"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-05-27 10:00:00",
+            "date_end": "2026-05-29 09:59:59",
+            "title": "VR独占メーカー30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -15489,28 +15496,28 @@
           }
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "8k",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "hd",
-                "price": "546",
+                "price": "780",
                 "list_price": "780"
               },
               {
                 "type": "download",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "rp",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               }
             ]
@@ -15715,14 +15722,7 @@
               "name": "S1 VR"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-05-25 10:00:00",
-            "date_end": "2026-05-27 09:59:59",
-            "title": "VR独占メーカー30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",

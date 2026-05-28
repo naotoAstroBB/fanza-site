@@ -3802,10 +3802,6 @@
               "name": "ハイビジョン"
             },
             {
-              "id": 6548,
-              "name": "独占配信"
-            },
-            {
               "id": 1027,
               "name": "美少女"
             },
@@ -6648,9 +6644,9 @@
               "ruby": "まつもといちか"
             },
             {
-              "id": 1074350,
-              "name": "伊織羽音",
-              "ruby": "いおりうた"
+              "id": 1076815,
+              "name": "流川莉央",
+              "ruby": "るかわりお"
             },
             {
               "id": 1075825,
@@ -6658,9 +6654,9 @@
               "ruby": "つきみいおり"
             },
             {
-              "id": 1076815,
-              "name": "流川莉央",
-              "ruby": "るかわりお"
+              "id": 1074350,
+              "name": "伊織羽音",
+              "ruby": "いおりうた"
             }
           ],
           "label": [
@@ -7374,29 +7370,34 @@
           }
         },
         "prices": {
-          "price": "1480~",
-          "list_price": "1480~",
+          "price": "700~",
+          "list_price": "700~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "1980",
-                "list_price": "1980"
+                "price": "1680",
+                "list_price": "1680"
               },
               {
                 "type": "download",
-                "price": "1480",
-                "list_price": "1480"
+                "price": "1280",
+                "list_price": "1280"
+              },
+              {
+                "type": "stream",
+                "price": "700",
+                "list_price": "700"
               },
               {
                 "type": "iosdl",
-                "price": "1480",
-                "list_price": "1480"
+                "price": "1280",
+                "list_price": "1280"
               },
               {
                 "type": "androiddl",
-                "price": "1480",
-                "list_price": "1480"
+                "price": "1280",
+                "list_price": "1280"
               }
             ]
           }
@@ -27030,84 +27031,9 @@
               "ruby": "あすかりん"
             },
             {
-              "id": 1045373,
-              "name": "若月みいな",
-              "ruby": "わかつきみいな"
-            },
-            {
-              "id": 1005334,
-              "name": "神ユキ",
-              "ruby": "じんゆき"
-            },
-            {
-              "id": 1030527,
-              "name": "水谷あおい",
-              "ruby": "みずたにあおい"
-            },
-            {
-              "id": 1021316,
-              "name": "川菜美鈴",
-              "ruby": "かわなみすず"
-            },
-            {
-              "id": 1075583,
-              "name": "大橋紗奈",
-              "ruby": "おおはしさな"
-            },
-            {
-              "id": 1022129,
-              "name": "塚田詩織",
-              "ruby": "つかだしおり"
-            },
-            {
-              "id": 1058363,
-              "name": "如月夏希",
-              "ruby": "きさらぎなつき"
-            },
-            {
-              "id": 1060141,
-              "name": "木下ひまり（花沢ひまり）",
-              "ruby": "きのしたひまり（はなざわひまり）"
-            },
-            {
-              "id": 1042507,
-              "name": "遥あやね",
-              "ruby": "はるかあやね"
-            },
-            {
-              "id": 1033869,
-              "name": "紗々原ゆり",
-              "ruby": "ささはらゆり"
-            },
-            {
-              "id": 1076764,
-              "name": "黒川晴美",
-              "ruby": "くろかわはるみ"
-            },
-            {
-              "id": 1058710,
-              "name": "藤森里穂",
-              "ruby": "ふじもりりほ"
-            },
-            {
-              "id": 1062990,
-              "name": "夕季ちとせ",
-              "ruby": "ゆきちとせ"
-            },
-            {
-              "id": 1062309,
-              "name": "西田那津",
-              "ruby": "にしだなつ"
-            },
-            {
-              "id": 1042596,
-              "name": "八乃つばさ",
-              "ruby": "はちのつばさ"
-            },
-            {
-              "id": 1054165,
-              "name": "夏希まろん",
-              "ruby": "なつきまろん"
+              "id": 1071048,
+              "name": "水原みその",
+              "ruby": "みずはらみその"
             },
             {
               "id": 1065727,
@@ -27115,9 +27041,29 @@
               "ruby": "さくらみゆき"
             },
             {
-              "id": 1071048,
-              "name": "水原みその",
-              "ruby": "みずはらみその"
+              "id": 1054165,
+              "name": "夏希まろん",
+              "ruby": "なつきまろん"
+            },
+            {
+              "id": 1042596,
+              "name": "八乃つばさ",
+              "ruby": "はちのつばさ"
+            },
+            {
+              "id": 1062309,
+              "name": "西田那津",
+              "ruby": "にしだなつ"
+            },
+            {
+              "id": 1062990,
+              "name": "夕季ちとせ",
+              "ruby": "ゆきちとせ"
+            },
+            {
+              "id": 1058710,
+              "name": "藤森里穂",
+              "ruby": "ふじもりりほ"
             },
             {
               "id": 1064337,
@@ -27128,6 +27074,61 @@
               "id": 1057914,
               "name": "花宮あむ",
               "ruby": "はなみやあむ"
+            },
+            {
+              "id": 1076764,
+              "name": "黒川晴美",
+              "ruby": "くろかわはるみ"
+            },
+            {
+              "id": 1042507,
+              "name": "遥あやね",
+              "ruby": "はるかあやね"
+            },
+            {
+              "id": 1060141,
+              "name": "木下ひまり（花沢ひまり）",
+              "ruby": "きのしたひまり（はなざわひまり）"
+            },
+            {
+              "id": 1058363,
+              "name": "如月夏希",
+              "ruby": "きさらぎなつき"
+            },
+            {
+              "id": 1022129,
+              "name": "塚田詩織",
+              "ruby": "つかだしおり"
+            },
+            {
+              "id": 1075583,
+              "name": "大橋紗奈",
+              "ruby": "おおはしさな"
+            },
+            {
+              "id": 1021316,
+              "name": "川菜美鈴",
+              "ruby": "かわなみすず"
+            },
+            {
+              "id": 1030527,
+              "name": "水谷あおい",
+              "ruby": "みずたにあおい"
+            },
+            {
+              "id": 1005334,
+              "name": "神ユキ",
+              "ruby": "じんゆき"
+            },
+            {
+              "id": 1045373,
+              "name": "若月みいな",
+              "ruby": "わかつきみいな"
+            },
+            {
+              "id": 1033869,
+              "name": "紗々原ゆり",
+              "ruby": "ささはらゆり"
             },
             {
               "id": 22474,
@@ -31083,9 +31084,9 @@
               "ruby": "おはなのん"
             },
             {
-              "id": 1074353,
-              "name": "穂花あいり",
-              "ruby": "ほのかあいり"
+              "id": 1058363,
+              "name": "如月夏希",
+              "ruby": "きさらぎなつき"
             },
             {
               "id": 1056458,
@@ -31118,9 +31119,9 @@
               "ruby": "まつもとななみ"
             },
             {
-              "id": 1058363,
-              "name": "如月夏希",
-              "ruby": "きさらぎなつき"
+              "id": 1008887,
+              "name": "AIKA",
+              "ruby": "あいか"
             },
             {
               "id": 1055905,
@@ -31131,6 +31132,11 @@
               "id": 1016110,
               "name": "倉多まお",
               "ruby": "くらたまお"
+            },
+            {
+              "id": 1074353,
+              "name": "穂花あいり",
+              "ruby": "ほのかあいり"
             },
             {
               "id": 1054165,
@@ -31181,11 +31187,6 @@
               "id": 1029403,
               "name": "桐嶋りの",
               "ruby": "きりしまりの"
-            },
-            {
-              "id": 1008887,
-              "name": "AIKA",
-              "ruby": "あいか"
             },
             {
               "id": 1049032,
@@ -34675,54 +34676,14 @@
               "ruby": "じゅりあ"
             },
             {
-              "id": 1071048,
-              "name": "水原みその",
-              "ruby": "みずはらみその"
-            },
-            {
-              "id": 1070448,
-              "name": "百永さりな",
-              "ruby": "ももながさりな"
-            },
-            {
-              "id": 1072206,
-              "name": "小花のん",
-              "ruby": "おはなのん"
-            },
-            {
-              "id": 1075302,
-              "name": "柏木こなつ",
-              "ruby": "かしわぎこなつ"
-            },
-            {
               "id": 1051402,
               "name": "日下部加奈",
               "ruby": "くさかべかな"
             },
             {
-              "id": 1060480,
-              "name": "田中ねね",
-              "ruby": "たなかねね"
-            },
-            {
-              "id": 1077386,
-              "name": "木月りり",
-              "ruby": "きづきりり"
-            },
-            {
-              "id": 1052930,
-              "name": "吉根ゆりあ",
-              "ruby": "よしねゆりあ"
-            },
-            {
-              "id": 1016525,
-              "name": "浜崎真緒",
-              "ruby": "はまさきまお"
-            },
-            {
-              "id": 1054439,
-              "name": "妃ひかり",
-              "ruby": "きさきひかり"
+              "id": 1071707,
+              "name": "三舩みすず",
+              "ruby": "みふねみすず"
             },
             {
               "id": 1062041,
@@ -34730,9 +34691,29 @@
               "ruby": "さつきめい"
             },
             {
-              "id": 1071707,
-              "name": "三舩みすず",
-              "ruby": "みふねみすず"
+              "id": 1054439,
+              "name": "妃ひかり",
+              "ruby": "きさきひかり"
+            },
+            {
+              "id": 1016525,
+              "name": "浜崎真緒",
+              "ruby": "はまさきまお"
+            },
+            {
+              "id": 1075302,
+              "name": "柏木こなつ",
+              "ruby": "かしわぎこなつ"
+            },
+            {
+              "id": 1072206,
+              "name": "小花のん",
+              "ruby": "おはなのん"
+            },
+            {
+              "id": 1070448,
+              "name": "百永さりな",
+              "ruby": "ももながさりな"
             },
             {
               "id": 1037168,
@@ -34753,6 +34734,26 @@
               "id": 1070842,
               "name": "結城りの",
               "ruby": "ゆうきりの"
+            },
+            {
+              "id": 1052930,
+              "name": "吉根ゆりあ",
+              "ruby": "よしねゆりあ"
+            },
+            {
+              "id": 1077386,
+              "name": "木月りり",
+              "ruby": "きづきりり"
+            },
+            {
+              "id": 1060480,
+              "name": "田中ねね",
+              "ruby": "たなかねね"
+            },
+            {
+              "id": 1071048,
+              "name": "水原みその",
+              "ruby": "みずはらみその"
             },
             {
               "id": 1069005,
@@ -41971,6 +41972,10 @@
         "product_id": "rbb00303",
         "title": "制服と青春 若いのにセックス狂いのケダモノです8時間",
         "volume": "481",
+        "review": {
+          "count": 1,
+          "average": "2.00"
+        },
         "URL": "https://video.dmm.co.jp/av/content/?id=rbb00303",
         "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Drbb00303&af_id=saaaaaaya-990&ch=api",
         "imageURL": {
@@ -72646,6 +72651,291 @@
         "floor_code": "videoa",
         "floor_name": "ビデオ",
         "category_name": "ビデオ (動画)",
+        "content_id": "kwbd00329",
+        "product_id": "kwbd00329",
+        "title": "射精（だ）すまでおチ○ポ離さないぞ敏感チ○ポをシゴいてしゃぶってぶち込む金玉カッラカラ抜きテク50選",
+        "volume": "476",
+        "review": {
+          "count": 2,
+          "average": "3.50"
+        },
+        "URL": "https://video.dmm.co.jp/av/content/?id=kwbd00329",
+        "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Dkwbd00329&af_id=saaaaaaya-990&ch=api",
+        "imageURL": {
+          "large": "https://pics.dmm.co.jp/digital/video/kwbd00329/kwbd00329pl.jpg",
+          "small": "https://pics.dmm.co.jp/digital/video/kwbd00329/kwbd00329ps.jpg",
+          "list": "https://pics.dmm.co.jp/digital/video/kwbd00329/kwbd00329pt.jpg"
+        },
+        "sampleImageURL": {
+          "sample_s": {
+            "image": [
+              "https://pics.dmm.co.jp/digital/video/kwbd00329/kwbd00329-1.jpg",
+              "https://pics.dmm.co.jp/digital/video/kwbd00329/kwbd00329-2.jpg",
+              "https://pics.dmm.co.jp/digital/video/kwbd00329/kwbd00329-3.jpg",
+              "https://pics.dmm.co.jp/digital/video/kwbd00329/kwbd00329-4.jpg",
+              "https://pics.dmm.co.jp/digital/video/kwbd00329/kwbd00329-5.jpg",
+              "https://pics.dmm.co.jp/digital/video/kwbd00329/kwbd00329-6.jpg",
+              "https://pics.dmm.co.jp/digital/video/kwbd00329/kwbd00329-7.jpg",
+              "https://pics.dmm.co.jp/digital/video/kwbd00329/kwbd00329-8.jpg",
+              "https://pics.dmm.co.jp/digital/video/kwbd00329/kwbd00329-9.jpg",
+              "https://pics.dmm.co.jp/digital/video/kwbd00329/kwbd00329-10.jpg"
+            ]
+          },
+          "sample_l": {
+            "image": [
+              "https://pics.dmm.co.jp/digital/video/kwbd00329/kwbd00329jp-1.jpg",
+              "https://pics.dmm.co.jp/digital/video/kwbd00329/kwbd00329jp-2.jpg",
+              "https://pics.dmm.co.jp/digital/video/kwbd00329/kwbd00329jp-3.jpg",
+              "https://pics.dmm.co.jp/digital/video/kwbd00329/kwbd00329jp-4.jpg",
+              "https://pics.dmm.co.jp/digital/video/kwbd00329/kwbd00329jp-5.jpg",
+              "https://pics.dmm.co.jp/digital/video/kwbd00329/kwbd00329jp-6.jpg",
+              "https://pics.dmm.co.jp/digital/video/kwbd00329/kwbd00329jp-7.jpg",
+              "https://pics.dmm.co.jp/digital/video/kwbd00329/kwbd00329jp-8.jpg",
+              "https://pics.dmm.co.jp/digital/video/kwbd00329/kwbd00329jp-9.jpg",
+              "https://pics.dmm.co.jp/digital/video/kwbd00329/kwbd00329jp-10.jpg"
+            ]
+          }
+        },
+        "sampleMovieURL": {
+          "size_476_306": "https://www.dmm.co.jp/litevideo/-/part/=/cid=kwbd00329/size=476_306/affi_id=saaaaaaya-990/",
+          "size_560_360": "https://www.dmm.co.jp/litevideo/-/part/=/cid=kwbd00329/size=560_360/affi_id=saaaaaaya-990/",
+          "size_644_414": "https://www.dmm.co.jp/litevideo/-/part/=/cid=kwbd00329/size=644_414/affi_id=saaaaaaya-990/",
+          "size_720_480": "https://www.dmm.co.jp/litevideo/-/part/=/cid=kwbd00329/size=720_480/affi_id=saaaaaaya-990/",
+          "pc_flag": 1,
+          "sp_flag": 1
+        },
+        "prices": {
+          "price": "300~",
+          "list_price": "300~",
+          "deliveries": {
+            "delivery": [
+              {
+                "type": "hd",
+                "price": "980",
+                "list_price": "980"
+              },
+              {
+                "type": "download",
+                "price": "620",
+                "list_price": "620"
+              },
+              {
+                "type": "stream",
+                "price": "300",
+                "list_price": "300"
+              },
+              {
+                "type": "iosdl",
+                "price": "620",
+                "list_price": "620"
+              },
+              {
+                "type": "androiddl",
+                "price": "620",
+                "list_price": "620"
+              }
+            ]
+          }
+        },
+        "date": "2022-09-30 10:00:00",
+        "iteminfo": {
+          "genre": [
+            {
+              "id": 6012,
+              "name": "4時間以上作品"
+            },
+            {
+              "id": 6533,
+              "name": "ハイビジョン"
+            },
+            {
+              "id": 6548,
+              "name": "独占配信"
+            },
+            {
+              "id": 1027,
+              "name": "美少女"
+            },
+            {
+              "id": 6003,
+              "name": "ベスト・総集編"
+            },
+            {
+              "id": 4030,
+              "name": "淫乱・ハード系"
+            },
+            {
+              "id": 5025,
+              "name": "淫語"
+            },
+            {
+              "id": 4119,
+              "name": "エステ"
+            }
+          ],
+          "series": [
+            {
+              "id": 223087,
+              "name": "kawaii*ベスト"
+            }
+          ],
+          "maker": [
+            {
+              "id": 4469,
+              "name": "kawaii"
+            }
+          ],
+          "actress": [
+            {
+              "id": 1042907,
+              "name": "伊藤舞雪",
+              "ruby": "いとうまゆき"
+            },
+            {
+              "id": 1069961,
+              "name": "ひなたなつ（日向なつ）",
+              "ruby": "ひなたなつ"
+            },
+            {
+              "id": 1073263,
+              "name": "栗宮ふたば",
+              "ruby": "くりみやふたば"
+            },
+            {
+              "id": 1074351,
+              "name": "東雲あずさ",
+              "ruby": "しののめあずさ"
+            },
+            {
+              "id": 1050439,
+              "name": "月乃ルナ",
+              "ruby": "つきのるな"
+            },
+            {
+              "id": 1072360,
+              "name": "倉本すみれ",
+              "ruby": "くらもとすみれ"
+            },
+            {
+              "id": 1058559,
+              "name": "広瀬りおな",
+              "ruby": "ひろせりおな"
+            },
+            {
+              "id": 1075009,
+              "name": "酒井莉乃",
+              "ruby": "さかいりの"
+            },
+            {
+              "id": 1032774,
+              "name": "あおいれな",
+              "ruby": "あおいれな"
+            },
+            {
+              "id": 1039047,
+              "name": "枢木あおい",
+              "ruby": "くるるぎあおい"
+            },
+            {
+              "id": 1071048,
+              "name": "水原みその",
+              "ruby": "みずはらみその"
+            },
+            {
+              "id": 1061659,
+              "name": "姫咲はな",
+              "ruby": "ひめさきはな"
+            },
+            {
+              "id": 1056460,
+              "name": "辻井ほのか",
+              "ruby": "つじいほのか"
+            },
+            {
+              "id": 1069005,
+              "name": "朝倉ここな",
+              "ruby": "あさくらここな"
+            },
+            {
+              "id": 1070842,
+              "name": "結城りの",
+              "ruby": "ゆうきりの"
+            },
+            {
+              "id": 1071708,
+              "name": "泉あや",
+              "ruby": "いずみあや"
+            },
+            {
+              "id": 1070384,
+              "name": "沖奈ミツキ",
+              "ruby": "おきなみつき"
+            },
+            {
+              "id": 1071242,
+              "name": "星乃星良",
+              "ruby": "ほしのそら"
+            },
+            {
+              "id": 1070718,
+              "name": "柚葉あおい",
+              "ruby": "ゆずはあおい"
+            },
+            {
+              "id": 1065375,
+              "name": "琴石ゆめる",
+              "ruby": "こといしゆめる"
+            },
+            {
+              "id": 1066538,
+              "name": "堀内未果子",
+              "ruby": "ほりうちみかこ"
+            },
+            {
+              "id": 1066776,
+              "name": "葵井優葵",
+              "ruby": "あおいゆあ"
+            },
+            {
+              "id": 1042119,
+              "name": "桜もこ",
+              "ruby": "さくらもこ"
+            },
+            {
+              "id": 1072124,
+              "name": "森玲奈",
+              "ruby": "もりれいな"
+            },
+            {
+              "id": 1069952,
+              "name": "新井リマ",
+              "ruby": "あらいりま"
+            },
+            {
+              "id": 1073445,
+              "name": "辻真希",
+              "ruby": "つじまき"
+            },
+            {
+              "id": 1069257,
+              "name": "Nia（伊東める）",
+              "ruby": "にあ（いとうめる）"
+            }
+          ],
+          "label": [
+            {
+              "id": 6567,
+              "name": "kawaii"
+            }
+          ]
+        }
+      },
+      {
+        "service_code": "digital",
+        "service_name": "動画",
+        "floor_code": "videoa",
+        "floor_name": "ビデオ",
+        "category_name": "ビデオ (動画)",
         "content_id": "miaa00707",
         "product_id": "miaa00707",
         "title": "隣に越してきた豊満な巨乳人妻を強●乳首開発して変態マゾ狂い女に仕上げてやった 水原みその",
@@ -79697,7 +79987,7 @@
         }
       }
     ],
-    "total_count": 300,
-    "result_count": 300
+    "total_count": 301,
+    "result_count": 301
   }
 }

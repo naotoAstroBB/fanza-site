@@ -170197,33 +170197,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "300~",
+          "price": "210~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "1470",
+                "price": "1029",
                 "list_price": "1470"
               },
               {
                 "type": "download",
-                "price": "1180",
+                "price": "826",
                 "list_price": "1180"
               },
               {
                 "type": "stream",
-                "price": "300",
+                "price": "210",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "1180",
+                "price": "826",
                 "list_price": "1180"
               },
               {
                 "type": "androiddl",
-                "price": "1180",
+                "price": "826",
                 "list_price": "1180"
               }
             ]
@@ -170287,7 +170287,14 @@
               "name": "大人のドラマ"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-05-30 00:00:00",
+            "date_end": "2026-05-30 23:59:59",
+            "title": "日替わりセール◇"
+          }
+        ]
       },
       {
         "service_code": "digital",

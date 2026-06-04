@@ -70,33 +70,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "300~",
+          "price": "210~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "980",
+                "price": "686",
                 "list_price": "980"
               },
               {
                 "type": "download",
-                "price": "590",
+                "price": "413",
                 "list_price": "590"
               },
               {
                 "type": "stream",
-                "price": "300",
+                "price": "210",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "590",
+                "price": "413",
                 "list_price": "590"
               },
               {
                 "type": "androiddl",
-                "price": "590",
+                "price": "413",
                 "list_price": "590"
               }
             ]
@@ -182,7 +182,14 @@
               "name": "MAXING"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-06-03 00:10:00",
+            "date_end": "2026-06-09 23:59:59",
+            "title": "DOC他30％OFF"
+          }
+        ]
       }
     ],
     "total_count": 1,

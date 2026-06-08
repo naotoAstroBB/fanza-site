@@ -65614,8 +65614,8 @@
             "delivery": [
               {
                 "type": "download",
-                "price": "1980",
-                "list_price": "1980"
+                "price": "1480",
+                "list_price": "1480"
               },
               {
                 "type": "stream",
@@ -65624,23 +65624,23 @@
               },
               {
                 "type": "4k",
-                "price": "2950",
-                "list_price": "2950"
-              },
-              {
-                "type": "hd",
                 "price": "2450",
                 "list_price": "2450"
               },
               {
+                "type": "hd",
+                "price": "1950",
+                "list_price": "1950"
+              },
+              {
                 "type": "iosdl",
-                "price": "1980",
-                "list_price": "1980"
+                "price": "1480",
+                "list_price": "1480"
               },
               {
                 "type": "androiddl",
-                "price": "1980",
-                "list_price": "1980"
+                "price": "1480",
+                "list_price": "1480"
               }
             ]
           }
@@ -117053,33 +117053,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "826",
+                "price": "1180",
                 "list_price": "1180"
               },
               {
                 "type": "download",
-                "price": "553",
+                "price": "790",
                 "list_price": "790"
               },
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "553",
+                "price": "790",
                 "list_price": "790"
               },
               {
                 "type": "androiddl",
-                "price": "553",
+                "price": "790",
                 "list_price": "790"
               }
             ]
@@ -117153,14 +117153,7 @@
               "name": "MOODYZ DIVA"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-06-08 00:00:00",
-            "date_end": "2026-06-08 23:59:59",
-            "title": "日替わりセール♭"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -125442,29 +125435,34 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "2480~",
-          "list_price": "2480~",
+          "price": "500~",
+          "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "download",
-                "price": "2480",
-                "list_price": "2480"
+                "price": "1480",
+                "list_price": "1480"
+              },
+              {
+                "type": "stream",
+                "price": "500",
+                "list_price": "500"
               },
               {
                 "type": "hd",
-                "price": "2980",
-                "list_price": "2980"
+                "price": "1980",
+                "list_price": "1980"
               },
               {
                 "type": "iosdl",
-                "price": "2480",
-                "list_price": "2480"
+                "price": "1480",
+                "list_price": "1480"
               },
               {
                 "type": "androiddl",
-                "price": "2480",
-                "list_price": "2480"
+                "price": "1480",
+                "list_price": "1480"
               }
             ]
           }

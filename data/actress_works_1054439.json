@@ -1059,6 +1059,10 @@
         "iteminfo": {
           "genre": [
             {
+              "id": 6012,
+              "name": "4時間以上作品"
+            },
+            {
               "id": 6533,
               "name": "ハイビジョン"
             },
@@ -1085,10 +1089,6 @@
             {
               "id": 4001,
               "name": "SM"
-            },
-            {
-              "id": 6012,
-              "name": "4時間以上作品"
             }
           ],
           "maker": [
@@ -4592,33 +4592,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "500~",
+          "price": "350~",
           "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "1780",
+                "price": "1246",
                 "list_price": "1780"
               },
               {
                 "type": "download",
-                "price": "1270",
+                "price": "890",
                 "list_price": "1270"
               },
               {
                 "type": "stream",
-                "price": "500",
+                "price": "350",
                 "list_price": "500"
               },
               {
                 "type": "iosdl",
-                "price": "1270",
+                "price": "890",
                 "list_price": "1270"
               },
               {
                 "type": "androiddl",
-                "price": "1270",
+                "price": "890",
                 "list_price": "1270"
               }
             ]
@@ -4681,7 +4681,14 @@
               "name": "Mr.michiru＋"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-06-10 00:10:00",
+            "date_end": "2026-06-16 23:59:59",
+            "title": "SODグループ 30％OFF 第1弾"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -6835,38 +6842,38 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "500~",
+          "price": "350~",
           "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "download",
-                "price": "1180",
+                "price": "826",
                 "list_price": "1180"
               },
               {
                 "type": "stream",
-                "price": "500",
+                "price": "350",
                 "list_price": "500"
               },
               {
                 "type": "4k",
-                "price": "2180",
+                "price": "1526",
                 "list_price": "2180"
               },
               {
                 "type": "hd",
-                "price": "1680",
+                "price": "1175",
                 "list_price": "1680"
               },
               {
                 "type": "iosdl",
-                "price": "1180",
+                "price": "826",
                 "list_price": "1180"
               },
               {
                 "type": "androiddl",
-                "price": "1180",
+                "price": "826",
                 "list_price": "1180"
               }
             ]
@@ -6945,7 +6952,14 @@
               "name": "淑女の晩餐"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-06-10 00:10:00",
+            "date_end": "2026-06-16 23:59:59",
+            "title": "AQUA＜アクア＞他30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -7001,23 +7015,23 @@
           }
         },
         "prices": {
-          "price": "500~",
+          "price": "350~",
           "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "980",
+                "price": "686",
                 "list_price": "980"
               },
               {
                 "type": "download",
-                "price": "780",
+                "price": "546",
                 "list_price": "780"
               },
               {
                 "type": "rp",
-                "price": "500",
+                "price": "350",
                 "list_price": "500"
               }
             ]
@@ -7115,7 +7129,14 @@
               "name": "AQUA MANIAC"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-06-10 00:10:00",
+            "date_end": "2026-06-16 23:59:59",
+            "title": "AQUA＜アクア＞他30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -9465,9 +9486,9 @@
         },
         "campaign": [
           {
-            "date_begin": "2026-06-03 00:10:00",
-            "date_end": "2026-06-09 23:59:59",
-            "title": "グローリークエスト他30％OFF"
+            "date_begin": "2026-06-10 00:10:00",
+            "date_end": "2026-06-11 23:59:59",
+            "title": "今月のおすすめ30％OFF"
           }
         ]
       },
@@ -10457,14 +10478,7 @@
               "name": "GLORY QUEST"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-06-03 00:10:00",
-            "date_end": "2026-06-09 23:59:59",
-            "title": "グローリークエスト他30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -11201,6 +11215,207 @@
             {
               "id": 9938,
               "name": "BoinBB/ABC"
+            }
+          ]
+        }
+      },
+      {
+        "service_code": "digital",
+        "service_name": "動画",
+        "floor_code": "videoa",
+        "floor_name": "ビデオ",
+        "category_name": "ビデオ (動画)",
+        "content_id": "nbes00104",
+        "product_id": "nbes00104",
+        "title": "泣きジコりNTR総集編 7タイトルノーカットフル尺 驚異の870分！14時間30分4枚組特大収録！",
+        "volume": "876",
+        "review": {
+          "count": 1,
+          "average": "5.00"
+        },
+        "URL": "https://video.dmm.co.jp/av/content/?id=nbes00104",
+        "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Dnbes00104&af_id=saaaaaaya-990&ch=api",
+        "imageURL": {
+          "large": "https://pics.dmm.co.jp/digital/video/nbes00104/nbes00104pl.jpg",
+          "small": "https://pics.dmm.co.jp/digital/video/nbes00104/nbes00104ps.jpg",
+          "list": "https://pics.dmm.co.jp/digital/video/nbes00104/nbes00104pt.jpg"
+        },
+        "sampleImageURL": {
+          "sample_s": {
+            "image": [
+              "https://pics.dmm.co.jp/digital/video/nbes00104/nbes00104-1.jpg",
+              "https://pics.dmm.co.jp/digital/video/nbes00104/nbes00104-2.jpg",
+              "https://pics.dmm.co.jp/digital/video/nbes00104/nbes00104-3.jpg",
+              "https://pics.dmm.co.jp/digital/video/nbes00104/nbes00104-4.jpg",
+              "https://pics.dmm.co.jp/digital/video/nbes00104/nbes00104-5.jpg",
+              "https://pics.dmm.co.jp/digital/video/nbes00104/nbes00104-6.jpg",
+              "https://pics.dmm.co.jp/digital/video/nbes00104/nbes00104-7.jpg",
+              "https://pics.dmm.co.jp/digital/video/nbes00104/nbes00104-8.jpg",
+              "https://pics.dmm.co.jp/digital/video/nbes00104/nbes00104-9.jpg",
+              "https://pics.dmm.co.jp/digital/video/nbes00104/nbes00104-10.jpg",
+              "https://pics.dmm.co.jp/digital/video/nbes00104/nbes00104-11.jpg",
+              "https://pics.dmm.co.jp/digital/video/nbes00104/nbes00104-12.jpg",
+              "https://pics.dmm.co.jp/digital/video/nbes00104/nbes00104-13.jpg",
+              "https://pics.dmm.co.jp/digital/video/nbes00104/nbes00104-14.jpg",
+              "https://pics.dmm.co.jp/digital/video/nbes00104/nbes00104-15.jpg",
+              "https://pics.dmm.co.jp/digital/video/nbes00104/nbes00104-16.jpg",
+              "https://pics.dmm.co.jp/digital/video/nbes00104/nbes00104-17.jpg",
+              "https://pics.dmm.co.jp/digital/video/nbes00104/nbes00104-18.jpg",
+              "https://pics.dmm.co.jp/digital/video/nbes00104/nbes00104-19.jpg",
+              "https://pics.dmm.co.jp/digital/video/nbes00104/nbes00104-20.jpg"
+            ]
+          },
+          "sample_l": {
+            "image": [
+              "https://pics.dmm.co.jp/digital/video/nbes00104/nbes00104jp-1.jpg",
+              "https://pics.dmm.co.jp/digital/video/nbes00104/nbes00104jp-2.jpg",
+              "https://pics.dmm.co.jp/digital/video/nbes00104/nbes00104jp-3.jpg",
+              "https://pics.dmm.co.jp/digital/video/nbes00104/nbes00104jp-4.jpg",
+              "https://pics.dmm.co.jp/digital/video/nbes00104/nbes00104jp-5.jpg",
+              "https://pics.dmm.co.jp/digital/video/nbes00104/nbes00104jp-6.jpg",
+              "https://pics.dmm.co.jp/digital/video/nbes00104/nbes00104jp-7.jpg",
+              "https://pics.dmm.co.jp/digital/video/nbes00104/nbes00104jp-8.jpg",
+              "https://pics.dmm.co.jp/digital/video/nbes00104/nbes00104jp-9.jpg",
+              "https://pics.dmm.co.jp/digital/video/nbes00104/nbes00104jp-10.jpg",
+              "https://pics.dmm.co.jp/digital/video/nbes00104/nbes00104jp-11.jpg",
+              "https://pics.dmm.co.jp/digital/video/nbes00104/nbes00104jp-12.jpg",
+              "https://pics.dmm.co.jp/digital/video/nbes00104/nbes00104jp-13.jpg",
+              "https://pics.dmm.co.jp/digital/video/nbes00104/nbes00104jp-14.jpg",
+              "https://pics.dmm.co.jp/digital/video/nbes00104/nbes00104jp-15.jpg",
+              "https://pics.dmm.co.jp/digital/video/nbes00104/nbes00104jp-16.jpg",
+              "https://pics.dmm.co.jp/digital/video/nbes00104/nbes00104jp-17.jpg",
+              "https://pics.dmm.co.jp/digital/video/nbes00104/nbes00104jp-18.jpg",
+              "https://pics.dmm.co.jp/digital/video/nbes00104/nbes00104jp-19.jpg",
+              "https://pics.dmm.co.jp/digital/video/nbes00104/nbes00104jp-20.jpg"
+            ]
+          }
+        },
+        "sampleMovieURL": {
+          "size_476_306": "https://www.dmm.co.jp/litevideo/-/part/=/cid=nbes00104/size=476_306/affi_id=saaaaaaya-990/",
+          "size_560_360": "https://www.dmm.co.jp/litevideo/-/part/=/cid=nbes00104/size=560_360/affi_id=saaaaaaya-990/",
+          "size_644_414": "https://www.dmm.co.jp/litevideo/-/part/=/cid=nbes00104/size=644_414/affi_id=saaaaaaya-990/",
+          "size_720_480": "https://www.dmm.co.jp/litevideo/-/part/=/cid=nbes00104/size=720_480/affi_id=saaaaaaya-990/",
+          "pc_flag": 1,
+          "sp_flag": 1
+        },
+        "prices": {
+          "price": "350~",
+          "list_price": "500~",
+          "deliveries": {
+            "delivery": [
+              {
+                "type": "hd",
+                "price": "1246",
+                "list_price": "1780"
+              },
+              {
+                "type": "download",
+                "price": "890",
+                "list_price": "1270"
+              },
+              {
+                "type": "stream",
+                "price": "350",
+                "list_price": "500"
+              },
+              {
+                "type": "iosdl",
+                "price": "890",
+                "list_price": "1270"
+              },
+              {
+                "type": "androiddl",
+                "price": "890",
+                "list_price": "1270"
+              }
+            ]
+          }
+        },
+        "date": "2025-09-05 00:00:00",
+        "iteminfo": {
+          "genre": [
+            {
+              "id": 6012,
+              "name": "4時間以上作品"
+            },
+            {
+              "id": 6533,
+              "name": "ハイビジョン"
+            },
+            {
+              "id": 6548,
+              "name": "独占配信"
+            },
+            {
+              "id": 1039,
+              "name": "人妻・主婦"
+            },
+            {
+              "id": 6003,
+              "name": "ベスト・総集編"
+            },
+            {
+              "id": 4111,
+              "name": "寝取り・寝取られ・NTR"
+            },
+            {
+              "id": 5001,
+              "name": "中出し"
+            }
+          ],
+          "series": [
+            {
+              "id": 4389413,
+              "name": "泣きジコりNTR"
+            }
+          ],
+          "maker": [
+            {
+              "id": 6581,
+              "name": "JET映像"
+            }
+          ],
+          "actress": [
+            {
+              "id": 1027558,
+              "name": "美咲かんな",
+              "ruby": "みさきかんな"
+            },
+            {
+              "id": 1001206,
+              "name": "春菜はな",
+              "ruby": "はるなはな"
+            },
+            {
+              "id": 1020685,
+              "name": "森沢かな（飯岡かなこ）",
+              "ruby": "もりさわかな（いいおかかなこ）"
+            },
+            {
+              "id": 1054439,
+              "name": "妃ひかり",
+              "ruby": "きさきひかり"
+            },
+            {
+              "id": 1056456,
+              "name": "谷あづさ",
+              "ruby": "たにあづさ"
+            },
+            {
+              "id": 26225,
+              "name": "波多野結衣",
+              "ruby": "はたのゆい"
+            },
+            {
+              "id": 1024513,
+              "name": "橘メアリー",
+              "ruby": "たちばなめありー"
+            }
+          ],
+          "label": [
+            {
+              "id": 9248,
+              "name": "卍GROUP"
             }
           ]
         }
@@ -15174,14 +15389,7 @@
               "name": "GLORY QUEST"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-06-03 00:10:00",
-            "date_end": "2026-06-09 23:59:59",
-            "title": "グローリークエスト他30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -16761,33 +16969,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "500~",
+          "price": "350~",
           "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "1480",
+                "price": "1036",
                 "list_price": "1480"
               },
               {
                 "type": "download",
-                "price": "980",
+                "price": "686",
                 "list_price": "980"
               },
               {
                 "type": "stream",
-                "price": "500",
+                "price": "350",
                 "list_price": "500"
               },
               {
                 "type": "iosdl",
-                "price": "980",
+                "price": "686",
                 "list_price": "980"
               },
               {
                 "type": "androiddl",
-                "price": "980",
+                "price": "686",
                 "list_price": "980"
               }
             ]
@@ -17291,38 +17499,38 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "300~",
+          "price": "210~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "4k",
-                "price": "1970",
+                "price": "1379",
                 "list_price": "1970"
               },
               {
                 "type": "hd",
-                "price": "1270",
+                "price": "890",
                 "list_price": "1270"
               },
               {
                 "type": "download",
-                "price": "980",
+                "price": "686",
                 "list_price": "980"
               },
               {
                 "type": "stream",
-                "price": "300",
+                "price": "210",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "980",
+                "price": "686",
                 "list_price": "980"
               },
               {
                 "type": "androiddl",
-                "price": "980",
+                "price": "686",
                 "list_price": "980"
               }
             ]
@@ -17411,7 +17619,14 @@
               "name": "ROCKET"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-06-10 00:10:00",
+            "date_end": "2026-06-16 23:59:59",
+            "title": "ブランドストア30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -18815,14 +19030,7 @@
               "name": "卍GROUP"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-06-03 00:10:00",
-            "date_end": "2026-06-09 23:59:59",
-            "title": "JET映像他30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -19090,33 +19298,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "300~",
+          "price": "210~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "780",
+                "price": "546",
                 "list_price": "780"
               },
               {
                 "type": "download",
-                "price": "480",
+                "price": "336",
                 "list_price": "480"
               },
               {
                 "type": "stream",
-                "price": "300",
+                "price": "210",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "480",
+                "price": "336",
                 "list_price": "480"
               },
               {
                 "type": "androiddl",
-                "price": "480",
+                "price": "336",
                 "list_price": "480"
               }
             ]
@@ -20360,14 +20568,7 @@
               "name": "卍GROUP"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-06-03 00:10:00",
-            "date_end": "2026-06-09 23:59:59",
-            "title": "JET映像他30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -22149,14 +22350,7 @@
               "name": "GLORY QUEST"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-06-03 00:10:00",
-            "date_end": "2026-06-09 23:59:59",
-            "title": "グローリークエスト他30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -26640,33 +26834,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "300~",
+          "price": "210~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "980",
+                "price": "686",
                 "list_price": "980"
               },
               {
                 "type": "download",
-                "price": "590",
+                "price": "413",
                 "list_price": "590"
               },
               {
                 "type": "stream",
-                "price": "300",
+                "price": "210",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "590",
+                "price": "413",
                 "list_price": "590"
               },
               {
                 "type": "androiddl",
-                "price": "590",
+                "price": "413",
                 "list_price": "590"
               }
             ]
@@ -26736,7 +26930,14 @@
               "name": "ミスターミチル"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-06-10 00:10:00",
+            "date_end": "2026-06-16 23:59:59",
+            "title": "SODグループ 30％OFF 第1弾"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -30595,7 +30796,7 @@
         }
       }
     ],
-    "total_count": 126,
-    "result_count": 126
+    "total_count": 127,
+    "result_count": 127
   }
 }

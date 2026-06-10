@@ -1879,29 +1879,34 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "2180~",
-          "list_price": "2180~",
+          "price": "500~",
+          "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "2680",
-                "list_price": "2680"
+                "price": "1680",
+                "list_price": "1680"
               },
               {
                 "type": "download",
-                "price": "2180",
-                "list_price": "2180"
+                "price": "1180",
+                "list_price": "1180"
+              },
+              {
+                "type": "stream",
+                "price": "500",
+                "list_price": "500"
               },
               {
                 "type": "iosdl",
-                "price": "2180",
-                "list_price": "2180"
+                "price": "1180",
+                "list_price": "1180"
               },
               {
                 "type": "androiddl",
-                "price": "2180",
-                "list_price": "2180"
+                "price": "1180",
+                "list_price": "1180"
               }
             ]
           }
@@ -5725,33 +5730,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "350~",
+          "price": "500~",
           "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "1036",
+                "price": "1480",
                 "list_price": "1480"
               },
               {
                 "type": "download",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "stream",
-                "price": "350",
+                "price": "500",
                 "list_price": "500"
               },
               {
                 "type": "iosdl",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "androiddl",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               }
             ]
@@ -5830,14 +5835,7 @@
               "name": "----"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-06-03 00:10:00",
-            "date_end": "2026-06-09 23:59:59",
-            "title": "DOC他30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -13893,33 +13891,33 @@
           }
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "download",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "hd",
-                "price": "890",
+                "price": "1270",
                 "list_price": "1270"
               },
               {
                 "type": "iosdl",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "androiddl",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               }
             ]
@@ -13986,14 +13984,7 @@
               "name": "----"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-06-08 00:10:00",
-            "date_end": "2026-06-09 23:59:59",
-            "title": "今月のおすすめ30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -27953,7 +27944,14 @@
               "name": "ノースキンズ"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-06-10 00:10:00",
+            "date_end": "2026-06-16 23:59:59",
+            "title": "SODグループ 30％OFF 第1弾"
+          }
+        ]
       },
       {
         "service_code": "digital",

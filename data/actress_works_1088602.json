@@ -7388,7 +7388,14 @@
               "name": "----"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-06-10 00:10:00",
+            "date_end": "2026-06-16 23:59:59",
+            "title": "ブランドストア30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -7741,9 +7748,9 @@
         },
         "campaign": [
           {
-            "date_begin": "2026-06-03 00:10:00",
-            "date_end": "2026-06-09 23:59:59",
-            "title": "グローリークエスト他30％OFF"
+            "date_begin": "2026-06-10 00:10:00",
+            "date_end": "2026-06-16 23:59:59",
+            "title": "ブランドストア30％OFF"
           }
         ]
       },
@@ -10999,7 +11006,14 @@
               "name": "CRYSTAL NEXT"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-06-10 00:10:00",
+            "date_end": "2026-06-16 23:59:59",
+            "title": "ブランドストア30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -17653,23 +17667,23 @@
           }
         },
         "prices": {
-          "price": "896~",
+          "price": "1280~",
           "list_price": "1280~",
           "deliveries": {
             "delivery": [
               {
                 "type": "8k",
-                "price": "1246",
+                "price": "1780",
                 "list_price": "1780"
               },
               {
                 "type": "hd",
-                "price": "1036",
+                "price": "1480",
                 "list_price": "1480"
               },
               {
                 "type": "download",
-                "price": "896",
+                "price": "1280",
                 "list_price": "1280"
               }
             ]
@@ -19474,28 +19488,28 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "1386~",
+          "price": "1980~",
           "list_price": "1980~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "1736",
+                "price": "2480",
                 "list_price": "2480"
               },
               {
                 "type": "download",
-                "price": "1386",
+                "price": "1980",
                 "list_price": "1980"
               },
               {
                 "type": "iosdl",
-                "price": "1386",
+                "price": "1980",
                 "list_price": "1980"
               },
               {
                 "type": "androiddl",
-                "price": "1386",
+                "price": "1980",
                 "list_price": "1980"
               }
             ]
@@ -20206,38 +20220,38 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "867~",
+          "price": "1240~",
           "list_price": "1240~",
           "deliveries": {
             "delivery": [
               {
                 "type": "4k",
-                "price": "2415",
+                "price": "3450",
                 "list_price": "3450"
               },
               {
                 "type": "hd",
-                "price": "2065",
+                "price": "2950",
                 "list_price": "2950"
               },
               {
                 "type": "download",
-                "price": "1736",
+                "price": "2480",
                 "list_price": "2480"
               },
               {
                 "type": "stream",
-                "price": "867",
+                "price": "1240",
                 "list_price": "1240"
               },
               {
                 "type": "iosdl",
-                "price": "1736",
+                "price": "2480",
                 "list_price": "2480"
               },
               {
                 "type": "androiddl",
-                "price": "1736",
+                "price": "2480",
                 "list_price": "2480"
               }
             ]
@@ -20311,14 +20325,7 @@
               "name": "million（ミリオン）"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-06-03 00:10:00",
-            "date_end": "2026-06-09 23:59:59",
-            "title": "ブランドストア30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -23021,34 +23028,34 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "2180~",
-          "list_price": "2180~",
+          "price": "1680~",
+          "list_price": "1680~",
           "deliveries": {
             "delivery": [
               {
                 "type": "4k",
-                "price": "3180",
-                "list_price": "3180"
-              },
-              {
-                "type": "hd",
                 "price": "2680",
                 "list_price": "2680"
               },
               {
-                "type": "download",
+                "type": "hd",
                 "price": "2180",
                 "list_price": "2180"
+              },
+              {
+                "type": "download",
+                "price": "1680",
+                "list_price": "1680"
               },
               {
                 "type": "iosdl",
-                "price": "2180",
-                "list_price": "2180"
+                "price": "1680",
+                "list_price": "1680"
               },
               {
                 "type": "androiddl",
-                "price": "2180",
-                "list_price": "2180"
+                "price": "1680",
+                "list_price": "1680"
               }
             ]
           }
@@ -23845,29 +23852,34 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "2180~",
-          "list_price": "2180~",
+          "price": "500~",
+          "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "2680",
-                "list_price": "2680"
+                "price": "1680",
+                "list_price": "1680"
               },
               {
                 "type": "download",
-                "price": "2180",
-                "list_price": "2180"
+                "price": "1180",
+                "list_price": "1180"
+              },
+              {
+                "type": "stream",
+                "price": "500",
+                "list_price": "500"
               },
               {
                 "type": "iosdl",
-                "price": "2180",
-                "list_price": "2180"
+                "price": "1180",
+                "list_price": "1180"
               },
               {
                 "type": "androiddl",
-                "price": "2180",
-                "list_price": "2180"
+                "price": "1180",
+                "list_price": "1180"
               }
             ]
           }
@@ -24008,29 +24020,34 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "2180~",
-          "list_price": "2180~",
+          "price": "500~",
+          "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "2680",
-                "list_price": "2680"
+                "price": "1680",
+                "list_price": "1680"
               },
               {
                 "type": "download",
-                "price": "2180",
-                "list_price": "2180"
+                "price": "1180",
+                "list_price": "1180"
+              },
+              {
+                "type": "stream",
+                "price": "500",
+                "list_price": "500"
               },
               {
                 "type": "iosdl",
-                "price": "2180",
-                "list_price": "2180"
+                "price": "1180",
+                "list_price": "1180"
               },
               {
                 "type": "androiddl",
-                "price": "2180",
-                "list_price": "2180"
+                "price": "1180",
+                "list_price": "1180"
               }
             ]
           }
@@ -25333,38 +25350,38 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "4k",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "hd",
-                "price": "546",
+                "price": "780",
                 "list_price": "780"
               },
               {
                 "type": "download",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "androiddl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               }
             ]
@@ -29315,7 +29332,14 @@
               "name": "S-Cute"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-06-10 00:10:00",
+            "date_end": "2026-06-16 23:59:59",
+            "title": "ブランドストア30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -29638,178 +29662,6 @@
             {
               "id": 26372,
               "name": "みんなのキカタン"
-            }
-          ]
-        }
-      },
-      {
-        "service_code": "digital",
-        "service_name": "動画",
-        "floor_code": "videoa",
-        "floor_name": "ビデオ",
-        "category_name": "ビデオ (動画)",
-        "content_id": "nima00075",
-        "product_id": "nima00075",
-        "title": "ヴァージンツイート ～エロアカウントにはまってしまった処女～ 逢沢みゆ",
-        "volume": "120",
-        "review": {
-          "count": 8,
-          "average": "4.75"
-        },
-        "URL": "https://video.dmm.co.jp/av/content/?id=nima00075",
-        "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Dnima00075&af_id=saaaaaaya-990&ch=api",
-        "imageURL": {
-          "large": "https://pics.dmm.co.jp/digital/video/nima00075/nima00075pl.jpg",
-          "small": "https://pics.dmm.co.jp/digital/video/nima00075/nima00075ps.jpg",
-          "list": "https://pics.dmm.co.jp/digital/video/nima00075/nima00075pt.jpg"
-        },
-        "sampleImageURL": {
-          "sample_s": {
-            "image": [
-              "https://pics.dmm.co.jp/digital/video/nima00075/nima00075-1.jpg",
-              "https://pics.dmm.co.jp/digital/video/nima00075/nima00075-2.jpg",
-              "https://pics.dmm.co.jp/digital/video/nima00075/nima00075-3.jpg",
-              "https://pics.dmm.co.jp/digital/video/nima00075/nima00075-4.jpg",
-              "https://pics.dmm.co.jp/digital/video/nima00075/nima00075-5.jpg",
-              "https://pics.dmm.co.jp/digital/video/nima00075/nima00075-6.jpg",
-              "https://pics.dmm.co.jp/digital/video/nima00075/nima00075-7.jpg",
-              "https://pics.dmm.co.jp/digital/video/nima00075/nima00075-8.jpg",
-              "https://pics.dmm.co.jp/digital/video/nima00075/nima00075-9.jpg",
-              "https://pics.dmm.co.jp/digital/video/nima00075/nima00075-10.jpg",
-              "https://pics.dmm.co.jp/digital/video/nima00075/nima00075-11.jpg",
-              "https://pics.dmm.co.jp/digital/video/nima00075/nima00075-12.jpg",
-              "https://pics.dmm.co.jp/digital/video/nima00075/nima00075-13.jpg",
-              "https://pics.dmm.co.jp/digital/video/nima00075/nima00075-14.jpg",
-              "https://pics.dmm.co.jp/digital/video/nima00075/nima00075-15.jpg",
-              "https://pics.dmm.co.jp/digital/video/nima00075/nima00075-16.jpg",
-              "https://pics.dmm.co.jp/digital/video/nima00075/nima00075-17.jpg",
-              "https://pics.dmm.co.jp/digital/video/nima00075/nima00075-18.jpg"
-            ]
-          },
-          "sample_l": {
-            "image": [
-              "https://pics.dmm.co.jp/digital/video/nima00075/nima00075jp-1.jpg",
-              "https://pics.dmm.co.jp/digital/video/nima00075/nima00075jp-2.jpg",
-              "https://pics.dmm.co.jp/digital/video/nima00075/nima00075jp-3.jpg",
-              "https://pics.dmm.co.jp/digital/video/nima00075/nima00075jp-4.jpg",
-              "https://pics.dmm.co.jp/digital/video/nima00075/nima00075jp-5.jpg",
-              "https://pics.dmm.co.jp/digital/video/nima00075/nima00075jp-6.jpg",
-              "https://pics.dmm.co.jp/digital/video/nima00075/nima00075jp-7.jpg",
-              "https://pics.dmm.co.jp/digital/video/nima00075/nima00075jp-8.jpg",
-              "https://pics.dmm.co.jp/digital/video/nima00075/nima00075jp-9.jpg",
-              "https://pics.dmm.co.jp/digital/video/nima00075/nima00075jp-10.jpg",
-              "https://pics.dmm.co.jp/digital/video/nima00075/nima00075jp-11.jpg",
-              "https://pics.dmm.co.jp/digital/video/nima00075/nima00075jp-12.jpg",
-              "https://pics.dmm.co.jp/digital/video/nima00075/nima00075jp-13.jpg",
-              "https://pics.dmm.co.jp/digital/video/nima00075/nima00075jp-14.jpg",
-              "https://pics.dmm.co.jp/digital/video/nima00075/nima00075jp-15.jpg",
-              "https://pics.dmm.co.jp/digital/video/nima00075/nima00075jp-16.jpg",
-              "https://pics.dmm.co.jp/digital/video/nima00075/nima00075jp-17.jpg",
-              "https://pics.dmm.co.jp/digital/video/nima00075/nima00075jp-18.jpg"
-            ]
-          }
-        },
-        "sampleMovieURL": {
-          "size_476_306": "https://www.dmm.co.jp/litevideo/-/part/=/cid=nima00075/size=476_306/affi_id=saaaaaaya-990/",
-          "size_560_360": "https://www.dmm.co.jp/litevideo/-/part/=/cid=nima00075/size=560_360/affi_id=saaaaaaya-990/",
-          "size_644_414": "https://www.dmm.co.jp/litevideo/-/part/=/cid=nima00075/size=644_414/affi_id=saaaaaaya-990/",
-          "size_720_480": "https://www.dmm.co.jp/litevideo/-/part/=/cid=nima00075/size=720_480/affi_id=saaaaaaya-990/",
-          "pc_flag": 1,
-          "sp_flag": 1
-        },
-        "prices": {
-          "price": "500~",
-          "list_price": "500~",
-          "deliveries": {
-            "delivery": [
-              {
-                "type": "hd",
-                "price": "1980",
-                "list_price": "1980"
-              },
-              {
-                "type": "download",
-                "price": "1470",
-                "list_price": "1470"
-              },
-              {
-                "type": "stream",
-                "price": "500",
-                "list_price": "500"
-              },
-              {
-                "type": "iosdl",
-                "price": "1470",
-                "list_price": "1470"
-              },
-              {
-                "type": "androiddl",
-                "price": "1470",
-                "list_price": "1470"
-              }
-            ]
-          }
-        },
-        "date": "2026-01-30 00:00:20",
-        "iteminfo": {
-          "genre": [
-            {
-              "id": 6533,
-              "name": "ハイビジョン"
-            },
-            {
-              "id": 6548,
-              "name": "独占配信"
-            },
-            {
-              "id": 4138,
-              "name": "原作コラボ"
-            },
-            {
-              "id": 4025,
-              "name": "単体作品"
-            },
-            {
-              "id": 5001,
-              "name": "中出し"
-            },
-            {
-              "id": 5002,
-              "name": "フェラ"
-            },
-            {
-              "id": 1027,
-              "name": "美少女"
-            },
-            {
-              "id": 2001,
-              "name": "巨乳"
-            }
-          ],
-          "maker": [
-            {
-              "id": 6329,
-              "name": "Fitch"
-            }
-          ],
-          "actress": [
-            {
-              "id": 1088602,
-              "name": "逢沢みゆ",
-              "ruby": "あいざわみゆ"
-            }
-          ],
-          "director": [
-            {
-              "id": 101625,
-              "name": "苺原",
-              "ruby": "いちごはら"
-            }
-          ],
-          "label": [
-            {
-              "id": 23998,
-              "name": "肉漫"
             }
           ]
         }
@@ -33572,33 +33424,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "350~",
+          "price": "500~",
           "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "1246",
+                "price": "1780",
                 "list_price": "1780"
               },
               {
                 "type": "download",
-                "price": "890",
+                "price": "1270",
                 "list_price": "1270"
               },
               {
                 "type": "stream",
-                "price": "350",
+                "price": "500",
                 "list_price": "500"
               },
               {
                 "type": "iosdl",
-                "price": "890",
+                "price": "1270",
                 "list_price": "1270"
               },
               {
                 "type": "androiddl",
-                "price": "890",
+                "price": "1270",
                 "list_price": "1270"
               }
             ]
@@ -38894,33 +38746,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "350~",
+          "price": "500~",
           "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "1036",
+                "price": "1480",
                 "list_price": "1480"
               },
               {
                 "type": "download",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "stream",
-                "price": "350",
+                "price": "500",
                 "list_price": "500"
               },
               {
                 "type": "iosdl",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "androiddl",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               }
             ]
@@ -38981,14 +38833,7 @@
               "name": "h.m.p"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-06-03 00:10:00",
-            "date_end": "2026-06-09 23:59:59",
-            "title": "DOC他30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -46481,8 +46326,8 @@
         },
         "campaign": [
           {
-            "date_begin": "2026-06-03 00:10:00",
-            "date_end": "2026-06-09 23:59:59",
+            "date_begin": "2026-06-10 00:10:00",
+            "date_end": "2026-06-16 23:59:59",
             "title": "ブランドストア30％OFF"
           }
         ]
@@ -48868,33 +48713,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "350~",
+          "price": "500~",
           "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "1036",
+                "price": "1480",
                 "list_price": "1480"
               },
               {
                 "type": "download",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "stream",
-                "price": "350",
+                "price": "500",
                 "list_price": "500"
               },
               {
                 "type": "iosdl",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "androiddl",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               }
             ]
@@ -48955,14 +48800,7 @@
               "name": "h.m.p"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-06-03 00:10:00",
-            "date_end": "2026-06-09 23:59:59",
-            "title": "DOC他30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -54469,38 +54307,38 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "350~",
+          "price": "500~",
           "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "4k",
-                "price": "1386",
+                "price": "1980",
                 "list_price": "1980"
               },
               {
                 "type": "hd",
-                "price": "1036",
+                "price": "1480",
                 "list_price": "1480"
               },
               {
                 "type": "download",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "stream",
-                "price": "350",
+                "price": "500",
                 "list_price": "500"
               },
               {
                 "type": "iosdl",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "androiddl",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               }
             ]
@@ -60619,34 +60457,34 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "500~",
-          "list_price": "500~",
+          "price": "300~",
+          "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "1480",
-                "list_price": "1480"
+                "price": "780",
+                "list_price": "780"
               },
               {
                 "type": "download",
-                "price": "980",
-                "list_price": "980"
+                "price": "590",
+                "list_price": "590"
               },
               {
                 "type": "stream",
-                "price": "500",
-                "list_price": "500"
+                "price": "300",
+                "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "980",
-                "list_price": "980"
+                "price": "590",
+                "list_price": "590"
               },
               {
                 "type": "androiddl",
-                "price": "980",
-                "list_price": "980"
+                "price": "590",
+                "list_price": "590"
               }
             ]
           }
@@ -60794,33 +60632,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "1036",
+                "price": "1480",
                 "list_price": "1480"
               },
               {
                 "type": "download",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "androiddl",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               }
             ]
@@ -60884,14 +60722,7 @@
               "name": "GLORY QUEST"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-06-03 00:10:00",
-            "date_end": "2026-06-09 23:59:59",
-            "title": "グローリークエスト他30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -72429,7 +72260,7 @@
         }
       }
     ],
-    "total_count": 334,
-    "result_count": 334
+    "total_count": 333,
+    "result_count": 333
   }
 }

@@ -6069,34 +6069,34 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "990~",
-          "list_price": "990~",
+          "price": "500~",
+          "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "2450",
-                "list_price": "2450"
+                "price": "1950",
+                "list_price": "1950"
               },
               {
                 "type": "download",
-                "price": "1980",
-                "list_price": "1980"
+                "price": "1480",
+                "list_price": "1480"
               },
               {
                 "type": "stream",
-                "price": "990",
-                "list_price": "990"
+                "price": "500",
+                "list_price": "500"
               },
               {
                 "type": "iosdl",
-                "price": "1980",
-                "list_price": "1980"
+                "price": "1480",
+                "list_price": "1480"
               },
               {
                 "type": "androiddl",
-                "price": "1980",
-                "list_price": "1980"
+                "price": "1480",
+                "list_price": "1480"
               }
             ]
           }
@@ -6493,29 +6493,34 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "1980~",
-          "list_price": "1980~",
+          "price": "500~",
+          "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "2480",
-                "list_price": "2480"
+                "price": "1480",
+                "list_price": "1480"
               },
               {
                 "type": "download",
-                "price": "1980",
-                "list_price": "1980"
+                "price": "980",
+                "list_price": "980"
+              },
+              {
+                "type": "stream",
+                "price": "500",
+                "list_price": "500"
               },
               {
                 "type": "iosdl",
-                "price": "1980",
-                "list_price": "1980"
+                "price": "980",
+                "list_price": "980"
               },
               {
                 "type": "androiddl",
-                "price": "1980",
-                "list_price": "1980"
+                "price": "980",
+                "list_price": "980"
               }
             ]
           }
@@ -16191,7 +16196,14 @@
               "name": "million（ミリオン）"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-06-10 00:10:00",
+            "date_end": "2026-06-11 23:59:59",
+            "title": "今月のおすすめ30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",

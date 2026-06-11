@@ -3457,34 +3457,29 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "500~",
-          "list_price": "500~",
+          "price": "2180~",
+          "list_price": "2180~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "1680",
-                "list_price": "1680"
+                "price": "2680",
+                "list_price": "2680"
               },
               {
                 "type": "download",
-                "price": "1180",
-                "list_price": "1180"
-              },
-              {
-                "type": "stream",
-                "price": "500",
-                "list_price": "500"
+                "price": "2180",
+                "list_price": "2180"
               },
               {
                 "type": "iosdl",
-                "price": "1180",
-                "list_price": "1180"
+                "price": "2180",
+                "list_price": "2180"
               },
               {
                 "type": "androiddl",
-                "price": "1180",
-                "list_price": "1180"
+                "price": "2180",
+                "list_price": "2180"
               }
             ]
           }
@@ -29139,38 +29134,38 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "300~",
+          "price": "210~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "4k",
-                "price": "1680",
+                "price": "1175",
                 "list_price": "1680"
               },
               {
                 "type": "hd",
-                "price": "980",
+                "price": "686",
                 "list_price": "980"
               },
               {
                 "type": "download",
-                "price": "620",
+                "price": "434",
                 "list_price": "620"
               },
               {
                 "type": "stream",
-                "price": "300",
+                "price": "210",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "620",
+                "price": "434",
                 "list_price": "620"
               },
               {
                 "type": "androiddl",
-                "price": "620",
+                "price": "434",
                 "list_price": "620"
               }
             ]
@@ -29252,7 +29247,14 @@
               "name": "MOODYZ DIVA"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-06-12 00:00:00",
+            "date_end": "2026-06-12 23:59:59",
+            "title": "日替わりセール！"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -32002,33 +32004,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "download",
-                "price": "434",
+                "price": "620",
                 "list_price": "620"
               },
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "hd",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "iosdl",
-                "price": "434",
+                "price": "620",
                 "list_price": "620"
               },
               {
                 "type": "androiddl",
-                "price": "434",
+                "price": "620",
                 "list_price": "620"
               }
             ]
@@ -32458,14 +32460,7 @@
               "name": "MOODYZ Best"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-06-11 00:00:00",
-            "date_end": "2026-06-11 23:59:59",
-            "title": "日替わりセール◆"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",

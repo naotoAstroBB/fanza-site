@@ -68,6 +68,16 @@
                 "list_price": "2800"
               },
               {
+                "type": "4k",
+                "price": "3800",
+                "list_price": "3800"
+              },
+              {
+                "type": "hd",
+                "price": "3300",
+                "list_price": "3300"
+              },
+              {
                 "type": "iosdl",
                 "price": "2800",
                 "list_price": "2800"
@@ -83,6 +93,14 @@
         "date": "2026-07-11 00:00:00",
         "iteminfo": {
           "genre": [
+            {
+              "id": 6533,
+              "name": "ハイビジョン"
+            },
+            {
+              "id": 79015,
+              "name": "4K"
+            },
             {
               "id": 6548,
               "name": "独占配信"
@@ -8008,28 +8026,28 @@
         "iteminfo": {
           "genre": [
             {
-              "id": 6533,
-              "name": "ハイビジョン"
-            },
-            {
-              "id": 5015,
-              "name": "ドラッグ"
-            },
-            {
-              "id": 5059,
-              "name": "拷問"
-            },
-            {
-              "id": 2022,
-              "name": "女捜査官"
+              "id": 6968,
+              "name": "アクメ・オーガズム"
             },
             {
               "id": 1014,
               "name": "熟女"
             },
             {
-              "id": 6968,
-              "name": "アクメ・オーガズム"
+              "id": 2022,
+              "name": "女捜査官"
+            },
+            {
+              "id": 5059,
+              "name": "拷問"
+            },
+            {
+              "id": 5015,
+              "name": "ドラッグ"
+            },
+            {
+              "id": 6533,
+              "name": "ハイビジョン"
             }
           ],
           "maker": [
@@ -19738,28 +19756,28 @@
         "iteminfo": {
           "genre": [
             {
-              "id": 6533,
-              "name": "ハイビジョン"
-            },
-            {
-              "id": 5015,
-              "name": "ドラッグ"
-            },
-            {
-              "id": 5059,
-              "name": "拷問"
-            },
-            {
-              "id": 4001,
-              "name": "SM"
+              "id": 6968,
+              "name": "アクメ・オーガズム"
             },
             {
               "id": 4024,
               "name": "素人"
             },
             {
-              "id": 6968,
-              "name": "アクメ・オーガズム"
+              "id": 4001,
+              "name": "SM"
+            },
+            {
+              "id": 5059,
+              "name": "拷問"
+            },
+            {
+              "id": 5015,
+              "name": "ドラッグ"
+            },
+            {
+              "id": 6533,
+              "name": "ハイビジョン"
             }
           ],
           "maker": [
@@ -264865,33 +264883,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "434",
+                "price": "620",
                 "list_price": "620"
               },
               {
                 "type": "hd",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "iosdl",
-                "price": "434",
+                "price": "620",
                 "list_price": "620"
               },
               {
                 "type": "androiddl",
-                "price": "434",
+                "price": "620",
                 "list_price": "620"
               }
             ]
@@ -264961,14 +264979,7 @@
               "name": "ティッシュ"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-06-10 10:00:00",
-            "date_end": "2026-06-12 09:59:59",
-            "title": "アイポケキャンペーン30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -265719,28 +265730,28 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "300~",
+          "price": "210~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "300",
+                "price": "210",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "620",
+                "price": "434",
                 "list_price": "620"
               },
               {
                 "type": "iosdl",
-                "price": "620",
+                "price": "434",
                 "list_price": "620"
               },
               {
                 "type": "androiddl",
-                "price": "620",
+                "price": "434",
                 "list_price": "620"
               }
             ]
@@ -265829,7 +265840,14 @@
               "name": "アイデアポケットBEST"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-06-12 10:00:00",
+            "date_end": "2026-06-15 09:59:59",
+            "title": "アイポケキャンペーン30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -307132,33 +307150,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "336",
+                "price": "480",
                 "list_price": "480"
               },
               {
                 "type": "hd",
-                "price": "546",
+                "price": "780",
                 "list_price": "780"
               },
               {
                 "type": "iosdl",
-                "price": "336",
+                "price": "480",
                 "list_price": "480"
               },
               {
                 "type": "androiddl",
-                "price": "336",
+                "price": "480",
                 "list_price": "480"
               }
             ]
@@ -307228,14 +307246,7 @@
               "name": "ティッシュ"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-06-10 10:00:00",
-            "date_end": "2026-06-12 09:59:59",
-            "title": "アイポケキャンペーン30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",

@@ -2499,10 +2499,6 @@
               "name": "VR専用"
             },
             {
-              "id": 6548,
-              "name": "独占配信"
-            },
-            {
               "id": 6003,
               "name": "ベスト・総集編"
             },
@@ -11515,10 +11511,6 @@
               "name": "ハイビジョン"
             },
             {
-              "id": 6548,
-              "name": "独占配信"
-            },
-            {
               "id": 48,
               "name": "制服"
             },
@@ -11679,10 +11671,6 @@
             {
               "id": 6533,
               "name": "ハイビジョン"
-            },
-            {
-              "id": 6548,
-              "name": "独占配信"
             },
             {
               "id": 4005,
@@ -12637,38 +12625,38 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "350~",
+          "price": "500~",
           "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "4k",
-                "price": "1736",
+                "price": "2480",
                 "list_price": "2480"
               },
               {
                 "type": "hd",
-                "price": "1386",
+                "price": "1980",
                 "list_price": "1980"
               },
               {
                 "type": "download",
-                "price": "1036",
+                "price": "1480",
                 "list_price": "1480"
               },
               {
                 "type": "stream",
-                "price": "350",
+                "price": "500",
                 "list_price": "500"
               },
               {
                 "type": "iosdl",
-                "price": "1036",
+                "price": "1480",
                 "list_price": "1480"
               },
               {
                 "type": "androiddl",
-                "price": "1036",
+                "price": "1480",
                 "list_price": "1480"
               }
             ]
@@ -12987,7 +12975,14 @@
               "name": "OFFICE K’S"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-06-15 00:10:00",
+            "date_end": "2026-06-16 23:59:59",
+            "title": "みんなのお気に入り30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -15826,33 +15821,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "350~",
+          "price": "500~",
           "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "download",
-                "price": "890",
+                "price": "1270",
                 "list_price": "1270"
               },
               {
                 "type": "stream",
-                "price": "350",
+                "price": "500",
                 "list_price": "500"
               },
               {
                 "type": "hd",
-                "price": "1246",
+                "price": "1780",
                 "list_price": "1780"
               },
               {
                 "type": "iosdl",
-                "price": "890",
+                "price": "1270",
                 "list_price": "1270"
               },
               {
                 "type": "androiddl",
-                "price": "890",
+                "price": "1270",
                 "list_price": "1270"
               }
             ]
@@ -15927,14 +15922,7 @@
               "name": "DEEP’S"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-06-12 00:10:00",
-            "date_end": "2026-06-14 23:59:59",
-            "title": "みんなのお気に入り30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -17479,7 +17467,14 @@
               "name": "俺のボイン"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-06-15 00:10:00",
+            "date_end": "2026-06-16 23:59:59",
+            "title": "みんなのお気に入り30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -21560,38 +21555,38 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "350~",
+          "price": "500~",
           "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "4k",
-                "price": "1386",
+                "price": "1980",
                 "list_price": "1980"
               },
               {
                 "type": "hd",
-                "price": "1036",
+                "price": "1480",
                 "list_price": "1480"
               },
               {
                 "type": "download",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "stream",
-                "price": "350",
+                "price": "500",
                 "list_price": "500"
               },
               {
                 "type": "iosdl",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "androiddl",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               }
             ]
@@ -21655,14 +21650,7 @@
               "name": "LUNATICS"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-06-12 00:10:00",
-            "date_end": "2026-06-14 23:59:59",
-            "title": "みんなのお気に入り30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -22417,6 +22405,181 @@
             {
               "id": 2064536,
               "name": "AQUA BLACK"
+            }
+          ]
+        }
+      },
+      {
+        "service_code": "digital",
+        "service_name": "動画",
+        "floor_code": "videoa",
+        "floor_name": "ビデオ",
+        "category_name": "ビデオ (動画)",
+        "content_id": "h_1711mfct00019",
+        "product_id": "h_1711mfct00019",
+        "title": "MOON FORCE 2nd ぱこぱこしろうとコレクション。 vol.19",
+        "volume": "244",
+        "review": {
+          "count": 1,
+          "average": "5.00"
+        },
+        "URL": "https://video.dmm.co.jp/av/content/?id=h_1711mfct00019",
+        "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Dh_1711mfct00019&af_id=saaaaaaya-990&ch=api",
+        "imageURL": {
+          "large": "https://pics.dmm.co.jp/digital/video/h_1711mfct00019/h_1711mfct00019pl.jpg",
+          "small": "https://pics.dmm.co.jp/digital/video/h_1711mfct00019/h_1711mfct00019ps.jpg",
+          "list": "https://pics.dmm.co.jp/digital/video/h_1711mfct00019/h_1711mfct00019pt.jpg"
+        },
+        "sampleImageURL": {
+          "sample_s": {
+            "image": [
+              "https://pics.dmm.co.jp/digital/video/h_1711mfct00019/h_1711mfct00019-1.jpg",
+              "https://pics.dmm.co.jp/digital/video/h_1711mfct00019/h_1711mfct00019-2.jpg",
+              "https://pics.dmm.co.jp/digital/video/h_1711mfct00019/h_1711mfct00019-3.jpg",
+              "https://pics.dmm.co.jp/digital/video/h_1711mfct00019/h_1711mfct00019-4.jpg",
+              "https://pics.dmm.co.jp/digital/video/h_1711mfct00019/h_1711mfct00019-5.jpg",
+              "https://pics.dmm.co.jp/digital/video/h_1711mfct00019/h_1711mfct00019-6.jpg",
+              "https://pics.dmm.co.jp/digital/video/h_1711mfct00019/h_1711mfct00019-7.jpg",
+              "https://pics.dmm.co.jp/digital/video/h_1711mfct00019/h_1711mfct00019-8.jpg",
+              "https://pics.dmm.co.jp/digital/video/h_1711mfct00019/h_1711mfct00019-9.jpg",
+              "https://pics.dmm.co.jp/digital/video/h_1711mfct00019/h_1711mfct00019-10.jpg"
+            ]
+          },
+          "sample_l": {
+            "image": [
+              "https://pics.dmm.co.jp/digital/video/h_1711mfct00019/h_1711mfct00019jp-1.jpg",
+              "https://pics.dmm.co.jp/digital/video/h_1711mfct00019/h_1711mfct00019jp-2.jpg",
+              "https://pics.dmm.co.jp/digital/video/h_1711mfct00019/h_1711mfct00019jp-3.jpg",
+              "https://pics.dmm.co.jp/digital/video/h_1711mfct00019/h_1711mfct00019jp-4.jpg",
+              "https://pics.dmm.co.jp/digital/video/h_1711mfct00019/h_1711mfct00019jp-5.jpg",
+              "https://pics.dmm.co.jp/digital/video/h_1711mfct00019/h_1711mfct00019jp-6.jpg",
+              "https://pics.dmm.co.jp/digital/video/h_1711mfct00019/h_1711mfct00019jp-7.jpg",
+              "https://pics.dmm.co.jp/digital/video/h_1711mfct00019/h_1711mfct00019jp-8.jpg",
+              "https://pics.dmm.co.jp/digital/video/h_1711mfct00019/h_1711mfct00019jp-9.jpg",
+              "https://pics.dmm.co.jp/digital/video/h_1711mfct00019/h_1711mfct00019jp-10.jpg"
+            ]
+          }
+        },
+        "sampleMovieURL": {
+          "size_476_306": "https://www.dmm.co.jp/litevideo/-/part/=/cid=h_1711mfct019/size=476_306/affi_id=saaaaaaya-990/",
+          "size_560_360": "https://www.dmm.co.jp/litevideo/-/part/=/cid=h_1711mfct019/size=560_360/affi_id=saaaaaaya-990/",
+          "size_644_414": "https://www.dmm.co.jp/litevideo/-/part/=/cid=h_1711mfct019/size=644_414/affi_id=saaaaaaya-990/",
+          "size_720_480": "https://www.dmm.co.jp/litevideo/-/part/=/cid=h_1711mfct019/size=720_480/affi_id=saaaaaaya-990/",
+          "pc_flag": 1,
+          "sp_flag": 1
+        },
+        "prices": {
+          "price": "320~",
+          "list_price": "320~",
+          "deliveries": {
+            "delivery": [
+              {
+                "type": "4k",
+                "price": "1550",
+                "list_price": "1550"
+              },
+              {
+                "type": "hd",
+                "price": "1050",
+                "list_price": "1050"
+              },
+              {
+                "type": "download",
+                "price": "850",
+                "list_price": "850"
+              },
+              {
+                "type": "stream",
+                "price": "320",
+                "list_price": "320"
+              },
+              {
+                "type": "iosdl",
+                "price": "850",
+                "list_price": "850"
+              },
+              {
+                "type": "androiddl",
+                "price": "850",
+                "list_price": "850"
+              }
+            ]
+          }
+        },
+        "date": "2025-06-06 00:00:00",
+        "iteminfo": {
+          "genre": [
+            {
+              "id": 6533,
+              "name": "ハイビジョン"
+            },
+            {
+              "id": 79015,
+              "name": "4K"
+            },
+            {
+              "id": 6012,
+              "name": "4時間以上作品"
+            },
+            {
+              "id": 5001,
+              "name": "中出し"
+            },
+            {
+              "id": 2006,
+              "name": "スレンダー"
+            },
+            {
+              "id": 2001,
+              "name": "巨乳"
+            },
+            {
+              "id": 6002,
+              "name": "ハメ撮り"
+            },
+            {
+              "id": 4024,
+              "name": "素人"
+            }
+          ],
+          "series": [
+            {
+              "id": 4014422,
+              "name": "MOON FORCE"
+            }
+          ],
+          "maker": [
+            {
+              "id": 6716,
+              "name": "DOC"
+            }
+          ],
+          "actress": [
+            {
+              "id": 1091790,
+              "name": "小坂ひまり",
+              "ruby": "こさかひまり"
+            },
+            {
+              "id": 1017135,
+              "name": "鈴木真夕",
+              "ruby": "すずきまゆ"
+            },
+            {
+              "id": 1091795,
+              "name": "高橋ほなみ",
+              "ruby": "たかはしほなみ"
+            },
+            {
+              "id": 1086450,
+              "name": "雨宮小春",
+              "ruby": "あまみやこはる"
+            }
+          ],
+          "label": [
+            {
+              "id": 2065877,
+              "name": "MOON FORCE TWICE"
             }
           ]
         }
@@ -31252,33 +31415,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "download",
-                "price": "413",
+                "price": "590",
                 "list_price": "590"
               },
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "hd",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "iosdl",
-                "price": "413",
+                "price": "590",
                 "list_price": "590"
               },
               {
                 "type": "androiddl",
-                "price": "413",
+                "price": "590",
                 "list_price": "590"
               }
             ]
@@ -31338,14 +31501,7 @@
               "name": "h.m.p DORAMA"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-06-12 00:10:00",
-            "date_end": "2026-06-14 23:59:59",
-            "title": "みんなのお気に入り30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -32275,33 +32431,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "1015",
+                "price": "1450",
                 "list_price": "1450"
               },
               {
                 "type": "download",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "androiddl",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               }
             ]
@@ -32388,14 +32544,7 @@
               "name": "ま○こ銀行"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-06-12 00:10:00",
-            "date_end": "2026-06-14 23:59:59",
-            "title": "みんなのお気に入り30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -35070,7 +35219,7 @@
         }
       }
     ],
-    "total_count": 163,
-    "result_count": 163
+    "total_count": 164,
+    "result_count": 164
   }
 }

@@ -90808,33 +90808,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "300~",
+          "price": "210~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "1180",
+                "price": "826",
                 "list_price": "1180"
               },
               {
                 "type": "download",
-                "price": "790",
+                "price": "553",
                 "list_price": "790"
               },
               {
                 "type": "stream",
-                "price": "300",
+                "price": "210",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "790",
+                "price": "553",
                 "list_price": "790"
               },
               {
                 "type": "androiddl",
-                "price": "790",
+                "price": "553",
                 "list_price": "790"
               }
             ]
@@ -90902,7 +90902,14 @@
               "name": "MOODYZ DIVA"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-06-16 00:00:00",
+            "date_end": "2026-06-16 23:59:59",
+            "title": "日替わりセール☆"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -157734,34 +157741,39 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "3380~",
-          "list_price": "3380~",
+          "price": "1480~",
+          "list_price": "1480~",
           "deliveries": {
             "delivery": [
               {
                 "type": "4k",
-                "price": "4180",
-                "list_price": "4180"
-              },
-              {
-                "type": "hd",
                 "price": "3680",
                 "list_price": "3680"
               },
               {
+                "type": "hd",
+                "price": "3180",
+                "list_price": "3180"
+              },
+              {
                 "type": "download",
-                "price": "3380",
-                "list_price": "3380"
+                "price": "2880",
+                "list_price": "2880"
+              },
+              {
+                "type": "stream",
+                "price": "1480",
+                "list_price": "1480"
               },
               {
                 "type": "iosdl",
-                "price": "3380",
-                "list_price": "3380"
+                "price": "2880",
+                "list_price": "2880"
               },
               {
                 "type": "androiddl",
-                "price": "3380",
-                "list_price": "3380"
+                "price": "2880",
+                "list_price": "2880"
               }
             ]
           }

@@ -68301,34 +68301,39 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "3380~",
-          "list_price": "3380~",
+          "price": "1480~",
+          "list_price": "1480~",
           "deliveries": {
             "delivery": [
               {
                 "type": "4k",
-                "price": "4180",
-                "list_price": "4180"
-              },
-              {
-                "type": "hd",
                 "price": "3680",
                 "list_price": "3680"
               },
               {
+                "type": "hd",
+                "price": "3180",
+                "list_price": "3180"
+              },
+              {
                 "type": "download",
-                "price": "3380",
-                "list_price": "3380"
+                "price": "2880",
+                "list_price": "2880"
+              },
+              {
+                "type": "stream",
+                "price": "1480",
+                "list_price": "1480"
               },
               {
                 "type": "iosdl",
-                "price": "3380",
-                "list_price": "3380"
+                "price": "2880",
+                "list_price": "2880"
               },
               {
                 "type": "androiddl",
-                "price": "3380",
-                "list_price": "3380"
+                "price": "2880",
+                "list_price": "2880"
               }
             ]
           }
@@ -183500,33 +183505,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "300~",
+          "price": "210~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "300",
+                "price": "210",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "620",
+                "price": "434",
                 "list_price": "620"
               },
               {
                 "type": "hd",
-                "price": "980",
+                "price": "686",
                 "list_price": "980"
               },
               {
                 "type": "iosdl",
-                "price": "620",
+                "price": "434",
                 "list_price": "620"
               },
               {
                 "type": "androiddl",
-                "price": "620",
+                "price": "434",
                 "list_price": "620"
               }
             ]
@@ -183583,7 +183588,14 @@
               "name": "GLAMOROUS"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-06-16 00:00:00",
+            "date_end": "2026-06-16 23:59:59",
+            "title": "日替わりセール☆"
+          }
+        ]
       },
       {
         "service_code": "digital",

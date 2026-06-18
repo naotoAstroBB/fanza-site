@@ -536,6 +536,16 @@
                 "list_price": "2180"
               },
               {
+                "type": "4k",
+                "price": "3200",
+                "list_price": "3200"
+              },
+              {
+                "type": "hd",
+                "price": "2700",
+                "list_price": "2700"
+              },
+              {
                 "type": "iosdl",
                 "price": "2180",
                 "list_price": "2180"
@@ -586,6 +596,14 @@
             {
               "id": 6995,
               "name": "妄想族"
+            },
+            {
+              "id": 79015,
+              "name": "4K"
+            },
+            {
+              "id": 6533,
+              "name": "ハイビジョン"
             }
           ],
           "maker": [
@@ -632,6 +650,56 @@
           "small": "https://pics.dmm.co.jp/digital/video/ddff00053/ddff00053ps.jpg",
           "list": "https://pics.dmm.co.jp/digital/video/ddff00053/ddff00053pt.jpg"
         },
+        "sampleImageURL": {
+          "sample_s": {
+            "image": [
+              "https://pics.dmm.co.jp/digital/video/ddff00053/ddff00053-1.jpg",
+              "https://pics.dmm.co.jp/digital/video/ddff00053/ddff00053-2.jpg",
+              "https://pics.dmm.co.jp/digital/video/ddff00053/ddff00053-3.jpg",
+              "https://pics.dmm.co.jp/digital/video/ddff00053/ddff00053-4.jpg",
+              "https://pics.dmm.co.jp/digital/video/ddff00053/ddff00053-5.jpg",
+              "https://pics.dmm.co.jp/digital/video/ddff00053/ddff00053-6.jpg",
+              "https://pics.dmm.co.jp/digital/video/ddff00053/ddff00053-7.jpg",
+              "https://pics.dmm.co.jp/digital/video/ddff00053/ddff00053-8.jpg",
+              "https://pics.dmm.co.jp/digital/video/ddff00053/ddff00053-9.jpg",
+              "https://pics.dmm.co.jp/digital/video/ddff00053/ddff00053-10.jpg",
+              "https://pics.dmm.co.jp/digital/video/ddff00053/ddff00053-11.jpg",
+              "https://pics.dmm.co.jp/digital/video/ddff00053/ddff00053-12.jpg",
+              "https://pics.dmm.co.jp/digital/video/ddff00053/ddff00053-13.jpg",
+              "https://pics.dmm.co.jp/digital/video/ddff00053/ddff00053-14.jpg",
+              "https://pics.dmm.co.jp/digital/video/ddff00053/ddff00053-15.jpg",
+              "https://pics.dmm.co.jp/digital/video/ddff00053/ddff00053-16.jpg",
+              "https://pics.dmm.co.jp/digital/video/ddff00053/ddff00053-17.jpg",
+              "https://pics.dmm.co.jp/digital/video/ddff00053/ddff00053-18.jpg",
+              "https://pics.dmm.co.jp/digital/video/ddff00053/ddff00053-19.jpg",
+              "https://pics.dmm.co.jp/digital/video/ddff00053/ddff00053-20.jpg"
+            ]
+          },
+          "sample_l": {
+            "image": [
+              "https://pics.dmm.co.jp/digital/video/ddff00053/ddff00053jp-1.jpg",
+              "https://pics.dmm.co.jp/digital/video/ddff00053/ddff00053jp-2.jpg",
+              "https://pics.dmm.co.jp/digital/video/ddff00053/ddff00053jp-3.jpg",
+              "https://pics.dmm.co.jp/digital/video/ddff00053/ddff00053jp-4.jpg",
+              "https://pics.dmm.co.jp/digital/video/ddff00053/ddff00053jp-5.jpg",
+              "https://pics.dmm.co.jp/digital/video/ddff00053/ddff00053jp-6.jpg",
+              "https://pics.dmm.co.jp/digital/video/ddff00053/ddff00053jp-7.jpg",
+              "https://pics.dmm.co.jp/digital/video/ddff00053/ddff00053jp-8.jpg",
+              "https://pics.dmm.co.jp/digital/video/ddff00053/ddff00053jp-9.jpg",
+              "https://pics.dmm.co.jp/digital/video/ddff00053/ddff00053jp-10.jpg",
+              "https://pics.dmm.co.jp/digital/video/ddff00053/ddff00053jp-11.jpg",
+              "https://pics.dmm.co.jp/digital/video/ddff00053/ddff00053jp-12.jpg",
+              "https://pics.dmm.co.jp/digital/video/ddff00053/ddff00053jp-13.jpg",
+              "https://pics.dmm.co.jp/digital/video/ddff00053/ddff00053jp-14.jpg",
+              "https://pics.dmm.co.jp/digital/video/ddff00053/ddff00053jp-15.jpg",
+              "https://pics.dmm.co.jp/digital/video/ddff00053/ddff00053jp-16.jpg",
+              "https://pics.dmm.co.jp/digital/video/ddff00053/ddff00053jp-17.jpg",
+              "https://pics.dmm.co.jp/digital/video/ddff00053/ddff00053jp-18.jpg",
+              "https://pics.dmm.co.jp/digital/video/ddff00053/ddff00053jp-19.jpg",
+              "https://pics.dmm.co.jp/digital/video/ddff00053/ddff00053jp-20.jpg"
+            ]
+          }
+        },
         "prices": {
           "price": "2480~",
           "list_price": "2480~",
@@ -641,6 +709,16 @@
                 "type": "download",
                 "price": "2480",
                 "list_price": "2480"
+              },
+              {
+                "type": "4k",
+                "price": "3490",
+                "list_price": "3490"
+              },
+              {
+                "type": "hd",
+                "price": "2990",
+                "list_price": "2990"
               },
               {
                 "type": "iosdl",
@@ -681,6 +759,14 @@
             {
               "id": 5068,
               "name": "イラマチオ"
+            },
+            {
+              "id": 79015,
+              "name": "4K"
+            },
+            {
+              "id": 6533,
+              "name": "ハイビジョン"
             }
           ],
           "series": [
@@ -1900,10 +1986,6 @@
         "iteminfo": {
           "genre": [
             {
-              "id": 6533,
-              "name": "ハイビジョン"
-            },
-            {
               "id": 6548,
               "name": "独占配信"
             },
@@ -1926,6 +2008,10 @@
             {
               "id": 1018,
               "name": "女子校生"
+            },
+            {
+              "id": 6533,
+              "name": "ハイビジョン"
             }
           ],
           "maker": [
@@ -3231,14 +3317,6 @@
         "iteminfo": {
           "genre": [
             {
-              "id": 6533,
-              "name": "ハイビジョン"
-            },
-            {
-              "id": 79015,
-              "name": "4K"
-            },
-            {
               "id": 6548,
               "name": "独占配信"
             },
@@ -3265,6 +3343,14 @@
             {
               "id": 1018,
               "name": "女子校生"
+            },
+            {
+              "id": 79015,
+              "name": "4K"
+            },
+            {
+              "id": 6533,
+              "name": "ハイビジョン"
             }
           ],
           "maker": [
@@ -3304,7 +3390,7 @@
         "content_id": "apao00043",
         "product_id": "apao00043",
         "title": "オーロラプロジェクトダイジェスト 夏の42連射 2025.06月～2025.11月",
-        "volume": "420",
+        "volume": "423",
         "URL": "https://video.dmm.co.jp/av/content/?id=apao00043",
         "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Dapao00043&af_id=saaaaaaya-990&ch=api",
         "imageURL": {
@@ -3342,6 +3428,14 @@
             ]
           }
         },
+        "sampleMovieURL": {
+          "size_476_306": "https://www.dmm.co.jp/litevideo/-/part/=/cid=apao043/size=476_306/affi_id=saaaaaaya-990/",
+          "size_560_360": "https://www.dmm.co.jp/litevideo/-/part/=/cid=apao043/size=560_360/affi_id=saaaaaaya-990/",
+          "size_644_414": "https://www.dmm.co.jp/litevideo/-/part/=/cid=apao043/size=644_414/affi_id=saaaaaaya-990/",
+          "size_720_480": "https://www.dmm.co.jp/litevideo/-/part/=/cid=apao043/size=720_480/affi_id=saaaaaaya-990/",
+          "pc_flag": 1,
+          "sp_flag": 1
+        },
         "prices": {
           "price": "1980~",
           "list_price": "1980~",
@@ -3368,6 +3462,10 @@
         "date": "2026-07-11 00:00:00",
         "iteminfo": {
           "genre": [
+            {
+              "id": 6012,
+              "name": "4時間以上作品"
+            },
             {
               "id": 6548,
               "name": "独占配信"
@@ -3567,7 +3665,7 @@
         "content_id": "apak00333",
         "product_id": "apak00333",
         "title": "中出し無垢マゾ絶頂はづき イタイケ美少女の唸る華奢ボディ！鬼ピス激イキ！子宮直撃！脚ガクガク！「こんなのハジメテ！壊れちゃう！」淫乱絶頂生徒指導 佐野葉月",
-        "volume": "127",
+        "volume": "128",
         "URL": "https://video.dmm.co.jp/av/content/?id=apak00333",
         "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Dapak00333&af_id=saaaaaaya-990&ch=api",
         "imageURL": {
@@ -4041,7 +4139,7 @@
         "content_id": "royd00334",
         "product_id": "royd00334",
         "title": "人生舐めてる生意気J系はフタを開けると敏感体質のザコま×こ。絶倫教師のノンストップ激ピス個別指導。 鳳みゆ",
-        "volume": "100",
+        "volume": "97",
         "URL": "https://video.dmm.co.jp/av/content/?id=royd00334",
         "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Droyd00334&af_id=saaaaaaya-990&ch=api",
         "imageURL": {
@@ -4200,7 +4298,7 @@
         "content_id": "nsodn00022",
         "product_id": "nsodn00022",
         "title": "ど田舎の夏休み 男女7人乱交映像流出。",
-        "volume": "120",
+        "volume": "124",
         "URL": "https://video.dmm.co.jp/av/content/?id=nsodn00022",
         "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Dnsodn00022&af_id=saaaaaaya-990&ch=api",
         "imageURL": {
@@ -4237,6 +4335,14 @@
               "https://pics.dmm.co.jp/digital/video/nsodn00022/nsodn00022jp-10.jpg"
             ]
           }
+        },
+        "sampleMovieURL": {
+          "size_476_306": "https://www.dmm.co.jp/litevideo/-/part/=/cid=nsodn00022/size=476_306/affi_id=saaaaaaya-990/",
+          "size_560_360": "https://www.dmm.co.jp/litevideo/-/part/=/cid=nsodn00022/size=560_360/affi_id=saaaaaaya-990/",
+          "size_644_414": "https://www.dmm.co.jp/litevideo/-/part/=/cid=nsodn00022/size=644_414/affi_id=saaaaaaya-990/",
+          "size_720_480": "https://www.dmm.co.jp/litevideo/-/part/=/cid=nsodn00022/size=720_480/affi_id=saaaaaaya-990/",
+          "pc_flag": 1,
+          "sp_flag": 1
         },
         "prices": {
           "price": "2180~",
@@ -4469,7 +4575,7 @@
         "content_id": "hsoda00127",
         "product_id": "hsoda00127",
         "title": "罵られ蔑まれ興奮する学校生活 粗チンを貶しながらも何度だってヌいてくれて勃起させてくれる罵倒学級。",
-        "volume": "180",
+        "volume": "185",
         "URL": "https://video.dmm.co.jp/av/content/?id=hsoda00127",
         "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Dhsoda00127&af_id=saaaaaaya-990&ch=api",
         "imageURL": {
@@ -7827,6 +7933,183 @@
             {
               "id": 2068122,
               "name": "For Real"
+            }
+          ]
+        }
+      },
+      {
+        "service_code": "digital",
+        "service_name": "動画",
+        "floor_code": "videoa",
+        "floor_name": "ビデオ",
+        "category_name": "ビデオ (動画)",
+        "content_id": "h_1711ebon00006",
+        "product_id": "h_1711ebon00006",
+        "title": "『そのうち、いつかきっと…』気づけば大好きな幼馴染の身体は友人に染められていく…シリーズ累計23万部突破の幼馴染BSSシリーズがついに映像化！きみの全てを奪うまで 宍戸里帆",
+        "volume": "112",
+        "URL": "https://video.dmm.co.jp/av/content/?id=h_1711ebon00006",
+        "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Dh_1711ebon00006&af_id=saaaaaaya-990&ch=api",
+        "imageURL": {
+          "large": "https://pics.dmm.co.jp/digital/video/h_1711ebon00006/h_1711ebon00006pl.jpg",
+          "small": "https://pics.dmm.co.jp/digital/video/h_1711ebon00006/h_1711ebon00006ps.jpg",
+          "list": "https://pics.dmm.co.jp/digital/video/h_1711ebon00006/h_1711ebon00006pt.jpg"
+        },
+        "sampleImageURL": {
+          "sample_s": {
+            "image": [
+              "https://pics.dmm.co.jp/digital/video/h_1711ebon00006/h_1711ebon00006-1.jpg",
+              "https://pics.dmm.co.jp/digital/video/h_1711ebon00006/h_1711ebon00006-2.jpg",
+              "https://pics.dmm.co.jp/digital/video/h_1711ebon00006/h_1711ebon00006-3.jpg",
+              "https://pics.dmm.co.jp/digital/video/h_1711ebon00006/h_1711ebon00006-4.jpg",
+              "https://pics.dmm.co.jp/digital/video/h_1711ebon00006/h_1711ebon00006-5.jpg",
+              "https://pics.dmm.co.jp/digital/video/h_1711ebon00006/h_1711ebon00006-6.jpg",
+              "https://pics.dmm.co.jp/digital/video/h_1711ebon00006/h_1711ebon00006-7.jpg",
+              "https://pics.dmm.co.jp/digital/video/h_1711ebon00006/h_1711ebon00006-8.jpg",
+              "https://pics.dmm.co.jp/digital/video/h_1711ebon00006/h_1711ebon00006-9.jpg",
+              "https://pics.dmm.co.jp/digital/video/h_1711ebon00006/h_1711ebon00006-10.jpg"
+            ]
+          },
+          "sample_l": {
+            "image": [
+              "https://pics.dmm.co.jp/digital/video/h_1711ebon00006/h_1711ebon00006jp-1.jpg",
+              "https://pics.dmm.co.jp/digital/video/h_1711ebon00006/h_1711ebon00006jp-2.jpg",
+              "https://pics.dmm.co.jp/digital/video/h_1711ebon00006/h_1711ebon00006jp-3.jpg",
+              "https://pics.dmm.co.jp/digital/video/h_1711ebon00006/h_1711ebon00006jp-4.jpg",
+              "https://pics.dmm.co.jp/digital/video/h_1711ebon00006/h_1711ebon00006jp-5.jpg",
+              "https://pics.dmm.co.jp/digital/video/h_1711ebon00006/h_1711ebon00006jp-6.jpg",
+              "https://pics.dmm.co.jp/digital/video/h_1711ebon00006/h_1711ebon00006jp-7.jpg",
+              "https://pics.dmm.co.jp/digital/video/h_1711ebon00006/h_1711ebon00006jp-8.jpg",
+              "https://pics.dmm.co.jp/digital/video/h_1711ebon00006/h_1711ebon00006jp-9.jpg",
+              "https://pics.dmm.co.jp/digital/video/h_1711ebon00006/h_1711ebon00006jp-10.jpg"
+            ]
+          }
+        },
+        "sampleMovieURL": {
+          "size_476_306": "https://www.dmm.co.jp/litevideo/-/part/=/cid=h_1711ebon00006/size=476_306/affi_id=saaaaaaya-990/",
+          "size_560_360": "https://www.dmm.co.jp/litevideo/-/part/=/cid=h_1711ebon00006/size=560_360/affi_id=saaaaaaya-990/",
+          "size_644_414": "https://www.dmm.co.jp/litevideo/-/part/=/cid=h_1711ebon00006/size=644_414/affi_id=saaaaaaya-990/",
+          "size_720_480": "https://www.dmm.co.jp/litevideo/-/part/=/cid=h_1711ebon00006/size=720_480/affi_id=saaaaaaya-990/",
+          "pc_flag": 1,
+          "sp_flag": 1
+        },
+        "prices": {
+          "price": "1680~",
+          "list_price": "1680~",
+          "deliveries": {
+            "delivery": [
+              {
+                "type": "4k",
+                "price": "2980",
+                "list_price": "2980"
+              },
+              {
+                "type": "hd",
+                "price": "2480",
+                "list_price": "2480"
+              },
+              {
+                "type": "download",
+                "price": "2080",
+                "list_price": "2080"
+              },
+              {
+                "type": "stream",
+                "price": "1680",
+                "list_price": "1680"
+              },
+              {
+                "type": "iosdl",
+                "price": "2080",
+                "list_price": "2080"
+              },
+              {
+                "type": "androiddl",
+                "price": "2080",
+                "list_price": "2080"
+              }
+            ]
+          }
+        },
+        "date": "2026-07-02 00:00:00",
+        "iteminfo": {
+          "genre": [
+            {
+              "id": 79015,
+              "name": "4K"
+            },
+            {
+              "id": 4025,
+              "name": "単体作品"
+            },
+            {
+              "id": 6533,
+              "name": "ハイビジョン"
+            },
+            {
+              "id": 55,
+              "name": "処女"
+            },
+            {
+              "id": 4106,
+              "name": "騎乗位"
+            },
+            {
+              "id": 5017,
+              "name": "おもちゃ"
+            },
+            {
+              "id": 3008,
+              "name": "水着"
+            },
+            {
+              "id": 2001,
+              "name": "巨乳"
+            },
+            {
+              "id": 48,
+              "name": "制服"
+            },
+            {
+              "id": 1018,
+              "name": "女子校生"
+            },
+            {
+              "id": 6964,
+              "name": "ノーパン"
+            },
+            {
+              "id": 4111,
+              "name": "寝取り・寝取られ・NTR"
+            },
+            {
+              "id": 4138,
+              "name": "原作コラボ"
+            }
+          ],
+          "maker": [
+            {
+              "id": 6716,
+              "name": "DOC"
+            }
+          ],
+          "actress": [
+            {
+              "id": 1075010,
+              "name": "宍戸里帆",
+              "ruby": "ししどりほ"
+            }
+          ],
+          "director": [
+            {
+              "id": 120806,
+              "name": "some-G",
+              "ruby": "そめじー"
+            }
+          ],
+          "label": [
+            {
+              "id": 2067597,
+              "name": "エロぼん"
             }
           ]
         }
@@ -12490,6 +12773,154 @@
         "floor_code": "videoa",
         "floor_name": "ビデオ",
         "category_name": "ビデオ (動画)",
+        "content_id": "ksat00107",
+        "product_id": "ksat00107",
+        "title": "女子〇生オナニー盗撮30人 思春期の記録",
+        "volume": "300",
+        "URL": "https://video.dmm.co.jp/av/content/?id=ksat00107",
+        "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Dksat00107&af_id=saaaaaaya-990&ch=api",
+        "imageURL": {
+          "large": "https://pics.dmm.co.jp/digital/video/ksat00107/ksat00107pl.jpg",
+          "small": "https://pics.dmm.co.jp/digital/video/ksat00107/ksat00107ps.jpg",
+          "list": "https://pics.dmm.co.jp/digital/video/ksat00107/ksat00107pt.jpg"
+        },
+        "sampleImageURL": {
+          "sample_s": {
+            "image": [
+              "https://pics.dmm.co.jp/digital/video/ksat00107/ksat00107-1.jpg",
+              "https://pics.dmm.co.jp/digital/video/ksat00107/ksat00107-2.jpg",
+              "https://pics.dmm.co.jp/digital/video/ksat00107/ksat00107-3.jpg",
+              "https://pics.dmm.co.jp/digital/video/ksat00107/ksat00107-4.jpg",
+              "https://pics.dmm.co.jp/digital/video/ksat00107/ksat00107-5.jpg",
+              "https://pics.dmm.co.jp/digital/video/ksat00107/ksat00107-6.jpg",
+              "https://pics.dmm.co.jp/digital/video/ksat00107/ksat00107-7.jpg",
+              "https://pics.dmm.co.jp/digital/video/ksat00107/ksat00107-8.jpg",
+              "https://pics.dmm.co.jp/digital/video/ksat00107/ksat00107-9.jpg",
+              "https://pics.dmm.co.jp/digital/video/ksat00107/ksat00107-10.jpg",
+              "https://pics.dmm.co.jp/digital/video/ksat00107/ksat00107-11.jpg",
+              "https://pics.dmm.co.jp/digital/video/ksat00107/ksat00107-12.jpg",
+              "https://pics.dmm.co.jp/digital/video/ksat00107/ksat00107-13.jpg",
+              "https://pics.dmm.co.jp/digital/video/ksat00107/ksat00107-14.jpg",
+              "https://pics.dmm.co.jp/digital/video/ksat00107/ksat00107-15.jpg"
+            ]
+          },
+          "sample_l": {
+            "image": [
+              "https://pics.dmm.co.jp/digital/video/ksat00107/ksat00107jp-1.jpg",
+              "https://pics.dmm.co.jp/digital/video/ksat00107/ksat00107jp-2.jpg",
+              "https://pics.dmm.co.jp/digital/video/ksat00107/ksat00107jp-3.jpg",
+              "https://pics.dmm.co.jp/digital/video/ksat00107/ksat00107jp-4.jpg",
+              "https://pics.dmm.co.jp/digital/video/ksat00107/ksat00107jp-5.jpg",
+              "https://pics.dmm.co.jp/digital/video/ksat00107/ksat00107jp-6.jpg",
+              "https://pics.dmm.co.jp/digital/video/ksat00107/ksat00107jp-7.jpg",
+              "https://pics.dmm.co.jp/digital/video/ksat00107/ksat00107jp-8.jpg",
+              "https://pics.dmm.co.jp/digital/video/ksat00107/ksat00107jp-9.jpg",
+              "https://pics.dmm.co.jp/digital/video/ksat00107/ksat00107jp-10.jpg",
+              "https://pics.dmm.co.jp/digital/video/ksat00107/ksat00107jp-11.jpg",
+              "https://pics.dmm.co.jp/digital/video/ksat00107/ksat00107jp-12.jpg",
+              "https://pics.dmm.co.jp/digital/video/ksat00107/ksat00107jp-13.jpg",
+              "https://pics.dmm.co.jp/digital/video/ksat00107/ksat00107jp-14.jpg",
+              "https://pics.dmm.co.jp/digital/video/ksat00107/ksat00107jp-15.jpg"
+            ]
+          }
+        },
+        "sampleMovieURL": {
+          "size_476_306": "https://www.dmm.co.jp/litevideo/-/part/=/cid=ksat00107/size=476_306/affi_id=saaaaaaya-990/",
+          "size_560_360": "https://www.dmm.co.jp/litevideo/-/part/=/cid=ksat00107/size=560_360/affi_id=saaaaaaya-990/",
+          "size_644_414": "https://www.dmm.co.jp/litevideo/-/part/=/cid=ksat00107/size=644_414/affi_id=saaaaaaya-990/",
+          "size_720_480": "https://www.dmm.co.jp/litevideo/-/part/=/cid=ksat00107/size=720_480/affi_id=saaaaaaya-990/",
+          "pc_flag": 1,
+          "sp_flag": 1
+        },
+        "prices": {
+          "price": "500~",
+          "list_price": "500~",
+          "deliveries": {
+            "delivery": [
+              {
+                "type": "hd",
+                "price": "2480",
+                "list_price": "2480"
+              },
+              {
+                "type": "download",
+                "price": "1980",
+                "list_price": "1980"
+              },
+              {
+                "type": "stream",
+                "price": "500",
+                "list_price": "500"
+              },
+              {
+                "type": "iosdl",
+                "price": "1980",
+                "list_price": "1980"
+              },
+              {
+                "type": "androiddl",
+                "price": "1980",
+                "list_price": "1980"
+              }
+            ]
+          }
+        },
+        "date": "2026-06-20 00:00:20",
+        "iteminfo": {
+          "genre": [
+            {
+              "id": 6533,
+              "name": "ハイビジョン"
+            },
+            {
+              "id": 6012,
+              "name": "4時間以上作品"
+            },
+            {
+              "id": 6548,
+              "name": "独占配信"
+            },
+            {
+              "id": 6995,
+              "name": "妄想族"
+            },
+            {
+              "id": 4021,
+              "name": "盗撮・のぞき"
+            },
+            {
+              "id": 3011,
+              "name": "学生服"
+            },
+            {
+              "id": 1018,
+              "name": "女子校生"
+            },
+            {
+              "id": 5008,
+              "name": "オナニー"
+            }
+          ],
+          "maker": [
+            {
+              "id": 6753,
+              "name": "堅者の食卓/妄想族"
+            }
+          ],
+          "label": [
+            {
+              "id": 29843,
+              "name": "堅者の食卓"
+            }
+          ]
+        }
+      },
+      {
+        "service_code": "digital",
+        "service_name": "動画",
+        "floor_code": "videoa",
+        "floor_name": "ビデオ",
+        "category_name": "ビデオ (動画)",
         "content_id": "nanx00319",
         "product_id": "nanx00319",
         "title": "春は別れと出会いのシーズン 新生活に向けてハメを外してSEXしませんか？",
@@ -12821,154 +13252,6 @@
             {
               "id": 419,
               "name": "MANIAC（クリスタル）"
-            }
-          ]
-        }
-      },
-      {
-        "service_code": "digital",
-        "service_name": "動画",
-        "floor_code": "videoa",
-        "floor_name": "ビデオ",
-        "category_name": "ビデオ (動画)",
-        "content_id": "ksat00107",
-        "product_id": "ksat00107",
-        "title": "女子〇生オナニー盗撮30人 思春期の記録",
-        "volume": "300",
-        "URL": "https://video.dmm.co.jp/av/content/?id=ksat00107",
-        "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Dksat00107&af_id=saaaaaaya-990&ch=api",
-        "imageURL": {
-          "large": "https://pics.dmm.co.jp/digital/video/ksat00107/ksat00107pl.jpg",
-          "small": "https://pics.dmm.co.jp/digital/video/ksat00107/ksat00107ps.jpg",
-          "list": "https://pics.dmm.co.jp/digital/video/ksat00107/ksat00107pt.jpg"
-        },
-        "sampleImageURL": {
-          "sample_s": {
-            "image": [
-              "https://pics.dmm.co.jp/digital/video/ksat00107/ksat00107-1.jpg",
-              "https://pics.dmm.co.jp/digital/video/ksat00107/ksat00107-2.jpg",
-              "https://pics.dmm.co.jp/digital/video/ksat00107/ksat00107-3.jpg",
-              "https://pics.dmm.co.jp/digital/video/ksat00107/ksat00107-4.jpg",
-              "https://pics.dmm.co.jp/digital/video/ksat00107/ksat00107-5.jpg",
-              "https://pics.dmm.co.jp/digital/video/ksat00107/ksat00107-6.jpg",
-              "https://pics.dmm.co.jp/digital/video/ksat00107/ksat00107-7.jpg",
-              "https://pics.dmm.co.jp/digital/video/ksat00107/ksat00107-8.jpg",
-              "https://pics.dmm.co.jp/digital/video/ksat00107/ksat00107-9.jpg",
-              "https://pics.dmm.co.jp/digital/video/ksat00107/ksat00107-10.jpg",
-              "https://pics.dmm.co.jp/digital/video/ksat00107/ksat00107-11.jpg",
-              "https://pics.dmm.co.jp/digital/video/ksat00107/ksat00107-12.jpg",
-              "https://pics.dmm.co.jp/digital/video/ksat00107/ksat00107-13.jpg",
-              "https://pics.dmm.co.jp/digital/video/ksat00107/ksat00107-14.jpg",
-              "https://pics.dmm.co.jp/digital/video/ksat00107/ksat00107-15.jpg"
-            ]
-          },
-          "sample_l": {
-            "image": [
-              "https://pics.dmm.co.jp/digital/video/ksat00107/ksat00107jp-1.jpg",
-              "https://pics.dmm.co.jp/digital/video/ksat00107/ksat00107jp-2.jpg",
-              "https://pics.dmm.co.jp/digital/video/ksat00107/ksat00107jp-3.jpg",
-              "https://pics.dmm.co.jp/digital/video/ksat00107/ksat00107jp-4.jpg",
-              "https://pics.dmm.co.jp/digital/video/ksat00107/ksat00107jp-5.jpg",
-              "https://pics.dmm.co.jp/digital/video/ksat00107/ksat00107jp-6.jpg",
-              "https://pics.dmm.co.jp/digital/video/ksat00107/ksat00107jp-7.jpg",
-              "https://pics.dmm.co.jp/digital/video/ksat00107/ksat00107jp-8.jpg",
-              "https://pics.dmm.co.jp/digital/video/ksat00107/ksat00107jp-9.jpg",
-              "https://pics.dmm.co.jp/digital/video/ksat00107/ksat00107jp-10.jpg",
-              "https://pics.dmm.co.jp/digital/video/ksat00107/ksat00107jp-11.jpg",
-              "https://pics.dmm.co.jp/digital/video/ksat00107/ksat00107jp-12.jpg",
-              "https://pics.dmm.co.jp/digital/video/ksat00107/ksat00107jp-13.jpg",
-              "https://pics.dmm.co.jp/digital/video/ksat00107/ksat00107jp-14.jpg",
-              "https://pics.dmm.co.jp/digital/video/ksat00107/ksat00107jp-15.jpg"
-            ]
-          }
-        },
-        "sampleMovieURL": {
-          "size_476_306": "https://www.dmm.co.jp/litevideo/-/part/=/cid=ksat00107/size=476_306/affi_id=saaaaaaya-990/",
-          "size_560_360": "https://www.dmm.co.jp/litevideo/-/part/=/cid=ksat00107/size=560_360/affi_id=saaaaaaya-990/",
-          "size_644_414": "https://www.dmm.co.jp/litevideo/-/part/=/cid=ksat00107/size=644_414/affi_id=saaaaaaya-990/",
-          "size_720_480": "https://www.dmm.co.jp/litevideo/-/part/=/cid=ksat00107/size=720_480/affi_id=saaaaaaya-990/",
-          "pc_flag": 1,
-          "sp_flag": 1
-        },
-        "prices": {
-          "price": "500~",
-          "list_price": "500~",
-          "deliveries": {
-            "delivery": [
-              {
-                "type": "hd",
-                "price": "2480",
-                "list_price": "2480"
-              },
-              {
-                "type": "download",
-                "price": "1980",
-                "list_price": "1980"
-              },
-              {
-                "type": "stream",
-                "price": "500",
-                "list_price": "500"
-              },
-              {
-                "type": "iosdl",
-                "price": "1980",
-                "list_price": "1980"
-              },
-              {
-                "type": "androiddl",
-                "price": "1980",
-                "list_price": "1980"
-              }
-            ]
-          }
-        },
-        "date": "2026-06-20 00:00:00",
-        "iteminfo": {
-          "genre": [
-            {
-              "id": 6533,
-              "name": "ハイビジョン"
-            },
-            {
-              "id": 6012,
-              "name": "4時間以上作品"
-            },
-            {
-              "id": 6548,
-              "name": "独占配信"
-            },
-            {
-              "id": 6995,
-              "name": "妄想族"
-            },
-            {
-              "id": 4021,
-              "name": "盗撮・のぞき"
-            },
-            {
-              "id": 3011,
-              "name": "学生服"
-            },
-            {
-              "id": 1018,
-              "name": "女子校生"
-            },
-            {
-              "id": 5008,
-              "name": "オナニー"
-            }
-          ],
-          "maker": [
-            {
-              "id": 6753,
-              "name": "堅者の食卓/妄想族"
-            }
-          ],
-          "label": [
-            {
-              "id": 29843,
-              "name": "堅者の食卓"
             }
           ]
         }
@@ -15943,6 +16226,10 @@
         "product_id": "mdtf00005",
         "title": "完全無敵 制服美少女 08",
         "volume": "46",
+        "review": {
+          "count": 1,
+          "average": "5.00"
+        },
         "URL": "https://video.dmm.co.jp/av/content/?id=mdtf00005",
         "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Dmdtf00005&af_id=saaaaaaya-990&ch=api",
         "imageURL": {
@@ -19035,56 +19322,56 @@
         "iteminfo": {
           "genre": [
             {
-              "id": 6004,
-              "name": "デジモ"
-            },
-            {
-              "id": 4057,
-              "name": "姉・妹"
-            },
-            {
-              "id": 1018,
-              "name": "女子校生"
-            },
-            {
-              "id": 3011,
-              "name": "学生服"
-            },
-            {
-              "id": 5001,
-              "name": "中出し"
-            },
-            {
-              "id": 4030,
-              "name": "淫乱・ハード系"
-            },
-            {
-              "id": 6972,
-              "name": "ノーブラ"
-            },
-            {
-              "id": 5002,
-              "name": "フェラ"
-            },
-            {
-              "id": 4106,
-              "name": "騎乗位"
-            },
-            {
-              "id": 6958,
-              "name": "バック"
-            },
-            {
-              "id": 6548,
-              "name": "独占配信"
+              "id": 4025,
+              "name": "単体作品"
             },
             {
               "id": 6533,
               "name": "ハイビジョン"
             },
             {
-              "id": 4025,
-              "name": "単体作品"
+              "id": 6548,
+              "name": "独占配信"
+            },
+            {
+              "id": 6958,
+              "name": "バック"
+            },
+            {
+              "id": 4106,
+              "name": "騎乗位"
+            },
+            {
+              "id": 5002,
+              "name": "フェラ"
+            },
+            {
+              "id": 6972,
+              "name": "ノーブラ"
+            },
+            {
+              "id": 4030,
+              "name": "淫乱・ハード系"
+            },
+            {
+              "id": 5001,
+              "name": "中出し"
+            },
+            {
+              "id": 3011,
+              "name": "学生服"
+            },
+            {
+              "id": 1018,
+              "name": "女子校生"
+            },
+            {
+              "id": 4057,
+              "name": "姉・妹"
+            },
+            {
+              "id": 6004,
+              "name": "デジモ"
             }
           ],
           "series": [
@@ -19264,6 +19551,10 @@
         "product_id": "gvh00853",
         "title": "禁断介護 谷村凪咲",
         "volume": "121",
+        "review": {
+          "count": 1,
+          "average": "5.00"
+        },
         "URL": "https://video.dmm.co.jp/av/content/?id=gvh00853",
         "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Dgvh00853&af_id=saaaaaaya-990&ch=api",
         "imageURL": {
@@ -19762,7 +20053,7 @@
         "title": "「マ○コ見せたら許してやるよ」怯える万引き少女を脅してネチネチ性器イジくる変質コンビニ店長が分からせ粘着レ×プ あの日から性処理バイト便女となった私… 宮下玲奈",
         "volume": "122",
         "review": {
-          "count": 4,
+          "count": 6,
           "average": "5.00"
         },
         "URL": "https://video.dmm.co.jp/av/content/?id=mida00670",
@@ -25515,6 +25806,10 @@
         "product_id": "apns00412",
         "title": "中年チ〇ポ偏愛女学生 留守番中に近所のおじさん達に中出しされちゃいました 由衣陽菜",
         "volume": "121",
+        "review": {
+          "count": 1,
+          "average": "5.00"
+        },
         "URL": "https://video.dmm.co.jp/av/content/?id=apns00412",
         "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Dapns00412&af_id=saaaaaaya-990&ch=api",
         "imageURL": {
@@ -27100,6 +27395,10 @@
         "product_id": "ipzz00887",
         "title": "小柄で物静かな美少女が溺れた媚薬前戯と喘ぐ暇すら与えない対面ベロキス痴● 瀬緒凛",
         "volume": "153",
+        "review": {
+          "count": 1,
+          "average": "5.00"
+        },
         "URL": "https://video.dmm.co.jp/av/content/?id=ipzz00887",
         "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Dipzz00887&af_id=saaaaaaya-990&ch=api",
         "imageURL": {
@@ -32752,7 +33051,7 @@
         "title": "コンドームが破れてまさかの生ハメ！超加速するピストンで何度も中出し！ 宍戸里帆",
         "volume": "162",
         "review": {
-          "count": 11,
+          "count": 12,
           "average": "5.00"
         },
         "URL": "https://video.dmm.co.jp/av/content/?id=waaa00656",
@@ -44502,6 +44801,10 @@
         "product_id": "1nhdt00942ai",
         "title": "【AIリマスター】極限2穴痴● 同時中出しDX",
         "volume": "191",
+        "review": {
+          "count": 1,
+          "average": "5.00"
+        },
         "URL": "https://video.dmm.co.jp/av/content/?id=1nhdt00942ai",
         "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3D1nhdt00942ai&af_id=saaaaaaya-990&ch=api",
         "imageURL": {
@@ -60511,8 +60814,8 @@
         "title": "ホームシックレズビアン 女子寮で募る寂しさを忘れるようにレズ快楽に没頭していくマザコン少女 南日菜乃 望月つぼみ",
         "volume": "147",
         "review": {
-          "count": 5,
-          "average": "4.60"
+          "count": 6,
+          "average": "4.50"
         },
         "URL": "https://video.dmm.co.jp/av/content/?id=bban00580",
         "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Dbban00580&af_id=saaaaaaya-990&ch=api",
@@ -87902,7 +88205,7 @@
         "title": "二人暮らしの父は寝たフリの私をオナホとして使っています。 花守夏歩",
         "volume": "124",
         "review": {
-          "count": 7,
+          "count": 8,
           "average": "5.00"
         },
         "URL": "https://video.dmm.co.jp/av/content/?id=mkmp00721",
@@ -116994,8 +117297,8 @@
         "title": "【VR】この学校の男子寮で唯一僕の部屋にはギャルの同級生が入り浸っています…。宿題代行をする代わりに抜いてる彼女は、もちろんSEXのハードルも低く、偶然カラダの相性がバツグンだったため、調子乗って中出ししまくった話。 笹倉彩",
         "volume": "80",
         "review": {
-          "count": 24,
-          "average": "4.33"
+          "count": 25,
+          "average": "4.32"
         },
         "URL": "https://video.dmm.co.jp/av/content/?id=savr01002",
         "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Dsavr01002&af_id=saaaaaaya-990&ch=api",
@@ -138385,28 +138688,28 @@
           }
         },
         "prices": {
-          "price": "500~",
+          "price": "350~",
           "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "8k",
-                "price": "1780",
+                "price": "1246",
                 "list_price": "1780"
               },
               {
                 "type": "hd",
-                "price": "1280",
+                "price": "896",
                 "list_price": "1280"
               },
               {
                 "type": "download",
-                "price": "980",
+                "price": "686",
                 "list_price": "980"
               },
               {
                 "type": "rp",
-                "price": "500",
+                "price": "350",
                 "list_price": "500"
               }
             ]
@@ -138484,7 +138787,14 @@
               "name": "IP-VR"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-06-17 10:00:00",
+            "date_end": "2026-06-19 09:59:59",
+            "title": "アイポケキャンペーン30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -151136,8 +151446,8 @@
         "title": "助けてが言えない押し弱清楚な女子●生だと思っていたら…見た目からは想像つかない淫乱なイキっぷりに俺は興奮し何度も痴●を犯してしまった… 愛才りあ",
         "volume": "118",
         "review": {
-          "count": 14,
-          "average": "3.79"
+          "count": 15,
+          "average": "3.87"
         },
         "URL": "https://video.dmm.co.jp/av/content/?id=ipzz00792",
         "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Dipzz00792&af_id=saaaaaaya-990&ch=api",
@@ -151189,38 +151499,38 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "350~",
+          "price": "500~",
           "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "4k",
-                "price": "1666",
+                "price": "2380",
                 "list_price": "2380"
               },
               {
                 "type": "hd",
-                "price": "1175",
+                "price": "1680",
                 "list_price": "1680"
               },
               {
                 "type": "download",
-                "price": "826",
+                "price": "1180",
                 "list_price": "1180"
               },
               {
                 "type": "stream",
-                "price": "350",
+                "price": "500",
                 "list_price": "500"
               },
               {
                 "type": "iosdl",
-                "price": "826",
+                "price": "1180",
                 "list_price": "1180"
               },
               {
                 "type": "androiddl",
-                "price": "826",
+                "price": "1180",
                 "list_price": "1180"
               }
             ]
@@ -151281,14 +151591,7 @@
               "name": "ティッシュ"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-06-15 10:00:00",
-            "date_end": "2026-06-17 09:59:59",
-            "title": "アイポケキャンペーン30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -158625,8 +158928,8 @@
         "title": "某進学校特殊風紀委員のお仕事！ザーメンじゅぼじゅぼいつでもお口で処理係 マ○コで校内中出し巡回！ まい",
         "volume": "41",
         "review": {
-          "count": 1,
-          "average": "5.00"
+          "count": 2,
+          "average": "4.50"
         },
         "URL": "https://video.dmm.co.jp/av/content/?id=dvrt07203",
         "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Ddvrt07203&af_id=saaaaaaya-990&ch=api",
@@ -181182,6 +181485,10 @@
         "product_id": "bacj00170",
         "title": "オタサーにきた場違いな姫がパンチラ誘惑 目の前で僕の友達とのセックスを見せつけられて屈辱センズリ射精 雅子りな",
         "volume": "137",
+        "review": {
+          "count": 1,
+          "average": "5.00"
+        },
         "URL": "https://video.dmm.co.jp/av/content/?id=bacj00170",
         "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Dbacj00170&af_id=saaaaaaya-990&ch=api",
         "imageURL": {
@@ -186991,8 +187298,8 @@
         "title": "一人暮らしする僕の家がクラスの女子のたまり場に！4人の入り浸り美少女と四六時中ハメまくりのヤリ部屋生活 MOODYZ創立25周年記念 小野六花 純白彩永 松本いちか 八木奈々",
         "volume": "180",
         "review": {
-          "count": 17,
-          "average": "4.82"
+          "count": 18,
+          "average": "4.78"
         },
         "URL": "https://video.dmm.co.jp/av/content/?id=mird00268",
         "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Dmird00268&af_id=saaaaaaya-990&ch=api",
@@ -193223,28 +193530,28 @@
         "iteminfo": {
           "genre": [
             {
-              "id": 6533,
-              "name": "ハイビジョン"
-            },
-            {
-              "id": 1018,
-              "name": "女子校生"
-            },
-            {
-              "id": 4024,
-              "name": "素人"
-            },
-            {
-              "id": 102,
-              "name": "美乳"
+              "id": 1027,
+              "name": "美少女"
             },
             {
               "id": 6002,
               "name": "ハメ撮り"
             },
             {
-              "id": 1027,
-              "name": "美少女"
+              "id": 102,
+              "name": "美乳"
+            },
+            {
+              "id": 4024,
+              "name": "素人"
+            },
+            {
+              "id": 1018,
+              "name": "女子校生"
+            },
+            {
+              "id": 6533,
+              "name": "ハイビジョン"
             }
           ],
           "maker": [
@@ -209775,7 +210082,7 @@
         "title": "パンチラごときで勃起する雑魚チ〇ポを集団で弄ぶメスガキ達の本性（BAGR-077）",
         "volume": "117",
         "review": {
-          "count": 2,
+          "count": 3,
           "average": "5.00"
         },
         "URL": "https://video.dmm.co.jp/av/content/?id=bagr00077",
@@ -214464,7 +214771,7 @@
         "title": "女子〇生のピンピン乳首折●～わるいこは乳首にお仕置き～",
         "volume": "144",
         "review": {
-          "count": 4,
+          "count": 5,
           "average": "5.00"
         },
         "URL": "https://video.dmm.co.jp/av/content/?id=36doks00654",
@@ -234945,7 +235252,7 @@
         "title": "坂道系美少女かほちゃん 「すぐイっちゃう！もうイっちゃう！」 子宮直撃絶頂！ 「めっちゃ奥アタルもん！」【オナペットアイドル】＃オフパコ娘とホテルお籠もり淫乱絶頂SEX 花守夏歩",
         "volume": "131",
         "review": {
-          "count": 9,
+          "count": 10,
           "average": "5.00"
         },
         "URL": "https://video.dmm.co.jp/av/content/?id=apak00316",
@@ -247938,8 +248245,8 @@
         "title": "【VR】【Jcup爆乳特化アングル】ぜんぶ教え子の早熟おっぱいのせいだ…！！ 中毒性のある禁断の果実に溺れて教師としてあってはならない不純性交を一度ならず二度までも犯した 宮地莉央",
         "volume": "119",
         "review": {
-          "count": 18,
-          "average": "4.61"
+          "count": 19,
+          "average": "4.53"
         },
         "URL": "https://video.dmm.co.jp/av/content/?id=mdvr00376",
         "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Dmdvr00376&af_id=saaaaaaya-990&ch=api",
@@ -318210,173 +318517,6 @@
             {
               "id": 25739,
               "name": "SODVR"
-            }
-          ]
-        }
-      },
-      {
-        "service_code": "digital",
-        "service_name": "動画",
-        "floor_code": "videoa",
-        "floor_name": "ビデオ",
-        "category_name": "ビデオ (動画)",
-        "content_id": "cob00001ai",
-        "product_id": "cob00001ai",
-        "title": "【AIリマスター版】GAL校生 ＃01 前田アリサ",
-        "volume": "118",
-        "URL": "https://video.dmm.co.jp/av/content/?id=cob00001ai",
-        "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Dcob00001ai&af_id=saaaaaaya-990&ch=api",
-        "imageURL": {
-          "large": "https://pics.dmm.co.jp/digital/video/cob00001ai/cob00001aipl.jpg",
-          "small": "https://pics.dmm.co.jp/digital/video/cob00001ai/cob00001aips.jpg",
-          "list": "https://pics.dmm.co.jp/digital/video/cob00001ai/cob00001aipt.jpg"
-        },
-        "sampleImageURL": {
-          "sample_s": {
-            "image": [
-              "https://pics.dmm.co.jp/digital/video/cob00001ai/cob00001ai-1.jpg",
-              "https://pics.dmm.co.jp/digital/video/cob00001ai/cob00001ai-2.jpg",
-              "https://pics.dmm.co.jp/digital/video/cob00001ai/cob00001ai-3.jpg",
-              "https://pics.dmm.co.jp/digital/video/cob00001ai/cob00001ai-4.jpg",
-              "https://pics.dmm.co.jp/digital/video/cob00001ai/cob00001ai-5.jpg",
-              "https://pics.dmm.co.jp/digital/video/cob00001ai/cob00001ai-6.jpg",
-              "https://pics.dmm.co.jp/digital/video/cob00001ai/cob00001ai-7.jpg",
-              "https://pics.dmm.co.jp/digital/video/cob00001ai/cob00001ai-8.jpg",
-              "https://pics.dmm.co.jp/digital/video/cob00001ai/cob00001ai-9.jpg",
-              "https://pics.dmm.co.jp/digital/video/cob00001ai/cob00001ai-10.jpg",
-              "https://pics.dmm.co.jp/digital/video/cob00001ai/cob00001ai-11.jpg",
-              "https://pics.dmm.co.jp/digital/video/cob00001ai/cob00001ai-12.jpg",
-              "https://pics.dmm.co.jp/digital/video/cob00001ai/cob00001ai-13.jpg",
-              "https://pics.dmm.co.jp/digital/video/cob00001ai/cob00001ai-14.jpg",
-              "https://pics.dmm.co.jp/digital/video/cob00001ai/cob00001ai-15.jpg",
-              "https://pics.dmm.co.jp/digital/video/cob00001ai/cob00001ai-16.jpg",
-              "https://pics.dmm.co.jp/digital/video/cob00001ai/cob00001ai-17.jpg",
-              "https://pics.dmm.co.jp/digital/video/cob00001ai/cob00001ai-18.jpg",
-              "https://pics.dmm.co.jp/digital/video/cob00001ai/cob00001ai-19.jpg",
-              "https://pics.dmm.co.jp/digital/video/cob00001ai/cob00001ai-20.jpg"
-            ]
-          },
-          "sample_l": {
-            "image": [
-              "https://pics.dmm.co.jp/digital/video/cob00001ai/cob00001aijp-1.jpg",
-              "https://pics.dmm.co.jp/digital/video/cob00001ai/cob00001aijp-2.jpg",
-              "https://pics.dmm.co.jp/digital/video/cob00001ai/cob00001aijp-3.jpg",
-              "https://pics.dmm.co.jp/digital/video/cob00001ai/cob00001aijp-4.jpg",
-              "https://pics.dmm.co.jp/digital/video/cob00001ai/cob00001aijp-5.jpg",
-              "https://pics.dmm.co.jp/digital/video/cob00001ai/cob00001aijp-6.jpg",
-              "https://pics.dmm.co.jp/digital/video/cob00001ai/cob00001aijp-7.jpg",
-              "https://pics.dmm.co.jp/digital/video/cob00001ai/cob00001aijp-8.jpg",
-              "https://pics.dmm.co.jp/digital/video/cob00001ai/cob00001aijp-9.jpg",
-              "https://pics.dmm.co.jp/digital/video/cob00001ai/cob00001aijp-10.jpg",
-              "https://pics.dmm.co.jp/digital/video/cob00001ai/cob00001aijp-11.jpg",
-              "https://pics.dmm.co.jp/digital/video/cob00001ai/cob00001aijp-12.jpg",
-              "https://pics.dmm.co.jp/digital/video/cob00001ai/cob00001aijp-13.jpg",
-              "https://pics.dmm.co.jp/digital/video/cob00001ai/cob00001aijp-14.jpg",
-              "https://pics.dmm.co.jp/digital/video/cob00001ai/cob00001aijp-15.jpg",
-              "https://pics.dmm.co.jp/digital/video/cob00001ai/cob00001aijp-16.jpg",
-              "https://pics.dmm.co.jp/digital/video/cob00001ai/cob00001aijp-17.jpg",
-              "https://pics.dmm.co.jp/digital/video/cob00001ai/cob00001aijp-18.jpg",
-              "https://pics.dmm.co.jp/digital/video/cob00001ai/cob00001aijp-19.jpg",
-              "https://pics.dmm.co.jp/digital/video/cob00001ai/cob00001aijp-20.jpg"
-            ]
-          }
-        },
-        "sampleMovieURL": {
-          "size_476_306": "https://www.dmm.co.jp/litevideo/-/part/=/cid=cob00001ai/size=476_306/affi_id=saaaaaaya-990/",
-          "size_560_360": "https://www.dmm.co.jp/litevideo/-/part/=/cid=cob00001ai/size=560_360/affi_id=saaaaaaya-990/",
-          "size_644_414": "https://www.dmm.co.jp/litevideo/-/part/=/cid=cob00001ai/size=644_414/affi_id=saaaaaaya-990/",
-          "size_720_480": "https://www.dmm.co.jp/litevideo/-/part/=/cid=cob00001ai/size=720_480/affi_id=saaaaaaya-990/",
-          "pc_flag": 1,
-          "sp_flag": 1
-        },
-        "prices": {
-          "price": "400~",
-          "list_price": "400~",
-          "deliveries": {
-            "delivery": [
-              {
-                "type": "hd",
-                "price": "1280",
-                "list_price": "1280"
-              },
-              {
-                "type": "download",
-                "price": "780",
-                "list_price": "780"
-              },
-              {
-                "type": "stream",
-                "price": "400",
-                "list_price": "400"
-              },
-              {
-                "type": "iosdl",
-                "price": "780",
-                "list_price": "780"
-              },
-              {
-                "type": "androiddl",
-                "price": "780",
-                "list_price": "780"
-              }
-            ]
-          }
-        },
-        "date": "2025-07-28 00:00:28",
-        "iteminfo": {
-          "genre": [
-            {
-              "id": 6533,
-              "name": "ハイビジョン"
-            },
-            {
-              "id": 6548,
-              "name": "独占配信"
-            },
-            {
-              "id": 4025,
-              "name": "単体作品"
-            },
-            {
-              "id": 3011,
-              "name": "学生服"
-            },
-            {
-              "id": 1034,
-              "name": "ギャル"
-            },
-            {
-              "id": 1018,
-              "name": "女子校生"
-            },
-            {
-              "id": 38,
-              "name": "クンニ"
-            }
-          ],
-          "series": [
-            {
-              "id": 9009,
-              "name": "GAL校生"
-            }
-          ],
-          "maker": [
-            {
-              "id": 6735,
-              "name": "ZETTON"
-            }
-          ],
-          "actress": [
-            {
-              "id": 24357,
-              "name": "前田アリサ",
-              "ruby": "まえだありさ"
-            }
-          ],
-          "label": [
-            {
-              "id": 2066408,
-              "name": "ZETTON AIリマスター"
             }
           ]
         }

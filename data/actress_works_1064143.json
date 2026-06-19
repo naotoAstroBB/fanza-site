@@ -2862,6 +2862,10 @@
         "iteminfo": {
           "genre": [
             {
+              "id": 6012,
+              "name": "4時間以上作品"
+            },
+            {
               "id": 6533,
               "name": "ハイビジョン"
             },
@@ -2888,10 +2892,6 @@
             {
               "id": 6003,
               "name": "ベスト・総集編"
-            },
-            {
-              "id": 6012,
-              "name": "4時間以上作品"
             }
           ],
           "series": [
@@ -20619,29 +20619,34 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "2180~",
-          "list_price": "2180~",
+          "price": "500~",
+          "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "2700",
-                "list_price": "2700"
+                "price": "1780",
+                "list_price": "1780"
               },
               {
                 "type": "download",
-                "price": "2180",
-                "list_price": "2180"
+                "price": "1270",
+                "list_price": "1270"
+              },
+              {
+                "type": "stream",
+                "price": "500",
+                "list_price": "500"
               },
               {
                 "type": "iosdl",
-                "price": "2180",
-                "list_price": "2180"
+                "price": "1270",
+                "list_price": "1270"
               },
               {
                 "type": "androiddl",
-                "price": "2180",
-                "list_price": "2180"
+                "price": "1270",
+                "list_price": "1270"
               }
             ]
           }
@@ -27527,261 +27532,6 @@
               "ruby": "きさきなな"
             },
             {
-              "id": 1007544,
-              "name": "有村千佳",
-              "ruby": "ありむらちか"
-            },
-            {
-              "id": 1021903,
-              "name": "阿部乃みく",
-              "ruby": "あべのみく"
-            },
-            {
-              "id": 1016525,
-              "name": "浜崎真緒",
-              "ruby": "はまさきまお"
-            },
-            {
-              "id": 1008887,
-              "name": "AIKA",
-              "ruby": "あいか"
-            },
-            {
-              "id": 1022394,
-              "name": "佐々木恋海（向井恋）",
-              "ruby": "ささきれみ(むかいれん)"
-            },
-            {
-              "id": 1029407,
-              "name": "松井優子",
-              "ruby": "まついゆうこ"
-            },
-            {
-              "id": 1019890,
-              "name": "湊莉久",
-              "ruby": "みなとりく"
-            },
-            {
-              "id": 30130,
-              "name": "大槻ひびき",
-              "ruby": "おおつきひびき"
-            },
-            {
-              "id": 1022288,
-              "name": "千乃あずみ",
-              "ruby": "ちのあずみ"
-            },
-            {
-              "id": 11291,
-              "name": "愛咲れいら（原千尋）",
-              "ruby": "あいさきれいら（はらちひろ）"
-            },
-            {
-              "id": 1026902,
-              "name": "武藤あやか",
-              "ruby": "むとうあやか"
-            },
-            {
-              "id": 23788,
-              "name": "板垣あずさ",
-              "ruby": "いたがきあずさ"
-            },
-            {
-              "id": 1015262,
-              "name": "松本メイ",
-              "ruby": "まつもとめい"
-            },
-            {
-              "id": 24595,
-              "name": "澤村レイコ（高坂保奈美、高坂ますみ）",
-              "ruby": "さわむられいこ（たかさかほなみ、たかさかますみ）"
-            },
-            {
-              "id": 1096319,
-              "name": "わか菜ほの",
-              "ruby": "わかなほの"
-            },
-            {
-              "id": 1085754,
-              "name": "九井スナオ",
-              "ruby": "ここのいすなお"
-            },
-            {
-              "id": 1070448,
-              "name": "百永さりな",
-              "ruby": "ももながさりな"
-            },
-            {
-              "id": 1061586,
-              "name": "森日向子",
-              "ruby": "もりひなこ"
-            },
-            {
-              "id": 1064143,
-              "name": "沙月恵奈",
-              "ruby": "さつきえな"
-            },
-            {
-              "id": 1076946,
-              "name": "雪城れん",
-              "ruby": "ゆきしろれん"
-            },
-            {
-              "id": 1072206,
-              "name": "小花のん",
-              "ruby": "おはなのん"
-            },
-            {
-              "id": 1069952,
-              "name": "新井リマ",
-              "ruby": "あらいりま"
-            },
-            {
-              "id": 1054998,
-              "name": "松本いちか",
-              "ruby": "まつもといちか"
-            },
-            {
-              "id": 1048046,
-              "name": "深田結梨",
-              "ruby": "ふかだゆうり"
-            },
-            {
-              "id": 1019029,
-              "name": "卯水咲流",
-              "ruby": "うすいさりゅう"
-            },
-            {
-              "id": 1015794,
-              "name": "三浦恵理子",
-              "ruby": "みうらえりこ"
-            },
-            {
-              "id": 26225,
-              "name": "波多野結衣",
-              "ruby": "はたのゆい"
-            },
-            {
-              "id": 1037026,
-              "name": "観月ひかる",
-              "ruby": "みずきひかる"
-            },
-            {
-              "id": 1028704,
-              "name": "三原ほのか",
-              "ruby": "みはらほのか"
-            },
-            {
-              "id": 1034918,
-              "name": "栄川乃亜",
-              "ruby": "えいかわのあ"
-            },
-            {
-              "id": 1032774,
-              "name": "あおいれな",
-              "ruby": "あおいれな"
-            },
-            {
-              "id": 1021901,
-              "name": "通野未帆",
-              "ruby": "とおのみほ"
-            },
-            {
-              "id": 1017210,
-              "name": "一条綺美香",
-              "ruby": "いちじょうきみか"
-            },
-            {
-              "id": 1030692,
-              "name": "成宮いろは",
-              "ruby": "なりみやいろは"
-            },
-            {
-              "id": 1034249,
-              "name": "神納花",
-              "ruby": "かのはな"
-            },
-            {
-              "id": 1036165,
-              "name": "清本玲奈",
-              "ruby": "きよもとれな"
-            },
-            {
-              "id": 1033869,
-              "name": "紗々原ゆり",
-              "ruby": "ささはらゆり"
-            },
-            {
-              "id": 1029718,
-              "name": "なつめ愛莉",
-              "ruby": "なつめあいり"
-            },
-            {
-              "id": 1028195,
-              "name": "谷原希美",
-              "ruby": "たにはらのぞみ"
-            },
-            {
-              "id": 1034138,
-              "name": "あず希",
-              "ruby": "あずき"
-            },
-            {
-              "id": 1031841,
-              "name": "花咲いあん",
-              "ruby": "はなさきいあん"
-            },
-            {
-              "id": 1032130,
-              "name": "佐々木あき",
-              "ruby": "ささきあき"
-            },
-            {
-              "id": 30317,
-              "name": "椎名ゆな",
-              "ruby": "しいなゆな"
-            },
-            {
-              "id": 23130,
-              "name": "川上ゆう（森野雫）",
-              "ruby": "かわかみゆう（もりのしずく）"
-            },
-            {
-              "id": 1029661,
-              "name": "美月笑麻",
-              "ruby": "みづきえま"
-            },
-            {
-              "id": 1022549,
-              "name": "さくらえな",
-              "ruby": "さくらえな"
-            },
-            {
-              "id": 1016110,
-              "name": "倉多まお",
-              "ruby": "くらたまお"
-            },
-            {
-              "id": 23558,
-              "name": "紺野ひかる",
-              "ruby": "こんのひかる"
-            },
-            {
-              "id": 1010736,
-              "name": "希咲エマ（HARUKI、加藤はる希）",
-              "ruby": "きさきえま（はるき、かとうはるき）"
-            },
-            {
-              "id": 1029657,
-              "name": "二葉しずく",
-              "ruby": "ふたばしずく"
-            },
-            {
-              "id": 1017139,
-              "name": "蓮実クレア",
-              "ruby": "はすみくれあ"
-            },
-            {
               "id": 1025503,
               "name": "篠田あゆみ",
               "ruby": "しのだあゆみ"
@@ -27802,9 +27552,264 @@
               "ruby": "あおきれい"
             },
             {
+              "id": 1032130,
+              "name": "佐々木あき",
+              "ruby": "ささきあき"
+            },
+            {
+              "id": 1017139,
+              "name": "蓮実クレア",
+              "ruby": "はすみくれあ"
+            },
+            {
+              "id": 1029657,
+              "name": "二葉しずく",
+              "ruby": "ふたばしずく"
+            },
+            {
+              "id": 1010736,
+              "name": "希咲エマ（HARUKI、加藤はる希）",
+              "ruby": "きさきえま（はるき、かとうはるき）"
+            },
+            {
+              "id": 23558,
+              "name": "紺野ひかる",
+              "ruby": "こんのひかる"
+            },
+            {
+              "id": 1016110,
+              "name": "倉多まお",
+              "ruby": "くらたまお"
+            },
+            {
+              "id": 1022549,
+              "name": "さくらえな",
+              "ruby": "さくらえな"
+            },
+            {
+              "id": 1029661,
+              "name": "美月笑麻",
+              "ruby": "みづきえま"
+            },
+            {
+              "id": 1031841,
+              "name": "花咲いあん",
+              "ruby": "はなさきいあん"
+            },
+            {
+              "id": 1037026,
+              "name": "観月ひかる",
+              "ruby": "みずきひかる"
+            },
+            {
+              "id": 1028704,
+              "name": "三原ほのか",
+              "ruby": "みはらほのか"
+            },
+            {
               "id": 1005108,
               "name": "羽月希",
               "ruby": "はづきのぞみ"
+            },
+            {
+              "id": 1034138,
+              "name": "あず希",
+              "ruby": "あずき"
+            },
+            {
+              "id": 1028195,
+              "name": "谷原希美",
+              "ruby": "たにはらのぞみ"
+            },
+            {
+              "id": 1029718,
+              "name": "なつめ愛莉",
+              "ruby": "なつめあいり"
+            },
+            {
+              "id": 1033869,
+              "name": "紗々原ゆり",
+              "ruby": "ささはらゆり"
+            },
+            {
+              "id": 1036165,
+              "name": "清本玲奈",
+              "ruby": "きよもとれな"
+            },
+            {
+              "id": 1034249,
+              "name": "神納花",
+              "ruby": "かのはな"
+            },
+            {
+              "id": 1030692,
+              "name": "成宮いろは",
+              "ruby": "なりみやいろは"
+            },
+            {
+              "id": 1017210,
+              "name": "一条綺美香",
+              "ruby": "いちじょうきみか"
+            },
+            {
+              "id": 1021901,
+              "name": "通野未帆",
+              "ruby": "とおのみほ"
+            },
+            {
+              "id": 1032774,
+              "name": "あおいれな",
+              "ruby": "あおいれな"
+            },
+            {
+              "id": 1034918,
+              "name": "栄川乃亜",
+              "ruby": "えいかわのあ"
+            },
+            {
+              "id": 23130,
+              "name": "川上ゆう（森野雫）",
+              "ruby": "かわかみゆう（もりのしずく）"
+            },
+            {
+              "id": 30317,
+              "name": "椎名ゆな",
+              "ruby": "しいなゆな"
+            },
+            {
+              "id": 24595,
+              "name": "澤村レイコ（高坂保奈美、高坂ますみ）",
+              "ruby": "さわむられいこ（たかさかほなみ、たかさかますみ）"
+            },
+            {
+              "id": 1019029,
+              "name": "卯水咲流",
+              "ruby": "うすいさりゅう"
+            },
+            {
+              "id": 1008887,
+              "name": "AIKA",
+              "ruby": "あいか"
+            },
+            {
+              "id": 1048046,
+              "name": "深田結梨",
+              "ruby": "ふかだゆうり"
+            },
+            {
+              "id": 1054998,
+              "name": "松本いちか",
+              "ruby": "まつもといちか"
+            },
+            {
+              "id": 1069952,
+              "name": "新井リマ",
+              "ruby": "あらいりま"
+            },
+            {
+              "id": 1072206,
+              "name": "小花のん",
+              "ruby": "おはなのん"
+            },
+            {
+              "id": 1076946,
+              "name": "雪城れん",
+              "ruby": "ゆきしろれん"
+            },
+            {
+              "id": 1064143,
+              "name": "沙月恵奈",
+              "ruby": "さつきえな"
+            },
+            {
+              "id": 1061586,
+              "name": "森日向子",
+              "ruby": "もりひなこ"
+            },
+            {
+              "id": 1070448,
+              "name": "百永さりな",
+              "ruby": "ももながさりな"
+            },
+            {
+              "id": 1085754,
+              "name": "九井スナオ",
+              "ruby": "ここのいすなお"
+            },
+            {
+              "id": 1015262,
+              "name": "松本メイ",
+              "ruby": "まつもとめい"
+            },
+            {
+              "id": 1022394,
+              "name": "佐々木恋海（向井恋）",
+              "ruby": "ささきれみ(むかいれん)"
+            },
+            {
+              "id": 26225,
+              "name": "波多野結衣",
+              "ruby": "はたのゆい"
+            },
+            {
+              "id": 1015794,
+              "name": "三浦恵理子",
+              "ruby": "みうらえりこ"
+            },
+            {
+              "id": 23788,
+              "name": "板垣あずさ",
+              "ruby": "いたがきあずさ"
+            },
+            {
+              "id": 1026902,
+              "name": "武藤あやか",
+              "ruby": "むとうあやか"
+            },
+            {
+              "id": 11291,
+              "name": "愛咲れいら（原千尋）",
+              "ruby": "あいさきれいら（はらちひろ）"
+            },
+            {
+              "id": 1022288,
+              "name": "千乃あずみ",
+              "ruby": "ちのあずみ"
+            },
+            {
+              "id": 30130,
+              "name": "大槻ひびき",
+              "ruby": "おおつきひびき"
+            },
+            {
+              "id": 1019890,
+              "name": "湊莉久",
+              "ruby": "みなとりく"
+            },
+            {
+              "id": 1029407,
+              "name": "松井優子",
+              "ruby": "まついゆうこ"
+            },
+            {
+              "id": 1007544,
+              "name": "有村千佳",
+              "ruby": "ありむらちか"
+            },
+            {
+              "id": 1021903,
+              "name": "阿部乃みく",
+              "ruby": "あべのみく"
+            },
+            {
+              "id": 1016525,
+              "name": "浜崎真緒",
+              "ruby": "はまさきまお"
+            },
+            {
+              "id": 1096319,
+              "name": "わか菜ほの",
+              "ruby": "わかなほの"
             }
           ],
           "label": [
@@ -46493,38 +46498,38 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "350~",
+          "price": "500~",
           "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "4k",
-                "price": "1736",
+                "price": "2480",
                 "list_price": "2480"
               },
               {
                 "type": "hd",
-                "price": "1386",
+                "price": "1980",
                 "list_price": "1980"
               },
               {
                 "type": "download",
-                "price": "1036",
+                "price": "1480",
                 "list_price": "1480"
               },
               {
                 "type": "stream",
-                "price": "350",
+                "price": "500",
                 "list_price": "500"
               },
               {
                 "type": "iosdl",
-                "price": "1036",
+                "price": "1480",
                 "list_price": "1480"
               },
               {
                 "type": "androiddl",
-                "price": "1036",
+                "price": "1480",
                 "list_price": "1480"
               }
             ]
@@ -46655,14 +46660,7 @@
               "name": "OFFICE K’S"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-06-17 00:10:00",
-            "date_end": "2026-06-18 23:59:59",
-            "title": "みんなのお気に入り30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -54492,28 +54490,28 @@
           }
         },
         "prices": {
-          "price": "356~",
+          "price": "509~",
           "list_price": "509~",
           "deliveries": {
             "delivery": [
               {
                 "type": "8k",
-                "price": "1106",
+                "price": "1580",
                 "list_price": "1580"
               },
               {
                 "type": "hd",
-                "price": "698",
+                "price": "998",
                 "list_price": "998"
               },
               {
                 "type": "download",
-                "price": "556",
+                "price": "795",
                 "list_price": "795"
               },
               {
                 "type": "rp",
-                "price": "356",
+                "price": "509",
                 "list_price": "509"
               }
             ]
@@ -54589,14 +54587,7 @@
               "name": "KMPVR-彩-"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-06-17 00:10:00",
-            "date_end": "2026-06-18 23:59:59",
-            "title": "みんなのお気に入り30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -59490,157 +59481,6 @@
             {
               "id": 2341,
               "name": "MOODYZ Best"
-            }
-          ]
-        }
-      },
-      {
-        "service_code": "digital",
-        "service_name": "動画",
-        "floor_code": "videoa",
-        "floor_name": "ビデオ",
-        "category_name": "ビデオ (動画)",
-        "content_id": "savr00682",
-        "product_id": "savr00682",
-        "title": "【VR】ココが噂のヤリマン学園～臨時教員として採用された僕に襲いかかる生徒たち～ 保健室で実習中に連続中出し生ハメハーレムSEX 沙月恵奈 天然みつき さつき芽衣 渚みつき",
-        "volume": "76",
-        "URL": "https://video.dmm.co.jp/av/content/?id=savr00682",
-        "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Dsavr00682&af_id=saaaaaaya-990&ch=api",
-        "imageURL": {
-          "large": "https://pics.dmm.co.jp/digital/video/savr00682/savr00682pl.jpg",
-          "small": "https://pics.dmm.co.jp/digital/video/savr00682/savr00682ps.jpg",
-          "list": "https://pics.dmm.co.jp/digital/video/savr00682/savr00682pt.jpg"
-        },
-        "sampleImageURL": {
-          "sample_s": {
-            "image": [
-              "https://pics.dmm.co.jp/digital/video/savr00682/savr00682-1.jpg",
-              "https://pics.dmm.co.jp/digital/video/savr00682/savr00682-2.jpg",
-              "https://pics.dmm.co.jp/digital/video/savr00682/savr00682-3.jpg",
-              "https://pics.dmm.co.jp/digital/video/savr00682/savr00682-4.jpg",
-              "https://pics.dmm.co.jp/digital/video/savr00682/savr00682-5.jpg",
-              "https://pics.dmm.co.jp/digital/video/savr00682/savr00682-6.jpg",
-              "https://pics.dmm.co.jp/digital/video/savr00682/savr00682-7.jpg",
-              "https://pics.dmm.co.jp/digital/video/savr00682/savr00682-8.jpg",
-              "https://pics.dmm.co.jp/digital/video/savr00682/savr00682-9.jpg",
-              "https://pics.dmm.co.jp/digital/video/savr00682/savr00682-10.jpg",
-              "https://pics.dmm.co.jp/digital/video/savr00682/savr00682-11.jpg"
-            ]
-          },
-          "sample_l": {
-            "image": [
-              "https://pics.dmm.co.jp/digital/video/savr00682/savr00682jp-1.jpg",
-              "https://pics.dmm.co.jp/digital/video/savr00682/savr00682jp-2.jpg",
-              "https://pics.dmm.co.jp/digital/video/savr00682/savr00682jp-3.jpg",
-              "https://pics.dmm.co.jp/digital/video/savr00682/savr00682jp-4.jpg",
-              "https://pics.dmm.co.jp/digital/video/savr00682/savr00682jp-5.jpg",
-              "https://pics.dmm.co.jp/digital/video/savr00682/savr00682jp-6.jpg",
-              "https://pics.dmm.co.jp/digital/video/savr00682/savr00682jp-7.jpg",
-              "https://pics.dmm.co.jp/digital/video/savr00682/savr00682jp-8.jpg",
-              "https://pics.dmm.co.jp/digital/video/savr00682/savr00682jp-9.jpg",
-              "https://pics.dmm.co.jp/digital/video/savr00682/savr00682jp-10.jpg",
-              "https://pics.dmm.co.jp/digital/video/savr00682/savr00682jp-11.jpg"
-            ]
-          }
-        },
-        "prices": {
-          "price": "250~",
-          "list_price": "250~",
-          "deliveries": {
-            "delivery": [
-              {
-                "type": "hd",
-                "price": "400",
-                "list_price": "400"
-              },
-              {
-                "type": "download",
-                "price": "300",
-                "list_price": "300"
-              },
-              {
-                "type": "rp",
-                "price": "250",
-                "list_price": "250"
-              }
-            ]
-          }
-        },
-        "date": "2025-07-31 00:00:46",
-        "iteminfo": {
-          "genre": [
-            {
-              "id": 6925,
-              "name": "ハイクオリティVR"
-            },
-            {
-              "id": 6793,
-              "name": "VR専用"
-            },
-            {
-              "id": 6548,
-              "name": "独占配信"
-            },
-            {
-              "id": 5071,
-              "name": "ハーレム"
-            },
-            {
-              "id": 5001,
-              "name": "中出し"
-            },
-            {
-              "id": 2001,
-              "name": "巨乳"
-            },
-            {
-              "id": 5002,
-              "name": "フェラ"
-            },
-            {
-              "id": 1018,
-              "name": "女子校生"
-            }
-          ],
-          "maker": [
-            {
-              "id": 46628,
-              "name": "KMPVR-彩-"
-            }
-          ],
-          "actress": [
-            {
-              "id": 1064143,
-              "name": "沙月恵奈",
-              "ruby": "さつきえな"
-            },
-            {
-              "id": 1071639,
-              "name": "天然美月（天然かのん）",
-              "ruby": "あまねみづき（あまねかのん）"
-            },
-            {
-              "id": 1062041,
-              "name": "さつき芽衣",
-              "ruby": "さつきめい"
-            },
-            {
-              "id": 1049908,
-              "name": "渚みつき",
-              "ruby": "なぎさみつき"
-            }
-          ],
-          "director": [
-            {
-              "id": 110597,
-              "name": "K太郎",
-              "ruby": "けーたろう"
-            }
-          ],
-          "label": [
-            {
-              "id": 25997,
-              "name": "KMPVR-彩-"
             }
           ]
         }
@@ -69966,38 +69806,38 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "4k",
-                "price": "1246",
+                "price": "1780",
                 "list_price": "1780"
               },
               {
                 "type": "hd",
-                "price": "1175",
+                "price": "1680",
                 "list_price": "1680"
               },
               {
                 "type": "download",
-                "price": "1106",
+                "price": "1580",
                 "list_price": "1580"
               },
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "1106",
+                "price": "1580",
                 "list_price": "1580"
               },
               {
                 "type": "androiddl",
-                "price": "1106",
+                "price": "1580",
                 "list_price": "1580"
               }
             ]
@@ -70064,14 +69904,7 @@
               "name": "S-Cute"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-06-17 00:10:00",
-            "date_end": "2026-06-18 23:59:59",
-            "title": "みんなのお気に入り30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -70153,39 +69986,39 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "500~",
-          "list_price": "500~",
+          "price": "300~",
+          "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "4k",
-                "price": "2480",
-                "list_price": "2480"
+                "price": "1970",
+                "list_price": "1970"
               },
               {
                 "type": "hd",
-                "price": "1780",
-                "list_price": "1780"
+                "price": "1270",
+                "list_price": "1270"
               },
               {
                 "type": "download",
-                "price": "1270",
-                "list_price": "1270"
+                "price": "980",
+                "list_price": "980"
               },
               {
                 "type": "stream",
-                "price": "500",
-                "list_price": "500"
+                "price": "300",
+                "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "1270",
-                "list_price": "1270"
+                "price": "980",
+                "list_price": "980"
               },
               {
                 "type": "androiddl",
-                "price": "1270",
-                "list_price": "1270"
+                "price": "980",
+                "list_price": "980"
               }
             ]
           }
@@ -73783,33 +73616,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "download",
-                "price": "413",
+                "price": "590",
                 "list_price": "590"
               },
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "413",
+                "price": "590",
                 "list_price": "590"
               },
               {
                 "type": "androiddl",
-                "price": "413",
+                "price": "590",
                 "list_price": "590"
               }
             ]
@@ -73951,14 +73784,7 @@
               "name": "姦乱者"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-06-17 00:10:00",
-            "date_end": "2026-06-18 23:59:59",
-            "title": "みんなのお気に入り30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -141748,7 +141574,7 @@
         }
       }
     ],
-    "total_count": 597,
-    "result_count": 597
+    "total_count": 596,
+    "result_count": 596
   }
 }

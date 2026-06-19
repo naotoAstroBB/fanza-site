@@ -1066,6 +1066,10 @@
         "iteminfo": {
           "genre": [
             {
+              "id": 6012,
+              "name": "4時間以上作品"
+            },
+            {
               "id": 6533,
               "name": "ハイビジョン"
             },
@@ -1092,10 +1096,6 @@
             {
               "id": 6003,
               "name": "ベスト・総集編"
-            },
-            {
-              "id": 6012,
-              "name": "4時間以上作品"
             }
           ],
           "series": [
@@ -23033,28 +23033,28 @@
           }
         },
         "prices": {
-          "price": "356~",
+          "price": "509~",
           "list_price": "509~",
           "deliveries": {
             "delivery": [
               {
                 "type": "8k",
-                "price": "1106",
+                "price": "1580",
                 "list_price": "1580"
               },
               {
                 "type": "hd",
-                "price": "698",
+                "price": "998",
                 "list_price": "998"
               },
               {
                 "type": "download",
-                "price": "556",
+                "price": "795",
                 "list_price": "795"
               },
               {
                 "type": "rp",
-                "price": "356",
+                "price": "509",
                 "list_price": "509"
               }
             ]
@@ -23130,14 +23130,7 @@
               "name": "KMPVR-彩-"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-06-17 00:10:00",
-            "date_end": "2026-06-18 23:59:59",
-            "title": "みんなのお気に入り30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",

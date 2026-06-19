@@ -5217,38 +5217,38 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "350~",
+          "price": "500~",
           "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "4k",
-                "price": "1876",
+                "price": "2680",
                 "list_price": "2680"
               },
               {
                 "type": "hd",
-                "price": "1386",
+                "price": "1980",
                 "list_price": "1980"
               },
               {
                 "type": "download",
-                "price": "959",
+                "price": "1370",
                 "list_price": "1370"
               },
               {
                 "type": "stream",
-                "price": "350",
+                "price": "500",
                 "list_price": "500"
               },
               {
                 "type": "iosdl",
-                "price": "959",
+                "price": "1370",
                 "list_price": "1370"
               },
               {
                 "type": "androiddl",
-                "price": "959",
+                "price": "1370",
                 "list_price": "1370"
               }
             ]
@@ -5318,14 +5318,7 @@
               "name": "SODSTAR"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-06-17 00:10:00",
-            "date_end": "2026-06-18 23:59:59",
-            "title": "みんなのお気に入り30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -5389,29 +5382,29 @@
           }
         },
         "prices": {
-          "price": "500~",
-          "list_price": "500~",
+          "price": "300~",
+          "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "8k",
-                "price": "1780",
-                "list_price": "1780"
+                "price": "1280",
+                "list_price": "1280"
               },
               {
                 "type": "hd",
-                "price": "1480",
-                "list_price": "1480"
-              },
-              {
-                "type": "download",
                 "price": "980",
                 "list_price": "980"
               },
               {
+                "type": "download",
+                "price": "780",
+                "list_price": "780"
+              },
+              {
                 "type": "rp",
-                "price": "500",
-                "list_price": "500"
+                "price": "300",
+                "list_price": "300"
               }
             ]
           }

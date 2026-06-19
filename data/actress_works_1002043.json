@@ -10445,33 +10445,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "350~",
+          "price": "500~",
           "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "download",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "stream",
-                "price": "350",
+                "price": "500",
                 "list_price": "500"
               },
               {
                 "type": "hd",
-                "price": "1036",
+                "price": "1480",
                 "list_price": "1480"
               },
               {
                 "type": "iosdl",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "androiddl",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               }
             ]
@@ -10595,14 +10595,7 @@
               "name": "桃太郎プレミアムベスト"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-06-17 00:10:00",
-            "date_end": "2026-06-18 23:59:59",
-            "title": "みんなのお気に入り30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -15758,34 +15751,34 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "2948~",
-          "list_price": "2948~",
+          "price": "2398~",
+          "list_price": "2398~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "4048",
-                "list_price": "4048"
-              },
-              {
-                "type": "download",
                 "price": "3498",
                 "list_price": "3498"
               },
               {
-                "type": "stream",
+                "type": "download",
                 "price": "2948",
                 "list_price": "2948"
               },
               {
+                "type": "stream",
+                "price": "2398",
+                "list_price": "2398"
+              },
+              {
                 "type": "iosdl",
-                "price": "3498",
-                "list_price": "3498"
+                "price": "2948",
+                "list_price": "2948"
               },
               {
                 "type": "androiddl",
-                "price": "3498",
-                "list_price": "3498"
+                "price": "2948",
+                "list_price": "2948"
               }
             ]
           }

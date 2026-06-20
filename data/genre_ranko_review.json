@@ -125643,33 +125643,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "300~",
+          "price": "210~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "1180",
+                "price": "826",
                 "list_price": "1180"
               },
               {
                 "type": "download",
-                "price": "790",
+                "price": "553",
                 "list_price": "790"
               },
               {
                 "type": "stream",
-                "price": "300",
+                "price": "210",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "790",
+                "price": "553",
                 "list_price": "790"
               },
               {
                 "type": "androiddl",
-                "price": "790",
+                "price": "553",
                 "list_price": "790"
               }
             ]
@@ -125754,7 +125754,14 @@
               "name": "HHHグループ"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-06-20 00:00:00",
+            "date_end": "2026-06-20 23:59:59",
+            "title": "日替わりセール◇"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -138624,38 +138631,38 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "4k",
-                "price": "1316",
+                "price": "1880",
                 "list_price": "1880"
               },
               {
                 "type": "hd",
-                "price": "826",
+                "price": "1180",
                 "list_price": "1180"
               },
               {
                 "type": "download",
-                "price": "553",
+                "price": "790",
                 "list_price": "790"
               },
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "553",
+                "price": "790",
                 "list_price": "790"
               },
               {
                 "type": "androiddl",
-                "price": "553",
+                "price": "790",
                 "list_price": "790"
               }
             ]
@@ -138727,14 +138734,7 @@
               "name": "kawaii"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-06-19 00:00:00",
-            "date_end": "2026-06-19 23:59:59",
-            "title": "日替わりセール！"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -147314,11 +147314,6 @@
               "ruby": "おかざきえみり"
             },
             {
-              "id": 28372,
-              "name": "羽田あい",
-              "ruby": "はねだあい"
-            },
-            {
               "id": 1006266,
               "name": "星美りか",
               "ruby": "ほしみりか"
@@ -147327,6 +147322,11 @@
               "id": 1001592,
               "name": "天海つばさ",
               "ruby": "あまみつばさ"
+            },
+            {
+              "id": 28372,
+              "name": "羽田あい",
+              "ruby": "はねだあい"
             }
           ],
           "label": [
@@ -156114,6 +156114,10 @@
         "iteminfo": {
           "genre": [
             {
+              "id": 6533,
+              "name": "ハイビジョン"
+            },
+            {
               "id": 79015,
               "name": "4K"
             },
@@ -156122,8 +156126,12 @@
               "name": "独占配信"
             },
             {
-              "id": 6533,
-              "name": "ハイビジョン"
+              "id": 1027,
+              "name": "美少女"
+            },
+            {
+              "id": 4025,
+              "name": "単体作品"
             },
             {
               "id": 5022,
@@ -156134,16 +156142,8 @@
               "name": "潮吹き"
             },
             {
-              "id": 4025,
-              "name": "単体作品"
-            },
-            {
               "id": 4005,
               "name": "乱交"
-            },
-            {
-              "id": 1027,
-              "name": "美少女"
             }
           ],
           "maker": [
@@ -181067,36 +181067,36 @@
         "iteminfo": {
           "genre": [
             {
-              "id": 5003,
-              "name": "ぶっかけ"
-            },
-            {
-              "id": 1033,
-              "name": "お姉さん"
-            },
-            {
-              "id": 4005,
-              "name": "乱交"
-            },
-            {
-              "id": 1031,
-              "name": "痴女"
-            },
-            {
-              "id": 4025,
-              "name": "単体作品"
-            },
-            {
-              "id": 6548,
-              "name": "独占配信"
+              "id": 6004,
+              "name": "デジモ"
             },
             {
               "id": 6533,
               "name": "ハイビジョン"
             },
             {
-              "id": 6004,
-              "name": "デジモ"
+              "id": 6548,
+              "name": "独占配信"
+            },
+            {
+              "id": 4025,
+              "name": "単体作品"
+            },
+            {
+              "id": 1031,
+              "name": "痴女"
+            },
+            {
+              "id": 4005,
+              "name": "乱交"
+            },
+            {
+              "id": 1033,
+              "name": "お姉さん"
+            },
+            {
+              "id": 5003,
+              "name": "ぶっかけ"
             }
           ],
           "maker": [

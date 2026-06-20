@@ -3513,24 +3513,29 @@
           }
         },
         "prices": {
-          "price": "980~",
-          "list_price": "980~",
+          "price": "500~",
+          "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "8k",
-                "price": "1780",
-                "list_price": "1780"
+                "price": "1580",
+                "list_price": "1580"
               },
               {
                 "type": "hd",
-                "price": "1280",
-                "list_price": "1280"
+                "price": "980",
+                "list_price": "980"
               },
               {
                 "type": "download",
-                "price": "980",
-                "list_price": "980"
+                "price": "780",
+                "list_price": "780"
+              },
+              {
+                "type": "rp",
+                "price": "500",
+                "list_price": "500"
               }
             ]
           }
@@ -12836,181 +12841,6 @@
             {
               "id": 3474,
               "name": "S1 NO.1 STYLE"
-            }
-          ]
-        }
-      },
-      {
-        "service_code": "digital",
-        "service_name": "動画",
-        "floor_code": "videoa",
-        "floor_name": "ビデオ",
-        "category_name": "ビデオ (動画)",
-        "content_id": "h_1711mfcd00020",
-        "product_id": "h_1711mfcd00020",
-        "title": "MOON FORCE ぱこぱこしろうとコレクション。 vol.20",
-        "volume": "244",
-        "URL": "https://video.dmm.co.jp/av/content/?id=h_1711mfcd00020",
-        "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Dh_1711mfcd00020&af_id=saaaaaaya-990&ch=api",
-        "imageURL": {
-          "large": "https://pics.dmm.co.jp/digital/video/h_1711mfcd00020/h_1711mfcd00020pl.jpg",
-          "small": "https://pics.dmm.co.jp/digital/video/h_1711mfcd00020/h_1711mfcd00020ps.jpg",
-          "list": "https://pics.dmm.co.jp/digital/video/h_1711mfcd00020/h_1711mfcd00020pt.jpg"
-        },
-        "sampleImageURL": {
-          "sample_s": {
-            "image": [
-              "https://pics.dmm.co.jp/digital/video/h_1711mfcd00020/h_1711mfcd00020-1.jpg",
-              "https://pics.dmm.co.jp/digital/video/h_1711mfcd00020/h_1711mfcd00020-2.jpg",
-              "https://pics.dmm.co.jp/digital/video/h_1711mfcd00020/h_1711mfcd00020-3.jpg",
-              "https://pics.dmm.co.jp/digital/video/h_1711mfcd00020/h_1711mfcd00020-4.jpg",
-              "https://pics.dmm.co.jp/digital/video/h_1711mfcd00020/h_1711mfcd00020-5.jpg",
-              "https://pics.dmm.co.jp/digital/video/h_1711mfcd00020/h_1711mfcd00020-6.jpg",
-              "https://pics.dmm.co.jp/digital/video/h_1711mfcd00020/h_1711mfcd00020-7.jpg",
-              "https://pics.dmm.co.jp/digital/video/h_1711mfcd00020/h_1711mfcd00020-8.jpg",
-              "https://pics.dmm.co.jp/digital/video/h_1711mfcd00020/h_1711mfcd00020-9.jpg",
-              "https://pics.dmm.co.jp/digital/video/h_1711mfcd00020/h_1711mfcd00020-10.jpg",
-              "https://pics.dmm.co.jp/digital/video/h_1711mfcd00020/h_1711mfcd00020-11.jpg",
-              "https://pics.dmm.co.jp/digital/video/h_1711mfcd00020/h_1711mfcd00020-12.jpg"
-            ]
-          },
-          "sample_l": {
-            "image": [
-              "https://pics.dmm.co.jp/digital/video/h_1711mfcd00020/h_1711mfcd00020jp-1.jpg",
-              "https://pics.dmm.co.jp/digital/video/h_1711mfcd00020/h_1711mfcd00020jp-2.jpg",
-              "https://pics.dmm.co.jp/digital/video/h_1711mfcd00020/h_1711mfcd00020jp-3.jpg",
-              "https://pics.dmm.co.jp/digital/video/h_1711mfcd00020/h_1711mfcd00020jp-4.jpg",
-              "https://pics.dmm.co.jp/digital/video/h_1711mfcd00020/h_1711mfcd00020jp-5.jpg",
-              "https://pics.dmm.co.jp/digital/video/h_1711mfcd00020/h_1711mfcd00020jp-6.jpg",
-              "https://pics.dmm.co.jp/digital/video/h_1711mfcd00020/h_1711mfcd00020jp-7.jpg",
-              "https://pics.dmm.co.jp/digital/video/h_1711mfcd00020/h_1711mfcd00020jp-8.jpg",
-              "https://pics.dmm.co.jp/digital/video/h_1711mfcd00020/h_1711mfcd00020jp-9.jpg",
-              "https://pics.dmm.co.jp/digital/video/h_1711mfcd00020/h_1711mfcd00020jp-10.jpg",
-              "https://pics.dmm.co.jp/digital/video/h_1711mfcd00020/h_1711mfcd00020jp-11.jpg",
-              "https://pics.dmm.co.jp/digital/video/h_1711mfcd00020/h_1711mfcd00020jp-12.jpg"
-            ]
-          }
-        },
-        "sampleMovieURL": {
-          "size_476_306": "https://www.dmm.co.jp/litevideo/-/part/=/cid=h_1711mfcd020/size=476_306/affi_id=saaaaaaya-990/",
-          "size_560_360": "https://www.dmm.co.jp/litevideo/-/part/=/cid=h_1711mfcd020/size=560_360/affi_id=saaaaaaya-990/",
-          "size_644_414": "https://www.dmm.co.jp/litevideo/-/part/=/cid=h_1711mfcd020/size=644_414/affi_id=saaaaaaya-990/",
-          "size_720_480": "https://www.dmm.co.jp/litevideo/-/part/=/cid=h_1711mfcd020/size=720_480/affi_id=saaaaaaya-990/",
-          "pc_flag": 1,
-          "sp_flag": 1
-        },
-        "prices": {
-          "price": "550~",
-          "list_price": "550~",
-          "deliveries": {
-            "delivery": [
-              {
-                "type": "4k",
-                "price": "2080",
-                "list_price": "2080"
-              },
-              {
-                "type": "hd",
-                "price": "1580",
-                "list_price": "1580"
-              },
-              {
-                "type": "download",
-                "price": "1350",
-                "list_price": "1350"
-              },
-              {
-                "type": "stream",
-                "price": "550",
-                "list_price": "550"
-              },
-              {
-                "type": "iosdl",
-                "price": "1350",
-                "list_price": "1350"
-              },
-              {
-                "type": "androiddl",
-                "price": "1350",
-                "list_price": "1350"
-              }
-            ]
-          }
-        },
-        "date": "2025-07-18 00:00:00",
-        "iteminfo": {
-          "genre": [
-            {
-              "id": 6533,
-              "name": "ハイビジョン"
-            },
-            {
-              "id": 79015,
-              "name": "4K"
-            },
-            {
-              "id": 6012,
-              "name": "4時間以上作品"
-            },
-            {
-              "id": 5001,
-              "name": "中出し"
-            },
-            {
-              "id": 2001,
-              "name": "巨乳"
-            },
-            {
-              "id": 1027,
-              "name": "美少女"
-            },
-            {
-              "id": 6002,
-              "name": "ハメ撮り"
-            },
-            {
-              "id": 4024,
-              "name": "素人"
-            }
-          ],
-          "series": [
-            {
-              "id": 4014422,
-              "name": "MOON FORCE"
-            }
-          ],
-          "maker": [
-            {
-              "id": 6716,
-              "name": "DOC"
-            }
-          ],
-          "actress": [
-            {
-              "id": 1087136,
-              "name": "矢澤なの",
-              "ruby": "やざわなの"
-            },
-            {
-              "id": 1091333,
-              "name": "柊優衣",
-              "ruby": "ひいらぎゆい"
-            },
-            {
-              "id": 1078739,
-              "name": "前田美波",
-              "ruby": "まえだみなみ"
-            },
-            {
-              "id": 1096340,
-              "name": "碓井せりな",
-              "ruby": "うすいせりな"
-            }
-          ],
-          "label": [
-            {
-              "id": 2065897,
-              "name": "MOON FORCE DREAM"
             }
           ]
         }
@@ -25681,6 +25511,152 @@
         "floor_code": "videoa",
         "floor_name": "ビデオ",
         "category_name": "ビデオ (動画)",
+        "content_id": "13dsvr01468",
+        "product_id": "13dsvr01468",
+        "title": "【VR】経理の前田さん。 真面目そうな事務員が仕事中に僕のチ●ポを激しく求めてくる。 前田美波",
+        "volume": "77",
+        "review": {
+          "count": 10,
+          "average": "4.00"
+        },
+        "URL": "https://video.dmm.co.jp/av/content/?id=13dsvr01468",
+        "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3D13dsvr01468&af_id=saaaaaaya-990&ch=api",
+        "imageURL": {
+          "large": "https://pics.dmm.co.jp/digital/video/13dsvr01468/13dsvr01468pl.jpg",
+          "small": "https://pics.dmm.co.jp/digital/video/13dsvr01468/13dsvr01468ps.jpg",
+          "list": "https://pics.dmm.co.jp/digital/video/13dsvr01468/13dsvr01468pt.jpg"
+        },
+        "sampleImageURL": {
+          "sample_s": {
+            "image": [
+              "https://pics.dmm.co.jp/digital/video/13dsvr01468/13dsvr01468-1.jpg",
+              "https://pics.dmm.co.jp/digital/video/13dsvr01468/13dsvr01468-2.jpg",
+              "https://pics.dmm.co.jp/digital/video/13dsvr01468/13dsvr01468-3.jpg",
+              "https://pics.dmm.co.jp/digital/video/13dsvr01468/13dsvr01468-4.jpg",
+              "https://pics.dmm.co.jp/digital/video/13dsvr01468/13dsvr01468-5.jpg",
+              "https://pics.dmm.co.jp/digital/video/13dsvr01468/13dsvr01468-6.jpg",
+              "https://pics.dmm.co.jp/digital/video/13dsvr01468/13dsvr01468-7.jpg",
+              "https://pics.dmm.co.jp/digital/video/13dsvr01468/13dsvr01468-8.jpg",
+              "https://pics.dmm.co.jp/digital/video/13dsvr01468/13dsvr01468-9.jpg",
+              "https://pics.dmm.co.jp/digital/video/13dsvr01468/13dsvr01468-10.jpg",
+              "https://pics.dmm.co.jp/digital/video/13dsvr01468/13dsvr01468-11.jpg",
+              "https://pics.dmm.co.jp/digital/video/13dsvr01468/13dsvr01468-12.jpg",
+              "https://pics.dmm.co.jp/digital/video/13dsvr01468/13dsvr01468-13.jpg",
+              "https://pics.dmm.co.jp/digital/video/13dsvr01468/13dsvr01468-14.jpg"
+            ]
+          },
+          "sample_l": {
+            "image": [
+              "https://pics.dmm.co.jp/digital/video/13dsvr01468/13dsvr01468jp-1.jpg",
+              "https://pics.dmm.co.jp/digital/video/13dsvr01468/13dsvr01468jp-2.jpg",
+              "https://pics.dmm.co.jp/digital/video/13dsvr01468/13dsvr01468jp-3.jpg",
+              "https://pics.dmm.co.jp/digital/video/13dsvr01468/13dsvr01468jp-4.jpg",
+              "https://pics.dmm.co.jp/digital/video/13dsvr01468/13dsvr01468jp-5.jpg",
+              "https://pics.dmm.co.jp/digital/video/13dsvr01468/13dsvr01468jp-6.jpg",
+              "https://pics.dmm.co.jp/digital/video/13dsvr01468/13dsvr01468jp-7.jpg",
+              "https://pics.dmm.co.jp/digital/video/13dsvr01468/13dsvr01468jp-8.jpg",
+              "https://pics.dmm.co.jp/digital/video/13dsvr01468/13dsvr01468jp-9.jpg",
+              "https://pics.dmm.co.jp/digital/video/13dsvr01468/13dsvr01468jp-10.jpg",
+              "https://pics.dmm.co.jp/digital/video/13dsvr01468/13dsvr01468jp-11.jpg",
+              "https://pics.dmm.co.jp/digital/video/13dsvr01468/13dsvr01468jp-12.jpg",
+              "https://pics.dmm.co.jp/digital/video/13dsvr01468/13dsvr01468jp-13.jpg",
+              "https://pics.dmm.co.jp/digital/video/13dsvr01468/13dsvr01468jp-14.jpg"
+            ]
+          }
+        },
+        "prices": {
+          "price": "300~",
+          "list_price": "300~",
+          "deliveries": {
+            "delivery": [
+              {
+                "type": "hd",
+                "price": "980",
+                "list_price": "980"
+              },
+              {
+                "type": "download",
+                "price": "780",
+                "list_price": "780"
+              },
+              {
+                "type": "rp",
+                "price": "300",
+                "list_price": "300"
+              }
+            ]
+          }
+        },
+        "date": "2024-03-25 10:00:52",
+        "iteminfo": {
+          "genre": [
+            {
+              "id": 4025,
+              "name": "単体作品"
+            },
+            {
+              "id": 6925,
+              "name": "ハイクオリティVR"
+            },
+            {
+              "id": 6793,
+              "name": "VR専用"
+            },
+            {
+              "id": 4106,
+              "name": "騎乗位"
+            },
+            {
+              "id": 5001,
+              "name": "中出し"
+            },
+            {
+              "id": 5002,
+              "name": "フェラ"
+            },
+            {
+              "id": 1031,
+              "name": "痴女"
+            },
+            {
+              "id": 1001,
+              "name": "OL"
+            }
+          ],
+          "maker": [
+            {
+              "id": 45276,
+              "name": "SODクリエイト"
+            }
+          ],
+          "actress": [
+            {
+              "id": 1078739,
+              "name": "前田美波",
+              "ruby": "まえだみなみ"
+            }
+          ],
+          "director": [
+            {
+              "id": 106495,
+              "name": "セカンド斎藤",
+              "ruby": "せかんどさいとう"
+            }
+          ],
+          "label": [
+            {
+              "id": 25739,
+              "name": "SODVR"
+            }
+          ]
+        }
+      },
+      {
+        "service_code": "digital",
+        "service_name": "動画",
+        "floor_code": "videoa",
+        "floor_name": "ビデオ",
+        "category_name": "ビデオ (動画)",
         "content_id": "cead00576",
         "product_id": "cead00576",
         "title": "年上男に騙されて生で中出しされる3SEX 前田美波",
@@ -26706,6 +26682,177 @@
             {
               "id": 25041,
               "name": "無垢-コス"
+            }
+          ]
+        }
+      },
+      {
+        "service_code": "digital",
+        "service_name": "動画",
+        "floor_code": "videoa",
+        "floor_name": "ビデオ",
+        "category_name": "ビデオ (動画)",
+        "content_id": "1zozo00190",
+        "product_id": "1zozo00190",
+        "title": "羞恥！ある日突然男女社員混合強●OL健康診断2023～前田美波編～",
+        "volume": "86",
+        "review": {
+          "count": 1,
+          "average": "5.00"
+        },
+        "URL": "https://video.dmm.co.jp/av/content/?id=1zozo00190",
+        "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3D1zozo00190&af_id=saaaaaaya-990&ch=api",
+        "imageURL": {
+          "large": "https://pics.dmm.co.jp/digital/video/1zozo00190/1zozo00190pl.jpg",
+          "small": "https://pics.dmm.co.jp/digital/video/1zozo00190/1zozo00190ps.jpg",
+          "list": "https://pics.dmm.co.jp/digital/video/1zozo00190/1zozo00190pt.jpg"
+        },
+        "sampleImageURL": {
+          "sample_s": {
+            "image": [
+              "https://pics.dmm.co.jp/digital/video/1zozo00190/1zozo00190-1.jpg",
+              "https://pics.dmm.co.jp/digital/video/1zozo00190/1zozo00190-2.jpg",
+              "https://pics.dmm.co.jp/digital/video/1zozo00190/1zozo00190-3.jpg",
+              "https://pics.dmm.co.jp/digital/video/1zozo00190/1zozo00190-4.jpg",
+              "https://pics.dmm.co.jp/digital/video/1zozo00190/1zozo00190-5.jpg",
+              "https://pics.dmm.co.jp/digital/video/1zozo00190/1zozo00190-6.jpg",
+              "https://pics.dmm.co.jp/digital/video/1zozo00190/1zozo00190-7.jpg",
+              "https://pics.dmm.co.jp/digital/video/1zozo00190/1zozo00190-8.jpg",
+              "https://pics.dmm.co.jp/digital/video/1zozo00190/1zozo00190-9.jpg",
+              "https://pics.dmm.co.jp/digital/video/1zozo00190/1zozo00190-10.jpg",
+              "https://pics.dmm.co.jp/digital/video/1zozo00190/1zozo00190-11.jpg",
+              "https://pics.dmm.co.jp/digital/video/1zozo00190/1zozo00190-12.jpg",
+              "https://pics.dmm.co.jp/digital/video/1zozo00190/1zozo00190-13.jpg",
+              "https://pics.dmm.co.jp/digital/video/1zozo00190/1zozo00190-14.jpg",
+              "https://pics.dmm.co.jp/digital/video/1zozo00190/1zozo00190-15.jpg",
+              "https://pics.dmm.co.jp/digital/video/1zozo00190/1zozo00190-16.jpg",
+              "https://pics.dmm.co.jp/digital/video/1zozo00190/1zozo00190-17.jpg",
+              "https://pics.dmm.co.jp/digital/video/1zozo00190/1zozo00190-18.jpg",
+              "https://pics.dmm.co.jp/digital/video/1zozo00190/1zozo00190-19.jpg",
+              "https://pics.dmm.co.jp/digital/video/1zozo00190/1zozo00190-20.jpg"
+            ]
+          },
+          "sample_l": {
+            "image": [
+              "https://pics.dmm.co.jp/digital/video/1zozo00190/1zozo00190jp-1.jpg",
+              "https://pics.dmm.co.jp/digital/video/1zozo00190/1zozo00190jp-2.jpg",
+              "https://pics.dmm.co.jp/digital/video/1zozo00190/1zozo00190jp-3.jpg",
+              "https://pics.dmm.co.jp/digital/video/1zozo00190/1zozo00190jp-4.jpg",
+              "https://pics.dmm.co.jp/digital/video/1zozo00190/1zozo00190jp-5.jpg",
+              "https://pics.dmm.co.jp/digital/video/1zozo00190/1zozo00190jp-6.jpg",
+              "https://pics.dmm.co.jp/digital/video/1zozo00190/1zozo00190jp-7.jpg",
+              "https://pics.dmm.co.jp/digital/video/1zozo00190/1zozo00190jp-8.jpg",
+              "https://pics.dmm.co.jp/digital/video/1zozo00190/1zozo00190jp-9.jpg",
+              "https://pics.dmm.co.jp/digital/video/1zozo00190/1zozo00190jp-10.jpg",
+              "https://pics.dmm.co.jp/digital/video/1zozo00190/1zozo00190jp-11.jpg",
+              "https://pics.dmm.co.jp/digital/video/1zozo00190/1zozo00190jp-12.jpg",
+              "https://pics.dmm.co.jp/digital/video/1zozo00190/1zozo00190jp-13.jpg",
+              "https://pics.dmm.co.jp/digital/video/1zozo00190/1zozo00190jp-14.jpg",
+              "https://pics.dmm.co.jp/digital/video/1zozo00190/1zozo00190jp-15.jpg",
+              "https://pics.dmm.co.jp/digital/video/1zozo00190/1zozo00190jp-16.jpg",
+              "https://pics.dmm.co.jp/digital/video/1zozo00190/1zozo00190jp-17.jpg",
+              "https://pics.dmm.co.jp/digital/video/1zozo00190/1zozo00190jp-18.jpg",
+              "https://pics.dmm.co.jp/digital/video/1zozo00190/1zozo00190jp-19.jpg",
+              "https://pics.dmm.co.jp/digital/video/1zozo00190/1zozo00190jp-20.jpg"
+            ]
+          }
+        },
+        "sampleMovieURL": {
+          "size_476_306": "https://www.dmm.co.jp/litevideo/-/part/=/cid=1zozo00190/size=476_306/affi_id=saaaaaaya-990/",
+          "size_560_360": "https://www.dmm.co.jp/litevideo/-/part/=/cid=1zozo00190/size=560_360/affi_id=saaaaaaya-990/",
+          "size_644_414": "https://www.dmm.co.jp/litevideo/-/part/=/cid=1zozo00190/size=644_414/affi_id=saaaaaaya-990/",
+          "size_720_480": "https://www.dmm.co.jp/litevideo/-/part/=/cid=1zozo00190/size=720_480/affi_id=saaaaaaya-990/",
+          "pc_flag": 1,
+          "sp_flag": 1
+        },
+        "prices": {
+          "price": "490~",
+          "list_price": "490~",
+          "deliveries": {
+            "delivery": [
+              {
+                "type": "hd",
+                "price": "1580",
+                "list_price": "1580"
+              },
+              {
+                "type": "download",
+                "price": "1380",
+                "list_price": "1380"
+              },
+              {
+                "type": "stream",
+                "price": "490",
+                "list_price": "490"
+              },
+              {
+                "type": "iosdl",
+                "price": "1380",
+                "list_price": "1380"
+              },
+              {
+                "type": "androiddl",
+                "price": "1380",
+                "list_price": "1380"
+              }
+            ]
+          }
+        },
+        "date": "2024-01-30 10:00:00",
+        "iteminfo": {
+          "genre": [
+            {
+              "id": 4025,
+              "name": "単体作品"
+            },
+            {
+              "id": 6533,
+              "name": "ハイビジョン"
+            },
+            {
+              "id": 1001,
+              "name": "OL"
+            },
+            {
+              "id": 5007,
+              "name": "クスコ"
+            },
+            {
+              "id": 27,
+              "name": "辱め"
+            },
+            {
+              "id": 28,
+              "name": "羞恥"
+            },
+            {
+              "id": 5011,
+              "name": "放尿・お漏らし"
+            }
+          ],
+          "series": [
+            {
+              "id": 4137720,
+              "name": "羞恥！男女社員合同全裸OL健康診断"
+            }
+          ],
+          "maker": [
+            {
+              "id": 40606,
+              "name": "サディヴィレナウ！"
+            }
+          ],
+          "actress": [
+            {
+              "id": 1078739,
+              "name": "前田美波",
+              "ruby": "まえだみなみ"
+            }
+          ],
+          "label": [
+            {
+              "id": 99999,
+              "name": "----"
             }
           ]
         }
@@ -29083,6 +29230,210 @@
         "floor_code": "videoa",
         "floor_name": "ビデオ",
         "category_name": "ビデオ (動画)",
+        "content_id": "agmx00161",
+        "product_id": "agmx00161",
+        "title": "濡れ透け着衣オイルマッサージ",
+        "volume": "108",
+        "review": {
+          "count": 2,
+          "average": "4.50"
+        },
+        "URL": "https://video.dmm.co.jp/av/content/?id=agmx00161",
+        "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Dagmx00161&af_id=saaaaaaya-990&ch=api",
+        "imageURL": {
+          "large": "https://pics.dmm.co.jp/digital/video/agmx00161/agmx00161pl.jpg",
+          "small": "https://pics.dmm.co.jp/digital/video/agmx00161/agmx00161ps.jpg",
+          "list": "https://pics.dmm.co.jp/digital/video/agmx00161/agmx00161pt.jpg"
+        },
+        "sampleImageURL": {
+          "sample_s": {
+            "image": [
+              "https://pics.dmm.co.jp/digital/video/agmx00161/agmx00161-1.jpg",
+              "https://pics.dmm.co.jp/digital/video/agmx00161/agmx00161-2.jpg",
+              "https://pics.dmm.co.jp/digital/video/agmx00161/agmx00161-3.jpg",
+              "https://pics.dmm.co.jp/digital/video/agmx00161/agmx00161-4.jpg",
+              "https://pics.dmm.co.jp/digital/video/agmx00161/agmx00161-5.jpg",
+              "https://pics.dmm.co.jp/digital/video/agmx00161/agmx00161-6.jpg",
+              "https://pics.dmm.co.jp/digital/video/agmx00161/agmx00161-7.jpg",
+              "https://pics.dmm.co.jp/digital/video/agmx00161/agmx00161-8.jpg",
+              "https://pics.dmm.co.jp/digital/video/agmx00161/agmx00161-9.jpg",
+              "https://pics.dmm.co.jp/digital/video/agmx00161/agmx00161-10.jpg",
+              "https://pics.dmm.co.jp/digital/video/agmx00161/agmx00161-11.jpg",
+              "https://pics.dmm.co.jp/digital/video/agmx00161/agmx00161-12.jpg",
+              "https://pics.dmm.co.jp/digital/video/agmx00161/agmx00161-13.jpg",
+              "https://pics.dmm.co.jp/digital/video/agmx00161/agmx00161-14.jpg",
+              "https://pics.dmm.co.jp/digital/video/agmx00161/agmx00161-15.jpg",
+              "https://pics.dmm.co.jp/digital/video/agmx00161/agmx00161-16.jpg",
+              "https://pics.dmm.co.jp/digital/video/agmx00161/agmx00161-17.jpg",
+              "https://pics.dmm.co.jp/digital/video/agmx00161/agmx00161-18.jpg",
+              "https://pics.dmm.co.jp/digital/video/agmx00161/agmx00161-19.jpg"
+            ]
+          },
+          "sample_l": {
+            "image": [
+              "https://pics.dmm.co.jp/digital/video/agmx00161/agmx00161jp-1.jpg",
+              "https://pics.dmm.co.jp/digital/video/agmx00161/agmx00161jp-2.jpg",
+              "https://pics.dmm.co.jp/digital/video/agmx00161/agmx00161jp-3.jpg",
+              "https://pics.dmm.co.jp/digital/video/agmx00161/agmx00161jp-4.jpg",
+              "https://pics.dmm.co.jp/digital/video/agmx00161/agmx00161jp-5.jpg",
+              "https://pics.dmm.co.jp/digital/video/agmx00161/agmx00161jp-6.jpg",
+              "https://pics.dmm.co.jp/digital/video/agmx00161/agmx00161jp-7.jpg",
+              "https://pics.dmm.co.jp/digital/video/agmx00161/agmx00161jp-8.jpg",
+              "https://pics.dmm.co.jp/digital/video/agmx00161/agmx00161jp-9.jpg",
+              "https://pics.dmm.co.jp/digital/video/agmx00161/agmx00161jp-10.jpg",
+              "https://pics.dmm.co.jp/digital/video/agmx00161/agmx00161jp-11.jpg",
+              "https://pics.dmm.co.jp/digital/video/agmx00161/agmx00161jp-12.jpg",
+              "https://pics.dmm.co.jp/digital/video/agmx00161/agmx00161jp-13.jpg",
+              "https://pics.dmm.co.jp/digital/video/agmx00161/agmx00161jp-14.jpg",
+              "https://pics.dmm.co.jp/digital/video/agmx00161/agmx00161jp-15.jpg",
+              "https://pics.dmm.co.jp/digital/video/agmx00161/agmx00161jp-16.jpg",
+              "https://pics.dmm.co.jp/digital/video/agmx00161/agmx00161jp-17.jpg",
+              "https://pics.dmm.co.jp/digital/video/agmx00161/agmx00161jp-18.jpg",
+              "https://pics.dmm.co.jp/digital/video/agmx00161/agmx00161jp-19.jpg"
+            ]
+          }
+        },
+        "sampleMovieURL": {
+          "size_476_306": "https://www.dmm.co.jp/litevideo/-/part/=/cid=agmx00161/size=476_306/affi_id=saaaaaaya-990/",
+          "size_560_360": "https://www.dmm.co.jp/litevideo/-/part/=/cid=agmx00161/size=560_360/affi_id=saaaaaaya-990/",
+          "size_644_414": "https://www.dmm.co.jp/litevideo/-/part/=/cid=agmx00161/size=644_414/affi_id=saaaaaaya-990/",
+          "size_720_480": "https://www.dmm.co.jp/litevideo/-/part/=/cid=agmx00161/size=720_480/affi_id=saaaaaaya-990/",
+          "pc_flag": 1,
+          "sp_flag": 1
+        },
+        "prices": {
+          "price": "300~",
+          "list_price": "300~",
+          "deliveries": {
+            "delivery": [
+              {
+                "type": "4k",
+                "price": "1770",
+                "list_price": "1770"
+              },
+              {
+                "type": "hd",
+                "price": "1270",
+                "list_price": "1270"
+              },
+              {
+                "type": "download",
+                "price": "980",
+                "list_price": "980"
+              },
+              {
+                "type": "stream",
+                "price": "300",
+                "list_price": "300"
+              },
+              {
+                "type": "iosdl",
+                "price": "980",
+                "list_price": "980"
+              },
+              {
+                "type": "androiddl",
+                "price": "980",
+                "list_price": "980"
+              }
+            ]
+          }
+        },
+        "date": "2023-10-21 10:00:00",
+        "iteminfo": {
+          "genre": [
+            {
+              "id": 6533,
+              "name": "ハイビジョン"
+            },
+            {
+              "id": 79015,
+              "name": "4K"
+            },
+            {
+              "id": 6995,
+              "name": "妄想族"
+            },
+            {
+              "id": 102,
+              "name": "美乳"
+            },
+            {
+              "id": 5066,
+              "name": "電マ"
+            },
+            {
+              "id": 2024,
+              "name": "巨尻"
+            },
+            {
+              "id": 2001,
+              "name": "巨乳"
+            },
+            {
+              "id": 5057,
+              "name": "ローション・オイル"
+            }
+          ],
+          "maker": [
+            {
+              "id": 45397,
+              "name": "SEX Agent/妄想族"
+            }
+          ],
+          "actress": [
+            {
+              "id": 1073267,
+              "name": "三田サクラ",
+              "ruby": "みたさくら"
+            },
+            {
+              "id": 1078739,
+              "name": "前田美波",
+              "ruby": "まえだみなみ"
+            },
+            {
+              "id": 1063306,
+              "name": "朝日奈みお",
+              "ruby": "あさひなみお"
+            },
+            {
+              "id": 1087216,
+              "name": "雪川桜花",
+              "ruby": "ゆきかわおうか"
+            },
+            {
+              "id": 1034956,
+              "name": "彩奈リナ（七原あかり）",
+              "ruby": "あやなりな（ななはらあかり）"
+            },
+            {
+              "id": 1079017,
+              "name": "美園マリカ",
+              "ruby": "みそのまりか"
+            }
+          ],
+          "director": [
+            {
+              "id": 119223,
+              "name": "蒼井ボタン",
+              "ruby": "あおいぼたん"
+            }
+          ],
+          "label": [
+            {
+              "id": 8532,
+              "name": "SEX Agent"
+            }
+          ]
+        }
+      },
+      {
+        "service_code": "digital",
+        "service_name": "動画",
+        "floor_code": "videoa",
+        "floor_name": "ビデオ",
+        "category_name": "ビデオ (動画)",
         "content_id": "125umd00889",
         "product_id": "125umd00889",
         "title": "入院生活が長すぎて無防備な新人ナースのぱつぱつスケパン尻で毎日勃起してしまう僕5",
@@ -31148,7 +31499,7 @@
         }
       }
     ],
-    "total_count": 145,
-    "result_count": 145
+    "total_count": 147,
+    "result_count": 147
   }
 }

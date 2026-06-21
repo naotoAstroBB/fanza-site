@@ -8531,19 +8531,24 @@
           }
         },
         "prices": {
-          "price": "1480~",
-          "list_price": "1480~",
+          "price": "519~",
+          "list_price": "519~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "1980",
-                "list_price": "1980"
+                "price": "1480",
+                "list_price": "1480"
               },
               {
                 "type": "download",
-                "price": "1480",
-                "list_price": "1480"
+                "price": "980",
+                "list_price": "980"
+              },
+              {
+                "type": "rp",
+                "price": "519",
+                "list_price": "519"
               }
             ]
           }

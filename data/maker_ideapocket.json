@@ -2201,23 +2201,23 @@
           }
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "546",
+                "price": "780",
                 "list_price": "780"
               },
               {
                 "type": "download",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "rp",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               }
             ]
@@ -2291,14 +2291,7 @@
               "name": "IP-VR"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-06-21 00:00:00",
-            "date_end": "2026-06-21 23:59:59",
-            "title": "日替わりセール★"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -4751,29 +4744,29 @@
           }
         },
         "prices": {
-          "price": "500~",
-          "list_price": "500~",
+          "price": "300~",
+          "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "8k",
-                "price": "1780",
-                "list_price": "1780"
-              },
-              {
-                "type": "hd",
-                "price": "1280",
-                "list_price": "1280"
-              },
-              {
-                "type": "download",
                 "price": "980",
                 "list_price": "980"
               },
               {
+                "type": "hd",
+                "price": "780",
+                "list_price": "780"
+              },
+              {
+                "type": "download",
+                "price": "580",
+                "list_price": "580"
+              },
+              {
                 "type": "rp",
-                "price": "500",
-                "list_price": "500"
+                "price": "300",
+                "list_price": "300"
               }
             ]
           }
@@ -305620,28 +305613,28 @@
           }
         },
         "prices": {
-          "price": "300~",
+          "price": "210~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "8k",
-                "price": "980",
+                "price": "686",
                 "list_price": "980"
               },
               {
                 "type": "hd",
-                "price": "780",
+                "price": "546",
                 "list_price": "780"
               },
               {
                 "type": "download",
-                "price": "580",
+                "price": "405",
                 "list_price": "580"
               },
               {
                 "type": "rp",
-                "price": "300",
+                "price": "210",
                 "list_price": "300"
               }
             ]
@@ -305723,7 +305716,14 @@
               "name": "IP-VR"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-06-22 00:00:00",
+            "date_end": "2026-06-22 23:59:59",
+            "title": "日替わりセール♭"
+          }
+        ]
       },
       {
         "service_code": "digital",

@@ -4726,29 +4726,34 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "2180~",
-          "list_price": "2180~",
+          "price": "500~",
+          "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "2680",
-                "list_price": "2680"
+                "price": "1680",
+                "list_price": "1680"
               },
               {
                 "type": "download",
-                "price": "2180",
-                "list_price": "2180"
+                "price": "1180",
+                "list_price": "1180"
+              },
+              {
+                "type": "stream",
+                "price": "500",
+                "list_price": "500"
               },
               {
                 "type": "iosdl",
-                "price": "2180",
-                "list_price": "2180"
+                "price": "1180",
+                "list_price": "1180"
               },
               {
                 "type": "androiddl",
-                "price": "2180",
-                "list_price": "2180"
+                "price": "1180",
+                "list_price": "1180"
               }
             ]
           }
@@ -5929,23 +5934,23 @@
           }
         },
         "prices": {
-          "price": "998~",
+          "price": "698~",
           "list_price": "998~",
           "deliveries": {
             "delivery": [
               {
                 "type": "8k",
-                "price": "1980",
+                "price": "1386",
                 "list_price": "1980"
               },
               {
                 "type": "hd",
-                "price": "1480",
+                "price": "1036",
                 "list_price": "1480"
               },
               {
                 "type": "download",
-                "price": "998",
+                "price": "698",
                 "list_price": "998"
               }
             ]
@@ -6021,7 +6026,14 @@
               "name": "KMPVR-彩-"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-06-24 00:10:00",
+            "date_end": "2026-06-30 23:59:59",
+            "title": "ブランドストア30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -7859,33 +7871,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "315~",
+          "price": "450~",
           "list_price": "450~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "700",
+                "price": "1000",
                 "list_price": "1000"
               },
               {
                 "type": "download",
-                "price": "560",
+                "price": "800",
                 "list_price": "800"
               },
               {
                 "type": "stream",
-                "price": "315",
+                "price": "450",
                 "list_price": "450"
               },
               {
                 "type": "iosdl",
-                "price": "560",
+                "price": "800",
                 "list_price": "800"
               },
               {
                 "type": "androiddl",
-                "price": "560",
+                "price": "800",
                 "list_price": "800"
               }
             ]
@@ -7944,14 +7956,7 @@
               "name": "羞恥娘"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-06-17 00:10:00",
-            "date_end": "2026-06-23 23:59:59",
-            "title": "SODグループ30％OFF第2弾"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -10718,38 +10723,38 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "310~",
+          "price": "217~",
           "list_price": "310~",
           "deliveries": {
             "delivery": [
               {
                 "type": "download",
-                "price": "680",
+                "price": "476",
                 "list_price": "680"
               },
               {
                 "type": "stream",
-                "price": "310",
+                "price": "217",
                 "list_price": "310"
               },
               {
                 "type": "4k",
-                "price": "1490",
+                "price": "1043",
                 "list_price": "1490"
               },
               {
                 "type": "hd",
-                "price": "990",
+                "price": "693",
                 "list_price": "990"
               },
               {
                 "type": "iosdl",
-                "price": "680",
+                "price": "476",
                 "list_price": "680"
               },
               {
                 "type": "androiddl",
-                "price": "680",
+                "price": "476",
                 "list_price": "680"
               }
             ]
@@ -10823,7 +10828,14 @@
               "name": "イラマチオフレンズ"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-06-24 00:10:00",
+            "date_end": "2026-06-30 23:59:59",
+            "title": "豊彦他30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -13756,33 +13768,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "579~",
+          "price": "405~",
           "list_price": "579~",
           "deliveries": {
             "delivery": [
               {
                 "type": "download",
-                "price": "1445",
+                "price": "1010",
                 "list_price": "1445"
               },
               {
                 "type": "stream",
-                "price": "579",
+                "price": "405",
                 "list_price": "579"
               },
               {
                 "type": "hd",
-                "price": "2469",
+                "price": "1728",
                 "list_price": "2469"
               },
               {
                 "type": "iosdl",
-                "price": "1445",
+                "price": "1010",
                 "list_price": "1445"
               },
               {
                 "type": "androiddl",
-                "price": "1445",
+                "price": "1010",
                 "list_price": "1445"
               }
             ]
@@ -13852,7 +13864,14 @@
               "name": "靖云会"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-06-24 00:10:00",
+            "date_end": "2026-06-30 23:59:59",
+            "title": "豊彦他30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -14386,33 +14405,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "579~",
+          "price": "405~",
           "list_price": "579~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "2469",
+                "price": "1728",
                 "list_price": "2469"
               },
               {
                 "type": "download",
-                "price": "1445",
+                "price": "1010",
                 "list_price": "1445"
               },
               {
                 "type": "stream",
-                "price": "579",
+                "price": "405",
                 "list_price": "579"
               },
               {
                 "type": "iosdl",
-                "price": "1445",
+                "price": "1010",
                 "list_price": "1445"
               },
               {
                 "type": "androiddl",
-                "price": "1445",
+                "price": "1010",
                 "list_price": "1445"
               }
             ]
@@ -14476,7 +14495,14 @@
               "name": "靖云会"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-06-24 00:10:00",
+            "date_end": "2026-06-30 23:59:59",
+            "title": "豊彦他30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -22064,33 +22090,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "579~",
+          "price": "405~",
           "list_price": "579~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "2469",
+                "price": "1728",
                 "list_price": "2469"
               },
               {
                 "type": "download",
-                "price": "1445",
+                "price": "1010",
                 "list_price": "1445"
               },
               {
                 "type": "stream",
-                "price": "579",
+                "price": "405",
                 "list_price": "579"
               },
               {
                 "type": "iosdl",
-                "price": "1445",
+                "price": "1010",
                 "list_price": "1445"
               },
               {
                 "type": "androiddl",
-                "price": "1445",
+                "price": "1010",
                 "list_price": "1445"
               }
             ]
@@ -22154,7 +22180,14 @@
               "name": "靖云会"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-06-24 00:10:00",
+            "date_end": "2026-06-30 23:59:59",
+            "title": "豊彦他30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -24469,8 +24502,8 @@
         },
         "campaign": [
           {
-            "date_begin": "2026-06-17 00:10:00",
-            "date_end": "2026-06-23 23:59:59",
+            "date_begin": "2026-06-24 00:10:00",
+            "date_end": "2026-06-30 23:59:59",
             "title": "ブランドストア30％OFF"
           }
         ]
@@ -26622,33 +26655,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "826",
+                "price": "1180",
                 "list_price": "1180"
               },
               {
                 "type": "download",
-                "price": "553",
+                "price": "790",
                 "list_price": "790"
               },
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "553",
+                "price": "790",
                 "list_price": "790"
               },
               {
                 "type": "androiddl",
-                "price": "553",
+                "price": "790",
                 "list_price": "790"
               }
             ]
@@ -26709,14 +26742,7 @@
               "name": "はじめ企画"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-06-22 00:00:00",
-            "date_end": "2026-06-22 23:59:59",
-            "title": "日替わりセール♭"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -35344,33 +35370,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "696~",
+          "price": "487~",
           "list_price": "696~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "5666",
+                "price": "3966",
                 "list_price": "5666"
               },
               {
                 "type": "download",
-                "price": "4469",
+                "price": "3128",
                 "list_price": "4469"
               },
               {
                 "type": "stream",
-                "price": "696",
+                "price": "487",
                 "list_price": "696"
               },
               {
                 "type": "iosdl",
-                "price": "4469",
+                "price": "3128",
                 "list_price": "4469"
               },
               {
                 "type": "androiddl",
-                "price": "4469",
+                "price": "3128",
                 "list_price": "4469"
               }
             ]
@@ -35440,7 +35466,14 @@
               "name": "靖云会エクストリーム"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-06-24 00:10:00",
+            "date_end": "2026-06-30 23:59:59",
+            "title": "豊彦他30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -35594,176 +35627,6 @@
             {
               "id": 25871,
               "name": "エレガンス"
-            }
-          ]
-        }
-      },
-      {
-        "service_code": "digital",
-        "service_name": "動画",
-        "floor_code": "videoa",
-        "floor_name": "ビデオ",
-        "category_name": "ビデオ (動画)",
-        "content_id": "kiwvr00844",
-        "product_id": "kiwvr00844",
-        "title": "【VR】【8K】超ビンカン早漏体質だったバイト先の先輩の乳首をこねくりまわすと何度も絶頂イキ 花守夏歩",
-        "volume": "75",
-        "review": {
-          "count": 7,
-          "average": "4.86"
-        },
-        "URL": "https://video.dmm.co.jp/av/content/?id=kiwvr00844",
-        "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Dkiwvr00844&af_id=saaaaaaya-990&ch=api",
-        "imageURL": {
-          "large": "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844pl.jpg",
-          "small": "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844ps.jpg",
-          "list": "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844pt.jpg"
-        },
-        "sampleImageURL": {
-          "sample_s": {
-            "image": [
-              "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844-1.jpg",
-              "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844-2.jpg",
-              "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844-3.jpg",
-              "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844-4.jpg",
-              "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844-5.jpg",
-              "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844-6.jpg",
-              "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844-7.jpg",
-              "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844-8.jpg",
-              "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844-9.jpg",
-              "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844-10.jpg",
-              "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844-11.jpg",
-              "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844-12.jpg",
-              "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844-13.jpg",
-              "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844-14.jpg",
-              "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844-15.jpg",
-              "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844-16.jpg",
-              "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844-17.jpg",
-              "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844-18.jpg",
-              "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844-19.jpg",
-              "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844-20.jpg"
-            ]
-          },
-          "sample_l": {
-            "image": [
-              "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844jp-1.jpg",
-              "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844jp-2.jpg",
-              "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844jp-3.jpg",
-              "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844jp-4.jpg",
-              "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844jp-5.jpg",
-              "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844jp-6.jpg",
-              "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844jp-7.jpg",
-              "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844jp-8.jpg",
-              "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844jp-9.jpg",
-              "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844jp-10.jpg",
-              "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844jp-11.jpg",
-              "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844jp-12.jpg",
-              "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844jp-13.jpg",
-              "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844jp-14.jpg",
-              "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844jp-15.jpg",
-              "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844jp-16.jpg",
-              "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844jp-17.jpg",
-              "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844jp-18.jpg",
-              "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844jp-19.jpg",
-              "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844jp-20.jpg"
-            ]
-          }
-        },
-        "prices": {
-          "price": "500~",
-          "list_price": "500~",
-          "deliveries": {
-            "delivery": [
-              {
-                "type": "8k",
-                "price": "1480",
-                "list_price": "1480"
-              },
-              {
-                "type": "hd",
-                "price": "980",
-                "list_price": "980"
-              },
-              {
-                "type": "download",
-                "price": "780",
-                "list_price": "780"
-              },
-              {
-                "type": "rp",
-                "price": "500",
-                "list_price": "500"
-              }
-            ]
-          }
-        },
-        "date": "2026-01-13 00:00:00",
-        "iteminfo": {
-          "genre": [
-            {
-              "id": 6925,
-              "name": "ハイクオリティVR"
-            },
-            {
-              "id": 4025,
-              "name": "単体作品"
-            },
-            {
-              "id": 6793,
-              "name": "VR専用"
-            },
-            {
-              "id": 6548,
-              "name": "独占配信"
-            },
-            {
-              "id": 307935,
-              "name": "8KVR"
-            },
-            {
-              "id": 1018,
-              "name": "女子校生"
-            },
-            {
-              "id": 6968,
-              "name": "アクメ・オーガズム"
-            },
-            {
-              "id": 5001,
-              "name": "中出し"
-            },
-            {
-              "id": 1027,
-              "name": "美少女"
-            },
-            {
-              "id": 48,
-              "name": "制服"
-            }
-          ],
-          "series": [
-            {
-              "id": 4596261,
-              "name": "8KVR【乳首コネくりまわし中出しSEX】"
-            }
-          ],
-          "maker": [
-            {
-              "id": 46629,
-              "name": "こあらVR"
-            }
-          ],
-          "actress": [
-            {
-              "id": 1099813,
-              "name": "花守夏歩",
-              "ruby": "はなもりかほ"
-            }
-          ],
-          "label": [
-            {
-              "id": 2066129,
-              "name": "極グループ"
             }
           ]
         }
@@ -37626,33 +37489,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "579~",
+          "price": "405~",
           "list_price": "579~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "3666",
+                "price": "2566",
                 "list_price": "3666"
               },
               {
                 "type": "download",
-                "price": "2469",
+                "price": "1728",
                 "list_price": "2469"
               },
               {
                 "type": "stream",
-                "price": "579",
+                "price": "405",
                 "list_price": "579"
               },
               {
                 "type": "iosdl",
-                "price": "2469",
+                "price": "1728",
                 "list_price": "2469"
               },
               {
                 "type": "androiddl",
-                "price": "2469",
+                "price": "1728",
                 "list_price": "2469"
               }
             ]
@@ -37722,7 +37585,14 @@
               "name": "靖云会エクストリーム"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-06-24 00:10:00",
+            "date_end": "2026-06-30 23:59:59",
+            "title": "豊彦他30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -40021,33 +39891,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "579~",
+          "price": "405~",
           "list_price": "579~",
           "deliveries": {
             "delivery": [
               {
                 "type": "download",
-                "price": "1445",
+                "price": "1010",
                 "list_price": "1445"
               },
               {
                 "type": "stream",
-                "price": "579",
+                "price": "405",
                 "list_price": "579"
               },
               {
                 "type": "hd",
-                "price": "2469",
+                "price": "1728",
                 "list_price": "2469"
               },
               {
                 "type": "iosdl",
-                "price": "1445",
+                "price": "1010",
                 "list_price": "1445"
               },
               {
                 "type": "androiddl",
-                "price": "1445",
+                "price": "1010",
                 "list_price": "1445"
               }
             ]
@@ -40117,7 +39987,14 @@
               "name": "靖云会"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-06-24 00:10:00",
+            "date_end": "2026-06-30 23:59:59",
+            "title": "豊彦他30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -41186,29 +41063,34 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "2480~",
-          "list_price": "2480~",
+          "price": "500~",
+          "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "2980",
-                "list_price": "2980"
+                "price": "1980",
+                "list_price": "1980"
               },
               {
                 "type": "download",
-                "price": "2480",
-                "list_price": "2480"
+                "price": "1480",
+                "list_price": "1480"
+              },
+              {
+                "type": "stream",
+                "price": "500",
+                "list_price": "500"
               },
               {
                 "type": "iosdl",
-                "price": "2480",
-                "list_price": "2480"
+                "price": "1480",
+                "list_price": "1480"
               },
               {
                 "type": "androiddl",
-                "price": "2480",
-                "list_price": "2480"
+                "price": "1480",
+                "list_price": "1480"
               }
             ]
           }
@@ -41842,33 +41724,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "579~",
+          "price": "405~",
           "list_price": "579~",
           "deliveries": {
             "delivery": [
               {
                 "type": "download",
-                "price": "1212",
+                "price": "848",
                 "list_price": "1212"
               },
               {
                 "type": "stream",
-                "price": "579",
+                "price": "405",
                 "list_price": "579"
               },
               {
                 "type": "hd",
-                "price": "1498",
+                "price": "1048",
                 "list_price": "1498"
               },
               {
                 "type": "iosdl",
-                "price": "1212",
+                "price": "848",
                 "list_price": "1212"
               },
               {
                 "type": "androiddl",
-                "price": "1212",
+                "price": "848",
                 "list_price": "1212"
               }
             ]
@@ -41925,7 +41807,14 @@
               "name": "靖云会"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-06-24 00:10:00",
+            "date_end": "2026-06-30 23:59:59",
+            "title": "豊彦他30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -47285,34 +47174,34 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "500~",
-          "list_price": "500~",
+          "price": "300~",
+          "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "1680",
-                "list_price": "1680"
+                "price": "1180",
+                "list_price": "1180"
               },
               {
                 "type": "download",
-                "price": "1180",
-                "list_price": "1180"
+                "price": "790",
+                "list_price": "790"
               },
               {
                 "type": "stream",
-                "price": "500",
-                "list_price": "500"
+                "price": "300",
+                "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "1180",
-                "list_price": "1180"
+                "price": "790",
+                "list_price": "790"
               },
               {
                 "type": "androiddl",
-                "price": "1180",
-                "list_price": "1180"
+                "price": "790",
+                "list_price": "790"
               }
             ]
           }
@@ -49536,38 +49425,38 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "4k",
-                "price": "1386",
+                "price": "1980",
                 "list_price": "1980"
               },
               {
                 "type": "hd",
-                "price": "966",
+                "price": "1380",
                 "list_price": "1380"
               },
               {
                 "type": "download",
-                "price": "756",
+                "price": "1080",
                 "list_price": "1080"
               },
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "756",
+                "price": "1080",
                 "list_price": "1080"
               },
               {
                 "type": "androiddl",
-                "price": "756",
+                "price": "1080",
                 "list_price": "1080"
               }
             ]
@@ -49657,14 +49546,7 @@
               "name": "FALENO star"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-06-17 00:10:00",
-            "date_end": "2026-06-23 23:59:59",
-            "title": "SODグループ30％OFF第2弾"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -50586,23 +50468,23 @@
           }
         },
         "prices": {
-          "price": "1280~",
+          "price": "896~",
           "list_price": "1280~",
           "deliveries": {
             "delivery": [
               {
                 "type": "8k",
-                "price": "1780",
+                "price": "1246",
                 "list_price": "1780"
               },
               {
                 "type": "hd",
-                "price": "1480",
+                "price": "1036",
                 "list_price": "1480"
               },
               {
                 "type": "download",
-                "price": "1280",
+                "price": "896",
                 "list_price": "1280"
               }
             ]
@@ -50692,7 +50574,14 @@
               "name": "Marrion Group VR"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-06-24 00:10:00",
+            "date_end": "2026-06-30 23:59:59",
+            "title": "ブランドストア30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -59288,38 +59177,38 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "4k",
-                "price": "1386",
+                "price": "1980",
                 "list_price": "1980"
               },
               {
                 "type": "hd",
-                "price": "896",
+                "price": "1280",
                 "list_price": "1280"
               },
               {
                 "type": "download",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "androiddl",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               }
             ]
@@ -59376,14 +59265,7 @@
               "name": "----"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-06-17 00:10:00",
-            "date_end": "2026-06-23 23:59:59",
-            "title": "SODグループ30％OFF第2弾"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -63618,6 +63500,196 @@
         "floor_code": "videoa",
         "floor_name": "ビデオ",
         "category_name": "ビデオ (動画)",
+        "content_id": "1namh00038",
+        "product_id": "1namh00038",
+        "title": "元アイドルが奇跡の13発 はじめての真正中出し解禁 本城はな",
+        "volume": "122",
+        "review": {
+          "count": 21,
+          "average": "4.76"
+        },
+        "URL": "https://video.dmm.co.jp/av/content/?id=1namh00038",
+        "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3D1namh00038&af_id=saaaaaaya-990&ch=api",
+        "imageURL": {
+          "large": "https://pics.dmm.co.jp/digital/video/1namh00038/1namh00038pl.jpg",
+          "small": "https://pics.dmm.co.jp/digital/video/1namh00038/1namh00038ps.jpg",
+          "list": "https://pics.dmm.co.jp/digital/video/1namh00038/1namh00038pt.jpg"
+        },
+        "sampleImageURL": {
+          "sample_s": {
+            "image": [
+              "https://pics.dmm.co.jp/digital/video/1namh00038/1namh00038-1.jpg",
+              "https://pics.dmm.co.jp/digital/video/1namh00038/1namh00038-2.jpg",
+              "https://pics.dmm.co.jp/digital/video/1namh00038/1namh00038-3.jpg",
+              "https://pics.dmm.co.jp/digital/video/1namh00038/1namh00038-4.jpg",
+              "https://pics.dmm.co.jp/digital/video/1namh00038/1namh00038-5.jpg",
+              "https://pics.dmm.co.jp/digital/video/1namh00038/1namh00038-6.jpg",
+              "https://pics.dmm.co.jp/digital/video/1namh00038/1namh00038-7.jpg",
+              "https://pics.dmm.co.jp/digital/video/1namh00038/1namh00038-8.jpg",
+              "https://pics.dmm.co.jp/digital/video/1namh00038/1namh00038-9.jpg",
+              "https://pics.dmm.co.jp/digital/video/1namh00038/1namh00038-10.jpg",
+              "https://pics.dmm.co.jp/digital/video/1namh00038/1namh00038-11.jpg",
+              "https://pics.dmm.co.jp/digital/video/1namh00038/1namh00038-12.jpg",
+              "https://pics.dmm.co.jp/digital/video/1namh00038/1namh00038-13.jpg",
+              "https://pics.dmm.co.jp/digital/video/1namh00038/1namh00038-14.jpg",
+              "https://pics.dmm.co.jp/digital/video/1namh00038/1namh00038-15.jpg",
+              "https://pics.dmm.co.jp/digital/video/1namh00038/1namh00038-16.jpg",
+              "https://pics.dmm.co.jp/digital/video/1namh00038/1namh00038-17.jpg",
+              "https://pics.dmm.co.jp/digital/video/1namh00038/1namh00038-18.jpg",
+              "https://pics.dmm.co.jp/digital/video/1namh00038/1namh00038-19.jpg"
+            ]
+          },
+          "sample_l": {
+            "image": [
+              "https://pics.dmm.co.jp/digital/video/1namh00038/1namh00038jp-1.jpg",
+              "https://pics.dmm.co.jp/digital/video/1namh00038/1namh00038jp-2.jpg",
+              "https://pics.dmm.co.jp/digital/video/1namh00038/1namh00038jp-3.jpg",
+              "https://pics.dmm.co.jp/digital/video/1namh00038/1namh00038jp-4.jpg",
+              "https://pics.dmm.co.jp/digital/video/1namh00038/1namh00038jp-5.jpg",
+              "https://pics.dmm.co.jp/digital/video/1namh00038/1namh00038jp-6.jpg",
+              "https://pics.dmm.co.jp/digital/video/1namh00038/1namh00038jp-7.jpg",
+              "https://pics.dmm.co.jp/digital/video/1namh00038/1namh00038jp-8.jpg",
+              "https://pics.dmm.co.jp/digital/video/1namh00038/1namh00038jp-9.jpg",
+              "https://pics.dmm.co.jp/digital/video/1namh00038/1namh00038jp-10.jpg",
+              "https://pics.dmm.co.jp/digital/video/1namh00038/1namh00038jp-11.jpg",
+              "https://pics.dmm.co.jp/digital/video/1namh00038/1namh00038jp-12.jpg",
+              "https://pics.dmm.co.jp/digital/video/1namh00038/1namh00038jp-13.jpg",
+              "https://pics.dmm.co.jp/digital/video/1namh00038/1namh00038jp-14.jpg",
+              "https://pics.dmm.co.jp/digital/video/1namh00038/1namh00038jp-15.jpg",
+              "https://pics.dmm.co.jp/digital/video/1namh00038/1namh00038jp-16.jpg",
+              "https://pics.dmm.co.jp/digital/video/1namh00038/1namh00038jp-17.jpg",
+              "https://pics.dmm.co.jp/digital/video/1namh00038/1namh00038jp-18.jpg",
+              "https://pics.dmm.co.jp/digital/video/1namh00038/1namh00038jp-19.jpg"
+            ]
+          }
+        },
+        "sampleMovieURL": {
+          "size_476_306": "https://www.dmm.co.jp/litevideo/-/part/=/cid=1namh00038/size=476_306/affi_id=saaaaaaya-990/",
+          "size_560_360": "https://www.dmm.co.jp/litevideo/-/part/=/cid=1namh00038/size=560_360/affi_id=saaaaaaya-990/",
+          "size_644_414": "https://www.dmm.co.jp/litevideo/-/part/=/cid=1namh00038/size=644_414/affi_id=saaaaaaya-990/",
+          "size_720_480": "https://www.dmm.co.jp/litevideo/-/part/=/cid=1namh00038/size=720_480/affi_id=saaaaaaya-990/",
+          "pc_flag": 1,
+          "sp_flag": 1
+        },
+        "prices": {
+          "price": "1480~",
+          "list_price": "1480~",
+          "deliveries": {
+            "delivery": [
+              {
+                "type": "4k",
+                "price": "3680",
+                "list_price": "3680"
+              },
+              {
+                "type": "hd",
+                "price": "3180",
+                "list_price": "3180"
+              },
+              {
+                "type": "download",
+                "price": "2880",
+                "list_price": "2880"
+              },
+              {
+                "type": "stream",
+                "price": "1480",
+                "list_price": "1480"
+              },
+              {
+                "type": "iosdl",
+                "price": "2880",
+                "list_price": "2880"
+              },
+              {
+                "type": "androiddl",
+                "price": "2880",
+                "list_price": "2880"
+              }
+            ]
+          }
+        },
+        "date": "2025-08-18 00:00:21",
+        "iteminfo": {
+          "genre": [
+            {
+              "id": 6533,
+              "name": "ハイビジョン"
+            },
+            {
+              "id": 79015,
+              "name": "4K"
+            },
+            {
+              "id": 4023,
+              "name": "ドキュメンタリー"
+            },
+            {
+              "id": 4025,
+              "name": "単体作品"
+            },
+            {
+              "id": 4031,
+              "name": "コスプレ"
+            },
+            {
+              "id": 1027,
+              "name": "美少女"
+            },
+            {
+              "id": 4118,
+              "name": "アイドル・芸能人"
+            },
+            {
+              "id": 48,
+              "name": "制服"
+            },
+            {
+              "id": 6002,
+              "name": "ハメ撮り"
+            },
+            {
+              "id": 5022,
+              "name": "3P・4P"
+            },
+            {
+              "id": 5001,
+              "name": "中出し"
+            }
+          ],
+          "series": [
+            {
+              "id": 4588267,
+              "name": "初生中解禁"
+            }
+          ],
+          "maker": [
+            {
+              "id": 306170,
+              "name": "なまなま"
+            }
+          ],
+          "actress": [
+            {
+              "id": 1102916,
+              "name": "本城はな",
+              "ruby": "ほんじょうはな"
+            }
+          ],
+          "label": [
+            {
+              "id": 2065795,
+              "name": "なまなま"
+            }
+          ]
+        }
+      },
+      {
+        "service_code": "digital",
+        "service_name": "動画",
+        "floor_code": "videoa",
+        "floor_name": "ビデオ",
+        "category_name": "ビデオ (動画)",
         "content_id": "real00853",
         "product_id": "real00853",
         "title": "卒業の危うい巨乳女子校生の乳首を完全開発 チクハラ教師にチクビだけで何度も何度もイカされる乳首イキ凌●",
@@ -64135,6 +64207,177 @@
         "floor_code": "videoa",
         "floor_name": "ビデオ",
         "category_name": "ビデオ (動画)",
+        "content_id": "sone00162",
+        "product_id": "sone00162",
+        "title": "キレかわ清楚の女子●生を我慢できずにメチャクチャ痴●してやったら…彼氏よりも俺のテクの虜に。 浅野こころ",
+        "volume": "144",
+        "review": {
+          "count": 69,
+          "average": "4.75"
+        },
+        "URL": "https://video.dmm.co.jp/av/content/?id=sone00162",
+        "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Dsone00162&af_id=saaaaaaya-990&ch=api",
+        "imageURL": {
+          "large": "https://pics.dmm.co.jp/digital/video/sone00162/sone00162pl.jpg",
+          "small": "https://pics.dmm.co.jp/digital/video/sone00162/sone00162ps.jpg",
+          "list": "https://pics.dmm.co.jp/digital/video/sone00162/sone00162pt.jpg"
+        },
+        "sampleImageURL": {
+          "sample_s": {
+            "image": [
+              "https://pics.dmm.co.jp/digital/video/sone00162/sone00162-1.jpg",
+              "https://pics.dmm.co.jp/digital/video/sone00162/sone00162-2.jpg",
+              "https://pics.dmm.co.jp/digital/video/sone00162/sone00162-3.jpg",
+              "https://pics.dmm.co.jp/digital/video/sone00162/sone00162-4.jpg",
+              "https://pics.dmm.co.jp/digital/video/sone00162/sone00162-5.jpg",
+              "https://pics.dmm.co.jp/digital/video/sone00162/sone00162-6.jpg",
+              "https://pics.dmm.co.jp/digital/video/sone00162/sone00162-7.jpg",
+              "https://pics.dmm.co.jp/digital/video/sone00162/sone00162-8.jpg",
+              "https://pics.dmm.co.jp/digital/video/sone00162/sone00162-9.jpg",
+              "https://pics.dmm.co.jp/digital/video/sone00162/sone00162-10.jpg"
+            ]
+          },
+          "sample_l": {
+            "image": [
+              "https://pics.dmm.co.jp/digital/video/sone00162/sone00162jp-1.jpg",
+              "https://pics.dmm.co.jp/digital/video/sone00162/sone00162jp-2.jpg",
+              "https://pics.dmm.co.jp/digital/video/sone00162/sone00162jp-3.jpg",
+              "https://pics.dmm.co.jp/digital/video/sone00162/sone00162jp-4.jpg",
+              "https://pics.dmm.co.jp/digital/video/sone00162/sone00162jp-5.jpg",
+              "https://pics.dmm.co.jp/digital/video/sone00162/sone00162jp-6.jpg",
+              "https://pics.dmm.co.jp/digital/video/sone00162/sone00162jp-7.jpg",
+              "https://pics.dmm.co.jp/digital/video/sone00162/sone00162jp-8.jpg",
+              "https://pics.dmm.co.jp/digital/video/sone00162/sone00162jp-9.jpg",
+              "https://pics.dmm.co.jp/digital/video/sone00162/sone00162jp-10.jpg"
+            ]
+          }
+        },
+        "sampleMovieURL": {
+          "size_476_306": "https://www.dmm.co.jp/litevideo/-/part/=/cid=sone00162/size=476_306/affi_id=saaaaaaya-990/",
+          "size_560_360": "https://www.dmm.co.jp/litevideo/-/part/=/cid=sone00162/size=560_360/affi_id=saaaaaaya-990/",
+          "size_644_414": "https://www.dmm.co.jp/litevideo/-/part/=/cid=sone00162/size=644_414/affi_id=saaaaaaya-990/",
+          "size_720_480": "https://www.dmm.co.jp/litevideo/-/part/=/cid=sone00162/size=720_480/affi_id=saaaaaaya-990/",
+          "pc_flag": 1,
+          "sp_flag": 1
+        },
+        "prices": {
+          "price": "300~",
+          "list_price": "300~",
+          "deliveries": {
+            "delivery": [
+              {
+                "type": "4k",
+                "price": "1880",
+                "list_price": "1880"
+              },
+              {
+                "type": "hd",
+                "price": "1180",
+                "list_price": "1180"
+              },
+              {
+                "type": "download",
+                "price": "790",
+                "list_price": "790"
+              },
+              {
+                "type": "stream",
+                "price": "300",
+                "list_price": "300"
+              },
+              {
+                "type": "iosdl",
+                "price": "790",
+                "list_price": "790"
+              },
+              {
+                "type": "androiddl",
+                "price": "790",
+                "list_price": "790"
+              }
+            ]
+          }
+        },
+        "date": "2024-04-19 10:00:51",
+        "iteminfo": {
+          "genre": [
+            {
+              "id": 6533,
+              "name": "ハイビジョン"
+            },
+            {
+              "id": 79015,
+              "name": "4K"
+            },
+            {
+              "id": 6548,
+              "name": "独占配信"
+            },
+            {
+              "id": 1018,
+              "name": "女子校生"
+            },
+            {
+              "id": 48,
+              "name": "制服"
+            },
+            {
+              "id": 4030,
+              "name": "淫乱・ハード系"
+            },
+            {
+              "id": 1027,
+              "name": "美少女"
+            },
+            {
+              "id": 4059,
+              "name": "キス・接吻"
+            },
+            {
+              "id": 4025,
+              "name": "単体作品"
+            }
+          ],
+          "series": [
+            {
+              "id": 4587604,
+              "name": "我慢できずにメチャクチャ痴●してやったら…"
+            }
+          ],
+          "maker": [
+            {
+              "id": 3152,
+              "name": "エスワン ナンバーワンスタイル"
+            }
+          ],
+          "actress": [
+            {
+              "id": 1086581,
+              "name": "浅野こころ",
+              "ruby": "あさのこころ"
+            }
+          ],
+          "director": [
+            {
+              "id": 110733,
+              "name": "肉尊",
+              "ruby": "にくそん"
+            }
+          ],
+          "label": [
+            {
+              "id": 3474,
+              "name": "S1 NO.1 STYLE"
+            }
+          ]
+        }
+      },
+      {
+        "service_code": "digital",
+        "service_name": "動画",
+        "floor_code": "videoa",
+        "floor_name": "ビデオ",
+        "category_name": "ビデオ (動画)",
         "content_id": "mdvr00296",
         "product_id": "mdvr00296",
         "title": "【VR】オタクに優しいイケイケGALとまさかの化学反応…汗と精液の匂いに包まれた青春セックス劇 石原希望 葵いぶき",
@@ -64472,177 +64715,6 @@
             {
               "id": 4325,
               "name": "MOODYZ DIVA"
-            }
-          ]
-        }
-      },
-      {
-        "service_code": "digital",
-        "service_name": "動画",
-        "floor_code": "videoa",
-        "floor_name": "ビデオ",
-        "category_name": "ビデオ (動画)",
-        "content_id": "sone00162",
-        "product_id": "sone00162",
-        "title": "キレかわ清楚の女子●生を我慢できずにメチャクチャ痴●してやったら…彼氏よりも俺のテクの虜に。 浅野こころ",
-        "volume": "144",
-        "review": {
-          "count": 68,
-          "average": "4.75"
-        },
-        "URL": "https://video.dmm.co.jp/av/content/?id=sone00162",
-        "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Dsone00162&af_id=saaaaaaya-990&ch=api",
-        "imageURL": {
-          "large": "https://pics.dmm.co.jp/digital/video/sone00162/sone00162pl.jpg",
-          "small": "https://pics.dmm.co.jp/digital/video/sone00162/sone00162ps.jpg",
-          "list": "https://pics.dmm.co.jp/digital/video/sone00162/sone00162pt.jpg"
-        },
-        "sampleImageURL": {
-          "sample_s": {
-            "image": [
-              "https://pics.dmm.co.jp/digital/video/sone00162/sone00162-1.jpg",
-              "https://pics.dmm.co.jp/digital/video/sone00162/sone00162-2.jpg",
-              "https://pics.dmm.co.jp/digital/video/sone00162/sone00162-3.jpg",
-              "https://pics.dmm.co.jp/digital/video/sone00162/sone00162-4.jpg",
-              "https://pics.dmm.co.jp/digital/video/sone00162/sone00162-5.jpg",
-              "https://pics.dmm.co.jp/digital/video/sone00162/sone00162-6.jpg",
-              "https://pics.dmm.co.jp/digital/video/sone00162/sone00162-7.jpg",
-              "https://pics.dmm.co.jp/digital/video/sone00162/sone00162-8.jpg",
-              "https://pics.dmm.co.jp/digital/video/sone00162/sone00162-9.jpg",
-              "https://pics.dmm.co.jp/digital/video/sone00162/sone00162-10.jpg"
-            ]
-          },
-          "sample_l": {
-            "image": [
-              "https://pics.dmm.co.jp/digital/video/sone00162/sone00162jp-1.jpg",
-              "https://pics.dmm.co.jp/digital/video/sone00162/sone00162jp-2.jpg",
-              "https://pics.dmm.co.jp/digital/video/sone00162/sone00162jp-3.jpg",
-              "https://pics.dmm.co.jp/digital/video/sone00162/sone00162jp-4.jpg",
-              "https://pics.dmm.co.jp/digital/video/sone00162/sone00162jp-5.jpg",
-              "https://pics.dmm.co.jp/digital/video/sone00162/sone00162jp-6.jpg",
-              "https://pics.dmm.co.jp/digital/video/sone00162/sone00162jp-7.jpg",
-              "https://pics.dmm.co.jp/digital/video/sone00162/sone00162jp-8.jpg",
-              "https://pics.dmm.co.jp/digital/video/sone00162/sone00162jp-9.jpg",
-              "https://pics.dmm.co.jp/digital/video/sone00162/sone00162jp-10.jpg"
-            ]
-          }
-        },
-        "sampleMovieURL": {
-          "size_476_306": "https://www.dmm.co.jp/litevideo/-/part/=/cid=sone00162/size=476_306/affi_id=saaaaaaya-990/",
-          "size_560_360": "https://www.dmm.co.jp/litevideo/-/part/=/cid=sone00162/size=560_360/affi_id=saaaaaaya-990/",
-          "size_644_414": "https://www.dmm.co.jp/litevideo/-/part/=/cid=sone00162/size=644_414/affi_id=saaaaaaya-990/",
-          "size_720_480": "https://www.dmm.co.jp/litevideo/-/part/=/cid=sone00162/size=720_480/affi_id=saaaaaaya-990/",
-          "pc_flag": 1,
-          "sp_flag": 1
-        },
-        "prices": {
-          "price": "300~",
-          "list_price": "300~",
-          "deliveries": {
-            "delivery": [
-              {
-                "type": "4k",
-                "price": "1880",
-                "list_price": "1880"
-              },
-              {
-                "type": "hd",
-                "price": "1180",
-                "list_price": "1180"
-              },
-              {
-                "type": "download",
-                "price": "790",
-                "list_price": "790"
-              },
-              {
-                "type": "stream",
-                "price": "300",
-                "list_price": "300"
-              },
-              {
-                "type": "iosdl",
-                "price": "790",
-                "list_price": "790"
-              },
-              {
-                "type": "androiddl",
-                "price": "790",
-                "list_price": "790"
-              }
-            ]
-          }
-        },
-        "date": "2024-04-19 10:00:51",
-        "iteminfo": {
-          "genre": [
-            {
-              "id": 6533,
-              "name": "ハイビジョン"
-            },
-            {
-              "id": 79015,
-              "name": "4K"
-            },
-            {
-              "id": 6548,
-              "name": "独占配信"
-            },
-            {
-              "id": 1018,
-              "name": "女子校生"
-            },
-            {
-              "id": 48,
-              "name": "制服"
-            },
-            {
-              "id": 4030,
-              "name": "淫乱・ハード系"
-            },
-            {
-              "id": 1027,
-              "name": "美少女"
-            },
-            {
-              "id": 4059,
-              "name": "キス・接吻"
-            },
-            {
-              "id": 4025,
-              "name": "単体作品"
-            }
-          ],
-          "series": [
-            {
-              "id": 4587604,
-              "name": "我慢できずにメチャクチャ痴●してやったら…"
-            }
-          ],
-          "maker": [
-            {
-              "id": 3152,
-              "name": "エスワン ナンバーワンスタイル"
-            }
-          ],
-          "actress": [
-            {
-              "id": 1086581,
-              "name": "浅野こころ",
-              "ruby": "あさのこころ"
-            }
-          ],
-          "director": [
-            {
-              "id": 110733,
-              "name": "肉尊",
-              "ruby": "にくそん"
-            }
-          ],
-          "label": [
-            {
-              "id": 3474,
-              "name": "S1 NO.1 STYLE"
             }
           ]
         }
@@ -65115,196 +65187,6 @@
             {
               "id": 26372,
               "name": "みんなのキカタン"
-            }
-          ]
-        }
-      },
-      {
-        "service_code": "digital",
-        "service_name": "動画",
-        "floor_code": "videoa",
-        "floor_name": "ビデオ",
-        "category_name": "ビデオ (動画)",
-        "content_id": "1namh00038",
-        "product_id": "1namh00038",
-        "title": "元アイドルが奇跡の13発 はじめての真正中出し解禁 本城はな",
-        "volume": "122",
-        "review": {
-          "count": 20,
-          "average": "4.75"
-        },
-        "URL": "https://video.dmm.co.jp/av/content/?id=1namh00038",
-        "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3D1namh00038&af_id=saaaaaaya-990&ch=api",
-        "imageURL": {
-          "large": "https://pics.dmm.co.jp/digital/video/1namh00038/1namh00038pl.jpg",
-          "small": "https://pics.dmm.co.jp/digital/video/1namh00038/1namh00038ps.jpg",
-          "list": "https://pics.dmm.co.jp/digital/video/1namh00038/1namh00038pt.jpg"
-        },
-        "sampleImageURL": {
-          "sample_s": {
-            "image": [
-              "https://pics.dmm.co.jp/digital/video/1namh00038/1namh00038-1.jpg",
-              "https://pics.dmm.co.jp/digital/video/1namh00038/1namh00038-2.jpg",
-              "https://pics.dmm.co.jp/digital/video/1namh00038/1namh00038-3.jpg",
-              "https://pics.dmm.co.jp/digital/video/1namh00038/1namh00038-4.jpg",
-              "https://pics.dmm.co.jp/digital/video/1namh00038/1namh00038-5.jpg",
-              "https://pics.dmm.co.jp/digital/video/1namh00038/1namh00038-6.jpg",
-              "https://pics.dmm.co.jp/digital/video/1namh00038/1namh00038-7.jpg",
-              "https://pics.dmm.co.jp/digital/video/1namh00038/1namh00038-8.jpg",
-              "https://pics.dmm.co.jp/digital/video/1namh00038/1namh00038-9.jpg",
-              "https://pics.dmm.co.jp/digital/video/1namh00038/1namh00038-10.jpg",
-              "https://pics.dmm.co.jp/digital/video/1namh00038/1namh00038-11.jpg",
-              "https://pics.dmm.co.jp/digital/video/1namh00038/1namh00038-12.jpg",
-              "https://pics.dmm.co.jp/digital/video/1namh00038/1namh00038-13.jpg",
-              "https://pics.dmm.co.jp/digital/video/1namh00038/1namh00038-14.jpg",
-              "https://pics.dmm.co.jp/digital/video/1namh00038/1namh00038-15.jpg",
-              "https://pics.dmm.co.jp/digital/video/1namh00038/1namh00038-16.jpg",
-              "https://pics.dmm.co.jp/digital/video/1namh00038/1namh00038-17.jpg",
-              "https://pics.dmm.co.jp/digital/video/1namh00038/1namh00038-18.jpg",
-              "https://pics.dmm.co.jp/digital/video/1namh00038/1namh00038-19.jpg"
-            ]
-          },
-          "sample_l": {
-            "image": [
-              "https://pics.dmm.co.jp/digital/video/1namh00038/1namh00038jp-1.jpg",
-              "https://pics.dmm.co.jp/digital/video/1namh00038/1namh00038jp-2.jpg",
-              "https://pics.dmm.co.jp/digital/video/1namh00038/1namh00038jp-3.jpg",
-              "https://pics.dmm.co.jp/digital/video/1namh00038/1namh00038jp-4.jpg",
-              "https://pics.dmm.co.jp/digital/video/1namh00038/1namh00038jp-5.jpg",
-              "https://pics.dmm.co.jp/digital/video/1namh00038/1namh00038jp-6.jpg",
-              "https://pics.dmm.co.jp/digital/video/1namh00038/1namh00038jp-7.jpg",
-              "https://pics.dmm.co.jp/digital/video/1namh00038/1namh00038jp-8.jpg",
-              "https://pics.dmm.co.jp/digital/video/1namh00038/1namh00038jp-9.jpg",
-              "https://pics.dmm.co.jp/digital/video/1namh00038/1namh00038jp-10.jpg",
-              "https://pics.dmm.co.jp/digital/video/1namh00038/1namh00038jp-11.jpg",
-              "https://pics.dmm.co.jp/digital/video/1namh00038/1namh00038jp-12.jpg",
-              "https://pics.dmm.co.jp/digital/video/1namh00038/1namh00038jp-13.jpg",
-              "https://pics.dmm.co.jp/digital/video/1namh00038/1namh00038jp-14.jpg",
-              "https://pics.dmm.co.jp/digital/video/1namh00038/1namh00038jp-15.jpg",
-              "https://pics.dmm.co.jp/digital/video/1namh00038/1namh00038jp-16.jpg",
-              "https://pics.dmm.co.jp/digital/video/1namh00038/1namh00038jp-17.jpg",
-              "https://pics.dmm.co.jp/digital/video/1namh00038/1namh00038jp-18.jpg",
-              "https://pics.dmm.co.jp/digital/video/1namh00038/1namh00038jp-19.jpg"
-            ]
-          }
-        },
-        "sampleMovieURL": {
-          "size_476_306": "https://www.dmm.co.jp/litevideo/-/part/=/cid=1namh00038/size=476_306/affi_id=saaaaaaya-990/",
-          "size_560_360": "https://www.dmm.co.jp/litevideo/-/part/=/cid=1namh00038/size=560_360/affi_id=saaaaaaya-990/",
-          "size_644_414": "https://www.dmm.co.jp/litevideo/-/part/=/cid=1namh00038/size=644_414/affi_id=saaaaaaya-990/",
-          "size_720_480": "https://www.dmm.co.jp/litevideo/-/part/=/cid=1namh00038/size=720_480/affi_id=saaaaaaya-990/",
-          "pc_flag": 1,
-          "sp_flag": 1
-        },
-        "prices": {
-          "price": "1480~",
-          "list_price": "1480~",
-          "deliveries": {
-            "delivery": [
-              {
-                "type": "4k",
-                "price": "3680",
-                "list_price": "3680"
-              },
-              {
-                "type": "hd",
-                "price": "3180",
-                "list_price": "3180"
-              },
-              {
-                "type": "download",
-                "price": "2880",
-                "list_price": "2880"
-              },
-              {
-                "type": "stream",
-                "price": "1480",
-                "list_price": "1480"
-              },
-              {
-                "type": "iosdl",
-                "price": "2880",
-                "list_price": "2880"
-              },
-              {
-                "type": "androiddl",
-                "price": "2880",
-                "list_price": "2880"
-              }
-            ]
-          }
-        },
-        "date": "2025-08-18 00:00:21",
-        "iteminfo": {
-          "genre": [
-            {
-              "id": 6533,
-              "name": "ハイビジョン"
-            },
-            {
-              "id": 79015,
-              "name": "4K"
-            },
-            {
-              "id": 4023,
-              "name": "ドキュメンタリー"
-            },
-            {
-              "id": 4025,
-              "name": "単体作品"
-            },
-            {
-              "id": 4031,
-              "name": "コスプレ"
-            },
-            {
-              "id": 1027,
-              "name": "美少女"
-            },
-            {
-              "id": 4118,
-              "name": "アイドル・芸能人"
-            },
-            {
-              "id": 48,
-              "name": "制服"
-            },
-            {
-              "id": 6002,
-              "name": "ハメ撮り"
-            },
-            {
-              "id": 5022,
-              "name": "3P・4P"
-            },
-            {
-              "id": 5001,
-              "name": "中出し"
-            }
-          ],
-          "series": [
-            {
-              "id": 4588267,
-              "name": "初生中解禁"
-            }
-          ],
-          "maker": [
-            {
-              "id": 306170,
-              "name": "なまなま"
-            }
-          ],
-          "actress": [
-            {
-              "id": 1102916,
-              "name": "本城はな",
-              "ruby": "ほんじょうはな"
-            }
-          ],
-          "label": [
-            {
-              "id": 2065795,
-              "name": "なまなま"
             }
           ]
         }
@@ -67865,6 +67747,176 @@
         "floor_code": "videoa",
         "floor_name": "ビデオ",
         "category_name": "ビデオ (動画)",
+        "content_id": "kiwvr00844",
+        "product_id": "kiwvr00844",
+        "title": "【VR】【8K】超ビンカン早漏体質だったバイト先の先輩の乳首をこねくりまわすと何度も絶頂イキ 花守夏歩",
+        "volume": "75",
+        "review": {
+          "count": 8,
+          "average": "4.75"
+        },
+        "URL": "https://video.dmm.co.jp/av/content/?id=kiwvr00844",
+        "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Dkiwvr00844&af_id=saaaaaaya-990&ch=api",
+        "imageURL": {
+          "large": "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844pl.jpg",
+          "small": "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844ps.jpg",
+          "list": "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844pt.jpg"
+        },
+        "sampleImageURL": {
+          "sample_s": {
+            "image": [
+              "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844-1.jpg",
+              "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844-2.jpg",
+              "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844-3.jpg",
+              "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844-4.jpg",
+              "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844-5.jpg",
+              "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844-6.jpg",
+              "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844-7.jpg",
+              "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844-8.jpg",
+              "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844-9.jpg",
+              "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844-10.jpg",
+              "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844-11.jpg",
+              "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844-12.jpg",
+              "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844-13.jpg",
+              "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844-14.jpg",
+              "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844-15.jpg",
+              "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844-16.jpg",
+              "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844-17.jpg",
+              "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844-18.jpg",
+              "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844-19.jpg",
+              "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844-20.jpg"
+            ]
+          },
+          "sample_l": {
+            "image": [
+              "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844jp-1.jpg",
+              "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844jp-2.jpg",
+              "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844jp-3.jpg",
+              "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844jp-4.jpg",
+              "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844jp-5.jpg",
+              "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844jp-6.jpg",
+              "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844jp-7.jpg",
+              "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844jp-8.jpg",
+              "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844jp-9.jpg",
+              "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844jp-10.jpg",
+              "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844jp-11.jpg",
+              "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844jp-12.jpg",
+              "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844jp-13.jpg",
+              "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844jp-14.jpg",
+              "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844jp-15.jpg",
+              "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844jp-16.jpg",
+              "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844jp-17.jpg",
+              "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844jp-18.jpg",
+              "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844jp-19.jpg",
+              "https://pics.dmm.co.jp/digital/video/kiwvr00844/kiwvr00844jp-20.jpg"
+            ]
+          }
+        },
+        "prices": {
+          "price": "500~",
+          "list_price": "500~",
+          "deliveries": {
+            "delivery": [
+              {
+                "type": "8k",
+                "price": "1480",
+                "list_price": "1480"
+              },
+              {
+                "type": "hd",
+                "price": "980",
+                "list_price": "980"
+              },
+              {
+                "type": "download",
+                "price": "780",
+                "list_price": "780"
+              },
+              {
+                "type": "rp",
+                "price": "500",
+                "list_price": "500"
+              }
+            ]
+          }
+        },
+        "date": "2026-01-13 00:00:00",
+        "iteminfo": {
+          "genre": [
+            {
+              "id": 6925,
+              "name": "ハイクオリティVR"
+            },
+            {
+              "id": 4025,
+              "name": "単体作品"
+            },
+            {
+              "id": 6793,
+              "name": "VR専用"
+            },
+            {
+              "id": 6548,
+              "name": "独占配信"
+            },
+            {
+              "id": 307935,
+              "name": "8KVR"
+            },
+            {
+              "id": 1018,
+              "name": "女子校生"
+            },
+            {
+              "id": 6968,
+              "name": "アクメ・オーガズム"
+            },
+            {
+              "id": 5001,
+              "name": "中出し"
+            },
+            {
+              "id": 1027,
+              "name": "美少女"
+            },
+            {
+              "id": 48,
+              "name": "制服"
+            }
+          ],
+          "series": [
+            {
+              "id": 4596261,
+              "name": "8KVR【乳首コネくりまわし中出しSEX】"
+            }
+          ],
+          "maker": [
+            {
+              "id": 46629,
+              "name": "こあらVR"
+            }
+          ],
+          "actress": [
+            {
+              "id": 1099813,
+              "name": "花守夏歩",
+              "ruby": "はなもりかほ"
+            }
+          ],
+          "label": [
+            {
+              "id": 2066129,
+              "name": "極グループ"
+            }
+          ]
+        }
+      },
+      {
+        "service_code": "digital",
+        "service_name": "動画",
+        "floor_code": "videoa",
+        "floor_name": "ビデオ",
+        "category_name": "ビデオ (動画)",
         "content_id": "mkmp00695",
         "product_id": "mkmp00695",
         "title": "場末の旅館で女子校生の私と先生は…種付けプレスで溢れるほどの精液を注ぎ込まれる温泉孕ませ逃避行。 北岡果林",
@@ -67945,13 +67997,13 @@
             "delivery": [
               {
                 "type": "hd",
-                "price": "1950",
-                "list_price": "1950"
+                "price": "1450",
+                "list_price": "1450"
               },
               {
                 "type": "download",
-                "price": "1480",
-                "list_price": "1480"
+                "price": "980",
+                "list_price": "980"
               },
               {
                 "type": "stream",
@@ -67960,13 +68012,13 @@
               },
               {
                 "type": "iosdl",
-                "price": "1480",
-                "list_price": "1480"
+                "price": "980",
+                "list_price": "980"
               },
               {
                 "type": "androiddl",
-                "price": "1480",
-                "list_price": "1480"
+                "price": "980",
+                "list_price": "980"
               }
             ]
           }
@@ -73887,6 +73939,10 @@
         "iteminfo": {
           "genre": [
             {
+              "id": 6533,
+              "name": "ハイビジョン"
+            },
+            {
               "id": 79015,
               "name": "4K"
             },
@@ -73895,32 +73951,28 @@
               "name": "独占配信"
             },
             {
-              "id": 6533,
-              "name": "ハイビジョン"
-            },
-            {
               "id": 4059,
               "name": "キス・接吻"
-            },
-            {
-              "id": 4030,
-              "name": "淫乱・ハード系"
-            },
-            {
-              "id": 4025,
-              "name": "単体作品"
             },
             {
               "id": 1027,
               "name": "美少女"
             },
             {
-              "id": 1018,
-              "name": "女子校生"
+              "id": 4030,
+              "name": "淫乱・ハード系"
             },
             {
               "id": 48,
               "name": "制服"
+            },
+            {
+              "id": 1018,
+              "name": "女子校生"
+            },
+            {
+              "id": 4025,
+              "name": "単体作品"
             }
           ],
           "series": [
@@ -79755,38 +79807,38 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "520~",
+          "price": "364~",
           "list_price": "520~",
           "deliveries": {
             "delivery": [
               {
                 "type": "download",
-                "price": "1280",
+                "price": "896",
                 "list_price": "1280"
               },
               {
                 "type": "stream",
-                "price": "520",
+                "price": "364",
                 "list_price": "520"
               },
               {
                 "type": "4k",
-                "price": "2290",
+                "price": "1603",
                 "list_price": "2290"
               },
               {
                 "type": "hd",
-                "price": "1790",
+                "price": "1252",
                 "list_price": "1790"
               },
               {
                 "type": "iosdl",
-                "price": "1280",
+                "price": "896",
                 "list_price": "1280"
               },
               {
                 "type": "androiddl",
-                "price": "1280",
+                "price": "896",
                 "list_price": "1280"
               }
             ]
@@ -79860,7 +79912,14 @@
               "name": "イラマチオフレンズ"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-06-24 00:10:00",
+            "date_end": "2026-06-30 23:59:59",
+            "title": "豊彦他30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -79942,33 +80001,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "579~",
+          "price": "405~",
           "list_price": "579~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "2469",
+                "price": "1728",
                 "list_price": "2469"
               },
               {
                 "type": "download",
-                "price": "1445",
+                "price": "1010",
                 "list_price": "1445"
               },
               {
                 "type": "stream",
-                "price": "579",
+                "price": "405",
                 "list_price": "579"
               },
               {
                 "type": "iosdl",
-                "price": "1445",
+                "price": "1010",
                 "list_price": "1445"
               },
               {
                 "type": "androiddl",
-                "price": "1445",
+                "price": "1010",
                 "list_price": "1445"
               }
             ]
@@ -80032,7 +80091,14 @@
               "name": "靖云会"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-06-24 00:10:00",
+            "date_end": "2026-06-30 23:59:59",
+            "title": "豊彦他30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -80610,33 +80676,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "579~",
+          "price": "405~",
           "list_price": "579~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "3666",
+                "price": "2566",
                 "list_price": "3666"
               },
               {
                 "type": "download",
-                "price": "2469",
+                "price": "1728",
                 "list_price": "2469"
               },
               {
                 "type": "stream",
-                "price": "579",
+                "price": "405",
                 "list_price": "579"
               },
               {
                 "type": "iosdl",
-                "price": "2469",
+                "price": "1728",
                 "list_price": "2469"
               },
               {
                 "type": "androiddl",
-                "price": "2469",
+                "price": "1728",
                 "list_price": "2469"
               }
             ]
@@ -80706,7 +80772,14 @@
               "name": "靖云会エクストリーム"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-06-24 00:10:00",
+            "date_end": "2026-06-30 23:59:59",
+            "title": "豊彦他30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -87600,6 +87673,180 @@
         "floor_code": "videoa",
         "floor_name": "ビデオ",
         "category_name": "ビデオ (動画)",
+        "content_id": "urvrsp00544",
+        "product_id": "urvrsp00544",
+        "title": "【VR】【8K】仲が良い部活の後輩と顔距離数センチに近づいてから始まった関係に、心だけじゃなく体も夢中になった卒業前の冬の記憶。佐藤愛瑠",
+        "volume": "78",
+        "review": {
+          "count": 26,
+          "average": "4.69"
+        },
+        "URL": "https://video.dmm.co.jp/av/content/?id=urvrsp00544",
+        "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Durvrsp00544&af_id=saaaaaaya-990&ch=api",
+        "imageURL": {
+          "large": "https://pics.dmm.co.jp/digital/video/urvrsp00544/urvrsp00544pl.jpg",
+          "small": "https://pics.dmm.co.jp/digital/video/urvrsp00544/urvrsp00544ps.jpg",
+          "list": "https://pics.dmm.co.jp/digital/video/urvrsp00544/urvrsp00544pt.jpg"
+        },
+        "sampleImageURL": {
+          "sample_s": {
+            "image": [
+              "https://pics.dmm.co.jp/digital/video/urvrsp00544/urvrsp00544-1.jpg",
+              "https://pics.dmm.co.jp/digital/video/urvrsp00544/urvrsp00544-2.jpg",
+              "https://pics.dmm.co.jp/digital/video/urvrsp00544/urvrsp00544-3.jpg",
+              "https://pics.dmm.co.jp/digital/video/urvrsp00544/urvrsp00544-4.jpg",
+              "https://pics.dmm.co.jp/digital/video/urvrsp00544/urvrsp00544-5.jpg",
+              "https://pics.dmm.co.jp/digital/video/urvrsp00544/urvrsp00544-6.jpg",
+              "https://pics.dmm.co.jp/digital/video/urvrsp00544/urvrsp00544-7.jpg",
+              "https://pics.dmm.co.jp/digital/video/urvrsp00544/urvrsp00544-8.jpg",
+              "https://pics.dmm.co.jp/digital/video/urvrsp00544/urvrsp00544-9.jpg",
+              "https://pics.dmm.co.jp/digital/video/urvrsp00544/urvrsp00544-10.jpg",
+              "https://pics.dmm.co.jp/digital/video/urvrsp00544/urvrsp00544-11.jpg",
+              "https://pics.dmm.co.jp/digital/video/urvrsp00544/urvrsp00544-12.jpg",
+              "https://pics.dmm.co.jp/digital/video/urvrsp00544/urvrsp00544-13.jpg",
+              "https://pics.dmm.co.jp/digital/video/urvrsp00544/urvrsp00544-14.jpg",
+              "https://pics.dmm.co.jp/digital/video/urvrsp00544/urvrsp00544-15.jpg"
+            ]
+          },
+          "sample_l": {
+            "image": [
+              "https://pics.dmm.co.jp/digital/video/urvrsp00544/urvrsp00544jp-1.jpg",
+              "https://pics.dmm.co.jp/digital/video/urvrsp00544/urvrsp00544jp-2.jpg",
+              "https://pics.dmm.co.jp/digital/video/urvrsp00544/urvrsp00544jp-3.jpg",
+              "https://pics.dmm.co.jp/digital/video/urvrsp00544/urvrsp00544jp-4.jpg",
+              "https://pics.dmm.co.jp/digital/video/urvrsp00544/urvrsp00544jp-5.jpg",
+              "https://pics.dmm.co.jp/digital/video/urvrsp00544/urvrsp00544jp-6.jpg",
+              "https://pics.dmm.co.jp/digital/video/urvrsp00544/urvrsp00544jp-7.jpg",
+              "https://pics.dmm.co.jp/digital/video/urvrsp00544/urvrsp00544jp-8.jpg",
+              "https://pics.dmm.co.jp/digital/video/urvrsp00544/urvrsp00544jp-9.jpg",
+              "https://pics.dmm.co.jp/digital/video/urvrsp00544/urvrsp00544jp-10.jpg",
+              "https://pics.dmm.co.jp/digital/video/urvrsp00544/urvrsp00544jp-11.jpg",
+              "https://pics.dmm.co.jp/digital/video/urvrsp00544/urvrsp00544jp-12.jpg",
+              "https://pics.dmm.co.jp/digital/video/urvrsp00544/urvrsp00544jp-13.jpg",
+              "https://pics.dmm.co.jp/digital/video/urvrsp00544/urvrsp00544jp-14.jpg",
+              "https://pics.dmm.co.jp/digital/video/urvrsp00544/urvrsp00544jp-15.jpg"
+            ]
+          }
+        },
+        "prices": {
+          "price": "1280~",
+          "list_price": "1280~",
+          "deliveries": {
+            "delivery": [
+              {
+                "type": "8k",
+                "price": "1780",
+                "list_price": "1780"
+              },
+              {
+                "type": "hd",
+                "price": "1480",
+                "list_price": "1480"
+              },
+              {
+                "type": "download",
+                "price": "1280",
+                "list_price": "1280"
+              }
+            ]
+          }
+        },
+        "date": "2026-02-20 00:00:06",
+        "iteminfo": {
+          "genre": [
+            {
+              "id": 6925,
+              "name": "ハイクオリティVR"
+            },
+            {
+              "id": 4025,
+              "name": "単体作品"
+            },
+            {
+              "id": 6793,
+              "name": "VR専用"
+            },
+            {
+              "id": 6548,
+              "name": "独占配信"
+            },
+            {
+              "id": 307935,
+              "name": "8KVR"
+            },
+            {
+              "id": 4123,
+              "name": "カップル"
+            },
+            {
+              "id": 555,
+              "name": "恋愛"
+            },
+            {
+              "id": 6961,
+              "name": "部活・マネージャー"
+            },
+            {
+              "id": 48,
+              "name": "制服"
+            },
+            {
+              "id": 3011,
+              "name": "学生服"
+            },
+            {
+              "id": 1027,
+              "name": "美少女"
+            },
+            {
+              "id": 1018,
+              "name": "女子校生"
+            },
+            {
+              "id": 5001,
+              "name": "中出し"
+            }
+          ],
+          "series": [
+            {
+              "id": 223790,
+              "name": "unfinished VR"
+            }
+          ],
+          "maker": [
+            {
+              "id": 45867,
+              "name": "unfinished"
+            }
+          ],
+          "actress": [
+            {
+              "id": 1104855,
+              "name": "佐藤愛瑠",
+              "ruby": "さとうめる"
+            }
+          ],
+          "director": [
+            {
+              "id": 120577,
+              "name": "リトル侍",
+              "ruby": "りとるざむらい"
+            }
+          ],
+          "label": [
+            {
+              "id": 26271,
+              "name": "Marrion Group VR"
+            }
+          ]
+        }
+      },
+      {
+        "service_code": "digital",
+        "service_name": "動画",
+        "floor_code": "videoa",
+        "floor_name": "ビデオ",
+        "category_name": "ビデオ (動画)",
         "content_id": "savr00357",
         "product_id": "savr00357",
         "title": "【VR】【8Kで送る！】渚みつき夢の3シチュエーション シコらせ特化の無限オナサポSEX体験",
@@ -89311,34 +89558,34 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "500~",
-          "list_price": "500~",
+          "price": "300~",
+          "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "1680",
-                "list_price": "1680"
+                "price": "1180",
+                "list_price": "1180"
               },
               {
                 "type": "download",
-                "price": "1180",
-                "list_price": "1180"
+                "price": "790",
+                "list_price": "790"
               },
               {
                 "type": "stream",
-                "price": "500",
-                "list_price": "500"
+                "price": "300",
+                "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "1180",
-                "list_price": "1180"
+                "price": "790",
+                "list_price": "790"
               },
               {
                 "type": "androiddl",
-                "price": "1180",
-                "list_price": "1180"
+                "price": "790",
+                "list_price": "790"
               }
             ]
           }
@@ -90840,180 +91087,6 @@
             {
               "id": 2064137,
               "name": "CosDeluxe Plus"
-            }
-          ]
-        }
-      },
-      {
-        "service_code": "digital",
-        "service_name": "動画",
-        "floor_code": "videoa",
-        "floor_name": "ビデオ",
-        "category_name": "ビデオ (動画)",
-        "content_id": "urvrsp00544",
-        "product_id": "urvrsp00544",
-        "title": "【VR】【8K】仲が良い部活の後輩と顔距離数センチに近づいてから始まった関係に、心だけじゃなく体も夢中になった卒業前の冬の記憶。佐藤愛瑠",
-        "volume": "78",
-        "review": {
-          "count": 25,
-          "average": "4.68"
-        },
-        "URL": "https://video.dmm.co.jp/av/content/?id=urvrsp00544",
-        "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Durvrsp00544&af_id=saaaaaaya-990&ch=api",
-        "imageURL": {
-          "large": "https://pics.dmm.co.jp/digital/video/urvrsp00544/urvrsp00544pl.jpg",
-          "small": "https://pics.dmm.co.jp/digital/video/urvrsp00544/urvrsp00544ps.jpg",
-          "list": "https://pics.dmm.co.jp/digital/video/urvrsp00544/urvrsp00544pt.jpg"
-        },
-        "sampleImageURL": {
-          "sample_s": {
-            "image": [
-              "https://pics.dmm.co.jp/digital/video/urvrsp00544/urvrsp00544-1.jpg",
-              "https://pics.dmm.co.jp/digital/video/urvrsp00544/urvrsp00544-2.jpg",
-              "https://pics.dmm.co.jp/digital/video/urvrsp00544/urvrsp00544-3.jpg",
-              "https://pics.dmm.co.jp/digital/video/urvrsp00544/urvrsp00544-4.jpg",
-              "https://pics.dmm.co.jp/digital/video/urvrsp00544/urvrsp00544-5.jpg",
-              "https://pics.dmm.co.jp/digital/video/urvrsp00544/urvrsp00544-6.jpg",
-              "https://pics.dmm.co.jp/digital/video/urvrsp00544/urvrsp00544-7.jpg",
-              "https://pics.dmm.co.jp/digital/video/urvrsp00544/urvrsp00544-8.jpg",
-              "https://pics.dmm.co.jp/digital/video/urvrsp00544/urvrsp00544-9.jpg",
-              "https://pics.dmm.co.jp/digital/video/urvrsp00544/urvrsp00544-10.jpg",
-              "https://pics.dmm.co.jp/digital/video/urvrsp00544/urvrsp00544-11.jpg",
-              "https://pics.dmm.co.jp/digital/video/urvrsp00544/urvrsp00544-12.jpg",
-              "https://pics.dmm.co.jp/digital/video/urvrsp00544/urvrsp00544-13.jpg",
-              "https://pics.dmm.co.jp/digital/video/urvrsp00544/urvrsp00544-14.jpg",
-              "https://pics.dmm.co.jp/digital/video/urvrsp00544/urvrsp00544-15.jpg"
-            ]
-          },
-          "sample_l": {
-            "image": [
-              "https://pics.dmm.co.jp/digital/video/urvrsp00544/urvrsp00544jp-1.jpg",
-              "https://pics.dmm.co.jp/digital/video/urvrsp00544/urvrsp00544jp-2.jpg",
-              "https://pics.dmm.co.jp/digital/video/urvrsp00544/urvrsp00544jp-3.jpg",
-              "https://pics.dmm.co.jp/digital/video/urvrsp00544/urvrsp00544jp-4.jpg",
-              "https://pics.dmm.co.jp/digital/video/urvrsp00544/urvrsp00544jp-5.jpg",
-              "https://pics.dmm.co.jp/digital/video/urvrsp00544/urvrsp00544jp-6.jpg",
-              "https://pics.dmm.co.jp/digital/video/urvrsp00544/urvrsp00544jp-7.jpg",
-              "https://pics.dmm.co.jp/digital/video/urvrsp00544/urvrsp00544jp-8.jpg",
-              "https://pics.dmm.co.jp/digital/video/urvrsp00544/urvrsp00544jp-9.jpg",
-              "https://pics.dmm.co.jp/digital/video/urvrsp00544/urvrsp00544jp-10.jpg",
-              "https://pics.dmm.co.jp/digital/video/urvrsp00544/urvrsp00544jp-11.jpg",
-              "https://pics.dmm.co.jp/digital/video/urvrsp00544/urvrsp00544jp-12.jpg",
-              "https://pics.dmm.co.jp/digital/video/urvrsp00544/urvrsp00544jp-13.jpg",
-              "https://pics.dmm.co.jp/digital/video/urvrsp00544/urvrsp00544jp-14.jpg",
-              "https://pics.dmm.co.jp/digital/video/urvrsp00544/urvrsp00544jp-15.jpg"
-            ]
-          }
-        },
-        "prices": {
-          "price": "1280~",
-          "list_price": "1280~",
-          "deliveries": {
-            "delivery": [
-              {
-                "type": "8k",
-                "price": "1780",
-                "list_price": "1780"
-              },
-              {
-                "type": "hd",
-                "price": "1480",
-                "list_price": "1480"
-              },
-              {
-                "type": "download",
-                "price": "1280",
-                "list_price": "1280"
-              }
-            ]
-          }
-        },
-        "date": "2026-02-20 00:00:06",
-        "iteminfo": {
-          "genre": [
-            {
-              "id": 6925,
-              "name": "ハイクオリティVR"
-            },
-            {
-              "id": 4025,
-              "name": "単体作品"
-            },
-            {
-              "id": 6793,
-              "name": "VR専用"
-            },
-            {
-              "id": 6548,
-              "name": "独占配信"
-            },
-            {
-              "id": 307935,
-              "name": "8KVR"
-            },
-            {
-              "id": 4123,
-              "name": "カップル"
-            },
-            {
-              "id": 555,
-              "name": "恋愛"
-            },
-            {
-              "id": 6961,
-              "name": "部活・マネージャー"
-            },
-            {
-              "id": 48,
-              "name": "制服"
-            },
-            {
-              "id": 3011,
-              "name": "学生服"
-            },
-            {
-              "id": 1027,
-              "name": "美少女"
-            },
-            {
-              "id": 1018,
-              "name": "女子校生"
-            },
-            {
-              "id": 5001,
-              "name": "中出し"
-            }
-          ],
-          "series": [
-            {
-              "id": 223790,
-              "name": "unfinished VR"
-            }
-          ],
-          "maker": [
-            {
-              "id": 45867,
-              "name": "unfinished"
-            }
-          ],
-          "actress": [
-            {
-              "id": 1104855,
-              "name": "佐藤愛瑠",
-              "ruby": "さとうめる"
-            }
-          ],
-          "director": [
-            {
-              "id": 120577,
-              "name": "リトル侍",
-              "ruby": "りとるざむらい"
-            }
-          ],
-          "label": [
-            {
-              "id": 26271,
-              "name": "Marrion Group VR"
             }
           ]
         }
@@ -100889,33 +100962,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "854",
+                "price": "1220",
                 "list_price": "1220"
               },
               {
                 "type": "download",
-                "price": "651",
+                "price": "930",
                 "list_price": "930"
               },
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "651",
+                "price": "930",
                 "list_price": "930"
               },
               {
                 "type": "androiddl",
-                "price": "651",
+                "price": "930",
                 "list_price": "930"
               }
             ]
@@ -100970,14 +101043,7 @@
               "name": "マジックミラー号 ハードボイルド"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-06-17 00:10:00",
-            "date_end": "2026-06-23 23:59:59",
-            "title": "SODグループ30％OFF第2弾"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -101802,33 +101868,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "966",
+                "price": "1380",
                 "list_price": "1380"
               },
               {
                 "type": "download",
-                "price": "756",
+                "price": "1080",
                 "list_price": "1080"
               },
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "756",
+                "price": "1080",
                 "list_price": "1080"
               },
               {
                 "type": "androiddl",
-                "price": "756",
+                "price": "1080",
                 "list_price": "1080"
               }
             ]
@@ -101888,14 +101954,7 @@
               "name": "FALENO star"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-06-17 00:10:00",
-            "date_end": "2026-06-23 23:59:59",
-            "title": "SODグループ30％OFF第2弾"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -101977,33 +102036,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "890",
+                "price": "1270",
                 "list_price": "1270"
               },
               {
                 "type": "download",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "androiddl",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               }
             ]
@@ -102062,14 +102121,7 @@
               "name": "SYUCHI"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-06-17 00:10:00",
-            "date_end": "2026-06-23 23:59:59",
-            "title": "SODグループ30％OFF第2弾"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -102466,33 +102518,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "350~",
+          "price": "500~",
           "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "1246",
+                "price": "1780",
                 "list_price": "1780"
               },
               {
                 "type": "download",
-                "price": "890",
+                "price": "1270",
                 "list_price": "1270"
               },
               {
                 "type": "stream",
-                "price": "350",
+                "price": "500",
                 "list_price": "500"
               },
               {
                 "type": "iosdl",
-                "price": "890",
+                "price": "1270",
                 "list_price": "1270"
               },
               {
                 "type": "androiddl",
-                "price": "890",
+                "price": "1270",
                 "list_price": "1270"
               }
             ]
@@ -102578,14 +102630,7 @@
               "name": "SENZ"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-06-17 00:10:00",
-            "date_end": "2026-06-23 23:59:59",
-            "title": "SODグループ30％OFF第2弾"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -106043,6 +106088,166 @@
         "floor_code": "videoa",
         "floor_name": "ビデオ",
         "category_name": "ビデオ (動画)",
+        "content_id": "ssni00998",
+        "product_id": "ssni00998",
+        "title": "娘の友達にベロベロ接吻されたあの瞬間から… 潮美舞",
+        "volume": "118",
+        "review": {
+          "count": 39,
+          "average": "4.64"
+        },
+        "URL": "https://video.dmm.co.jp/av/content/?id=ssni00998",
+        "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Dssni00998&af_id=saaaaaaya-990&ch=api",
+        "imageURL": {
+          "large": "https://pics.dmm.co.jp/digital/video/ssni00998/ssni00998pl.jpg",
+          "small": "https://pics.dmm.co.jp/digital/video/ssni00998/ssni00998ps.jpg",
+          "list": "https://pics.dmm.co.jp/digital/video/ssni00998/ssni00998pt.jpg"
+        },
+        "sampleImageURL": {
+          "sample_s": {
+            "image": [
+              "https://pics.dmm.co.jp/digital/video/ssni00998/ssni00998-1.jpg",
+              "https://pics.dmm.co.jp/digital/video/ssni00998/ssni00998-2.jpg",
+              "https://pics.dmm.co.jp/digital/video/ssni00998/ssni00998-3.jpg",
+              "https://pics.dmm.co.jp/digital/video/ssni00998/ssni00998-4.jpg",
+              "https://pics.dmm.co.jp/digital/video/ssni00998/ssni00998-5.jpg",
+              "https://pics.dmm.co.jp/digital/video/ssni00998/ssni00998-6.jpg",
+              "https://pics.dmm.co.jp/digital/video/ssni00998/ssni00998-7.jpg",
+              "https://pics.dmm.co.jp/digital/video/ssni00998/ssni00998-8.jpg",
+              "https://pics.dmm.co.jp/digital/video/ssni00998/ssni00998-9.jpg",
+              "https://pics.dmm.co.jp/digital/video/ssni00998/ssni00998-10.jpg"
+            ]
+          },
+          "sample_l": {
+            "image": [
+              "https://pics.dmm.co.jp/digital/video/ssni00998/ssni00998jp-1.jpg",
+              "https://pics.dmm.co.jp/digital/video/ssni00998/ssni00998jp-2.jpg",
+              "https://pics.dmm.co.jp/digital/video/ssni00998/ssni00998jp-3.jpg",
+              "https://pics.dmm.co.jp/digital/video/ssni00998/ssni00998jp-4.jpg",
+              "https://pics.dmm.co.jp/digital/video/ssni00998/ssni00998jp-5.jpg",
+              "https://pics.dmm.co.jp/digital/video/ssni00998/ssni00998jp-6.jpg",
+              "https://pics.dmm.co.jp/digital/video/ssni00998/ssni00998jp-7.jpg",
+              "https://pics.dmm.co.jp/digital/video/ssni00998/ssni00998jp-8.jpg",
+              "https://pics.dmm.co.jp/digital/video/ssni00998/ssni00998jp-9.jpg",
+              "https://pics.dmm.co.jp/digital/video/ssni00998/ssni00998jp-10.jpg"
+            ]
+          }
+        },
+        "sampleMovieURL": {
+          "size_476_306": "https://www.dmm.co.jp/litevideo/-/part/=/cid=ssni00998/size=476_306/affi_id=saaaaaaya-990/",
+          "size_560_360": "https://www.dmm.co.jp/litevideo/-/part/=/cid=ssni00998/size=560_360/affi_id=saaaaaaya-990/",
+          "size_644_414": "https://www.dmm.co.jp/litevideo/-/part/=/cid=ssni00998/size=644_414/affi_id=saaaaaaya-990/",
+          "size_720_480": "https://www.dmm.co.jp/litevideo/-/part/=/cid=ssni00998/size=720_480/affi_id=saaaaaaya-990/",
+          "pc_flag": 1,
+          "sp_flag": 1
+        },
+        "prices": {
+          "price": "300~",
+          "list_price": "300~",
+          "deliveries": {
+            "delivery": [
+              {
+                "type": "hd",
+                "price": "980",
+                "list_price": "980"
+              },
+              {
+                "type": "download",
+                "price": "620",
+                "list_price": "620"
+              },
+              {
+                "type": "stream",
+                "price": "300",
+                "list_price": "300"
+              },
+              {
+                "type": "iosdl",
+                "price": "620",
+                "list_price": "620"
+              },
+              {
+                "type": "androiddl",
+                "price": "620",
+                "list_price": "620"
+              }
+            ]
+          }
+        },
+        "date": "2021-02-18 10:00:53",
+        "iteminfo": {
+          "genre": [
+            {
+              "id": 6533,
+              "name": "ハイビジョン"
+            },
+            {
+              "id": 6548,
+              "name": "独占配信"
+            },
+            {
+              "id": 6017,
+              "name": "ギリモザ"
+            },
+            {
+              "id": 1027,
+              "name": "美少女"
+            },
+            {
+              "id": 4059,
+              "name": "キス・接吻"
+            },
+            {
+              "id": 48,
+              "name": "制服"
+            },
+            {
+              "id": 2006,
+              "name": "スレンダー"
+            },
+            {
+              "id": 5002,
+              "name": "フェラ"
+            },
+            {
+              "id": 4025,
+              "name": "単体作品"
+            }
+          ],
+          "maker": [
+            {
+              "id": 3152,
+              "name": "エスワン ナンバーワンスタイル"
+            }
+          ],
+          "actress": [
+            {
+              "id": 1064559,
+              "name": "潮美舞",
+              "ruby": "しおみまい"
+            }
+          ],
+          "director": [
+            {
+              "id": 1443,
+              "name": "朝霧浄",
+              "ruby": "あさぎりじょう"
+            }
+          ],
+          "label": [
+            {
+              "id": 3474,
+              "name": "S1 NO.1 STYLE"
+            }
+          ]
+        }
+      },
+      {
+        "service_code": "digital",
+        "service_name": "動画",
+        "floor_code": "videoa",
+        "floor_name": "ビデオ",
+        "category_name": "ビデオ (動画)",
         "content_id": "savr00273",
         "product_id": "savr00273",
         "title": "【VR】「そんなに好きなんですか？」甘い誘惑と「ぷにふわおっぱい」に何度も ハマる 脅威的な肉体 水原みその",
@@ -109214,166 +109419,6 @@
         "floor_code": "videoa",
         "floor_name": "ビデオ",
         "category_name": "ビデオ (動画)",
-        "content_id": "ssni00998",
-        "product_id": "ssni00998",
-        "title": "娘の友達にベロベロ接吻されたあの瞬間から… 潮美舞",
-        "volume": "118",
-        "review": {
-          "count": 38,
-          "average": "4.63"
-        },
-        "URL": "https://video.dmm.co.jp/av/content/?id=ssni00998",
-        "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Dssni00998&af_id=saaaaaaya-990&ch=api",
-        "imageURL": {
-          "large": "https://pics.dmm.co.jp/digital/video/ssni00998/ssni00998pl.jpg",
-          "small": "https://pics.dmm.co.jp/digital/video/ssni00998/ssni00998ps.jpg",
-          "list": "https://pics.dmm.co.jp/digital/video/ssni00998/ssni00998pt.jpg"
-        },
-        "sampleImageURL": {
-          "sample_s": {
-            "image": [
-              "https://pics.dmm.co.jp/digital/video/ssni00998/ssni00998-1.jpg",
-              "https://pics.dmm.co.jp/digital/video/ssni00998/ssni00998-2.jpg",
-              "https://pics.dmm.co.jp/digital/video/ssni00998/ssni00998-3.jpg",
-              "https://pics.dmm.co.jp/digital/video/ssni00998/ssni00998-4.jpg",
-              "https://pics.dmm.co.jp/digital/video/ssni00998/ssni00998-5.jpg",
-              "https://pics.dmm.co.jp/digital/video/ssni00998/ssni00998-6.jpg",
-              "https://pics.dmm.co.jp/digital/video/ssni00998/ssni00998-7.jpg",
-              "https://pics.dmm.co.jp/digital/video/ssni00998/ssni00998-8.jpg",
-              "https://pics.dmm.co.jp/digital/video/ssni00998/ssni00998-9.jpg",
-              "https://pics.dmm.co.jp/digital/video/ssni00998/ssni00998-10.jpg"
-            ]
-          },
-          "sample_l": {
-            "image": [
-              "https://pics.dmm.co.jp/digital/video/ssni00998/ssni00998jp-1.jpg",
-              "https://pics.dmm.co.jp/digital/video/ssni00998/ssni00998jp-2.jpg",
-              "https://pics.dmm.co.jp/digital/video/ssni00998/ssni00998jp-3.jpg",
-              "https://pics.dmm.co.jp/digital/video/ssni00998/ssni00998jp-4.jpg",
-              "https://pics.dmm.co.jp/digital/video/ssni00998/ssni00998jp-5.jpg",
-              "https://pics.dmm.co.jp/digital/video/ssni00998/ssni00998jp-6.jpg",
-              "https://pics.dmm.co.jp/digital/video/ssni00998/ssni00998jp-7.jpg",
-              "https://pics.dmm.co.jp/digital/video/ssni00998/ssni00998jp-8.jpg",
-              "https://pics.dmm.co.jp/digital/video/ssni00998/ssni00998jp-9.jpg",
-              "https://pics.dmm.co.jp/digital/video/ssni00998/ssni00998jp-10.jpg"
-            ]
-          }
-        },
-        "sampleMovieURL": {
-          "size_476_306": "https://www.dmm.co.jp/litevideo/-/part/=/cid=ssni00998/size=476_306/affi_id=saaaaaaya-990/",
-          "size_560_360": "https://www.dmm.co.jp/litevideo/-/part/=/cid=ssni00998/size=560_360/affi_id=saaaaaaya-990/",
-          "size_644_414": "https://www.dmm.co.jp/litevideo/-/part/=/cid=ssni00998/size=644_414/affi_id=saaaaaaya-990/",
-          "size_720_480": "https://www.dmm.co.jp/litevideo/-/part/=/cid=ssni00998/size=720_480/affi_id=saaaaaaya-990/",
-          "pc_flag": 1,
-          "sp_flag": 1
-        },
-        "prices": {
-          "price": "300~",
-          "list_price": "300~",
-          "deliveries": {
-            "delivery": [
-              {
-                "type": "hd",
-                "price": "980",
-                "list_price": "980"
-              },
-              {
-                "type": "download",
-                "price": "620",
-                "list_price": "620"
-              },
-              {
-                "type": "stream",
-                "price": "300",
-                "list_price": "300"
-              },
-              {
-                "type": "iosdl",
-                "price": "620",
-                "list_price": "620"
-              },
-              {
-                "type": "androiddl",
-                "price": "620",
-                "list_price": "620"
-              }
-            ]
-          }
-        },
-        "date": "2021-02-18 10:00:53",
-        "iteminfo": {
-          "genre": [
-            {
-              "id": 6533,
-              "name": "ハイビジョン"
-            },
-            {
-              "id": 6548,
-              "name": "独占配信"
-            },
-            {
-              "id": 6017,
-              "name": "ギリモザ"
-            },
-            {
-              "id": 1027,
-              "name": "美少女"
-            },
-            {
-              "id": 4059,
-              "name": "キス・接吻"
-            },
-            {
-              "id": 48,
-              "name": "制服"
-            },
-            {
-              "id": 2006,
-              "name": "スレンダー"
-            },
-            {
-              "id": 5002,
-              "name": "フェラ"
-            },
-            {
-              "id": 4025,
-              "name": "単体作品"
-            }
-          ],
-          "maker": [
-            {
-              "id": 3152,
-              "name": "エスワン ナンバーワンスタイル"
-            }
-          ],
-          "actress": [
-            {
-              "id": 1064559,
-              "name": "潮美舞",
-              "ruby": "しおみまい"
-            }
-          ],
-          "director": [
-            {
-              "id": 1443,
-              "name": "朝霧浄",
-              "ruby": "あさぎりじょう"
-            }
-          ],
-          "label": [
-            {
-              "id": 3474,
-              "name": "S1 NO.1 STYLE"
-            }
-          ]
-        }
-      },
-      {
-        "service_code": "digital",
-        "service_name": "動画",
-        "floor_code": "videoa",
-        "floor_name": "ビデオ",
-        "category_name": "ビデオ (動画)",
         "content_id": "h_491neco00001",
         "product_id": "h_491neco00001",
         "title": "146cmの可愛らしい未発育美少女に本気求婚中出しレ〇プ 南日菜乃",
@@ -109610,38 +109655,38 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "4k",
-                "price": "1036",
+                "price": "1480",
                 "list_price": "1480"
               },
               {
                 "type": "hd",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "download",
-                "price": "413",
+                "price": "590",
                 "list_price": "590"
               },
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "413",
+                "price": "590",
                 "list_price": "590"
               },
               {
                 "type": "androiddl",
-                "price": "413",
+                "price": "590",
                 "list_price": "590"
               }
             ]
@@ -109702,14 +109747,7 @@
               "name": "----"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-06-17 00:10:00",
-            "date_end": "2026-06-23 23:59:59",
-            "title": "SODグループ30％OFF第2弾"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -123769,8 +123807,8 @@
           }
         },
         "prices": {
-          "price": "980~",
-          "list_price": "980~",
+          "price": "500~",
+          "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
@@ -123787,6 +123825,11 @@
                 "type": "download",
                 "price": "980",
                 "list_price": "980"
+              },
+              {
+                "type": "rp",
+                "price": "500",
+                "list_price": "500"
               }
             ]
           }
@@ -126449,38 +126492,38 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "350~",
+          "price": "500~",
           "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "4k",
-                "price": "1806",
+                "price": "2580",
                 "list_price": "2580"
               },
               {
                 "type": "hd",
-                "price": "1316",
+                "price": "1880",
                 "list_price": "1880"
               },
               {
                 "type": "download",
-                "price": "966",
+                "price": "1380",
                 "list_price": "1380"
               },
               {
                 "type": "stream",
-                "price": "350",
+                "price": "500",
                 "list_price": "500"
               },
               {
                 "type": "iosdl",
-                "price": "966",
+                "price": "1380",
                 "list_price": "1380"
               },
               {
                 "type": "androiddl",
-                "price": "966",
+                "price": "1380",
                 "list_price": "1380"
               }
             ]
@@ -126548,14 +126591,7 @@
               "name": "----"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-06-17 00:10:00",
-            "date_end": "2026-06-23 23:59:59",
-            "title": "SODグループ30％OFF第2弾"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -126804,33 +126840,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "579~",
+          "price": "405~",
           "list_price": "579~",
           "deliveries": {
             "delivery": [
               {
                 "type": "download",
-                "price": "1445",
+                "price": "1010",
                 "list_price": "1445"
               },
               {
                 "type": "stream",
-                "price": "579",
+                "price": "405",
                 "list_price": "579"
               },
               {
                 "type": "hd",
-                "price": "2469",
+                "price": "1728",
                 "list_price": "2469"
               },
               {
                 "type": "iosdl",
-                "price": "1445",
+                "price": "1010",
                 "list_price": "1445"
               },
               {
                 "type": "androiddl",
-                "price": "1445",
+                "price": "1010",
                 "list_price": "1445"
               }
             ]
@@ -126900,7 +126936,14 @@
               "name": "靖云会"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-06-24 00:10:00",
+            "date_end": "2026-06-30 23:59:59",
+            "title": "豊彦他30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -133181,33 +133224,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "310~",
+          "price": "217~",
           "list_price": "310~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "310",
+                "price": "217",
                 "list_price": "310"
               },
               {
                 "type": "download",
-                "price": "680",
+                "price": "476",
                 "list_price": "680"
               },
               {
                 "type": "hd",
-                "price": "990",
+                "price": "693",
                 "list_price": "990"
               },
               {
                 "type": "iosdl",
-                "price": "680",
+                "price": "476",
                 "list_price": "680"
               },
               {
                 "type": "androiddl",
-                "price": "680",
+                "price": "476",
                 "list_price": "680"
               }
             ]
@@ -133271,7 +133314,14 @@
               "name": "Dogma"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-06-24 00:10:00",
+            "date_end": "2026-06-30 23:59:59",
+            "title": "豊彦他30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -136824,28 +136874,24 @@
         "iteminfo": {
           "genre": [
             {
-              "id": 6972,
-              "name": "ノーブラ"
+              "id": 6533,
+              "name": "ハイビジョン"
             },
             {
               "id": 6548,
               "name": "独占配信"
             },
             {
-              "id": 6533,
-              "name": "ハイビジョン"
-            },
-            {
-              "id": 6017,
-              "name": "ギリモザ"
+              "id": 4025,
+              "name": "単体作品"
             },
             {
               "id": 5019,
               "name": "パイズリ"
             },
             {
-              "id": 4025,
-              "name": "単体作品"
+              "id": 6017,
+              "name": "ギリモザ"
             },
             {
               "id": 2001,
@@ -136858,6 +136904,10 @@
             {
               "id": 48,
               "name": "制服"
+            },
+            {
+              "id": 6972,
+              "name": "ノーブラ"
             }
           ],
           "series": [
@@ -138798,33 +138848,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "890",
+                "price": "1270",
                 "list_price": "1270"
               },
               {
                 "type": "download",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "androiddl",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               }
             ]
@@ -138888,14 +138938,7 @@
               "name": "SOD女子社員"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-06-17 00:10:00",
-            "date_end": "2026-06-23 23:59:59",
-            "title": "SODグループ30％OFF第2弾"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -143056,38 +143099,38 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "300~",
+          "price": "210~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "4k",
-                "price": "1880",
+                "price": "1316",
                 "list_price": "1880"
               },
               {
                 "type": "hd",
-                "price": "1180",
+                "price": "826",
                 "list_price": "1180"
               },
               {
                 "type": "download",
-                "price": "790",
+                "price": "553",
                 "list_price": "790"
               },
               {
                 "type": "stream",
-                "price": "300",
+                "price": "210",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "790",
+                "price": "553",
                 "list_price": "790"
               },
               {
                 "type": "androiddl",
-                "price": "790",
+                "price": "553",
                 "list_price": "790"
               }
             ]
@@ -143159,7 +143202,14 @@
               "name": "MOODYZ DIVA"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-06-24 00:00:00",
+            "date_end": "2026-06-24 23:59:59",
+            "title": "日替わりセール♪"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -143241,33 +143291,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "890",
+                "price": "1270",
                 "list_price": "1270"
               },
               {
                 "type": "download",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "androiddl",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               }
             ]
@@ -143322,14 +143372,7 @@
               "name": "SYUCHI"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-06-17 00:10:00",
-            "date_end": "2026-06-23 23:59:59",
-            "title": "SODグループ30％OFF第2弾"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -144188,23 +144231,23 @@
           }
         },
         "prices": {
-          "price": "896~",
+          "price": "1280~",
           "list_price": "1280~",
           "deliveries": {
             "delivery": [
               {
                 "type": "8k",
-                "price": "1246",
+                "price": "1780",
                 "list_price": "1780"
               },
               {
                 "type": "hd",
-                "price": "1036",
+                "price": "1480",
                 "list_price": "1480"
               },
               {
                 "type": "download",
-                "price": "896",
+                "price": "1280",
                 "list_price": "1280"
               }
             ]
@@ -144298,14 +144341,7 @@
               "name": "Marrion Group VR"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-06-17 00:10:00",
-            "date_end": "2026-06-23 23:59:59",
-            "title": "ブランドストア30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -146214,33 +146250,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "download",
-                "price": "413",
+                "price": "590",
                 "list_price": "590"
               },
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "hd",
-                "price": "890",
+                "price": "1270",
                 "list_price": "1270"
               },
               {
                 "type": "iosdl",
-                "price": "413",
+                "price": "590",
                 "list_price": "590"
               },
               {
                 "type": "androiddl",
-                "price": "413",
+                "price": "590",
                 "list_price": "590"
               }
             ]
@@ -146310,14 +146346,7 @@
               "name": "Secret（ルビー）"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-06-17 00:10:00",
-            "date_end": "2026-06-23 23:59:59",
-            "title": "ながえスタイル他30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -159941,33 +159970,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "300~",
+          "price": "210~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "1270",
+                "price": "890",
                 "list_price": "1270"
               },
               {
                 "type": "download",
-                "price": "980",
+                "price": "686",
                 "list_price": "980"
               },
               {
                 "type": "stream",
-                "price": "300",
+                "price": "210",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "980",
+                "price": "686",
                 "list_price": "980"
               },
               {
                 "type": "androiddl",
-                "price": "980",
+                "price": "686",
                 "list_price": "980"
               }
             ]
@@ -160037,7 +160066,14 @@
               "name": "Baby Entertainment"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-06-24 00:10:00",
+            "date_end": "2026-06-30 23:59:59",
+            "title": "豊彦他30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -160194,6 +160230,172 @@
             {
               "id": 8004,
               "name": "オーロラプロジェクト・アネックス"
+            }
+          ]
+        }
+      },
+      {
+        "service_code": "digital",
+        "service_name": "動画",
+        "floor_code": "videoa",
+        "floor_name": "ビデオ",
+        "category_name": "ビデオ (動画)",
+        "content_id": "midv00725",
+        "product_id": "midv00725",
+        "title": "観れば絶対中イキさせられる！ アナタもヌイて学べる 石原希望と一緒に！How to SEX！ 「中イキできたら中出し」編 石原希望",
+        "volume": "242",
+        "review": {
+          "count": 61,
+          "average": "4.54"
+        },
+        "URL": "https://video.dmm.co.jp/av/content/?id=midv00725",
+        "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Dmidv00725&af_id=saaaaaaya-990&ch=api",
+        "imageURL": {
+          "large": "https://pics.dmm.co.jp/digital/video/midv00725/midv00725pl.jpg",
+          "small": "https://pics.dmm.co.jp/digital/video/midv00725/midv00725ps.jpg",
+          "list": "https://pics.dmm.co.jp/digital/video/midv00725/midv00725pt.jpg"
+        },
+        "sampleImageURL": {
+          "sample_s": {
+            "image": [
+              "https://pics.dmm.co.jp/digital/video/midv00725/midv00725-1.jpg",
+              "https://pics.dmm.co.jp/digital/video/midv00725/midv00725-2.jpg",
+              "https://pics.dmm.co.jp/digital/video/midv00725/midv00725-3.jpg",
+              "https://pics.dmm.co.jp/digital/video/midv00725/midv00725-4.jpg",
+              "https://pics.dmm.co.jp/digital/video/midv00725/midv00725-5.jpg",
+              "https://pics.dmm.co.jp/digital/video/midv00725/midv00725-6.jpg",
+              "https://pics.dmm.co.jp/digital/video/midv00725/midv00725-7.jpg",
+              "https://pics.dmm.co.jp/digital/video/midv00725/midv00725-8.jpg",
+              "https://pics.dmm.co.jp/digital/video/midv00725/midv00725-9.jpg",
+              "https://pics.dmm.co.jp/digital/video/midv00725/midv00725-10.jpg"
+            ]
+          },
+          "sample_l": {
+            "image": [
+              "https://pics.dmm.co.jp/digital/video/midv00725/midv00725jp-1.jpg",
+              "https://pics.dmm.co.jp/digital/video/midv00725/midv00725jp-2.jpg",
+              "https://pics.dmm.co.jp/digital/video/midv00725/midv00725jp-3.jpg",
+              "https://pics.dmm.co.jp/digital/video/midv00725/midv00725jp-4.jpg",
+              "https://pics.dmm.co.jp/digital/video/midv00725/midv00725jp-5.jpg",
+              "https://pics.dmm.co.jp/digital/video/midv00725/midv00725jp-6.jpg",
+              "https://pics.dmm.co.jp/digital/video/midv00725/midv00725jp-7.jpg",
+              "https://pics.dmm.co.jp/digital/video/midv00725/midv00725jp-8.jpg",
+              "https://pics.dmm.co.jp/digital/video/midv00725/midv00725jp-9.jpg",
+              "https://pics.dmm.co.jp/digital/video/midv00725/midv00725jp-10.jpg"
+            ]
+          }
+        },
+        "sampleMovieURL": {
+          "size_476_306": "https://www.dmm.co.jp/litevideo/-/part/=/cid=midv00725/size=476_306/affi_id=saaaaaaya-990/",
+          "size_560_360": "https://www.dmm.co.jp/litevideo/-/part/=/cid=midv00725/size=560_360/affi_id=saaaaaaya-990/",
+          "size_644_414": "https://www.dmm.co.jp/litevideo/-/part/=/cid=midv00725/size=644_414/affi_id=saaaaaaya-990/",
+          "size_720_480": "https://www.dmm.co.jp/litevideo/-/part/=/cid=midv00725/size=720_480/affi_id=saaaaaaya-990/",
+          "pc_flag": 1,
+          "sp_flag": 1
+        },
+        "prices": {
+          "price": "300~",
+          "list_price": "300~",
+          "deliveries": {
+            "delivery": [
+              {
+                "type": "hd",
+                "price": "1180",
+                "list_price": "1180"
+              },
+              {
+                "type": "download",
+                "price": "790",
+                "list_price": "790"
+              },
+              {
+                "type": "stream",
+                "price": "300",
+                "list_price": "300"
+              },
+              {
+                "type": "iosdl",
+                "price": "790",
+                "list_price": "790"
+              },
+              {
+                "type": "androiddl",
+                "price": "790",
+                "list_price": "790"
+              }
+            ]
+          }
+        },
+        "date": "2024-05-17 10:00:50",
+        "iteminfo": {
+          "genre": [
+            {
+              "id": 6012,
+              "name": "4時間以上作品"
+            },
+            {
+              "id": 6533,
+              "name": "ハイビジョン"
+            },
+            {
+              "id": 6548,
+              "name": "独占配信"
+            },
+            {
+              "id": 6070,
+              "name": "How To"
+            },
+            {
+              "id": 2001,
+              "name": "巨乳"
+            },
+            {
+              "id": 4025,
+              "name": "単体作品"
+            },
+            {
+              "id": 5022,
+              "name": "3P・4P"
+            },
+            {
+              "id": 48,
+              "name": "制服"
+            },
+            {
+              "id": 5001,
+              "name": "中出し"
+            }
+          ],
+          "series": [
+            {
+              "id": 4515395,
+              "name": "アナタもヌイて学べる〇〇と一緒にHow to SEX！"
+            }
+          ],
+          "maker": [
+            {
+              "id": 1509,
+              "name": "ムーディーズ"
+            }
+          ],
+          "actress": [
+            {
+              "id": 1061063,
+              "name": "石原希望",
+              "ruby": "いしはらのぞみ"
+            }
+          ],
+          "director": [
+            {
+              "id": 108180,
+              "name": "ZAMPA",
+              "ruby": "ざんぱ"
+            }
+          ],
+          "label": [
+            {
+              "id": 4325,
+              "name": "MOODYZ DIVA"
             }
           ]
         }
@@ -160957,33 +161159,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "890",
+                "price": "1270",
                 "list_price": "1270"
               },
               {
                 "type": "download",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "androiddl",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               }
             ]
@@ -161053,14 +161255,7 @@
               "name": "マジックミラー号"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-06-17 00:10:00",
-            "date_end": "2026-06-23 23:59:59",
-            "title": "SODグループ30％OFF第2弾"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -163164,172 +163359,6 @@
         "floor_code": "videoa",
         "floor_name": "ビデオ",
         "category_name": "ビデオ (動画)",
-        "content_id": "midv00725",
-        "product_id": "midv00725",
-        "title": "観れば絶対中イキさせられる！ アナタもヌイて学べる 石原希望と一緒に！How to SEX！ 「中イキできたら中出し」編 石原希望",
-        "volume": "242",
-        "review": {
-          "count": 60,
-          "average": "4.53"
-        },
-        "URL": "https://video.dmm.co.jp/av/content/?id=midv00725",
-        "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Dmidv00725&af_id=saaaaaaya-990&ch=api",
-        "imageURL": {
-          "large": "https://pics.dmm.co.jp/digital/video/midv00725/midv00725pl.jpg",
-          "small": "https://pics.dmm.co.jp/digital/video/midv00725/midv00725ps.jpg",
-          "list": "https://pics.dmm.co.jp/digital/video/midv00725/midv00725pt.jpg"
-        },
-        "sampleImageURL": {
-          "sample_s": {
-            "image": [
-              "https://pics.dmm.co.jp/digital/video/midv00725/midv00725-1.jpg",
-              "https://pics.dmm.co.jp/digital/video/midv00725/midv00725-2.jpg",
-              "https://pics.dmm.co.jp/digital/video/midv00725/midv00725-3.jpg",
-              "https://pics.dmm.co.jp/digital/video/midv00725/midv00725-4.jpg",
-              "https://pics.dmm.co.jp/digital/video/midv00725/midv00725-5.jpg",
-              "https://pics.dmm.co.jp/digital/video/midv00725/midv00725-6.jpg",
-              "https://pics.dmm.co.jp/digital/video/midv00725/midv00725-7.jpg",
-              "https://pics.dmm.co.jp/digital/video/midv00725/midv00725-8.jpg",
-              "https://pics.dmm.co.jp/digital/video/midv00725/midv00725-9.jpg",
-              "https://pics.dmm.co.jp/digital/video/midv00725/midv00725-10.jpg"
-            ]
-          },
-          "sample_l": {
-            "image": [
-              "https://pics.dmm.co.jp/digital/video/midv00725/midv00725jp-1.jpg",
-              "https://pics.dmm.co.jp/digital/video/midv00725/midv00725jp-2.jpg",
-              "https://pics.dmm.co.jp/digital/video/midv00725/midv00725jp-3.jpg",
-              "https://pics.dmm.co.jp/digital/video/midv00725/midv00725jp-4.jpg",
-              "https://pics.dmm.co.jp/digital/video/midv00725/midv00725jp-5.jpg",
-              "https://pics.dmm.co.jp/digital/video/midv00725/midv00725jp-6.jpg",
-              "https://pics.dmm.co.jp/digital/video/midv00725/midv00725jp-7.jpg",
-              "https://pics.dmm.co.jp/digital/video/midv00725/midv00725jp-8.jpg",
-              "https://pics.dmm.co.jp/digital/video/midv00725/midv00725jp-9.jpg",
-              "https://pics.dmm.co.jp/digital/video/midv00725/midv00725jp-10.jpg"
-            ]
-          }
-        },
-        "sampleMovieURL": {
-          "size_476_306": "https://www.dmm.co.jp/litevideo/-/part/=/cid=midv00725/size=476_306/affi_id=saaaaaaya-990/",
-          "size_560_360": "https://www.dmm.co.jp/litevideo/-/part/=/cid=midv00725/size=560_360/affi_id=saaaaaaya-990/",
-          "size_644_414": "https://www.dmm.co.jp/litevideo/-/part/=/cid=midv00725/size=644_414/affi_id=saaaaaaya-990/",
-          "size_720_480": "https://www.dmm.co.jp/litevideo/-/part/=/cid=midv00725/size=720_480/affi_id=saaaaaaya-990/",
-          "pc_flag": 1,
-          "sp_flag": 1
-        },
-        "prices": {
-          "price": "300~",
-          "list_price": "300~",
-          "deliveries": {
-            "delivery": [
-              {
-                "type": "hd",
-                "price": "1180",
-                "list_price": "1180"
-              },
-              {
-                "type": "download",
-                "price": "790",
-                "list_price": "790"
-              },
-              {
-                "type": "stream",
-                "price": "300",
-                "list_price": "300"
-              },
-              {
-                "type": "iosdl",
-                "price": "790",
-                "list_price": "790"
-              },
-              {
-                "type": "androiddl",
-                "price": "790",
-                "list_price": "790"
-              }
-            ]
-          }
-        },
-        "date": "2024-05-17 10:00:50",
-        "iteminfo": {
-          "genre": [
-            {
-              "id": 6012,
-              "name": "4時間以上作品"
-            },
-            {
-              "id": 6533,
-              "name": "ハイビジョン"
-            },
-            {
-              "id": 6548,
-              "name": "独占配信"
-            },
-            {
-              "id": 6070,
-              "name": "How To"
-            },
-            {
-              "id": 2001,
-              "name": "巨乳"
-            },
-            {
-              "id": 4025,
-              "name": "単体作品"
-            },
-            {
-              "id": 5022,
-              "name": "3P・4P"
-            },
-            {
-              "id": 48,
-              "name": "制服"
-            },
-            {
-              "id": 5001,
-              "name": "中出し"
-            }
-          ],
-          "series": [
-            {
-              "id": 4515395,
-              "name": "アナタもヌイて学べる〇〇と一緒にHow to SEX！"
-            }
-          ],
-          "maker": [
-            {
-              "id": 1509,
-              "name": "ムーディーズ"
-            }
-          ],
-          "actress": [
-            {
-              "id": 1061063,
-              "name": "石原希望",
-              "ruby": "いしはらのぞみ"
-            }
-          ],
-          "director": [
-            {
-              "id": 108180,
-              "name": "ZAMPA",
-              "ruby": "ざんぱ"
-            }
-          ],
-          "label": [
-            {
-              "id": 4325,
-              "name": "MOODYZ DIVA"
-            }
-          ]
-        }
-      },
-      {
-        "service_code": "digital",
-        "service_name": "動画",
-        "floor_code": "videoa",
-        "floor_name": "ビデオ",
-        "category_name": "ビデオ (動画)",
         "content_id": "hndb00185",
         "product_id": "hndb00185",
         "title": "石原希望12本番中出しBEST本中出演作品完全収録超お得版",
@@ -163524,38 +163553,38 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "500~",
+          "price": "350~",
           "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "4k",
-                "price": "2950",
+                "price": "2065",
                 "list_price": "2950"
               },
               {
                 "type": "hd",
-                "price": "2450",
+                "price": "1715",
                 "list_price": "2450"
               },
               {
                 "type": "download",
-                "price": "1980",
+                "price": "1386",
                 "list_price": "1980"
               },
               {
                 "type": "stream",
-                "price": "500",
+                "price": "350",
                 "list_price": "500"
               },
               {
                 "type": "iosdl",
-                "price": "1980",
+                "price": "1386",
                 "list_price": "1980"
               },
               {
                 "type": "androiddl",
-                "price": "1980",
+                "price": "1386",
                 "list_price": "1980"
               }
             ]
@@ -163623,7 +163652,14 @@
               "name": "sugar"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-06-24 00:10:00",
+            "date_end": "2026-06-30 23:59:59",
+            "title": "ブランドストア30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -168788,161 +168824,6 @@
         "floor_code": "videoa",
         "floor_name": "ビデオ",
         "category_name": "ビデオ (動画)",
-        "content_id": "sivr00415",
-        "product_id": "sivr00415",
-        "title": "【VR】【禁断性交】教師の僕は生徒（咲花）と恋に落ちた…卒業するまで関係を持つのは我慢しようと誓い合った なのに、他の女生徒に告白される僕に嫉妬した咲花は「先生の特別な存在になりたい…よそ見しちゃヤダ」文化祭の夜、ボクたちは超えてはいけない一線を… 白上咲花",
-        "volume": "101",
-        "review": {
-          "count": 44,
-          "average": "4.52"
-        },
-        "URL": "https://video.dmm.co.jp/av/content/?id=sivr00415",
-        "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Dsivr00415&af_id=saaaaaaya-990&ch=api",
-        "imageURL": {
-          "large": "https://pics.dmm.co.jp/digital/video/sivr00415/sivr00415pl.jpg",
-          "small": "https://pics.dmm.co.jp/digital/video/sivr00415/sivr00415ps.jpg",
-          "list": "https://pics.dmm.co.jp/digital/video/sivr00415/sivr00415pt.jpg"
-        },
-        "sampleImageURL": {
-          "sample_s": {
-            "image": [
-              "https://pics.dmm.co.jp/digital/video/sivr00415/sivr00415-1.jpg",
-              "https://pics.dmm.co.jp/digital/video/sivr00415/sivr00415-2.jpg",
-              "https://pics.dmm.co.jp/digital/video/sivr00415/sivr00415-3.jpg",
-              "https://pics.dmm.co.jp/digital/video/sivr00415/sivr00415-4.jpg",
-              "https://pics.dmm.co.jp/digital/video/sivr00415/sivr00415-5.jpg",
-              "https://pics.dmm.co.jp/digital/video/sivr00415/sivr00415-6.jpg",
-              "https://pics.dmm.co.jp/digital/video/sivr00415/sivr00415-7.jpg",
-              "https://pics.dmm.co.jp/digital/video/sivr00415/sivr00415-8.jpg",
-              "https://pics.dmm.co.jp/digital/video/sivr00415/sivr00415-9.jpg",
-              "https://pics.dmm.co.jp/digital/video/sivr00415/sivr00415-10.jpg",
-              "https://pics.dmm.co.jp/digital/video/sivr00415/sivr00415-11.jpg",
-              "https://pics.dmm.co.jp/digital/video/sivr00415/sivr00415-12.jpg"
-            ]
-          },
-          "sample_l": {
-            "image": [
-              "https://pics.dmm.co.jp/digital/video/sivr00415/sivr00415jp-1.jpg",
-              "https://pics.dmm.co.jp/digital/video/sivr00415/sivr00415jp-2.jpg",
-              "https://pics.dmm.co.jp/digital/video/sivr00415/sivr00415jp-3.jpg",
-              "https://pics.dmm.co.jp/digital/video/sivr00415/sivr00415jp-4.jpg",
-              "https://pics.dmm.co.jp/digital/video/sivr00415/sivr00415jp-5.jpg",
-              "https://pics.dmm.co.jp/digital/video/sivr00415/sivr00415jp-6.jpg",
-              "https://pics.dmm.co.jp/digital/video/sivr00415/sivr00415jp-7.jpg",
-              "https://pics.dmm.co.jp/digital/video/sivr00415/sivr00415jp-8.jpg",
-              "https://pics.dmm.co.jp/digital/video/sivr00415/sivr00415jp-9.jpg",
-              "https://pics.dmm.co.jp/digital/video/sivr00415/sivr00415jp-10.jpg",
-              "https://pics.dmm.co.jp/digital/video/sivr00415/sivr00415jp-11.jpg",
-              "https://pics.dmm.co.jp/digital/video/sivr00415/sivr00415jp-12.jpg"
-            ]
-          }
-        },
-        "prices": {
-          "price": "300~",
-          "list_price": "300~",
-          "deliveries": {
-            "delivery": [
-              {
-                "type": "8k",
-                "price": "980",
-                "list_price": "980"
-              },
-              {
-                "type": "hd",
-                "price": "780",
-                "list_price": "780"
-              },
-              {
-                "type": "download",
-                "price": "580",
-                "list_price": "580"
-              },
-              {
-                "type": "rp",
-                "price": "300",
-                "list_price": "300"
-              }
-            ]
-          }
-        },
-        "date": "2025-06-05 00:00:59",
-        "iteminfo": {
-          "genre": [
-            {
-              "id": 6925,
-              "name": "ハイクオリティVR"
-            },
-            {
-              "id": 307935,
-              "name": "8KVR"
-            },
-            {
-              "id": 4025,
-              "name": "単体作品"
-            },
-            {
-              "id": 6793,
-              "name": "VR専用"
-            },
-            {
-              "id": 6548,
-              "name": "独占配信"
-            },
-            {
-              "id": 5063,
-              "name": "主観"
-            },
-            {
-              "id": 4059,
-              "name": "キス・接吻"
-            },
-            {
-              "id": 2006,
-              "name": "スレンダー"
-            },
-            {
-              "id": 1018,
-              "name": "女子校生"
-            },
-            {
-              "id": 48,
-              "name": "制服"
-            }
-          ],
-          "maker": [
-            {
-              "id": 3152,
-              "name": "エスワン ナンバーワンスタイル"
-            }
-          ],
-          "actress": [
-            {
-              "id": 1092662,
-              "name": "白上咲花",
-              "ruby": "しらかみえみか"
-            }
-          ],
-          "director": [
-            {
-              "id": 113793,
-              "name": "こあら太郎（わ）",
-              "ruby": "こあらたろうわ"
-            }
-          ],
-          "label": [
-            {
-              "id": 25838,
-              "name": "S1 VR"
-            }
-          ]
-        }
-      },
-      {
-        "service_code": "digital",
-        "service_name": "動画",
-        "floor_code": "videoa",
-        "floor_name": "ビデオ",
-        "category_name": "ビデオ (動画)",
         "content_id": "urvrsp00456",
         "product_id": "urvrsp00456",
         "title": "【VR】【8K VR】J〇×オナ指示射精管理×顔近JOIに絶対従う完堕ち射精にご褒美セックスで中出し射精 逢沢みゆ",
@@ -170118,33 +169999,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "890",
+                "price": "1270",
                 "list_price": "1270"
               },
               {
                 "type": "download",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "androiddl",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               }
             ]
@@ -170197,14 +170078,7 @@
               "name": "SENZ"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-06-17 00:10:00",
-            "date_end": "2026-06-23 23:59:59",
-            "title": "SODグループ30％OFF第2弾"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -175373,33 +175247,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "300~",
+          "price": "210~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "download",
-                "price": "980",
+                "price": "686",
                 "list_price": "980"
               },
               {
                 "type": "stream",
-                "price": "300",
+                "price": "210",
                 "list_price": "300"
               },
               {
                 "type": "hd",
-                "price": "1270",
+                "price": "890",
                 "list_price": "1270"
               },
               {
                 "type": "iosdl",
-                "price": "980",
+                "price": "686",
                 "list_price": "980"
               },
               {
                 "type": "androiddl",
-                "price": "980",
+                "price": "686",
                 "list_price": "980"
               }
             ]
@@ -175463,7 +175337,14 @@
               "name": "RED BABE"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-06-24 00:10:00",
+            "date_end": "2026-06-30 23:59:59",
+            "title": "豊彦他30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -182752,33 +182633,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "413",
+                "price": "590",
                 "list_price": "590"
               },
               {
                 "type": "hd",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "iosdl",
-                "price": "413",
+                "price": "590",
                 "list_price": "590"
               },
               {
                 "type": "androiddl",
-                "price": "413",
+                "price": "590",
                 "list_price": "590"
               }
             ]
@@ -182842,14 +182723,7 @@
               "name": "セレブの友"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-06-17 00:10:00",
-            "date_end": "2026-06-23 23:59:59",
-            "title": "セレブの友他30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -186042,6 +185916,168 @@
         "floor_code": "videoa",
         "floor_name": "ビデオ",
         "category_name": "ビデオ (動画)",
+        "content_id": "pxvr00450",
+        "product_id": "pxvr00450",
+        "title": "【VR】坂道系ちっぱい連れ子、なつかなかったのにキメセク種付けSEXで性奴●堕ち！！ 相月菜緒【8K】",
+        "volume": "80",
+        "review": {
+          "count": 6,
+          "average": "4.50"
+        },
+        "URL": "https://video.dmm.co.jp/av/content/?id=pxvr00450",
+        "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Dpxvr00450&af_id=saaaaaaya-990&ch=api",
+        "imageURL": {
+          "large": "https://pics.dmm.co.jp/digital/video/pxvr00450/pxvr00450pl.jpg",
+          "small": "https://pics.dmm.co.jp/digital/video/pxvr00450/pxvr00450ps.jpg",
+          "list": "https://pics.dmm.co.jp/digital/video/pxvr00450/pxvr00450pt.jpg"
+        },
+        "sampleImageURL": {
+          "sample_s": {
+            "image": [
+              "https://pics.dmm.co.jp/digital/video/pxvr00450/pxvr00450-1.jpg",
+              "https://pics.dmm.co.jp/digital/video/pxvr00450/pxvr00450-2.jpg",
+              "https://pics.dmm.co.jp/digital/video/pxvr00450/pxvr00450-3.jpg",
+              "https://pics.dmm.co.jp/digital/video/pxvr00450/pxvr00450-4.jpg",
+              "https://pics.dmm.co.jp/digital/video/pxvr00450/pxvr00450-5.jpg",
+              "https://pics.dmm.co.jp/digital/video/pxvr00450/pxvr00450-6.jpg",
+              "https://pics.dmm.co.jp/digital/video/pxvr00450/pxvr00450-7.jpg",
+              "https://pics.dmm.co.jp/digital/video/pxvr00450/pxvr00450-8.jpg",
+              "https://pics.dmm.co.jp/digital/video/pxvr00450/pxvr00450-9.jpg",
+              "https://pics.dmm.co.jp/digital/video/pxvr00450/pxvr00450-10.jpg",
+              "https://pics.dmm.co.jp/digital/video/pxvr00450/pxvr00450-11.jpg",
+              "https://pics.dmm.co.jp/digital/video/pxvr00450/pxvr00450-12.jpg",
+              "https://pics.dmm.co.jp/digital/video/pxvr00450/pxvr00450-13.jpg",
+              "https://pics.dmm.co.jp/digital/video/pxvr00450/pxvr00450-14.jpg",
+              "https://pics.dmm.co.jp/digital/video/pxvr00450/pxvr00450-15.jpg"
+            ]
+          },
+          "sample_l": {
+            "image": [
+              "https://pics.dmm.co.jp/digital/video/pxvr00450/pxvr00450jp-1.jpg",
+              "https://pics.dmm.co.jp/digital/video/pxvr00450/pxvr00450jp-2.jpg",
+              "https://pics.dmm.co.jp/digital/video/pxvr00450/pxvr00450jp-3.jpg",
+              "https://pics.dmm.co.jp/digital/video/pxvr00450/pxvr00450jp-4.jpg",
+              "https://pics.dmm.co.jp/digital/video/pxvr00450/pxvr00450jp-5.jpg",
+              "https://pics.dmm.co.jp/digital/video/pxvr00450/pxvr00450jp-6.jpg",
+              "https://pics.dmm.co.jp/digital/video/pxvr00450/pxvr00450jp-7.jpg",
+              "https://pics.dmm.co.jp/digital/video/pxvr00450/pxvr00450jp-8.jpg",
+              "https://pics.dmm.co.jp/digital/video/pxvr00450/pxvr00450jp-9.jpg",
+              "https://pics.dmm.co.jp/digital/video/pxvr00450/pxvr00450jp-10.jpg",
+              "https://pics.dmm.co.jp/digital/video/pxvr00450/pxvr00450jp-11.jpg",
+              "https://pics.dmm.co.jp/digital/video/pxvr00450/pxvr00450jp-12.jpg",
+              "https://pics.dmm.co.jp/digital/video/pxvr00450/pxvr00450jp-13.jpg",
+              "https://pics.dmm.co.jp/digital/video/pxvr00450/pxvr00450jp-14.jpg",
+              "https://pics.dmm.co.jp/digital/video/pxvr00450/pxvr00450jp-15.jpg"
+            ]
+          }
+        },
+        "prices": {
+          "price": "998~",
+          "list_price": "998~",
+          "deliveries": {
+            "delivery": [
+              {
+                "type": "8k",
+                "price": "1780",
+                "list_price": "1780"
+              },
+              {
+                "type": "hd",
+                "price": "1304",
+                "list_price": "1304"
+              },
+              {
+                "type": "download",
+                "price": "998",
+                "list_price": "998"
+              }
+            ]
+          }
+        },
+        "date": "2026-06-17 00:10:00",
+        "iteminfo": {
+          "genre": [
+            {
+              "id": 6925,
+              "name": "ハイクオリティVR"
+            },
+            {
+              "id": 307935,
+              "name": "8KVR"
+            },
+            {
+              "id": 4025,
+              "name": "単体作品"
+            },
+            {
+              "id": 6793,
+              "name": "VR専用"
+            },
+            {
+              "id": 6548,
+              "name": "独占配信"
+            },
+            {
+              "id": 48,
+              "name": "制服"
+            },
+            {
+              "id": 4106,
+              "name": "騎乗位"
+            },
+            {
+              "id": 2005,
+              "name": "貧乳・微乳"
+            },
+            {
+              "id": 5001,
+              "name": "中出し"
+            },
+            {
+              "id": 1027,
+              "name": "美少女"
+            }
+          ],
+          "series": [
+            {
+              "id": 4378791,
+              "name": "キメセクJ●"
+            }
+          ],
+          "maker": [
+            {
+              "id": 40534,
+              "name": "P-BOX VR"
+            }
+          ],
+          "actress": [
+            {
+              "id": 1094991,
+              "name": "相月菜緒",
+              "ruby": "あいづきなお"
+            }
+          ],
+          "director": [
+            {
+              "id": 117948,
+              "name": "白鳥ニドミ",
+              "ruby": "しらとりにどみ"
+            }
+          ],
+          "label": [
+            {
+              "id": 46146,
+              "name": "P-BOX VR"
+            }
+          ]
+        }
+      },
+      {
+        "service_code": "digital",
+        "service_name": "動画",
+        "floor_code": "videoa",
+        "floor_name": "ビデオ",
+        "category_name": "ビデオ (動画)",
         "content_id": "cawd00975",
         "product_id": "cawd00975",
         "title": "おちょくり上手な幼馴染に学校の至るところでニヤニヤ小悪魔パンチラ誘惑されて… 松岡美桜",
@@ -186433,29 +186469,34 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "2180~",
-          "list_price": "2180~",
+          "price": "500~",
+          "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "2680",
-                "list_price": "2680"
+                "price": "1680",
+                "list_price": "1680"
               },
               {
                 "type": "download",
-                "price": "2180",
-                "list_price": "2180"
+                "price": "1180",
+                "list_price": "1180"
+              },
+              {
+                "type": "stream",
+                "price": "500",
+                "list_price": "500"
               },
               {
                 "type": "iosdl",
-                "price": "2180",
-                "list_price": "2180"
+                "price": "1180",
+                "list_price": "1180"
               },
               {
                 "type": "androiddl",
-                "price": "2180",
-                "list_price": "2180"
+                "price": "1180",
+                "list_price": "1180"
               }
             ]
           }
@@ -193851,162 +193892,6 @@
         "floor_code": "videoa",
         "floor_name": "ビデオ",
         "category_name": "ビデオ (動画)",
-        "content_id": "cawd00447",
-        "product_id": "cawd00447",
-        "title": "ビリケツギャルだった私を進学させてくれた恩師と2年ぶりに再会… 生徒じゃなくオンナとして意識されたのが嬉しくて一晩中ハメまくり中出しされまくった一夜限りのオトナの授業 伊藤舞雪",
-        "volume": "154",
-        "review": {
-          "count": 59,
-          "average": "4.49"
-        },
-        "URL": "https://video.dmm.co.jp/av/content/?id=cawd00447",
-        "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Dcawd00447&af_id=saaaaaaya-990&ch=api",
-        "imageURL": {
-          "large": "https://pics.dmm.co.jp/digital/video/cawd00447/cawd00447pl.jpg",
-          "small": "https://pics.dmm.co.jp/digital/video/cawd00447/cawd00447ps.jpg",
-          "list": "https://pics.dmm.co.jp/digital/video/cawd00447/cawd00447pt.jpg"
-        },
-        "sampleImageURL": {
-          "sample_s": {
-            "image": [
-              "https://pics.dmm.co.jp/digital/video/cawd00447/cawd00447-1.jpg",
-              "https://pics.dmm.co.jp/digital/video/cawd00447/cawd00447-2.jpg",
-              "https://pics.dmm.co.jp/digital/video/cawd00447/cawd00447-3.jpg",
-              "https://pics.dmm.co.jp/digital/video/cawd00447/cawd00447-4.jpg",
-              "https://pics.dmm.co.jp/digital/video/cawd00447/cawd00447-5.jpg",
-              "https://pics.dmm.co.jp/digital/video/cawd00447/cawd00447-6.jpg",
-              "https://pics.dmm.co.jp/digital/video/cawd00447/cawd00447-7.jpg",
-              "https://pics.dmm.co.jp/digital/video/cawd00447/cawd00447-8.jpg",
-              "https://pics.dmm.co.jp/digital/video/cawd00447/cawd00447-9.jpg",
-              "https://pics.dmm.co.jp/digital/video/cawd00447/cawd00447-10.jpg"
-            ]
-          },
-          "sample_l": {
-            "image": [
-              "https://pics.dmm.co.jp/digital/video/cawd00447/cawd00447jp-1.jpg",
-              "https://pics.dmm.co.jp/digital/video/cawd00447/cawd00447jp-2.jpg",
-              "https://pics.dmm.co.jp/digital/video/cawd00447/cawd00447jp-3.jpg",
-              "https://pics.dmm.co.jp/digital/video/cawd00447/cawd00447jp-4.jpg",
-              "https://pics.dmm.co.jp/digital/video/cawd00447/cawd00447jp-5.jpg",
-              "https://pics.dmm.co.jp/digital/video/cawd00447/cawd00447jp-6.jpg",
-              "https://pics.dmm.co.jp/digital/video/cawd00447/cawd00447jp-7.jpg",
-              "https://pics.dmm.co.jp/digital/video/cawd00447/cawd00447jp-8.jpg",
-              "https://pics.dmm.co.jp/digital/video/cawd00447/cawd00447jp-9.jpg",
-              "https://pics.dmm.co.jp/digital/video/cawd00447/cawd00447jp-10.jpg"
-            ]
-          }
-        },
-        "sampleMovieURL": {
-          "size_476_306": "https://www.dmm.co.jp/litevideo/-/part/=/cid=cawd00447/size=476_306/affi_id=saaaaaaya-990/",
-          "size_560_360": "https://www.dmm.co.jp/litevideo/-/part/=/cid=cawd00447/size=560_360/affi_id=saaaaaaya-990/",
-          "size_644_414": "https://www.dmm.co.jp/litevideo/-/part/=/cid=cawd00447/size=644_414/affi_id=saaaaaaya-990/",
-          "size_720_480": "https://www.dmm.co.jp/litevideo/-/part/=/cid=cawd00447/size=720_480/affi_id=saaaaaaya-990/",
-          "pc_flag": 1,
-          "sp_flag": 1
-        },
-        "prices": {
-          "price": "300~",
-          "list_price": "300~",
-          "deliveries": {
-            "delivery": [
-              {
-                "type": "hd",
-                "price": "980",
-                "list_price": "980"
-              },
-              {
-                "type": "download",
-                "price": "620",
-                "list_price": "620"
-              },
-              {
-                "type": "stream",
-                "price": "300",
-                "list_price": "300"
-              },
-              {
-                "type": "iosdl",
-                "price": "620",
-                "list_price": "620"
-              },
-              {
-                "type": "androiddl",
-                "price": "620",
-                "list_price": "620"
-              }
-            ]
-          }
-        },
-        "date": "2023-02-03 10:00:59",
-        "iteminfo": {
-          "genre": [
-            {
-              "id": 6533,
-              "name": "ハイビジョン"
-            },
-            {
-              "id": 6548,
-              "name": "独占配信"
-            },
-            {
-              "id": 4025,
-              "name": "単体作品"
-            },
-            {
-              "id": 4114,
-              "name": "ドラマ"
-            },
-            {
-              "id": 2001,
-              "name": "巨乳"
-            },
-            {
-              "id": 5001,
-              "name": "中出し"
-            },
-            {
-              "id": 48,
-              "name": "制服"
-            },
-            {
-              "id": 4059,
-              "name": "キス・接吻"
-            }
-          ],
-          "maker": [
-            {
-              "id": 4469,
-              "name": "kawaii"
-            }
-          ],
-          "actress": [
-            {
-              "id": 1042907,
-              "name": "伊藤舞雪",
-              "ruby": "いとうまゆき"
-            }
-          ],
-          "director": [
-            {
-              "id": 118940,
-              "name": "小松セブンティーン",
-              "ruby": "こまつせぶんてぃーん"
-            }
-          ],
-          "label": [
-            {
-              "id": 6567,
-              "name": "kawaii"
-            }
-          ]
-        }
-      },
-      {
-        "service_code": "digital",
-        "service_name": "動画",
-        "floor_code": "videoa",
-        "floor_name": "ビデオ",
-        "category_name": "ビデオ (動画)",
         "content_id": "pred00427",
         "product_id": "pred00427",
         "title": "ボクの全部が逢花さんとだった。-初セックスから大人の中出しまで、姉の友人の逢花さんとお互いの全てをさらけ出して交わり続けた6年間の記録- 山岸逢花",
@@ -194209,24 +194094,24 @@
           }
         },
         "prices": {
-          "price": "1280~",
-          "list_price": "1280~",
+          "price": "780~",
+          "list_price": "780~",
           "deliveries": {
             "delivery": [
               {
                 "type": "8k",
-                "price": "1680",
-                "list_price": "1680"
+                "price": "1280",
+                "list_price": "1280"
               },
               {
                 "type": "hd",
-                "price": "1480",
-                "list_price": "1480"
+                "price": "980",
+                "list_price": "980"
               },
               {
                 "type": "download",
-                "price": "1280",
-                "list_price": "1280"
+                "price": "780",
+                "list_price": "780"
               }
             ]
           }
@@ -194313,6 +194198,161 @@
             {
               "id": 26271,
               "name": "Marrion Group VR"
+            }
+          ]
+        }
+      },
+      {
+        "service_code": "digital",
+        "service_name": "動画",
+        "floor_code": "videoa",
+        "floor_name": "ビデオ",
+        "category_name": "ビデオ (動画)",
+        "content_id": "sivr00415",
+        "product_id": "sivr00415",
+        "title": "【VR】【禁断性交】教師の僕は生徒（咲花）と恋に落ちた…卒業するまで関係を持つのは我慢しようと誓い合った なのに、他の女生徒に告白される僕に嫉妬した咲花は「先生の特別な存在になりたい…よそ見しちゃヤダ」文化祭の夜、ボクたちは超えてはいけない一線を… 白上咲花",
+        "volume": "101",
+        "review": {
+          "count": 45,
+          "average": "4.49"
+        },
+        "URL": "https://video.dmm.co.jp/av/content/?id=sivr00415",
+        "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Dsivr00415&af_id=saaaaaaya-990&ch=api",
+        "imageURL": {
+          "large": "https://pics.dmm.co.jp/digital/video/sivr00415/sivr00415pl.jpg",
+          "small": "https://pics.dmm.co.jp/digital/video/sivr00415/sivr00415ps.jpg",
+          "list": "https://pics.dmm.co.jp/digital/video/sivr00415/sivr00415pt.jpg"
+        },
+        "sampleImageURL": {
+          "sample_s": {
+            "image": [
+              "https://pics.dmm.co.jp/digital/video/sivr00415/sivr00415-1.jpg",
+              "https://pics.dmm.co.jp/digital/video/sivr00415/sivr00415-2.jpg",
+              "https://pics.dmm.co.jp/digital/video/sivr00415/sivr00415-3.jpg",
+              "https://pics.dmm.co.jp/digital/video/sivr00415/sivr00415-4.jpg",
+              "https://pics.dmm.co.jp/digital/video/sivr00415/sivr00415-5.jpg",
+              "https://pics.dmm.co.jp/digital/video/sivr00415/sivr00415-6.jpg",
+              "https://pics.dmm.co.jp/digital/video/sivr00415/sivr00415-7.jpg",
+              "https://pics.dmm.co.jp/digital/video/sivr00415/sivr00415-8.jpg",
+              "https://pics.dmm.co.jp/digital/video/sivr00415/sivr00415-9.jpg",
+              "https://pics.dmm.co.jp/digital/video/sivr00415/sivr00415-10.jpg",
+              "https://pics.dmm.co.jp/digital/video/sivr00415/sivr00415-11.jpg",
+              "https://pics.dmm.co.jp/digital/video/sivr00415/sivr00415-12.jpg"
+            ]
+          },
+          "sample_l": {
+            "image": [
+              "https://pics.dmm.co.jp/digital/video/sivr00415/sivr00415jp-1.jpg",
+              "https://pics.dmm.co.jp/digital/video/sivr00415/sivr00415jp-2.jpg",
+              "https://pics.dmm.co.jp/digital/video/sivr00415/sivr00415jp-3.jpg",
+              "https://pics.dmm.co.jp/digital/video/sivr00415/sivr00415jp-4.jpg",
+              "https://pics.dmm.co.jp/digital/video/sivr00415/sivr00415jp-5.jpg",
+              "https://pics.dmm.co.jp/digital/video/sivr00415/sivr00415jp-6.jpg",
+              "https://pics.dmm.co.jp/digital/video/sivr00415/sivr00415jp-7.jpg",
+              "https://pics.dmm.co.jp/digital/video/sivr00415/sivr00415jp-8.jpg",
+              "https://pics.dmm.co.jp/digital/video/sivr00415/sivr00415jp-9.jpg",
+              "https://pics.dmm.co.jp/digital/video/sivr00415/sivr00415jp-10.jpg",
+              "https://pics.dmm.co.jp/digital/video/sivr00415/sivr00415jp-11.jpg",
+              "https://pics.dmm.co.jp/digital/video/sivr00415/sivr00415jp-12.jpg"
+            ]
+          }
+        },
+        "prices": {
+          "price": "300~",
+          "list_price": "300~",
+          "deliveries": {
+            "delivery": [
+              {
+                "type": "8k",
+                "price": "980",
+                "list_price": "980"
+              },
+              {
+                "type": "hd",
+                "price": "780",
+                "list_price": "780"
+              },
+              {
+                "type": "download",
+                "price": "580",
+                "list_price": "580"
+              },
+              {
+                "type": "rp",
+                "price": "300",
+                "list_price": "300"
+              }
+            ]
+          }
+        },
+        "date": "2025-06-05 00:00:59",
+        "iteminfo": {
+          "genre": [
+            {
+              "id": 6925,
+              "name": "ハイクオリティVR"
+            },
+            {
+              "id": 307935,
+              "name": "8KVR"
+            },
+            {
+              "id": 4025,
+              "name": "単体作品"
+            },
+            {
+              "id": 6793,
+              "name": "VR専用"
+            },
+            {
+              "id": 6548,
+              "name": "独占配信"
+            },
+            {
+              "id": 5063,
+              "name": "主観"
+            },
+            {
+              "id": 4059,
+              "name": "キス・接吻"
+            },
+            {
+              "id": 2006,
+              "name": "スレンダー"
+            },
+            {
+              "id": 1018,
+              "name": "女子校生"
+            },
+            {
+              "id": 48,
+              "name": "制服"
+            }
+          ],
+          "maker": [
+            {
+              "id": 3152,
+              "name": "エスワン ナンバーワンスタイル"
+            }
+          ],
+          "actress": [
+            {
+              "id": 1092662,
+              "name": "白上咲花",
+              "ruby": "しらかみえみか"
+            }
+          ],
+          "director": [
+            {
+              "id": 113793,
+              "name": "こあら太郎（わ）",
+              "ruby": "こあらたろうわ"
+            }
+          ],
+          "label": [
+            {
+              "id": 25838,
+              "name": "S1 VR"
             }
           ]
         }
@@ -194920,6 +194960,162 @@
             {
               "id": 294,
               "name": "ドリームチケット"
+            }
+          ]
+        }
+      },
+      {
+        "service_code": "digital",
+        "service_name": "動画",
+        "floor_code": "videoa",
+        "floor_name": "ビデオ",
+        "category_name": "ビデオ (動画)",
+        "content_id": "cawd00447",
+        "product_id": "cawd00447",
+        "title": "ビリケツギャルだった私を進学させてくれた恩師と2年ぶりに再会… 生徒じゃなくオンナとして意識されたのが嬉しくて一晩中ハメまくり中出しされまくった一夜限りのオトナの授業 伊藤舞雪",
+        "volume": "154",
+        "review": {
+          "count": 60,
+          "average": "4.48"
+        },
+        "URL": "https://video.dmm.co.jp/av/content/?id=cawd00447",
+        "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Dcawd00447&af_id=saaaaaaya-990&ch=api",
+        "imageURL": {
+          "large": "https://pics.dmm.co.jp/digital/video/cawd00447/cawd00447pl.jpg",
+          "small": "https://pics.dmm.co.jp/digital/video/cawd00447/cawd00447ps.jpg",
+          "list": "https://pics.dmm.co.jp/digital/video/cawd00447/cawd00447pt.jpg"
+        },
+        "sampleImageURL": {
+          "sample_s": {
+            "image": [
+              "https://pics.dmm.co.jp/digital/video/cawd00447/cawd00447-1.jpg",
+              "https://pics.dmm.co.jp/digital/video/cawd00447/cawd00447-2.jpg",
+              "https://pics.dmm.co.jp/digital/video/cawd00447/cawd00447-3.jpg",
+              "https://pics.dmm.co.jp/digital/video/cawd00447/cawd00447-4.jpg",
+              "https://pics.dmm.co.jp/digital/video/cawd00447/cawd00447-5.jpg",
+              "https://pics.dmm.co.jp/digital/video/cawd00447/cawd00447-6.jpg",
+              "https://pics.dmm.co.jp/digital/video/cawd00447/cawd00447-7.jpg",
+              "https://pics.dmm.co.jp/digital/video/cawd00447/cawd00447-8.jpg",
+              "https://pics.dmm.co.jp/digital/video/cawd00447/cawd00447-9.jpg",
+              "https://pics.dmm.co.jp/digital/video/cawd00447/cawd00447-10.jpg"
+            ]
+          },
+          "sample_l": {
+            "image": [
+              "https://pics.dmm.co.jp/digital/video/cawd00447/cawd00447jp-1.jpg",
+              "https://pics.dmm.co.jp/digital/video/cawd00447/cawd00447jp-2.jpg",
+              "https://pics.dmm.co.jp/digital/video/cawd00447/cawd00447jp-3.jpg",
+              "https://pics.dmm.co.jp/digital/video/cawd00447/cawd00447jp-4.jpg",
+              "https://pics.dmm.co.jp/digital/video/cawd00447/cawd00447jp-5.jpg",
+              "https://pics.dmm.co.jp/digital/video/cawd00447/cawd00447jp-6.jpg",
+              "https://pics.dmm.co.jp/digital/video/cawd00447/cawd00447jp-7.jpg",
+              "https://pics.dmm.co.jp/digital/video/cawd00447/cawd00447jp-8.jpg",
+              "https://pics.dmm.co.jp/digital/video/cawd00447/cawd00447jp-9.jpg",
+              "https://pics.dmm.co.jp/digital/video/cawd00447/cawd00447jp-10.jpg"
+            ]
+          }
+        },
+        "sampleMovieURL": {
+          "size_476_306": "https://www.dmm.co.jp/litevideo/-/part/=/cid=cawd00447/size=476_306/affi_id=saaaaaaya-990/",
+          "size_560_360": "https://www.dmm.co.jp/litevideo/-/part/=/cid=cawd00447/size=560_360/affi_id=saaaaaaya-990/",
+          "size_644_414": "https://www.dmm.co.jp/litevideo/-/part/=/cid=cawd00447/size=644_414/affi_id=saaaaaaya-990/",
+          "size_720_480": "https://www.dmm.co.jp/litevideo/-/part/=/cid=cawd00447/size=720_480/affi_id=saaaaaaya-990/",
+          "pc_flag": 1,
+          "sp_flag": 1
+        },
+        "prices": {
+          "price": "300~",
+          "list_price": "300~",
+          "deliveries": {
+            "delivery": [
+              {
+                "type": "hd",
+                "price": "980",
+                "list_price": "980"
+              },
+              {
+                "type": "download",
+                "price": "620",
+                "list_price": "620"
+              },
+              {
+                "type": "stream",
+                "price": "300",
+                "list_price": "300"
+              },
+              {
+                "type": "iosdl",
+                "price": "620",
+                "list_price": "620"
+              },
+              {
+                "type": "androiddl",
+                "price": "620",
+                "list_price": "620"
+              }
+            ]
+          }
+        },
+        "date": "2023-02-03 10:00:59",
+        "iteminfo": {
+          "genre": [
+            {
+              "id": 6533,
+              "name": "ハイビジョン"
+            },
+            {
+              "id": 6548,
+              "name": "独占配信"
+            },
+            {
+              "id": 4025,
+              "name": "単体作品"
+            },
+            {
+              "id": 4114,
+              "name": "ドラマ"
+            },
+            {
+              "id": 2001,
+              "name": "巨乳"
+            },
+            {
+              "id": 5001,
+              "name": "中出し"
+            },
+            {
+              "id": 48,
+              "name": "制服"
+            },
+            {
+              "id": 4059,
+              "name": "キス・接吻"
+            }
+          ],
+          "maker": [
+            {
+              "id": 4469,
+              "name": "kawaii"
+            }
+          ],
+          "actress": [
+            {
+              "id": 1042907,
+              "name": "伊藤舞雪",
+              "ruby": "いとうまゆき"
+            }
+          ],
+          "director": [
+            {
+              "id": 118940,
+              "name": "小松セブンティーン",
+              "ruby": "こまつせぶんてぃーん"
+            }
+          ],
+          "label": [
+            {
+              "id": 6567,
+              "name": "kawaii"
             }
           ]
         }
@@ -200561,165 +200757,6 @@
             {
               "id": 25739,
               "name": "SODVR"
-            }
-          ]
-        }
-      },
-      {
-        "service_code": "digital",
-        "service_name": "動画",
-        "floor_code": "videoa",
-        "floor_name": "ビデオ",
-        "category_name": "ビデオ (動画)",
-        "content_id": "ddb00117",
-        "product_id": "ddb00117",
-        "title": "キメセク 美少女にアルコールと媚薬をキメテセックス つぼみ",
-        "volume": "104",
-        "review": {
-          "count": 17,
-          "average": "4.47"
-        },
-        "URL": "https://video.dmm.co.jp/av/content/?id=ddb00117",
-        "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Dddb00117&af_id=saaaaaaya-990&ch=api",
-        "imageURL": {
-          "large": "https://pics.dmm.co.jp/digital/video/ddb00117/ddb00117pl.jpg",
-          "small": "https://pics.dmm.co.jp/digital/video/ddb00117/ddb00117ps.jpg",
-          "list": "https://pics.dmm.co.jp/digital/video/ddb00117/ddb00117pt.jpg"
-        },
-        "sampleImageURL": {
-          "sample_s": {
-            "image": [
-              "https://pics.dmm.co.jp/digital/video/ddb00117/ddb00117-1.jpg",
-              "https://pics.dmm.co.jp/digital/video/ddb00117/ddb00117-2.jpg",
-              "https://pics.dmm.co.jp/digital/video/ddb00117/ddb00117-3.jpg",
-              "https://pics.dmm.co.jp/digital/video/ddb00117/ddb00117-4.jpg",
-              "https://pics.dmm.co.jp/digital/video/ddb00117/ddb00117-5.jpg",
-              "https://pics.dmm.co.jp/digital/video/ddb00117/ddb00117-6.jpg",
-              "https://pics.dmm.co.jp/digital/video/ddb00117/ddb00117-7.jpg",
-              "https://pics.dmm.co.jp/digital/video/ddb00117/ddb00117-8.jpg",
-              "https://pics.dmm.co.jp/digital/video/ddb00117/ddb00117-9.jpg",
-              "https://pics.dmm.co.jp/digital/video/ddb00117/ddb00117-10.jpg",
-              "https://pics.dmm.co.jp/digital/video/ddb00117/ddb00117-11.jpg",
-              "https://pics.dmm.co.jp/digital/video/ddb00117/ddb00117-12.jpg",
-              "https://pics.dmm.co.jp/digital/video/ddb00117/ddb00117-13.jpg",
-              "https://pics.dmm.co.jp/digital/video/ddb00117/ddb00117-14.jpg",
-              "https://pics.dmm.co.jp/digital/video/ddb00117/ddb00117-15.jpg",
-              "https://pics.dmm.co.jp/digital/video/ddb00117/ddb00117-16.jpg",
-              "https://pics.dmm.co.jp/digital/video/ddb00117/ddb00117-17.jpg",
-              "https://pics.dmm.co.jp/digital/video/ddb00117/ddb00117-18.jpg",
-              "https://pics.dmm.co.jp/digital/video/ddb00117/ddb00117-19.jpg",
-              "https://pics.dmm.co.jp/digital/video/ddb00117/ddb00117-20.jpg"
-            ]
-          },
-          "sample_l": {
-            "image": [
-              "https://pics.dmm.co.jp/digital/video/ddb00117/ddb00117jp-1.jpg",
-              "https://pics.dmm.co.jp/digital/video/ddb00117/ddb00117jp-2.jpg",
-              "https://pics.dmm.co.jp/digital/video/ddb00117/ddb00117jp-3.jpg",
-              "https://pics.dmm.co.jp/digital/video/ddb00117/ddb00117jp-4.jpg",
-              "https://pics.dmm.co.jp/digital/video/ddb00117/ddb00117jp-5.jpg",
-              "https://pics.dmm.co.jp/digital/video/ddb00117/ddb00117jp-6.jpg",
-              "https://pics.dmm.co.jp/digital/video/ddb00117/ddb00117jp-7.jpg",
-              "https://pics.dmm.co.jp/digital/video/ddb00117/ddb00117jp-8.jpg",
-              "https://pics.dmm.co.jp/digital/video/ddb00117/ddb00117jp-9.jpg",
-              "https://pics.dmm.co.jp/digital/video/ddb00117/ddb00117jp-10.jpg",
-              "https://pics.dmm.co.jp/digital/video/ddb00117/ddb00117jp-11.jpg",
-              "https://pics.dmm.co.jp/digital/video/ddb00117/ddb00117jp-12.jpg",
-              "https://pics.dmm.co.jp/digital/video/ddb00117/ddb00117jp-13.jpg",
-              "https://pics.dmm.co.jp/digital/video/ddb00117/ddb00117jp-14.jpg",
-              "https://pics.dmm.co.jp/digital/video/ddb00117/ddb00117jp-15.jpg",
-              "https://pics.dmm.co.jp/digital/video/ddb00117/ddb00117jp-16.jpg",
-              "https://pics.dmm.co.jp/digital/video/ddb00117/ddb00117jp-17.jpg",
-              "https://pics.dmm.co.jp/digital/video/ddb00117/ddb00117jp-18.jpg",
-              "https://pics.dmm.co.jp/digital/video/ddb00117/ddb00117jp-19.jpg",
-              "https://pics.dmm.co.jp/digital/video/ddb00117/ddb00117jp-20.jpg"
-            ]
-          }
-        },
-        "sampleMovieURL": {
-          "size_476_306": "https://www.dmm.co.jp/litevideo/-/part/=/cid=ddb117/size=476_306/affi_id=saaaaaaya-990/",
-          "size_560_360": "https://www.dmm.co.jp/litevideo/-/part/=/cid=ddb117/size=560_360/affi_id=saaaaaaya-990/",
-          "size_644_414": "https://www.dmm.co.jp/litevideo/-/part/=/cid=ddb117/size=644_414/affi_id=saaaaaaya-990/",
-          "size_720_480": "https://www.dmm.co.jp/litevideo/-/part/=/cid=ddb117/size=720_480/affi_id=saaaaaaya-990/",
-          "pc_flag": 1,
-          "sp_flag": 1
-        },
-        "prices": {
-          "price": "310~",
-          "list_price": "310~",
-          "deliveries": {
-            "delivery": [
-              {
-                "type": "download",
-                "price": "680",
-                "list_price": "680"
-              },
-              {
-                "type": "stream",
-                "price": "310",
-                "list_price": "310"
-              }
-            ]
-          }
-        },
-        "date": "2010-01-19 10:00:28",
-        "iteminfo": {
-          "genre": [
-            {
-              "id": 4010,
-              "name": "その他フェチ"
-            },
-            {
-              "id": 4025,
-              "name": "単体作品"
-            },
-            {
-              "id": 4106,
-              "name": "騎乗位"
-            },
-            {
-              "id": 5015,
-              "name": "ドラッグ"
-            },
-            {
-              "id": 1027,
-              "name": "美少女"
-            },
-            {
-              "id": 48,
-              "name": "制服"
-            }
-          ],
-          "series": [
-            {
-              "id": 76057,
-              "name": "キメセク"
-            }
-          ],
-          "maker": [
-            {
-              "id": 1398,
-              "name": "ドグマ"
-            }
-          ],
-          "actress": [
-            {
-              "id": 17802,
-              "name": "つぼみ",
-              "ruby": "つぼみ"
-            }
-          ],
-          "director": [
-            {
-              "id": 101133,
-              "name": "ビーバップ・みのる",
-              "ruby": "びーばっぷみのる"
-            }
-          ],
-          "label": [
-            {
-              "id": 1098,
-              "name": "Dogma"
             }
           ]
         }

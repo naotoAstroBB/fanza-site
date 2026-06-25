@@ -2413,6 +2413,10 @@
         "iteminfo": {
           "genre": [
             {
+              "id": 6533,
+              "name": "ハイビジョン"
+            },
+            {
               "id": 6012,
               "name": "4時間以上作品"
             },
@@ -2439,10 +2443,6 @@
             {
               "id": 2001,
               "name": "巨乳"
-            },
-            {
-              "id": 6533,
-              "name": "ハイビジョン"
             }
           ],
           "maker": [
@@ -9740,29 +9740,34 @@
           }
         },
         "prices": {
-          "price": "1960~",
-          "list_price": "1960~",
+          "price": "1210~",
+          "list_price": "1210~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "2460",
-                "list_price": "2460"
+                "price": "2160",
+                "list_price": "2160"
               },
               {
                 "type": "download",
-                "price": "1960",
-                "list_price": "1960"
+                "price": "1760",
+                "list_price": "1760"
+              },
+              {
+                "type": "stream",
+                "price": "1210",
+                "list_price": "1210"
               },
               {
                 "type": "iosdl",
-                "price": "1960",
-                "list_price": "1960"
+                "price": "1760",
+                "list_price": "1760"
               },
               {
                 "type": "androiddl",
-                "price": "1960",
-                "list_price": "1960"
+                "price": "1760",
+                "list_price": "1760"
               }
             ]
           }
@@ -34209,36 +34214,36 @@
         "iteminfo": {
           "genre": [
             {
-              "id": 1027,
-              "name": "美少女"
-            },
-            {
-              "id": 1033,
-              "name": "お姉さん"
-            },
-            {
-              "id": 1031,
-              "name": "痴女"
-            },
-            {
-              "id": 5002,
-              "name": "フェラ"
-            },
-            {
-              "id": 6003,
-              "name": "ベスト・総集編"
-            },
-            {
-              "id": 6548,
-              "name": "独占配信"
+              "id": 6012,
+              "name": "4時間以上作品"
             },
             {
               "id": 6533,
               "name": "ハイビジョン"
             },
             {
-              "id": 6012,
-              "name": "4時間以上作品"
+              "id": 6548,
+              "name": "独占配信"
+            },
+            {
+              "id": 6003,
+              "name": "ベスト・総集編"
+            },
+            {
+              "id": 5002,
+              "name": "フェラ"
+            },
+            {
+              "id": 1031,
+              "name": "痴女"
+            },
+            {
+              "id": 1033,
+              "name": "お姉さん"
+            },
+            {
+              "id": 1027,
+              "name": "美少女"
             }
           ],
           "maker": [
@@ -49292,6 +49297,16 @@
               "ruby": "にいむらあかり"
             },
             {
+              "id": 1065724,
+              "name": "乙アリス",
+              "ruby": "おつありす"
+            },
+            {
+              "id": 1049908,
+              "name": "渚みつき",
+              "ruby": "なぎさみつき"
+            },
+            {
               "id": 1034918,
               "name": "栄川乃亜",
               "ruby": "えいかわのあ"
@@ -49322,9 +49337,9 @@
               "ruby": "はまさきまお"
             },
             {
-              "id": 1065724,
-              "name": "乙アリス",
-              "ruby": "おつありす"
+              "id": 1070448,
+              "name": "百永さりな",
+              "ruby": "ももながさりな"
             }
           ],
           "label": [
@@ -62527,6 +62542,11 @@
               "ruby": "いしかわあいか"
             },
             {
+              "id": 1092912,
+              "name": "彩乃あさみ",
+              "ruby": "あやのあさみ"
+            },
+            {
               "id": 1092915,
               "name": "涼川みくり",
               "ruby": "すずかわみくり"
@@ -62565,16 +62585,6 @@
               "id": 1039995,
               "name": "みひな （あずみひな、永井みひな）",
               "ruby": "みひな（あずみひな、ながいみひな）"
-            },
-            {
-              "id": 1038396,
-              "name": "宮沢ちはる",
-              "ruby": "みやざわちはる"
-            },
-            {
-              "id": 1092912,
-              "name": "彩乃あさみ",
-              "ruby": "あやのあさみ"
             },
             {
               "id": 1067797,
@@ -62632,6 +62642,11 @@
               "ruby": "あずまのぞみ"
             },
             {
+              "id": 1038396,
+              "name": "宮沢ちはる",
+              "ruby": "みやざわちはる"
+            },
+            {
               "id": 1050451,
               "name": "東条蒼",
               "ruby": "とうじょうあおい"
@@ -62640,6 +62655,11 @@
               "id": 1038712,
               "name": "佐藤ののか（加藤ももか）",
               "ruby": "さとうののか（かとうももか）"
+            },
+            {
+              "id": 25931,
+              "name": "前田あすま",
+              "ruby": "まえだあすま"
             },
             {
               "id": 1064660,
@@ -62687,19 +62707,9 @@
               "ruby": "あきもとちはや"
             },
             {
-              "id": 1057914,
-              "name": "花宮あむ",
-              "ruby": "はなみやあむ"
-            },
-            {
               "id": 1092914,
               "name": "美月彩羽",
               "ruby": "みつきあやは"
-            },
-            {
-              "id": 25931,
-              "name": "前田あすま",
-              "ruby": "まえだあすま"
             },
             {
               "id": 1039204,
@@ -81490,8 +81500,8 @@
         "title": "【VR祝春ギフト】新年度からド派手にいこうぜ！！KMP主要レーベル大集合 新春27時間ノーカットPREMIUM",
         "volume": "1636",
         "review": {
-          "count": 38,
-          "average": "4.63"
+          "count": 39,
+          "average": "4.64"
         },
         "URL": "https://video.dmm.co.jp/av/content/?id=kmtv00008",
         "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Dkmtv00008&af_id=saaaaaaya-990&ch=api",
@@ -102377,176 +102387,6 @@
         "floor_code": "videoa",
         "floor_name": "ビデオ",
         "category_name": "ビデオ (動画)",
-        "content_id": "miaa00389",
-        "product_id": "miaa00389",
-        "title": "超高級中出し専門ソープ 加藤ももか",
-        "volume": "119",
-        "review": {
-          "count": 28,
-          "average": "4.36"
-        },
-        "URL": "https://video.dmm.co.jp/av/content/?id=miaa00389",
-        "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Dmiaa00389&af_id=saaaaaaya-990&ch=api",
-        "imageURL": {
-          "large": "https://pics.dmm.co.jp/digital/video/miaa00389/miaa00389pl.jpg",
-          "small": "https://pics.dmm.co.jp/digital/video/miaa00389/miaa00389ps.jpg",
-          "list": "https://pics.dmm.co.jp/digital/video/miaa00389/miaa00389pt.jpg"
-        },
-        "sampleImageURL": {
-          "sample_s": {
-            "image": [
-              "https://pics.dmm.co.jp/digital/video/miaa00389/miaa00389-1.jpg",
-              "https://pics.dmm.co.jp/digital/video/miaa00389/miaa00389-2.jpg",
-              "https://pics.dmm.co.jp/digital/video/miaa00389/miaa00389-3.jpg",
-              "https://pics.dmm.co.jp/digital/video/miaa00389/miaa00389-4.jpg",
-              "https://pics.dmm.co.jp/digital/video/miaa00389/miaa00389-5.jpg",
-              "https://pics.dmm.co.jp/digital/video/miaa00389/miaa00389-6.jpg",
-              "https://pics.dmm.co.jp/digital/video/miaa00389/miaa00389-7.jpg",
-              "https://pics.dmm.co.jp/digital/video/miaa00389/miaa00389-8.jpg",
-              "https://pics.dmm.co.jp/digital/video/miaa00389/miaa00389-9.jpg",
-              "https://pics.dmm.co.jp/digital/video/miaa00389/miaa00389-10.jpg",
-              "https://pics.dmm.co.jp/digital/video/miaa00389/miaa00389-11.jpg",
-              "https://pics.dmm.co.jp/digital/video/miaa00389/miaa00389-12.jpg"
-            ]
-          },
-          "sample_l": {
-            "image": [
-              "https://pics.dmm.co.jp/digital/video/miaa00389/miaa00389jp-1.jpg",
-              "https://pics.dmm.co.jp/digital/video/miaa00389/miaa00389jp-2.jpg",
-              "https://pics.dmm.co.jp/digital/video/miaa00389/miaa00389jp-3.jpg",
-              "https://pics.dmm.co.jp/digital/video/miaa00389/miaa00389jp-4.jpg",
-              "https://pics.dmm.co.jp/digital/video/miaa00389/miaa00389jp-5.jpg",
-              "https://pics.dmm.co.jp/digital/video/miaa00389/miaa00389jp-6.jpg",
-              "https://pics.dmm.co.jp/digital/video/miaa00389/miaa00389jp-7.jpg",
-              "https://pics.dmm.co.jp/digital/video/miaa00389/miaa00389jp-8.jpg",
-              "https://pics.dmm.co.jp/digital/video/miaa00389/miaa00389jp-9.jpg",
-              "https://pics.dmm.co.jp/digital/video/miaa00389/miaa00389jp-10.jpg",
-              "https://pics.dmm.co.jp/digital/video/miaa00389/miaa00389jp-11.jpg",
-              "https://pics.dmm.co.jp/digital/video/miaa00389/miaa00389jp-12.jpg"
-            ]
-          }
-        },
-        "sampleMovieURL": {
-          "size_476_306": "https://www.dmm.co.jp/litevideo/-/part/=/cid=miaa00389/size=476_306/affi_id=saaaaaaya-990/",
-          "size_560_360": "https://www.dmm.co.jp/litevideo/-/part/=/cid=miaa00389/size=560_360/affi_id=saaaaaaya-990/",
-          "size_644_414": "https://www.dmm.co.jp/litevideo/-/part/=/cid=miaa00389/size=644_414/affi_id=saaaaaaya-990/",
-          "size_720_480": "https://www.dmm.co.jp/litevideo/-/part/=/cid=miaa00389/size=720_480/affi_id=saaaaaaya-990/",
-          "pc_flag": 1,
-          "sp_flag": 1
-        },
-        "prices": {
-          "price": "300~",
-          "list_price": "300~",
-          "deliveries": {
-            "delivery": [
-              {
-                "type": "hd",
-                "price": "980",
-                "list_price": "980"
-              },
-              {
-                "type": "download",
-                "price": "620",
-                "list_price": "620"
-              },
-              {
-                "type": "stream",
-                "price": "300",
-                "list_price": "300"
-              },
-              {
-                "type": "iosdl",
-                "price": "620",
-                "list_price": "620"
-              },
-              {
-                "type": "androiddl",
-                "price": "620",
-                "list_price": "620"
-              }
-            ]
-          }
-        },
-        "date": "2021-02-12 10:00:06",
-        "iteminfo": {
-          "genre": [
-            {
-              "id": 6533,
-              "name": "ハイビジョン"
-            },
-            {
-              "id": 6548,
-              "name": "独占配信"
-            },
-            {
-              "id": 4025,
-              "name": "単体作品"
-            },
-            {
-              "id": 2001,
-              "name": "巨乳"
-            },
-            {
-              "id": 3014,
-              "name": "ランジェリー"
-            },
-            {
-              "id": 5057,
-              "name": "ローション・オイル"
-            },
-            {
-              "id": 5001,
-              "name": "中出し"
-            },
-            {
-              "id": 1036,
-              "name": "キャバ嬢・風俗嬢"
-            },
-            {
-              "id": 6004,
-              "name": "デジモ"
-            }
-          ],
-          "series": [
-            {
-              "id": 211988,
-              "name": "超高級中出し専門ソープ"
-            }
-          ],
-          "maker": [
-            {
-              "id": 1509,
-              "name": "ムーディーズ"
-            }
-          ],
-          "actress": [
-            {
-              "id": 1038712,
-              "name": "佐藤ののか（加藤ももか）",
-              "ruby": "さとうののか（かとうももか）"
-            }
-          ],
-          "director": [
-            {
-              "id": 113675,
-              "name": "大崎広浩治",
-              "ruby": "おおさきひろこうじ"
-            }
-          ],
-          "label": [
-            {
-              "id": 26372,
-              "name": "みんなのキカタン"
-            }
-          ]
-        }
-      },
-      {
-        "service_code": "digital",
-        "service_name": "動画",
-        "floor_code": "videoa",
-        "floor_name": "ビデオ",
-        "category_name": "ビデオ (動画)",
         "content_id": "h_1558csdx00012",
         "product_id": "h_1558csdx00012",
         "title": "【4K】コスプレ×カトウモモカ 加藤ももか",
@@ -116476,7 +116316,7 @@
         }
       }
     ],
-    "total_count": 474,
-    "result_count": 474
+    "total_count": 473,
+    "result_count": 473
   }
 }

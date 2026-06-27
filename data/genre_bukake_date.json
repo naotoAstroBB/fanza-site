@@ -28848,8 +28848,8 @@
           }
         },
         "prices": {
-          "price": "780~",
-          "list_price": "780~",
+          "price": "500~",
+          "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
@@ -28861,6 +28861,11 @@
                 "type": "download",
                 "price": "780",
                 "list_price": "780"
+              },
+              {
+                "type": "rp",
+                "price": "500",
+                "list_price": "500"
               }
             ]
           }

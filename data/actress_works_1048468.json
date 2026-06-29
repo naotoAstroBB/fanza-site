@@ -6456,29 +6456,34 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "2180~",
-          "list_price": "2180~",
+          "price": "500~",
+          "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "2680",
-                "list_price": "2680"
+                "price": "1680",
+                "list_price": "1680"
               },
               {
                 "type": "download",
-                "price": "2180",
-                "list_price": "2180"
+                "price": "1180",
+                "list_price": "1180"
+              },
+              {
+                "type": "stream",
+                "price": "500",
+                "list_price": "500"
               },
               {
                 "type": "iosdl",
-                "price": "2180",
-                "list_price": "2180"
+                "price": "1180",
+                "list_price": "1180"
               },
               {
                 "type": "androiddl",
-                "price": "2180",
-                "list_price": "2180"
+                "price": "1180",
+                "list_price": "1180"
               }
             ]
           }
@@ -67295,28 +67300,28 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "download",
-                "price": "434",
+                "price": "620",
                 "list_price": "620"
               },
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "434",
+                "price": "620",
                 "list_price": "620"
               },
               {
                 "type": "androiddl",
-                "price": "434",
+                "price": "620",
                 "list_price": "620"
               }
             ]
@@ -67784,14 +67789,7 @@
               "name": "OPPAI"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-06-29 00:00:00",
-            "date_end": "2026-06-29 23:59:59",
-            "title": "日替わりセール♭"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",

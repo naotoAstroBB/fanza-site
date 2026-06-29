@@ -79796,28 +79796,28 @@
         "iteminfo": {
           "genre": [
             {
-              "id": 1027,
-              "name": "美少女"
-            },
-            {
-              "id": 2006,
-              "name": "スレンダー"
-            },
-            {
-              "id": 2008,
-              "name": "ミニ系"
-            },
-            {
-              "id": 4024,
-              "name": "素人"
+              "id": 6533,
+              "name": "ハイビジョン"
             },
             {
               "id": 5016,
               "name": "潮吹き"
             },
             {
-              "id": 6533,
-              "name": "ハイビジョン"
+              "id": 4024,
+              "name": "素人"
+            },
+            {
+              "id": 2008,
+              "name": "ミニ系"
+            },
+            {
+              "id": 2006,
+              "name": "スレンダー"
+            },
+            {
+              "id": 1027,
+              "name": "美少女"
             }
           ],
           "maker": [
@@ -111966,33 +111966,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "300~",
+          "price": "210~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "1180",
+                "price": "826",
                 "list_price": "1180"
               },
               {
                 "type": "download",
-                "price": "790",
+                "price": "553",
                 "list_price": "790"
               },
               {
                 "type": "stream",
-                "price": "300",
+                "price": "210",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "790",
+                "price": "553",
                 "list_price": "790"
               },
               {
                 "type": "androiddl",
-                "price": "790",
+                "price": "553",
                 "list_price": "790"
               }
             ]
@@ -112063,7 +112063,14 @@
               "name": "S1 NO.1 STYLE"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-06-30 00:00:00",
+            "date_end": "2026-06-30 23:59:59",
+            "title": "日替わりセール☆"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -148590,8 +148597,8 @@
           }
         },
         "prices": {
-          "price": "980~",
-          "list_price": "980~",
+          "price": "500~",
+          "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
@@ -148608,6 +148615,11 @@
                 "type": "download",
                 "price": "980",
                 "list_price": "980"
+              },
+              {
+                "type": "rp",
+                "price": "500",
+                "list_price": "500"
               }
             ]
           }

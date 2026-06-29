@@ -5610,29 +5610,34 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "2680~",
-          "list_price": "2680~",
+          "price": "500~",
+          "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "3180",
-                "list_price": "3180"
+                "price": "1980",
+                "list_price": "1980"
               },
               {
                 "type": "download",
-                "price": "2680",
-                "list_price": "2680"
+                "price": "1470",
+                "list_price": "1470"
+              },
+              {
+                "type": "stream",
+                "price": "500",
+                "list_price": "500"
               },
               {
                 "type": "iosdl",
-                "price": "2680",
-                "list_price": "2680"
+                "price": "1470",
+                "list_price": "1470"
               },
               {
                 "type": "androiddl",
-                "price": "2680",
-                "list_price": "2680"
+                "price": "1470",
+                "list_price": "1470"
               }
             ]
           }

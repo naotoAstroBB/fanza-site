@@ -3220,24 +3220,29 @@
           }
         },
         "prices": {
-          "price": "1480~",
-          "list_price": "1480~",
+          "price": "900~",
+          "list_price": "900~",
           "deliveries": {
             "delivery": [
               {
                 "type": "8k",
-                "price": "2480",
-                "list_price": "2480"
+                "price": "2270",
+                "list_price": "2270"
               },
               {
                 "type": "hd",
-                "price": "1980",
-                "list_price": "1980"
+                "price": "1770",
+                "list_price": "1770"
               },
               {
                 "type": "download",
-                "price": "1480",
-                "list_price": "1480"
+                "price": "1280",
+                "list_price": "1280"
+              },
+              {
+                "type": "rp",
+                "price": "900",
+                "list_price": "900"
               }
             ]
           }
@@ -3373,29 +3378,34 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "2180~",
-          "list_price": "2180~",
+          "price": "500~",
+          "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "2680",
-                "list_price": "2680"
+                "price": "1680",
+                "list_price": "1680"
               },
               {
                 "type": "download",
-                "price": "2180",
-                "list_price": "2180"
+                "price": "1180",
+                "list_price": "1180"
+              },
+              {
+                "type": "stream",
+                "price": "500",
+                "list_price": "500"
               },
               {
                 "type": "iosdl",
-                "price": "2180",
-                "list_price": "2180"
+                "price": "1180",
+                "list_price": "1180"
               },
               {
                 "type": "androiddl",
-                "price": "2180",
-                "list_price": "2180"
+                "price": "1180",
+                "list_price": "1180"
               }
             ]
           }

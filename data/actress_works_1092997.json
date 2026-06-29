@@ -3685,29 +3685,34 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "2180~",
-          "list_price": "2180~",
+          "price": "500~",
+          "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "2680",
-                "list_price": "2680"
+                "price": "1680",
+                "list_price": "1680"
               },
               {
                 "type": "download",
-                "price": "2180",
-                "list_price": "2180"
+                "price": "1180",
+                "list_price": "1180"
+              },
+              {
+                "type": "stream",
+                "price": "500",
+                "list_price": "500"
               },
               {
                 "type": "iosdl",
-                "price": "2180",
-                "list_price": "2180"
+                "price": "1180",
+                "list_price": "1180"
               },
               {
                 "type": "androiddl",
-                "price": "2180",
-                "list_price": "2180"
+                "price": "1180",
+                "list_price": "1180"
               }
             ]
           }
@@ -7036,12 +7041,16 @@
         "iteminfo": {
           "genre": [
             {
+              "id": 6925,
+              "name": "ハイクオリティVR"
+            },
+            {
               "id": 307935,
               "name": "8KVR"
             },
             {
-              "id": 6925,
-              "name": "ハイクオリティVR"
+              "id": 4025,
+              "name": "単体作品"
             },
             {
               "id": 6793,
@@ -7056,6 +7065,10 @@
               "name": "主観"
             },
             {
+              "id": 1031,
+              "name": "痴女"
+            },
+            {
               "id": 4106,
               "name": "騎乗位"
             },
@@ -7064,16 +7077,8 @@
               "name": "キス・接吻"
             },
             {
-              "id": 4025,
-              "name": "単体作品"
-            },
-            {
               "id": 1083,
               "name": "幼なじみ"
-            },
-            {
-              "id": 1031,
-              "name": "痴女"
             }
           ],
           "series": [

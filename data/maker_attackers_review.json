@@ -1091,29 +1091,34 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "2680~",
-          "list_price": "2680~",
+          "price": "500~",
+          "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "3180",
-                "list_price": "3180"
+                "price": "1980",
+                "list_price": "1980"
               },
               {
                 "type": "download",
-                "price": "2680",
-                "list_price": "2680"
+                "price": "1470",
+                "list_price": "1470"
+              },
+              {
+                "type": "stream",
+                "price": "500",
+                "list_price": "500"
               },
               {
                 "type": "iosdl",
-                "price": "2680",
-                "list_price": "2680"
+                "price": "1470",
+                "list_price": "1470"
               },
               {
                 "type": "androiddl",
-                "price": "2680",
-                "list_price": "2680"
+                "price": "1470",
+                "list_price": "1470"
               }
             ]
           }
@@ -20355,33 +20360,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "300~",
+          "price": "210~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "300",
+                "price": "210",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "980",
+                "price": "686",
                 "list_price": "980"
               },
               {
                 "type": "hd",
-                "price": "1270",
+                "price": "890",
                 "list_price": "1270"
               },
               {
                 "type": "iosdl",
-                "price": "980",
+                "price": "686",
                 "list_price": "980"
               },
               {
                 "type": "androiddl",
-                "price": "980",
+                "price": "686",
                 "list_price": "980"
               }
             ]
@@ -20447,7 +20452,14 @@
               "name": "死夜悪"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-06-30 00:00:00",
+            "date_end": "2026-06-30 23:59:59",
+            "title": "日替わりセール☆"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -88814,12 +88826,16 @@
         "iteminfo": {
           "genre": [
             {
+              "id": 6925,
+              "name": "ハイクオリティVR"
+            },
+            {
               "id": 307935,
               "name": "8KVR"
             },
             {
-              "id": 6925,
-              "name": "ハイクオリティVR"
+              "id": 4025,
+              "name": "単体作品"
             },
             {
               "id": 6793,
@@ -88830,10 +88846,6 @@
               "name": "独占配信"
             },
             {
-              "id": 5063,
-              "name": "主観"
-            },
-            {
               "id": 4106,
               "name": "騎乗位"
             },
@@ -88842,16 +88854,16 @@
               "name": "キス・接吻"
             },
             {
-              "id": 4025,
-              "name": "単体作品"
-            },
-            {
               "id": 2001,
               "name": "巨乳"
             },
             {
               "id": 1083,
               "name": "幼なじみ"
+            },
+            {
+              "id": 5063,
+              "name": "主観"
             }
           ],
           "maker": [
@@ -145563,36 +145575,36 @@
         "iteminfo": {
           "genre": [
             {
-              "id": 6533,
-              "name": "ハイビジョン"
-            },
-            {
-              "id": 6548,
-              "name": "独占配信"
-            },
-            {
-              "id": 4025,
-              "name": "単体作品"
-            },
-            {
-              "id": 5014,
-              "name": "浣腸"
-            },
-            {
-              "id": 5060,
-              "name": "母乳"
-            },
-            {
-              "id": 1039,
-              "name": "人妻・主婦"
+              "id": 5005,
+              "name": "アナル"
             },
             {
               "id": 27,
               "name": "辱め"
             },
             {
-              "id": 5005,
-              "name": "アナル"
+              "id": 1039,
+              "name": "人妻・主婦"
+            },
+            {
+              "id": 5060,
+              "name": "母乳"
+            },
+            {
+              "id": 5014,
+              "name": "浣腸"
+            },
+            {
+              "id": 4025,
+              "name": "単体作品"
+            },
+            {
+              "id": 6548,
+              "name": "独占配信"
+            },
+            {
+              "id": 6533,
+              "name": "ハイビジョン"
             }
           ],
           "maker": [

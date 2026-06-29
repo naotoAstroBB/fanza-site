@@ -142767,8 +142767,8 @@
           }
         },
         "prices": {
-          "price": "980~",
-          "list_price": "980~",
+          "price": "500~",
+          "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
@@ -142785,6 +142785,11 @@
                 "type": "download",
                 "price": "980",
                 "list_price": "980"
+              },
+              {
+                "type": "rp",
+                "price": "500",
+                "list_price": "500"
               }
             ]
           }
@@ -161202,8 +161207,8 @@
           }
         },
         "prices": {
-          "price": "980~",
-          "list_price": "980~",
+          "price": "500~",
+          "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
@@ -161220,6 +161225,11 @@
                 "type": "download",
                 "price": "980",
                 "list_price": "980"
+              },
+              {
+                "type": "rp",
+                "price": "500",
+                "list_price": "500"
               }
             ]
           }
@@ -190172,6 +190182,10 @@
         "iteminfo": {
           "genre": [
             {
+              "id": 6533,
+              "name": "ハイビジョン"
+            },
+            {
               "id": 6548,
               "name": "独占配信"
             },
@@ -190198,10 +190212,6 @@
             {
               "id": 4025,
               "name": "単体作品"
-            },
-            {
-              "id": 6533,
-              "name": "ハイビジョン"
             }
           ],
           "series": [

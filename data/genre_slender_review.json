@@ -3567,29 +3567,34 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "2180~",
-          "list_price": "2180~",
+          "price": "500~",
+          "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "2680",
-                "list_price": "2680"
+                "price": "1680",
+                "list_price": "1680"
               },
               {
                 "type": "download",
-                "price": "2180",
-                "list_price": "2180"
+                "price": "1180",
+                "list_price": "1180"
+              },
+              {
+                "type": "stream",
+                "price": "500",
+                "list_price": "500"
               },
               {
                 "type": "iosdl",
-                "price": "2180",
-                "list_price": "2180"
+                "price": "1180",
+                "list_price": "1180"
               },
               {
                 "type": "androiddl",
-                "price": "2180",
-                "list_price": "2180"
+                "price": "1180",
+                "list_price": "1180"
               }
             ]
           }
@@ -36506,28 +36511,28 @@
         "iteminfo": {
           "genre": [
             {
-              "id": 1027,
-              "name": "美少女"
-            },
-            {
-              "id": 2006,
-              "name": "スレンダー"
-            },
-            {
-              "id": 2008,
-              "name": "ミニ系"
-            },
-            {
-              "id": 4024,
-              "name": "素人"
+              "id": 6533,
+              "name": "ハイビジョン"
             },
             {
               "id": 5016,
               "name": "潮吹き"
             },
             {
-              "id": 6533,
-              "name": "ハイビジョン"
+              "id": 4024,
+              "name": "素人"
+            },
+            {
+              "id": 2008,
+              "name": "ミニ系"
+            },
+            {
+              "id": 2006,
+              "name": "スレンダー"
+            },
+            {
+              "id": 1027,
+              "name": "美少女"
             }
           ],
           "maker": [
@@ -47507,33 +47512,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "300~",
+          "price": "210~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "1180",
+                "price": "826",
                 "list_price": "1180"
               },
               {
                 "type": "download",
-                "price": "790",
+                "price": "553",
                 "list_price": "790"
               },
               {
                 "type": "stream",
-                "price": "300",
+                "price": "210",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "790",
+                "price": "553",
                 "list_price": "790"
               },
               {
                 "type": "androiddl",
-                "price": "790",
+                "price": "553",
                 "list_price": "790"
               }
             ]
@@ -47604,7 +47609,14 @@
               "name": "S1 NO.1 STYLE"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-06-30 00:00:00",
+            "date_end": "2026-06-30 23:59:59",
+            "title": "日替わりセール☆"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -62875,8 +62887,8 @@
           }
         },
         "prices": {
-          "price": "980~",
-          "list_price": "980~",
+          "price": "500~",
+          "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
@@ -62893,6 +62905,11 @@
                 "type": "download",
                 "price": "980",
                 "list_price": "980"
+              },
+              {
+                "type": "rp",
+                "price": "500",
+                "list_price": "500"
               }
             ]
           }
@@ -93609,38 +93626,38 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "300~",
+          "price": "210~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "4k",
-                "price": "1880",
+                "price": "1316",
                 "list_price": "1880"
               },
               {
                 "type": "hd",
-                "price": "1180",
+                "price": "826",
                 "list_price": "1180"
               },
               {
                 "type": "download",
-                "price": "790",
+                "price": "553",
                 "list_price": "790"
               },
               {
                 "type": "stream",
-                "price": "300",
+                "price": "210",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "790",
+                "price": "553",
                 "list_price": "790"
               },
               {
                 "type": "androiddl",
-                "price": "790",
+                "price": "553",
                 "list_price": "790"
               }
             ]
@@ -93712,7 +93729,14 @@
               "name": "S1 NO.1 STYLE"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-06-30 00:00:00",
+            "date_end": "2026-06-30 23:59:59",
+            "title": "日替わりセール☆"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -94729,29 +94753,34 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "2180~",
-          "list_price": "2180~",
+          "price": "500~",
+          "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "2680",
-                "list_price": "2680"
+                "price": "1680",
+                "list_price": "1680"
               },
               {
                 "type": "download",
-                "price": "2180",
-                "list_price": "2180"
+                "price": "1180",
+                "list_price": "1180"
+              },
+              {
+                "type": "stream",
+                "price": "500",
+                "list_price": "500"
               },
               {
                 "type": "iosdl",
-                "price": "2180",
-                "list_price": "2180"
+                "price": "1180",
+                "list_price": "1180"
               },
               {
                 "type": "androiddl",
-                "price": "2180",
-                "list_price": "2180"
+                "price": "1180",
+                "list_price": "1180"
               }
             ]
           }
@@ -108087,40 +108116,40 @@
         "iteminfo": {
           "genre": [
             {
-              "id": 6533,
-              "name": "ハイビジョン"
-            },
-            {
-              "id": 79015,
-              "name": "4K"
-            },
-            {
-              "id": 6548,
-              "name": "独占配信"
-            },
-            {
-              "id": 4025,
-              "name": "単体作品"
-            },
-            {
-              "id": 1033,
-              "name": "お姉さん"
-            },
-            {
-              "id": 2006,
-              "name": "スレンダー"
-            },
-            {
-              "id": 3008,
-              "name": "水着"
+              "id": 6014,
+              "name": "イメージビデオ"
             },
             {
               "id": 2001,
               "name": "巨乳"
             },
             {
-              "id": 6014,
-              "name": "イメージビデオ"
+              "id": 3008,
+              "name": "水着"
+            },
+            {
+              "id": 2006,
+              "name": "スレンダー"
+            },
+            {
+              "id": 1033,
+              "name": "お姉さん"
+            },
+            {
+              "id": 4025,
+              "name": "単体作品"
+            },
+            {
+              "id": 6548,
+              "name": "独占配信"
+            },
+            {
+              "id": 79015,
+              "name": "4K"
+            },
+            {
+              "id": 6533,
+              "name": "ハイビジョン"
             }
           ],
           "maker": [
@@ -144255,12 +144284,16 @@
         "iteminfo": {
           "genre": [
             {
+              "id": 6925,
+              "name": "ハイクオリティVR"
+            },
+            {
               "id": 307935,
               "name": "8KVR"
             },
             {
-              "id": 6925,
-              "name": "ハイクオリティVR"
+              "id": 4025,
+              "name": "単体作品"
             },
             {
               "id": 6793,
@@ -144275,10 +144308,6 @@
               "name": "主観"
             },
             {
-              "id": 4123,
-              "name": "カップル"
-            },
-            {
               "id": 4106,
               "name": "騎乗位"
             },
@@ -144287,12 +144316,12 @@
               "name": "キス・接吻"
             },
             {
-              "id": 4025,
-              "name": "単体作品"
-            },
-            {
               "id": 2006,
               "name": "スレンダー"
+            },
+            {
+              "id": 4123,
+              "name": "カップル"
             }
           ],
           "series": [

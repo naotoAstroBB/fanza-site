@@ -128130,38 +128130,38 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "300~",
+          "price": "210~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "4k",
-                "price": "1880",
+                "price": "1316",
                 "list_price": "1880"
               },
               {
                 "type": "hd",
-                "price": "1180",
+                "price": "826",
                 "list_price": "1180"
               },
               {
                 "type": "download",
-                "price": "790",
+                "price": "553",
                 "list_price": "790"
               },
               {
                 "type": "stream",
-                "price": "300",
+                "price": "210",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "790",
+                "price": "553",
                 "list_price": "790"
               },
               {
                 "type": "androiddl",
-                "price": "790",
+                "price": "553",
                 "list_price": "790"
               }
             ]
@@ -128229,7 +128229,14 @@
               "name": "S1 NO.1 STYLE"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-06-30 00:00:00",
+            "date_end": "2026-06-30 23:59:59",
+            "title": "日替わりセール☆"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -128456,34 +128463,39 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "2180~",
-          "list_price": "2180~",
+          "price": "500~",
+          "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "4k",
-                "price": "3380",
-                "list_price": "3380"
+                "price": "2380",
+                "list_price": "2380"
               },
               {
                 "type": "hd",
-                "price": "2680",
-                "list_price": "2680"
+                "price": "1680",
+                "list_price": "1680"
               },
               {
                 "type": "download",
-                "price": "2180",
-                "list_price": "2180"
+                "price": "1180",
+                "list_price": "1180"
+              },
+              {
+                "type": "stream",
+                "price": "500",
+                "list_price": "500"
               },
               {
                 "type": "iosdl",
-                "price": "2180",
-                "list_price": "2180"
+                "price": "1180",
+                "list_price": "1180"
               },
               {
                 "type": "androiddl",
-                "price": "2180",
-                "list_price": "2180"
+                "price": "1180",
+                "list_price": "1180"
               }
             ]
           }
@@ -163396,16 +163408,16 @@
         "iteminfo": {
           "genre": [
             {
+              "id": 6925,
+              "name": "ハイクオリティVR"
+            },
+            {
               "id": 307935,
               "name": "8KVR"
             },
             {
-              "id": 6968,
-              "name": "アクメ・オーガズム"
-            },
-            {
-              "id": 6925,
-              "name": "ハイクオリティVR"
+              "id": 4025,
+              "name": "単体作品"
             },
             {
               "id": 6793,
@@ -163416,14 +163428,6 @@
               "name": "独占配信"
             },
             {
-              "id": 6149,
-              "name": "超乳"
-            },
-            {
-              "id": 5063,
-              "name": "主観"
-            },
-            {
               "id": 5019,
               "name": "パイズリ"
             },
@@ -163432,8 +163436,16 @@
               "name": "淫乱・ハード系"
             },
             {
-              "id": 4025,
-              "name": "単体作品"
+              "id": 6149,
+              "name": "超乳"
+            },
+            {
+              "id": 5063,
+              "name": "主観"
+            },
+            {
+              "id": 6968,
+              "name": "アクメ・オーガズム"
             }
           ],
           "series": [
@@ -165917,44 +165929,44 @@
         "iteminfo": {
           "genre": [
             {
-              "id": 4118,
-              "name": "アイドル・芸能人"
-            },
-            {
-              "id": 6968,
-              "name": "アクメ・オーガズム"
-            },
-            {
-              "id": 4106,
-              "name": "騎乗位"
-            },
-            {
-              "id": 2006,
-              "name": "スレンダー"
-            },
-            {
-              "id": 5063,
-              "name": "主観"
-            },
-            {
-              "id": 6548,
-              "name": "独占配信"
-            },
-            {
-              "id": 6793,
-              "name": "VR専用"
-            },
-            {
-              "id": 4025,
-              "name": "単体作品"
+              "id": 6925,
+              "name": "ハイクオリティVR"
             },
             {
               "id": 307935,
               "name": "8KVR"
             },
             {
-              "id": 6925,
-              "name": "ハイクオリティVR"
+              "id": 4025,
+              "name": "単体作品"
+            },
+            {
+              "id": 6793,
+              "name": "VR専用"
+            },
+            {
+              "id": 6548,
+              "name": "独占配信"
+            },
+            {
+              "id": 5063,
+              "name": "主観"
+            },
+            {
+              "id": 2006,
+              "name": "スレンダー"
+            },
+            {
+              "id": 4106,
+              "name": "騎乗位"
+            },
+            {
+              "id": 6968,
+              "name": "アクメ・オーガズム"
+            },
+            {
+              "id": 4118,
+              "name": "アイドル・芸能人"
             }
           ],
           "series": [

@@ -9523,24 +9523,29 @@
           }
         },
         "prices": {
-          "price": "400~",
-          "list_price": "400~",
+          "price": "250~",
+          "list_price": "250~",
           "deliveries": {
             "delivery": [
               {
                 "type": "8k",
-                "price": "600",
-                "list_price": "600"
-              },
-              {
-                "type": "hd",
                 "price": "500",
                 "list_price": "500"
               },
               {
-                "type": "download",
+                "type": "hd",
                 "price": "400",
                 "list_price": "400"
+              },
+              {
+                "type": "download",
+                "price": "300",
+                "list_price": "300"
+              },
+              {
+                "type": "rp",
+                "price": "250",
+                "list_price": "250"
               }
             ]
           }
@@ -9694,29 +9699,34 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "2180~",
-          "list_price": "2180~",
+          "price": "500~",
+          "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "2680",
-                "list_price": "2680"
+                "price": "1680",
+                "list_price": "1680"
               },
               {
                 "type": "download",
-                "price": "2180",
-                "list_price": "2180"
+                "price": "1180",
+                "list_price": "1180"
+              },
+              {
+                "type": "stream",
+                "price": "500",
+                "list_price": "500"
               },
               {
                 "type": "iosdl",
-                "price": "2180",
-                "list_price": "2180"
+                "price": "1180",
+                "list_price": "1180"
               },
               {
                 "type": "androiddl",
-                "price": "2180",
-                "list_price": "2180"
+                "price": "1180",
+                "list_price": "1180"
               }
             ]
           }
@@ -43704,34 +43714,34 @@
           }
         },
         "prices": {
-          "price": "700~",
-          "list_price": "700~",
+          "price": "500~",
+          "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "1680",
-                "list_price": "1680"
+                "price": "1280",
+                "list_price": "1280"
               },
               {
                 "type": "download",
-                "price": "1280",
-                "list_price": "1280"
+                "price": "990",
+                "list_price": "990"
               },
               {
                 "type": "stream",
-                "price": "700",
-                "list_price": "700"
+                "price": "500",
+                "list_price": "500"
               },
               {
                 "type": "iosdl",
-                "price": "1280",
-                "list_price": "1280"
+                "price": "990",
+                "list_price": "990"
               },
               {
                 "type": "androiddl",
-                "price": "1280",
-                "list_price": "1280"
+                "price": "990",
+                "list_price": "990"
               }
             ]
           }

@@ -1468,9 +1468,13 @@
             ]
           }
         },
-        "date": "2026-07-03 00:00:00",
+        "date": "2026-07-03 00:00:01",
         "iteminfo": {
           "genre": [
+            {
+              "id": 6012,
+              "name": "4時間以上作品"
+            },
             {
               "id": 6533,
               "name": "ハイビジョン"
@@ -1498,10 +1502,6 @@
             {
               "id": 6003,
               "name": "ベスト・総集編"
-            },
-            {
-              "id": 6012,
-              "name": "4時間以上作品"
             }
           ],
           "series": [
@@ -4582,18 +4582,18 @@
           }
         },
         "prices": {
-          "price": "580~",
+          "price": "405~",
           "list_price": "580~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "1000",
+                "price": "700",
                 "list_price": "1000"
               },
               {
                 "type": "download",
-                "price": "580",
+                "price": "405",
                 "list_price": "580"
               }
             ]
@@ -14727,23 +14727,23 @@
           }
         },
         "prices": {
-          "price": "509~",
+          "price": "356~",
           "list_price": "509~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "998",
+                "price": "698",
                 "list_price": "998"
               },
               {
                 "type": "download",
-                "price": "795",
+                "price": "556",
                 "list_price": "795"
               },
               {
                 "type": "rp",
-                "price": "509",
+                "price": "356",
                 "list_price": "509"
               }
             ]
@@ -33694,23 +33694,23 @@
           }
         },
         "prices": {
-          "price": "305~",
+          "price": "213~",
           "list_price": "305~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "693",
+                "price": "485",
                 "list_price": "693"
               },
               {
                 "type": "download",
-                "price": "590",
+                "price": "413",
                 "list_price": "590"
               },
               {
                 "type": "rp",
-                "price": "305",
+                "price": "213",
                 "list_price": "305"
               }
             ]
@@ -41847,33 +41847,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "217~",
+          "price": "310~",
           "list_price": "310~",
           "deliveries": {
             "delivery": [
               {
                 "type": "download",
-                "price": "476",
+                "price": "680",
                 "list_price": "680"
               },
               {
                 "type": "stream",
-                "price": "217",
+                "price": "310",
                 "list_price": "310"
               },
               {
                 "type": "hd",
-                "price": "693",
+                "price": "990",
                 "list_price": "990"
               },
               {
                 "type": "iosdl",
-                "price": "476",
+                "price": "680",
                 "list_price": "680"
               },
               {
                 "type": "androiddl",
-                "price": "476",
+                "price": "680",
                 "list_price": "680"
               }
             ]
@@ -42025,14 +42025,7 @@
               "name": "Dogma"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-06-24 00:10:00",
-            "date_end": "2026-06-30 23:59:59",
-            "title": "豊彦他30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -44682,23 +44675,23 @@
           }
         },
         "prices": {
-          "price": "204~",
+          "price": "141~",
           "list_price": "204~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "590",
+                "price": "413",
                 "list_price": "590"
               },
               {
                 "type": "download",
-                "price": "408",
+                "price": "285",
                 "list_price": "408"
               },
               {
                 "type": "rp",
-                "price": "204",
+                "price": "141",
                 "list_price": "204"
               }
             ]
@@ -46383,23 +46376,23 @@
           }
         },
         "prices": {
-          "price": "204~",
+          "price": "141~",
           "list_price": "204~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "590",
+                "price": "413",
                 "list_price": "590"
               },
               {
                 "type": "download",
-                "price": "408",
+                "price": "285",
                 "list_price": "408"
               },
               {
                 "type": "rp",
-                "price": "204",
+                "price": "141",
                 "list_price": "204"
               }
             ]
@@ -46932,33 +46925,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "300~",
+          "price": "210~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "950",
+                "price": "665",
                 "list_price": "950"
               },
               {
                 "type": "download",
-                "price": "580",
+                "price": "405",
                 "list_price": "580"
               },
               {
                 "type": "stream",
-                "price": "300",
+                "price": "210",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "580",
+                "price": "405",
                 "list_price": "580"
               },
               {
                 "type": "androiddl",
-                "price": "580",
+                "price": "405",
                 "list_price": "580"
               }
             ]
@@ -47113,7 +47106,14 @@
               "name": "REAL（レアルワークス）"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-07-01 00:10:00",
+            "date_end": "2026-07-02 23:59:59",
+            "title": "売れ筋！ビデオ30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -48662,23 +48662,23 @@
           }
         },
         "prices": {
-          "price": "204~",
+          "price": "141~",
           "list_price": "204~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "590",
+                "price": "413",
                 "list_price": "590"
               },
               {
                 "type": "download",
-                "price": "408",
+                "price": "285",
                 "list_price": "408"
               },
               {
                 "type": "rp",
-                "price": "204",
+                "price": "141",
                 "list_price": "204"
               }
             ]
@@ -48847,7 +48847,14 @@
               "name": "KMPVR"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-07-01 00:10:00",
+            "date_end": "2026-07-07 23:59:59",
+            "title": "人気VR作品！！30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -55362,23 +55369,23 @@
           }
         },
         "prices": {
-          "price": "204~",
+          "price": "141~",
           "list_price": "204~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "590",
+                "price": "413",
                 "list_price": "590"
               },
               {
                 "type": "download",
-                "price": "408",
+                "price": "285",
                 "list_price": "408"
               },
               {
                 "type": "rp",
-                "price": "204",
+                "price": "141",
                 "list_price": "204"
               }
             ]
@@ -57765,33 +57772,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "217~",
+          "price": "310~",
           "list_price": "310~",
           "deliveries": {
             "delivery": [
               {
                 "type": "download",
-                "price": "476",
+                "price": "680",
                 "list_price": "680"
               },
               {
                 "type": "stream",
-                "price": "217",
+                "price": "310",
                 "list_price": "310"
               },
               {
                 "type": "hd",
-                "price": "693",
+                "price": "990",
                 "list_price": "990"
               },
               {
                 "type": "iosdl",
-                "price": "476",
+                "price": "680",
                 "list_price": "680"
               },
               {
                 "type": "androiddl",
-                "price": "476",
+                "price": "680",
                 "list_price": "680"
               }
             ]
@@ -58080,14 +58087,7 @@
               "name": "Dogma"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-06-24 00:10:00",
-            "date_end": "2026-06-30 23:59:59",
-            "title": "豊彦他30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -60274,23 +60274,23 @@
           }
         },
         "prices": {
-          "price": "305~",
+          "price": "213~",
           "list_price": "305~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "693",
+                "price": "485",
                 "list_price": "693"
               },
               {
                 "type": "download",
-                "price": "590",
+                "price": "413",
                 "list_price": "590"
               },
               {
                 "type": "rp",
-                "price": "305",
+                "price": "213",
                 "list_price": "305"
               }
             ]
@@ -60385,7 +60385,14 @@
               "name": "KMPVR"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-07-01 00:10:00",
+            "date_end": "2026-07-07 23:59:59",
+            "title": "人気VR作品！！30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -61804,23 +61811,23 @@
           }
         },
         "prices": {
-          "price": "204~",
+          "price": "141~",
           "list_price": "204~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "590",
+                "price": "413",
                 "list_price": "590"
               },
               {
                 "type": "download",
-                "price": "408",
+                "price": "285",
                 "list_price": "408"
               },
               {
                 "type": "rp",
-                "price": "204",
+                "price": "141",
                 "list_price": "204"
               }
             ]
@@ -61984,7 +61991,14 @@
               "name": "KMPVR"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-07-01 00:10:00",
+            "date_end": "2026-07-07 23:59:59",
+            "title": "人気VR作品！！30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -65825,23 +65839,23 @@
           }
         },
         "prices": {
-          "price": "204~",
+          "price": "141~",
           "list_price": "204~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "590",
+                "price": "413",
                 "list_price": "590"
               },
               {
                 "type": "download",
-                "price": "408",
+                "price": "285",
                 "list_price": "408"
               },
               {
                 "type": "rp",
-                "price": "204",
+                "price": "141",
                 "list_price": "204"
               }
             ]
@@ -65938,7 +65952,14 @@
               "name": "KMPVR"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-07-01 00:10:00",
+            "date_end": "2026-07-07 23:59:59",
+            "title": "人気VR作品！！30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -66006,23 +66027,23 @@
           }
         },
         "prices": {
-          "price": "204~",
+          "price": "141~",
           "list_price": "204~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "590",
+                "price": "413",
                 "list_price": "590"
               },
               {
                 "type": "download",
-                "price": "408",
+                "price": "285",
                 "list_price": "408"
               },
               {
                 "type": "rp",
-                "price": "204",
+                "price": "141",
                 "list_price": "204"
               }
             ]
@@ -66119,7 +66140,14 @@
               "name": "KMPVR"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-07-01 00:10:00",
+            "date_end": "2026-07-07 23:59:59",
+            "title": "人気VR作品！！30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -67528,23 +67556,23 @@
           }
         },
         "prices": {
-          "price": "305~",
+          "price": "213~",
           "list_price": "305~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "693",
+                "price": "485",
                 "list_price": "693"
               },
               {
                 "type": "download",
-                "price": "590",
+                "price": "413",
                 "list_price": "590"
               },
               {
                 "type": "rp",
-                "price": "305",
+                "price": "213",
                 "list_price": "305"
               }
             ]
@@ -67809,23 +67837,23 @@
           }
         },
         "prices": {
-          "price": "204~",
+          "price": "141~",
           "list_price": "204~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "590",
+                "price": "413",
                 "list_price": "590"
               },
               {
                 "type": "download",
-                "price": "408",
+                "price": "285",
                 "list_price": "408"
               },
               {
                 "type": "rp",
-                "price": "204",
+                "price": "141",
                 "list_price": "204"
               }
             ]
@@ -67985,7 +68013,14 @@
               "name": "KMPVR"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-07-01 00:10:00",
+            "date_end": "2026-07-07 23:59:59",
+            "title": "人気VR作品！！30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -70533,23 +70568,23 @@
           }
         },
         "prices": {
-          "price": "305~",
+          "price": "213~",
           "list_price": "305~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "693",
+                "price": "485",
                 "list_price": "693"
               },
               {
                 "type": "download",
-                "price": "590",
+                "price": "413",
                 "list_price": "590"
               },
               {
                 "type": "rp",
-                "price": "305",
+                "price": "213",
                 "list_price": "305"
               }
             ]
@@ -70623,7 +70658,14 @@
               "name": "KMPVR"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-07-01 00:10:00",
+            "date_end": "2026-07-07 23:59:59",
+            "title": "人気VR作品！！30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -71061,14 +71103,7 @@
               "name": "Dogma"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-06-24 00:10:00",
-            "date_end": "2026-06-30 23:59:59",
-            "title": "豊彦他30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -72814,14 +72849,7 @@
               "name": "Dogma"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-06-24 00:10:00",
-            "date_end": "2026-06-30 23:59:59",
-            "title": "豊彦他30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -72879,23 +72907,23 @@
           }
         },
         "prices": {
-          "price": "305~",
+          "price": "213~",
           "list_price": "305~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "693",
+                "price": "485",
                 "list_price": "693"
               },
               {
                 "type": "download",
-                "price": "590",
+                "price": "413",
                 "list_price": "590"
               },
               {
                 "type": "rp",
-                "price": "305",
+                "price": "213",
                 "list_price": "305"
               }
             ]
@@ -72979,7 +73007,14 @@
               "name": "KMPVR"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-07-01 00:10:00",
+            "date_end": "2026-07-07 23:59:59",
+            "title": "人気VR作品！！30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -73037,23 +73072,23 @@
           }
         },
         "prices": {
-          "price": "305~",
+          "price": "213~",
           "list_price": "305~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "693",
+                "price": "485",
                 "list_price": "693"
               },
               {
                 "type": "download",
-                "price": "590",
+                "price": "413",
                 "list_price": "590"
               },
               {
                 "type": "rp",
-                "price": "305",
+                "price": "213",
                 "list_price": "305"
               }
             ]
@@ -73137,7 +73172,14 @@
               "name": "KMPVR"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-07-01 00:10:00",
+            "date_end": "2026-07-07 23:59:59",
+            "title": "人気VR作品！！30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -74047,23 +74089,23 @@
           }
         },
         "prices": {
-          "price": "305~",
+          "price": "213~",
           "list_price": "305~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "693",
+                "price": "485",
                 "list_price": "693"
               },
               {
                 "type": "download",
-                "price": "590",
+                "price": "413",
                 "list_price": "590"
               },
               {
                 "type": "rp",
-                "price": "305",
+                "price": "213",
                 "list_price": "305"
               }
             ]
@@ -74153,7 +74195,14 @@
               "name": "KMPVR"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-07-01 00:10:00",
+            "date_end": "2026-07-07 23:59:59",
+            "title": "人気VR作品！！30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -75145,23 +75194,23 @@
           }
         },
         "prices": {
-          "price": "305~",
+          "price": "213~",
           "list_price": "305~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "693",
+                "price": "485",
                 "list_price": "693"
               },
               {
                 "type": "download",
-                "price": "590",
+                "price": "413",
                 "list_price": "590"
               },
               {
                 "type": "rp",
-                "price": "305",
+                "price": "213",
                 "list_price": "305"
               }
             ]
@@ -75229,7 +75278,14 @@
               "name": "KMPVR-bibi-"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-07-01 00:10:00",
+            "date_end": "2026-07-07 23:59:59",
+            "title": "人気VR作品！！30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -77605,38 +77661,38 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "217~",
+          "price": "310~",
           "list_price": "310~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "693",
+                "price": "990",
                 "list_price": "990"
               },
               {
                 "type": "download",
-                "price": "476",
+                "price": "680",
                 "list_price": "680"
               },
               {
                 "type": "stream",
-                "price": "217",
+                "price": "310",
                 "list_price": "310"
               },
               {
                 "type": "4k",
-                "price": "1043",
+                "price": "1490",
                 "list_price": "1490"
               },
               {
                 "type": "iosdl",
-                "price": "476",
+                "price": "680",
                 "list_price": "680"
               },
               {
                 "type": "androiddl",
-                "price": "476",
+                "price": "680",
                 "list_price": "680"
               }
             ]
@@ -77704,14 +77760,7 @@
               "name": "ドグマ"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-06-24 00:10:00",
-            "date_end": "2026-06-30 23:59:59",
-            "title": "豊彦他30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -81396,23 +81445,23 @@
           }
         },
         "prices": {
-          "price": "305~",
+          "price": "213~",
           "list_price": "305~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "693",
+                "price": "485",
                 "list_price": "693"
               },
               {
                 "type": "download",
-                "price": "590",
+                "price": "413",
                 "list_price": "590"
               },
               {
                 "type": "rp",
-                "price": "305",
+                "price": "213",
                 "list_price": "305"
               }
             ]
@@ -81686,14 +81735,7 @@
               "name": "ドグマ"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-06-24 00:10:00",
-            "date_end": "2026-06-30 23:59:59",
-            "title": "豊彦他30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -83678,23 +83720,23 @@
           }
         },
         "prices": {
-          "price": "305~",
+          "price": "213~",
           "list_price": "305~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "693",
+                "price": "485",
                 "list_price": "693"
               },
               {
                 "type": "download",
-                "price": "590",
+                "price": "413",
                 "list_price": "590"
               },
               {
                 "type": "rp",
-                "price": "305",
+                "price": "213",
                 "list_price": "305"
               }
             ]
@@ -84307,23 +84349,23 @@
           }
         },
         "prices": {
-          "price": "300~",
+          "price": "210~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "680",
+                "price": "476",
                 "list_price": "680"
               },
               {
                 "type": "download",
-                "price": "580",
+                "price": "405",
                 "list_price": "580"
               },
               {
                 "type": "rp",
-                "price": "300",
+                "price": "210",
                 "list_price": "300"
               }
             ]
@@ -85314,23 +85356,23 @@
           }
         },
         "prices": {
-          "price": "200~",
+          "price": "140~",
           "list_price": "200~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "680",
+                "price": "476",
                 "list_price": "680"
               },
               {
                 "type": "download",
-                "price": "400",
+                "price": "280",
                 "list_price": "400"
               },
               {
                 "type": "rp",
-                "price": "200",
+                "price": "140",
                 "list_price": "200"
               }
             ]
@@ -85399,7 +85441,14 @@
               "name": "カトリーヌ（CASANOVA）"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-07-01 00:10:00",
+            "date_end": "2026-07-07 23:59:59",
+            "title": "人気VR作品！！30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -86231,134 +86280,6 @@
         "floor_code": "videoa",
         "floor_name": "ビデオ",
         "category_name": "ビデオ (動画)",
-        "content_id": "h_1414hgot00007",
-        "product_id": "h_1414hgot00007",
-        "title": "日曜日の朝 寝起きの彼女が可愛くて起きぬけに一発",
-        "volume": "150",
-        "review": {
-          "count": 12,
-          "average": "4.17"
-        },
-        "URL": "https://video.dmm.co.jp/av/content/?id=h_1414hgot00007",
-        "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Dh_1414hgot00007&af_id=saaaaaaya-990&ch=api",
-        "imageURL": {
-          "large": "https://pics.dmm.co.jp/digital/video/h_1414hgot00007/h_1414hgot00007pl.jpg",
-          "small": "https://pics.dmm.co.jp/digital/video/h_1414hgot00007/h_1414hgot00007ps.jpg",
-          "list": "https://pics.dmm.co.jp/digital/video/h_1414hgot00007/h_1414hgot00007pt.jpg"
-        },
-        "sampleMovieURL": {
-          "size_476_306": "https://www.dmm.co.jp/litevideo/-/part/=/cid=84hgot007/size=476_306/affi_id=saaaaaaya-990/",
-          "size_560_360": "https://www.dmm.co.jp/litevideo/-/part/=/cid=84hgot007/size=560_360/affi_id=saaaaaaya-990/",
-          "size_644_414": "https://www.dmm.co.jp/litevideo/-/part/=/cid=84hgot007/size=644_414/affi_id=saaaaaaya-990/",
-          "size_720_480": "https://www.dmm.co.jp/litevideo/-/part/=/cid=84hgot007/size=720_480/affi_id=saaaaaaya-990/",
-          "pc_flag": 1,
-          "sp_flag": 1
-        },
-        "prices": {
-          "price": "300~",
-          "list_price": "300~",
-          "deliveries": {
-            "delivery": [
-              {
-                "type": "hd",
-                "price": "950",
-                "list_price": "950"
-              },
-              {
-                "type": "download",
-                "price": "580",
-                "list_price": "580"
-              },
-              {
-                "type": "stream",
-                "price": "300",
-                "list_price": "300"
-              },
-              {
-                "type": "iosdl",
-                "price": "580",
-                "list_price": "580"
-              },
-              {
-                "type": "androiddl",
-                "price": "580",
-                "list_price": "580"
-              }
-            ]
-          }
-        },
-        "date": "2019-08-09 10:00:19",
-        "iteminfo": {
-          "genre": [
-            {
-              "id": 6533,
-              "name": "ハイビジョン"
-            },
-            {
-              "id": 2003,
-              "name": "小柄"
-            },
-            {
-              "id": 4106,
-              "name": "騎乗位"
-            },
-            {
-              "id": 5004,
-              "name": "手コキ"
-            },
-            {
-              "id": 5002,
-              "name": "フェラ"
-            },
-            {
-              "id": 5001,
-              "name": "中出し"
-            }
-          ],
-          "maker": [
-            {
-              "id": 40462,
-              "name": "ヒメゴト"
-            }
-          ],
-          "actress": [
-            {
-              "id": 1052094,
-              "name": "永瀬ゆい",
-              "ruby": "ながせゆい"
-            },
-            {
-              "id": 1054189,
-              "name": "琴音芽衣",
-              "ruby": "ことねめい"
-            },
-            {
-              "id": 1047230,
-              "name": "有栖るる",
-              "ruby": "ありするる"
-            }
-          ],
-          "director": [
-            {
-              "id": 106126,
-              "name": "GORY松田",
-              "ruby": "ごりーまつだ"
-            }
-          ],
-          "label": [
-            {
-              "id": 45991,
-              "name": "ヒメゴト"
-            }
-          ]
-        }
-      },
-      {
-        "service_code": "digital",
-        "service_name": "動画",
-        "floor_code": "videoa",
-        "floor_name": "ビデオ",
-        "category_name": "ビデオ (動画)",
         "content_id": "miaa00128",
         "product_id": "miaa00128",
         "title": "はじめて大好きな彼女が出来たので四六時中ハメまくりのイチャイチャ同棲生活をする事にした 永瀬ゆい",
@@ -86690,7 +86611,7 @@
         }
       }
     ],
-    "total_count": 314,
-    "result_count": 314
+    "total_count": 313,
+    "result_count": 313
   }
 }

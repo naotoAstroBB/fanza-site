@@ -951,10 +951,6 @@
         "iteminfo": {
           "genre": [
             {
-              "id": 5069,
-              "name": "くすぐり"
-            },
-            {
               "id": 6533,
               "name": "ハイビジョン"
             },
@@ -981,6 +977,10 @@
             {
               "id": 4001,
               "name": "SM"
+            },
+            {
+              "id": 5069,
+              "name": "くすぐり"
             }
           ],
           "maker": [
@@ -5586,28 +5586,28 @@
         "iteminfo": {
           "genre": [
             {
-              "id": 6533,
-              "name": "ハイビジョン"
-            },
-            {
-              "id": 27,
-              "name": "辱め"
-            },
-            {
-              "id": 5059,
-              "name": "拷問"
-            },
-            {
-              "id": 4001,
-              "name": "SM"
+              "id": 6968,
+              "name": "アクメ・オーガズム"
             },
             {
               "id": 5021,
               "name": "縛り・緊縛"
             },
             {
-              "id": 6968,
-              "name": "アクメ・オーガズム"
+              "id": 4001,
+              "name": "SM"
+            },
+            {
+              "id": 5059,
+              "name": "拷問"
+            },
+            {
+              "id": 27,
+              "name": "辱め"
+            },
+            {
+              "id": 6533,
+              "name": "ハイビジョン"
             }
           ],
           "maker": [
@@ -5712,28 +5712,28 @@
         "iteminfo": {
           "genre": [
             {
-              "id": 6533,
-              "name": "ハイビジョン"
-            },
-            {
-              "id": 27,
-              "name": "辱め"
-            },
-            {
-              "id": 5059,
-              "name": "拷問"
-            },
-            {
-              "id": 4001,
-              "name": "SM"
+              "id": 6968,
+              "name": "アクメ・オーガズム"
             },
             {
               "id": 5021,
               "name": "縛り・緊縛"
             },
             {
-              "id": 6968,
-              "name": "アクメ・オーガズム"
+              "id": 4001,
+              "name": "SM"
+            },
+            {
+              "id": 5059,
+              "name": "拷問"
+            },
+            {
+              "id": 27,
+              "name": "辱め"
+            },
+            {
+              "id": 6533,
+              "name": "ハイビジョン"
             }
           ],
           "maker": [
@@ -5964,28 +5964,28 @@
         "iteminfo": {
           "genre": [
             {
-              "id": 6533,
-              "name": "ハイビジョン"
-            },
-            {
-              "id": 27,
-              "name": "辱め"
-            },
-            {
-              "id": 5059,
-              "name": "拷問"
-            },
-            {
-              "id": 4001,
-              "name": "SM"
+              "id": 6968,
+              "name": "アクメ・オーガズム"
             },
             {
               "id": 5021,
               "name": "縛り・緊縛"
             },
             {
-              "id": 6968,
-              "name": "アクメ・オーガズム"
+              "id": 4001,
+              "name": "SM"
+            },
+            {
+              "id": 5059,
+              "name": "拷問"
+            },
+            {
+              "id": 27,
+              "name": "辱め"
+            },
+            {
+              "id": 6533,
+              "name": "ハイビジョン"
             }
           ],
           "maker": [
@@ -12879,29 +12879,34 @@
           }
         },
         "prices": {
-          "price": "2480~",
-          "list_price": "2480~",
+          "price": "500~",
+          "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "2980",
-                "list_price": "2980"
+                "price": "1780",
+                "list_price": "1780"
               },
               {
                 "type": "download",
-                "price": "2480",
-                "list_price": "2480"
+                "price": "1270",
+                "list_price": "1270"
+              },
+              {
+                "type": "stream",
+                "price": "500",
+                "list_price": "500"
               },
               {
                 "type": "iosdl",
-                "price": "2480",
-                "list_price": "2480"
+                "price": "1270",
+                "list_price": "1270"
               },
               {
                 "type": "androiddl",
-                "price": "2480",
-                "list_price": "2480"
+                "price": "1270",
+                "list_price": "1270"
               }
             ]
           }
@@ -19256,38 +19261,38 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "520~",
+          "price": "364~",
           "list_price": "520~",
           "deliveries": {
             "delivery": [
               {
                 "type": "4k",
-                "price": "2290",
+                "price": "1603",
                 "list_price": "2290"
               },
               {
                 "type": "hd",
-                "price": "1790",
+                "price": "1252",
                 "list_price": "1790"
               },
               {
                 "type": "download",
-                "price": "1280",
+                "price": "896",
                 "list_price": "1280"
               },
               {
                 "type": "stream",
-                "price": "520",
+                "price": "364",
                 "list_price": "520"
               },
               {
                 "type": "iosdl",
-                "price": "1280",
+                "price": "896",
                 "list_price": "1280"
               },
               {
                 "type": "androiddl",
-                "price": "1280",
+                "price": "896",
                 "list_price": "1280"
               }
             ]
@@ -19359,7 +19364,14 @@
               "name": "イラマチオフレンズ"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-07-06 00:10:00",
+            "date_end": "2026-07-07 23:59:59",
+            "title": "今月のおすすめ30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -21565,28 +21577,28 @@
         "iteminfo": {
           "genre": [
             {
-              "id": 6533,
-              "name": "ハイビジョン"
-            },
-            {
-              "id": 5015,
-              "name": "ドラッグ"
-            },
-            {
-              "id": 5059,
-              "name": "拷問"
-            },
-            {
-              "id": 4001,
-              "name": "SM"
+              "id": 6968,
+              "name": "アクメ・オーガズム"
             },
             {
               "id": 4024,
               "name": "素人"
             },
             {
-              "id": 6968,
-              "name": "アクメ・オーガズム"
+              "id": 4001,
+              "name": "SM"
+            },
+            {
+              "id": 5059,
+              "name": "拷問"
+            },
+            {
+              "id": 5015,
+              "name": "ドラッグ"
+            },
+            {
+              "id": 6533,
+              "name": "ハイビジョン"
             }
           ],
           "maker": [
@@ -25707,28 +25719,28 @@
         "iteminfo": {
           "genre": [
             {
-              "id": 6533,
-              "name": "ハイビジョン"
-            },
-            {
-              "id": 5015,
-              "name": "ドラッグ"
-            },
-            {
-              "id": 5059,
-              "name": "拷問"
-            },
-            {
-              "id": 4001,
-              "name": "SM"
+              "id": 6968,
+              "name": "アクメ・オーガズム"
             },
             {
               "id": 1014,
               "name": "熟女"
             },
             {
-              "id": 6968,
-              "name": "アクメ・オーガズム"
+              "id": 4001,
+              "name": "SM"
+            },
+            {
+              "id": 5059,
+              "name": "拷問"
+            },
+            {
+              "id": 5015,
+              "name": "ドラッグ"
+            },
+            {
+              "id": 6533,
+              "name": "ハイビジョン"
             }
           ],
           "maker": [
@@ -36858,38 +36870,38 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "500~",
+          "price": "350~",
           "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "download",
-                "price": "1480",
+                "price": "1036",
                 "list_price": "1480"
               },
               {
                 "type": "stream",
-                "price": "500",
+                "price": "350",
                 "list_price": "500"
               },
               {
                 "type": "4k",
-                "price": "2480",
+                "price": "1736",
                 "list_price": "2480"
               },
               {
                 "type": "hd",
-                "price": "1980",
+                "price": "1386",
                 "list_price": "1980"
               },
               {
                 "type": "iosdl",
-                "price": "1480",
+                "price": "1036",
                 "list_price": "1480"
               },
               {
                 "type": "androiddl",
-                "price": "1480",
+                "price": "1036",
                 "list_price": "1480"
               }
             ]
@@ -36960,7 +36972,14 @@
               "name": "AVSCollector’s GOLD"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-07-06 00:10:00",
+            "date_end": "2026-07-07 23:59:59",
+            "title": "今月のおすすめ30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -39992,33 +40011,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "350~",
+          "price": "500~",
           "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "download",
-                "price": "890",
+                "price": "1270",
                 "list_price": "1270"
               },
               {
                 "type": "stream",
-                "price": "350",
+                "price": "500",
                 "list_price": "500"
               },
               {
                 "type": "hd",
-                "price": "1386",
+                "price": "1980",
                 "list_price": "1980"
               },
               {
                 "type": "iosdl",
-                "price": "890",
+                "price": "1270",
                 "list_price": "1270"
               },
               {
                 "type": "androiddl",
-                "price": "890",
+                "price": "1270",
                 "list_price": "1270"
               }
             ]
@@ -40131,14 +40150,7 @@
               "name": "ボニータ/妄想族"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-07-03 00:10:00",
-            "date_end": "2026-07-05 23:59:59",
-            "title": "今月のおすすめ30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -50091,38 +50103,38 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "310~",
+          "price": "217~",
           "list_price": "310~",
           "deliveries": {
             "delivery": [
               {
                 "type": "4k",
-                "price": "1785",
+                "price": "1249",
                 "list_price": "1785"
               },
               {
                 "type": "hd",
-                "price": "1285",
+                "price": "899",
                 "list_price": "1285"
               },
               {
                 "type": "download",
-                "price": "998",
+                "price": "698",
                 "list_price": "998"
               },
               {
                 "type": "stream",
-                "price": "310",
+                "price": "217",
                 "list_price": "310"
               },
               {
                 "type": "iosdl",
-                "price": "998",
+                "price": "698",
                 "list_price": "998"
               },
               {
                 "type": "androiddl",
-                "price": "998",
+                "price": "698",
                 "list_price": "998"
               }
             ]
@@ -50196,7 +50208,14 @@
               "name": "ゴールドTOHJIROレーベル"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-07-06 00:10:00",
+            "date_end": "2026-07-07 23:59:59",
+            "title": "今月のおすすめ30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -64946,7 +64965,7 @@
         "title": "屈辱に震えて涙を流しながら無惨に昇天する孤高の女たち 撃沈の女捜査官 狂気と悲劇の痙攣 アルティメット総集編",
         "volume": "301",
         "review": {
-          "count": 2,
+          "count": 3,
           "average": "5.00"
         },
         "URL": "https://video.dmm.co.jp/av/content/?id=dber00188",
@@ -71367,33 +71386,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "300~",
+          "price": "210~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "980",
+                "price": "686",
                 "list_price": "980"
               },
               {
                 "type": "download",
-                "price": "680",
+                "price": "476",
                 "list_price": "680"
               },
               {
                 "type": "stream",
-                "price": "300",
+                "price": "210",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "680",
+                "price": "476",
                 "list_price": "680"
               },
               {
                 "type": "androiddl",
-                "price": "680",
+                "price": "476",
                 "list_price": "680"
               }
             ]
@@ -71687,7 +71706,14 @@
               "name": "AVS"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-07-06 00:10:00",
+            "date_end": "2026-07-07 23:59:59",
+            "title": "今月のおすすめ30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -103408,33 +103434,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "217~",
+          "price": "310~",
           "list_price": "310~",
           "deliveries": {
             "delivery": [
               {
                 "type": "download",
-                "price": "698",
+                "price": "998",
                 "list_price": "998"
               },
               {
                 "type": "stream",
-                "price": "217",
+                "price": "310",
                 "list_price": "310"
               },
               {
                 "type": "hd",
-                "price": "899",
+                "price": "1285",
                 "list_price": "1285"
               },
               {
                 "type": "iosdl",
-                "price": "698",
+                "price": "998",
                 "list_price": "998"
               },
               {
                 "type": "androiddl",
-                "price": "698",
+                "price": "998",
                 "list_price": "998"
               }
             ]
@@ -103634,14 +103660,7 @@
               "name": "ゴールドTOHJIROレーベル"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-07-03 00:10:00",
-            "date_end": "2026-07-05 23:59:59",
-            "title": "今月のおすすめ30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -244397,8 +244416,8 @@
         "title": "SUPER JUICY はま KURI 栗 ANOTHERS 第六幕 ～母性に満ちた女教師～ 風間ゆみ",
         "volume": "153",
         "review": {
-          "count": 14,
-          "average": "4.29"
+          "count": 15,
+          "average": "4.33"
         },
         "URL": "https://video.dmm.co.jp/av/content/?id=dxbb00009",
         "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Ddxbb00009&af_id=saaaaaaya-990&ch=api",

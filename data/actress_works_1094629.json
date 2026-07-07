@@ -3652,23 +3652,23 @@
           }
         },
         "prices": {
-          "price": "556~",
+          "price": "795~",
           "list_price": "795~",
           "deliveries": {
             "delivery": [
               {
                 "type": "8k",
-                "price": "1106",
+                "price": "1580",
                 "list_price": "1580"
               },
               {
                 "type": "hd",
-                "price": "698",
+                "price": "998",
                 "list_price": "998"
               },
               {
                 "type": "download",
-                "price": "556",
+                "price": "795",
                 "list_price": "795"
               }
             ]
@@ -3774,14 +3774,7 @@
               "name": "P-BOX VR"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-07-01 00:10:00",
-            "date_end": "2026-07-07 23:59:59",
-            "title": "人気VR作品！！30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -4568,9 +4561,9 @@
         },
         "campaign": [
           {
-            "date_begin": "2026-07-01 00:10:00",
-            "date_end": "2026-07-07 23:59:59",
-            "title": "人気VR作品！！30％OFF"
+            "date_begin": "2026-07-08 00:10:00",
+            "date_end": "2026-07-14 23:59:59",
+            "title": "ブランドストア30％OFF"
           }
         ]
       },
@@ -4834,28 +4827,28 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "2180~",
+          "price": "1526~",
           "list_price": "2180~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "2680",
+                "price": "1876",
                 "list_price": "2680"
               },
               {
                 "type": "download",
-                "price": "2180",
+                "price": "1526",
                 "list_price": "2180"
               },
               {
                 "type": "iosdl",
-                "price": "2180",
+                "price": "1526",
                 "list_price": "2180"
               },
               {
                 "type": "androiddl",
-                "price": "2180",
+                "price": "1526",
                 "list_price": "2180"
               }
             ]
@@ -4945,7 +4938,14 @@
               "name": "アリスJAPAN"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-07-08 00:10:00",
+            "date_end": "2026-07-14 23:59:59",
+            "title": "アリスJAPAN他30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -5476,38 +5476,38 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "1344~",
+          "price": "1920~",
           "list_price": "1920~",
           "deliveries": {
             "delivery": [
               {
                 "type": "4k",
-                "price": "2205",
+                "price": "3150",
                 "list_price": "3150"
               },
               {
                 "type": "hd",
-                "price": "1855",
+                "price": "2650",
                 "list_price": "2650"
               },
               {
                 "type": "download",
-                "price": "1470",
+                "price": "2100",
                 "list_price": "2100"
               },
               {
                 "type": "stream",
-                "price": "1344",
+                "price": "1920",
                 "list_price": "1920"
               },
               {
                 "type": "iosdl",
-                "price": "1470",
+                "price": "2100",
                 "list_price": "2100"
               },
               {
                 "type": "androiddl",
-                "price": "1470",
+                "price": "2100",
                 "list_price": "2100"
               }
             ]
@@ -5592,14 +5592,7 @@
               "name": "MEGATORA DREAM"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-07-01 00:10:00",
-            "date_end": "2026-07-07 23:59:59",
-            "title": "DOC30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -5661,24 +5654,29 @@
           }
         },
         "prices": {
-          "price": "795~",
-          "list_price": "795~",
+          "price": "305~",
+          "list_price": "305~",
           "deliveries": {
             "delivery": [
               {
                 "type": "8k",
-                "price": "1580",
-                "list_price": "1580"
+                "price": "1180",
+                "list_price": "1180"
               },
               {
                 "type": "hd",
-                "price": "998",
-                "list_price": "998"
+                "price": "795",
+                "list_price": "795"
               },
               {
                 "type": "download",
-                "price": "795",
-                "list_price": "795"
+                "price": "590",
+                "list_price": "590"
+              },
+              {
+                "type": "rp",
+                "price": "305",
+                "list_price": "305"
               }
             ]
           }
@@ -5829,39 +5827,39 @@
           }
         },
         "prices": {
-          "price": "300~",
-          "list_price": "300~",
+          "price": "200~",
+          "list_price": "200~",
           "deliveries": {
             "delivery": [
               {
                 "type": "4k",
-                "price": "600",
-                "list_price": "600"
-              },
-              {
-                "type": "hd",
                 "price": "500",
                 "list_price": "500"
               },
               {
-                "type": "download",
+                "type": "hd",
                 "price": "400",
                 "list_price": "400"
               },
               {
-                "type": "stream",
+                "type": "download",
                 "price": "300",
                 "list_price": "300"
               },
               {
+                "type": "stream",
+                "price": "200",
+                "list_price": "200"
+              },
+              {
                 "type": "iosdl",
-                "price": "400",
-                "list_price": "400"
+                "price": "300",
+                "list_price": "300"
               },
               {
                 "type": "androiddl",
-                "price": "400",
-                "list_price": "400"
+                "price": "300",
+                "list_price": "300"
               }
             ]
           }
@@ -5991,28 +5989,28 @@
           }
         },
         "prices": {
-          "price": "350~",
+          "price": "500~",
           "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "8k",
-                "price": "1036",
+                "price": "1480",
                 "list_price": "1480"
               },
               {
                 "type": "hd",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "download",
-                "price": "546",
+                "price": "780",
                 "list_price": "780"
               },
               {
                 "type": "rp",
-                "price": "350",
+                "price": "500",
                 "list_price": "500"
               }
             ]
@@ -6096,14 +6094,7 @@
               "name": "極グループ"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-07-01 00:10:00",
-            "date_end": "2026-07-07 23:59:59",
-            "title": "人気VR作品！！30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -6179,33 +6170,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "350~",
+          "price": "500~",
           "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "1246",
+                "price": "1780",
                 "list_price": "1780"
               },
               {
                 "type": "download",
-                "price": "890",
+                "price": "1270",
                 "list_price": "1270"
               },
               {
                 "type": "stream",
-                "price": "350",
+                "price": "500",
                 "list_price": "500"
               },
               {
                 "type": "iosdl",
-                "price": "890",
+                "price": "1270",
                 "list_price": "1270"
               },
               {
                 "type": "androiddl",
-                "price": "890",
+                "price": "1270",
                 "list_price": "1270"
               }
             ]
@@ -6276,14 +6267,7 @@
               "name": "----"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-07-01 00:10:00",
-            "date_end": "2026-07-07 23:59:59",
-            "title": "ブランドストア30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -6515,23 +6499,23 @@
           }
         },
         "prices": {
-          "price": "350~",
+          "price": "500~",
           "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "download",
-                "price": "546",
+                "price": "780",
                 "list_price": "780"
               },
               {
                 "type": "rp",
-                "price": "350",
+                "price": "500",
                 "list_price": "500"
               }
             ]
@@ -6613,14 +6597,7 @@
               "name": "極グループ"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-07-01 00:10:00",
-            "date_end": "2026-07-07 23:59:59",
-            "title": "人気VR作品！！30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -6688,28 +6665,28 @@
           }
         },
         "prices": {
-          "price": "213~",
+          "price": "305~",
           "list_price": "305~",
           "deliveries": {
             "delivery": [
               {
                 "type": "8k",
-                "price": "826",
+                "price": "1180",
                 "list_price": "1180"
               },
               {
                 "type": "hd",
-                "price": "556",
+                "price": "795",
                 "list_price": "795"
               },
               {
                 "type": "download",
-                "price": "413",
+                "price": "590",
                 "list_price": "590"
               },
               {
                 "type": "rp",
-                "price": "213",
+                "price": "305",
                 "list_price": "305"
               }
             ]
@@ -6822,14 +6799,7 @@
               "name": "P-BOX VR"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-07-01 00:10:00",
-            "date_end": "2026-07-07 23:59:59",
-            "title": "人気VR作品！！30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -7279,28 +7249,28 @@
           }
         },
         "prices": {
-          "price": "350~",
+          "price": "500~",
           "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "8k",
-                "price": "1036",
+                "price": "1480",
                 "list_price": "1480"
               },
               {
                 "type": "hd",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "download",
-                "price": "546",
+                "price": "780",
                 "list_price": "780"
               },
               {
                 "type": "rp",
-                "price": "350",
+                "price": "500",
                 "list_price": "500"
               }
             ]
@@ -7386,14 +7356,7 @@
               "name": "極グループ"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-07-01 00:10:00",
-            "date_end": "2026-07-07 23:59:59",
-            "title": "人気VR作品！！30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -7775,38 +7738,38 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "350~",
+          "price": "500~",
           "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "4k",
-                "price": "1246",
+                "price": "1780",
                 "list_price": "1780"
               },
               {
                 "type": "hd",
-                "price": "896",
+                "price": "1280",
                 "list_price": "1280"
               },
               {
                 "type": "download",
-                "price": "546",
+                "price": "780",
                 "list_price": "780"
               },
               {
                 "type": "stream",
-                "price": "350",
+                "price": "500",
                 "list_price": "500"
               },
               {
                 "type": "iosdl",
-                "price": "546",
+                "price": "780",
                 "list_price": "780"
               },
               {
                 "type": "androiddl",
-                "price": "546",
+                "price": "780",
                 "list_price": "780"
               }
             ]
@@ -7914,14 +7877,7 @@
               "name": "ふぇち党"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-07-01 00:10:00",
-            "date_end": "2026-07-07 23:59:59",
-            "title": "DOC30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -8003,38 +7959,38 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "350~",
+          "price": "500~",
           "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "4k",
-                "price": "1246",
+                "price": "1780",
                 "list_price": "1780"
               },
               {
                 "type": "hd",
-                "price": "896",
+                "price": "1280",
                 "list_price": "1280"
               },
               {
                 "type": "download",
-                "price": "546",
+                "price": "780",
                 "list_price": "780"
               },
               {
                 "type": "stream",
-                "price": "350",
+                "price": "500",
                 "list_price": "500"
               },
               {
                 "type": "iosdl",
-                "price": "546",
+                "price": "780",
                 "list_price": "780"
               },
               {
                 "type": "androiddl",
-                "price": "546",
+                "price": "780",
                 "list_price": "780"
               }
             ]
@@ -8142,14 +8098,7 @@
               "name": "ふぇち党"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-07-01 00:10:00",
-            "date_end": "2026-07-07 23:59:59",
-            "title": "DOC30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -8213,28 +8162,28 @@
           }
         },
         "prices": {
-          "price": "350~",
+          "price": "500~",
           "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "8k",
-                "price": "1036",
+                "price": "1480",
                 "list_price": "1480"
               },
               {
                 "type": "hd",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "download",
-                "price": "546",
+                "price": "780",
                 "list_price": "780"
               },
               {
                 "type": "rp",
-                "price": "350",
+                "price": "500",
                 "list_price": "500"
               }
             ]
@@ -8312,14 +8261,7 @@
               "name": "極グループ"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-07-01 00:10:00",
-            "date_end": "2026-07-07 23:59:59",
-            "title": "人気VR作品！！30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -8552,28 +8494,28 @@
           }
         },
         "prices": {
-          "price": "356~",
+          "price": "509~",
           "list_price": "509~",
           "deliveries": {
             "delivery": [
               {
                 "type": "8k",
-                "price": "1106",
+                "price": "1580",
                 "list_price": "1580"
               },
               {
                 "type": "hd",
-                "price": "698",
+                "price": "998",
                 "list_price": "998"
               },
               {
                 "type": "download",
-                "price": "556",
+                "price": "795",
                 "list_price": "795"
               },
               {
                 "type": "rp",
-                "price": "356",
+                "price": "509",
                 "list_price": "509"
               }
             ]
@@ -8655,14 +8597,7 @@
               "name": "P-BOX VR"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-07-01 00:10:00",
-            "date_end": "2026-07-07 23:59:59",
-            "title": "人気VR作品！！30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -8736,28 +8671,28 @@
           }
         },
         "prices": {
-          "price": "350~",
+          "price": "500~",
           "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "8k",
-                "price": "1036",
+                "price": "1480",
                 "list_price": "1480"
               },
               {
                 "type": "hd",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "download",
-                "price": "546",
+                "price": "780",
                 "list_price": "780"
               },
               {
                 "type": "rp",
-                "price": "350",
+                "price": "500",
                 "list_price": "500"
               }
             ]
@@ -8843,14 +8778,7 @@
               "name": "極グループ"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-07-01 00:10:00",
-            "date_end": "2026-07-07 23:59:59",
-            "title": "人気VR作品！！30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -8922,38 +8850,38 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "385~",
+          "price": "550~",
           "list_price": "550~",
           "deliveries": {
             "delivery": [
               {
                 "type": "4k",
-                "price": "1456",
+                "price": "2080",
                 "list_price": "2080"
               },
               {
                 "type": "hd",
-                "price": "1106",
+                "price": "1580",
                 "list_price": "1580"
               },
               {
                 "type": "download",
-                "price": "945",
+                "price": "1350",
                 "list_price": "1350"
               },
               {
                 "type": "stream",
-                "price": "385",
+                "price": "550",
                 "list_price": "550"
               },
               {
                 "type": "iosdl",
-                "price": "945",
+                "price": "1350",
                 "list_price": "1350"
               },
               {
                 "type": "androiddl",
-                "price": "945",
+                "price": "1350",
                 "list_price": "1350"
               }
             ]
@@ -9040,14 +8968,7 @@
               "name": "MEGATORA DREAM"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-07-01 00:10:00",
-            "date_end": "2026-07-07 23:59:59",
-            "title": "DOC30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -10103,28 +10024,28 @@
           }
         },
         "prices": {
-          "price": "356~",
+          "price": "509~",
           "list_price": "509~",
           "deliveries": {
             "delivery": [
               {
                 "type": "8k",
-                "price": "1106",
+                "price": "1580",
                 "list_price": "1580"
               },
               {
                 "type": "hd",
-                "price": "698",
+                "price": "998",
                 "list_price": "998"
               },
               {
                 "type": "download",
-                "price": "556",
+                "price": "795",
                 "list_price": "795"
               },
               {
                 "type": "rp",
-                "price": "356",
+                "price": "509",
                 "list_price": "509"
               }
             ]
@@ -10206,14 +10127,7 @@
               "name": "P-BOX VR"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-07-01 00:10:00",
-            "date_end": "2026-07-07 23:59:59",
-            "title": "人気VR作品！！30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -10948,38 +10862,38 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "350~",
+          "price": "500~",
           "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "4k",
-                "price": "1386",
+                "price": "1980",
                 "list_price": "1980"
               },
               {
                 "type": "hd",
-                "price": "1036",
+                "price": "1480",
                 "list_price": "1480"
               },
               {
                 "type": "download",
-                "price": "896",
+                "price": "1280",
                 "list_price": "1280"
               },
               {
                 "type": "stream",
-                "price": "350",
+                "price": "500",
                 "list_price": "500"
               },
               {
                 "type": "iosdl",
-                "price": "896",
+                "price": "1280",
                 "list_price": "1280"
               },
               {
                 "type": "androiddl",
-                "price": "896",
+                "price": "1280",
                 "list_price": "1280"
               }
             ]
@@ -11050,14 +10964,7 @@
               "name": "街角シロウトナンパ"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-07-01 00:10:00",
-            "date_end": "2026-07-07 23:59:59",
-            "title": "DOC30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -11440,28 +11347,28 @@
           }
         },
         "prices": {
-          "price": "356~",
+          "price": "509~",
           "list_price": "509~",
           "deliveries": {
             "delivery": [
               {
                 "type": "8k",
-                "price": "1106",
+                "price": "1580",
                 "list_price": "1580"
               },
               {
                 "type": "hd",
-                "price": "698",
+                "price": "998",
                 "list_price": "998"
               },
               {
                 "type": "download",
-                "price": "556",
+                "price": "795",
                 "list_price": "795"
               },
               {
                 "type": "rp",
-                "price": "356",
+                "price": "509",
                 "list_price": "509"
               }
             ]
@@ -11537,14 +11444,7 @@
               "name": "KMPVR-彩-"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-07-01 00:10:00",
-            "date_end": "2026-07-07 23:59:59",
-            "title": "人気VR作品！！30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -11966,28 +11866,28 @@
           }
         },
         "prices": {
-          "price": "356~",
+          "price": "509~",
           "list_price": "509~",
           "deliveries": {
             "delivery": [
               {
                 "type": "8k",
-                "price": "1106",
+                "price": "1580",
                 "list_price": "1580"
               },
               {
                 "type": "hd",
-                "price": "698",
+                "price": "998",
                 "list_price": "998"
               },
               {
                 "type": "download",
-                "price": "556",
+                "price": "795",
                 "list_price": "795"
               },
               {
                 "type": "rp",
-                "price": "356",
+                "price": "509",
                 "list_price": "509"
               }
             ]
@@ -12063,14 +11963,7 @@
               "name": "KMPVR-彩-"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-07-01 00:10:00",
-            "date_end": "2026-07-07 23:59:59",
-            "title": "人気VR作品！！30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -12304,38 +12197,38 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "350~",
+          "price": "500~",
           "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "4k",
-                "price": "1386",
+                "price": "1980",
                 "list_price": "1980"
               },
               {
                 "type": "hd",
-                "price": "1036",
+                "price": "1480",
                 "list_price": "1480"
               },
               {
                 "type": "download",
-                "price": "896",
+                "price": "1280",
                 "list_price": "1280"
               },
               {
                 "type": "stream",
-                "price": "350",
+                "price": "500",
                 "list_price": "500"
               },
               {
                 "type": "iosdl",
-                "price": "896",
+                "price": "1280",
                 "list_price": "1280"
               },
               {
                 "type": "androiddl",
-                "price": "896",
+                "price": "1280",
                 "list_price": "1280"
               }
             ]
@@ -12410,14 +12303,7 @@
               "name": "街角シロウトナンパ"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-07-01 00:10:00",
-            "date_end": "2026-07-07 23:59:59",
-            "title": "DOC30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",

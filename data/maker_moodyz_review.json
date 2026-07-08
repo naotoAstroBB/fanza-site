@@ -57272,24 +57272,29 @@
               "ruby": "くるきれい"
             },
             {
+              "id": 1053039,
+              "name": "佐知子",
+              "ruby": "さちこ"
+            },
+            {
+              "id": 1063722,
+              "name": "凪沙ゆきの",
+              "ruby": "なぎさゆきの"
+            },
+            {
+              "id": 1055598,
+              "name": "舞原聖",
+              "ruby": "まいはらひじり"
+            },
+            {
+              "id": 1065404,
+              "name": "蘭華",
+              "ruby": "らんか"
+            },
+            {
               "id": 1032266,
               "name": "向井藍",
               "ruby": "むかいあい"
-            },
-            {
-              "id": 1060141,
-              "name": "木下ひまり（花沢ひまり）",
-              "ruby": "きのしたひまり（はなざわひまり）"
-            },
-            {
-              "id": 17700,
-              "name": "加藤ツバキ（夏樹カオル）",
-              "ruby": "かとうつばき（なつきかおる）"
-            },
-            {
-              "id": 1054923,
-              "name": "佐伯由美香",
-              "ruby": "さえきゆみか"
             },
             {
               "id": 1055595,
@@ -57302,9 +57307,29 @@
               "ruby": "もりひなこ"
             },
             {
-              "id": 1053256,
-              "name": "奏音かのん",
-              "ruby": "かなでかのん"
+              "id": 1062721,
+              "name": "樋口みつは",
+              "ruby": "ひぐちみつは"
+            },
+            {
+              "id": 1061348,
+              "name": "椿りか",
+              "ruby": "つばきりか"
+            },
+            {
+              "id": 1008769,
+              "name": "真木今日子",
+              "ruby": "まききょうこ"
+            },
+            {
+              "id": 14495,
+              "name": "晶エリー（新井エリー、大沢佑香）",
+              "ruby": "あきらえりー（あらいえりー、おおさわゆうか）"
+            },
+            {
+              "id": 17700,
+              "name": "加藤ツバキ（夏樹カオル）",
+              "ruby": "かとうつばき（なつきかおる）"
             },
             {
               "id": 1051008,
@@ -57317,14 +57342,24 @@
               "ruby": "えいかわのあ"
             },
             {
-              "id": 1062721,
-              "name": "樋口みつは",
-              "ruby": "ひぐちみつは"
-            },
-            {
               "id": 1052676,
               "name": "七海ひな（七瀬ひな）",
               "ruby": "ななみひな"
+            },
+            {
+              "id": 1060141,
+              "name": "木下ひまり（花沢ひまり）",
+              "ruby": "きのしたひまり（はなざわひまり）"
+            },
+            {
+              "id": 1052094,
+              "name": "永瀬ゆい",
+              "ruby": "ながせゆい"
+            },
+            {
+              "id": 1054923,
+              "name": "佐伯由美香",
+              "ruby": "さえきゆみか"
             },
             {
               "id": 1059802,
@@ -57347,44 +57382,9 @@
               "ruby": "あべみかこ"
             },
             {
-              "id": 14495,
-              "name": "晶エリー（新井エリー、大沢佑香）",
-              "ruby": "あきらえりー（あらいえりー、おおさわゆうか）"
-            },
-            {
-              "id": 1008769,
-              "name": "真木今日子",
-              "ruby": "まききょうこ"
-            },
-            {
-              "id": 1061348,
-              "name": "椿りか",
-              "ruby": "つばきりか"
-            },
-            {
-              "id": 1053039,
-              "name": "佐知子",
-              "ruby": "さちこ"
-            },
-            {
-              "id": 1063722,
-              "name": "凪沙ゆきの",
-              "ruby": "なぎさゆきの"
-            },
-            {
-              "id": 1055598,
-              "name": "舞原聖",
-              "ruby": "まいはらひじり"
-            },
-            {
-              "id": 1065404,
-              "name": "蘭華",
-              "ruby": "らんか"
-            },
-            {
-              "id": 1052094,
-              "name": "永瀬ゆい",
-              "ruby": "ながせゆい"
+              "id": 1053256,
+              "name": "奏音かのん",
+              "ruby": "かなでかのん"
             }
           ],
           "label": [
@@ -113118,33 +113118,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "826",
+                "price": "1180",
                 "list_price": "1180"
               },
               {
                 "type": "download",
-                "price": "546",
+                "price": "780",
                 "list_price": "780"
               },
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "546",
+                "price": "780",
                 "list_price": "780"
               },
               {
                 "type": "androiddl",
-                "price": "546",
+                "price": "780",
                 "list_price": "780"
               }
             ]
@@ -113212,14 +113212,7 @@
               "name": "まんきつ"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-07-08 00:00:00",
-            "date_end": "2026-07-08 23:59:59",
-            "title": "日替わりセール♪"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -115311,33 +115304,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "1036",
+                "price": "1480",
                 "list_price": "1480"
               },
               {
                 "type": "download",
-                "price": "826",
+                "price": "1180",
                 "list_price": "1180"
               },
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "826",
+                "price": "1180",
                 "list_price": "1180"
               },
               {
                 "type": "androiddl",
-                "price": "826",
+                "price": "1180",
                 "list_price": "1180"
               }
             ]
@@ -115418,14 +115411,7 @@
               "name": "MOODYZ REAL"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-07-08 00:00:00",
-            "date_end": "2026-07-08 23:59:59",
-            "title": "日替わりセール♪"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -127636,33 +127622,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "300~",
+          "price": "210~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "980",
+                "price": "686",
                 "list_price": "980"
               },
               {
                 "type": "download",
-                "price": "680",
+                "price": "476",
                 "list_price": "680"
               },
               {
                 "type": "stream",
-                "price": "300",
+                "price": "210",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "680",
+                "price": "476",
                 "list_price": "680"
               },
               {
                 "type": "androiddl",
-                "price": "680",
+                "price": "476",
                 "list_price": "680"
               }
             ]
@@ -127735,7 +127721,14 @@
               "name": "MOODYZ DIVA"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-07-09 00:00:00",
+            "date_end": "2026-07-09 23:59:59",
+            "title": "日替わりセール◆"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -140058,38 +140051,38 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "4k",
-                "price": "1316",
+                "price": "1880",
                 "list_price": "1880"
               },
               {
                 "type": "hd",
-                "price": "826",
+                "price": "1180",
                 "list_price": "1180"
               },
               {
                 "type": "download",
-                "price": "546",
+                "price": "780",
                 "list_price": "780"
               },
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "546",
+                "price": "780",
                 "list_price": "780"
               },
               {
                 "type": "androiddl",
-                "price": "546",
+                "price": "780",
                 "list_price": "780"
               }
             ]
@@ -140161,14 +140154,7 @@
               "name": "まんきつ"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-07-08 00:00:00",
-            "date_end": "2026-07-08 23:59:59",
-            "title": "日替わりセール♪"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",

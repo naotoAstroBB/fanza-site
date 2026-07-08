@@ -54888,40 +54888,40 @@
         "iteminfo": {
           "genre": [
             {
-              "id": 6012,
-              "name": "4時間以上作品"
-            },
-            {
-              "id": 6533,
-              "name": "ハイビジョン"
-            },
-            {
-              "id": 6548,
-              "name": "独占配信"
-            },
-            {
-              "id": 4025,
-              "name": "単体作品"
-            },
-            {
-              "id": 6608,
-              "name": "女優ベスト・総集編"
-            },
-            {
-              "id": 6968,
-              "name": "アクメ・オーガズム"
-            },
-            {
-              "id": 1033,
-              "name": "お姉さん"
+              "id": 2006,
+              "name": "スレンダー"
             },
             {
               "id": 5022,
               "name": "3P・4P"
             },
             {
-              "id": 2006,
-              "name": "スレンダー"
+              "id": 1033,
+              "name": "お姉さん"
+            },
+            {
+              "id": 6968,
+              "name": "アクメ・オーガズム"
+            },
+            {
+              "id": 6608,
+              "name": "女優ベスト・総集編"
+            },
+            {
+              "id": 4025,
+              "name": "単体作品"
+            },
+            {
+              "id": 6548,
+              "name": "独占配信"
+            },
+            {
+              "id": 6533,
+              "name": "ハイビジョン"
+            },
+            {
+              "id": 6012,
+              "name": "4時間以上作品"
             }
           ],
           "series": [
@@ -61291,29 +61291,34 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "2180~",
-          "list_price": "2180~",
+          "price": "500~",
+          "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "2700",
-                "list_price": "2700"
+                "price": "1780",
+                "list_price": "1780"
               },
               {
                 "type": "download",
-                "price": "2180",
-                "list_price": "2180"
+                "price": "1270",
+                "list_price": "1270"
+              },
+              {
+                "type": "stream",
+                "price": "500",
+                "list_price": "500"
               },
               {
                 "type": "iosdl",
-                "price": "2180",
-                "list_price": "2180"
+                "price": "1270",
+                "list_price": "1270"
               },
               {
                 "type": "androiddl",
-                "price": "2180",
-                "list_price": "2180"
+                "price": "1270",
+                "list_price": "1270"
               }
             ]
           }
@@ -102802,33 +102807,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "826",
+                "price": "1180",
                 "list_price": "1180"
               },
               {
                 "type": "download",
-                "price": "546",
+                "price": "780",
                 "list_price": "780"
               },
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "546",
+                "price": "780",
                 "list_price": "780"
               },
               {
                 "type": "androiddl",
-                "price": "546",
+                "price": "780",
                 "list_price": "780"
               }
             ]
@@ -102896,14 +102901,7 @@
               "name": "エレガンス"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-07-08 00:00:00",
-            "date_end": "2026-07-08 23:59:59",
-            "title": "日替わりセール♪"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -138838,33 +138836,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "300~",
+          "price": "210~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "980",
+                "price": "686",
                 "list_price": "980"
               },
               {
                 "type": "download",
-                "price": "680",
+                "price": "476",
                 "list_price": "680"
               },
               {
                 "type": "stream",
-                "price": "300",
+                "price": "210",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "680",
+                "price": "476",
                 "list_price": "680"
               },
               {
                 "type": "androiddl",
-                "price": "680",
+                "price": "476",
                 "list_price": "680"
               }
             ]
@@ -138925,7 +138923,14 @@
               "name": "溜池ゴロー"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-07-09 00:00:00",
+            "date_end": "2026-07-09 23:59:59",
+            "title": "日替わりセール◆"
+          }
+        ]
       },
       {
         "service_code": "digital",

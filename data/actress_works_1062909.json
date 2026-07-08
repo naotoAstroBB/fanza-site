@@ -5491,32 +5491,32 @@
         "iteminfo": {
           "genre": [
             {
-              "id": 6003,
-              "name": "ベスト・総集編"
-            },
-            {
-              "id": 5017,
-              "name": "おもちゃ"
-            },
-            {
-              "id": 5016,
-              "name": "潮吹き"
-            },
-            {
-              "id": 5021,
-              "name": "縛り・緊縛"
-            },
-            {
-              "id": 6548,
-              "name": "独占配信"
+              "id": 6012,
+              "name": "4時間以上作品"
             },
             {
               "id": 6533,
               "name": "ハイビジョン"
             },
             {
-              "id": 6012,
-              "name": "4時間以上作品"
+              "id": 6548,
+              "name": "独占配信"
+            },
+            {
+              "id": 5021,
+              "name": "縛り・緊縛"
+            },
+            {
+              "id": 5016,
+              "name": "潮吹き"
+            },
+            {
+              "id": 5017,
+              "name": "おもちゃ"
+            },
+            {
+              "id": 6003,
+              "name": "ベスト・総集編"
             }
           ],
           "series": [
@@ -9891,33 +9891,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "300~",
+          "price": "210~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "1180",
+                "price": "826",
                 "list_price": "1180"
               },
               {
                 "type": "download",
-                "price": "780",
+                "price": "546",
                 "list_price": "780"
               },
               {
                 "type": "stream",
-                "price": "300",
+                "price": "210",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "780",
+                "price": "546",
                 "list_price": "780"
               },
               {
                 "type": "androiddl",
-                "price": "780",
+                "price": "546",
                 "list_price": "780"
               }
             ]
@@ -10144,7 +10144,14 @@
               "name": "S1 NO.1 STYLE"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-07-09 00:00:00",
+            "date_end": "2026-07-09 23:59:59",
+            "title": "日替わりセール◆"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -17058,33 +17065,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "1036",
+                "price": "1480",
                 "list_price": "1480"
               },
               {
                 "type": "download",
-                "price": "826",
+                "price": "1180",
                 "list_price": "1180"
               },
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "826",
+                "price": "1180",
                 "list_price": "1180"
               },
               {
                 "type": "androiddl",
-                "price": "826",
+                "price": "1180",
                 "list_price": "1180"
               }
             ]
@@ -17154,14 +17161,7 @@
               "name": "大人のドラマ"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-07-08 00:00:00",
-            "date_end": "2026-07-08 23:59:59",
-            "title": "日替わりセール♪"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",

@@ -896,6 +896,10 @@
         "iteminfo": {
           "genre": [
             {
+              "id": 6012,
+              "name": "4時間以上作品"
+            },
+            {
               "id": 6533,
               "name": "ハイビジョン"
             },
@@ -922,10 +926,6 @@
             {
               "id": 2006,
               "name": "スレンダー"
-            },
-            {
-              "id": 6012,
-              "name": "4時間以上作品"
             }
           ],
           "maker": [
@@ -3613,10 +3613,6 @@
             {
               "id": 6793,
               "name": "VR専用"
-            },
-            {
-              "id": 6548,
-              "name": "独占配信"
             },
             {
               "id": 6003,
@@ -11576,38 +11572,38 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "500~",
+          "price": "350~",
           "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "download",
-                "price": "1270",
+                "price": "890",
                 "list_price": "1270"
               },
               {
                 "type": "stream",
-                "price": "500",
+                "price": "350",
                 "list_price": "500"
               },
               {
                 "type": "4k",
-                "price": "2280",
+                "price": "1596",
                 "list_price": "2280"
               },
               {
                 "type": "hd",
-                "price": "1780",
+                "price": "1246",
                 "list_price": "1780"
               },
               {
                 "type": "iosdl",
-                "price": "1270",
+                "price": "890",
                 "list_price": "1270"
               },
               {
                 "type": "androiddl",
-                "price": "1270",
+                "price": "890",
                 "list_price": "1270"
               }
             ]
@@ -11685,7 +11681,14 @@
               "name": "痴人"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-07-10 00:10:00",
+            "date_end": "2026-07-12 23:59:59",
+            "title": "みんなのお気に入り30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -22948,14 +22951,9 @@
               "ruby": "みさきおと"
             },
             {
-              "id": 1082666,
-              "name": "天月あず",
-              "ruby": "あまつきあず"
-            },
-            {
-              "id": 1044544,
-              "name": "一条みお",
-              "ruby": "いちじょうみお"
+              "id": 1079362,
+              "name": "南見つばさ",
+              "ruby": "みなみつばさ"
             },
             {
               "id": 1078111,
@@ -22963,14 +22961,14 @@
               "ruby": "にしのえみ"
             },
             {
-              "id": 1079362,
-              "name": "南見つばさ",
-              "ruby": "みなみつばさ"
+              "id": 1044544,
+              "name": "一条みお",
+              "ruby": "いちじょうみお"
             },
             {
-              "id": 19930,
-              "name": "黒木奈美",
-              "ruby": "くろきなみ"
+              "id": 1082666,
+              "name": "天月あず",
+              "ruby": "あまつきあず"
             },
             {
               "id": 1096399,
@@ -23008,14 +23006,19 @@
               "ruby": "しぶやあかり"
             },
             {
-              "id": 1091229,
-              "name": "白石なぎさ",
-              "ruby": "しらいしなぎさ"
+              "id": 19930,
+              "name": "黒木奈美",
+              "ruby": "くろきなみ"
             },
             {
               "id": 1085389,
               "name": "美波汐里",
               "ruby": "みなみしおり"
+            },
+            {
+              "id": 1073807,
+              "name": "中丸未来",
+              "ruby": "なかまるみくる"
             },
             {
               "id": 1020685,
@@ -23086,11 +23089,6 @@
               "id": 1083560,
               "name": "東城ゆい",
               "ruby": "とうじょうゆい"
-            },
-            {
-              "id": 1073807,
-              "name": "中丸未来",
-              "ruby": "なかまるみくる"
             },
             {
               "id": 1086960,
@@ -23363,29 +23361,29 @@
           }
         },
         "prices": {
-          "price": "500~",
-          "list_price": "500~",
+          "price": "300~",
+          "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "8k",
-                "price": "1780",
-                "list_price": "1780"
+                "price": "1280",
+                "list_price": "1280"
               },
               {
                 "type": "hd",
-                "price": "1480",
-                "list_price": "1480"
-              },
-              {
-                "type": "download",
                 "price": "980",
                 "list_price": "980"
               },
               {
+                "type": "download",
+                "price": "780",
+                "list_price": "780"
+              },
+              {
                 "type": "rp",
-                "price": "500",
-                "list_price": "500"
+                "price": "300",
+                "list_price": "300"
               }
             ]
           }
@@ -25245,38 +25243,38 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "217~",
+          "price": "310~",
           "list_price": "310~",
           "deliveries": {
             "delivery": [
               {
                 "type": "download",
-                "price": "476",
+                "price": "680",
                 "list_price": "680"
               },
               {
                 "type": "stream",
-                "price": "217",
+                "price": "310",
                 "list_price": "310"
               },
               {
                 "type": "4k",
-                "price": "1043",
+                "price": "1490",
                 "list_price": "1490"
               },
               {
                 "type": "hd",
-                "price": "693",
+                "price": "990",
                 "list_price": "990"
               },
               {
                 "type": "iosdl",
-                "price": "476",
+                "price": "680",
                 "list_price": "680"
               },
               {
                 "type": "androiddl",
-                "price": "476",
+                "price": "680",
                 "list_price": "680"
               }
             ]
@@ -25344,14 +25342,7 @@
               "name": "俺のボイン"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-07-08 00:10:00",
-            "date_end": "2026-07-09 23:59:59",
-            "title": "今月のおすすめ30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -26841,38 +26832,38 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "300~",
+          "price": "210~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "download",
-                "price": "590",
+                "price": "413",
                 "list_price": "590"
               },
               {
                 "type": "stream",
-                "price": "300",
+                "price": "210",
                 "list_price": "300"
               },
               {
                 "type": "4k",
-                "price": "1480",
+                "price": "1036",
                 "list_price": "1480"
               },
               {
                 "type": "hd",
-                "price": "980",
+                "price": "686",
                 "list_price": "980"
               },
               {
                 "type": "iosdl",
-                "price": "590",
+                "price": "413",
                 "list_price": "590"
               },
               {
                 "type": "androiddl",
-                "price": "590",
+                "price": "413",
                 "list_price": "590"
               }
             ]
@@ -26946,7 +26937,14 @@
               "name": "----"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-07-10 00:10:00",
+            "date_end": "2026-07-12 23:59:59",
+            "title": "みんなのお気に入り30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",

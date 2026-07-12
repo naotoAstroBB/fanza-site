@@ -134,7 +134,13 @@
 <script>
 if (localStorage.getItem('age_verified') !== 'yes') location.href = 'index.html';
 
-const esc = s => String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+const esc = s => String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+const safeUrl = value => {
+    try {
+        const url = new URL(String(value || ''), location.href);
+        return url.protocol === 'https:' ? url.href : '';
+    } catch { return ''; }
+};
 
 function appBack() {
     if (document.referrer && new URL(document.referrer).origin === location.origin) {
@@ -188,42 +194,42 @@ async function renderActresses(type) {
         const showRank = type !== 'new';
 
         const renderPodium = (a, idx) => {
-            const img = a.imageURL?.large || a.imageURL?.small || '';
+            const img = safeUrl(a.imageURL?.large || a.imageURL?.small || '');
             const name = esc(a.name || '');
-            const href = `actress.html?id=${esc(String(a.id))}&name=${encodeURIComponent(a.name || '')}`;
-            const initial = (a.name || '').charAt(0) || '♀';
+            const href = `actress.html?id=${encodeURIComponent(String(a.id))}&name=${encodeURIComponent(a.name || '')}`;
+            const initial = esc((a.name || '').charAt(0) || '♀');
             const sp = specs(a);
             const medals = ['🥇','🥈','🥉'];
             return `
-            <a class="actress-podium-card actress-rank-${idx + 1}" href="${href}">
+            <a class="actress-podium-card actress-rank-${idx + 1}" href="${esc(href)}">
                 <div class="actress-podium-medal">${medals[idx]}</div>
                 <div class="actress-podium-rank-num">${idx + 1}</div>
                 <div class="actress-podium-photo">
                     ${img ? `<img src="${esc(img)}" alt="${name}" loading="lazy">` : `<div class="actress-no-img-podium">${initial}</div>`}
                 </div>
                 <div class="actress-podium-name">${name}</div>
-                ${sp.meta    ? `<div class="actress-podium-meta">${sp.meta}</div>` : ''}
-                ${sp.measure ? `<div class="actress-podium-measure">${sp.measure}</div>` : ''}
+                ${sp.meta    ? `<div class="actress-podium-meta">${esc(sp.meta)}</div>` : ''}
+                ${sp.measure ? `<div class="actress-podium-measure">${esc(sp.measure)}</div>` : ''}
             </a>`;
         };
 
         const renderListCard = (a, idx) => {
-            const img = a.imageURL?.small || '';
+            const img = safeUrl(a.imageURL?.small || '');
             const name = esc(a.name || '');
-            const href = `actress.html?id=${esc(String(a.id))}&name=${encodeURIComponent(a.name || '')}`;
-            const initial = (a.name || '').charAt(0) || '♀';
+            const href = `actress.html?id=${encodeURIComponent(String(a.id))}&name=${encodeURIComponent(a.name || '')}`;
+            const initial = esc((a.name || '').charAt(0) || '♀');
             const sp = specs(a);
             const rankLabel = showRank ? `${idx + 1}` : '★';
             return `
-            <a class="actress-list-card" href="${href}">
+            <a class="actress-list-card" href="${esc(href)}">
                 <div class="actress-list-rank">${rankLabel}</div>
                 <div class="actress-list-photo-wrap">
                     ${img ? `<img class="actress-list-photo" src="${esc(img)}" alt="${name}" loading="lazy">` : `<div class="actress-list-photo actress-no-img-list">${initial}</div>`}
                 </div>
                 <div class="actress-list-info">
                     <div class="actress-list-name">${name}</div>
-                    ${sp.meta    ? `<div class="actress-list-meta">${sp.meta}</div>` : ''}
-                    ${sp.measure ? `<div class="actress-list-measure">${sp.measure}</div>` : ''}
+                    ${sp.meta    ? `<div class="actress-list-meta">${esc(sp.meta)}</div>` : ''}
+                    ${sp.measure ? `<div class="actress-list-measure">${esc(sp.measure)}</div>` : ''}
                 </div>
             </a>`;
         };

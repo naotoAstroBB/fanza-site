@@ -146,7 +146,7 @@ const App = {
         if (!matches.length) { this.closeSuggest(); return; }
 
         box.innerHTML = matches.map(a => {
-            const img  = a.imageURL?.small || '';
+            const img  = this.safeUrl(a.imageURL?.small || '');
             const name = this.esc(a.name || '');
             const ruby = this.esc(a.ruby || '');
             // マッチ箇所をハイライト
@@ -154,7 +154,7 @@ const App = {
                 new RegExp(this.esc(q).replace(/[.*+?^${}()|[\]\\]/g,'\\$&'), 'gi'),
                 m => `<mark>${m}</mark>`
             );
-            return `<div class="suggest-item" onclick="App.selectSuggest('${this.esc(a.name)}','${a.id}')">
+            return `<div class="suggest-item" data-name="${this.esc(a.name)}" data-id="${this.esc(a.id)}" onclick="App.selectSuggest(this.dataset.name,this.dataset.id)">
                 ${img ? `<img src="${this.esc(img)}" alt="${name}">` : '<div class="suggest-no-img">👩</div>'}
                 <div>
                     <div class="suggest-item-name">${hlName}</div>
@@ -391,14 +391,18 @@ const App = {
         const el = document.getElementById(containerId);
         if (!el) return;
         const removeFn = type === 'fav' ? 'App.removeFavItem' : type === 'like' ? 'App.removeLikeItem' : 'App.removeHistItem';
-        el.innerHTML = items.slice(0, 30).map(item => `
+        el.innerHTML = items.slice(0, 30).map(item => {
+            const href = `product.html?cid=${encodeURIComponent(item.cid || '')}&floor=${encodeURIComponent(item.floor || 'videoa')}`;
+            const img = this.safeUrl(item.img || '');
+            return `
             <div class="mini-card-wrap">
-                <a class="mini-card" href="product.html?cid=${this.esc(item.cid)}&floor=${this.esc(item.floor)}">
-                    ${item.img ? `<img src="${this.esc(item.img)}" alt="${this.esc(item.title)}" loading="lazy">` : '<div class="mini-card-no-img">🎬</div>'}
+                <a class="mini-card" href="${this.esc(href)}">
+                    ${img ? `<img src="${this.esc(img)}" alt="${this.esc(item.title)}" loading="lazy">` : '<div class="mini-card-no-img">🎬</div>'}
                     <div class="mini-card-title">${this.esc(item.title)}</div>
                 </a>
-                <button class="mini-card-remove" onclick="${removeFn}('${this.esc(item.cid)}')" title="削除">✕</button>
-            </div>`).join('');
+                <button class="mini-card-remove" data-cid="${this.esc(item.cid)}" onclick="${removeFn}(this.dataset.cid)" title="削除">✕</button>
+            </div>`;
+        }).join('');
     },
 
     // ===== ヒーローバナー =====
@@ -410,10 +414,10 @@ const App = {
 
             const top = items[0];
             const heroMain = document.querySelector('.hero-main');
-            const imgLarge = top.imageURL?.large || top.imageURL?.list || '';
+            const imgLarge = this.safeUrl(top.imageURL?.large || top.imageURL?.list || '');
             if (heroMain && imgLarge) {
                 heroMain.style.backgroundImage =
-                    `linear-gradient(to right, rgba(10,0,5,0.92) 40%, rgba(10,0,5,0.5) 100%), url('${imgLarge}')`;
+                    `linear-gradient(to right, rgba(10,0,5,0.92) 40%, rgba(10,0,5,0.5) 100%), url(${JSON.stringify(imgLarge)})`;
                 heroMain.style.backgroundSize = 'cover';
                 heroMain.style.backgroundPosition = 'center top';
             }
@@ -425,7 +429,7 @@ const App = {
                 subEl.textContent = actresses ? '出演：' + actresses : '';
             }
             const btnEl = document.getElementById('heroBtn');
-            if (btnEl) btnEl.href = top.affiliateURL || top.URL || '#';
+            if (btnEl) btnEl.href = this.safeUrl(top.affiliateURL || top.URL || '', '#');
 
             const priceEl = document.getElementById('heroPrice');
             if (priceEl) {
@@ -441,8 +445,8 @@ const App = {
             const subGrid = document.getElementById('heroSubGrid');
             if (subGrid && items.length >= 4) {
                 subGrid.innerHTML = items.slice(1, 4).map((item, i) => {
-                    const img = item.imageURL?.list || item.imageURL?.small || '';
-                    const url = item.affiliateURL || item.URL || '#';
+                    const img = this.safeUrl(item.imageURL?.list || item.imageURL?.small || '');
+                    const url = this.safeUrl(item.affiliateURL || item.URL || '', '#');
                     return `
                     <a href="${this.esc(url)}" target="_blank" rel="noopener" class="hero-sub-card">
                         ${img ? `<img src="${this.esc(img)}" alt="${this.esc(item.title)}" loading="lazy">` : ''}
@@ -720,9 +724,9 @@ const App = {
 
     // ===== 商品カード =====
     cardHTML(item, i) {
-        const img       = item.imageURL?.list || item.imageURL?.small || '';
+        const img       = this.safeUrl(item.imageURL?.list || item.imageURL?.small || '');
         const title     = this.esc(item.title || '');
-        const url       = item.affiliateURL || item.URL || '#';
+        const url       = this.safeUrl(item.affiliateURL || item.URL || '', '#');
         const review    = item.review;
         const actressObjs = (item.iteminfo?.actress || []).slice(0,2);
         const actresses = actressObjs.map(a => this.esc(a.name)).join(' / ');
@@ -734,9 +738,9 @@ const App = {
             ? `<div class="rank-badge ${['rank-1','rank-2','rank-3'][i]}">${['🥇','🥈','🥉'][i]}</div>`
             : (i < 10 ? `<div class="rank-badge rank-other">${i+1}</div>` : '');
         const mv        = item.sampleMovieURL;
-        const sampleUrl = mv ? (mv.size_560_360 || mv.size_476_306 || mv.size_644_414 || '') : '';
+        const sampleUrl = this.safeUrl(mv ? (mv.size_560_360 || mv.size_476_306 || mv.size_644_414 || '') : '');
         // マンガの試し読みURL（FANZA公式のtachiyomiページへのリンク）
-        const tachiyomiUrl = item.tachiyomi?.affiliateURL || item.tachiyomi?.URL || '';
+        const tachiyomiUrl = this.safeUrl(item.tachiyomi?.affiliateURL || item.tachiyomi?.URL || '');
         // 動画系のサンプル画像（マンガ用は別途tachiyomiで対応）
         const sampleImages = item.sampleImageURL?.sample_l?.image
                           || item.sampleImageURL?.sample_s?.image
@@ -757,15 +761,15 @@ const App = {
         let sampleBtnHtml = '';
         if (sampleUrl) {
             // 動画サンプル → モーダル再生
-            sampleBtnHtml = `<button class="card-sample-btn" onclick="event.stopPropagation();App.openSample('${this.esc(sampleUrl)}','${title}')" title="サンプル再生">▶</button>`;
+            sampleBtnHtml = `<button class="card-sample-btn" data-url="${this.esc(sampleUrl)}" data-title="${this.esc(item.title || '')}" onclick="event.stopPropagation();App.openSample(this.dataset.url,this.dataset.title)" title="サンプル再生">▶</button>`;
         } else if (tachiyomiUrl) {
             // マンガ試し読み → FANZA公式ページを新規タブで開く
             sampleBtnHtml = `<a class="card-sample-btn card-sample-book" href="${this.esc(tachiyomiUrl)}" target="_blank" rel="noopener" onclick="event.stopPropagation()" title="試し読み">📖</a>`;
         } else if (sampleImages.length) {
             // 動画系のサンプル画像
             this._sampleImagesByCid = this._sampleImagesByCid || {};
-            this._sampleImagesByCid[item.content_id] = sampleImages;
-            sampleBtnHtml = `<button class="card-sample-btn" onclick="event.stopPropagation();App.openSampleImages('${this.esc(item.content_id)}','${title}')" title="サンプル画像">🖼</button>`;
+            this._sampleImagesByCid[item.content_id] = sampleImages.map(url => this.safeUrl(url)).filter(Boolean);
+            sampleBtnHtml = `<button class="card-sample-btn" data-cid="${this.esc(item.content_id)}" data-title="${this.esc(item.title || '')}" onclick="event.stopPropagation();App.openSampleImages(this.dataset.cid,this.dataset.title)" title="サンプル画像">🖼</button>`;
         }
 
         // 順位変動バッジ
@@ -790,7 +794,7 @@ const App = {
         const isLiked   = Like.has(item.content_id);
         const likeCount = Like.count(item.content_id);
         return `
-        <div class="product-card" onclick="location.href='product.html?cid=${this.esc(item.content_id)}&floor=${this.floor}'">
+        <div class="product-card" data-href="${this.esc(`product.html?cid=${encodeURIComponent(item.content_id || '')}&floor=${encodeURIComponent(this.floor)}`)}" onclick="location.href=this.dataset.href">
           <div class="card-img-wrap">
             ${img
                 ? `<img src="${this.esc(img)}" alt="${title}" loading="lazy">`
@@ -801,7 +805,7 @@ const App = {
             ${campaign ? `<span class="badge-sale">SALE</span>` : (isNew ? `<span class="badge-new">NEW</span>` : '')}
             ${sampleBtnHtml}
             <button class="fav-btn ${isFav ? 'active' : ''}" data-cid="${this.esc(item.content_id)}" title="${isFav ? 'お気に入り解除' : 'お気に入りに追加'}"
-              onclick="event.stopPropagation();App.toggleFav(this,'${this.esc(item.content_id)}')">${isFav ? '⭐' : '☆'}</button>
+              onclick="event.stopPropagation();App.toggleFav(this,this.dataset.cid)">${isFav ? '⭐' : '☆'}</button>
           </div>
           <div class="card-body">
             <div class="card-title">${title}</div>
@@ -809,7 +813,7 @@ const App = {
             <div class="card-bottom">
               ${stars ? `<div class="card-review"><span class="stars">${stars}</span></div>` : ''}
               <button class="like-btn ${isLiked ? 'active' : ''}" data-cid="${this.esc(item.content_id)}"
-                onclick="event.stopPropagation();App.toggleLike(this,'${this.esc(item.content_id)}')">
+                onclick="event.stopPropagation();App.toggleLike(this,this.dataset.cid)">
                 <span class="like-icon">${isLiked ? '❤️' : '🤍'}</span>
                 <span class="like-label">${likeCount > 0 ? likeCount : 'いいね'}</span>
               </button>
@@ -854,7 +858,9 @@ const App = {
         const label  = document.getElementById('sampleModalTitle');
         if (!modal || !iframe) return;
         if (label) label.textContent = title || 'サンプル動画';
-        iframe.src = url;
+        const safeUrl = this.safeUrl(url);
+        if (!safeUrl) return;
+        iframe.src = safeUrl;
         modal.classList.add('active');
         document.body.style.overflow = 'hidden';
     },
@@ -1148,24 +1154,24 @@ const App = {
             };
 
             el.innerHTML = actresses.map((a, i) => {
-                const img  = a.imageURL?.small || '';
+                const img  = this.safeUrl(a.imageURL?.small || '');
                 const name = this.esc(a.name || '');
-                const href = `actress.html?id=${this.esc(String(a.id))}&name=${encodeURIComponent(a.name || '')}`;
+                const href = `actress.html?id=${encodeURIComponent(String(a.id))}&name=${encodeURIComponent(a.name || '')}`;
                 const badge = showRank
                     ? `<div class="actress-rank-badge">${i + 1}位</div>`
                     : `<div class="actress-new-badge">NEW</div>`;
                 const age   = calcAge(a.birthday);
                 const blood = a.blood_type && a.blood_type !== '他' ? `${a.blood_type}型` : '';
                 const meta  = [age ? age + '歳' : '', blood].filter(Boolean).join(' · ');
-                const nameInitial = (a.name || '').charAt(0) || '♀';
+                const nameInitial = this.esc((a.name || '').charAt(0) || '♀');
                 return `
-                <a class="actress-card" href="${href}">
+                <a class="actress-card" href="${this.esc(href)}">
                     <div class="actress-photo">
                         ${img ? `<img src="${this.esc(img)}" alt="${name}" loading="lazy">` : `<div class="actress-no-img">${nameInitial}</div>`}
                         ${badge}
                     </div>
                     <div class="actress-name">${name}</div>
-                    ${meta ? `<div class="actress-meta">${meta}</div>` : ''}
+                    ${meta ? `<div class="actress-meta">${this.esc(meta)}</div>` : ''}
                 </a>`;
             }).join('');
         } catch(e) {
@@ -1180,7 +1186,16 @@ const App = {
     },
 
     esc(s) {
-        return String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+        return String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+    },
+
+    safeUrl(value, fallback = '') {
+        try {
+            const url = new URL(String(value || ''), location.href);
+            return url.protocol === 'https:' ? url.href : fallback;
+        } catch {
+            return fallback;
+        }
     },
 };
 

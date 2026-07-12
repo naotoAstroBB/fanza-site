@@ -107,7 +107,13 @@ function appBack() {
     }
 }
 
-const esc = s => String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+const esc = s => String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+const safeUrl = (value, fallback='') => {
+    try {
+        const url = new URL(String(value||''), location.href);
+        return url.protocol === 'https:' ? url.href : fallback;
+    } catch { return fallback; }
+};
 const names = arr => (arr||[]).map(a=>esc(a.name)).join('、');
 const stars = avg => { const n=Math.round(parseFloat(avg)); return'★'.repeat(n)+'☆'.repeat(5-n); };
 
@@ -127,7 +133,7 @@ async function loadProduct(){
     _productFloor = floor;
 
     if(!cid){ location.href='home.html'; return; }
-    document.getElementById('floorLink').href = 'home.html?floor=' + floor;
+    document.getElementById('floorLink').href = 'home.html?floor=' + encodeURIComponent(floor);
 
     try {
         const data   = await DMM.fetchByCid(cid, floor);
@@ -139,7 +145,7 @@ async function loadProduct(){
         document.getElementById('breadTitle').textContent = item.title.slice(0,30) + (item.title.length>30?'...':'');
 
         // OGP動的更新
-        const ogImg = item.imageURL?.large || item.imageURL?.list || '';
+        const ogImg = safeUrl(item.imageURL?.large || item.imageURL?.list || '');
         const setMeta = (id, val) => { const el = document.getElementById(id); if(el) el.setAttribute('content', val); };
         setMeta('ogTitle',  item.title + ' | AV動画ランキング');
         setMeta('ogDesc',   item.title);
@@ -147,15 +153,19 @@ async function loadProduct(){
         setMeta('twTitle',  item.title + ' | AV動画ランキング');
         setMeta('twImage',  ogImg);
 
-        const imgLarge  = item.imageURL?.large  || item.imageURL?.list || '';
-        const imgList   = item.imageURL?.list   || '';
+        const imgLarge  = safeUrl(item.imageURL?.large  || item.imageURL?.list || '');
+        const imgList   = safeUrl(item.imageURL?.list   || '');
         const price     = item.prices?.price    || '';
         const listPrice = item.prices?.list_price || '';
-        const url       = item.affiliateURL || item.URL || '#';
+        const url       = safeUrl(item.affiliateURL || item.URL || '', '#');
         const review    = item.review;
         const campaign  = item.campaign;
         const sampleS   = item.sampleImageURL?.sample_s?.image || item.sampleImageURL?.sample_b?.image || [];
         const sampleL   = item.sampleImageURL?.sample_l?.image || item.sampleImageURL?.sample_b?.image || [];
+        const samplePairs = sampleS.slice(0,6).map((src,i) => ({
+            thumb: safeUrl(src),
+            large: safeUrl(sampleL[i] || src),
+        })).filter(pair => pair.thumb && pair.large);
         const movies    = item.sampleMovieURL || {};
 
         // フロア別ボタン文言
@@ -168,7 +178,7 @@ async function loadProduct(){
         };
         const buyText = buyLabels[floor] || '🎬 作品ページへ';
 
-        const movieSrc = movies.size_560_360 || movies.size_476_306 || Object.values(movies)[0] || '';
+        const movieSrc = safeUrl(movies.size_560_360 || movies.size_476_306 || Object.values(movies)[0] || '');
 
         // 履歴に保存
         Hist.add(item, floor);
@@ -206,10 +216,10 @@ async function loadProduct(){
                 style="width:100%;height:300px;border-radius:8px;background:#000"></iframe>
             </div>` : ''}
 
-            ${sampleS.length ? `
+            ${samplePairs.length ? `
             <p style="font-size:.8rem;color:var(--mute);margin:14px 0 6px">📷 サンプル画像</p>
             <div class="sample-images">
-              ${sampleS.slice(0,6).map((s,i)=>`<img src="${esc(s)}" alt="サンプル${i+1}" onclick="window.open('${esc(sampleL[i]||s)}')" loading="lazy">`).join('')}
+              ${samplePairs.map((pair,i)=>`<img src="${esc(pair.thumb)}" data-large="${esc(pair.large)}" alt="サンプル${i+1}" onclick="window.open(this.dataset.large,'_blank','noopener')" loading="lazy">`).join('')}
             </div>` : ''}
           </div>
 
@@ -225,13 +235,13 @@ async function loadProduct(){
 
             <!-- いいね / お気に入り -->
             <div style="display:flex;gap:10px;margin-bottom:12px;flex-wrap:wrap">
-              <button id="likeBtn" class="btn-like-detail ${Like.has(item.content_id)?'active':''}"
-                onclick="toggleLikeDetail(this,'${esc(item.content_id)}')">
+              <button id="likeBtn" class="btn-like-detail ${Like.has(item.content_id)?'active':''}" data-cid="${esc(item.content_id)}"
+                onclick="toggleLikeDetail(this,this.dataset.cid)">
                 <span id="likeBtnIcon">${Like.has(item.content_id)?'❤️':'🤍'}</span>
                 <span id="likeBtnLabel">${Like.count(item.content_id)>0?Like.count(item.content_id):'いいね'}</span>
               </button>
-              <button id="favBtn" class="btn-fav-detail ${isFav?'active':''}"
-                onclick="toggleFavDetail(this,'${esc(item.content_id)}')">
+              <button id="favBtn" class="btn-fav-detail ${isFav?'active':''}" data-cid="${esc(item.content_id)}"
+                onclick="toggleFavDetail(this,this.dataset.cid)">
                 ${isFav ? '⭐ 保存済み' : '☆ あとで見る'}
               </button>
             </div>
@@ -248,7 +258,7 @@ async function loadProduct(){
               <a class="share-btn share-fb" href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(pageUrl)}" target="_blank" rel="noopener" title="Facebookでシェア">
                 <span class="share-icon-fb">f</span>
               </a>
-              <button class="share-btn share-copy" onclick="copyShareLink(this,'${encodeURIComponent(pageUrl)}')" title="リンクをコピー">
+              <button class="share-btn share-copy" data-url="${esc(pageUrl)}" onclick="copyShareLink(this,this.dataset.url)" title="リンクをコピー">
                 🔗
               </button>
             </div>
@@ -261,7 +271,7 @@ async function loadProduct(){
             </div>` : ''}
 
             <dl class="detail-meta">
-              ${(item.iteminfo?.actress||[]).length ? `<dt>出演女優</dt><dd>${(item.iteminfo.actress).map(a=>`<a class="tag-link" href="actress.html?id=${esc(String(a.id))}&name=${encodeURIComponent(a.name)}">${esc(a.name)}</a>`).join('、 ')}</dd>` : ''}
+              ${(item.iteminfo?.actress||[]).length ? `<dt>出演女優</dt><dd>${(item.iteminfo.actress).map(a=>`<a class="tag-link" href="actress.html?id=${encodeURIComponent(String(a.id))}&name=${encodeURIComponent(a.name)}">${esc(a.name)}</a>`).join('、 ')}</dd>` : ''}
               ${(item.iteminfo?.maker||[]).length   ? `<dt>メーカー</dt><dd>${(item.iteminfo.maker).map(m=>`<a class="tag-link" href="home.html?keyword=${encodeURIComponent(m.name)}">${esc(m.name)}</a>`).join('、 ')}</dd>` : ''}
               ${(item.iteminfo?.label||[]).length   ? `<dt>レーベル</dt><dd>${(item.iteminfo.label).map(l=>`<a class="tag-link" href="home.html?keyword=${encodeURIComponent(l.name)}">${esc(l.name)}</a>`).join('、 ')}</dd>` : ''}
               ${(item.iteminfo?.series||[]).length  ? `<dt>シリーズ</dt><dd>${(item.iteminfo.series).map(s=>`<a class="tag-link" href="home.html?keyword=${encodeURIComponent(s.name)}">${esc(s.name)}</a>`).join('、 ')}</dd>` : ''}
@@ -289,8 +299,7 @@ async function loadProduct(){
 }
 
 // ===== シェアリンクをコピー =====
-function copyShareLink(btn, encodedUrl) {
-    const url = decodeURIComponent(encodedUrl);
+function copyShareLink(btn, url) {
     const orig = btn.innerHTML;
     const done = () => {
         btn.innerHTML = '✓ コピー済';
@@ -368,11 +377,11 @@ async function loadRelated(item, floor) {
         <h3 class="related-title">🎬 関連作品</h3>
         <div class="related-scroll">
             ${related.map(p => {
-                const img   = esc(p.imageURL?.list || '');
+                const img   = safeUrl(p.imageURL?.list || '');
                 const ptitle = esc(p.title || '');
-                const href  = `product.html?cid=${esc(p.content_id)}&floor=${esc(floor)}`;
-                return `<a class="mini-card" href="${href}">
-                    ${img ? `<img src="${img}" alt="${ptitle}" loading="lazy">` : ''}
+                const href  = `product.html?cid=${encodeURIComponent(p.content_id || '')}&floor=${encodeURIComponent(floor)}`;
+                return `<a class="mini-card" href="${esc(href)}">
+                    ${img ? `<img src="${esc(img)}" alt="${ptitle}" loading="lazy">` : ''}
                     <div class="mini-card-title">${ptitle}</div>
                 </a>`;
             }).join('')}

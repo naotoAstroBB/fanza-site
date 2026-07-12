@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AV動画ランキング | 人気・新作・おすすめアダルト動画・AV女優厳選サイト</title>
+
+<!-- OGP -->
+<meta property="og:title" content="AV動画ランキング">
+<meta property="og:description" content="厳選！人気AV動画・アニメ・マンガ・グッズのランキングサイト。無料サンプル動画あり。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://douga-adult.com/home.html">
+<meta property="og:image" content="https://douga-adult.com/icons/icon-512.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AV動画ランキング">
+<meta name="twitter:description" content="厳選！人気AV動画・アニメ・マンガ・グッズのランキングサイト。">
+<meta name="twitter:image" content="https://douga-adult.com/icons/icon-512.png">
+
+<!-- PWA -->
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#ff3366">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="アダルト動画">
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-90ZV8JH151"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-90ZV8JH151');
+</script>
+
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="sticky-bar">
+<header class="site-header">
+  <div class="header-inner">
+    <div class="site-logo"><a href="home.html" style="color:inherit;text-decoration:none">AV動画ランキング</a><span> - 厳選</span></div>
+    <div class="suggest-wrap">
+      <input type="text" id="searchInput" placeholder="女優名・タイトル・キーワードで検索..." autocomplete="off">
+      <div class="suggest-dropdown" id="suggestDropdown"></div>
+      <button onclick="App.doSearch()">🔍</button>
+    </div>
+    <div class="header-btns">
+      <button class="fav-header-btn" onclick="App.toggleFavPanel()" title="お気に入りを開く">
+        <span class="fav-icon">⭐</span>
+        <span class="fav-label">お気に入り</span>
+        <span class="fav-badge" id="favBadge" style="display:none">0</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<nav class="site-nav">
+  <div class="nav-inner">
+    <!-- フロア切替グループ -->
+    <div class="nav-group nav-group-floor">
+      <div class="nav-btn active" onclick="App.setFloor('videoa',this)">🎬 動画</div>
+      <div class="nav-btn" onclick="App.setFloor('anime',this)">🎌 アニメ</div>
+      <div class="nav-btn" onclick="App.setFloor('book',this)">📚 マンガ</div>
+      <div class="nav-btn" onclick="App.setFloor('goods',this)">🛍️ グッズ</div>
+    </div>
+    <div class="nav-divider"></div>
+    <!-- 特集/ソート グループ -->
+    <div class="nav-group nav-group-feature">
+      <div class="nav-btn" onclick="App.setSort('rank',this)">🏆 ランキング</div>
+      <div class="nav-btn" onclick="App.setSort('date',this)">🆕 新作</div>
+      <div class="nav-btn nav-btn-sale" onclick="App.setSale(this)">🔥 SALE</div>
+      <a href="actresses.html" class="nav-btn nav-btn-actress">👑 女優</a>
+    </div>
+  </div>
+</nav>
+
+<!-- お気に入りパネル（ヘッダー内ドロワー） -->
+<div class="fav-panel" id="favPanel" style="display:none">
+  <div class="fav-panel-inner">
+    <div class="fav-panel-header">
+      <span class="fav-panel-title">⭐ お気に入り <span id="favBadge2"></span></span>
+      <button class="fav-panel-close" onclick="App.toggleFavPanel()">✕ 閉じる</button>
+    </div>
+    <div class="actress-scroll" id="favPanelList"></div>
+  </div>
+</div>
+
+</div>
+
+<div class="ticker">
+  <div class="ticker-label">🔥 INFO</div>
+  <div class="ticker-wrap">
+    <span class="ticker-text">
+      厳選アダルト動画を毎日更新中！人気女優・新作・セール情報をお届けします。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      厳選アダルト動画を毎日更新中！人気女優・新作・セール情報をお届けします。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </span>
+  </div>
+</div>
+
+<div class="hero">
+  <div class="hero-inner">
+
+    <!-- 左：1位商品（背景画像） -->
+    <div class="hero-main" id="heroMain">
+      <div class="hero-tag">🏆 人気ランキング 1位</div>
+      <div class="hero-title" id="heroTitle">読み込み中...</div>
+      <div class="hero-actress" id="heroSub"></div>
+      <div class="hero-footer">
+        <a class="hero-btn" id="heroBtn" href="#" target="_blank" rel="noopener">🎬 動画を見る →</a>
+        <span class="hero-price" id="heroPrice"></span>
+      </div>
+    </div>
+
+    <!-- 右：2〜4位 -->
+    <div class="hero-side">
+      <div class="hero-side-label">2〜4位</div>
+      <div id="heroSubGrid">
+        <div class="hero-sub-card-placeholder"></div>
+        <div class="hero-sub-card-placeholder"></div>
+        <div class="hero-sub-card-placeholder"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- 最近見た作品（折りたたみ式・デフォルト閉じ） -->
+<section class="actress-section section-collapsible" id="historySection" style="display:none">
+  <div class="actress-section-inner">
+    <div class="actress-section-header collapsible-header" onclick="App.toggleHistory()">
+      <span class="actress-section-title">🕐 最近見た作品 <span class="collapse-count" id="historyCount"></span></span>
+      <span class="collapse-arrow" id="historyArrow">▼</span>
+    </div>
+    <div class="actress-scroll collapsible-body" id="historyList" style="display:none"></div>
+  </div>
+</section>
+
+
+<!-- 女優ランキング（プレビュー：詳細は actresses.html へ） -->
+<section class="actress-section">
+  <div class="actress-section-inner">
+    <div class="actress-tabs-row">
+      <div class="actress-tabs">
+        <button class="actress-tab active" onclick="App.switchActressTab('popular',this)">🔥 ランキング</button>
+        <button class="actress-tab" onclick="App.switchActressTab('monthly',this)">📅 月間人気</button>
+        <button class="actress-tab" onclick="App.switchActressTab('new',this)">🌸 新人女優</button>
+      </div>
+      <a href="actresses.html?tab=popular" class="actress-more-link" id="actressMoreLink">一覧へ →</a>
+    </div>
+    <div class="actress-tab-desc" id="actressTabDesc">今週の人気出演女優</div>
+    <div class="actress-scroll" id="actressList">
+      <span class="actress-loading">読み込み中...</span>
+    </div>
+    <!-- 各タブへの常時表示ショートカット -->
+    <div class="actress-shortcut-row">
+      <span class="actress-shortcut-label">一覧で見る</span>
+      <a href="actresses.html?tab=popular" class="actress-shortcut-chip">🏆 人気ランキング</a>
+      <a href="actresses.html?tab=monthly" class="actress-shortcut-chip">📅 月間人気</a>
+      <a href="actresses.html?tab=new" class="actress-shortcut-chip actress-shortcut-new">🌸 新人女優</a>
+    </div>
+  </div>
+</section>
+
+<div class="page-wrapper">
+  <aside class="sidebar">
+    <div class="sidebar-section">
+      <h3>並び替え</h3>
+      <select class="sort-select" id="sortSelect" onchange="App.setSort(this.value)">
+        <option value="">— なし —</option>
+        <option value="rank">🏆 人気順</option>
+        <option value="date">🆕 新作順</option>
+        <option value="review">⭐ レビュー高い順</option>
+      </select>
+    </div>
+    <div class="sidebar-section">
+      <h3>ジャンル</h3>
+      <div class="sidebar-link active" onclick="App.clearFilter(this)">📌 すべて</div>
+      <div class="sidebar-link" onclick="App.setGenre('2001',this)">🌟 巨乳</div>
+      <div class="sidebar-link" onclick="App.setGenre('1027',this)">💫 美少女</div>
+      <div class="sidebar-link" onclick="App.setGenre('6533',this)">📹 ハイビジョン</div>
+      <div class="sidebar-link" onclick="App.setGenre('4024',this)">🎯 素人</div>
+      <div class="sidebar-link" onclick="App.setGenre('5001',this)">💕 中出し</div>
+      <div class="sidebar-link" onclick="App.setGenre('1039',this)">🏠 人妻・主婦</div>
+      <div class="sidebar-link" onclick="App.setGenre('1001',this)">👔 OL</div>
+      <div class="sidebar-link" onclick="App.setGenre('4031',this)">🎭 コスプレ</div>
+      <div class="sidebar-link" onclick="App.setGenre('6006',this)">🌱 新人</div>
+      <div class="sidebar-link" onclick="App.setGenre('1034',this)">💅 ギャル</div>
+      <div class="sidebar-link" onclick="App.setGenre('4022',this)">🌍 外国人</div>
+      <div class="sidebar-link" onclick="App.setGenre('4001',this)">⛓️ SM</div>
+      <div class="sidebar-link" onclick="App.setGenre('4006',this)">🎤 ナンパ</div>
+      <div class="sidebar-link" onclick="App.setGenre('2005',this)">🌸 貧乳</div>
+      <div class="sidebar-link" onclick="App.setGenre('1018',this)">🎀 ロリ・女子校生</div>
+      <div class="sidebar-link" onclick="App.setGenre('1016',this)">📖 女教師</div>
+      <div class="sidebar-link" onclick="App.setGenre('4002',this)">🏠 近親相姦</div>
+      <div class="sidebar-link" onclick="App.setGenre('1028',this)">💪 黒人</div>
+      <div class="sidebar-link" onclick="App.setGenre('4007',this)">🎬 企画</div>
+      <div class="sidebar-link" onclick="App.setGenre('5002',this)">💋 フェラ</div>
+    </div>
+    <div class="sidebar-section">
+      <h3>サービス</h3>
+      <div class="sidebar-link active" onclick="App.setFloor('videoa',this)">🎬 動画</div>
+      <div class="sidebar-link" onclick="App.setFloor('anime',this)">🎌 アニメ</div>
+      <div class="sidebar-link" onclick="App.setFloor('book',this)">📚 マンガ</div>
+      <div class="sidebar-link" onclick="App.setFloor('goods',this)">🛍️ グッズ・通販</div>
+    </div>
+  </aside>
+
+  <main class="main-content">
+    <div class="section-header">
+      <div class="section-title" id="sectionTitle">読み込み中...</div>
+    </div>
+    <!-- ジャンルアクティブバッジ（モバイル等でも現在のジャンルを表示） -->
+    <div class="genre-active-badge" id="genreActiveBadge" style="display:none"></div>
+    <!-- ランキングタブ（videoa時のみ表示） -->
+    <div class="rank-tabs" id="rankTabs">
+      <button class="rank-tab clear-tab" onclick="App.clearSort(this)">✕ なし</button>
+      <button class="rank-tab active" onclick="App.setSort('rank',this)">🏆 人気順</button>
+      <button class="rank-tab" onclick="App.setSort('review',this)">⭐ 高評価</button>
+      <button class="rank-tab" onclick="App.setSort('date',this)">🆕 新作</button>
+    </div>
+    <div class="single-work-bar" id="singleWorkBar">
+      <button class="single-work-toggle" id="singleWorkBtn" onclick="App.toggleSingleWork(this)">
+        👑 単体作品のみ
+      </button>
+    </div>
+    <div class="product-grid" id="productGrid">
+      <div class="loading"><div class="spinner"></div><p>商品を取得中...</p></div>
+    </div>
+    <div class="pagination" id="pagination"></div>
+  </main>
+</div>
+
+<!-- ジャンルドロワーオーバーレイ -->
+<div class="genre-overlay" id="genreOverlay" onclick="App.closeGenreDrawer()"></div>
+
+<!-- ジャンルドロワー（スマホ用スライドアップ）-->
+<div class="genre-drawer" id="genreDrawer">
+  <div class="genre-drawer-handle"></div>
+  <div class="genre-drawer-header">
+    <span class="genre-drawer-title">🎯 ジャンル選択</span>
+    <button class="genre-drawer-close" onclick="App.closeGenreDrawer()">✕ 閉じる</button>
+  </div>
+  <div class="genre-drawer-body">
+    <button class="genre-chip active" data-genre="" onclick="App.setGenreFromDrawer('')">📌 すべて</button>
+    <button class="genre-chip" data-genre="2001" onclick="App.setGenreFromDrawer('2001')">🌟 巨乳</button>
+    <button class="genre-chip" data-genre="1027" onclick="App.setGenreFromDrawer('1027')">💫 美少女</button>
+    <button class="genre-chip" data-genre="6533" onclick="App.setGenreFromDrawer('6533')">📹 ハイビジョン</button>
+    <button class="genre-chip" data-genre="4024" onclick="App.setGenreFromDrawer('4024')">🎯 素人</button>
+    <button class="genre-chip" data-genre="5001" onclick="App.setGenreFromDrawer('5001')">💕 中出し</button>
+    <button class="genre-chip" data-genre="1039" onclick="App.setGenreFromDrawer('1039')">🏠 人妻・主婦</button>
+    <button class="genre-chip" data-genre="1001" onclick="App.setGenreFromDrawer('1001')">👔 OL</button>
+    <button class="genre-chip" data-genre="4031" onclick="App.setGenreFromDrawer('4031')">🎭 コスプレ</button>
+    <button class="genre-chip" data-genre="6006" onclick="App.setGenreFromDrawer('6006')">🌱 新人</button>
+    <button class="genre-chip" data-genre="1034" onclick="App.setGenreFromDrawer('1034')">💅 ギャル</button>
+    <button class="genre-chip" data-genre="4022" onclick="App.setGenreFromDrawer('4022')">🌍 外国人</button>
+    <button class="genre-chip" data-genre="4001" onclick="App.setGenreFromDrawer('4001')">⛓️ SM</button>
+    <button class="genre-chip" data-genre="4006" onclick="App.setGenreFromDrawer('4006')">🎤 ナンパ</button>
+    <button class="genre-chip" data-genre="2005" onclick="App.setGenreFromDrawer('2005')">🌸 貧乳</button>
+    <button class="genre-chip" data-genre="1018" onclick="App.setGenreFromDrawer('1018')">🎀 ロリ・女子校生</button>
+    <button class="genre-chip" data-genre="1016" onclick="App.setGenreFromDrawer('1016')">📖 女教師</button>
+    <button class="genre-chip" data-genre="4002" onclick="App.setGenreFromDrawer('4002')">🏠 近親相姦</button>
+    <button class="genre-chip" data-genre="1028" onclick="App.setGenreFromDrawer('1028')">💪 黒人</button>
+    <button class="genre-chip" data-genre="4007" onclick="App.setGenreFromDrawer('4007')">🎬 企画</button>
+    <button class="genre-chip" data-genre="5002" onclick="App.setGenreFromDrawer('5002')">💋 フェラ</button>
+    <button class="genre-chip" data-genre="1031" onclick="App.setGenreFromDrawer('1031')">😈 痴女</button>
+    <button class="genre-chip" data-genre="1014" onclick="App.setGenreFromDrawer('1014')">🍷 熟女</button>
+    <button class="genre-chip" data-genre="2006" onclick="App.setGenreFromDrawer('2006')">✨ スレンダー</button>
+    <button class="genre-chip" data-genre="48" onclick="App.setGenreFromDrawer('48')">🎽 制服</button>
+    <button class="genre-chip" data-genre="102" onclick="App.setGenreFromDrawer('102')">🌸 美乳</button>
+    <button class="genre-chip" data-genre="6002" onclick="App.setGenreFromDrawer('6002')">📷 ハメ撮り</button>
+    <button class="genre-chip" data-genre="4106" onclick="App.setGenreFromDrawer('4106')">🌀 騎乗位</button>
+    <button class="genre-chip" data-genre="4111" onclick="App.setGenreFromDrawer('4111')">💔 NTR</button>
+    <button class="genre-chip" data-genre="5016" onclick="App.setGenreFromDrawer('5016')">💦 潮吹き</button>
+    <button class="genre-chip" data-genre="5022" onclick="App.setGenreFromDrawer('5022')">👥 3P・4P</button>
+    <button class="genre-chip" data-genre="5019" onclick="App.setGenreFromDrawer('5019')">🍑 パイズリ</button>
+    <button class="genre-chip" data-genre="5023" onclick="App.setGenreFromDrawer('5023')">💦 顔射</button>
+    <button class="genre-chip" data-genre="4005" onclick="App.setGenreFromDrawer('4005')">🔥 乱交</button>
+    <button class="genre-chip" data-genre="5004" onclick="App.setGenreFromDrawer('5004')">✋ 手コキ</button>
+    <button class="genre-chip" data-genre="1013" onclick="App.setGenreFromDrawer('1013')">💞 レズ</button>
+    <button class="genre-chip" data-genre="5006" onclick="App.setGenreFromDrawer('5006')">🔞 アナル</button>
+    <button class="genre-chip" data-genre="4008" onclick="App.setGenreFromDrawer('4008')">⚡ 陵辱</button>
+    <button class="genre-chip" data-genre="4021" onclick="App.setGenreFromDrawer('4021')">🔗 拘束</button>
+    <button class="genre-chip" data-genre="4010" onclick="App.setGenreFromDrawer('4010')">🏚️ 監禁</button>
+    <button class="genre-chip" data-genre="4009" onclick="App.setGenreFromDrawer('4009')">👀 露出</button>
+    <button class="genre-chip" data-genre="5059" onclick="App.setGenreFromDrawer('5059')">⚡ 電マ</button>
+    <button class="genre-chip" data-genre="5025" onclick="App.setGenreFromDrawer('5025')">💦 ぶっかけ</button>
+    <button class="genre-chip" data-genre="5068" onclick="App.setGenreFromDrawer('5068')">😮 イラマチオ</button>
+    <button class="genre-chip" data-genre="5057" onclick="App.setGenreFromDrawer('5057')">🧴 ローション</button>
+    <button class="genre-chip" data-genre="6968" onclick="App.setGenreFromDrawer('6968')">💫 アクメ</button>
+    <button class="genre-chip" data-genre="2024" onclick="App.setGenreFromDrawer('2024')">🍑 お尻</button>
+    <button class="genre-chip" data-genre="4011" onclick="App.setGenreFromDrawer('4011')">🍑 お尻フェチ</button>
+    <button class="genre-chip" data-genre="1033" onclick="App.setGenreFromDrawer('1033')">👩 お姉さん</button>
+    <button class="genre-chip" data-genre="1019" onclick="App.setGenreFromDrawer('1019')">🎓 女子大生</button>
+    <button class="genre-chip" data-genre="4030" onclick="App.setGenreFromDrawer('4030')">💢 ハード系</button>
+    <button class="genre-chip" data-genre="4114" onclick="App.setGenreFromDrawer('4114')">🎭 ドラマ</button>
+    <button class="genre-chip" data-genre="4023" onclick="App.setGenreFromDrawer('4023')">📹 ドキュメント</button>
+    <button class="genre-chip" data-genre="28" onclick="App.setGenreFromDrawer('28')">😳 羞恥</button>
+    <button class="genre-chip" data-genre="27" onclick="App.setGenreFromDrawer('27')">🙈 恥じらい</button>
+    <button class="genre-chip" data-genre="4059" onclick="App.setGenreFromDrawer('4059')">💋 キス・接吻</button>
+    <button class="genre-chip" data-genre="1069" onclick="App.setGenreFromDrawer('1069')">💔 不倫</button>
+    <button class="genre-chip" data-genre="4025" onclick="App.setGenreFromDrawer('4025')">⭐ 単体作品</button>
+  </div>
+</div>
+
+<!-- ボトムナビゲーション（スマホのみ表示） -->
+<nav class="bottom-nav">
+  <a href="home.html" class="bottom-nav-item active">
+    <span class="bn-icon">🏠</span><span>ホーム</span>
+  </a>
+  <button class="bottom-nav-item" onclick="App.setSort('rank',this)">
+    <span class="bn-icon">🏆</span><span>ランキング</span>
+  </button>
+  <a href="actresses.html" class="bottom-nav-item">
+    <span class="bn-icon">👑</span><span>女優</span>
+  </a>
+  <button class="bottom-nav-item" onclick="App.setSale(this)">
+    <span class="bn-icon">🔥</span><span>SALE</span>
+  </button>
+  <button class="bottom-nav-item" onclick="App.openGenreDrawer()">
+    <span class="bn-icon">🎯</span><span>ジャンル</span>
+  </button>
+</nav>
+
+<footer class="site-footer">
+  <div class="footer-logo">AV動画ランキング</div>
+  <div class="footer-nav">
+    <a href="home.html">TOP</a>
+    <a href="#" onclick="App.setSort('rank')">ランキング</a>
+    <a href="#" onclick="App.setSort('date')">新作</a>
+    <a href="actresses.html">女優ランキング</a>
+    <a href="#" onclick="App.setFloor('goods')">グッズ</a>
+    <a href="privacy.html">プライバシーポリシー</a>
+    <a href="disclaimer.html">免責事項</a>
+  </div>
+  <p>当サイトはFANZA（DMM.com）のアフィリエイトプログラムを利用しています。</p>
+  <div class="footer-copy">© 2026 AV動画ランキング All Rights Reserved.</div>
+</footer>
+
+<!-- サンプル動画モーダル -->
+<div id="sampleModal" class="sample-modal" onclick="App.closeSample()">
+  <div class="sample-modal-inner" onclick="event.stopPropagation()">
+    <div class="sample-modal-header">
+      <span id="sampleModalTitle" class="sample-modal-title"></span>
+      <button class="sample-modal-close" onclick="App.closeSample()">✕</button>
+    </div>
+    <iframe id="sampleIframe" src="" allowfullscreen frameborder="0" scrolling="no"></iframe>
+  </div>
+</div>
+
+<!-- サンプル画像モーダル（マンガ試し読み等） -->
+<div id="imageSampleModal" class="sample-modal" onclick="App.closeSampleImages()">
+  <div class="sample-modal-inner" onclick="event.stopPropagation()">
+    <div class="sample-modal-header">
+      <span id="imageSampleTitle" class="sample-modal-title"></span>
+      <button class="sample-modal-close" onclick="App.closeSampleImages()">✕</button>
+    </div>
+    <div class="sample-images-container" id="sampleImagesContainer"></div>
+  </div>
+</div>
+
+<!-- トースト通知 -->
+<div class="toast-wrap" id="toastWrap"></div>
+
+<script src="js/storage.js"></script>
+<script src="js/dmm-api.js"></script>
+<script src="js/app.js"></script>
+<script>
+// PWA Service Worker 登録
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js').catch(() => {});
+}
+</script>
+</body>
+</html>

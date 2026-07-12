@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>女優ランキング・新人女優 | AV動画ランキング</title>
+
+<meta property="og:title" content="人気AV女優ランキング | 新人女優">
+<meta property="og:description" content="人気・月間人気・新人女優を一覧でチェック。FANZAデータから抽出した最新女優ランキング。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://douga-adult.com/actresses.html">
+<meta property="og:image" content="https://douga-adult.com/icons/icon-512.png">
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-90ZV8JH151"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-90ZV8JH151');
+</script>
+
+<link rel="stylesheet" href="css/style.css">
+<style>
+.actress-page-wrap { max-width: 1100px; margin: 0 auto; padding: 24px 16px 60px; }
+.actress-page-header { margin-bottom: 22px; }
+.actress-page-title {
+    font-size: 1.7rem; font-weight: 900; color: #fff;
+    margin-bottom: 6px; display: flex; align-items: center; gap: 8px;
+}
+.actress-page-desc { color: var(--mute); font-size: .88rem; }
+.actress-page-tabs {
+    display: flex; gap: 8px; margin-bottom: 18px; flex-wrap: wrap;
+}
+.actress-page-tabs .actress-tab {
+    padding: 11px 20px; font-size: .92rem; min-height: 44px;
+    border-radius: 22px;
+}
+.actress-page-desc-tab {
+    color: var(--mute); font-size: .82rem; margin-bottom: 18px; padding-left: 4px;
+}
+@media(max-width:600px){
+    .actress-page-title { font-size: 1.3rem; }
+    .actress-page-tabs .actress-tab { padding: 9px 14px; font-size: .82rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="sticky-bar">
+<header class="site-header">
+  <div class="header-inner">
+    <div class="site-logo"><a href="home.html" style="color:inherit;text-decoration:none">AV動画ランキング</a><span> - 厳選</span></div>
+    <a href="home.html" class="back-header-btn" style="text-decoration:none">
+      <span class="back-header-icon">🏠</span><span class="back-header-label">ホームへ</span>
+    </a>
+  </div>
+</header>
+<nav class="site-nav">
+  <div class="nav-inner">
+    <div class="nav-group">
+      <a href="home.html" class="nav-btn">🎬 動画</a>
+      <a href="home.html" class="nav-btn">🎌 アニメ</a>
+      <a href="home.html" class="nav-btn">📚 マンガ</a>
+      <a href="home.html" class="nav-btn">🛍️ グッズ</a>
+    </div>
+    <div class="nav-divider"></div>
+    <div class="nav-group">
+      <a href="home.html" class="nav-btn">🏆 ランキング</a>
+      <a href="home.html" class="nav-btn">🆕 新作</a>
+      <a href="home.html" class="nav-btn nav-btn-sale">🔥 SALE</a>
+      <span class="nav-btn active nav-btn-actress">👑 女優</span>
+    </div>
+  </div>
+</nav>
+</div>
+
+<div class="page-back-bar">
+  <button class="back-btn" onclick="appBack()">← 戻る</button>
+</div>
+
+<main class="actress-page-wrap">
+  <div class="actress-page-header">
+    <h1 class="actress-page-title">👑 女優ランキング</h1>
+    <p class="actress-page-desc">人気・月間人気・新人女優を一覧でチェック。タップでプロフィール・出演作品へ。</p>
+  </div>
+
+  <div class="actress-tabs actress-page-tabs">
+    <button class="actress-tab active" data-tab="popular" onclick="switchTab('popular',this)">🔥 現在のランキング</button>
+    <button class="actress-tab" data-tab="monthly" onclick="switchTab('monthly',this)">📅 月間人気</button>
+    <button class="actress-tab" data-tab="new" onclick="switchTab('new',this)">🌸 新人女優</button>
+  </div>
+
+  <p class="actress-page-desc-tab" id="actressTabDesc">今週の人気出演女優</p>
+
+  <div id="actressFullList">
+    <div class="loading"><div class="spinner"></div><p>読み込み中...</p></div>
+  </div>
+</main>
+
+<!-- ボトムナビゲーション（スマホのみ表示） -->
+<nav class="bottom-nav">
+  <a href="home.html" class="bottom-nav-item">
+    <span class="bn-icon">🏠</span><span>ホーム</span>
+  </a>
+  <a href="home.html" class="bottom-nav-item">
+    <span class="bn-icon">🏆</span><span>ランキング</span>
+  </a>
+  <a href="actresses.html" class="bottom-nav-item active">
+    <span class="bn-icon">👑</span><span>女優</span>
+  </a>
+  <a href="home.html" class="bottom-nav-item">
+    <span class="bn-icon">🔥</span><span>SALE</span>
+  </a>
+  <a href="home.html" class="bottom-nav-item">
+    <span class="bn-icon">🎯</span><span>ジャンル</span>
+  </a>
+</nav>
+
+<footer class="site-footer">
+  <div class="footer-logo">AV動画ランキング</div>
+  <div class="footer-nav">
+    <a href="home.html">TOP</a>
+    <a href="actresses.html">女優ランキング</a>
+    <a href="privacy.html">プライバシーポリシー</a>
+    <a href="disclaimer.html">免責事項</a>
+  </div>
+  <p>当サイトはFANZA（DMM.com）のアフィリエイトプログラムを利用しています。</p>
+  <div class="footer-copy">© 2026 AV動画ランキング All Rights Reserved.</div>
+</footer>
+
+<script src="js/storage.js"></script>
+<script src="js/dmm-api.js"></script>
+<script>
+if (localStorage.getItem('age_verified') !== 'yes') location.href = 'index.html';
+
+const esc = s => String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+const safeUrl = value => {
+    try {
+        const url = new URL(String(value || ''), location.href);
+        return url.protocol === 'https:' ? url.href : '';
+    } catch { return ''; }
+};
+
+function appBack() {
+    if (document.referrer && new URL(document.referrer).origin === location.origin) {
+        history.back();
+    } else {
+        location.href = 'home.html';
+    }
+}
+
+const TAB_DESC = {
+    popular: '今週の人気出演女優ベスト50',
+    monthly: '今月最も注目される女優ベスト50',
+    new:     '新人・デビュー女優（最新登録順）',
+};
+
+const calcAge = (bday) => {
+    if (!bday) return null;
+    const d = new Date(bday);
+    const today = new Date();
+    let age = today.getFullYear() - d.getFullYear();
+    const m = today.getMonth() - d.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < d.getDate())) age--;
+    return (age > 0 && age < 70) ? age : null;
+};
+
+const specs = (a) => {
+    const age   = calcAge(a.birthday);
+    const bust  = a.bust  ? `B${a.bust}` + (a.cup ? `(${a.cup})` : '') : '';
+    const waist = a.waist ? `W${a.waist}` : '';
+    const hip   = a.hip   ? `H${a.hip}`   : '';
+    const height = a.height ? `${a.height}cm` : '';
+    const blood  = a.blood_type && a.blood_type !== '他' ? `${a.blood_type}型` : '';
+    return {
+        meta: [age ? age + '歳' : '', blood, height].filter(Boolean).join(' · '),
+        measure: [bust, waist, hip].filter(Boolean).join(' '),
+    };
+};
+
+async function renderActresses(type) {
+    const el = document.getElementById('actressFullList');
+    el.className = '';
+    el.innerHTML = '<div class="loading"><div class="spinner"></div><p>読み込み中...</p></div>';
+    document.getElementById('actressTabDesc').textContent = TAB_DESC[type] || '';
+    try {
+        const data = await DMM.fetchActress(type);
+        const actresses = (data?.result?.actress || []).slice(0, 50);
+        if (!actresses.length) {
+            el.innerHTML = '<p style="color:var(--mute);text-align:center;padding:60px 0">データ準備中</p>';
+            return;
+        }
+        const showRank = type !== 'new';
+
+        const renderPodium = (a, idx) => {
+            const img = safeUrl(a.imageURL?.large || a.imageURL?.small || '');
+            const name = esc(a.name || '');
+            const href = `actress.html?id=${encodeURIComponent(String(a.id))}&name=${encodeURIComponent(a.name || '')}`;
+            const initial = esc((a.name || '').charAt(0) || '♀');
+            const sp = specs(a);
+            const medals = ['🥇','🥈','🥉'];
+            return `
+            <a class="actress-podium-card actress-rank-${idx + 1}" href="${esc(href)}">
+                <div class="actress-podium-medal">${medals[idx]}</div>
+                <div class="actress-podium-rank-num">${idx + 1}</div>
+                <div class="actress-podium-photo">
+                    ${img ? `<img src="${esc(img)}" alt="${name}" loading="lazy">` : `<div class="actress-no-img-podium">${initial}</div>`}
+                </div>
+                <div class="actress-podium-name">${name}</div>
+                ${sp.meta    ? `<div class="actress-podium-meta">${esc(sp.meta)}</div>` : ''}
+                ${sp.measure ? `<div class="actress-podium-measure">${esc(sp.measure)}</div>` : ''}
+            </a>`;
+        };
+
+        const renderListCard = (a, idx) => {
+            const img = safeUrl(a.imageURL?.small || '');
+            const name = esc(a.name || '');
+            const href = `actress.html?id=${encodeURIComponent(String(a.id))}&name=${encodeURIComponent(a.name || '')}`;
+            const initial = esc((a.name || '').charAt(0) || '♀');
+            const sp = specs(a);
+            const rankLabel = showRank ? `${idx + 1}` : '★';
+            return `
+            <a class="actress-list-card" href="${esc(href)}">
+                <div class="actress-list-rank">${rankLabel}</div>
+                <div class="actress-list-photo-wrap">
+                    ${img ? `<img class="actress-list-photo" src="${esc(img)}" alt="${name}" loading="lazy">` : `<div class="actress-list-photo actress-no-img-list">${initial}</div>`}
+                </div>
+                <div class="actress-list-info">
+                    <div class="actress-list-name">${name}</div>
+                    ${sp.meta    ? `<div class="actress-list-meta">${esc(sp.meta)}</div>` : ''}
+                    ${sp.measure ? `<div class="actress-list-measure">${esc(sp.measure)}</div>` : ''}
+                </div>
+            </a>`;
+        };
+
+        const top3 = showRank ? actresses.slice(0, 3) : [];
+        const rest = showRank ? actresses.slice(3) : actresses;
+
+        el.className = 'actress-podium-wrap';
+        el.innerHTML = `
+            ${top3.length ? `<div class="actress-podium">${top3.map((a, i) => renderPodium(a, i)).join('')}</div>` : ''}
+            ${rest.length ? `<div class="actress-list-grid">${rest.map((a, i) => renderListCard(a, showRank ? i + 3 : i)).join('')}</div>` : ''}
+        `;
+        window.scrollTo({top:0, behavior:'instant'});
+    } catch(e) {
+        el.innerHTML = '<p style="color:var(--mute);text-align:center;padding:60px 0">データ取得に失敗しました</p>';
+    }
+}
+
+function switchTab(type, btn) {
+    document.querySelectorAll('.actress-tab').forEach(t => t.classList.remove('active'));
+    if (btn) btn.classList.add('active');
+    renderActresses(type);
+    history.replaceState(null, '', `?tab=${type}`);
+}
+
+// 初期表示：URLパラメータ?tab=... 優先
+const urlTab = new URLSearchParams(location.search).get('tab') || 'popular';
+const validTabs = ['popular', 'monthly', 'new'];
+const initialTab = validTabs.includes(urlTab) ? urlTab : 'popular';
+document.querySelectorAll('.actress-tab').forEach(t => {
+    t.classList.toggle('active', t.dataset.tab === initialTab);
+});
+renderActresses(initialTab);
+
+if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js').catch(()=>{});
+</script>
+</body>
+</html>

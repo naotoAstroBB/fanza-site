@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>SNS投稿ツール</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0f0f0f;color:#eee;font-family:-apple-system,sans-serif;padding:16px;padding-bottom:40px}
+h1{font-size:1.05rem;color:#ff3366;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid #222;display:flex;align-items:center;justify-content:space-between}
+.setting-btn{background:#1a1a1a;border:1px solid #333;color:#aaa;padding:6px 12px;border-radius:8px;font-size:.8rem;cursor:pointer}
+.setting-btn:hover{border-color:#ff3366;color:#fff}
+.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.toolbar input{flex:1;min-width:160px;background:#1a1a1a;border:1px solid #333;color:#eee;padding:8px 12px;border-radius:8px;font-size:.88rem}
+.toolbar button{background:#2a2a2a;border:1px solid #444;color:#ccc;padding:7px 12px;border-radius:8px;font-size:.8rem;cursor:pointer;white-space:nowrap}
+.toolbar button:hover,.toolbar button.active{background:#ff3366;border-color:#ff3366;color:#fff}
+.sort-tabs{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap}
+.sort-tab{background:#1a1a1a;border:1px solid #2a2a2a;color:#888;padding:5px 14px;border-radius:16px;font-size:.78rem;cursor:pointer;transition:all .15s}
+.sort-tab.active{background:#ff3366;border-color:#ff3366;color:#fff}
+.stats{font-size:.75rem;color:#555;margin-bottom:10px}
+.stats b{color:#ff8aaa}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.card{background:#1a1a1a;border:1px solid #222;border-radius:10px;overflow:hidden;cursor:pointer;transition:border-color .15s}
+.card:hover{border-color:#ff3366}
+.card.has-video{border-color:#3a3a3a}
+.card img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;background:#111}
+.card-body{padding:8px}
+.card-title{font-size:.73rem;color:#ccc;line-height:1.4;height:2.8em;overflow:hidden;margin-bottom:6px}
+.card-meta{font-size:.68rem;color:#666;margin-bottom:6px}
+.card-actions{display:flex;gap:4px;flex-wrap:wrap}
+.btn-post{background:#ff3366;color:#fff;border:none;padding:5px 10px;border-radius:6px;font-size:.73rem;font-weight:700;cursor:pointer;width:100%}
+.btn-post:hover{opacity:.85}
+.badge-v{display:inline-block;background:#c03;color:#fff;font-size:.58rem;padding:1px 5px;border-radius:3px;margin-bottom:3px}
+
+/* モーダル共通 */
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:100;overflow-y:auto;padding:12px}
+.modal.open{display:flex;align-items:flex-start;justify-content:center}
+.modal-box{background:#181818;border:1px solid #2a2a2a;border-radius:14px;padding:20px;width:100%;max-width:520px;margin:8px auto}
+.modal-title{font-size:1rem;font-weight:700;color:#ff8aaa;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid #2a2a2a}
+
+/* 投稿コンポーザー */
+.composer-product{display:flex;gap:10px;margin-bottom:14px;align-items:flex-start}
+.composer-thumb{width:90px;height:60px;object-fit:cover;border-radius:6px;flex-shrink:0;background:#111}
+.composer-product-info{flex:1;min-width:0}
+.composer-product-title{font-size:.8rem;color:#ccc;line-height:1.4;margin-bottom:4px}
+.composer-product-badge{font-size:.68rem;color:#ff8aaa}
+.url-selector{margin-bottom:12px}
+.url-selector label{font-size:.75rem;color:#888;display:block;margin-bottom:6px}
+.url-btns{display:flex;gap:6px;flex-wrap:wrap}
+.url-btn{background:#1a1a1a;border:1px solid #333;color:#aaa;padding:5px 12px;border-radius:16px;font-size:.75rem;cursor:pointer}
+.url-btn.active{background:#2a3a4a;border-color:#4a7aaa;color:#87b0ff}
+textarea{width:100%;background:#111;border:1px solid #333;color:#eee;border-radius:8px;padding:10px;font-size:.85rem;line-height:1.6;resize:vertical;min-height:100px;font-family:inherit}
+textarea:focus{outline:none;border-color:#ff3366}
+.char-count{font-size:.72rem;text-align:right;margin-top:4px;color:#666}
+.char-count.warn{color:#ff8866}
+.pattern-row{margin-bottom:10px}
+.pattern-row label{font-size:.75rem;color:#888;display:block;margin-bottom:5px}
+.pattern-select{width:100%;background:#111;border:1px solid #333;color:#eee;border-radius:7px;padding:7px 10px;font-size:.82rem}
+.pattern-select:focus{outline:none;border-color:#ff3366}
+.regen-btn{background:#2a2a2a;border:1px solid #444;color:#aaa;padding:5px 12px;border-radius:6px;font-size:.78rem;cursor:pointer;margin-top:5px}
+.regen-btn:hover{border-color:#ff3366;color:#fff}
+.platform-btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.platform-btns button{flex:1;min-width:100px;padding:10px 8px;border:none;border-radius:9px;font-size:.82rem;font-weight:700;cursor:pointer;transition:opacity .15s}
+.platform-btns button:hover{opacity:.82}
+.btn-bsky{background:#0085ff;color:#fff}
+.btn-msky{background:#86b300;color:#fff}
+.btn-x{background:#000;color:#fff;border:1px solid #333}
+.btn-cancel{background:#2a2a2a;color:#aaa}
+.platform-status{font-size:.72rem;margin-top:8px;padding:6px 10px;background:#111;border-radius:6px;display:none}
+.platform-status.show{display:block}
+.platform-status.ok{color:#6f6}
+.platform-status.err{color:#f66}
+
+/* 設定モーダル */
+.settings-section{margin-bottom:20px}
+.settings-section h3{font-size:.82rem;color:#ff8aaa;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid #222}
+.settings-row{margin-bottom:10px}
+.settings-row label{font-size:.75rem;color:#888;display:block;margin-bottom:4px}
+.settings-row input{width:100%;background:#111;border:1px solid #333;color:#eee;border-radius:7px;padding:8px 10px;font-size:.85rem}
+.settings-row input:focus{outline:none;border-color:#ff3366}
+.settings-hint{font-size:.68rem;color:#555;margin-top:3px}
+.settings-save{background:#ff3366;color:#fff;border:none;padding:10px 24px;border-radius:8px;font-size:.9rem;font-weight:700;cursor:pointer;width:100%;margin-top:4px}
+.platform-toggle{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.ptoggle{background:#1a1a1a;border:1px solid #333;color:#888;padding:6px 14px;border-radius:16px;font-size:.78rem;cursor:pointer}
+.ptoggle.active{background:#1a3a1a;border-color:#4a7a4a;color:#8fc}
+
+/* トースト */
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(0);background:#333;color:#eee;padding:10px 20px;border-radius:20px;font-size:.83rem;z-index:999;opacity:0;transition:opacity .25s;pointer-events:none;white-space:nowrap}
+.toast.show{opacity:1}
+
+.loading{text-align:center;padding:40px;color:#444}
+.spinner{width:30px;height:30px;border:3px solid #222;border-top-color:#ff3366;border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 10px}
+@keyframes spin{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+
+<h1>
+  🎬 SNS投稿ツール
+  <button class="setting-btn" onclick="openSettings()">⚙️ SNS設定</button>
+</h1>
+
+<div class="toolbar">
+  <input id="searchInput" type="text" placeholder="タイトル・女優名で検索..." oninput="applyFilter()">
+  <button id="btnVid" onclick="toggleVideoFilter()">🎥 動画あり</button>
+</div>
+
+<div class="sort-tabs">
+  <span class="sort-tab active" onclick="loadSort('rank')">人気順</span>
+  <span class="sort-tab" onclick="loadSort('new')">新着順</span>
+  <span class="sort-tab" onclick="loadSort('review')">高評価</span>
+</div>
+
+<div class="stats" id="stats"></div>
+<div class="grid" id="grid"><div class="loading"><div class="spinner"></div><p>読み込み中...</p></div></div>
+
+<!-- 投稿コンポーザー -->
+<div class="modal" id="composerModal" onclick="closeComposer(event)">
+  <div class="modal-box" onclick="event.stopPropagation()">
+    <div class="modal-title">✏️ 投稿を作成</div>
+    <div class="composer-product">
+      <img id="cmpThumb" class="composer-thumb" src="" alt="">
+      <div class="composer-product-info">
+        <div class="composer-product-title" id="cmpTitle"></div>
+        <div class="composer-product-badge" id="cmpBadge"></div>
+      </div>
+    </div>
+    <div class="url-selector">
+      <label>投稿するURL</label>
+      <div class="url-btns">
+        <span class="url-btn active" id="urlBtnSite" onclick="setUrlType('site')">自サイト</span>
+        <span class="url-btn" id="urlBtnFanza" onclick="setUrlType('fanza')">FANZAアフィリ</span>
+      </div>
+    </div>
+    <div class="pattern-row">
+      <label>投稿パターン</label>
+      <select class="pattern-select" id="patternSelect" onchange="regenerate()">
+        <option value="-1">🎲 自動選択</option>
+        <option value="0">1. 驚き発見「え、こんなすごかったの」</option>
+        <option value="1">2. ランキング速報「今日のTOP3」</option>
+        <option value="2">3. 個人おすすめ「これ本当に良かった」</option>
+        <option value="3">4. セール・価格推し「この値段はおかしい」</option>
+        <option value="4">5. 女優フィーチャー「この人の話をしたい」</option>
+        <option value="5">6. デビュー・新人「これ絶対伸びる」</option>
+        <option value="6">7. レビュー偉業「○万件で○点」</option>
+        <option value="7">8. 問いかけ「○○派？それとも○○派？」</option>
+        <option value="8">9. 知る人ぞ知る「大きく宣伝されてないけど」</option>
+        <option value="9">10. スペック推し「全部好きなやつだった」</option>
+        <option value="10">11. 深夜投稿「深夜に見るやつ」</option>
+        <option value="11">12. 共感フック「わかる人にはわかる」</option>
+        <option value="12">13. ジャンル特化「○○好きに刺さる」</option>
+        <option value="13">14. 比較おすすめ「○○が好きならこれ」</option>
+        <option value="14">15. 実況・感想「見終わった」</option>
+        <option value="15">16. データ統計「数字で見る名作」</option>
+        <option value="16">17. 週末推薦「週末に見てほしいやつ」</option>
+        <option value="17">18. タイムセール速報「⚡見逃し注意」</option>
+        <option value="18">19. レジェンド推し「この世代に伝えたい」</option>
+        <option value="19">20. シナリオ・妄想「理想が全部詰まってた」</option>
+      </select>
+      <button class="regen-btn" onclick="regenerate()">🔄 再生成</button>
+    </div>
+    <textarea id="cmpText" oninput="updateCharCount()"></textarea>
+    <div class="char-count" id="charCount">0文字</div>
+    <div class="platform-btns">
+      <button class="btn-bsky" onclick="postTo('bluesky')">🦋 Bluesky</button>
+      <button class="btn-msky" onclick="postTo('misskey')">🍀 Misskey</button>
+      <button class="btn-x" onclick="postTo('x')">𝕏 Xにコピー</button>
+      <button class="btn-cancel" onclick="closeComposer()">キャンセル</button>
+    </div>
+    <div class="platform-status" id="platformStatus"></div>
+  </div>
+</div>
+
+<!-- 設定モーダル -->
+<div class="modal" id="settingsModal" onclick="closeSettings(event)">
+  <div class="modal-box" onclick="event.stopPropagation()">
+    <div class="modal-title">⚙️ SNSアカウント設定</div>
+
+    <div class="settings-section">
+      <h3>🦋 Bluesky</h3>
+      <div class="settings-row">
+        <label>ハンドル（例: yourname.bsky.social）</label>
+        <input type="text" id="bskyHandle" placeholder="yourname.bsky.social">
+      </div>
+      <div class="settings-row">
+        <label>App Password（アプリパスワード）</label>
+        <input type="password" id="bskyPass" placeholder="xxxx-xxxx-xxxx-xxxx">
+        <div class="settings-hint">設定 → プライバシーとセキュリティ → アプリパスワード で発行</div>
+      </div>
+    </div>
+
+    <div class="settings-section">
+      <h3>🍀 Misskey</h3>
+      <div class="settings-row">
+        <label>インスタンスURL（例: misskey.io）</label>
+        <input type="text" id="mskeyInstance" placeholder="misskey.io">
+      </div>
+      <div class="settings-row">
+        <label>APIトークン</label>
+        <input type="password" id="mskeyToken" placeholder="APIトークン">
+        <div class="settings-hint">設定 → API → アクセストークン発行</div>
+      </div>
+    </div>
+
+    <div class="settings-section">
+      <h3>📝 投稿テンプレート</h3>
+      <div class="settings-row">
+        <label>テンプレート（{title} {url} {tags} が使えます）</label>
+        <textarea id="tmplInput" style="min-height:80px;font-size:.8rem">{title}
+
+▶ サンプル動画・詳細はこちら
+{url}
+
+{tags}</textarea>
+      </div>
+    </div>
+
+    <button class="settings-save" onclick="saveSettings()">💾 保存</button>
+    <button class="btn-cancel" style="width:100%;margin-top:8px;padding:10px;border:none;border-radius:8px;cursor:pointer;font-size:.88rem" onclick="closeSettings()">閉じる</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const SITE = 'https://douga-adult.com';
+const SORT_FILES = {
+  rank:   `${SITE}/data/rank.json`,
+  new:    `${SITE}/data/new.json`,
+  review: `${SITE}/data/review.json`,
+};
+const DEFAULT_TMPL = `{title}\n\n▶ サンプル動画・詳細はこちら\n{url}\n\n{tags}`;
+
+let allItems = [], filtered = [], currentSort = 'rank', showVideoOnly = false;
+let currentItem = null, currentUrlType = 'site';
+
+// ===== 設定 =====
+function getCfg() {
+  try { return JSON.parse(localStorage.getItem('xpost_cfg') || '{}'); } catch(e) { return {}; }
+}
+function saveCfg(obj) { localStorage.setItem('xpost_cfg', JSON.stringify(obj)); }
+
+// ===== データ読み込み =====
+async function loadSort(sort) {
+  currentSort = sort;
+  document.querySelectorAll('.sort-tab').forEach((t, i) => {
+    t.classList.toggle('active', ['rank','new','review'][i] === sort);
+  });
+  document.getElementById('grid').innerHTML = '<div class="loading"><div class="spinner"></div><p>読み込み中...</p></div>';
+  try {
+    const ts = Math.floor(Date.now() / 60000);
+    const res = await fetch(`${SORT_FILES[sort]}?_=${ts}`);
+    const data = await res.json();
+    allItems = (data?.result?.items || []).filter(i => i.content_id);
+  } catch(e) { allItems = []; }
+  applyFilter();
+}
+
+function getSampleUrl(item) {
+  const mv = item.sampleMovieURL;
+  return safeUrl(mv ? (mv.size_560_360 || mv.size_476_306 || mv.size_644_414 || '') : '');
+}
+
+function getActresses(item) { return (item.iteminfo?.actress || []).map(a => a.name); }
+function getGenres(item)   { return (item.iteminfo?.genre   || []).map(g => g.name); }
+
+function makeTags(item, extra = []) {
+  const t = ['#FANZA', '#AV', ...extra];
+  getActresses(item).slice(0,2).forEach(a => t.push('#' + a.replace(/\s/g,'')));
+  getGenres(item).filter(g => !['ハイビジョン','BEST・総集編','独占配信'].includes(g))
+    .slice(0,2).forEach(g => t.push('#' + g.replace(/\s/g,'')));
+  return [...new Set(t)].join(' ');
+}
+
+function reviewStr(item) {
+  const avg = parseFloat(item.review?.average || 0);
+  const cnt = parseInt(item.review?.count || 0);
+  if (!avg) return '';
+  return `${'★'.repeat(Math.min(5,Math.round(avg)))} ${avg}点 (${cnt.toLocaleString()}件)`;
+}
+
+function shortTitle(item, len=28) { return (item.title||'').slice(0,len); }
+
+// 20パターン（nullを返すとスキップ）
+const PATTERNS = [
+  // 1: 驚き発見
+  (item) => {
+    const a = getActresses(item)[0]; if (!a) return null;
+    return `え、${a}ってこんなすごかったの…\n\n知らなかった人多そうだけど\nこれ見たら絶対ハマる\n\n${reviewStr(item)}\n\n👇 サンプル動画あり\n{URL}\n\n${makeTags(item)}`;
+  },
+  // 2: ランキング
+  () => {
+    const top3 = allItems.slice(0,3);
+    const lines = top3.map((x,i) => {
+      const a = getActresses(x)[0]||'---';
+      return `${['🥇','🥈','🥉'][i]} ${a}\n　${shortTitle(x,18)}…\n　${reviewStr(x)}`;
+    }).join('\n\n');
+    return `📊 今日のFANZA人気TOP3\n\n${lines}\n\n詳細・サンプルはこちら\n${SITE}\n\n#FANZAランキング #FANZA #AV`;
+  },
+  // 3: 個人おすすめ
+  (item) => {
+    const a = getActresses(item)[0]||'';
+    return `これ、本当に良かった\n\n${a?a+'の作品だったんだけど':'たまたま見つけたやつ'}\n最初から最後まで全然飽きなかった\n\n${reviewStr(item)}\n\n気になったら見てみて\n{URL}\n\n${makeTags(item)}`;
+  },
+  // 4: セール
+  (item) => {
+    const price = item.prices?.price;
+    return `${price?price+'円の作品がセール中':'セール対象になってた'}\n\n${shortTitle(item)}\n\n${reviewStr(item)}\n\nこのクオリティでこの値段はおかしい\n👇\n{URL}\n\n${makeTags(item,['#FANZAセール'])}`;
+  },
+  // 5: 女優フィーチャー
+  (item) => {
+    const a = getActresses(item)[0]; if (!a) return null;
+    return `${a}の話をしたい\n\n何が好きかって言うと\n全体的にちょうどいいんだよな\n\n作品数も多いし外れがない\n\n最新作はこれ👇\n{URL}\n\n${makeTags(item)}`;
+  },
+  // 6: デビュー・新人
+  (item) => {
+    const a = getActresses(item)[0]||'';
+    return `${a?a+'、':''}これ絶対伸びる\n\nデビューしたてなのに\nもう完成されすぎてる\n\n${reviewStr(item)}\n\n今のうちに見ておいた方がいい\n{URL}\n\n${makeTags(item)}`;
+  },
+  // 7: レビュー偉業
+  (item) => {
+    const avg = parseFloat(item.review?.average||0);
+    const cnt = parseInt(item.review?.count||0);
+    if (avg < 4.0 || cnt < 50) return null;
+    return `レビュー${cnt.toLocaleString()}件で${avg}点\n\nこれがどれだけすごいかわかる人にはわかる\n\nFANZAでこの数字出すのはほぼ不可能に近い\n\n👇 見たら納得する\n{URL}\n\n${makeTags(item)}`;
+  },
+  // 8: 問いかけ
+  (item) => {
+    const gs = getGenres(item).filter(g=>g.length<=6&&!['ハイビジョン','独占配信'].includes(g));
+    if (gs.length < 2) return null;
+    return `${gs[0]}派？それとも${gs[1]}派？\n\nどっちか選べって言われたら困るんだけど\n\nこれはどっちも入ってる最強の作品\n\n{URL}\n\n${makeTags(item)}`;
+  },
+  // 9: 知る人ぞ知る
+  (item) => `知ってる人だけ知ってる名作\n\n大きく宣伝されてないけど\nわかってる人の間では評価高い\n\n${reviewStr(item)}\n\n黙って保存しといて\n{URL}\n\n${makeTags(item)}`,
+  // 10: スペック推し
+  (item) => {
+    const a = getActresses(item)[0]||'';
+    const gs = getGenres(item).filter(g=>['巨乳','美乳','美少女','スレンダー','痴女','人妻'].includes(g));
+    return `${a}${gs.length?'（'+gs[0]+'）':''}\n\nスペック的に全部好きなやつだった\n\n${reviewStr(item)}\n\n確認してみて\n{URL}\n\n${makeTags(item)}`;
+  },
+  // 11: 深夜
+  (item) => `深夜に見るやつ\n\n${shortTitle(item)}\n\n寝れなくなっても知らない\n\n${reviewStr(item)}\n\n{URL}\n\n${makeTags(item)}`,
+  // 12: 共感フック
+  (item) => {
+    const g = getGenres(item).filter(g=>g.length<8&&!['ハイビジョン'].includes(g))[0];
+    if (!g) return null;
+    return `${g}好きはわかってくれると思うんだけど\n\n外れ引いた時の絶望感って\nもう味わいたくないじゃないですか\n\nだからこそこれは自信を持って言える\n\n${reviewStr(item)}\n\n{URL}\n\n${makeTags(item)}`;
+  },
+  // 13: ジャンル特化
+  (item) => {
+    const g = getGenres(item).filter(g=>!['ハイビジョン','BEST・総集編','独占配信'].includes(g))[0];
+    if (!g) return null;
+    const a = getActresses(item)[0]||'';
+    return `${g}が好きな人に刺さる作品見つけた\n\n${a}\n\n${reviewStr(item)}\n\nサンプル動画あるから確認してみて\n{URL}\n\n${makeTags(item)}`;
+  },
+  // 14: 比較おすすめ
+  (item) => {
+    const g = getGenres(item).filter(g=>!['ハイビジョン'].includes(g))[0]||'この系統';
+    return `${g}が好きなら絶対ハマる\n\n他のやつ色々見てきたけどこれが一番クオリティ高かった\n\n${reviewStr(item)}\n\n{URL}\n\n${makeTags(item)}`;
+  },
+  // 15: 実況・感想
+  (item) => {
+    const a = getActresses(item)[0]||'';
+    return `見終わった\n\n${a?a+'、正直なめてたごめん':'これはやばかった'}\n\nサムネで判断してたけど本編の方が全然よかった\n\n${reviewStr(item)}\n\n{URL}\n\n${makeTags(item)}`;
+  },
+  // 16: データ統計
+  (item) => {
+    const cnt = parseInt(item.review?.count||0); const avg = item.review?.average;
+    if (!avg||!cnt) return null;
+    return `数字で見るFANZA名作\n\nレビュー件数：${cnt.toLocaleString()}件\n平均評価：★${avg}点\n\nこの数字が何を意味するかは実際に見た人が一番わかってる\n\n{URL}\n\n${makeTags(item)}`;
+  },
+  // 17: 週末推薦
+  (item) => `週末に見てほしいやつ\n\n${shortTitle(item)}\n\n時間取れる時じゃないともったいない作品\n\n${reviewStr(item)}\n\n{URL}\n\n${makeTags(item)}`,
+  // 18: タイムセール速報
+  (item) => `⚡ 見逃し注意\n\n${shortTitle(item)}\n\n${reviewStr(item)}\n\n今確認しないと後悔するやつ\n👇\n{URL}\n\n${makeTags(item,['#FANZAセール'])}`,
+  // 19: レジェンド推し
+  (item) => {
+    const a = getActresses(item)[0]; if (!a) return null;
+    return `${a}を知らない世代に伝えたい\n\nこの人の作品は時代関係なく刺さる\n\n今見ても全然古くない\nむしろこのクオリティが異常\n\n${reviewStr(item)}\n\n{URL}\n\n${makeTags(item)}`;
+  },
+  // 20: シナリオ・妄想
+  (item) => {
+    const gs = getGenres(item).filter(g=>!['ハイビジョン','BEST・総集編','独占配信'].includes(g));
+    const gStr = gs.slice(0,2).join('×')||'このジャンル';
+    return `${gStr}の理想が全部詰まってた\n\nシチュエーションも\nキャストも\n展開も\n\n全部好きなやつだった\n\n${reviewStr(item)}\n\n{URL}\n\n${makeTags(item)}`;
+  },
+];
+
+function generateText(item, patternIdx) {
+  const url = getPostUrl();
+  if (patternIdx >= 0) {
+    const result = PATTERNS[patternIdx](item);
+    return result ? result.replace('{URL}', url) : generateText(item, -1);
+  }
+  // 自動: ランダムにパターンを試す
+  const start = Math.floor(Math.random() * PATTERNS.length);
+  for (let i = 0; i < PATTERNS.length; i++) {
+    const idx = (start + i) % PATTERNS.length;
+    const result = PATTERNS[idx](item);
+    if (result) return result.replace('{URL}', url);
+  }
+  return `${item.title}\n\n${reviewStr(item)}\n\n${url}\n\n${makeTags(item)}`;
+}
+
+function getActressTags(item) {
+  return (item.iteminfo?.actress || []).map(a => '#' + a.name.replace(/\s/g, '')).join(' ');
+}
+
+// ===== フィルタ =====
+function toggleVideoFilter() {
+  showVideoOnly = !showVideoOnly;
+  document.getElementById('btnVid').classList.toggle('active', showVideoOnly);
+  applyFilter();
+}
+
+function applyFilter() {
+  const q = document.getElementById('searchInput').value.toLowerCase();
+  filtered = allItems.filter(item => {
+    if (showVideoOnly && !getSampleUrl(item)) return false;
+    if (q) {
+      const t = (item.title || '').toLowerCase();
+      const a = (item.iteminfo?.actress || []).map(x => x.name).join(' ').toLowerCase();
+      if (!t.includes(q) && !a.includes(q)) return false;
+    }
+    return true;
+  });
+  const withVid = filtered.filter(i => getSampleUrl(i)).length;
+  document.getElementById('stats').innerHTML = `<b>${filtered.length}</b>件 / 動画あり：<b>${withVid}</b>件`;
+  renderGrid();
+}
+
+function renderGrid() {
+  const grid = document.getElementById('grid');
+  if (!filtered.length) {
+    grid.innerHTML = '<div class="loading"><p style="color:#444">該当なし</p></div>';
+    return;
+  }
+  grid.innerHTML = filtered.slice(0, 200).map(item => {
+    const img = safeUrl(item.imageURL?.list || item.imageURL?.small || '');
+    const title = (item.title || '').slice(0, 48);
+    const cid = item.content_id;
+    const hasVid = !!getSampleUrl(item);
+    const actresses = (item.iteminfo?.actress || []).map(a => a.name).join('、');
+    return `<div class="card ${hasVid ? 'has-video' : ''}" data-cid="${esc(cid)}" onclick="openComposer(this.dataset.cid)">
+      ${img ? `<img src="${esc(img)}" loading="lazy" alt="">` : '<div style="height:80px;background:#111"></div>'}
+      <div class="card-body">
+        ${hasVid ? '<span class="badge-v">▶ 動画あり</span>' : ''}
+        <div class="card-title">${esc(title)}</div>
+        ${actresses ? `<div class="card-meta">${esc(actresses.slice(0,30))}</div>` : ''}
+        <button class="btn-post">📢 投稿する</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ===== コンポーザー =====
+function openComposer(cid) {
+  const item = allItems.find(i => i.content_id === cid);
+  if (!item) return;
+  currentItem = item;
+  currentUrlType = 'site';
+  document.getElementById('urlBtnSite').classList.add('active');
+  document.getElementById('urlBtnFanza').classList.remove('active');
+
+  const img = safeUrl(item.imageURL?.list || item.imageURL?.small || '');
+  document.getElementById('cmpThumb').src = img;
+  document.getElementById('cmpTitle').textContent = item.title || '';
+  const hasVid = getSampleUrl(item);
+  document.getElementById('cmpBadge').textContent = hasVid ? '▶ サンプル動画あり' : '';
+
+  fillTemplate();
+  document.getElementById('platformStatus').classList.remove('show');
+  document.getElementById('composerModal').classList.add('open');
+}
+
+function closeComposer(e) {
+  if (e && e.target !== document.getElementById('composerModal')) return;
+  document.getElementById('composerModal').classList.remove('open');
+  currentItem = null;
+}
+
+function setUrlType(type) {
+  currentUrlType = type;
+  document.getElementById('urlBtnSite').classList.toggle('active', type === 'site');
+  document.getElementById('urlBtnFanza').classList.toggle('active', type === 'fanza');
+  fillTemplate();
+}
+
+function getPostUrl() {
+  if (!currentItem) return '';
+  if (currentUrlType === 'site') {
+    return `${SITE}/product.html?cid=${encodeURIComponent(currentItem.content_id || '')}`;
+  }
+  return safeUrl(currentItem.affiliateURL || currentItem.URL || '');
+}
+
+function fillTemplate() {
+  if (!currentItem) return;
+  const sel = parseInt(document.getElementById('patternSelect').value, 10);
+  const text = generateText(currentItem, sel);
+  document.getElementById('cmpText').value = text;
+  updateCharCount();
+}
+
+function regenerate() { fillTemplate(); }
+
+function updateCharCount() {
+  const len = document.getElementById('cmpText').value.length;
+  const el = document.getElementById('charCount');
+  el.textContent = `${len}文字`;
+  el.classList.toggle('warn', len > 280);
+}
+
+// ===== 投稿 =====
+async function postTo(platform) {
+  const text = document.getElementById('cmpText').value.trim();
+  if (!text) { toast('テキストを入力してください'); return; }
+
+  const statusEl = document.getElementById('platformStatus');
+  statusEl.className = 'platform-status show';
+  statusEl.textContent = '投稿中...';
+
+  if (platform === 'x') {
+    navigator.clipboard.writeText(text).then(() => {
+      statusEl.className = 'platform-status show ok';
+      statusEl.textContent = '✅ Xの投稿テキストをコピーしました。Xを開いて貼り付けてください。';
+      toast('テキストをコピーしました');
+    }).catch(() => {
+      statusEl.className = 'platform-status show err';
+      statusEl.textContent = 'コピーに失敗しました。テキストを手動でコピーしてください。';
+    });
+    return;
+  }
+
+  if (platform === 'bluesky') {
+    await postBluesky(text, statusEl);
+  } else if (platform === 'misskey') {
+    await postMisskey(text, statusEl);
+  }
+}
+
+// ===== Bluesky 投稿 =====
+async function postBluesky(text, statusEl) {
+  const cfg = getCfg();
+  if (!cfg.bskyHandle || !cfg.bskyPass) {
+    statusEl.className = 'platform-status show err';
+    statusEl.textContent = '⚠️ Blueskyの設定が未入力です。⚙️ 設定を開いてください。';
+    return;
+  }
+  try {
+    const authRes = await fetch('https://bsky.social/xrpc/com.atproto.server.createSession', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ identifier: cfg.bskyHandle, password: cfg.bskyPass })
+    });
+    if (!authRes.ok) throw new Error('認証失敗');
+    const auth = await authRes.json();
+
+    // URLのファセット（リンク装飾）を計算
+    const url = getPostUrl();
+    const facets = [];
+    if (url && text.includes(url)) {
+      const enc = new TextEncoder();
+      const beforeBytes = enc.encode(text.slice(0, text.indexOf(url))).length;
+      const urlBytes = enc.encode(url).length;
+      facets.push({
+        index: { byteStart: beforeBytes, byteEnd: beforeBytes + urlBytes },
+        features: [{ $type: 'app.bsky.richtext.facet#link', uri: url }]
+      });
+    }
+
+    const record = {
+      $type: 'app.bsky.feed.post',
+      text,
+      createdAt: new Date().toISOString(),
+      langs: ['ja'],
+      ...(facets.length ? { facets } : {})
+    };
+
+    const postRes = await fetch('https://bsky.social/xrpc/com.atproto.repo.createRecord', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${auth.accessJwt}` },
+      body: JSON.stringify({ repo: auth.did, collection: 'app.bsky.feed.post', record })
+    });
+    if (!postRes.ok) throw new Error('投稿失敗');
+
+    statusEl.className = 'platform-status show ok';
+    statusEl.textContent = '✅ Blueskyに投稿しました！';
+    toast('Blueskyに投稿しました');
+  } catch(e) {
+    statusEl.className = 'platform-status show err';
+    statusEl.textContent = `❌ エラー: ${e.message}`;
+  }
+}
+
+// ===== Misskey 投稿 =====
+async function postMisskey(text, statusEl) {
+  const cfg = getCfg();
+  if (!cfg.mskeyInstance || !cfg.mskeyToken) {
+    statusEl.className = 'platform-status show err';
+    statusEl.textContent = '⚠️ Misskeyの設定が未入力です。⚙️ 設定を開いてください。';
+    return;
+  }
+  try {
+    const instanceUrl = new URL(/^https?:\/\//i.test(cfg.mskeyInstance) ? cfg.mskeyInstance : `https://${cfg.mskeyInstance}`);
+    if (instanceUrl.protocol !== 'https:' || !instanceUrl.hostname) throw new Error('インスタンスURLが不正です');
+    const res = await fetch(`${instanceUrl.origin}/api/notes/create`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ i: cfg.mskeyToken, text, visibility: 'public' })
+    });
+    if (!res.ok) throw new Error('投稿失敗 (' + res.status + ')');
+
+    statusEl.className = 'platform-status show ok';
+    statusEl.textContent = '✅ Misskeyに投稿しました！';
+    toast('Misskeyに投稿しました');
+  } catch(e) {
+    statusEl.className = 'platform-status show err';
+    statusEl.textContent = `❌ エラー: ${e.message}`;
+  }
+}
+
+// ===== 設定モーダル =====
+function openSettings() {
+  const cfg = getCfg();
+  document.getElementById('bskyHandle').value = cfg.bskyHandle || '';
+  document.getElementById('bskyPass').value = cfg.bskyPass || '';
+  document.getElementById('mskeyInstance').value = cfg.mskeyInstance || '';
+  document.getElementById('mskeyToken').value = cfg.mskeyToken || '';
+  document.getElementById('tmplInput').value = cfg.template || DEFAULT_TMPL;
+  document.getElementById('settingsModal').classList.add('open');
+}
+function closeSettings(e) {
+  if (e && e.target !== document.getElementById('settingsModal')) return;
+  document.getElementById('settingsModal').classList.remove('open');
+}
+function saveSettings() {
+  const cfg = getCfg();
+  cfg.bskyHandle = document.getElementById('bskyHandle').value.trim();
+  cfg.bskyPass = document.getElementById('bskyPass').value.trim();
+  cfg.mskeyInstance = document.getElementById('mskeyInstance').value.trim();
+  cfg.mskeyToken = document.getElementById('mskeyToken').value.trim();
+  cfg.template = document.getElementById('tmplInput').value;
+  saveCfg(cfg);
+  document.getElementById('settingsModal').classList.remove('open');
+  toast('設定を保存しました');
+}
+
+// ===== ユーティリティ =====
+function toast(msg) {
+  const el = document.getElementById('toast');
+  el.textContent = msg; el.classList.add('show');
+  setTimeout(() => el.classList.remove('show'), 2500);
+}
+function esc(s) {
+  return String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+function safeUrl(value, fallback = '') {
+  try {
+    const url = new URL(String(value || ''), location.href);
+    return url.protocol === 'https:' ? url.href : fallback;
+  } catch {
+    return fallback;
+  }
+}
+
+loadSort('rank');
+</script>
+</body>
+</html>

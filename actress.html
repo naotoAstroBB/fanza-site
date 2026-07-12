@@ -1,0 +1,815 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>女優ページ | AV動画ランキング</title>
+<link rel="stylesheet" href="css/style.css">
+<style>
+/* ===== 女優ヒーローセクション ===== */
+.actress-hero {
+    background: var(--bg2); border-bottom: 1px solid var(--border);
+    padding: 36px 20px 28px;
+}
+.actress-hero-inner {
+    max-width: 960px; margin: 0 auto;
+    display: flex; gap: 32px; align-items: flex-start;
+}
+.actress-hero-photo-wrap { flex-shrink: 0; position: relative; }
+.actress-hero-photo {
+    width: 150px; height: 150px; border-radius: 12px;
+    object-fit: cover; border: 3px solid var(--accent);
+    display: block;
+}
+.actress-hero-no-img {
+    width: 150px; height: 150px; border-radius: 12px;
+    background: linear-gradient(135deg, #4a1530, #8b1a3a);
+    display: flex; align-items: center;
+    justify-content: center; font-size: 3.2rem; font-weight: 900;
+    color: rgba(255,255,255,.7); letter-spacing: -.02em;
+    border: 3px solid var(--accent);
+    user-select: none;
+}
+.actress-hero-info { flex: 1; min-width: 0; }
+.actress-hero-name {
+    font-size: 2.2rem; font-weight: 900; color: #fff;
+    margin-bottom: 2px; line-height: 1.2;
+}
+.actress-hero-ruby {
+    font-size: .85rem; color: var(--mute); margin-bottom: 14px;
+    letter-spacing: .05em;
+}
+
+/* プロフィールグリッド */
+.actress-profile-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 8px;
+    margin-bottom: 16px;
+}
+.actress-profile-item {
+    background: var(--bg3); border: 1px solid var(--border);
+    border-radius: 8px; padding: 8px 12px;
+}
+.actress-profile-label {
+    font-size: .68rem; color: var(--mute); text-transform: uppercase;
+    letter-spacing: .06em; margin-bottom: 3px;
+}
+.actress-profile-value {
+    font-size: .92rem; color: #eee; font-weight: 600;
+}
+
+/* スリーサイズバー */
+.actress-measure-bar {
+    display: flex; gap: 6px; align-items: center;
+    flex-wrap: wrap; margin-bottom: 16px;
+}
+.actress-measure-chip {
+    background: linear-gradient(135deg, rgba(255,51,102,.18), rgba(255,51,102,.08));
+    border: 1px solid rgba(255,51,102,.35);
+    border-radius: 20px; padding: 4px 14px;
+    font-size: .85rem; color: #ff8aaa; font-weight: 700;
+}
+
+/* 作品統計バー */
+.actress-works-bar {
+    display: flex; gap: 16px; flex-wrap: wrap; align-items: center;
+    background: var(--bg3); border: 1px solid var(--border);
+    border-radius: 10px; padding: 10px 16px; margin-bottom: 14px;
+    font-size: .85rem; color: var(--mute);
+}
+.actress-works-bar strong { color: #eee; font-size: 1.05rem; }
+.actress-career-tag {
+    background: rgba(255,51,102,.12); border: 1px solid rgba(255,51,102,.25);
+    border-radius: 6px; padding: 2px 10px; font-size: .78rem; color: #ff8aaa;
+}
+.actress-works-note {
+    font-size: .7rem; color: var(--mute); opacity: .7;
+    flex-basis: 100%; padding-top: 4px;
+}
+
+/* ジャンルタグ */
+.actress-genre-tags {
+    display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px;
+}
+.actress-genre-tag {
+    background: var(--bg3); border: 1px solid var(--border);
+    border-radius: 12px; padding: 5px 12px;
+    font-size: .8rem; color: var(--mute);
+    text-decoration: none; cursor: pointer;
+    transition: all .15s;
+}
+.actress-genre-tag:hover {
+    background: var(--accent); border-color: var(--accent);
+    color: #fff;
+}
+
+/* バイオグラフィーカード */
+.actress-bio-card {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-bottom: 14px;
+}
+.actress-bio-header {
+    display: flex; align-items: center; gap: 8px;
+    font-size: .75rem; color: var(--mute);
+    letter-spacing: .05em; margin-bottom: 8px; font-weight: 600;
+}
+.actress-bio-badge {
+    background: rgba(100,149,237,.15); border: 1px solid rgba(100,149,237,.3);
+    border-radius: 4px; padding: 1px 6px;
+    font-size: .65rem; color: #87b0ff; font-weight: 400;
+}
+.actress-bio-body {
+    font-size: .87rem; color: #ccc; line-height: 1.75;
+    max-height: 6.5em; overflow: hidden; position: relative;
+}
+.actress-bio-body.expanded { max-height: none; }
+.actress-bio-body:not(.expanded)::after {
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+    height: 2.5em;
+    background: linear-gradient(transparent, var(--bg3));
+    pointer-events: none;
+}
+.actress-bio-expand-btn {
+    background: none; border: none; padding: 4px 0;
+    color: var(--accent); font-size: .82rem; cursor: pointer; display: block; margin-top: 4px;
+}
+.actress-bio-wiki-link {
+    display: block; margin-top: 8px; font-size: .76rem; color: var(--mute);
+    text-decoration: none; border-top: 1px solid var(--border); padding-top: 8px;
+}
+.actress-bio-wiki-link:hover { color: var(--accent); }
+
+/* アクションボタン */
+.actress-action-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 4px; }
+.actress-fanza-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #ff3366, #cc0033);
+    color: #fff; font-weight: 700; font-size: .9rem;
+    border-radius: 8px; transition: opacity .2s; white-space: nowrap;
+}
+.actress-fanza-btn:hover { opacity: .85; color: #fff; }
+
+/* 作品セクション */
+.actress-works-section {
+    max-width: 1280px; margin: 0 auto; padding: 32px 20px;
+}
+.actress-works-title {
+    font-size: 1.1rem; font-weight: 700; color: #fff;
+    margin-bottom: 20px; padding-bottom: 8px;
+    border-bottom: 2px solid var(--accent);
+    display: flex; align-items: center; gap: 8px;
+}
+.actress-works-count { font-size: .82rem; color: var(--mute); font-weight: 400; }
+
+@media(max-width:640px){
+    .actress-hero-inner { flex-direction: column; align-items: center; }
+    .actress-hero-info { text-align: center; }
+    .actress-measure-bar { justify-content: center; }
+    .actress-action-row { justify-content: center; }
+    .actress-profile-grid { grid-template-columns: repeat(3, 1fr); }
+    .actress-hero-name { font-size: 1.7rem; }
+    .actress-hero-photo, .actress-hero-no-img { width: 120px; height: 120px; }
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <div class="site-logo"><a href="home.html" style="color:inherit;text-decoration:none">AV動画ランキング</a></div>
+    <div class="suggest-wrap">
+      <input type="text" id="searchInput" placeholder="女優名・タイトル・キーワードで検索..." autocomplete="off">
+      <div class="suggest-dropdown" id="suggestDropdown"></div>
+      <button onclick="doSearch()">🔍</button>
+    </div>
+  </div>
+</header>
+
+<div class="page-back-bar">
+  <button class="back-btn" onclick="appBack()">← 戻る</button>
+</div>
+
+<!-- パンくず -->
+<div style="background:var(--bg2);border-bottom:1px solid var(--border);padding:8px 20px;font-size:.82rem;color:var(--mute)">
+  <a href="home.html" style="color:var(--mute)">TOP</a> › <span id="breadName">女優ページ</span>
+</div>
+
+<!-- 女優プロフィール -->
+<div class="actress-hero" id="actressHero">
+  <div class="actress-hero-inner">
+    <div class="actress-hero-no-img">👩</div>
+    <div class="actress-hero-info">
+      <div class="actress-hero-name" id="actressName">読み込み中...</div>
+      <div class="actress-hero-ruby" id="actressRuby"></div>
+      <div class="actress-hero-meta" id="actressMeta"></div>
+      <a class="actress-fanza-btn" id="actressLink" href="#" target="_blank" rel="noopener">🎬 全作品を見る</a>
+    </div>
+  </div>
+</div>
+
+<!-- 作品一覧 -->
+<div class="actress-works-section">
+  <div class="actress-works-title">
+    🎬 出演作品
+    <span class="actress-works-count" id="worksCount"></span>
+  </div>
+  <div class="product-grid" id="worksGrid">
+    <div class="loading"><div class="spinner"></div><p>作品を検索中...</p></div>
+  </div>
+  <div class="pagination" id="pagination"></div>
+</div>
+
+<!-- ボトムナビゲーション（スマホのみ表示） -->
+<nav class="bottom-nav">
+  <a href="home.html" class="bottom-nav-item">
+    <span class="bn-icon">🏠</span><span>ホーム</span>
+  </a>
+  <a href="home.html" class="bottom-nav-item">
+    <span class="bn-icon">🏆</span><span>ランキング</span>
+  </a>
+  <a href="actresses.html" class="bottom-nav-item active">
+    <span class="bn-icon">👑</span><span>女優</span>
+  </a>
+  <a href="home.html" class="bottom-nav-item">
+    <span class="bn-icon">🔥</span><span>SALE</span>
+  </a>
+  <a href="home.html" class="bottom-nav-item">
+    <span class="bn-icon">🎯</span><span>ジャンル</span>
+  </a>
+</nav>
+
+<footer class="site-footer">
+  <div class="footer-nav">
+    <a href="home.html">TOP</a>
+    <a href="actresses.html">女優ランキング</a>
+    <a href="privacy.html">プライバシーポリシー</a>
+    <a href="disclaimer.html">免責事項</a>
+  </div>
+  <p>当サイトはFANZA（DMM.com）のアフィリエイトプログラムを利用しています。</p>
+  <div class="footer-copy">© 2026 AV動画ランキング All Rights Reserved.</div>
+</footer>
+
+<script src="js/storage.js"></script>
+<script src="js/dmm-api.js"></script>
+<script>
+if (localStorage.getItem('age_verified') !== 'yes') location.href = 'index.html';
+
+// 戻るボタン：同一サイト内からの遷移なら履歴を戻る、そうでなければホームへ
+function appBack() {
+    if (document.referrer && new URL(document.referrer).origin === location.origin) {
+        history.back();
+    } else {
+        location.href = 'home.html';
+    }
+}
+
+const esc = s => String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+const safeUrl = (value, fallback='') => {
+    try {
+        const url = new URL(String(value || ''), location.href);
+        return url.protocol === 'https:' ? url.href : fallback;
+    } catch { return fallback; }
+};
+
+const p          = new URLSearchParams(location.search);
+const actressId  = p.get('id')   || '';
+const actressName= p.get('name') || '';
+const floor      = p.get('floor')|| 'videoa';
+
+let allWorks = [], page = 1;
+const PER_PAGE = 24;
+
+function doSearch() {
+    const q = document.getElementById('searchInput').value.trim();
+    if (q) location.href = 'home.html?keyword=' + encodeURIComponent(q);
+}
+
+// ===== 検索サジェスト =====
+let _suggestActresses = null;
+let _suggestLoadPromise = null;
+
+async function loadSuggestData() {
+    if (_suggestActresses) return;
+    if (_suggestLoadPromise) { await _suggestLoadPromise; return; }
+    _suggestLoadPromise = (async () => {
+        try {
+            // 複数APIファイルを並行ロード（各ファイルは小サイズ、メモリ問題なし）
+            const [pop, monthly, newA, profiles] = await Promise.allSettled([
+                DMM._loadFile('data/actress_popular.json'),
+                DMM._loadFile('data/actress_monthly.json'),
+                DMM._loadFile('data/actress_new.json'),
+                DMM._loadFile('data/actress_profiles.json'),
+            ]);
+
+            // imageURL マップ構築
+            const imageMap = new Map();
+            for (const r of [pop, monthly, newA, profiles]) {
+                if (r.status !== 'fulfilled') continue;
+                for (const a of (r.value?.result?.actress || [])) {
+                    const id = String(a.id);
+                    if (a.imageURL?.small && !imageMap.has(id)) imageMap.set(id, a.imageURL);
+                }
+            }
+
+            const apiActresses = [
+                ...(pop.value?.result?.actress || []),
+                ...(monthly.value?.result?.actress || []),
+                ...(newA.value?.result?.actress || []),
+                ...(profiles.value?.result?.actress || []),
+            ];
+
+            const seen = new Set();
+            _suggestActresses = [];
+
+            // ① 画像ありの女優を優先追加
+            for (const a of apiActresses) {
+                const id = String(a.id);
+                if (!seen.has(id) && a.imageURL?.small) { seen.add(id); _suggestActresses.push(a); }
+            }
+            // ② 画像なしでも名前・ルビがある女優を追加
+            for (const a of apiActresses) {
+                const id = String(a.id);
+                if (!seen.has(id) && a.name) { seen.add(id); _suggestActresses.push(a); }
+            }
+
+            // ③ キャッシュ済みの全データファイルから名前を補完（追加ロード不要）
+            for (const [cacheKey, cached] of Object.entries(DMM._cache)) {
+                if (cacheKey.includes('actress_') || !cached?.result?.items) continue;
+                for (const item of cached.result.items) {
+                    for (const a of (item.iteminfo?.actress || [])) {
+                        const id = String(a.id);
+                        if (a.id && a.name && !seen.has(id)) {
+                            seen.add(id);
+                            _suggestActresses.push({
+                                id:       String(a.id),
+                                name:     a.name,
+                                ruby:     a.ruby || '',
+                                imageURL: imageMap.get(id) || undefined,
+                            });
+                        }
+                    }
+                }
+            }
+        } catch(e) {}
+        if (!_suggestActresses) _suggestActresses = [];
+    })();
+    await _suggestLoadPromise;
+}
+
+async function onSuggestInput() {
+    await loadSuggestData();
+    const q   = (document.getElementById('searchInput')?.value || '').trim();
+    const box = document.getElementById('suggestDropdown');
+    if (!box) return;
+    if (!q) { closeSuggest(); return; }
+    const ql = q.toLowerCase();
+    const matches = (_suggestActresses || []).filter(a => {
+        const name = (a.name || '').toLowerCase();
+        const ruby = (a.ruby || '').toLowerCase();
+        return name.includes(ql) || ruby.includes(ql);
+    }).slice(0, 10);
+    if (!matches.length) { closeSuggest(); return; }
+    const safeQ = q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    box.innerHTML = matches.map(a => {
+        const img  = safeUrl(a.imageURL?.small || '');
+        const name = esc(a.name || '');
+        const ruby = esc(a.ruby || '');
+        const hlName = name.replace(new RegExp(safeQ, 'gi'), m => `<mark>${m}</mark>`);
+        return `<div class="suggest-item" data-name="${esc(a.name)}" data-id="${esc(a.id)}" onclick="selectSuggest(this.dataset.name,this.dataset.id)">
+            ${img ? `<img src="${esc(img)}" alt="${name}">` : '<div class="suggest-no-img">👩</div>'}
+            <div><div class="suggest-item-name">${hlName}</div>${ruby ? `<div class="suggest-item-sub">${ruby}</div>` : ''}</div>
+        </div>`;
+    }).join('');
+    box.classList.add('open');
+}
+
+function closeSuggest() {
+    document.getElementById('suggestDropdown')?.classList.remove('open');
+}
+
+function selectSuggest(name, id) {
+    closeSuggest();
+    location.href = `actress.html?id=${encodeURIComponent(id)}&name=${encodeURIComponent(name)}`;
+}
+
+document.getElementById('searchInput').addEventListener('input',  () => onSuggestInput());
+document.getElementById('searchInput').addEventListener('focus',  () => onSuggestInput());
+document.addEventListener('click', e => { if (!e.target.closest('.suggest-wrap')) closeSuggest(); });
+document.getElementById('searchInput').addEventListener('keydown', e => { if (e.key === 'Enter') doSearch(); });
+
+// ===== 女優情報を表示 =====
+async function loadActressInfo() {
+    if (!actressId) { showError('女優IDが指定されていません'); return; }
+
+    document.title = (actressName || '女優') + '出演作品 | AV動画ランキング';
+    document.getElementById('breadName').textContent = actressName || '女優ページ';
+
+    // 全プロフィールファイルから女優情報を探す（最も網羅的なactress_profiles.jsonを最優先）
+    let actress = null;
+    const profileFiles = ['data/actress_profiles.json', 'data/actress_popular.json', 'data/actress_monthly.json', 'data/actress_new.json'];
+    for (const fp of profileFiles) {
+        try {
+            const ts = Math.floor(Date.now() / 60000);
+            const res = await fetch(`${fp}?_=${ts}`);
+            if (!res.ok) continue;
+            const data = await res.json();
+            const found = (data?.result?.actress || []).find(a => String(a.id) === String(actressId));
+            if (found) { actress = found; break; }
+        } catch(e) {}
+    }
+
+    const hero = document.getElementById('actressHero');
+    if (!hero) return;
+    const img  = safeUrl(actress?.imageURL?.large || actress?.imageURL?.small || '');
+    const name = actress?.name || actressName || '女優';
+    const ruby = actress?.ruby || '';
+    const link = safeUrl(actress?.listURL?.digital || `https://www.dmm.co.jp/digital/videoa/-/actress/=/id=${encodeURIComponent(actressId)}/`, '#');
+
+    // プロフィール詳細情報を構築
+    const calcAge = (bday) => {
+        if (!bday) return null;
+        const d = new Date(bday);
+        const today = new Date();
+        let age = today.getFullYear() - d.getFullYear();
+        const m = today.getMonth() - d.getMonth();
+        if (m < 0 || (m === 0 && today.getDate() < d.getDate())) age--;
+        return (age > 0 && age < 70) ? age : null;
+    };
+    const age       = actress ? calcAge(actress.birthday) : null;
+    const birthday  = actress?.birthday || '';
+    const bloodType = actress?.blood_type && actress.blood_type !== '他' ? actress.blood_type + '型' : '';
+    const height    = actress?.height ? actress.height + 'cm' : '';
+    const pref      = actress?.prefectures || '';
+    const bust      = actress?.bust  ? 'B' + actress.bust + (actress.cup ? '(' + actress.cup + ')' : '') : '';
+    const waist     = actress?.waist ? 'W' + actress.waist : '';
+    const hip       = actress?.hip   ? 'H' + actress.hip   : '';
+    const measures  = [bust, waist, hip].filter(Boolean);
+
+    const profileItems = [
+        age      ? { label: '年齢', value: age + '歳' }      : null,
+        birthday ? { label: '誕生日', value: birthday }       : null,
+        bloodType? { label: '血液型', value: bloodType }      : null,
+        height   ? { label: '身長', value: height }           : null,
+        pref     ? { label: '出身地', value: pref }           : null,
+    ].filter(Boolean);
+
+    // プロフィール表示（作品統計は loadWorks 後に更新）
+    const nameInitial = name.charAt(0) || '♀';
+    hero.querySelector('.actress-hero-inner').innerHTML = `
+        <div class="actress-hero-photo-wrap">
+            ${img
+                ? `<img class="actress-hero-photo" src="${esc(img)}" alt="${esc(name)}">`
+                : `<div class="actress-hero-no-img">${esc(nameInitial)}</div>`
+            }
+        </div>
+        <div class="actress-hero-info">
+            <div class="actress-hero-name">${esc(name)}</div>
+            ${ruby ? `<div class="actress-hero-ruby">読み：${esc(ruby)}</div>` : ''}
+            ${profileItems.length ? `
+            <div class="actress-profile-grid">
+                ${profileItems.map(p => `
+                <div class="actress-profile-item">
+                    <div class="actress-profile-label">${esc(p.label)}</div>
+                    <div class="actress-profile-value">${esc(p.value)}</div>
+                </div>`).join('')}
+            </div>` : ''}
+            ${measures.length ? `
+            <div class="actress-measure-bar">
+                ${measures.map(m => `<span class="actress-measure-chip">${esc(m)}</span>`).join('')}
+            </div>` : ''}
+            <div id="actressWorksBar"></div>
+            <div id="actressGenreTags"></div>
+            <div id="actressBio"></div>
+            <div class="actress-action-row">
+                <a class="actress-fanza-btn" href="${esc(link)}" target="_blank" rel="noopener">🎬 全作品を見る</a>
+            </div>
+        </div>`;
+
+    document.title = name + ' 出演作品 | AV動画ランキング';
+    document.getElementById('breadName').textContent = name;
+
+    // Wikipedia バイオを非同期で取得（作品ロードと並行、エラーは無視）
+    loadWikipediaBio(name, actress?.comment || '').catch(() => {});
+
+    // 作品を検索
+    await loadWorks();
+}
+
+// ===== Wikipedia バイオグラフィー取得 =====
+async function loadWikipediaBio(name, fanzaComment) {
+    const bioEl = document.getElementById('actressBio');
+    if (!bioEl || !name) return;
+
+    let wikiText = '', wikiTitle = '', wikiUrl = '';
+
+    try {
+        const safeFetch = url => Promise.race([
+            fetch(url),
+            new Promise((_, r) => setTimeout(() => r(new Error('timeout')), 7000))
+        ]);
+
+        const sd = await safeFetch(
+            `https://ja.wikipedia.org/w/api.php?action=query&list=search&srsearch=${encodeURIComponent(name)}&srlimit=5&format=json&origin=*`
+        );
+        if (sd.ok) {
+            const sj = await sd.json();
+            const clean = s => s.replace(/[\s　・]/g, '');
+            const cn = clean(name);
+            const hit = (sj?.query?.search || []).find(r => {
+                const ct = clean(r.title);
+                return ct === cn || ct.includes(cn) || cn.includes(ct);
+            });
+            if (hit) {
+                const ed = await safeFetch(
+                    `https://ja.wikipedia.org/w/api.php?action=query&prop=extracts&exintro&titles=${encodeURIComponent(hit.title)}&format=json&origin=*`
+                );
+                if (ed.ok) {
+                    const ej = await ed.json();
+                    const pg = Object.values(ej?.query?.pages || {})[0];
+                    if (pg && !pg.missing && pg.extract) {
+                        wikiText = pg.extract
+                            .replace(/<p[^>]*>/gi, '\n').replace(/<\/p>/gi, '')
+                            .replace(/<br\s*\/?>/gi, '\n').replace(/<[^>]+>/g, '')
+                            .replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&quot;/g,'"').replace(/&#039;/g,"'")
+                            .replace(/\n{3,}/g, '\n\n').trim();
+                        wikiTitle = hit.title;
+                        wikiUrl = `https://ja.wikipedia.org/wiki/${encodeURIComponent(hit.title)}`;
+                    }
+                }
+            }
+        }
+    } catch(e) {}
+
+    const bioText = wikiText || fanzaComment || '';
+    if (!bioText || bioText.length < 20) { bioEl.innerHTML = ''; return; }
+
+    const isWiki = !!wikiText;
+    const PREVIEW = 280;
+    const needsExpand = bioText.length > PREVIEW;
+    const bodyClass = needsExpand ? 'actress-bio-body' : 'actress-bio-body expanded';
+
+    bioEl.innerHTML = `
+        <div class="actress-bio-card">
+            <div class="actress-bio-header">
+                📖 プロフィール${isWiki ? ' <span class="actress-bio-badge">Wikipedia</span>' : ''}
+            </div>
+            <div class="${bodyClass}" id="biobody">${esc(bioText).replace(/\n/g,'<br>')}</div>
+            ${needsExpand ? `<button class="actress-bio-expand-btn" onclick="toggleBioExpand(this)">続きを読む ▼</button>` : ''}
+            ${isWiki ? `<a class="actress-bio-wiki-link" href="${esc(wikiUrl)}" target="_blank" rel="noopener noreferrer">🔗 Wikipedia で詳細を見る（${esc(wikiTitle)}）</a>` : ''}
+        </div>`;
+}
+
+function toggleBioExpand(btn) {
+    const body = document.getElementById('biobody');
+    if (body) body.classList.add('expanded');
+    btn.remove();
+}
+
+// ===== 出演作品を収集（女優別JSON優先 → 横断検索で補完）=====
+async function loadWorks() {
+    const seen = new Set();
+    let works = [];
+
+    // ① 女優別専用JSONを試みる（最大100件、最新作中心）
+    try {
+        const ts = Math.floor(Date.now() / 60000);
+        const res = await fetch(`data/actress_works_${encodeURIComponent(actressId)}.json?_=${ts}`);
+        if (res.ok) {
+            const data = await res.json();
+            if (data?.result?.status === 200 && data.result.items?.length) {
+                for (const item of data.result.items) {
+                    if (!seen.has(item.content_id)) {
+                        seen.add(item.content_id);
+                        works.push(item);
+                    }
+                }
+            }
+        }
+    } catch(e) {}
+
+    // ② 専用JSONがない・空の場合: rank.json → makerFiles の順に検索
+    if (works.length === 0) {
+        try {
+            const d = await DMM._loadFile('data/rank.json');
+            for (const item of (d?.result?.items || [])) {
+                if (seen.has(item.content_id)) continue;
+                const ids = (item.iteminfo?.actress || []).map(a => String(a.id));
+                if (ids.includes(String(actressId))) {
+                    seen.add(item.content_id);
+                    works.push(item);
+                }
+            }
+            delete DMM._cache['data/rank.json'];
+            delete DMM._cacheTs['data/rank.json'];
+        } catch(e) {}
+    }
+
+    // ③ rank.json でも見つからない場合はmakerFilesを順次検索（引退女優対応）
+    // 各ファイルは処理後にキャッシュ解放してメモリを解放
+    if (works.length === 0) {
+        for (const f of DMM.makerFiles) {
+            try {
+                const d = await DMM._loadFile(f);
+                for (const item of (d?.result?.items || [])) {
+                    if (seen.has(item.content_id)) continue;
+                    const ids = (item.iteminfo?.actress || []).map(a => String(a.id));
+                    if (ids.includes(String(actressId))) {
+                        seen.add(item.content_id);
+                        works.push(item);
+                    }
+                }
+            } catch(e) {}
+            const ck = f.split('?')[0];
+            delete DMM._cache[ck];
+            delete DMM._cacheTs[ck];
+            if (works.length >= 20) break;
+        }
+    }
+
+    // 新着順にソート
+    works.sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+
+    allWorks = works;
+    const countEl = document.getElementById('worksCount');
+    if (countEl) countEl.textContent = `（${works.length}件）`;
+
+    // ===== 作品統計・ジャンルタグを挿入 =====
+    const worksBarEl = document.getElementById('actressWorksBar');
+    const genreTagsEl = document.getElementById('actressGenreTags');
+
+    if (worksBarEl && works.length) {
+        const newest = works[0];
+        const lastDate  = newest?.date  ? newest.date.slice(0, 7)  : '';
+
+        // ※ 「初出演」「キャリア期間」はサイト掲載分の最古作品にすぎず、
+        // ベテラン女優ほど実際の値と乖離するため非表示にする（誤情報になる）
+        worksBarEl.innerHTML = `
+            <div class="actress-works-bar">
+                <span>📽️ 掲載作品 <strong>${works.length}件</strong></span>
+                ${lastDate ? `<span>🆕 最新作 <strong>${esc(lastDate)}</strong></span>` : ''}
+                <span class="actress-works-note">※当サイト掲載分。実際の出演本数はさらに多い場合があります</span>
+            </div>`;
+    }
+
+    if (genreTagsEl && works.length) {
+        // ジャンル出現頻度を集計
+        const genreMap = {};
+        for (const w of works) {
+            for (const g of (w.iteminfo?.genre || [])) {
+                if (g.name) genreMap[g.name] = (genreMap[g.name] || 0) + 1;
+            }
+        }
+        // 除外する汎用ジャンル
+        const excludeGenres = new Set(['ハイビジョン', 'BEST・総集編', '独占配信']);
+        const topGenres = Object.entries(genreMap)
+            .filter(([name]) => !excludeGenres.has(name))
+            .sort((a, b) => b[1] - a[1])
+            .slice(0, 8)
+            .map(([name]) => name);
+
+        if (topGenres.length) {
+            genreTagsEl.innerHTML = `
+                <div class="actress-genre-tags">
+                    ${topGenres.map(g => `<a class="actress-genre-tag" href="home.html?keyword=${encodeURIComponent(g)}" title="「${esc(g)}」で検索">${esc(g)}</a>`).join('')}
+                </div>`;
+        }
+    }
+
+    renderWorks(page);
+    renderPagination();
+}
+
+// ===== 作品グリッド描画 =====
+function renderWorks(pg) {
+    const grid  = document.getElementById('worksGrid');
+    const start = (pg - 1) * PER_PAGE;
+    const items = allWorks.slice(start, start + PER_PAGE);
+
+    if (!items.length) {
+        grid.innerHTML = '<div class="loading"><p>出演作品が見つかりませんでした</p><p style="font-size:.8rem;color:var(--mute);margin-top:8px">※ サイト内キャッシュにない作品は各サービスで直接ご確認ください</p></div>';
+        return;
+    }
+
+    grid.innerHTML = items.map(item => {
+        const img       = safeUrl(item.imageURL?.list || item.imageURL?.small || '');
+        const title     = esc(item.title || '');
+        const url       = safeUrl(item.affiliateURL || item.URL || '', '#');
+        const cid       = String(item.content_id || '');
+        const isFav     = Fav.has(item.content_id);
+        const review    = item.review;
+        const avg       = parseFloat(review?.average || 0);
+        const stars     = avg ? '★'.repeat(Math.round(avg)) + '☆'.repeat(5 - Math.round(avg)) : '';
+        const mv        = item.sampleMovieURL;
+        const sampleUrl = safeUrl(mv ? (mv.size_560_360 || mv.size_476_306 || mv.size_644_414 || '') : '');
+        const isLiked   = Like.has(item.content_id);
+        const likeCount = Like.count(item.content_id);
+        return `
+        <div class="product-card" data-href="${esc(`product.html?cid=${encodeURIComponent(cid)}&floor=${encodeURIComponent(floor)}`)}" onclick="location.href=this.dataset.href">
+          <div class="card-img-wrap">
+            ${img ? `<img src="${esc(img)}" alt="${title}" loading="lazy">` : '<div style="height:100%;display:flex;align-items:center;justify-content:center;background:#111;color:#333;font-size:2rem">🎬</div>'}
+            ${sampleUrl ? `<button class="card-sample-btn" data-url="${esc(sampleUrl)}" data-title="${title}" onclick="event.stopPropagation();openSample(this.dataset.url,this.dataset.title)" title="サンプル再生">▶</button>` : ''}
+            <button class="fav-btn ${isFav?'active':''}" data-cid="${esc(cid)}"
+              onclick="event.stopPropagation();toggleFav(this,this.dataset.cid)">${isFav?'⭐':'☆'}</button>
+          </div>
+          <div class="card-body">
+            <div class="card-title">${title}</div>
+            <div class="card-bottom">
+              ${stars ? `<div class="card-review"><span class="stars">${stars}</span></div>` : ''}
+              <button class="like-btn ${isLiked?'active':''}" data-cid="${esc(cid)}"
+                onclick="event.stopPropagation();toggleLike(this,this.dataset.cid)">
+                <span class="like-icon">${isLiked?'❤️':'🤍'}</span>
+                <span class="like-label">${likeCount>0?likeCount:'いいね'}</span>
+              </button>
+            </div>
+            <a class="btn-buy" href="${esc(url)}" target="_blank" rel="noopener" onclick="event.stopPropagation()">動画を見る →</a>
+          </div>
+        </div>`;
+    }).join('');
+}
+
+function toggleFav(btn, cid) {
+    const item = allWorks.find(i => i.content_id === cid);
+    if (!item) return;
+    const isNow = Fav.toggle(item, floor);
+    btn.classList.toggle('active', isNow);
+    btn.textContent = isNow ? '⭐' : '☆';
+}
+
+function toggleLike(btn, cid) {
+    const isNow = Like.toggle(cid);
+    btn.classList.toggle('active', isNow);
+    const iconEl  = btn.querySelector('.like-icon');
+    const labelEl = btn.querySelector('.like-label');
+    if (iconEl)  iconEl.textContent  = isNow ? '❤️' : '🤍';
+    if (labelEl) labelEl.textContent = Like.count(cid) > 0 ? Like.count(cid) : 'いいね';
+    btn.animate([{transform:'scale(1.4)'},{transform:'scale(1)'}],{duration:200,easing:'ease-out'});
+}
+
+function renderPagination() {
+    const el    = document.getElementById('pagination');
+    const total = Math.ceil(allWorks.length / PER_PAGE);
+    if (!el || total <= 1) { if (el) el.innerHTML = ''; return; }
+
+    let html = `<button class="page-btn" ${page===1?'disabled':''} onclick="goPage(${page-1})">‹ 前へ</button>`;
+    for (let i = 1; i <= total; i++) {
+        html += `<button class="page-btn ${i===page?'active':''}" onclick="goPage(${i})">${i}</button>`;
+    }
+    html += `<button class="page-btn" ${page===total?'disabled':''} onclick="goPage(${page+1})">次へ ›</button>`;
+    el.innerHTML = html;
+}
+
+function goPage(n) {
+    page = n;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    renderWorks(page);
+    renderPagination();
+}
+
+function showError(msg) {
+    document.getElementById('worksGrid').innerHTML = `<div class="loading"><p style="color:#ff6688">⚠️ ${esc(msg)}</p></div>`;
+}
+
+function openSample(url, title) {
+    const modal  = document.getElementById('sampleModal');
+    const iframe = document.getElementById('sampleIframe');
+    const label  = document.getElementById('sampleModalTitle');
+    if (!modal || !iframe) return;
+    if (label) label.textContent = title || 'サンプル動画';
+    const src = safeUrl(url);
+    if (!src) return;
+    iframe.src = src;
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeSample() {
+    const modal  = document.getElementById('sampleModal');
+    const iframe = document.getElementById('sampleIframe');
+    if (modal)  modal.classList.remove('active');
+    if (iframe) iframe.src = '';
+    document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSample(); });
+
+loadActressInfo();
+</script>
+
+<!-- サンプル動画モーダル -->
+<div id="sampleModal" class="sample-modal" onclick="closeSample()">
+  <div class="sample-modal-inner" onclick="event.stopPropagation()">
+    <div class="sample-modal-header">
+      <span id="sampleModalTitle" class="sample-modal-title"></span>
+      <button class="sample-modal-close" onclick="closeSample()">✕</button>
+    </div>
+    <iframe id="sampleIframe" src="" allowfullscreen frameborder="0" scrolling="no"></iframe>
+  </div>
+</div>
+</body>
+</html>

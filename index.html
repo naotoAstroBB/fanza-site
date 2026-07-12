@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>年齢確認 | AV動画ランキング</title>
+<link rel="stylesheet" href="css/style.css">
+<style>
+body{display:flex;align-items:center;justify-content:center;min-height:100vh;background:radial-gradient(ellipse at center,#1a0010 0%,#0a0a0a 100%)}
+.age-gate{max-width:480px;width:90%;text-align:center;background:#1a1a1a;border:1px solid #ff3366;border-radius:16px;padding:48px 32px;box-shadow:0 0 60px rgba(255,51,102,.2)}
+.logo{font-size:2.2rem;font-weight:900;color:#ff3366;margin-bottom:4px}
+.sub{color:#666;font-size:.85rem;margin-bottom:24px}
+.warn{background:#1f0a0a;border:1px solid #cc2244;border-radius:8px;padding:12px;color:#ff6688;font-size:.85rem;margin-bottom:24px}
+.txt{color:#aaa;font-size:.92rem;line-height:1.8;margin-bottom:32px}
+.btn-yes{display:block;width:100%;padding:18px;background:linear-gradient(135deg,#ff3366,#cc0033);color:#fff;font-size:1.1rem;font-weight:900;border:none;border-radius:10px;cursor:pointer;transition:all .2s;box-shadow:0 4px 20px rgba(255,51,102,.4)}
+.btn-yes:hover{transform:translateY(-2px);box-shadow:0 6px 28px rgba(255,51,102,.5)}
+.btn-no{display:block;width:100%;padding:12px;margin-top:12px;background:transparent;color:#555;border:1px solid #2a2a2a;border-radius:8px;cursor:pointer;font-size:.9rem}
+</style>
+</head>
+<body>
+<div class="age-gate">
+  <div class="logo">AV動画ランキング</div>
+  <div class="sub">アダルト動画・グッズ 総合アフィリエイトサイト</div>
+  <div class="warn">⚠️ このサイトは18歳未満の方の閲覧を禁止します</div>
+  <p class="txt">当サイトはアダルトコンテンツを含みます。<br>あなたは18歳（高校生不可）以上ですか？</p>
+  <button class="btn-yes" onclick="enter()">✓ 18歳以上です・入場する</button>
+  <button class="btn-no" onclick="location.href='https://www.google.co.jp/'">✗ 18歳未満です・退場する</button>
+</div>
+<script>
+// すでに確認済みなら即リダイレクト
+if(localStorage.getItem('age_verified')==='yes') location.href='home.html';
+function enter(){
+  localStorage.setItem('age_verified','yes');
+  location.href='home.html';
+}
+</script>
+</body>
+</html>

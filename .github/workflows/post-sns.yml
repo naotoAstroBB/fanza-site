@@ -1,0 +1,91 @@
+name: Auto Post to SNS
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/post_sns.js'
+      - '.github/workflows/post-sns.yml'
+  schedule:
+    # JST 8:00 / 12:00 / 21:00 ピーク時間帯 (UTC 23:00 / 3:00 / 12:00)
+    - cron: '0 23 * * *'
+    - cron: '0 3 * * *'
+    - cron: '0 12 * * *'
+  workflow_dispatch:
+    inputs:
+      slot:
+        description: 'POST_SLOT (0=朝 1=昼 2=夜)'
+        required: false
+        default: '0'
+
+concurrency:
+  group: post-sns
+  cancel-in-progress: true
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Determine slot
+        id: slot
+        run: |
+          HOUR=$(date -u +%H)
+          if   [ "$HOUR" = "23" ]; then echo "slot=0" >> $GITHUB_OUTPUT
+          elif [ "$HOUR" = "03" ]; then echo "slot=1" >> $GITHUB_OUTPUT
+          else                           echo "slot=2" >> $GITHUB_OUTPUT
+          fi
+          if [ -n "${{ github.event.inputs.slot }}" ]; then
+            echo "slot=${{ github.event.inputs.slot }}" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Post to SNS
+        env:
+          POST_SLOT:              ${{ steps.slot.outputs.slot }}
+          BSKY_HANDLE:            ${{ secrets.BSKY_HANDLE }}
+          BSKY_APP_PASSWORD:      ${{ secrets.BSKY_APP_PASSWORD }}
+          X_API_KEY:              ${{ secrets.X_API_KEY }}
+          X_API_SECRET:           ${{ secrets.X_API_SECRET }}
+          X_ACCESS_TOKEN:         ${{ secrets.X_ACCESS_TOKEN }}
+          X_ACCESS_TOKEN_SECRET:  ${{ secrets.X_ACCESS_TOKEN_SECRET }}
+          MISSKEY_INSTANCE:       ${{ secrets.MISSKEY_INSTANCE }}
+          MISSKEY_TOKEN:          ${{ secrets.MISSKEY_TOKEN }}
+          THREADS_USER_ID:        ${{ secrets.THREADS_USER_ID }}
+          THREADS_TOKEN:          ${{ secrets.THREADS_TOKEN }}
+        run: |
+          set -o pipefail
+          node scripts/post_sns.js 2>&1 | tee /tmp/sns_output.txt
+          echo "EXIT_CODE:$?" >> /tmp/sns_output.txt
+
+      - name: Commit commented-posts cache
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add logs/commented-posts.json 2>/dev/null || true
+          git diff --cached --quiet || git commit -m "ci: update commented-posts cache [skip ci]"
+          git pull --rebase origin main && git push origin main || true
+
+      - name: Save run log
+        if: always()
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          CONTENT=$(base64 -w 0 /tmp/sns_output.txt 2>/dev/null || echo "bm8gb3V0cHV0")
+          SHA=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
+            "https://api.github.com/repos/${{ github.repository }}/contents/logs/last-run.txt" \
+            | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('sha',''))" 2>/dev/null || echo "")
+          if [ -n "$SHA" ]; then
+            curl -s -X PUT -H "Authorization: token $GITHUB_TOKEN" \
+              -H "Content-Type: application/json" \
+              "https://api.github.com/repos/${{ github.repository }}/contents/logs/last-run.txt" \
+              -d "{\"message\":\"ci: update run log\",\"content\":\"$CONTENT\",\"sha\":\"$SHA\"}"
+          else
+            curl -s -X PUT -H "Authorization: token $GITHUB_TOKEN" \
+              -H "Content-Type: application/json" \
+              "https://api.github.com/repos/${{ github.repository }}/contents/logs/last-run.txt" \
+              -d "{\"message\":\"ci: update run log\",\"content\":\"$CONTENT\"}"
+          fi

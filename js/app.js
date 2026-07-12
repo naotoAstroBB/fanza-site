@@ -1,0 +1,1202 @@
+// ===== FANZA アフィリエイトサイト メインJS =====
+
+// 年齢確認チェック
+if (location.pathname.includes('home') || location.pathname.includes('product')) {
+    if (localStorage.getItem('age_verified') !== 'yes') {
+        location.href = 'index.html';
+    }
+}
+
+const App = {
+    floor:        'videoa',
+    sort:         'rank',
+    keyword:      '',
+    genre:        '',
+    page:         1,
+    hitsPerPage:  24,
+    total:        0,
+    showSale:     false,
+    singleWork:   false,
+    _saleItems:   [],
+    _currentItems:[],
+
+    // ===== 初期化 =====
+    async init() {
+        const p = new URLSearchParams(location.search);
+        this.floor   = p.get('floor')   || 'videoa';
+        this.sort    = p.get('sort')    || 'rank';
+        this.keyword = p.get('keyword') || '';
+        this.page    = parseInt(p.get('page') || '1');
+
+        const searchEl = document.getElementById('searchInput');
+        if (searchEl) {
+            searchEl.value = this.keyword;
+            searchEl.addEventListener('keydown', e => {
+                if (e.key === 'Enter') { this.closeSuggest(); this.doSearch(); }
+                if (e.key === 'Escape') this.closeSuggest();
+            });
+            searchEl.addEventListener('input', () => this.onSuggestInput());
+            searchEl.addEventListener('focus', () => this.onSuggestInput());
+            document.addEventListener('click', e => {
+                if (!e.target.closest('.suggest-wrap')) this.closeSuggest();
+            });
+        }
+        if (document.getElementById('sortSelect')) {
+            document.getElementById('sortSelect').value = this.sort;
+        }
+
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') { this.closeSample(); this.closeSampleImages(); }
+        });
+        this.initSwipe();
+        this.loadStorageSections();
+        this.updateRankTabs();
+
+        await this.loadHero();
+        this.initActressTabs();
+        await this.fetchProducts();
+        this.checkSaleToast();  // お気に入りセール通知
+    },
+
+    // ===== 検索サジェスト =====
+    _suggestActresses: [],
+    _suggestLoaded: false,
+
+    async loadSuggestData() {
+        if (this._suggestLoaded) return;
+        this._suggestLoaded = true;
+        try {
+            // 女優APIデータ（画像・ルビあり）+ プロフィール全件のみ使用
+            // rank/new/review（各65MB）は女優サジェストに不要なためロードしない
+            const [pop, monthly, newA, profiles] = await Promise.allSettled([
+                DMM.fetchActress('popular'),
+                DMM.fetchActress('monthly'),
+                DMM.fetchActress('new'),
+                DMM._loadFile('data/actress_profiles.json'),
+            ]);
+
+            // 全ソースから imageURL マップを構築（id → imageURL）
+            const imageMap = new Map();
+            for (const r of [pop, monthly, newA, profiles]) {
+                if (r.status !== 'fulfilled') continue;
+                for (const a of (r.value?.result?.actress || [])) {
+                    const id = String(a.id);
+                    if (a.imageURL?.small && !imageMap.has(id)) imageMap.set(id, a.imageURL);
+                }
+            }
+
+            const apiActresses = [
+                ...(pop.value?.result?.actress || []),
+                ...(monthly.value?.result?.actress || []),
+                ...(newA.value?.result?.actress || []),
+                ...(profiles.value?.result?.actress || []),
+            ];
+
+            const seen = new Set();
+            this._suggestActresses = [];
+
+            // ① 画像ありの女優を優先追加（APIファイルから）
+            for (const a of apiActresses) {
+                const id = String(a.id);
+                if (!seen.has(id) && a.imageURL?.small) { seen.add(id); this._suggestActresses.push(a); }
+            }
+            // ② 画像なしでも名前・ルビがある女優を追加（APIファイルから）
+            for (const a of apiActresses) {
+                const id = String(a.id);
+                if (!seen.has(id) && a.name) { seen.add(id); this._suggestActresses.push(a); }
+            }
+
+            // ③ キャッシュ済みの全データファイルから名前を補完（追加ロード不要）
+            // rank.json だけでなく new/review/maker 等のキャッシュも活用
+            for (const [cacheKey, cached] of Object.entries(DMM._cache)) {
+                if (cacheKey.includes('actress_') || !cached?.result?.items) continue;
+                for (const item of cached.result.items) {
+                    for (const a of (item.iteminfo?.actress || [])) {
+                        const id = String(a.id);
+                        if (a.id && a.name && !seen.has(id)) {
+                            seen.add(id);
+                            this._suggestActresses.push({
+                                id:       String(a.id),
+                                name:     a.name,
+                                ruby:     a.ruby || '',
+                                imageURL: imageMap.get(id) || undefined,
+                            });
+                        }
+                    }
+                }
+            }
+        } catch(e) {}
+    },
+
+    async onSuggestInput() {
+        await this.loadSuggestData();
+        const q   = (document.getElementById('searchInput')?.value || '').trim();
+        const box = document.getElementById('suggestDropdown');
+        if (!box) return;
+        if (!q) { this.closeSuggest(); return; }
+
+        // 部分一致：名前・ルビ両方でマッチ（苗字・名前どちらでもヒット）
+        const ql = q.toLowerCase();
+        const matches = this._suggestActresses.filter(a => {
+            const name = (a.name || '').toLowerCase();
+            const ruby = (a.ruby || '').toLowerCase();
+            return name.includes(ql) || ruby.includes(ql);
+        }).slice(0, 10);
+
+        if (!matches.length) { this.closeSuggest(); return; }
+
+        box.innerHTML = matches.map(a => {
+            const img  = this.safeUrl(a.imageURL?.small || '');
+            const name = this.esc(a.name || '');
+            const ruby = this.esc(a.ruby || '');
+            // マッチ箇所をハイライト
+            const hlName = name.replace(
+                new RegExp(this.esc(q).replace(/[.*+?^${}()|[\]\\]/g,'\\$&'), 'gi'),
+                m => `<mark>${m}</mark>`
+            );
+            return `<div class="suggest-item" data-name="${this.esc(a.name)}" data-id="${this.esc(a.id)}" onclick="App.selectSuggest(this.dataset.name,this.dataset.id)">
+                ${img ? `<img src="${this.esc(img)}" alt="${name}">` : '<div class="suggest-no-img">👩</div>'}
+                <div>
+                    <div class="suggest-item-name">${hlName}</div>
+                    ${ruby ? `<div class="suggest-item-sub">${ruby}</div>` : ''}
+                </div>
+            </div>`;
+        }).join('');
+        box.classList.add('open');
+    },
+
+    selectSuggest(name, id) {
+        this.closeSuggest();
+        // 女優個別ページへ
+        location.href = `actress.html?id=${encodeURIComponent(id)}&name=${encodeURIComponent(name)}`;
+    },
+
+    closeSuggest() {
+        const box = document.getElementById('suggestDropdown');
+        if (box) box.classList.remove('open');
+    },
+
+    // ===== ランキングタブ表示制御 =====
+    updateRankTabs() {
+        const tabs      = document.getElementById('rankTabs');
+        const singleBar = document.getElementById('singleWorkBar');
+        if (!tabs) return;
+        // ランキングタブは全フロアで表示（anime/manga/goodsもソート切替可能に）
+        tabs.style.display = 'flex';
+        // 単体作品フィルタはvideoaのみ
+        if (singleBar) singleBar.style.display = (this.floor === 'videoa') ? '' : 'none';
+        tabs.querySelectorAll('.rank-tab').forEach(btn => {
+            const s = btn.getAttribute('onclick')?.match(/'([^']+)'/)?.[1];
+            // sort='' のとき（なし選択中）は全タブ非アクティブ
+            btn.classList.toggle('active', !!this.sort && s === this.sort);
+        });
+        // セレクトボックスも同期
+        const sel = document.getElementById('sortSelect');
+        if (sel) sel.value = this.sort || '';
+    },
+
+    // ===== 並び替え解除（「なし」ボタン）=====
+    clearSort(el) {
+        this.sort     = '';
+        this.page     = 1;
+        this.showSale = false;
+        // フロア（videoa/anime/book/goods）は維持する
+        // 並び替えなしの場合は内部的にrank(人気順)のファイルを使用
+        const sel = document.getElementById('sortSelect');
+        if (sel) sel.value = '';
+        this.updateRankTabs();
+        this.fetchProducts();
+    },
+
+    // ===== クライアント側ソート（ジャンルデータ用）=====
+    _sortItems(items, sort) {
+        const arr = [...items];
+        switch (sort) {
+            case 'rank':   return arr; // 取得順（rank順）そのまま
+            case 'date':   return arr.sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+            case 'review': return arr.sort((a, b) =>
+                parseFloat(b.review?.average || 0) - parseFloat(a.review?.average || 0));
+            default:       return arr;
+        }
+    },
+
+    // ===== セールお気に入りトースト =====
+    async checkSaleToast() {
+        const favs = Fav.get();
+        if (!favs.length) return;
+        try {
+            const data = await DMM._loadFile('data/rank.json');
+            const allItems = data?.result?.items || [];
+            const cidSet = new Set(favs.map(f => f.cid));
+            const onSale = allItems.filter(i => i.campaign && cidSet.has(i.content_id));
+            if (onSale.length) {
+                this.showToast(`🔥 お気に入りの${onSale.length}件がセール中！`, 'sale', () => {
+                    this.toggleFavPanel();
+                });
+            }
+        } catch(e) {}
+    },
+
+    // ===== トースト表示 =====
+    showToast(msg, type = '', onClick = null) {
+        const wrap = document.getElementById('toastWrap');
+        if (!wrap) return;
+        const el = document.createElement('div');
+        el.className = 'toast' + (type ? ' ' + type : '');
+        el.textContent = msg;
+        if (onClick) el.addEventListener('click', () => { onClick(); el.remove(); });
+        else el.addEventListener('click', () => el.remove());
+        wrap.appendChild(el);
+        setTimeout(() => {
+            el.style.animation = 'toastOut .3s ease forwards';
+            setTimeout(() => el.remove(), 300);
+        }, 5000);
+    },
+
+    // ===== スワイプ操作 =====
+    initSwipe() {
+        let startX = 0, startY = 0;
+        document.addEventListener('touchstart', e => {
+            startX = e.touches[0].clientX;
+            startY = e.touches[0].clientY;
+        }, { passive: true });
+        document.addEventListener('touchend', e => {
+            const dx = e.changedTouches[0].clientX - startX;
+            const dy = e.changedTouches[0].clientY - startY;
+            // 横スワイプ判定（横移動 > 80px かつ縦より横が大きい）
+            if (Math.abs(dx) > 80 && Math.abs(dx) > Math.abs(dy) * 2) {
+                const totalPages = Math.ceil(this.total / this.hitsPerPage);
+                if (dx < 0 && this.page < totalPages) this.goPage(this.page + 1);
+                else if (dx > 0 && this.page > 1)     this.goPage(this.page - 1);
+            }
+        }, { passive: true });
+    },
+
+    // ===== 履歴・お気に入りセクション =====
+    loadStorageSections() {
+        // 履歴
+        const hist = Hist.get();
+        const histSection = document.getElementById('historySection');
+        const histCount   = document.getElementById('historyCount');
+        if (histSection) {
+            if (hist.length) {
+                histSection.style.display = '';
+                if (histCount) histCount.textContent = `(${hist.length}件)`;
+                this.renderMiniCards('historyList', hist, 'hist');
+            } else {
+                histSection.style.display = 'none';
+            }
+        }
+        // お気に入り（ヘッダーパネル + バッジ更新）
+        const favs = Fav.get();
+        this._updateFavBadge(favs.length);
+        const favPanelList = document.getElementById('favPanelList');
+        if (favPanelList) {
+            if (favs.length) {
+                this.renderMiniCards('favPanelList', favs, 'fav');
+            } else {
+                favPanelList.innerHTML = '<span style="color:#555;font-size:.85rem;padding:16px 0">お気に入りはまだありません</span>';
+                const panel = document.getElementById('favPanel');
+                if (panel) panel.style.display = 'none';
+            }
+        }
+    },
+
+    _updateFavBadge(count) {
+        const badge = document.getElementById('favBadge');
+        if (!badge) return;
+        if (count > 0) {
+            badge.textContent = count > 99 ? '99+' : count;
+            badge.style.display = '';
+        } else {
+            badge.style.display = 'none';
+        }
+    },
+
+    // ===== 「最近見た作品」セクションの折りたたみ =====
+    toggleHistory() {
+        const list  = document.getElementById('historyList');
+        const arrow = document.getElementById('historyArrow');
+        if (!list) return;
+        const isOpen = list.style.display !== 'none';
+        list.style.display  = isOpen ? 'none' : '';
+        if (arrow) arrow.textContent = isOpen ? '▼' : '▲';
+        // 状態を記憶
+        try { localStorage.setItem('historyExpanded', String(!isOpen)); } catch(e) {}
+    },
+
+    toggleFavPanel() {
+        const panel = document.getElementById('favPanel');
+        if (!panel) return;
+        const isOpen = panel.style.display !== 'none';
+        if (isOpen) {
+            panel.style.display = 'none';
+        } else {
+            panel.style.display = '';
+            const favs = Fav.get();
+            this._updateFavBadge(favs.length);
+            const badge2 = document.getElementById('favBadge2');
+            if (badge2) badge2.textContent = favs.length ? `${favs.length}件` : '';
+            const list = document.getElementById('favPanelList');
+            if (list) {
+                if (favs.length) {
+                    this.renderMiniCards('favPanelList', favs, 'fav');
+                } else {
+                    list.innerHTML = '<span style="color:#555;font-size:.85rem;padding:16px 0">お気に入りはまだありません</span>';
+                }
+            }
+        }
+    },
+
+    removeFavItem(cid) {
+        Fav.remove(cid);
+        const favs = Fav.get();
+        this._updateFavBadge(favs.length);
+        if (favs.length) {
+            this.renderMiniCards('favPanelList', favs, 'fav');
+        } else {
+            const list = document.getElementById('favPanelList');
+            if (list) list.innerHTML = '<span style="color:#555;font-size:.85rem;padding:16px 0">お気に入りはまだありません</span>';
+            const panel = document.getElementById('favPanel');
+            if (panel) panel.style.display = 'none';
+        }
+        // メイン画面のカードのハートボタンも更新
+        document.querySelectorAll('.fav-btn').forEach(btn => {
+            if (btn.dataset.cid === cid) {
+                btn.classList.remove('active');
+                btn.textContent = '☆';
+            }
+        });
+    },
+
+    removeLikeItem(cid) {
+        if (Like.has(cid)) Like.toggle(cid);
+        document.querySelectorAll('.like-btn').forEach(btn => {
+            if (btn.dataset.cid === cid) btn.classList.remove('active');
+        });
+    },
+
+    removeHistItem(cid) {
+        Hist.remove(cid);
+        const hist = Hist.get();
+        const histSection = document.getElementById('historySection');
+        if (hist.length) {
+            this.renderMiniCards('historyList', hist, 'hist');
+        } else {
+            if (histSection) histSection.style.display = 'none';
+        }
+    },
+
+    renderMiniCards(containerId, items, type = 'fav') {
+        const el = document.getElementById(containerId);
+        if (!el) return;
+        const removeFn = type === 'fav' ? 'App.removeFavItem' : type === 'like' ? 'App.removeLikeItem' : 'App.removeHistItem';
+        el.innerHTML = items.slice(0, 30).map(item => {
+            const href = `product.html?cid=${encodeURIComponent(item.cid || '')}&floor=${encodeURIComponent(item.floor || 'videoa')}`;
+            const img = this.safeUrl(item.img || '');
+            return `
+            <div class="mini-card-wrap">
+                <a class="mini-card" href="${this.esc(href)}">
+                    ${img ? `<img src="${this.esc(img)}" alt="${this.esc(item.title)}" loading="lazy">` : '<div class="mini-card-no-img">🎬</div>'}
+                    <div class="mini-card-title">${this.esc(item.title)}</div>
+                </a>
+                <button class="mini-card-remove" data-cid="${this.esc(item.cid)}" onclick="${removeFn}(this.dataset.cid)" title="削除">✕</button>
+            </div>`;
+        }).join('');
+    },
+
+    // ===== ヒーローバナー =====
+    async loadHero() {
+        try {
+            const data = await DMM.fetch({ sort: 'rank' });
+            const items = data?.result?.items;
+            if (!items?.length) return;
+
+            const top = items[0];
+            const heroMain = document.querySelector('.hero-main');
+            const imgLarge = this.safeUrl(top.imageURL?.large || top.imageURL?.list || '');
+            if (heroMain && imgLarge) {
+                heroMain.style.backgroundImage =
+                    `linear-gradient(to right, rgba(10,0,5,0.92) 40%, rgba(10,0,5,0.5) 100%), url(${JSON.stringify(imgLarge)})`;
+                heroMain.style.backgroundSize = 'cover';
+                heroMain.style.backgroundPosition = 'center top';
+            }
+            document.getElementById('heroTitle').textContent = top.title;
+
+            const subEl = document.getElementById('heroSub');
+            if (subEl) {
+                const actresses = (top.iteminfo?.actress || []).slice(0,2).map(a=>a.name).join(' / ');
+                subEl.textContent = actresses ? '出演：' + actresses : '';
+            }
+            const btnEl = document.getElementById('heroBtn');
+            if (btnEl) btnEl.href = this.safeUrl(top.affiliateURL || top.URL || '', '#');
+
+            const priceEl = document.getElementById('heroPrice');
+            if (priceEl) {
+                if (top.prices?.price) {
+                    // API側で末尾に〜/~/～が含まれる場合があるので除去してから付加
+                    const raw = String(top.prices.price).replace(/[〜~～\s]+$/, '');
+                    priceEl.textContent = '¥' + raw + '〜';
+                } else {
+                    priceEl.textContent = '';
+                }
+            }
+
+            const subGrid = document.getElementById('heroSubGrid');
+            if (subGrid && items.length >= 4) {
+                subGrid.innerHTML = items.slice(1, 4).map((item, i) => {
+                    const img = this.safeUrl(item.imageURL?.list || item.imageURL?.small || '');
+                    const url = this.safeUrl(item.affiliateURL || item.URL || '', '#');
+                    return `
+                    <a href="${this.esc(url)}" target="_blank" rel="noopener" class="hero-sub-card">
+                        ${img ? `<img src="${this.esc(img)}" alt="${this.esc(item.title)}" loading="lazy">` : ''}
+                        <div class="hero-sub-rank">${i + 2}位</div>
+                        <div class="hero-sub-title">${this.esc(item.title)}</div>
+                    </a>`;
+                }).join('');
+            }
+        } catch(e) { /* ヒーロー失敗は無視 */ }
+    },
+
+    // ===== 商品一覧取得（クライアント側ページネーション）=====
+    _prevRankMap: {},  // content_id → 前回の順位
+
+    _floorLabels: { videoa:'動画（アダルト）', anime:'アニメ動画', book:'マンガ・電子書籍', goods:'グッズ・通販', mono:'グッズ・通販' },
+    _genreLabels: {
+        '2001':'巨乳','1027':'美少女','6533':'ハイビジョン','4024':'素人',
+        '5001':'中出し','1039':'人妻・主婦','1001':'OL','4031':'コスプレ',
+        '6006':'新人','1034':'ギャル','4022':'外国人','4001':'SM',
+        '4006':'ナンパ','2005':'貧乳','1018':'ロリ・女子校生','1016':'女教師',
+        '4002':'近親相姦','1028':'黒人','4007':'企画','5002':'フェラ',
+        '1031':'痴女','1014':'熟女','2006':'スレンダー','48':'制服',
+        '102':'美乳','6002':'ハメ撮り','4106':'騎乗位','4111':'NTR',
+        '5016':'潮吹き','5022':'3P・4P','5019':'パイズリ','5023':'顔射',
+        '4005':'乱交','5004':'手コキ','1013':'レズ','5006':'アナル',
+        '4008':'陵辱','4021':'拘束','4010':'監禁','4009':'露出',
+        '5059':'電マ','5025':'ぶっかけ','5068':'イラマチオ','5057':'ローション',
+        '6968':'アクメ','2024':'お尻','4011':'お尻フェチ','1033':'お姉さん',
+        '1019':'女子大生','4030':'ハード系','4114':'ドラマ','4023':'ドキュメント',
+        '28':'羞恥','27':'恥じらい','4059':'キス・接吻','1069':'不倫',
+        '4025':'単体作品',
+    },
+
+    async fetchProducts() {
+        const grid = document.getElementById('productGrid');
+        if (!grid) return;
+        grid.innerHTML = '<div class="loading"><div class="spinner"></div><p>商品を取得中...</p></div>';
+
+        // タイトルをすぐ更新（エラー時でも正しいフロア名が出るように）
+        const titleEl = document.getElementById('sectionTitle');
+        if (titleEl) titleEl.textContent = (this._floorLabels[this.floor] || this.floor) + ' — 読み込み中...';
+
+        // ===== キーワード検索モード（全データ横断検索） =====
+        // 動画/アニメ/マンガ/グッズ/全ジャンル × rank/date/review 全variant
+        // タイトル・女優名・ジャンル名・シリーズ名・メーカー名のいずれかにヒットすれば対象
+        if (this.keyword) {
+            const items = await this._searchAllByKeyword(this.keyword);
+            // 並び替え（新作優先）
+            items.sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+            this._currentItems = items;
+            this.total = items.length;
+            const start = (this.page - 1) * this.hitsPerPage;
+
+            if (items.length === 0) {
+                // 0件のとき：メッセージ + ランキング上位をおすすめとして表示
+                try {
+                    const rankData = await DMM._loadFile('data/rank.json'); // 通常キャッシュ済み
+                    const rankItems = (rankData?.result?.items || []).slice(0, 12);
+                    grid.innerHTML = `
+                        <div style="grid-column:1/-1;text-align:center;padding:28px 16px 16px">
+                            <p style="font-size:2rem;margin-bottom:10px">🔍</p>
+                            <p style="font-weight:bold;font-size:1.05rem;margin-bottom:4px">「${this.esc(this.keyword)}」に一致する作品はありません</p>
+                            <p style="font-size:.82rem;color:var(--mute)">別のキーワードや女優名で検索してみてください</p>
+                        </div>
+                        <div style="grid-column:1/-1;padding:10px 4px 14px;font-size:.85rem;font-weight:bold;color:var(--mute);border-top:1px solid var(--border)">📊 こちらもおすすめ — 人気ランキング</div>
+                        ${rankItems.map((item, i) => this.cardHTML(item, i)).join('')}
+                    `;
+                } catch(e) {
+                    this.renderGrid(grid, [], { icon:'🔍', text:`「${this.esc(this.keyword)}」に該当する作品はありません`, sub:'別のキーワードで検索してみてください' });
+                }
+            } else {
+                this.renderGrid(grid, items.slice(start, start + this.hitsPerPage));
+            }
+            this.renderPagination();
+            if (titleEl) titleEl.textContent = items.length === 0
+                ? `🔍 "${this.esc(this.keyword)}" — 0件`
+                : `🔍 "${this.esc(this.keyword)}" — ${items.length}件`;
+            this.updateRankTabs();
+            return;
+        }
+
+        const params = { floor: this.floor, sort: this.sort };
+        if (this.genre) { params.article = 'genre'; params.article_id = this.genre; }
+
+        // ランキングタブ状態を更新
+        this.updateRankTabs();
+
+        // 順位変動データ（rank表示時のみ）
+        if (this.sort === 'rank' && this.floor === 'videoa' && !this.genre) {
+            try {
+                const prev = await DMM._loadFile('data/rank_prev.json');
+                this._prevRankMap = {};
+                (prev?.result?.items || []).forEach((item, i) => {
+                    this._prevRankMap[item.content_id] = i + 1;
+                });
+            } catch(e) { this._prevRankMap = {}; }
+        } else {
+            this._prevRankMap = {};
+        }
+
+        try {
+            const data   = await DMM.fetch(params);
+            const result = data?.result;
+            if (!result || result.status !== 200) throw new Error('APIエラー: ' + JSON.stringify(result));
+
+            let items = result.items || [];
+
+            // ===== ジャンル絞り込み2次検証 =====
+            // FANZAジャンルファイルは概ねジャンル一致しているが、
+            // iteminfo.genre で実際のタグを照合してより厳密に絞り込む
+            if (this.genre) {
+                const gid = this.genre;
+                const verified = items.filter(item =>
+                    (item.iteminfo?.genre || []).some(g => String(g.id) === gid)
+                );
+                // 10件以上絞り込めた場合のみ適用（メタデータ欠落への保険）
+                if (verified.length >= 10) items = verified;
+
+                // ジャンルファイルのアイテムが少ない場合はrank.jsonからも補完
+                // new/review は rank と大部分重複するためスキップ
+                if (items.length < 200) {
+                    try {
+                        const seen = new Set(items.map(x => x.content_id));
+                        const d = await DMM._loadFile('data/rank.json');
+                        for (const item of (d?.result?.items || [])) {
+                            if (!seen.has(item.content_id) &&
+                                (item.iteminfo?.genre || []).some(g => String(g.id) === gid)) {
+                                seen.add(item.content_id);
+                                items = [...items, item];
+                            }
+                        }
+                    } catch(e) { /* 補完失敗は無視 */ }
+                }
+            }
+
+            // ジャンル選択中：サーバーソート済みファイルを優先
+            // ファイル未生成の場合はdmm-api側でrankファイルにフォールバックしているため
+            // クライアント側ソートで補完（移行期間のみ）
+            if (this.genre && this.sort !== 'rank') {
+                const hasProperSort = result.total_count > 0;
+                if (!hasProperSort) items = this._sortItems(items, this.sort);
+            }
+
+            // 新作（date）ソート時は必ずクライアント側で日付降順を保証
+            // FANZA APIの sort=date が完全降順でない場合の保険＋
+            // merge_fetch3で3ページ結合した順序を正しく最新順に並べ替え
+            if (this.sort === 'date') {
+                items = [...items].sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+            }
+            // 高評価（review）ソート時も平均点降順を保証
+            if (this.sort === 'review') {
+                items = [...items].sort((a, b) =>
+                    parseFloat(b.review?.average || 0) - parseFloat(a.review?.average || 0));
+            }
+
+            // 単体作品フィルタ（クライアント側）
+            if (this.singleWork) {
+                items = items.filter(item =>
+                    (item.iteminfo?.genre || []).some(g => String(g.id) === '4025')
+                );
+            }
+
+            this._currentItems = items;
+            this.total = items.length;
+            const start = (this.page - 1) * this.hitsPerPage;
+            this.renderGrid(grid, items.slice(start, start + this.hitsPerPage));
+            this.renderPagination();
+            this.updateTitle({ ...result, total_count: this.total });
+        } catch(e) {
+            if (titleEl) titleEl.textContent = (this._floorLabels[this.floor] || this.floor);
+            const msg = this._emptyMsg();
+            grid.innerHTML = `<div class="loading"><p style="font-size:1.5rem;margin-bottom:12px">${msg.icon}</p><p>${msg.text}</p><p style="font-size:.8rem;color:var(--mute);margin-top:8px">${msg.sub}</p></div>`;
+        }
+    },
+
+    // ===== キーワード全データ横断検索 =====
+    async _searchAllByKeyword(keyword) {
+        const kw = keyword.toLowerCase();
+        // rank.json（65MB）+ makerFiles（各12MB）を逐次ロード
+        // 処理後にキャッシュを即削除することで 1ファイル分のメモリしか保持しない
+        const searchFiles = [
+            DMM.sortFiles['rank'],
+            ...DMM.makerFiles,
+        ];
+
+        const seen = new Set();
+        const matches = [];
+        for (const f of searchFiles) {
+            try {
+                const d = await DMM._loadFile(f);
+                for (const item of (d?.result?.items || [])) {
+                    if (seen.has(item.content_id)) continue;
+                    const title     = (item.title || '');
+                    const actresses = (item.iteminfo?.actress || []).map(a => a.name || '').join(' ');
+                    const genres    = (item.iteminfo?.genre   || []).map(g => g.name || '').join(' ');
+                    const series    = (item.iteminfo?.series  || []).map(s => s.name || '').join(' ');
+                    const makers    = (item.iteminfo?.maker   || []).map(m => m.name || '').join(' ');
+                    const labels    = (item.iteminfo?.label   || []).map(l => l.name || '').join(' ');
+                    const haystack  = (title + ' ' + actresses + ' ' + genres + ' ' + series + ' ' + makers + ' ' + labels).toLowerCase();
+                    if (haystack.includes(kw)) {
+                        seen.add(item.content_id);
+                        matches.push(item);
+                    }
+                }
+            } catch(e) {}
+            // 処理済みファイルをキャッシュから削除してGCが即回収できるようにする
+            const cacheKey = f.split('?')[0];
+            delete DMM._cache[cacheKey];
+            delete DMM._cacheTs[cacheKey];
+        }
+        return matches;
+    },
+
+    // ===== セールフィルタ =====
+    async setSale(el) {
+        this.showSale = true;
+        this.genre    = '';
+        this.keyword  = '';
+        this.page     = 1;
+        if (el) {
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+            el.classList.add('active');
+        }
+        const grid = document.getElementById('productGrid');
+        if (!grid) return;
+        grid.innerHTML = '<div class="loading"><div class="spinner"></div><p>セール商品を取得中...</p></div>';
+
+        // rank/new/review のみ検索（各65MBのため逐次ロードしてピーク使用メモリを抑制）
+        const seen = new Set();
+        const saleItems = [];
+        for (const f of Object.values(DMM.sortFiles)) {
+            try {
+                const d = await DMM._loadFile(f);
+                for (const item of (d?.result?.items || [])) {
+                    if (item.campaign && !seen.has(item.content_id)) {
+                        seen.add(item.content_id);
+                        saleItems.push(item);
+                    }
+                }
+            } catch(e) {}
+        }
+        this._saleItems   = saleItems;
+        this._currentItems = saleItems;
+        this.total = saleItems.length;
+        this.renderGrid(grid, saleItems.slice(0, this.hitsPerPage));
+        this.renderPagination();
+        const title = document.getElementById('sectionTitle');
+        if (title) title.textContent = `🔥 セール中 — ${saleItems.length}件`;
+    },
+
+    renderGrid(grid, items, emptyMsg) {
+        if (!items.length) {
+            const msg = emptyMsg || this._emptyMsg();
+            grid.innerHTML = `<div class="loading"><p style="font-size:1.5rem;margin-bottom:12px">${msg.icon}</p><p>${msg.text}</p><p style="font-size:.8rem;color:var(--mute);margin-top:8px">${msg.sub}</p></div>`;
+            return;
+        }
+        grid.innerHTML = items.map((item, i) => this.cardHTML(item, i)).join('');
+    },
+
+    // 空データ時のメッセージをフロア・状況で切り替え
+    _emptyMsg() {
+        const msgs = {
+            book:   { icon:'📚', text:'マンガデータを準備中です',       sub:'次回の自動更新（30分以内）で表示されます' },
+            anime:  { icon:'🎌', text:'アニメデータを準備中です',       sub:'次回の自動更新（30分以内）で表示されます' },
+            goods:  { icon:'🛍️', text:'グッズデータを準備中です',       sub:'次回の自動更新（30分以内）で表示されます' },
+            genre:  { icon:'🔍', text:'このジャンルのデータを準備中です', sub:'次回の自動更新（30分以内）で表示されます' },
+            search: { icon:'🔍', text:'該当する作品が見つかりませんでした', sub:'別のキーワードや女優名で検索してみてください' },
+            sale:   { icon:'🔥', text:'現在セール中の作品はありません',   sub:'セール情報は随時更新されます' },
+        };
+        if (this.keyword)           return msgs.search;
+        if (this.showSale)          return msgs.sale;
+        if (this.genre)             return msgs.genre;
+        return msgs[this.floor]    || { icon:'📭', text:'データを準備中です', sub:'次回の自動更新（30分以内）で表示されます' };
+    },
+
+    // ===== 商品カード =====
+    cardHTML(item, i) {
+        const img       = this.safeUrl(item.imageURL?.list || item.imageURL?.small || '');
+        const title     = this.esc(item.title || '');
+        const url       = this.safeUrl(item.affiliateURL || item.URL || '', '#');
+        const review    = item.review;
+        const actressObjs = (item.iteminfo?.actress || []).slice(0,2);
+        const actresses = actressObjs.map(a => this.esc(a.name)).join(' / ');
+        const isNew     = this.isNew(item.date);
+        const campaign  = item.campaign?.title || '';
+        const avg       = parseFloat(review?.average || 0);
+        const stars     = avg ? '★'.repeat(Math.round(avg)) + '☆'.repeat(5 - Math.round(avg)) : '';
+        const rankBadge = i < 3
+            ? `<div class="rank-badge ${['rank-1','rank-2','rank-3'][i]}">${['🥇','🥈','🥉'][i]}</div>`
+            : (i < 10 ? `<div class="rank-badge rank-other">${i+1}</div>` : '');
+        const mv        = item.sampleMovieURL;
+        const sampleUrl = this.safeUrl(mv ? (mv.size_560_360 || mv.size_476_306 || mv.size_644_414 || '') : '');
+        // マンガの試し読みURL（FANZA公式のtachiyomiページへのリンク）
+        const tachiyomiUrl = this.safeUrl(item.tachiyomi?.affiliateURL || item.tachiyomi?.URL || '');
+        // 動画系のサンプル画像（マンガ用は別途tachiyomiで対応）
+        const sampleImages = item.sampleImageURL?.sample_l?.image
+                          || item.sampleImageURL?.sample_s?.image
+                          || [];
+        const isFav     = Fav.has(item.content_id);
+
+        // フロア別ボタンテキスト
+        const buyLabels = {
+            book:  '試し読み・購入 →',
+            goods: '商品ページへ →',
+            mono:  '商品ページへ →',
+            anime: '動画を見る →',
+            videoa:'動画を見る →',
+        };
+        const buyText = buyLabels[this.floor] || '作品を見る →';
+
+        // サンプルボタン（動画 / マンガ試し読み / 動画系サンプル画像）
+        let sampleBtnHtml = '';
+        if (sampleUrl) {
+            // 動画サンプル → モーダル再生
+            sampleBtnHtml = `<button class="card-sample-btn" data-url="${this.esc(sampleUrl)}" data-title="${this.esc(item.title || '')}" onclick="event.stopPropagation();App.openSample(this.dataset.url,this.dataset.title)" title="サンプル再生">▶</button>`;
+        } else if (tachiyomiUrl) {
+            // マンガ試し読み → FANZA公式ページを新規タブで開く
+            sampleBtnHtml = `<a class="card-sample-btn card-sample-book" href="${this.esc(tachiyomiUrl)}" target="_blank" rel="noopener" onclick="event.stopPropagation()" title="試し読み">📖</a>`;
+        } else if (sampleImages.length) {
+            // 動画系のサンプル画像
+            this._sampleImagesByCid = this._sampleImagesByCid || {};
+            this._sampleImagesByCid[item.content_id] = sampleImages.map(url => this.safeUrl(url)).filter(Boolean);
+            sampleBtnHtml = `<button class="card-sample-btn" data-cid="${this.esc(item.content_id)}" data-title="${this.esc(item.title || '')}" onclick="event.stopPropagation();App.openSampleImages(this.dataset.cid,this.dataset.title)" title="サンプル画像">🖼</button>`;
+        }
+
+        // 順位変動バッジ
+        const curRank  = i + 1;
+        const prevRank = this._prevRankMap[item.content_id];
+        let changeBadge = '';
+        if (prevRank === undefined) {
+            changeBadge = `<div class="rank-change rank-new">NEW</div>`;
+        } else {
+            const diff = prevRank - curRank;
+            if (diff > 0)      changeBadge = `<div class="rank-change rank-up">▲${diff}</div>`;
+            else if (diff < 0) changeBadge = `<div class="rank-change rank-down">▼${Math.abs(diff)}</div>`;
+        }
+        const showChange = Object.keys(this._prevRankMap).length > 0;
+
+        // 女優リンク（女優名クリックで女優ページへ）
+        const actressLinks = actressObjs.map(a =>
+            `<a href="actress.html?id=${this.esc(String(a.id))}&name=${encodeURIComponent(a.name)}"
+               class="card-actress-link" onclick="event.stopPropagation()">${this.esc(a.name)}</a>`
+        ).join(' / ');
+
+        const isLiked   = Like.has(item.content_id);
+        const likeCount = Like.count(item.content_id);
+        return `
+        <div class="product-card" data-href="${this.esc(`product.html?cid=${encodeURIComponent(item.content_id || '')}&floor=${encodeURIComponent(this.floor)}`)}" onclick="location.href=this.dataset.href">
+          <div class="card-img-wrap">
+            ${img
+                ? `<img src="${this.esc(img)}" alt="${title}" loading="lazy">`
+                : `<div style="height:100%;display:flex;align-items:center;justify-content:center;background:#111;color:#333;font-size:2rem">🎬</div>`
+            }
+            ${rankBadge}
+            ${showChange ? changeBadge : ''}
+            ${campaign ? `<span class="badge-sale">SALE</span>` : (isNew ? `<span class="badge-new">NEW</span>` : '')}
+            ${sampleBtnHtml}
+            <button class="fav-btn ${isFav ? 'active' : ''}" data-cid="${this.esc(item.content_id)}" title="${isFav ? 'お気に入り解除' : 'お気に入りに追加'}"
+              onclick="event.stopPropagation();App.toggleFav(this,this.dataset.cid)">${isFav ? '⭐' : '☆'}</button>
+          </div>
+          <div class="card-body">
+            <div class="card-title">${title}</div>
+            ${actressLinks ? `<div class="card-actress">${actressLinks}</div>` : ''}
+            <div class="card-bottom">
+              ${stars ? `<div class="card-review"><span class="stars">${stars}</span></div>` : ''}
+              <button class="like-btn ${isLiked ? 'active' : ''}" data-cid="${this.esc(item.content_id)}"
+                onclick="event.stopPropagation();App.toggleLike(this,this.dataset.cid)">
+                <span class="like-icon">${isLiked ? '❤️' : '🤍'}</span>
+                <span class="like-label">${likeCount > 0 ? likeCount : 'いいね'}</span>
+              </button>
+            </div>
+            ${review?.count ? `<div class="card-review" style="margin-bottom:6px">${avg.toFixed(1)} (${review.count}件)</div>` : ''}
+            <a class="btn-buy" href="${this.esc(url)}" target="_blank" rel="noopener" onclick="event.stopPropagation()">
+              ${buyText}
+            </a>
+          </div>
+        </div>`;
+    },
+
+    // ===== いいね（トグル＋累計カウント表示）=====
+    toggleLike(btn, cid) {
+        const isNow = Like.toggle(cid);
+        btn.classList.toggle('active', isNow);
+        const iconEl  = btn.querySelector('.like-icon');
+        const labelEl = btn.querySelector('.like-label');
+        if (iconEl)  iconEl.textContent  = isNow ? '❤️' : '🤍';
+        if (labelEl) labelEl.textContent = Like.count(cid) > 0 ? Like.count(cid) : 'いいね';
+        btn.animate([{ transform: 'scale(1.35)' }, { transform: 'scale(1)' }],
+            { duration: 250, easing: 'ease-out' });
+    },
+
+    // ===== お気に入りトグル =====
+    toggleFav(btn, cid) {
+        const item = this._currentItems.find(i => i.content_id === cid)
+                  || this._saleItems.find(i => i.content_id === cid);
+        if (!item) return;
+        const isNow = Fav.toggle(item, this.floor);
+        btn.classList.toggle('active', isNow);
+        btn.textContent = isNow ? '⭐' : '☆';
+        btn.title = isNow ? 'お気に入り解除' : 'お気に入りに追加';
+        // お気に入りセクションを更新
+        this.loadStorageSections();
+    },
+
+    // ===== サンプル動画モーダル =====
+    openSample(url, title) {
+        const modal  = document.getElementById('sampleModal');
+        const iframe = document.getElementById('sampleIframe');
+        const label  = document.getElementById('sampleModalTitle');
+        if (!modal || !iframe) return;
+        if (label) label.textContent = title || 'サンプル動画';
+        const safeUrl = this.safeUrl(url);
+        if (!safeUrl) return;
+        iframe.src = safeUrl;
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    },
+
+    closeSample() {
+        const modal  = document.getElementById('sampleModal');
+        const iframe = document.getElementById('sampleIframe');
+        if (modal)  modal.classList.remove('active');
+        if (iframe) iframe.src = '';
+        document.body.style.overflow = '';
+    },
+
+    // ===== マンガ等のサンプル画像モーダル =====
+    openSampleImages(cid, title) {
+        const images = (this._sampleImagesByCid || {})[cid] || [];
+        if (!images.length) return;
+        const modal     = document.getElementById('imageSampleModal');
+        const container = document.getElementById('sampleImagesContainer');
+        const label     = document.getElementById('imageSampleTitle');
+        if (!modal || !container) return;
+        if (label) label.textContent = title || 'サンプル';
+        container.innerHTML = images.map((url, idx) =>
+            `<img src="${this.esc(url)}" alt="サンプル${idx+1}" loading="lazy">`
+        ).join('');
+        container.scrollTop = 0;
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    },
+
+    closeSampleImages() {
+        const modal = document.getElementById('imageSampleModal');
+        if (modal) modal.classList.remove('active');
+        document.body.style.overflow = '';
+    },
+
+    // ===== ページネーション =====
+    renderPagination() {
+        const el = document.getElementById('pagination');
+        if (!el) return;
+        const total = Math.ceil(this.total / this.hitsPerPage);
+        if (total <= 1) { el.innerHTML = ''; return; }
+
+        const p = this.page;
+        const isMobile = window.innerWidth < 600;
+        let html = `<button class="page-btn" ${p===1?'disabled':''} onclick="App.goPage(${p-1})">‹ 前へ</button>`;
+        if (isMobile) {
+            html += `<span class="page-info">${p} / ${total}</span>`;
+        } else {
+            this.pageRange(p, total).forEach(n => {
+                html += n === '...'
+                    ? `<span class="page-btn" style="cursor:default">…</span>`
+                    : `<button class="page-btn ${n===p?'active':''}" onclick="App.goPage(${n})">${n}</button>`;
+            });
+        }
+        html += `<button class="page-btn" ${p===total?'disabled':''} onclick="App.goPage(${p+1})">次へ ›</button>`;
+        el.innerHTML = html;
+    },
+
+    pageRange(cur, total) {
+        if (total <= 7) return Array.from({length:total}, (_,i)=>i+1);
+        const r = [1];
+        if (cur > 3) r.push('...');
+        for (let i = Math.max(2, cur-1); i <= Math.min(total-1, cur+1); i++) r.push(i);
+        if (cur < total-2) r.push('...');
+        r.push(total);
+        return r;
+    },
+
+    goPage(n) {
+        this.page = n;
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        if (this.showSale) {
+            // セールページネーションはメモリ上のデータを使う
+            const grid  = document.getElementById('productGrid');
+            const start = (n - 1) * this.hitsPerPage;
+            this.renderGrid(grid, this._saleItems.slice(start, start + this.hitsPerPage));
+            this.renderPagination();
+        } else {
+            this.fetchProducts();
+        }
+    },
+
+    updateTitle(result) {
+        const el = document.getElementById('sectionTitle');
+        if (!el) return;
+        let prefix;
+        if (this.genre) {
+            prefix = (this._genreLabels[this.genre] || 'ジャンル') + ' ジャンル';
+        } else {
+            prefix = this._floorLabels[this.floor] || '';
+        }
+        const kw = this.keyword ? ` "` + this.keyword + `"` : '';
+        el.textContent = prefix + kw + ' — ' + result.total_count.toLocaleString() + '件';
+        this._updateGenreBadge();
+    },
+
+    _updateGenreBadge() {
+        const bar = document.getElementById('genreActiveBadge');
+        if (!bar) return;
+        if (this.genre) {
+            const name = this._genreLabels[this.genre] || 'ジャンル';
+            bar.innerHTML = `<span class="genre-badge-chip">🏷️ ${name} <button class="genre-badge-clear" onclick="App.clearFilter()">✕</button></span>`;
+            bar.style.display = '';
+        } else {
+            bar.style.display = 'none';
+        }
+    },
+
+    doSearch() {
+        const input = document.getElementById('searchInput');
+        if (input) this.keyword = input.value.trim();
+        this.genre    = '';
+        this.page     = 1;
+        this.showSale = false;
+        // ジャンルchipのactive状態もリセット
+        document.querySelectorAll('.genre-chip').forEach(c => c.classList.toggle('active', c.dataset.genre === ''));
+        document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
+        this._updateGenreBadge();
+        this.fetchProducts();
+    },
+
+    setFloor(floor, el) {
+        this.floor      = floor;
+        this.keyword    = '';
+        this.genre      = '';
+        this.page       = 1;
+        this.showSale   = false;
+        this.singleWork = false; // フロア変更時に単体作品フィルタをリセット
+        if (el) {
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+            el.classList.add('active');
+        }
+        this.updateRankTabs();
+        this.fetchProducts();
+    },
+
+    setSort(sort, el) {
+        this.sort     = sort || 'rank'; // 空文字はrankとして扱う
+        this.page     = 1;
+        this.showSale = false;
+        // .nav-btn（トップナビ）または .bottom-nav-item（ボトムナビ）からのクリック時のみ
+        // videoa にリセット。rank-tab や sidebar-select からはフロアを維持する
+        const isNavShortcut = el?.classList?.contains('nav-btn') || el?.classList?.contains('bottom-nav-item');
+        if (isNavShortcut && !this.genre) this.floor = 'videoa';
+
+        if (document.getElementById('sortSelect')) document.getElementById('sortSelect').value = sort;
+        // ナビバーボタン（.nav-btn）のアクティブ更新（rank-tabは対象外）
+        if (el?.classList.contains('nav-btn')) {
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+            el.classList.add('active');
+        }
+        this.updateRankTabs();
+        this.fetchProducts();
+    },
+
+    setGenre(id, el) {
+        this.genre      = id;
+        this.floor      = 'videoa';
+        this.keyword    = '';   // キーワードをクリアしてgenreフィルターを確実に適用
+        this.page       = 1;
+        this.showSale   = false;
+        this.singleWork = false; // 単体作品フィルタもリセット
+        // 検索inputもクリア
+        const searchEl = document.getElementById('searchInput');
+        if (searchEl) searchEl.value = '';
+        // サイドバーのアクティブ更新
+        if (el) {
+            el.closest('.sidebar-section').querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
+            el.classList.add('active');
+        }
+        // ジャンルドロワーのチップも更新
+        document.querySelectorAll('.genre-chip').forEach(c => {
+            c.classList.toggle('active', c.dataset.genre === id);
+        });
+        this.updateRankTabs();
+        this.fetchProducts();
+    },
+
+    clearFilter(el) {
+        this.genre      = '';
+        this.keyword    = '';
+        this.singleWork = false;
+        this.page       = 1;
+        this.showSale   = false;
+        const searchEl = document.getElementById('searchInput');
+        if (searchEl) searchEl.value = '';
+        if (el) {
+            el.closest('.sidebar-section').querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
+            el.classList.add('active');
+        }
+        document.querySelectorAll('.genre-chip').forEach(c => {
+            c.classList.toggle('active', c.dataset.genre === '');
+        });
+        this._updateGenreBadge();
+        this.updateRankTabs();
+        this.fetchProducts();
+    },
+
+    // ===== 単体作品トグル =====
+    toggleSingleWork(el) {
+        this.singleWork = !this.singleWork;
+        el.classList.toggle('active', this.singleWork);
+        this.page = 1;
+        this.fetchProducts();
+    },
+
+    // ===== ジャンルドロワー（スマホ用）=====
+    openGenreDrawer() {
+        document.getElementById('genreDrawer')?.classList.add('open');
+        document.getElementById('genreOverlay')?.classList.add('open');
+        document.body.style.overflow = 'hidden';
+    },
+
+    closeGenreDrawer() {
+        document.getElementById('genreDrawer')?.classList.remove('open');
+        document.getElementById('genreOverlay')?.classList.remove('open');
+        document.body.style.overflow = '';
+    },
+
+    setGenreFromDrawer(id) {
+        this.closeGenreDrawer();
+        if (id) {
+            this.setGenre(id);
+            // サイドバー側も同期
+            document.querySelectorAll('.sidebar-link').forEach(l => {
+                const onclick = l.getAttribute('onclick') || '';
+                const match = onclick.match(/'(\d+)'/);
+                l.classList.toggle('active', match && match[1] === id);
+            });
+        } else {
+            this.clearFilter();
+            document.querySelectorAll('.sidebar-link').forEach((l, i) => l.classList.toggle('active', i === 0));
+        }
+    },
+
+    // ===== 女優セクション（ホーム用プレビュー）=====
+    // 詳細・全件は actresses.html へ
+    async initActressTabs() {
+        const moreLink = document.getElementById('actressMoreLink');
+        if (moreLink) moreLink.href = 'actresses.html?tab=popular';
+        await this._renderActresses('actressList', 'popular', true);
+    },
+
+    async switchActressTab(type, el) {
+        document.querySelectorAll('.actress-tab').forEach(t => t.classList.remove('active'));
+        if (el) el.classList.add('active');
+        const showRank = (type !== 'new');
+        const descs = {
+            popular: '今週の人気出演女優',
+            monthly: '今月最も注目される女優',
+            new:     '新人・デビュー女優'
+        };
+        const linkLabels = {
+            popular: '人気ランキング一覧 →',
+            monthly: '月間人気一覧 →',
+            new:     '新人女優一覧 →',
+        };
+        const descEl = document.getElementById('actressTabDesc');
+        if (descEl) descEl.textContent = descs[type] || '';
+        const moreLink = document.getElementById('actressMoreLink');
+        if (moreLink) {
+            moreLink.href = `actresses.html?tab=${type}`;
+            moreLink.textContent = linkLabels[type] || '一覧へ →';
+        }
+        await this._renderActresses('actressList', type, showRank);
+    },
+
+    // ホームページ用：コンパクト横スクロールプレビュー（最大10人）
+    // フル表示は actresses.html で podium+grid レイアウト
+    async _renderActresses(containerId, type, showRank) {
+        const el = document.getElementById(containerId);
+        if (!el) return;
+        // ホームに戻ったときに前回のpodium classが残らないようリセット
+        el.className = 'actress-scroll';
+        try {
+            const data     = await DMM.fetchActress(type);
+            const actresses = (data?.result?.actress || []).slice(0, 10);
+            if (!actresses.length) {
+                el.innerHTML = '<span class="actress-empty">データ準備中</span>';
+                return;
+            }
+
+            const calcAge = (bday) => {
+                if (!bday) return null;
+                const d = new Date(bday);
+                const today = new Date();
+                let age = today.getFullYear() - d.getFullYear();
+                const m = today.getMonth() - d.getMonth();
+                if (m < 0 || (m === 0 && today.getDate() < d.getDate())) age--;
+                return (age > 0 && age < 70) ? age : null;
+            };
+
+            el.innerHTML = actresses.map((a, i) => {
+                const img  = this.safeUrl(a.imageURL?.small || '');
+                const name = this.esc(a.name || '');
+                const href = `actress.html?id=${encodeURIComponent(String(a.id))}&name=${encodeURIComponent(a.name || '')}`;
+                const badge = showRank
+                    ? `<div class="actress-rank-badge">${i + 1}位</div>`
+                    : `<div class="actress-new-badge">NEW</div>`;
+                const age   = calcAge(a.birthday);
+                const blood = a.blood_type && a.blood_type !== '他' ? `${a.blood_type}型` : '';
+                const meta  = [age ? age + '歳' : '', blood].filter(Boolean).join(' · ');
+                const nameInitial = this.esc((a.name || '').charAt(0) || '♀');
+                return `
+                <a class="actress-card" href="${this.esc(href)}">
+                    <div class="actress-photo">
+                        ${img ? `<img src="${this.esc(img)}" alt="${name}" loading="lazy">` : `<div class="actress-no-img">${nameInitial}</div>`}
+                        ${badge}
+                    </div>
+                    <div class="actress-name">${name}</div>
+                    ${meta ? `<div class="actress-meta">${this.esc(meta)}</div>` : ''}
+                </a>`;
+            }).join('');
+        } catch(e) {
+            if (el) el.innerHTML = '<span class="actress-empty">準備中</span>';
+        }
+    },
+
+    // ===== ユーティリティ =====
+    isNew(dateStr) {
+        if (!dateStr) return false;
+        return (Date.now() - new Date(dateStr).getTime()) < 7 * 24 * 60 * 60 * 1000;
+    },
+
+    esc(s) {
+        return String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+    },
+
+    safeUrl(value, fallback = '') {
+        try {
+            const url = new URL(String(value || ''), location.href);
+            return url.protocol === 'https:' ? url.href : fallback;
+        } catch {
+            return fallback;
+        }
+    },
+};
+
+document.addEventListener('DOMContentLoaded', () => App.init());

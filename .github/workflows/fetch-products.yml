@@ -1,0 +1,354 @@
+name: Fetch FANZA Products
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/fetch-products.yml'
+  schedule:
+    - cron: '0 */6 * * *'  # 6時間ごと（ワークフロー完了に最大2h要するため30分では完了前にキャンセルされる）
+  workflow_dispatch:
+
+concurrency:
+  group: fetch-products
+  cancel-in-progress: false
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    permissions:
+      contents: write
+    env:
+      DMM_API_ID: ${{ secrets.DMM_API_ID }}
+      DMM_AFFILIATE_ID: ${{ secrets.DMM_AFFILIATE_ID }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate API credentials
+        run: |
+          if [ -z "$DMM_API_ID" ] || [ -z "$DMM_AFFILIATE_ID" ]; then
+            echo "::error::DMM_API_ID / DMM_AFFILIATE_ID are not configured"
+            exit 1
+          fi
+
+      - name: Generate PWA icons (初回のみ)
+        run: python3 scripts/gen_icons.py
+
+      - name: Fetch products
+        run: |
+          # 前回のランキングを保存（順位変動バッジ用）
+          cp data/rank.json data/rank_prev.json 2>/dev/null || true
+
+          AUTH_QUERY="api_id=${DMM_API_ID}&affiliate_id=${DMM_AFFILIATE_ID}"
+          BASE_URL="https://api.dmm.com/affiliate/v3/ItemList?${AUTH_QUERY}&site=FANZA&service=digital&output=json"
+          BASE="$BASE_URL&hits=100"
+
+          # 2ページ取得してmerge（最大200件）
+          merge_fetch() {
+            local OUT="$1" QUERY="$2"
+            curl -sf "${QUERY}&hits=100"            -o /tmp/p1.json 2>/dev/null || echo '{"result":{"items":[]}}' > /tmp/p1.json
+            curl -sf "${QUERY}&hits=100&offset=101" -o /tmp/p2.json 2>/dev/null || echo '{"result":{"items":[]}}' > /tmp/p2.json
+            jq -s '((.[0].result.items//[])+(.[1].result.items//[])) as $it |
+              {result:{status:200,items:$it,total_count:($it|length),result_count:($it|length)}}
+            ' /tmp/p1.json /tmp/p2.json > "$OUT" || echo '{"result":{"status":404}}' > "$OUT"
+          }
+
+          # 3ページ取得してmerge（最大300件）
+          merge_fetch3() {
+            local OUT="$1" QUERY="$2"
+            curl -sf "${QUERY}&hits=100"            -o /tmp/p1.json 2>/dev/null || echo '{"result":{"items":[]}}' > /tmp/p1.json
+            curl -sf "${QUERY}&hits=100&offset=101" -o /tmp/p2.json 2>/dev/null || echo '{"result":{"items":[]}}' > /tmp/p2.json
+            curl -sf "${QUERY}&hits=100&offset=201" -o /tmp/p3.json 2>/dev/null || echo '{"result":{"items":[]}}' > /tmp/p3.json
+            jq -s '((.[0].result.items//[])+(.[1].result.items//[])+(.[2].result.items//[])) as $it |
+              {result:{status:200,items:$it,total_count:($it|length),result_count:($it|length)}}
+            ' /tmp/p1.json /tmp/p2.json /tmp/p3.json > "$OUT" || echo '{"result":{"status":404}}' > "$OUT"
+          }
+
+          # 5ページ取得してmerge（最大500件）
+          merge_fetch5() {
+            local OUT="$1" QUERY="$2"
+            curl -sf "${QUERY}&hits=100"            -o /tmp/p1.json 2>/dev/null || echo '{"result":{"items":[]}}' > /tmp/p1.json
+            curl -sf "${QUERY}&hits=100&offset=101" -o /tmp/p2.json 2>/dev/null || echo '{"result":{"items":[]}}' > /tmp/p2.json
+            curl -sf "${QUERY}&hits=100&offset=201" -o /tmp/p3.json 2>/dev/null || echo '{"result":{"items":[]}}' > /tmp/p3.json
+            curl -sf "${QUERY}&hits=100&offset=301" -o /tmp/p4.json 2>/dev/null || echo '{"result":{"items":[]}}' > /tmp/p4.json
+            curl -sf "${QUERY}&hits=100&offset=401" -o /tmp/p5.json 2>/dev/null || echo '{"result":{"items":[]}}' > /tmp/p5.json
+            jq -s '((.[0].result.items//[])+(.[1].result.items//[])+(.[2].result.items//[])+(.[3].result.items//[])+(.[4].result.items//[])) as $it |
+              {result:{status:200,items:$it,total_count:($it|length),result_count:($it|length)}}
+            ' /tmp/p1.json /tmp/p2.json /tmp/p3.json /tmp/p4.json /tmp/p5.json > "$OUT" || echo '{"result":{"status":404}}' > "$OUT"
+          }
+
+          # 汎用：任意ページ数取得してmerge（offset制限内なら数千件まで対応可）
+          merge_fetch_n() {
+            local PAGES=$1; local OUT=$2; local QUERY=$3
+            rm -f /tmp/mfn_*.json
+            for i in $(seq 1 $PAGES); do
+              local off_param=""
+              [ $i -gt 1 ] && off_param="&offset=$(( (i-1)*100 + 1 ))"
+              curl -sf "${QUERY}&hits=100${off_param}" -o /tmp/mfn_${i}.json 2>/dev/null \
+                || echo '{"result":{"items":[]}}' > /tmp/mfn_${i}.json
+            done
+            local files=""
+            for i in $(seq 1 $PAGES); do files="$files /tmp/mfn_${i}.json"; done
+            jq -s '
+              [.[].result.items // []] | add as $items |
+              {result:{status:200, items:($items // []), total_count:($items // [] | length), result_count:($items // [] | length)}}
+            ' $files > "$OUT" 2>/dev/null || echo '{"result":{"status":404}}' > "$OUT"
+          }
+
+          # ========== 動画 rank/新作/高評価 ==========
+          merge_fetch_n 100 data/rank.json   "$BASE_URL&floor=videoa&sort=rank"
+          merge_fetch_n 100 data/new.json    "$BASE_URL&floor=videoa&sort=date"
+          merge_fetch_n 100 data/review.json "$BASE_URL&floor=videoa&sort=review"
+
+          # アニメ・マンガ・グッズ = 各10ページ・最大1000件 × 3ソート
+          ANIME_BASE="$BASE_URL&floor=anime"
+          merge_fetch_n 10 data/anime.json        "${ANIME_BASE}&sort=rank"
+          merge_fetch_n 10 data/anime_date.json   "${ANIME_BASE}&sort=date"
+          merge_fetch_n 10 data/anime_review.json "${ANIME_BASE}&sort=review"
+
+          MANGA_BASE_URL="https://api.dmm.com/affiliate/v3/ItemList?${AUTH_QUERY}&site=FANZA&service=ebook&floor=comic&output=json"
+          merge_fetch_n 10 data/manga.json        "${MANGA_BASE_URL}&sort=rank"
+          merge_fetch_n 10 data/manga_date.json   "${MANGA_BASE_URL}&sort=date"
+          merge_fetch_n 10 data/manga_review.json "${MANGA_BASE_URL}&sort=review"
+
+          GOODS_BASE="https://api.dmm.com/affiliate/v3/ItemList?${AUTH_QUERY}&site=FANZA&service=mono&floor=goods&output=json"
+          merge_fetch_n 10 data/goods.json        "${GOODS_BASE}&sort=rank"
+          merge_fetch_n 10 data/goods_date.json   "${GOODS_BASE}&sort=date"
+          merge_fetch_n 10 data/goods_review.json "${GOODS_BASE}&sort=review"
+
+          # ジャンル別 - rank/date=20ページ(2000件)、review=12ページ(1200件)
+          for row in \
+            "2001:genre_busty" \
+            "1027:genre_bishoujo" \
+            "6533:genre_hd" \
+            "4025:genre_single" \
+            "4024:genre_amateur" \
+            "5001:genre_creampie" \
+            "1039:genre_wife" \
+            "1001:genre_ol" \
+            "4031:genre_cosplay" \
+            "6006:genre_debut" \
+            "1034:genre_gal" \
+            "4022:genre_foreign" \
+            "4001:genre_sm" \
+            "4006:genre_nanpa" \
+            "2005:genre_hinyu" \
+            "1018:genre_jk" \
+            "1016:genre_teacher" \
+            "4002:genre_kinshin" \
+            "1028:genre_kuro" \
+            "4007:genre_kikaku" \
+            "5002:genre_fella" \
+            "1031:genre_chijo" \
+            "1014:genre_milf" \
+            "2006:genre_slender" \
+            "4106:genre_kijo" \
+            "4111:genre_ntr" \
+            "4030:genre_hard" \
+            "5022:genre_3p4p" \
+            "5016:genre_shio" \
+            "5019:genre_paizuri" \
+            "102:genre_binyuu" \
+            "48:genre_seifuku" \
+            "6002:genre_hamesatsu" \
+            "2024:genre_ojiri" \
+            "1033:genre_onesan" \
+            "5023:genre_gansha" \
+            "4005:genre_ranko" \
+            "5004:genre_tekoki" \
+            "1019:genre_joshi_daigaku" \
+            "6968:genre_acme" \
+            "5057:genre_lotion" \
+            "28:genre_shuchi" \
+            "4059:genre_kiss" \
+            "1069:genre_furin" \
+            "5068:genre_irama" \
+            "27:genre_hazukashime" \
+            "4023:genre_docu" \
+            "5063:genre_shukan" \
+            "4114:genre_drama" \
+            "4011:genre_ojiri_feti" \
+            "4133:genre_nurse" \
+            "1013:genre_lez" \
+            "5006:genre_anal" \
+            "4009:genre_roshutsu" \
+            "4008:genre_ryoujoku" \
+            "4021:genre_kousoku" \
+            "4010:genre_kankin" \
+            "5029:genre_ashikoki" \
+            "5059:genre_denma" \
+            "5025:genre_bukake"; do
+            ID="${row%%:*}"; NAME="${row##*:}"
+            merge_fetch_n 20 "data/${NAME}.json"        "$BASE_URL&floor=videoa&sort=rank&article=genre&article_id=$ID"
+            merge_fetch_n 20 "data/${NAME}_date.json"   "$BASE_URL&floor=videoa&sort=date&article=genre&article_id=$ID"
+            merge_fetch_n 12 "data/${NAME}_review.json" "$BASE_URL&floor=videoa&sort=review&article=genre&article_id=$ID"
+          done
+
+          # ========== VR動画 ==========
+          VR_BASE="$BASE_URL&floor=videovr"
+          merge_fetch_n 20 data/vr.json        "${VR_BASE}&sort=rank"
+          merge_fetch_n 20 data/vr_date.json   "${VR_BASE}&sort=date"
+          merge_fetch_n 10 data/vr_review.json "${VR_BASE}&sort=review"
+
+          # ===== メーカー別（上位AVメーカー）rank/date=20ページ、review=10ページ =====
+          for row in \
+            "3152:maker_s1" \
+            "1509:maker_moodyz" \
+            "45276:maker_sod" \
+            "2661:maker_madonna" \
+            "1219:maker_ideapocket" \
+            "4469:maker_kawaii" \
+            "1227:maker_attackers" \
+            "5032:maker_ebody" \
+            "40488:maker_faleno" \
+            "6329:maker_fitch" \
+            "4641:maker_das" \
+            "40003:maker_deeps" \
+            "65:maker_prestige" \
+            "45:maker_maxing" \
+            "25:maker_dod" \
+            "1060:maker_wanz"; do
+            ID="${row%%:*}"; NAME="${row##*:}"
+            merge_fetch_n 20 "data/${NAME}.json"        "$BASE_URL&floor=videoa&sort=rank&article=maker&article_id=$ID"
+            merge_fetch_n 20 "data/${NAME}_date.json"   "$BASE_URL&floor=videoa&sort=date&article=maker&article_id=$ID"
+            merge_fetch_n 10 "data/${NAME}_review.json" "$BASE_URL&floor=videoa&sort=review&article=maker&article_id=$ID"
+          done
+
+      - name: Fetch actress data
+        run: |
+          AUTH_QUERY="api_id=${DMM_API_ID}&affiliate_id=${DMM_AFFILIATE_ID}"
+          ACTRESS_API="https://api.dmm.com/affiliate/v3/ActressSearch?${AUTH_QUERY}&site=FANZA&output=json"
+          ACTRESS_SINGLE="${ACTRESS_API}&hits=1"
+
+          # ===== ファイルベース版 build_actress_json =====
+          # 旧版はbash文字列連結が~800件でクラッシュしていた → tempファイル+jqで無制限化
+          build_actress_json() {
+            local IDS="$1"
+            local OUT="$2"
+            local TMP=$(mktemp -d)
+            local i=0
+            for ID in $IDS; do
+              [ "$ID" = "null" ] || [ -z "$ID" ] && continue
+              DATA=$(curl -sf "${ACTRESS_SINGLE}&actress_id=${ID}" || echo '{}')
+              ACTRESS=$(echo "$DATA" | jq -c '.result.actress[0] // empty' 2>/dev/null)
+              if [ -n "$ACTRESS" ] && [ "$ACTRESS" != "null" ]; then
+                printf '%s\n' "$ACTRESS" > "${TMP}/a${i}.json"
+                i=$((i+1))
+              fi
+              sleep 0.15
+            done
+            if [ $i -gt 0 ]; then
+              jq -s '{result:{status:200,actress:.}}' "${TMP}"/a*.json > "$OUT"
+            else
+              echo '{"result":{"status":200,"actress":[]}}' > "$OUT"
+            fi
+            rm -rf "$TMP"
+            echo "${OUT}: ${i}件取得"
+          }
+
+          # ===== 人気女優（rank.json全女優を出現頻度順に上位50人）=====
+          POPULAR_IDS=$(jq -r '.result.items[] | .iteminfo.actress[]?.id | tostring' data/rank.json 2>/dev/null \
+            | grep -v null | sort | uniq -c | sort -rn | awk '{print $2}' | head -50)
+          build_actress_json "$POPULAR_IDS" data/actress_popular.json \
+            || echo '{"result":{"status":404,"actress":[]}}' > data/actress_popular.json
+
+          # ===== 新人女優 =====
+          curl -sf "${ACTRESS_API}&sort=-id&hits=100"            -o /tmp/new_p1.json 2>/dev/null \
+            || echo '{"result":{"actress":[]}}' > /tmp/new_p1.json
+          curl -sf "${ACTRESS_API}&sort=-id&hits=100&offset=101" -o /tmp/new_p2.json 2>/dev/null \
+            || echo '{"result":{"actress":[]}}' > /tmp/new_p2.json
+          NEW_IDS=$(jq -r '.result.actress[]? | select(.id != null and .imageURL.small != null) | .id | tostring' \
+            /tmp/new_p1.json /tmp/new_p2.json 2>/dev/null \
+            | awk '!seen[$0]++' | head -50)
+          build_actress_json "$NEW_IDS" data/actress_new.json \
+            || echo '{"result":{"status":404,"actress":[]}}' > data/actress_new.json
+          if [ "$(jq '.result.actress|length' data/actress_new.json 2>/dev/null || echo 0)" -lt 10 ]; then
+            FB_IDS=$(jq -r '.result.items[] | .iteminfo.actress[]?.id | tostring' \
+              data/genre_debut_date.json data/genre_debut.json 2>/dev/null \
+              | awk '!seen[$0]++ && $0 != "null"' | head -50)
+            build_actress_json "$FB_IDS" data/actress_new.json
+          fi
+          echo "actress_new.json: $(jq '.result.actress|length' data/actress_new.json) 件"
+
+          # ===== 月間人気女優 =====
+          MONTHLY_IDS=$(jq -r '.result.items[] | .iteminfo.actress[]?.id | tostring' data/review.json 2>/dev/null \
+            | grep -v null | sort | uniq -c | sort -rn | awk '{print $2}' | head -50)
+          build_actress_json "$MONTHLY_IDS" data/actress_monthly.json \
+            || echo '{"result":{"status":404,"actress":[]}}' > data/actress_monthly.json
+
+          # ===== 全女優プロフィール（個別APIコール版：画像1200件以上確保）=====
+          # sweep は出力が不安定（18件しか取れない）なため廃止。
+          # 商品データの高頻度女優IDを抽出して個別 ActressSearch コールに切り替え。
+          LEGEND_IDS="1012844 26225 23988 1001592 1004672 15365 1030262 24616 30317 1021359 1030550 1010958 1019549 1006677 1004990 22798 1011880 1013756 1018538 1024751 1015797 1020298"
+
+          # 商品データ全体から女優ID収集（出現頻度降順）
+          PRODUCT_IDS=$(jq -r '.result.items[]? | .iteminfo.actress[]?.id | tostring' \
+            data/rank.json data/new.json data/review.json \
+            data/maker_s1.json data/maker_moodyz.json data/maker_sod.json \
+            data/maker_madonna.json data/maker_ideapocket.json data/maker_faleno.json \
+            data/maker_kawaii.json data/maker_attackers.json data/maker_ebody.json \
+            data/maker_fitch.json data/maker_das.json data/maker_deeps.json \
+            data/maker_wanz.json data/maker_maxing.json data/maker_dod.json \
+            data/maker_prestige.json data/maker_das.json \
+            data/genre_single.json data/genre_busty.json data/genre_bishoujo.json \
+            data/genre_amateur.json data/genre_wife.json data/genre_milf.json \
+            data/genre_ol.json data/genre_jk.json data/genre_teacher.json \
+            data/genre_lez.json data/genre_debut.json data/genre_cosplay.json \
+            data/genre_gal.json data/genre_chijo.json data/genre_slender.json \
+            2>/dev/null \
+            | grep -v null | sort | uniq -c | sort -rn | awk '{print $2}')
+
+          # LEGEND + 高頻度女優 上位3000件（重複除去）を個別APIコール
+          # 約0.15s × 3000 ≈ 7.5分。画像あり2500件以上を想定
+          PROFILE_IDS=$(printf '%s\n' $LEGEND_IDS $PRODUCT_IDS | \
+            awk '!seen[$0]++ && $0 != "" && $0 != "null"' | head -3000)
+          echo "対象女優数: $(echo "$PROFILE_IDS" | wc -w) 人"
+          build_actress_json "$PROFILE_IDS" data/actress_profiles.json
+
+          jq -r '"actress_profiles: \(.result.actress|length)件 / 画像有: \([.result.actress[] | select(.imageURL.small != null)]|length)件"' \
+            data/actress_profiles.json 2>/dev/null
+
+          # ===== 女優別作品インデックス =====
+          # Step1: ローカルデータから全女優の作品インデックスを高速生成（APIコール不要）
+          echo "ローカルデータから女優別作品インデックス生成中..."
+          python3 scripts/build_actress_works.py
+
+          # Step2: LEGEND + 出現頻度上位をAPIから追加取得（ローカルにない作品を補完）
+          echo "上位女優分をAPIから追加取得中（15ページ=1500作品まで）..."
+          WORK_BASE="https://api.dmm.com/affiliate/v3/ItemList?${AUTH_QUERY}&site=FANZA&service=digital&output=json&floor=videoa&sort=date&article=actress"
+          API_TARGET_IDS=$(printf '%s\n' $LEGEND_IDS $PRODUCT_IDS | awk '!seen[$0]++ && $0 != ""' | head -300)
+          for AID in $API_TARGET_IDS; do
+            rm -f /tmp/aw_*.json
+            for p in $(seq 1 15); do
+              OFF=$(( (p-1)*100 + 1 ))
+              curl -sf "${WORK_BASE}&hits=100&offset=${OFF}&article_id=${AID}" \
+                -o /tmp/aw_${p}.json 2>/dev/null || echo '{"result":{"items":[]}}' > /tmp/aw_${p}.json
+            done
+            jq -s '([.[].result.items//[]]) | add as $it | ($it//) |
+              unique_by(.content_id) | sort_by(.date) | reverse |
+              {result:{status:200,items:.,total_count:length,result_count:length}}' \
+              /tmp/aw_*.json > /tmp/api_works.json 2>/dev/null \
+              || echo '{"result":{"items":[]}}' > /tmp/api_works.json
+            if [ -f "data/actress_works_${AID}.json" ]; then
+              jq -s '(.[0].result.items//[]) + (.[1].result.items//[]) |
+                unique_by(.content_id) | sort_by(.date) | reverse |
+                {result:{status:200,items:.,total_count:length,result_count:length}}' \
+                "data/actress_works_${AID}.json" /tmp/api_works.json > /tmp/merged.json 2>/dev/null \
+                && mv /tmp/merged.json "data/actress_works_${AID}.json"
+            else
+              cp /tmp/api_works.json "data/actress_works_${AID}.json"
+            fi
+            sleep 0.3
+          done
+          echo "女優別作品インデックス完了: $(ls data/actress_works_*.json 2>/dev/null | wc -l) 人分"
+
+      - name: Commit
+        run: |
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git add data/ icons/
+          git diff --staged --quiet || git commit -m "chore: update product data $(date +'%Y-%m-%d %H:%M')"
+          git pull --rebase origin main
+          git push

@@ -1,0 +1,395 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>商品詳細 | AV動画ランキング</title>
+
+<!-- OGP（JS側で動的更新） -->
+<meta property="og:title" content="AV動画ランキング" id="ogTitle">
+<meta property="og:description" content="厳選アダルト動画の商品詳細ページ" id="ogDesc">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://douga-adult.com/icons/icon-512.png" id="ogImage">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AV動画ランキング" id="twTitle">
+<meta name="twitter:image" content="" id="twImage">
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-90ZV8JH151"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-90ZV8JH151');
+</script>
+
+<link rel="stylesheet" href="css/style.css">
+<style>
+.breadcrumb{font-size:.82rem;color:var(--mute);margin-bottom:20px}
+.breadcrumb a{color:var(--mute)}
+.breadcrumb a:hover{color:var(--accent2)}
+.campaign-box{background:#1f0a0f;border:1px solid var(--accent);border-radius:8px;padding:12px 16px;margin-bottom:16px;color:#ff9999;font-size:.88rem}
+.review-box{background:var(--bg3);border-radius:8px;padding:16px;margin-top:12px}
+.review-avg{font-size:2rem;font-weight:900;color:var(--gold)}
+.product-detail{display:grid;grid-template-columns:1fr 1.5fr;gap:32px;background:var(--bg2);border-radius:12px;padding:32px;border:1px solid var(--border)}
+.detail-img img{width:100%;max-width:340px;border-radius:8px}
+.detail-title{font-size:1.3rem;font-weight:700;margin-bottom:16px}
+.detail-price-big{font-size:2rem;font-weight:900;color:var(--accent);margin-bottom:8px}
+.btn-buy-large{display:block;padding:16px;background:linear-gradient(135deg,#ff3366,#cc0033);color:#fff;text-align:center;font-size:1.1rem;font-weight:900;border-radius:10px;margin-bottom:16px;transition:opacity .2s}
+.btn-buy-large:hover{opacity:.85;color:#fff}
+.detail-meta dt{font-size:.8rem;color:var(--mute);margin-top:10px}
+.detail-meta dd{font-size:.92rem;color:var(--text)}
+.detail-meta dd a{color:var(--accent2)}
+.sample-images{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.sample-images img{width:calc(33% - 6px);border-radius:6px;cursor:pointer;transition:opacity .2s}
+.sample-images img:hover{opacity:.8}
+.video-wrap{margin-top:12px}
+.video-wrap video{width:100%;border-radius:8px}
+.btn-like-detail{
+  padding:10px 18px;background:#1a1a1a;border:1px solid #333;color:#ccc;
+  font-size:.88rem;font-weight:700;border-radius:8px;cursor:pointer;transition:all .2s;
+  display:inline-flex;align-items:center;gap:6px;
+}
+.btn-like-detail:hover{background:rgba(255,51,102,.15);border-color:rgba(255,51,102,.5);color:#ff99bb;}
+.btn-like-detail.active{background:rgba(255,51,102,.2);border-color:var(--accent);color:#ff6699;}
+.btn-fav-detail{
+  padding:10px 18px;background:#1a1a1a;border:1px solid #333;color:#ccc;
+  font-size:.88rem;font-weight:700;border-radius:8px;cursor:pointer;transition:all .2s;
+  display:inline-flex;align-items:center;gap:6px;
+}
+.btn-fav-detail:hover,.btn-fav-detail.active{background:#1e2a1e;border-color:#4a8;color:#6c6;}
+@media(max-width:700px){.product-detail{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <div class="site-logo"><a href="home.html" style="color:inherit;text-decoration:none">AV動画ランキング</a></div>
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="検索..." autocomplete="off">
+      <button onclick="doSearch()">🔍 検索</button>
+    </div>
+  </div>
+</header>
+
+<div class="page-back-bar">
+  <button class="back-btn" onclick="appBack()">← 戻る</button>
+</div>
+
+<div class="page-wrapper" style="grid-template-columns:1fr">
+  <main class="main-content">
+    <div class="breadcrumb">
+      <a href="home.html">TOP</a> › <a href="home.html" id="floorLink">動画</a> › <span id="breadTitle">読み込み中...</span>
+    </div>
+    <div id="content">
+      <div class="loading"><div class="spinner"></div><p>商品情報を取得中...</p></div>
+    </div>
+  </main>
+</div>
+
+<footer class="site-footer">
+  <p>当サイトはFANZA（DMM.com）のアフィリエイトプログラムを利用しています。</p>
+  <div class="footer-copy">© 2026 AV動画ランキング All Rights Reserved.</div>
+</footer>
+
+<script src="js/storage.js"></script>
+<script src="js/dmm-api.js"></script>
+<script>
+if(localStorage.getItem('age_verified')!=='yes') location.href='index.html';
+
+// 戻るボタン：同一サイト内からの遷移なら履歴を戻る、そうでなければホームへ
+function appBack() {
+    if (document.referrer && new URL(document.referrer).origin === location.origin) {
+        history.back();
+    } else {
+        location.href = 'home.html';
+    }
+}
+
+const esc = s => String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+const safeUrl = (value, fallback='') => {
+    try {
+        const url = new URL(String(value||''), location.href);
+        return url.protocol === 'https:' ? url.href : fallback;
+    } catch { return fallback; }
+};
+const names = arr => (arr||[]).map(a=>esc(a.name)).join('、');
+const stars = avg => { const n=Math.round(parseFloat(avg)); return'★'.repeat(n)+'☆'.repeat(5-n); };
+
+function doSearch(){
+    const q = document.getElementById('searchInput').value.trim();
+    if(q) location.href = 'home.html?keyword=' + encodeURIComponent(q);
+}
+document.getElementById('searchInput').addEventListener('keydown',e=>{ if(e.key==='Enter') doSearch(); });
+
+let _productItem = null;
+let _productFloor = 'videoa';
+
+async function loadProduct(){
+    const p     = new URLSearchParams(location.search);
+    const cid   = p.get('cid');
+    const floor = p.get('floor') || 'videoa';
+    _productFloor = floor;
+
+    if(!cid){ location.href='home.html'; return; }
+    document.getElementById('floorLink').href = 'home.html?floor=' + encodeURIComponent(floor);
+
+    try {
+        const data   = await DMM.fetchByCid(cid, floor);
+        const item   = data?.result?.items?.[0];
+        _productItem = item;
+        if(!item) throw new Error('商品が見つかりません');
+
+        document.title = item.title + ' | AV動画ランキング';
+        document.getElementById('breadTitle').textContent = item.title.slice(0,30) + (item.title.length>30?'...':'');
+
+        // OGP動的更新
+        const ogImg = safeUrl(item.imageURL?.large || item.imageURL?.list || '');
+        const setMeta = (id, val) => { const el = document.getElementById(id); if(el) el.setAttribute('content', val); };
+        setMeta('ogTitle',  item.title + ' | AV動画ランキング');
+        setMeta('ogDesc',   item.title);
+        setMeta('ogImage',  ogImg);
+        setMeta('twTitle',  item.title + ' | AV動画ランキング');
+        setMeta('twImage',  ogImg);
+
+        const imgLarge  = safeUrl(item.imageURL?.large  || item.imageURL?.list || '');
+        const imgList   = safeUrl(item.imageURL?.list   || '');
+        const price     = item.prices?.price    || '';
+        const listPrice = item.prices?.list_price || '';
+        const url       = safeUrl(item.affiliateURL || item.URL || '', '#');
+        const review    = item.review;
+        const campaign  = item.campaign;
+        const sampleS   = item.sampleImageURL?.sample_s?.image || item.sampleImageURL?.sample_b?.image || [];
+        const sampleL   = item.sampleImageURL?.sample_l?.image || item.sampleImageURL?.sample_b?.image || [];
+        const samplePairs = sampleS.slice(0,6).map((src,i) => ({
+            thumb: safeUrl(src),
+            large: safeUrl(sampleL[i] || src),
+        })).filter(pair => pair.thumb && pair.large);
+        const movies    = item.sampleMovieURL || {};
+
+        // フロア別ボタン文言
+        const buyLabels = {
+            book:  '🎬 試し読み・購入する',
+            goods: '🛍️ 商品ページで購入',
+            mono:  '🛍️ 商品ページで購入',
+            anime: '🎬 動画を見る・購入する',
+            videoa:'🎬 動画を見る・購入する',
+        };
+        const buyText = buyLabels[floor] || '🎬 作品ページへ';
+
+        const movieSrc = safeUrl(movies.size_560_360 || movies.size_476_306 || Object.values(movies)[0] || '');
+
+        // 履歴に保存
+        Hist.add(item, floor);
+
+        const pageUrl  = location.href;
+        const shareText= encodeURIComponent(item.title + ' #アダルト動画');
+        const shareUrl = 'https://twitter.com/intent/tweet?text=' + shareText + '&url=' + encodeURIComponent(pageUrl);
+        const isFav    = Fav.has(item.content_id);
+
+        // キャンペーン情報：タイトル or 日付のどちらかが実在する場合のみ表示
+        const hasCampaign = campaign && (
+            (campaign.title && campaign.title.trim()) ||
+            (campaign.date_begin && campaign.date_begin.trim()) ||
+            (campaign.date_end && campaign.date_end.trim())
+        );
+        const campaignHtml = hasCampaign ? (() => {
+            const t  = campaign.title?.trim() || '';
+            const db = (campaign.date_begin||'').slice(0,10);
+            const de = (campaign.date_end  ||'').slice(0,10);
+            const dateStr = (db || de) ? `（${esc(db)} 〜 ${esc(de)}）` : '';
+            return `<div class="campaign-box">🎉 <strong>キャンペーン${t ? '：' : '実施中'}</strong>${esc(t)}${dateStr}</div>`;
+        })() : '';
+
+        document.getElementById('content').innerHTML = `
+        ${campaignHtml}
+
+        <div class="product-detail">
+          <div>
+            ${imgLarge ? `<div class="detail-img"><img src="${esc(imgLarge)}" alt="${esc(item.title)}"></div>` : ''}
+
+            ${movieSrc ? `
+            <div class="video-wrap">
+              <p style="font-size:.8rem;color:var(--mute);margin-bottom:6px">▶ サンプル動画</p>
+              <iframe src="${esc(movieSrc)}" allowfullscreen frameborder="0" scrolling="no"
+                style="width:100%;height:300px;border-radius:8px;background:#000"></iframe>
+            </div>` : ''}
+
+            ${samplePairs.length ? `
+            <p style="font-size:.8rem;color:var(--mute);margin:14px 0 6px">📷 サンプル画像</p>
+            <div class="sample-images">
+              ${samplePairs.map((pair,i)=>`<img src="${esc(pair.thumb)}" data-large="${esc(pair.large)}" alt="サンプル${i+1}" onclick="window.open(this.dataset.large,'_blank','noopener')" loading="lazy">`).join('')}
+            </div>` : ''}
+          </div>
+
+          <div>
+            <h1 class="detail-title">${esc(item.title)}</h1>
+
+            <div class="detail-price-big">
+              ¥${esc(price)}
+              ${listPrice && listPrice!==price ? `<span style="font-size:1rem;color:var(--mute);text-decoration:line-through;margin-left:8px">¥${esc(listPrice)}</span>` : ''}
+            </div>
+
+            <a class="btn-buy-large" href="${esc(url)}" target="_blank" rel="noopener">${buyText}</a>
+
+            <!-- いいね / お気に入り -->
+            <div style="display:flex;gap:10px;margin-bottom:12px;flex-wrap:wrap">
+              <button id="likeBtn" class="btn-like-detail ${Like.has(item.content_id)?'active':''}" data-cid="${esc(item.content_id)}"
+                onclick="toggleLikeDetail(this,this.dataset.cid)">
+                <span id="likeBtnIcon">${Like.has(item.content_id)?'❤️':'🤍'}</span>
+                <span id="likeBtnLabel">${Like.count(item.content_id)>0?Like.count(item.content_id):'いいね'}</span>
+              </button>
+              <button id="favBtn" class="btn-fav-detail ${isFav?'active':''}" data-cid="${esc(item.content_id)}"
+                onclick="toggleFavDetail(this,this.dataset.cid)">
+                ${isFav ? '⭐ 保存済み' : '☆ あとで見る'}
+              </button>
+            </div>
+
+            <!-- シェアボタン（複数SNS対応・閲覧者本人のアカウントで投稿） -->
+            <div class="share-row">
+              <span class="share-label-text">シェア:</span>
+              <a class="share-btn share-x" href="https://twitter.com/intent/tweet?text=${shareText}&url=${encodeURIComponent(pageUrl)}" target="_blank" rel="noopener" title="Xでシェア">
+                <span class="share-icon-x">X</span>
+              </a>
+              <a class="share-btn share-line" href="https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(pageUrl)}&text=${shareText}" target="_blank" rel="noopener" title="LINEで送る">
+                LINE
+              </a>
+              <a class="share-btn share-fb" href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(pageUrl)}" target="_blank" rel="noopener" title="Facebookでシェア">
+                <span class="share-icon-fb">f</span>
+              </a>
+              <button class="share-btn share-copy" data-url="${esc(pageUrl)}" onclick="copyShareLink(this,this.dataset.url)" title="リンクをコピー">
+                🔗
+              </button>
+            </div>
+
+            ${review?.count>0 ? `
+            <div class="review-box">
+              <span class="review-avg">${esc(review.average)}</span>
+              <span style="color:var(--gold);font-size:1.3rem">${stars(review.average)}</span>
+              <span style="color:var(--mute);font-size:.82rem">（${esc(String(review.count))}件のレビュー）</span>
+            </div>` : ''}
+
+            <dl class="detail-meta">
+              ${(item.iteminfo?.actress||[]).length ? `<dt>出演女優</dt><dd>${(item.iteminfo.actress).map(a=>`<a class="tag-link" href="actress.html?id=${encodeURIComponent(String(a.id))}&name=${encodeURIComponent(a.name)}">${esc(a.name)}</a>`).join('、 ')}</dd>` : ''}
+              ${(item.iteminfo?.maker||[]).length   ? `<dt>メーカー</dt><dd>${(item.iteminfo.maker).map(m=>`<a class="tag-link" href="home.html?keyword=${encodeURIComponent(m.name)}">${esc(m.name)}</a>`).join('、 ')}</dd>` : ''}
+              ${(item.iteminfo?.label||[]).length   ? `<dt>レーベル</dt><dd>${(item.iteminfo.label).map(l=>`<a class="tag-link" href="home.html?keyword=${encodeURIComponent(l.name)}">${esc(l.name)}</a>`).join('、 ')}</dd>` : ''}
+              ${(item.iteminfo?.series||[]).length  ? `<dt>シリーズ</dt><dd>${(item.iteminfo.series).map(s=>`<a class="tag-link" href="home.html?keyword=${encodeURIComponent(s.name)}">${esc(s.name)}</a>`).join('、 ')}</dd>` : ''}
+              ${(item.iteminfo?.genre||[]).length   ? `<dt>ジャンル</dt><dd class="genre-tag-list">${(item.iteminfo.genre).map(g=>`<a class="tag-chip" href="home.html?keyword=${encodeURIComponent(g.name)}">${esc(g.name)}</a>`).join('')}</dd>` : ''}
+              ${item.volume ? (() => {
+                  // フロア別に表記を切替（マンガはページ数、グッズは非表示）
+                  if (floor === 'book')   return `<dt>ページ数</dt><dd>${esc(String(item.volume))}ページ</dd>`;
+                  if (floor === 'goods' || floor === 'mono') return ''; // グッズは時間概念なし
+                  return `<dt>収録時間</dt><dd>${esc(String(item.volume))}分</dd>`;
+              })() : ''}
+              ${item.date   ? `<dt>発売日</dt><dd>${esc(item.date.slice(0,10))}</dd>` : ''}
+              ${item.content_id ? `<dt>品番</dt><dd>${esc(item.content_id)}</dd>` : ''}
+            </dl>
+
+            <a class="btn-buy-large" href="${esc(url)}" target="_blank" rel="noopener" style="margin-top:24px">✓ ${buyText.replace(/^.{2}\s*/, '')}</a>
+            <p style="font-size:.75rem;color:var(--mute);text-align:center;margin-top:8px">※ 当サイトはアフィリエイトプログラムを利用しています</p>
+          </div>
+        </div>`;
+
+        // 関連作品を非同期で読み込む
+        loadRelated(item, floor);
+    } catch(e){
+        document.getElementById('content').innerHTML = `<div class="loading"><p style="color:#ff6688">⚠️ 商品情報の取得に失敗しました<br><small>${esc(e.message)}</small></p><a href="home.html" style="color:var(--accent2)">← TOPに戻る</a></div>`;
+    }
+}
+
+// ===== シェアリンクをコピー =====
+function copyShareLink(btn, url) {
+    const orig = btn.innerHTML;
+    const done = () => {
+        btn.innerHTML = '✓ コピー済';
+        btn.classList.add('share-copied');
+        setTimeout(() => { btn.innerHTML = orig; btn.classList.remove('share-copied'); }, 1800);
+    };
+    if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(url).then(done).catch(() => {
+            // フォールバック
+            const ta = document.createElement('textarea');
+            ta.value = url; document.body.appendChild(ta);
+            ta.select(); document.execCommand('copy'); ta.remove(); done();
+        });
+    } else {
+        const ta = document.createElement('textarea');
+        ta.value = url; document.body.appendChild(ta);
+        ta.select(); document.execCommand('copy'); ta.remove(); done();
+    }
+}
+
+// ===== いいねトグル（詳細ページ）=====
+function toggleLikeDetail(btn, cid) {
+    const isNow = Like.toggle(cid);
+    btn.classList.toggle('active', isNow);
+    const iconEl  = document.getElementById('likeBtnIcon');
+    const labelEl = document.getElementById('likeBtnLabel');
+    if (iconEl)  iconEl.textContent  = isNow ? '❤️' : '🤍';
+    if (labelEl) labelEl.textContent = Like.count(cid) > 0 ? Like.count(cid) : 'いいね';
+    btn.animate([{ transform: 'scale(1.25)' }, { transform: 'scale(1)' }],
+        { duration: 200, easing: 'ease-out' });
+}
+
+// ===== お気に入りトグル（詳細ページ）=====
+function toggleFavDetail(btn, cid) {
+    if (Fav.has(cid)) {
+        Fav.remove(cid);
+        btn.innerHTML = '☆ あとで見る';
+        btn.classList.remove('active');
+    } else {
+        const item = _productItem;
+        Fav.add(
+            item || { content_id: cid, title: '', imageURL: {}, affiliateURL: '#', URL: '#' },
+            _productFloor
+        );
+        btn.innerHTML = '⭐ 保存済み';
+        btn.classList.add('active');
+    }
+}
+
+// ===== 関連作品表示 =====
+async function loadRelated(item, floor) {
+    const actressIds = new Set((item.iteminfo?.actress || []).map(a => a.id));
+    if (!actressIds.size) return;
+
+    // fetchByCid で既にロード済みのキャッシュデータのみ使用（追加ファイルロードなし）
+    const seen    = new Set([item.content_id]);
+    const related = [];
+    for (const key of Object.keys(DMM._cache)) {
+        const data = DMM._cache[key];
+        for (const prod of (data?.result?.items || [])) {
+            if (seen.has(prod.content_id)) continue;
+            const pIds = (prod.iteminfo?.actress || []).map(a => a.id);
+            if (pIds.some(id => actressIds.has(id))) {
+                seen.add(prod.content_id);
+                related.push(prod);
+            }
+        }
+        if (related.length >= 12) break;
+    }
+    if (!related.length) return;
+
+    const section = document.createElement('div');
+    section.className = 'related-section';
+    section.innerHTML = `
+        <h3 class="related-title">🎬 関連作品</h3>
+        <div class="related-scroll">
+            ${related.map(p => {
+                const img   = safeUrl(p.imageURL?.list || '');
+                const ptitle = esc(p.title || '');
+                const href  = `product.html?cid=${encodeURIComponent(p.content_id || '')}&floor=${encodeURIComponent(floor)}`;
+                return `<a class="mini-card" href="${esc(href)}">
+                    ${img ? `<img src="${esc(img)}" alt="${ptitle}" loading="lazy">` : ''}
+                    <div class="mini-card-title">${ptitle}</div>
+                </a>`;
+            }).join('')}
+        </div>`;
+    document.querySelector('.page-wrapper .main-content')?.appendChild(section);
+}
+
+loadProduct();
+</script>
+</body>
+</html>

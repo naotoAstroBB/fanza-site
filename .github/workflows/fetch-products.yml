@@ -19,9 +19,19 @@ jobs:
     timeout-minutes: 300
     permissions:
       contents: write
+    env:
+      DMM_API_ID: ${{ secrets.DMM_API_ID }}
+      DMM_AFFILIATE_ID: ${{ secrets.DMM_AFFILIATE_ID }}
 
     steps:
       - uses: actions/checkout@v4
+
+      - name: Validate API credentials
+        run: |
+          if [ -z "$DMM_API_ID" ] || [ -z "$DMM_AFFILIATE_ID" ]; then
+            echo "::error::DMM_API_ID / DMM_AFFILIATE_ID are not configured"
+            exit 1
+          fi
 
       - name: Generate PWA icons (初回のみ)
         run: python3 scripts/gen_icons.py
@@ -31,7 +41,8 @@ jobs:
           # 前回のランキングを保存（順位変動バッジ用）
           cp data/rank.json data/rank_prev.json 2>/dev/null || true
 
-          BASE_URL="https://api.dmm.com/affiliate/v3/ItemList?api_id=UXJdpULBN1sPyNKKPPHU&affiliate_id=saaaaaaya-990&site=FANZA&service=digital&output=json"
+          AUTH_QUERY="api_id=${DMM_API_ID}&affiliate_id=${DMM_AFFILIATE_ID}"
+          BASE_URL="https://api.dmm.com/affiliate/v3/ItemList?${AUTH_QUERY}&site=FANZA&service=digital&output=json"
           BASE="$BASE_URL&hits=100"
 
           # 2ページ取得してmerge（最大200件）
@@ -97,12 +108,12 @@ jobs:
           merge_fetch_n 10 data/anime_date.json   "${ANIME_BASE}&sort=date"
           merge_fetch_n 10 data/anime_review.json "${ANIME_BASE}&sort=review"
 
-          MANGA_BASE_URL="https://api.dmm.com/affiliate/v3/ItemList?api_id=UXJdpULBN1sPyNKKPPHU&affiliate_id=saaaaaaya-990&site=FANZA&service=ebook&floor=comic&output=json"
+          MANGA_BASE_URL="https://api.dmm.com/affiliate/v3/ItemList?${AUTH_QUERY}&site=FANZA&service=ebook&floor=comic&output=json"
           merge_fetch_n 10 data/manga.json        "${MANGA_BASE_URL}&sort=rank"
           merge_fetch_n 10 data/manga_date.json   "${MANGA_BASE_URL}&sort=date"
           merge_fetch_n 10 data/manga_review.json "${MANGA_BASE_URL}&sort=review"
 
-          GOODS_BASE="https://api.dmm.com/affiliate/v3/ItemList?api_id=UXJdpULBN1sPyNKKPPHU&affiliate_id=saaaaaaya-990&site=FANZA&service=mono&floor=goods&output=json"
+          GOODS_BASE="https://api.dmm.com/affiliate/v3/ItemList?${AUTH_QUERY}&site=FANZA&service=mono&floor=goods&output=json"
           merge_fetch_n 10 data/goods.json        "${GOODS_BASE}&sort=rank"
           merge_fetch_n 10 data/goods_date.json   "${GOODS_BASE}&sort=date"
           merge_fetch_n 10 data/goods_review.json "${GOODS_BASE}&sort=review"
@@ -207,7 +218,8 @@ jobs:
 
       - name: Fetch actress data
         run: |
-          ACTRESS_API="https://api.dmm.com/affiliate/v3/ActressSearch?api_id=UXJdpULBN1sPyNKKPPHU&affiliate_id=saaaaaaya-990&site=FANZA&output=json"
+          AUTH_QUERY="api_id=${DMM_API_ID}&affiliate_id=${DMM_AFFILIATE_ID}"
+          ACTRESS_API="https://api.dmm.com/affiliate/v3/ActressSearch?${AUTH_QUERY}&site=FANZA&output=json"
           ACTRESS_SINGLE="${ACTRESS_API}&hits=1"
 
           # ===== ファイルベース版 build_actress_json =====
@@ -305,7 +317,7 @@ jobs:
 
           # Step2: LEGEND + 出現頻度上位をAPIから追加取得（ローカルにない作品を補完）
           echo "上位女優分をAPIから追加取得中（15ページ=1500作品まで）..."
-          WORK_BASE="https://api.dmm.com/affiliate/v3/ItemList?api_id=UXJdpULBN1sPyNKKPPHU&affiliate_id=saaaaaaya-990&site=FANZA&service=digital&output=json&floor=videoa&sort=date&article=actress"
+          WORK_BASE="https://api.dmm.com/affiliate/v3/ItemList?${AUTH_QUERY}&site=FANZA&service=digital&output=json&floor=videoa&sort=date&article=actress"
           API_TARGET_IDS=$(printf '%s\n' $LEGEND_IDS $PRODUCT_IDS | awk '!seen[$0]++ && $0 != ""' | head -300)
           for AID in $API_TARGET_IDS; do
             rm -f /tmp/aw_*.json

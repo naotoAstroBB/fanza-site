@@ -259,7 +259,7 @@ async function loadSort(sort) {
 
 function getSampleUrl(item) {
   const mv = item.sampleMovieURL;
-  return mv ? (mv.size_560_360 || mv.size_476_306 || mv.size_644_414 || '') : '';
+  return safeUrl(mv ? (mv.size_560_360 || mv.size_476_306 || mv.size_644_414 || '') : '');
 }
 
 function getActresses(item) { return (item.iteminfo?.actress || []).map(a => a.name); }
@@ -437,12 +437,12 @@ function renderGrid() {
     return;
   }
   grid.innerHTML = filtered.slice(0, 200).map(item => {
-    const img = item.imageURL?.list || item.imageURL?.small || '';
+    const img = safeUrl(item.imageURL?.list || item.imageURL?.small || '');
     const title = (item.title || '').slice(0, 48);
     const cid = item.content_id;
     const hasVid = !!getSampleUrl(item);
     const actresses = (item.iteminfo?.actress || []).map(a => a.name).join('、');
-    return `<div class="card ${hasVid ? 'has-video' : ''}" onclick="openComposer('${esc(cid)}')">
+    return `<div class="card ${hasVid ? 'has-video' : ''}" data-cid="${esc(cid)}" onclick="openComposer(this.dataset.cid)">
       ${img ? `<img src="${esc(img)}" loading="lazy" alt="">` : '<div style="height:80px;background:#111"></div>'}
       <div class="card-body">
         ${hasVid ? '<span class="badge-v">▶ 動画あり</span>' : ''}
@@ -463,7 +463,7 @@ function openComposer(cid) {
   document.getElementById('urlBtnSite').classList.add('active');
   document.getElementById('urlBtnFanza').classList.remove('active');
 
-  const img = item.imageURL?.list || item.imageURL?.small || '';
+  const img = safeUrl(item.imageURL?.list || item.imageURL?.small || '');
   document.getElementById('cmpThumb').src = img;
   document.getElementById('cmpTitle').textContent = item.title || '';
   const hasVid = getSampleUrl(item);
@@ -490,9 +490,9 @@ function setUrlType(type) {
 function getPostUrl() {
   if (!currentItem) return '';
   if (currentUrlType === 'site') {
-    return `${SITE}/product.html?cid=${currentItem.content_id}`;
+    return `${SITE}/product.html?cid=${encodeURIComponent(currentItem.content_id || '')}`;
   }
-  return currentItem.affiliateURL || currentItem.URL || '';
+  return safeUrl(currentItem.affiliateURL || currentItem.URL || '');
 }
 
 function fillTemplate() {
@@ -603,8 +603,9 @@ async function postMisskey(text, statusEl) {
     return;
   }
   try {
-    const instance = cfg.mskeyInstance.replace(/^https?:\/\//, '').replace(/\/$/, '');
-    const res = await fetch(`https://${instance}/api/notes/create`, {
+    const instanceUrl = new URL(/^https?:\/\//i.test(cfg.mskeyInstance) ? cfg.mskeyInstance : `https://${cfg.mskeyInstance}`);
+    if (instanceUrl.protocol !== 'https:' || !instanceUrl.hostname) throw new Error('インスタンスURLが不正です');
+    const res = await fetch(`${instanceUrl.origin}/api/notes/create`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ i: cfg.mskeyToken, text, visibility: 'public' })
@@ -653,7 +654,15 @@ function toast(msg) {
   setTimeout(() => el.classList.remove('show'), 2500);
 }
 function esc(s) {
-  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  return String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+function safeUrl(value, fallback = '') {
+  try {
+    const url = new URL(String(value || ''), location.href);
+    return url.protocol === 'https:' ? url.href : fallback;
+  } catch {
+    return fallback;
+  }
 }
 
 loadSort('rank');

@@ -138,9 +138,35 @@ const esc = s => String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').repl
 const safeUrl = value => {
     try {
         const url = new URL(String(value || ''), location.href);
+        if (url.protocol === 'http:') url.protocol = 'https:';
         return url.protocol === 'https:' ? url.href : '';
     } catch { return ''; }
 };
+
+const actressImage = (actress, size = 'small') => {
+    const id = String(actress?.id ?? '');
+    const validId = /^\d+$/.test(id) ? id : '';
+    const remote = safeUrl(actress?.imageURL?.[size] || actress?.imageURL?.small || '');
+    const local = validId ? safeUrl(`data/faces/actress_${validId}.jpg`) : '';
+    return { src: local || remote, fallback: local ? remote : '' };
+};
+
+function bindActressImages(root) {
+    root.querySelectorAll('img[data-placeholder-class]').forEach(img => {
+        img.addEventListener('error', () => {
+            const fallback = img.dataset.fallbackSrc || '';
+            if (fallback && img.dataset.fallbackTried !== 'yes') {
+                img.dataset.fallbackTried = 'yes';
+                img.src = fallback;
+                return;
+            }
+            const placeholder = document.createElement('div');
+            placeholder.className = img.dataset.placeholderClass || 'actress-no-img-list';
+            placeholder.textContent = img.dataset.placeholderText || '♀';
+            img.replaceWith(placeholder);
+        });
+    });
+}
 
 function appBack() {
     if (document.referrer && new URL(document.referrer).origin === location.origin) {
@@ -194,7 +220,7 @@ async function renderActresses(type) {
         const showRank = type !== 'new';
 
         const renderPodium = (a, idx) => {
-            const img = safeUrl(a.imageURL?.large || a.imageURL?.small || '');
+            const image = actressImage(a, 'large');
             const name = esc(a.name || '');
             const href = `actress.html?id=${encodeURIComponent(String(a.id))}&name=${encodeURIComponent(a.name || '')}`;
             const initial = esc((a.name || '').charAt(0) || '♀');
@@ -205,7 +231,7 @@ async function renderActresses(type) {
                 <div class="actress-podium-medal">${medals[idx]}</div>
                 <div class="actress-podium-rank-num">${idx + 1}</div>
                 <div class="actress-podium-photo">
-                    ${img ? `<img src="${esc(img)}" alt="${name}" loading="lazy">` : `<div class="actress-no-img-podium">${initial}</div>`}
+                    ${image.src ? `<img src="${esc(image.src)}" data-fallback-src="${esc(image.fallback)}" data-placeholder-class="actress-no-img-podium" data-placeholder-text="${initial}" alt="${name}" loading="lazy">` : `<div class="actress-no-img-podium">${initial}</div>`}
                 </div>
                 <div class="actress-podium-name">${name}</div>
                 ${sp.meta    ? `<div class="actress-podium-meta">${esc(sp.meta)}</div>` : ''}
@@ -214,7 +240,7 @@ async function renderActresses(type) {
         };
 
         const renderListCard = (a, idx) => {
-            const img = safeUrl(a.imageURL?.small || '');
+            const image = actressImage(a, 'small');
             const name = esc(a.name || '');
             const href = `actress.html?id=${encodeURIComponent(String(a.id))}&name=${encodeURIComponent(a.name || '')}`;
             const initial = esc((a.name || '').charAt(0) || '♀');
@@ -224,7 +250,7 @@ async function renderActresses(type) {
             <a class="actress-list-card" href="${esc(href)}">
                 <div class="actress-list-rank">${rankLabel}</div>
                 <div class="actress-list-photo-wrap">
-                    ${img ? `<img class="actress-list-photo" src="${esc(img)}" alt="${name}" loading="lazy">` : `<div class="actress-list-photo actress-no-img-list">${initial}</div>`}
+                    ${image.src ? `<img class="actress-list-photo" src="${esc(image.src)}" data-fallback-src="${esc(image.fallback)}" data-placeholder-class="actress-list-photo actress-no-img-list" data-placeholder-text="${initial}" alt="${name}" loading="lazy">` : `<div class="actress-list-photo actress-no-img-list">${initial}</div>`}
                 </div>
                 <div class="actress-list-info">
                     <div class="actress-list-name">${name}</div>
@@ -242,6 +268,7 @@ async function renderActresses(type) {
             ${top3.length ? `<div class="actress-podium">${top3.map((a, i) => renderPodium(a, i)).join('')}</div>` : ''}
             ${rest.length ? `<div class="actress-list-grid">${rest.map((a, i) => renderListCard(a, showRank ? i + 3 : i)).join('')}</div>` : ''}
         `;
+        bindActressImages(el);
         window.scrollTo({top:0, behavior:'instant'});
     } catch(e) {
         el.innerHTML = '<p style="color:var(--mute);text-align:center;padding:60px 0">データ取得に失敗しました</p>';

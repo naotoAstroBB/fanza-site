@@ -273,9 +273,35 @@ const esc = s => String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').repl
 const safeUrl = (value, fallback='') => {
     try {
         const url = new URL(String(value || ''), location.href);
+        if (url.protocol === 'http:') url.protocol = 'https:';
         return url.protocol === 'https:' ? url.href : fallback;
     } catch { return fallback; }
 };
+
+const actressImage = (actress, size = 'small', idOverride = '') => {
+    const id = String(actress?.id ?? idOverride ?? '');
+    const validId = /^\d+$/.test(id) ? id : '';
+    const remote = safeUrl(actress?.imageURL?.[size] || actress?.imageURL?.small || '');
+    const local = validId ? safeUrl(`data/faces/actress_${validId}.jpg`) : '';
+    return { src: local || remote, fallback: local ? remote : '' };
+};
+
+function bindActressImages(root) {
+    root.querySelectorAll('img[data-placeholder-class]').forEach(img => {
+        img.addEventListener('error', () => {
+            const fallback = img.dataset.fallbackSrc || '';
+            if (fallback && img.dataset.fallbackTried !== 'yes') {
+                img.dataset.fallbackTried = 'yes';
+                img.src = fallback;
+                return;
+            }
+            const placeholder = document.createElement('div');
+            placeholder.className = img.dataset.placeholderClass || 'actress-hero-no-img';
+            placeholder.textContent = img.dataset.placeholderText || '♀';
+            img.replaceWith(placeholder);
+        });
+    });
+}
 
 const p          = new URLSearchParams(location.search);
 const actressId  = p.get('id')   || '';
@@ -377,15 +403,17 @@ async function onSuggestInput() {
     if (!matches.length) { closeSuggest(); return; }
     const safeQ = q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     box.innerHTML = matches.map(a => {
-        const img  = safeUrl(a.imageURL?.small || '');
+        const image = actressImage(a, 'small');
         const name = esc(a.name || '');
         const ruby = esc(a.ruby || '');
+        const initial = esc((a.name || '').charAt(0) || '♀');
         const hlName = name.replace(new RegExp(safeQ, 'gi'), m => `<mark>${m}</mark>`);
         return `<div class="suggest-item" data-name="${esc(a.name)}" data-id="${esc(a.id)}" onclick="selectSuggest(this.dataset.name,this.dataset.id)">
-            ${img ? `<img src="${esc(img)}" alt="${name}">` : '<div class="suggest-no-img">👩</div>'}
+            ${image.src ? `<img src="${esc(image.src)}" data-fallback-src="${esc(image.fallback)}" data-placeholder-class="suggest-no-img" data-placeholder-text="${initial}" alt="${name}">` : `<div class="suggest-no-img">${initial}</div>`}
             <div><div class="suggest-item-name">${hlName}</div>${ruby ? `<div class="suggest-item-sub">${ruby}</div>` : ''}</div>
         </div>`;
     }).join('');
+    bindActressImages(box);
     box.classList.add('open');
 }
 
@@ -426,7 +454,7 @@ async function loadActressInfo() {
 
     const hero = document.getElementById('actressHero');
     if (!hero) return;
-    const img  = safeUrl(actress?.imageURL?.large || actress?.imageURL?.small || '');
+    const image = actressImage(actress, 'large', actressId);
     const name = actress?.name || actressName || '女優';
     const ruby = actress?.ruby || '';
     const link = safeUrl(actress?.listURL?.digital || `https://www.dmm.co.jp/digital/videoa/-/actress/=/id=${encodeURIComponent(actressId)}/`, '#');
@@ -463,8 +491,8 @@ async function loadActressInfo() {
     const nameInitial = name.charAt(0) || '♀';
     hero.querySelector('.actress-hero-inner').innerHTML = `
         <div class="actress-hero-photo-wrap">
-            ${img
-                ? `<img class="actress-hero-photo" src="${esc(img)}" alt="${esc(name)}">`
+            ${image.src
+                ? `<img class="actress-hero-photo" src="${esc(image.src)}" data-fallback-src="${esc(image.fallback)}" data-placeholder-class="actress-hero-no-img" data-placeholder-text="${esc(nameInitial)}" alt="${esc(name)}">`
                 : `<div class="actress-hero-no-img">${esc(nameInitial)}</div>`
             }
         </div>
@@ -490,6 +518,7 @@ async function loadActressInfo() {
                 <a class="actress-fanza-btn" href="${esc(link)}" target="_blank" rel="noopener">🎬 全作品を見る</a>
             </div>
         </div>`;
+    bindActressImages(hero);
 
     document.title = name + ' 出演作品 | AV動画ランキング';
     document.getElementById('breadName').textContent = name;

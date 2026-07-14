@@ -146,22 +146,24 @@ const App = {
         if (!matches.length) { this.closeSuggest(); return; }
 
         box.innerHTML = matches.map(a => {
-            const img  = this.safeUrl(a.imageURL?.small || '');
+            const image = this.actressImage(a, 'small');
             const name = this.esc(a.name || '');
             const ruby = this.esc(a.ruby || '');
+            const initial = this.esc((a.name || '').charAt(0) || '♀');
             // マッチ箇所をハイライト
             const hlName = name.replace(
                 new RegExp(this.esc(q).replace(/[.*+?^${}()|[\]\\]/g,'\\$&'), 'gi'),
                 m => `<mark>${m}</mark>`
             );
             return `<div class="suggest-item" data-name="${this.esc(a.name)}" data-id="${this.esc(a.id)}" onclick="App.selectSuggest(this.dataset.name,this.dataset.id)">
-                ${img ? `<img src="${this.esc(img)}" alt="${name}">` : '<div class="suggest-no-img">👩</div>'}
+                ${image.src ? `<img src="${this.esc(image.src)}" data-fallback-src="${this.esc(image.fallback)}" data-placeholder-class="suggest-no-img" data-placeholder-text="${initial}" alt="${name}">` : `<div class="suggest-no-img">${initial}</div>`}
                 <div>
                     <div class="suggest-item-name">${hlName}</div>
                     ${ruby ? `<div class="suggest-item-sub">${ruby}</div>` : ''}
                 </div>
             </div>`;
         }).join('');
+        this.bindActressImages(box);
         box.classList.add('open');
     },
 
@@ -1154,7 +1156,7 @@ const App = {
             };
 
             el.innerHTML = actresses.map((a, i) => {
-                const img  = this.safeUrl(a.imageURL?.small || '');
+                const image = this.actressImage(a, 'small');
                 const name = this.esc(a.name || '');
                 const href = `actress.html?id=${encodeURIComponent(String(a.id))}&name=${encodeURIComponent(a.name || '')}`;
                 const badge = showRank
@@ -1167,13 +1169,14 @@ const App = {
                 return `
                 <a class="actress-card" href="${this.esc(href)}">
                     <div class="actress-photo">
-                        ${img ? `<img src="${this.esc(img)}" alt="${name}" loading="lazy">` : `<div class="actress-no-img">${nameInitial}</div>`}
+                        ${image.src ? `<img src="${this.esc(image.src)}" data-fallback-src="${this.esc(image.fallback)}" data-placeholder-class="actress-no-img" data-placeholder-text="${nameInitial}" alt="${name}" loading="lazy">` : `<div class="actress-no-img">${nameInitial}</div>`}
                         ${badge}
                     </div>
                     <div class="actress-name">${name}</div>
                     ${meta ? `<div class="actress-meta">${this.esc(meta)}</div>` : ''}
                 </a>`;
             }).join('');
+            this.bindActressImages(el);
         } catch(e) {
             if (el) el.innerHTML = '<span class="actress-empty">準備中</span>';
         }
@@ -1189,9 +1192,35 @@ const App = {
         return String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
     },
 
+    actressImage(actress, size = 'small') {
+        const id = String(actress?.id ?? '');
+        const validId = /^\d+$/.test(id) ? id : '';
+        const remote = this.safeUrl(actress?.imageURL?.[size] || actress?.imageURL?.small || '');
+        const local = validId ? this.safeUrl(`data/faces/actress_${validId}.jpg`) : '';
+        return { src: local || remote, fallback: local ? remote : '' };
+    },
+
+    bindActressImages(root) {
+        root.querySelectorAll('img[data-placeholder-class]').forEach(img => {
+            img.addEventListener('error', () => {
+                const fallback = img.dataset.fallbackSrc || '';
+                if (fallback && img.dataset.fallbackTried !== 'yes') {
+                    img.dataset.fallbackTried = 'yes';
+                    img.src = fallback;
+                    return;
+                }
+                const placeholder = document.createElement('div');
+                placeholder.className = img.dataset.placeholderClass || 'actress-no-img';
+                placeholder.textContent = img.dataset.placeholderText || '♀';
+                img.replaceWith(placeholder);
+            });
+        });
+    },
+
     safeUrl(value, fallback = '') {
         try {
             const url = new URL(String(value || ''), location.href);
+            if (url.protocol === 'http:') url.protocol = 'https:';
             return url.protocol === 'https:' ? url.href : fallback;
         } catch {
             return fallback;

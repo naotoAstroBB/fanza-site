@@ -659,6 +659,7 @@ function esc(s) {
 function safeUrl(value, fallback = '') {
   try {
     const url = new URL(String(value || ''), location.href);
+    if (url.protocol === 'http:') url.protocol = 'https:';
     return url.protocol === 'https:' ? url.href : fallback;
   } catch {
     return fallback;

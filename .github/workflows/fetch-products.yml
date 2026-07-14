@@ -16,6 +16,7 @@ concurrency:
 jobs:
   fetch:
     runs-on: ubuntu-latest
+    environment: github-pages
     timeout-minutes: 300
     permissions:
       contents: write

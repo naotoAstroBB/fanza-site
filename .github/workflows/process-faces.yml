@@ -26,7 +26,8 @@ jobs:
 
       - name: Process actress face images
         run: |
-          pip install opencv-python-headless pillow -q
+          pip install 'opencv-python-headless==4.12.0.88' pillow -q
+          python3 -c "import cv2; assert hasattr(cv2, 'CascadeClassifier'), cv2.__version__"
           python3 scripts/process_actress_faces.py
 
       - name: Commit face images

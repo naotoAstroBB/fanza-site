@@ -16,26 +16,73 @@ concurrency:
 jobs:
   fetch:
     runs-on: ubuntu-latest
-    environment: github-pages
     timeout-minutes: 300
     permissions:
       contents: write
     env:
-      DMM_API_ID: ${{ secrets.DMM_API_ID || vars.DMM_API_ID }}
-      DMM_AFFILIATE_ID: ${{ secrets.DMM_AFFILIATE_ID || vars.DMM_AFFILIATE_ID }}
+      DMM_API_ID: ${{ secrets.DMM_API_ID }}
+      DMM_AFFILIATE_ID: ${{ secrets.DMM_AFFILIATE_ID }}
 
     steps:
       - uses: actions/checkout@v4
 
       - name: Validate API credentials
+        shell: bash
         run: |
-          if [ -z "$DMM_API_ID" ] || [ -z "$DMM_AFFILIATE_ID" ]; then
-            echo "::error::DMM_API_ID / DMM_AFFILIATE_ID are not configured"
+          set -euo pipefail
+          if [ -z "${DMM_API_ID:-}" ] || [ -z "${DMM_AFFILIATE_ID:-}" ]; then
+            echo "::error::DMM_API_ID / DMM_AFFILIATE_ID are not configured as repository Actions secrets"
+            exit 1
+          fi
+
+          RESPONSE="${RUNNER_TEMP}/dmm-preflight.json"
+          trap 'rm -f "$RESPONSE"' EXIT
+          HTTP_CODE="$(curl --silent --show-error --get \
+            --output "$RESPONSE" \
+            --write-out '%{http_code}' \
+            --data-urlencode "api_id=${DMM_API_ID}" \
+            --data-urlencode "affiliate_id=${DMM_AFFILIATE_ID}" \
+            --data-urlencode "site=FANZA" \
+            --data-urlencode "service=digital" \
+            --data-urlencode "floor=videoa" \
+            --data-urlencode "sort=rank" \
+            --data-urlencode "hits=1" \
+            --data-urlencode "output=json" \
+            "https://api.dmm.com/affiliate/v3/ItemList")"
+
+          if [ "$HTTP_CODE" != "200" ] || ! jq -e '
+            (.result.status | tostring) == "200" and
+            (.result.items | type) == "array" and
+            (.result.items | length) >= 1
+          ' "$RESPONSE" >/dev/null; then
+            echo "::error::DMM API credential preflight failed; product data was not modified"
             exit 1
           fi
 
       - name: Generate PWA icons (初回のみ)
         run: python3 scripts/gen_icons.py
+
+      - name: Capture current data counts
+        shell: bash
+        run: |
+          set -euo pipefail
+          jq -n \
+            --argjson rank "$(jq -e '.result.items | length' data/rank.json)" \
+            --argjson new "$(jq -e '.result.items | length' data/new.json)" \
+            --argjson review "$(jq -e '.result.items | length' data/review.json)" \
+            --argjson actress_profiles "$(jq -e '.result.actress | length' data/actress_profiles.json)" \
+            --argjson actress_popular "$(jq -e '.result.actress | length' data/actress_popular.json)" \
+            --argjson actress_monthly "$(jq -e '.result.actress | length' data/actress_monthly.json)" \
+            --argjson actress_new "$(jq -e '.result.actress | length' data/actress_new.json)" \
+            '{
+              rank: $rank,
+              new: $new,
+              review: $review,
+              actress_profiles: $actress_profiles,
+              actress_popular: $actress_popular,
+              actress_monthly: $actress_monthly,
+              actress_new: $actress_new
+            }' > "${RUNNER_TEMP}/fanza-baseline-counts.json"
 
       - name: Fetch products
         run: |
@@ -344,6 +391,43 @@ jobs:
             sleep 0.3
           done
           echo "女優別作品インデックス完了: $(ls data/actress_works_*.json 2>/dev/null | wc -l) 人分"
+
+      - name: Validate generated data
+        shell: bash
+        run: |
+          set -euo pipefail
+          BASELINE="${RUNNER_TEMP}/fanza-baseline-counts.json"
+          [ -s "$BASELINE" ] || { echo "::error::Baseline counts are missing"; exit 1; }
+
+          validate_items() {
+            local file="$1" key="$2"
+            local before after
+            before="$(jq -er --arg key "$key" '.[$key]' "$BASELINE")"
+            after="$(jq -er '.result.items | length' "$file")"
+            if [ "$before" -ne 10000 ] || [ "$after" -ne 10000 ]; then
+              echo "::error::${file} must remain exactly 10000 items (before=${before}, after=${after})"
+              exit 1
+            fi
+          }
+
+          validate_actresses() {
+            local file="$1" key="$2"
+            local before after
+            before="$(jq -er --arg key "$key" '.[$key]' "$BASELINE")"
+            after="$(jq -er '.result.actress | length' "$file")"
+            if [ "$after" -lt "$before" ]; then
+              echo "::error::${file} lost actress records (before=${before}, after=${after})"
+              exit 1
+            fi
+          }
+
+          validate_items data/rank.json rank
+          validate_items data/new.json new
+          validate_items data/review.json review
+          validate_actresses data/actress_profiles.json actress_profiles
+          validate_actresses data/actress_popular.json actress_popular
+          validate_actresses data/actress_monthly.json actress_monthly
+          validate_actresses data/actress_new.json actress_new
 
       - name: Commit
         run: |

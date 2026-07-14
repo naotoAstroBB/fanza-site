@@ -111,6 +111,7 @@ const esc = s => String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replac
 const safeUrl = (value, fallback='') => {
     try {
         const url = new URL(String(value||''), location.href);
+        if (url.protocol === 'http:') url.protocol = 'https:';
         return url.protocol === 'https:' ? url.href : fallback;
     } catch { return fallback; }
 };

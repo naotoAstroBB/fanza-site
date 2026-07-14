@@ -1,6 +1,11 @@
 name: Process Actress Faces
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/process_actress_faces.py'
+      - '.github/workflows/process-faces.yml'
   schedule:
     - cron: '0 17 * * *'  # JST 2:00 AM 毎日
   workflow_dispatch:

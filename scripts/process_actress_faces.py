@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-女優プロフィール画像から顔検出してクロップ → data/faces/actress_{id}.jpg
+女優プロフィール・ランキング画像から顔検出してクロップ → data/faces/actress_{id}.jpg
 GitHub Actionsで fetch-products 後に実行する。
 既存ファイルはスキップするので差分だけ処理できる。
 """
@@ -12,6 +12,12 @@ from PIL import Image
 
 FACE_CASCADE = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
 OUTPUT_DIR   = 'data/faces'
+ACTRESS_FILES = [
+    'data/actress_profiles.json',
+    'data/actress_popular.json',
+    'data/actress_monthly.json',
+    'data/actress_new.json',
+]
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 def download_image(url):
@@ -70,15 +76,42 @@ def crop_face(image_bytes):
     cropped = img.crop((x1, y1, x2, y2)).resize((512, 512), Image.LANCZOS)
     return cropped, mode
 
+def load_actresses():
+    """全ソースをIDで統合し、ランキング入りした新しい女優も自動処理する。"""
+    by_id = {}
+    for path in ACTRESS_FILES:
+        try:
+            with open(path) as f:
+                data = json.load(f)
+        except Exception as e:
+            print(f'{path} 読み込み失敗: {e}')
+            continue
+
+        source_count = 0
+        for actress in data.get('result', {}).get('actress', []):
+            aid = str(actress.get('id', ''))
+            if not aid:
+                continue
+            source_count += 1
+            if aid not in by_id:
+                by_id[aid] = actress
+                continue
+
+            current = by_id[aid]
+            if not (current.get('imageURL') or {}).get('large') and not (current.get('imageURL') or {}).get('small'):
+                current['imageURL'] = actress.get('imageURL') or {}
+            if not current.get('name') and actress.get('name'):
+                current['name'] = actress['name']
+        print(f'読込: {path} → {source_count}人')
+
+    return list(by_id.values())
+
 def main():
-    try:
-        with open('data/actress_profiles.json') as f:
-            data = json.load(f)
-    except Exception as e:
-        print(f'actress_profiles.json 読み込み失敗: {e}')
+    actresses = load_actresses()
+    if not actresses:
+        print('女優データを読み込めませんでした')
         sys.exit(1)
 
-    actresses = data.get('result', {}).get('actress', [])
     print(f'対象: {len(actresses)}人')
 
     ok = skip = fail = 0

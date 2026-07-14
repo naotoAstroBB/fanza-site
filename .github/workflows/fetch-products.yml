@@ -21,8 +21,8 @@ jobs:
     permissions:
       contents: write
     env:
-      DMM_API_ID: ${{ secrets.DMM_API_ID }}
-      DMM_AFFILIATE_ID: ${{ secrets.DMM_AFFILIATE_ID }}
+      DMM_API_ID: ${{ secrets.DMM_API_ID || vars.DMM_API_ID }}
+      DMM_AFFILIATE_ID: ${{ secrets.DMM_AFFILIATE_ID || vars.DMM_AFFILIATE_ID }}
 
     steps:
       - uses: actions/checkout@v4

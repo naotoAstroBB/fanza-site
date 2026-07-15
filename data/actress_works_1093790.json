@@ -14484,24 +14484,29 @@
           }
         },
         "prices": {
-          "price": "980~",
-          "list_price": "980~",
+          "price": "500~",
+          "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "8k",
-                "price": "1680",
-                "list_price": "1680"
+                "price": "1280",
+                "list_price": "1280"
               },
               {
                 "type": "hd",
-                "price": "1380",
-                "list_price": "1380"
+                "price": "980",
+                "list_price": "980"
               },
               {
                 "type": "download",
-                "price": "980",
-                "list_price": "980"
+                "price": "780",
+                "list_price": "780"
+              },
+              {
+                "type": "rp",
+                "price": "500",
+                "list_price": "500"
               }
             ]
           }
@@ -38876,29 +38881,29 @@
           }
         },
         "prices": {
-          "price": "509~",
-          "list_price": "509~",
+          "price": "305~",
+          "list_price": "305~",
           "deliveries": {
             "delivery": [
               {
                 "type": "8k",
-                "price": "1580",
-                "list_price": "1580"
+                "price": "1180",
+                "list_price": "1180"
               },
               {
                 "type": "hd",
-                "price": "998",
-                "list_price": "998"
+                "price": "693",
+                "list_price": "693"
               },
               {
                 "type": "download",
-                "price": "795",
-                "list_price": "795"
+                "price": "590",
+                "list_price": "590"
               },
               {
                 "type": "rp",
-                "price": "509",
-                "list_price": "509"
+                "price": "305",
+                "list_price": "305"
               }
             ]
           }
@@ -43369,33 +43374,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "1036",
+                "price": "1480",
                 "list_price": "1480"
               },
               {
                 "type": "download",
-                "price": "826",
+                "price": "1180",
                 "list_price": "1180"
               },
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "826",
+                "price": "1180",
                 "list_price": "1180"
               },
               {
                 "type": "androiddl",
-                "price": "826",
+                "price": "1180",
                 "list_price": "1180"
               }
             ]
@@ -43462,14 +43467,7 @@
               "name": "春のパンツまつり"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-07-15 00:00:00",
-            "date_end": "2026-07-15 23:59:59",
-            "title": "日替わりセール♪"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -43943,7 +43941,14 @@
               "name": "溜池ゴロー"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-07-16 00:00:00",
+            "date_end": "2026-07-16 23:59:59",
+            "title": "日替わりセール◆"
+          }
+        ]
       },
       {
         "service_code": "digital",

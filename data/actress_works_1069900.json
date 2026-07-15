@@ -20664,24 +20664,24 @@
           }
         },
         "prices": {
-          "price": "305~",
-          "list_price": "305~",
+          "price": "204~",
+          "list_price": "204~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "795",
-                "list_price": "795"
-              },
-              {
-                "type": "download",
                 "price": "590",
                 "list_price": "590"
               },
               {
+                "type": "download",
+                "price": "408",
+                "list_price": "408"
+              },
+              {
                 "type": "rp",
-                "price": "305",
-                "list_price": "305"
+                "price": "204",
+                "list_price": "204"
               }
             ]
           }
@@ -56697,33 +56697,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "download",
-                "price": "476",
+                "price": "680",
                 "list_price": "680"
               },
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "476",
+                "price": "680",
                 "list_price": "680"
               },
               {
                 "type": "androiddl",
-                "price": "476",
+                "price": "680",
                 "list_price": "680"
               }
             ]
@@ -56784,14 +56784,7 @@
               "name": "WANZ"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-07-15 00:00:00",
-            "date_end": "2026-07-15 23:59:59",
-            "title": "日替わりセール♪"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",

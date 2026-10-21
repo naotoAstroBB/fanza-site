@@ -3,7 +3,7 @@
 // 年齢確認チェック
 if (location.pathname.includes('home') || location.pathname.includes('product')) {
     if (localStorage.getItem('age_verified') !== 'yes') {
-        location.href = 'index.html';
+        location.replace('index.html?next=' + encodeURIComponent(location.pathname + location.search + location.hash));
     }
 }
 

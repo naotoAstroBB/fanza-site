@@ -3,8 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="rating" content="adult">
 <title>女優ページ | AV動画ランキング</title>
 <meta name="description" content="出演女優のプロフィールと関連作品を探せる女優別ページです。">
+<link rel="canonical" id="canonicalUrl">
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-90ZV8JH151"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-90ZV8JH151');
+</script>
+
 <link rel="stylesheet" href="css/style.css">
 <style>
 /* ===== 女優ヒーローセクション ===== */
@@ -523,6 +534,8 @@ async function loadActressInfo() {
 
     document.title = name + ' 出演作品 | AV動画ランキング';
     document.getElementById('breadName').textContent = name;
+    document.querySelector('meta[name="description"]').content = `${name}のプロフィールと出演作品情報を探せる女優別ページです。`;
+    document.getElementById('canonicalUrl').href = `https://douga-adult.com/actress.html?id=${encodeURIComponent(actressId)}`;
 
     // Wikipedia バイオを非同期で取得（作品ロードと並行、エラーは無視）
     loadWikipediaBio(name, actress?.comment || '').catch(() => {});

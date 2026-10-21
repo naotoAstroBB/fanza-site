@@ -3,8 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="rating" content="adult">
 <title>商品詳細 | AV動画ランキング</title>
 <meta name="description" content="FANZA掲載作品の情報、出演者、価格、作品概要を確認できる商品詳細ページです。">
+<link rel="canonical" id="canonicalUrl">
 
 <!-- OGP（JS側で動的更新） -->
 <meta property="og:title" content="AV動画ランキング" id="ogTitle">
@@ -144,6 +146,10 @@ async function loadProduct(){
         if(!item) throw new Error('商品が見つかりません');
 
         document.title = item.title + ' | AV動画ランキング';
+        document.querySelector('meta[name="description"]').content = `${item.title}。FANZA掲載作品の価格・出演者・サンプル情報を確認できます。`.slice(0,160);
+        const canonicalParams = new URLSearchParams({ cid });
+        if (floor !== 'videoa') canonicalParams.set('floor', floor);
+        document.getElementById('canonicalUrl').href = `https://douga-adult.com/product.html?${canonicalParams.toString()}`;
         document.getElementById('breadTitle').textContent = item.title.slice(0,30) + (item.title.length>30?'...':'');
 
         // OGP動的更新

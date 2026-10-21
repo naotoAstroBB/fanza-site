@@ -22,6 +22,17 @@
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'G-90ZV8JH151');
+  // FANZA/DMMへの送客クリックをGA4で計測
+  document.addEventListener('click', (event) => {
+    const link = event.target.closest?.('a[href]');
+    if (!link) return;
+    let host;
+    try { host = new URL(link.href, location.href).hostname.toLowerCase(); } catch { return; }
+    const allowed = ['dmm.co.jp', 'dmm.com', 'fanza.com', 'fanza.jp'];
+    if (allowed.some(domain => host === domain || host.endsWith('.' + domain))) {
+      gtag('event', 'affiliate_click', { destination_site: 'FANZA', page_path: location.pathname });
+    }
+  });
 </script>
 
 <link rel="stylesheet" href="css/style.css">

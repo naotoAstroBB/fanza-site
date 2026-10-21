@@ -34,7 +34,7 @@ function getDestination() {
   if (!next) return '/home.html';
   try {
     const url = new URL(next, location.origin);
-    if (url.origin !== location.origin || !/^\\/(?:home|product|actress|actresses)\\.html$/.test(url.pathname)) return '/home.html';
+    if (url.origin !== location.origin || !['/home.html', '/product.html', '/actress.html', '/actresses.html'].includes(url.pathname)) return '/home.html';
     return url.pathname + url.search + url.hash;
   } catch {
     return '/home.html';

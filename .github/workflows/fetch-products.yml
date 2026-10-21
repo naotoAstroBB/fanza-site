@@ -50,6 +50,7 @@ jobs:
             --data-urlencode "output=json" \
             "https://api.dmm.com/affiliate/v3/ItemList")"
 
+          echo "ItemList preflight: HTTP=${HTTP_CODE}, API status=$(jq -r '.result.status // "unknown"' "$RESPONSE" 2>/dev/null || echo 'invalid-json')"
           if [ "$HTTP_CODE" != "200" ] || ! jq -e '
             (.result.status | tostring) == "200" and
             (.result.items | type) == "array" and
@@ -267,8 +268,23 @@ jobs:
       - name: Fetch actress data
         run: |
           AUTH_QUERY="api_id=${DMM_API_ID}&affiliate_id=${DMM_AFFILIATE_ID}"
-          ACTRESS_API="https://api.dmm.com/affiliate/v3/ActressSearch?${AUTH_QUERY}&site=FANZA&output=json"
+          # ActressSearch APIにはsiteパラメータを付けない（ItemListと仕様が異なる）
+          ACTRESS_API="https://api.dmm.com/affiliate/v3/ActressSearch?${AUTH_QUERY}&output=json"
           ACTRESS_SINGLE="${ACTRESS_API}&hits=1"
+
+          # 取得開始前にActressSearchそのものを確認する。エラー時は既存女優データを保持し
+          # 商品データの更新を続行する（このステップだけを正常終了）。
+          ACTRESS_PROBE="${RUNNER_TEMP}/actress-preflight.json"
+          ACTRESS_HTTP="$(curl --silent --show-error --connect-timeout 10 --max-time 30 --retry 2 \
+            --output "$ACTRESS_PROBE" --write-out '%{http_code}' \
+            "${ACTRESS_SINGLE}" || true)"
+          ACTRESS_STATUS="$(jq -r '.result.status // "unknown"' "$ACTRESS_PROBE" 2>/dev/null || echo 'invalid-json')"
+          ACTRESS_COUNT="$(jq -r '(.result.actress // []) | length' "$ACTRESS_PROBE" 2>/dev/null || echo 0)"
+          echo "ActressSearch preflight: HTTP=${ACTRESS_HTTP} API=${ACTRESS_STATUS} count=${ACTRESS_COUNT}"
+          if [ "$ACTRESS_HTTP" != "200" ] || [ "$ACTRESS_STATUS" != "200" ] || [ "$ACTRESS_COUNT" -lt 1 ]; then
+            echo "::warning::ActressSearch unavailable; preserving existing actress data and proceeding with product refresh"
+            exit 0
+          fi
 
           # ===== ファイルベース版 build_actress_json =====
           # 旧版はbash文字列連結が~800件でクラッシュしていた → tempファイル+jqで無制限化
@@ -354,6 +370,17 @@ jobs:
             awk '!seen[$0]++ && $0 != "" && $0 != "null"' | head -3000)
           echo "対象女優数: $(echo "$PROFILE_IDS" | wc -w) 人"
           build_actress_json "$PROFILE_IDS" data/actress_profiles.json
+
+          # 一部または全部が取得できなかった場合は、既存のプロフィールを上書きしない。
+          for key in actress_profiles actress_popular actress_monthly actress_new; do
+            file="data/${key}.json"
+            old_count="$(git show "HEAD:${file}" | jq -r '(.result.actress // []) | length' 2>/dev/null || echo 0)"
+            new_count="$(jq -r '(.result.actress // []) | length' "$file" 2>/dev/null || echo 0)"
+            if [ "$new_count" -lt "$old_count" ]; then
+              echo "::warning::${file}: retrieved ${new_count} < existing ${old_count}; keeping previous valid data"
+              git show "HEAD:${file}" > "$file"
+            fi
+          done
 
           jq -r '"actress_profiles: \(.result.actress|length)件 / 画像有: \([.result.actress[] | select(.imageURL.small != null)]|length)件"' \
             data/actress_profiles.json 2>/dev/null

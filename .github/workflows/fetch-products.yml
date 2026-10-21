@@ -374,7 +374,7 @@ jobs:
               curl -sf "${WORK_BASE}&hits=100&offset=${OFF}&article_id=${AID}" \
                 -o /tmp/aw_${p}.json 2>/dev/null || echo '{"result":{"items":[]}}' > /tmp/aw_${p}.json
             done
-            jq -s '([.[].result.items//[]]) | add as $it | ($it//) |
+            jq -s '[.[].result.items // []] | add // [] |
               unique_by(.content_id) | sort_by(.date) | reverse |
               {result:{status:200,items:.,total_count:length,result_count:length}}' \
               /tmp/aw_*.json > /tmp/api_works.json 2>/dev/null \

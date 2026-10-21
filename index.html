@@ -28,11 +28,22 @@ body{display:flex;align-items:center;justify-content:center;min-height:100vh;bac
   <button class="btn-no" onclick="location.href='https://www.google.co.jp/'">✗ 18歳未満です・退場する</button>
 </div>
 <script>
-// すでに確認済みなら即リダイレクト
-if(localStorage.getItem('age_verified')==='yes') location.href='home.html';
-function enter(){
-  localStorage.setItem('age_verified','yes');
-  location.href='home.html';
+// 年齢確認後はアクセス元ページに戻す（同一サイト内の対象ページのみ許可）
+function getDestination() {
+  const next = new URLSearchParams(location.search).get('next');
+  if (!next) return '/home.html';
+  try {
+    const url = new URL(next, location.origin);
+    if (url.origin !== location.origin || !/^\\/(?:home|product|actress|actresses)\\.html$/.test(url.pathname)) return '/home.html';
+    return url.pathname + url.search + url.hash;
+  } catch {
+    return '/home.html';
+  }
+}
+if (localStorage.getItem('age_verified') === 'yes') location.replace(getDestination());
+function enter() {
+  localStorage.setItem('age_verified', 'yes');
+  location.replace(getDestination());
 }
 </script>
 </body>

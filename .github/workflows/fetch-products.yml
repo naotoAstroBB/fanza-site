@@ -429,11 +429,14 @@ jobs:
           validate_actresses data/actress_monthly.json actress_monthly
           validate_actresses data/actress_new.json actress_new
 
+      - name: Build crawlable actress navigation
+        run: python3 scripts/build_seo_navigation.py
+
       - name: Commit
         run: |
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git config user.name "github-actions[bot]"
-          git add data/ icons/
+          git add data/ icons/ home.html actresses.html
           git diff --staged --quiet || git commit -m "chore: update product data $(date +'%Y-%m-%d %H:%M')"
           git pull --rebase origin main
           git push

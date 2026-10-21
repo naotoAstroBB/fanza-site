@@ -1,5 +1,5 @@
 /* ===== FANZA Service Worker ===== */
-const CACHE  = 'fanza-v37';
+const CACHE  = 'fanza-v38';
 const STATIC = [
     '/',
     '/home.html',
@@ -45,6 +45,23 @@ self.addEventListener('fetch', e => {
                     return res;
                 })
                 .catch(() => caches.match(e.request))
+        );
+        return;
+    }
+
+    // HTMLは毎回サーバーから確認（SEO内容やサイトの更新を即時反映）
+    // 更新のないオフライン時だけキャッシュを使う
+    if (e.request.mode === 'navigate' || url.pathname.endsWith('.html')) {
+        e.respondWith(
+            fetch(e.request)
+                .then(res => {
+                    if (res.ok) {
+                        const copy = res.clone();
+                        caches.open(CACHE).then(cache => cache.put(e.request, copy)).catch(() => {});
+                    }
+                    return res;
+                })
+                .catch(async () => (await caches.match(e.request)) || (await caches.match(url.pathname)) || Response.error())
         );
         return;
     }

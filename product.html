@@ -177,6 +177,7 @@ async function loadProduct(){
         const price     = item.prices?.price    || '';
         const listPrice = item.prices?.list_price || '';
         const url       = safeUrl(item.affiliateURL || item.URL || '', '#');
+        const tachiyomiUrl = floor === 'book' ? safeUrl(item.tachiyomi?.affiliateURL || item.tachiyomi?.URL || '') : '';
         const review    = item.review;
         const campaign  = item.campaign;
         const sampleS   = item.sampleImageURL?.sample_s?.image || item.sampleImageURL?.sample_b?.image || [];
@@ -189,7 +190,7 @@ async function loadProduct(){
 
         // フロア別ボタン文言
         const buyLabels = {
-            book:  '🎬 試し読み・購入する',
+            book:  '📚 FANZAの商品ページへ',
             goods: '🛍️ 商品ページで購入',
             mono:  '🛍️ 商品ページで購入',
             anime: '🎬 動画を見る・購入する',
@@ -250,6 +251,7 @@ async function loadProduct(){
               ${listPrice && listPrice!==price ? `<span style="font-size:1rem;color:var(--mute);text-decoration:line-through;margin-left:8px">¥${esc(listPrice)}</span>` : ''}
             </div>
 
+            ${tachiyomiUrl ? `<a class="btn-buy-large" href="${esc(tachiyomiUrl)}" target="_blank" rel="noopener" style="display:block;margin-bottom:10px">📖 FANZA公式で試し読み</a>` : ''}
             <a class="btn-buy-large" href="${esc(url)}" target="_blank" rel="noopener">${buyText}</a>
 
             <!-- いいね / お気に入り -->

@@ -281,7 +281,7 @@
 <script src="js/storage.js"></script>
 <script src="js/dmm-api.js"></script>
 <script>
-if (localStorage.getItem('age_verified') !== 'yes') location.href = 'index.html';
+if (localStorage.getItem('age_verified') !== 'yes') location.replace('index.html?next=' + encodeURIComponent(location.pathname + location.search + location.hash));
 
 // 戻るボタン：同一サイト内からの遷移なら履歴を戻る、そうでなければホームへ
 function appBack() {

@@ -28,7 +28,7 @@
     if (!link) return;
     let host;
     try { host = new URL(link.href, location.href).hostname.toLowerCase(); } catch { return; }
-    const allowed = ['dmm.co.jp', 'dmm.com', 'fanza.com', 'fanza.jp'];
+    const allowed = ['dmm.co.jp', 'dmm.com', 'fanza.com', 'fanza.jp', 'fanza.co.jp'];
     if (allowed.some(domain => host === domain || host.endsWith('.' + domain))) {
       gtag('event', 'affiliate_click', { destination_site: 'FANZA', page_path: location.pathname });
     }

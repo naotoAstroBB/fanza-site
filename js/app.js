@@ -751,7 +751,7 @@ const App = {
 
         // フロア別ボタンテキスト
         const buyLabels = {
-            book:  '試し読み・購入 →',
+            book:  '作品ページへ →',
             goods: '商品ページへ →',
             mono:  '商品ページへ →',
             anime: '動画を見る →',
@@ -759,14 +759,13 @@ const App = {
         };
         const buyText = buyLabels[this.floor] || '作品を見る →';
 
-        // サンプルボタン（動画 / マンガ試し読み / 動画系サンプル画像）
+        // マンガは必ず公式tachiyomiリンクを優先。通常の作品購入URLを試し読みと誤表示しない
         let sampleBtnHtml = '';
-        if (sampleUrl) {
+        if (this.floor === 'book' && tachiyomiUrl) {
+            sampleBtnHtml = `<a class="card-sample-btn card-sample-book" href="${this.esc(tachiyomiUrl)}" target="_blank" rel="noopener" onclick="event.stopPropagation()" title="FANZA公式で試し読み">📖</a>`;
+        } else if (this.floor !== 'book' && sampleUrl) {
             // 動画サンプル → モーダル再生
             sampleBtnHtml = `<button class="card-sample-btn" data-url="${this.esc(sampleUrl)}" data-title="${this.esc(item.title || '')}" onclick="event.stopPropagation();App.openSample(this.dataset.url,this.dataset.title)" title="サンプル再生">▶</button>`;
-        } else if (tachiyomiUrl) {
-            // マンガ試し読み → FANZA公式ページを新規タブで開く
-            sampleBtnHtml = `<a class="card-sample-btn card-sample-book" href="${this.esc(tachiyomiUrl)}" target="_blank" rel="noopener" onclick="event.stopPropagation()" title="試し読み">📖</a>`;
         } else if (sampleImages.length) {
             // 動画系のサンプル画像
             this._sampleImagesByCid = this._sampleImagesByCid || {};

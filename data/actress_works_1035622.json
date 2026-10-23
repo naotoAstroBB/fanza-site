@@ -4757,28 +4757,28 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "2180~",
+          "price": "1526~",
           "list_price": "2180~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "2680",
+                "price": "1876",
                 "list_price": "2680"
               },
               {
                 "type": "download",
-                "price": "2180",
+                "price": "1526",
                 "list_price": "2180"
               },
               {
                 "type": "iosdl",
-                "price": "2180",
+                "price": "1526",
                 "list_price": "2180"
               },
               {
                 "type": "androiddl",
-                "price": "2180",
+                "price": "1526",
                 "list_price": "2180"
               }
             ]
@@ -5120,7 +5120,14 @@
               "name": "S1 NO.1 STYLE"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-10-23 10:00:00",
+            "date_end": "2026-10-26 09:59:59",
+            "title": "こだわりのドラマ30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -5736,23 +5743,23 @@
           }
         },
         "prices": {
-          "price": "1480~",
+          "price": "1036~",
           "list_price": "1480~",
           "deliveries": {
             "delivery": [
               {
                 "type": "8k",
-                "price": "2280",
+                "price": "1596",
                 "list_price": "2280"
               },
               {
                 "type": "hd",
-                "price": "1780",
+                "price": "1246",
                 "list_price": "1780"
               },
               {
                 "type": "download",
-                "price": "1480",
+                "price": "1036",
                 "list_price": "1480"
               }
             ]
@@ -5896,7 +5903,14 @@
               "name": "IP-VR"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-10-23 10:00:00",
+            "date_end": "2026-10-26 09:59:59",
+            "title": "こだわりのドラマ30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -18198,7 +18212,14 @@
               "name": "ティッシュ"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-10-23 10:00:00",
+            "date_end": "2026-10-26 09:59:59",
+            "title": "こだわりのドラマ30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -18511,61 +18532,6 @@
               "ruby": "あかりつむぎ"
             },
             {
-              "id": 1059342,
-              "name": "梓ヒカリ",
-              "ruby": "あずさひかり"
-            },
-            {
-              "id": 1090552,
-              "name": "RARA",
-              "ruby": "らら"
-            },
-            {
-              "id": 1035622,
-              "name": "西宮ゆめ",
-              "ruby": "にしみやゆめ"
-            },
-            {
-              "id": 1035513,
-              "name": "相沢みなみ",
-              "ruby": "あいざわみなみ"
-            },
-            {
-              "id": 1039157,
-              "name": "桜空もも",
-              "ruby": "さくらもも"
-            },
-            {
-              "id": 1066537,
-              "name": "白峰ミウ",
-              "ruby": "しろみねみう"
-            },
-            {
-              "id": 1087624,
-              "name": "佐々木さき",
-              "ruby": "ささきさき"
-            },
-            {
-              "id": 1086347,
-              "name": "杏ここ",
-              "ruby": "あんここ"
-            },
-            {
-              "id": 1083166,
-              "name": "朝妃りお（朝日りお）",
-              "ruby": "あさひりお"
-            },
-            {
-              "id": 1078558,
-              "name": "庵ひめか",
-              "ruby": "いおりひめか"
-            },
-            {
-              "id": 1021367,
-              "name": "希島あいり",
-              "ruby": "きじまあいり"
-            },
-            {
               "id": 1092427,
               "name": "北岡果林",
               "ruby": "きたおかかりん"
@@ -18589,6 +18555,61 @@
               "id": 1084214,
               "name": "さくらわかな",
               "ruby": "さくらわかな"
+            },
+            {
+              "id": 1021367,
+              "name": "希島あいり",
+              "ruby": "きじまあいり"
+            },
+            {
+              "id": 1078558,
+              "name": "庵ひめか",
+              "ruby": "いおりひめか"
+            },
+            {
+              "id": 1083166,
+              "name": "朝妃りお（朝日りお）",
+              "ruby": "あさひりお"
+            },
+            {
+              "id": 1087624,
+              "name": "佐々木さき",
+              "ruby": "ささきさき"
+            },
+            {
+              "id": 1066537,
+              "name": "白峰ミウ",
+              "ruby": "しろみねみう"
+            },
+            {
+              "id": 1039157,
+              "name": "桜空もも",
+              "ruby": "さくらもも"
+            },
+            {
+              "id": 1035513,
+              "name": "相沢みなみ",
+              "ruby": "あいざわみなみ"
+            },
+            {
+              "id": 1035622,
+              "name": "西宮ゆめ",
+              "ruby": "にしみやゆめ"
+            },
+            {
+              "id": 1090552,
+              "name": "RARA",
+              "ruby": "らら"
+            },
+            {
+              "id": 1059342,
+              "name": "梓ヒカリ",
+              "ruby": "あずさひかり"
+            },
+            {
+              "id": 1086347,
+              "name": "杏ここ",
+              "ruby": "あんここ"
             },
             {
               "id": 1089578,
@@ -19675,33 +19696,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "826",
+                "price": "1180",
                 "list_price": "1180"
               },
               {
                 "type": "download",
-                "price": "546",
+                "price": "780",
                 "list_price": "780"
               },
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "546",
+                "price": "780",
                 "list_price": "780"
               },
               {
                 "type": "androiddl",
-                "price": "546",
+                "price": "780",
                 "list_price": "780"
               }
             ]
@@ -19927,14 +19948,7 @@
               "name": "春のパンツまつり"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-10-21 10:00:00",
-            "date_end": "2026-10-23 09:59:59",
-            "title": "こだわりのドラマ30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -21500,28 +21514,28 @@
           }
         },
         "prices": {
-          "price": "500~",
+          "price": "350~",
           "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "8k",
-                "price": "1780",
+                "price": "1246",
                 "list_price": "1780"
               },
               {
                 "type": "hd",
-                "price": "1280",
+                "price": "896",
                 "list_price": "1280"
               },
               {
                 "type": "download",
-                "price": "980",
+                "price": "686",
                 "list_price": "980"
               },
               {
                 "type": "rp",
-                "price": "500",
+                "price": "350",
                 "list_price": "500"
               }
             ]
@@ -21657,7 +21671,14 @@
               "name": "IP-VR"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-10-23 10:00:00",
+            "date_end": "2026-10-26 09:59:59",
+            "title": "こだわりのドラマ30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -31698,33 +31719,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "150~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "590",
+                "price": "1180",
                 "list_price": "1180"
               },
               {
                 "type": "download",
-                "price": "390",
+                "price": "780",
                 "list_price": "780"
               },
               {
                 "type": "stream",
-                "price": "150",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "390",
+                "price": "780",
                 "list_price": "780"
               },
               {
                 "type": "androiddl",
-                "price": "390",
+                "price": "780",
                 "list_price": "780"
               }
             ]
@@ -31842,14 +31863,7 @@
               "name": "アイデアポケットBEST"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-10-21 10:00:00",
-            "date_end": "2026-10-23 09:59:59",
-            "title": "働くお姉さん50％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -36105,8 +36119,8 @@
         "title": "【VR】アイポケVR Ultra BEST2 最高女優15人 厳選15タイトル ノーカット収録1364分 最強顔面！！最高SEX！！HQ高画質！！",
         "volume": "1366",
         "review": {
-          "count": 179,
-          "average": "4.51"
+          "count": 180,
+          "average": "4.52"
         },
         "URL": "https://video.dmm.co.jp/av/content/?id=ipvr00247",
         "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Dipvr00247&af_id=saaaaaaya-990&ch=api",
@@ -40876,7 +40890,14 @@
               "name": "アイデアポケットBEST"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-10-23 10:00:00",
+            "date_end": "2026-10-26 09:59:59",
+            "title": "働くお姉さん50％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -41823,33 +41844,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "150~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "490",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "download",
-                "price": "340",
+                "price": "680",
                 "list_price": "680"
               },
               {
                 "type": "stream",
-                "price": "150",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "340",
+                "price": "680",
                 "list_price": "680"
               },
               {
                 "type": "androiddl",
-                "price": "340",
+                "price": "680",
                 "list_price": "680"
               }
             ]
@@ -42101,14 +42122,7 @@
               "name": "ROOKIE"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-10-21 10:00:00",
-            "date_end": "2026-10-23 09:59:59",
-            "title": "働くお姉さん50％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -44682,23 +44696,23 @@
           }
         },
         "prices": {
-          "price": "150~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "490",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "download",
-                "price": "340",
+                "price": "680",
                 "list_price": "680"
               },
               {
                 "type": "rp",
-                "price": "150",
+                "price": "300",
                 "list_price": "300"
               }
             ]
@@ -44830,14 +44844,7 @@
               "name": "IP-VR"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-10-21 10:00:00",
-            "date_end": "2026-10-23 09:59:59",
-            "title": "働くお姉さん50％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -70230,33 +70237,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "150~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "490",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "download",
-                "price": "340",
+                "price": "680",
                 "list_price": "680"
               },
               {
                 "type": "stream",
-                "price": "150",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "340",
+                "price": "680",
                 "list_price": "680"
               },
               {
                 "type": "androiddl",
-                "price": "340",
+                "price": "680",
                 "list_price": "680"
               }
             ]
@@ -70330,14 +70337,7 @@
               "name": "ティッシュ"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-10-21 10:00:00",
-            "date_end": "2026-10-23 09:59:59",
-            "title": "働くお姉さん50％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -76461,11 +76461,6 @@
               "id": 1051888,
               "name": "松永りな",
               "ruby": "まつながりな"
-            },
-            {
-              "id": 1046566,
-              "name": "佐々木れい",
-              "ruby": "ささきれい"
             },
             {
               "id": 1038570,

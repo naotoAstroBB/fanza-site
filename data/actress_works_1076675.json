@@ -1697,10 +1697,6 @@
         "iteminfo": {
           "genre": [
             {
-              "id": 1001,
-              "name": "OL"
-            },
-            {
               "id": 4025,
               "name": "単体作品"
             },
@@ -1711,6 +1707,10 @@
             {
               "id": 1031,
               "name": "痴女"
+            },
+            {
+              "id": 1001,
+              "name": "OL"
             },
             {
               "id": 5074,
@@ -61090,33 +61090,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "150~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "590",
+                "price": "1180",
                 "list_price": "1180"
               },
               {
                 "type": "download",
-                "price": "390",
+                "price": "780",
                 "list_price": "780"
               },
               {
                 "type": "stream",
-                "price": "150",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "390",
+                "price": "780",
                 "list_price": "780"
               },
               {
                 "type": "androiddl",
-                "price": "390",
+                "price": "780",
                 "list_price": "780"
               }
             ]
@@ -61287,14 +61287,7 @@
               "name": "kawaii"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-10-21 10:00:00",
-            "date_end": "2026-10-23 09:59:59",
-            "title": "働くお姉さん50％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",

@@ -3362,29 +3362,34 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "2180~",
-          "list_price": "2180~",
+          "price": "500~",
+          "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "2680",
-                "list_price": "2680"
+                "price": "1680",
+                "list_price": "1680"
               },
               {
                 "type": "download",
-                "price": "2180",
-                "list_price": "2180"
+                "price": "1180",
+                "list_price": "1180"
+              },
+              {
+                "type": "stream",
+                "price": "500",
+                "list_price": "500"
               },
               {
                 "type": "iosdl",
-                "price": "2180",
-                "list_price": "2180"
+                "price": "1180",
+                "list_price": "1180"
               },
               {
                 "type": "androiddl",
-                "price": "2180",
-                "list_price": "2180"
+                "price": "1180",
+                "list_price": "1180"
               }
             ]
           }
@@ -15326,33 +15331,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "300~",
+          "price": "150~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "1180",
+                "price": "590",
                 "list_price": "1180"
               },
               {
                 "type": "download",
-                "price": "780",
+                "price": "390",
                 "list_price": "780"
               },
               {
                 "type": "stream",
-                "price": "300",
+                "price": "150",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "780",
+                "price": "390",
                 "list_price": "780"
               },
               {
                 "type": "androiddl",
-                "price": "780",
+                "price": "390",
                 "list_price": "780"
               }
             ]
@@ -15426,7 +15431,14 @@
               "name": "Madonna"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-10-28 10:00:00",
+            "date_end": "2026-10-30 09:59:59",
+            "title": "働くお姉さん50％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -16864,33 +16876,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "300~",
+          "price": "150~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "1180",
+                "price": "590",
                 "list_price": "1180"
               },
               {
                 "type": "download",
-                "price": "780",
+                "price": "390",
                 "list_price": "780"
               },
               {
                 "type": "stream",
-                "price": "300",
+                "price": "150",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "780",
+                "price": "390",
                 "list_price": "780"
               },
               {
                 "type": "androiddl",
-                "price": "780",
+                "price": "390",
                 "list_price": "780"
               }
             ]
@@ -16960,7 +16972,14 @@
               "name": "Madonna"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-10-28 10:00:00",
+            "date_end": "2026-10-30 09:59:59",
+            "title": "働くお姉さん50％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -21547,33 +21566,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "300~",
+          "price": "150~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "1180",
+                "price": "590",
                 "list_price": "1180"
               },
               {
                 "type": "download",
-                "price": "780",
+                "price": "390",
                 "list_price": "780"
               },
               {
                 "type": "stream",
-                "price": "300",
+                "price": "150",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "780",
+                "price": "390",
                 "list_price": "780"
               },
               {
                 "type": "androiddl",
-                "price": "780",
+                "price": "390",
                 "list_price": "780"
               }
             ]
@@ -22036,33 +22055,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "336~",
+          "price": "480~",
           "list_price": "480~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "1736",
+                "price": "2480",
                 "list_price": "2480"
               },
               {
                 "type": "download",
-                "price": "1036",
+                "price": "1480",
                 "list_price": "1480"
               },
               {
                 "type": "stream",
-                "price": "336",
+                "price": "480",
                 "list_price": "480"
               },
               {
                 "type": "iosdl",
-                "price": "1036",
+                "price": "1480",
                 "list_price": "1480"
               },
               {
                 "type": "androiddl",
-                "price": "1036",
+                "price": "1480",
                 "list_price": "1480"
               }
             ]
@@ -22111,14 +22130,7 @@
               "name": "----"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-10-21 00:10:00",
-            "date_end": "2026-10-27 23:59:59",
-            "title": "プラム他30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -22315,33 +22327,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "300~",
+          "price": "150~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "980",
+                "price": "490",
                 "list_price": "980"
               },
               {
                 "type": "download",
-                "price": "680",
+                "price": "340",
                 "list_price": "680"
               },
               {
                 "type": "stream",
-                "price": "300",
+                "price": "150",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "680",
+                "price": "340",
                 "list_price": "680"
               },
               {
                 "type": "androiddl",
-                "price": "680",
+                "price": "340",
                 "list_price": "680"
               }
             ]
@@ -22443,7 +22455,14 @@
               "name": "Madonna"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-10-28 10:00:00",
+            "date_end": "2026-10-30 09:59:59",
+            "title": "働くお姉さん50％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -23155,33 +23174,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "285~",
+          "price": "408~",
           "list_price": "408~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "1771",
+                "price": "2530",
                 "list_price": "2530"
               },
               {
                 "type": "download",
-                "price": "698",
+                "price": "998",
                 "list_price": "998"
               },
               {
                 "type": "stream",
-                "price": "285",
+                "price": "408",
                 "list_price": "408"
               },
               {
                 "type": "iosdl",
-                "price": "698",
+                "price": "998",
                 "list_price": "998"
               },
               {
                 "type": "androiddl",
-                "price": "698",
+                "price": "998",
                 "list_price": "998"
               }
             ]
@@ -23228,14 +23247,7 @@
               "name": "BLUE RIBON"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-10-21 00:10:00",
-            "date_end": "2026-10-27 23:59:59",
-            "title": "プラム他30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -24977,38 +24989,38 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "300~",
+          "price": "210~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "4k",
-                "price": "1680",
+                "price": "1175",
                 "list_price": "1680"
               },
               {
                 "type": "hd",
-                "price": "980",
+                "price": "686",
                 "list_price": "980"
               },
               {
                 "type": "download",
-                "price": "680",
+                "price": "476",
                 "list_price": "680"
               },
               {
                 "type": "stream",
-                "price": "300",
+                "price": "210",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "680",
+                "price": "476",
                 "list_price": "680"
               },
               {
                 "type": "androiddl",
-                "price": "680",
+                "price": "476",
                 "list_price": "680"
               }
             ]
@@ -25090,7 +25102,14 @@
               "name": "Madonna"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-10-28 10:00:00",
+            "date_end": "2026-10-30 09:59:59",
+            "title": "こだわりのドラマ30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",

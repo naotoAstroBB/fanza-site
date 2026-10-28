@@ -15094,28 +15094,28 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "300~",
+          "price": "210~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "300",
+                "price": "210",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "680",
+                "price": "476",
                 "list_price": "680"
               },
               {
                 "type": "iosdl",
-                "price": "680",
+                "price": "476",
                 "list_price": "680"
               },
               {
                 "type": "androiddl",
-                "price": "680",
+                "price": "476",
                 "list_price": "680"
               }
             ]
@@ -15294,7 +15294,14 @@
               "name": "S1 NO.1 STYLE"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-10-28 00:00:00",
+            "date_end": "2026-10-28 23:59:59",
+            "title": "日替わりセール♪"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -18492,34 +18499,34 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "340~",
-          "list_price": "340~",
+          "price": "350~",
+          "list_price": "350~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "340",
-                "list_price": "340"
+                "price": "350",
+                "list_price": "350"
               },
               {
                 "type": "download",
-                "price": "660",
-                "list_price": "660"
+                "price": "810",
+                "list_price": "810"
               },
               {
                 "type": "hd",
-                "price": "1108",
-                "list_price": "1108"
+                "price": "1320",
+                "list_price": "1320"
               },
               {
                 "type": "iosdl",
-                "price": "660",
-                "list_price": "660"
+                "price": "810",
+                "list_price": "810"
               },
               {
                 "type": "androiddl",
-                "price": "660",
-                "list_price": "660"
+                "price": "810",
+                "list_price": "810"
               }
             ]
           }

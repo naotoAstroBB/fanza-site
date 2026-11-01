@@ -402,10 +402,6 @@
         "iteminfo": {
           "genre": [
             {
-              "id": 6012,
-              "name": "4時間以上作品"
-            },
-            {
               "id": 6533,
               "name": "ハイビジョン"
             },
@@ -428,6 +424,10 @@
             {
               "id": 6003,
               "name": "ベスト・総集編"
+            },
+            {
+              "id": 6012,
+              "name": "4時間以上作品"
             }
           ],
           "maker": [
@@ -6652,8 +6652,8 @@
           }
         },
         "prices": {
-          "price": "980~",
-          "list_price": "980~",
+          "price": "500~",
+          "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
@@ -6670,6 +6670,11 @@
                 "type": "download",
                 "price": "980",
                 "list_price": "980"
+              },
+              {
+                "type": "rp",
+                "price": "500",
+                "list_price": "500"
               }
             ]
           }
@@ -27118,11 +27123,6 @@
               "ruby": "しいなゆな"
             },
             {
-              "id": 1025503,
-              "name": "篠田あゆみ",
-              "ruby": "しのだあゆみ"
-            },
-            {
               "id": 23130,
               "name": "川上ゆう（森野雫）",
               "ruby": "かわかみゆう（もりのしずく）"
@@ -27133,14 +27133,14 @@
               "ruby": "しょうだちさと"
             },
             {
-              "id": 1034091,
-              "name": "とみの伊織",
-              "ruby": "とみのいおり"
+              "id": 1039204,
+              "name": "葉月もえ",
+              "ruby": "はづきもえ"
             },
             {
-              "id": 1042976,
-              "name": "山井すず",
-              "ruby": "やまいすず"
+              "id": 2855,
+              "name": "牧原れい子",
+              "ruby": "まきはられいこ"
             },
             {
               "id": 1017139,
@@ -27183,19 +27183,19 @@
               "ruby": "くるるぎあおい"
             },
             {
+              "id": 1050439,
+              "name": "月乃ルナ",
+              "ruby": "つきのるな"
+            },
+            {
+              "id": 1042976,
+              "name": "山井すず",
+              "ruby": "やまいすず"
+            },
+            {
               "id": 1017395,
               "name": "神波多一花",
               "ruby": "かみはたいちか"
-            },
-            {
-              "id": 1052739,
-              "name": "望月あやか",
-              "ruby": "もちづきあやか"
-            },
-            {
-              "id": 1039204,
-              "name": "葉月もえ",
-              "ruby": "はづきもえ"
             },
             {
               "id": 1039192,
@@ -27233,14 +27233,14 @@
               "ruby": "るかわほなみ"
             },
             {
-              "id": 2855,
-              "name": "牧原れい子",
-              "ruby": "まきはられいこ"
+              "id": 1034091,
+              "name": "とみの伊織",
+              "ruby": "とみのいおり"
             },
             {
-              "id": 1050439,
-              "name": "月乃ルナ",
-              "ruby": "つきのるな"
+              "id": 1052739,
+              "name": "望月あやか",
+              "ruby": "もちづきあやか"
             },
             {
               "id": 1069257,
@@ -58335,33 +58335,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "826",
+                "price": "1180",
                 "list_price": "1180"
               },
               {
                 "type": "download",
-                "price": "546",
+                "price": "780",
                 "list_price": "780"
               },
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "546",
+                "price": "780",
                 "list_price": "780"
               },
               {
                 "type": "androiddl",
-                "price": "546",
+                "price": "780",
                 "list_price": "780"
               }
             ]
@@ -58450,14 +58450,7 @@
               "name": "本中"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-10-28 10:00:00",
-            "date_end": "2026-10-30 09:59:59",
-            "title": "こだわりのドラマ30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -75248,33 +75241,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "300~",
+          "price": "150~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "980",
+                "price": "490",
                 "list_price": "980"
               },
               {
                 "type": "download",
-                "price": "680",
+                "price": "340",
                 "list_price": "680"
               },
               {
                 "type": "stream",
-                "price": "300",
+                "price": "150",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "680",
+                "price": "340",
                 "list_price": "680"
               },
               {
                 "type": "androiddl",
-                "price": "680",
+                "price": "340",
                 "list_price": "680"
               }
             ]
@@ -75471,7 +75464,14 @@
               "name": "kawaii"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-10-30 10:00:00",
+            "date_end": "2026-11-02 09:59:59",
+            "title": "働くお姉さん50％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -91095,8 +91095,8 @@
         "title": "伊東める 濡れてテカってピッタリ密着 神スク水 可愛い女子のスクール水着姿をじっとりと堪能！着替え盗撮から始まり貧乳から巨乳にパイパン、ハミ毛、ジョリワキ等のフェチ接写やローションソーププレイやスク水ぶっかけ等を完全着衣で楽しむAV",
         "volume": "93",
         "review": {
-          "count": 7,
-          "average": "4.29"
+          "count": 8,
+          "average": "4.38"
         },
         "URL": "https://video.dmm.co.jp/av/content/?id=1oks00127",
         "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3D1oks00127&af_id=saaaaaaya-990&ch=api",
@@ -94824,28 +94824,28 @@
         "iteminfo": {
           "genre": [
             {
-              "id": 6012,
-              "name": "4時間以上作品"
-            },
-            {
-              "id": 6548,
-              "name": "独占配信"
-            },
-            {
-              "id": 5002,
-              "name": "フェラ"
-            },
-            {
-              "id": 1027,
-              "name": "美少女"
+              "id": 6003,
+              "name": "ベスト・総集編"
             },
             {
               "id": 5022,
               "name": "3P・4P"
             },
             {
-              "id": 6003,
-              "name": "ベスト・総集編"
+              "id": 1027,
+              "name": "美少女"
+            },
+            {
+              "id": 5002,
+              "name": "フェラ"
+            },
+            {
+              "id": 6548,
+              "name": "独占配信"
+            },
+            {
+              "id": 6012,
+              "name": "4時間以上作品"
             }
           ],
           "series": [

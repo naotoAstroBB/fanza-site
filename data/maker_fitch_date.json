@@ -952,6 +952,10 @@
         "iteminfo": {
           "genre": [
             {
+              "id": 6012,
+              "name": "4時間以上作品"
+            },
+            {
               "id": 6533,
               "name": "ハイビジョン"
             },
@@ -982,10 +986,6 @@
             {
               "id": 6608,
               "name": "女優ベスト・総集編"
-            },
-            {
-              "id": 6012,
-              "name": "4時間以上作品"
             }
           ],
           "maker": [
@@ -4925,34 +4925,54 @@
               "ruby": "こむかいみなこ"
             },
             {
-              "id": 1071049,
-              "name": "冨安れおな",
-              "ruby": "とみやすれおな"
+              "id": 1036352,
+              "name": "新村あかり",
+              "ruby": "にいむらあかり"
             },
             {
-              "id": 1065404,
-              "name": "蘭華",
-              "ruby": "らんか"
+              "id": 1099621,
+              "name": "藤森ひなみ",
+              "ruby": "ふじもりひなみ"
             },
             {
-              "id": 1051794,
-              "name": "根尾あかり",
-              "ruby": "ねおあかり"
+              "id": 1068671,
+              "name": "北野未奈",
+              "ruby": "きたのみな"
             },
             {
-              "id": 1059341,
-              "name": "美波沙耶",
-              "ruby": "みなみさや"
+              "id": 1061659,
+              "name": "姫咲はな",
+              "ruby": "ひめさきはな"
             },
             {
-              "id": 1049462,
-              "name": "倉吉美帆",
-              "ruby": "くらよしみほ"
+              "id": 26225,
+              "name": "波多野結衣",
+              "ruby": "はたのゆい"
             },
             {
-              "id": 1045456,
-              "name": "須原のぞみ",
-              "ruby": "すはらのぞみ"
+              "id": 1020973,
+              "name": "推川ゆうり",
+              "ruby": "おしかわゆうり"
+            },
+            {
+              "id": 1023847,
+              "name": "初川みなみ",
+              "ruby": "はつかわみなみ"
+            },
+            {
+              "id": 1078559,
+              "name": "似鳥（似鳥日菜）",
+              "ruby": "にとり（にとりひな）"
+            },
+            {
+              "id": 1084919,
+              "name": "南條彩",
+              "ruby": "なんじょうさやか"
+            },
+            {
+              "id": 1041321,
+              "name": "水川かえで",
+              "ruby": "みずかわかえで"
             },
             {
               "id": 1045644,
@@ -4960,9 +4980,34 @@
               "ruby": "もちだゆかり"
             },
             {
-              "id": 1041321,
-              "name": "水川かえで",
-              "ruby": "みずかわかえで"
+              "id": 1045456,
+              "name": "須原のぞみ",
+              "ruby": "すはらのぞみ"
+            },
+            {
+              "id": 1049462,
+              "name": "倉吉美帆",
+              "ruby": "くらよしみほ"
+            },
+            {
+              "id": 1059341,
+              "name": "美波沙耶",
+              "ruby": "みなみさや"
+            },
+            {
+              "id": 1051794,
+              "name": "根尾あかり",
+              "ruby": "ねおあかり"
+            },
+            {
+              "id": 1065404,
+              "name": "蘭華",
+              "ruby": "らんか"
+            },
+            {
+              "id": 1071049,
+              "name": "冨安れおな",
+              "ruby": "とみやすれおな"
             },
             {
               "id": 1012910,
@@ -4973,51 +5018,6 @@
               "id": 1082669,
               "name": "菊乃らん",
               "ruby": "きくのらん"
-            },
-            {
-              "id": 1084919,
-              "name": "南條彩",
-              "ruby": "なんじょうさやか"
-            },
-            {
-              "id": 1023847,
-              "name": "初川みなみ",
-              "ruby": "はつかわみなみ"
-            },
-            {
-              "id": 1020973,
-              "name": "推川ゆうり",
-              "ruby": "おしかわゆうり"
-            },
-            {
-              "id": 26225,
-              "name": "波多野結衣",
-              "ruby": "はたのゆい"
-            },
-            {
-              "id": 1061659,
-              "name": "姫咲はな",
-              "ruby": "ひめさきはな"
-            },
-            {
-              "id": 1068671,
-              "name": "北野未奈",
-              "ruby": "きたのみな"
-            },
-            {
-              "id": 1099621,
-              "name": "藤森ひなみ",
-              "ruby": "ふじもりひなみ"
-            },
-            {
-              "id": 1036352,
-              "name": "新村あかり",
-              "ruby": "にいむらあかり"
-            },
-            {
-              "id": 1078559,
-              "name": "似鳥（似鳥日菜）",
-              "ruby": "にとり（にとりひな）"
             },
             {
               "id": 1032761,
@@ -9603,28 +9603,28 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "1526~",
+          "price": "2180~",
           "list_price": "2180~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "1876",
+                "price": "2680",
                 "list_price": "2680"
               },
               {
                 "type": "download",
-                "price": "1526",
+                "price": "2180",
                 "list_price": "2180"
               },
               {
                 "type": "iosdl",
-                "price": "1526",
+                "price": "2180",
                 "list_price": "2180"
               },
               {
                 "type": "androiddl",
-                "price": "1526",
+                "price": "2180",
                 "list_price": "2180"
               }
             ]
@@ -9698,14 +9698,7 @@
               "name": "Fitch"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-02 10:00:00",
-            "date_end": "2026-11-04 09:59:59",
-            "title": "こだわりのドラマ30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -10102,23 +10095,23 @@
           }
         },
         "prices": {
-          "price": "1480~",
+          "price": "1036~",
           "list_price": "1480~",
           "deliveries": {
             "delivery": [
               {
                 "type": "8k",
-                "price": "2280",
+                "price": "1596",
                 "list_price": "2280"
               },
               {
                 "type": "hd",
-                "price": "1780",
+                "price": "1246",
                 "list_price": "1780"
               },
               {
                 "type": "download",
-                "price": "1480",
+                "price": "1036",
                 "list_price": "1480"
               }
             ]
@@ -10194,7 +10187,14 @@
               "name": "Fitch肉感VR"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-11-04 10:00:00",
+            "date_end": "2026-11-06 09:59:59",
+            "title": "こだわりのドラマ30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -11819,36 +11819,36 @@
         "iteminfo": {
           "genre": [
             {
-              "id": 6533,
-              "name": "ハイビジョン"
-            },
-            {
-              "id": 6548,
-              "name": "独占配信"
-            },
-            {
-              "id": 5063,
-              "name": "主観"
-            },
-            {
-              "id": 5008,
-              "name": "オナニー"
-            },
-            {
-              "id": 5074,
-              "name": "M男"
-            },
-            {
-              "id": 1031,
-              "name": "痴女"
+              "id": 4025,
+              "name": "単体作品"
             },
             {
               "id": 5025,
               "name": "淫語"
             },
             {
-              "id": 4025,
-              "name": "単体作品"
+              "id": 1031,
+              "name": "痴女"
+            },
+            {
+              "id": 5074,
+              "name": "M男"
+            },
+            {
+              "id": 5008,
+              "name": "オナニー"
+            },
+            {
+              "id": 5063,
+              "name": "主観"
+            },
+            {
+              "id": 6548,
+              "name": "独占配信"
+            },
+            {
+              "id": 6533,
+              "name": "ハイビジョン"
             }
           ],
           "series": [
@@ -13396,29 +13396,34 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "2180~",
-          "list_price": "2180~",
+          "price": "500~",
+          "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "2680",
-                "list_price": "2680"
+                "price": "1680",
+                "list_price": "1680"
               },
               {
                 "type": "download",
-                "price": "2180",
-                "list_price": "2180"
+                "price": "1180",
+                "list_price": "1180"
+              },
+              {
+                "type": "stream",
+                "price": "500",
+                "list_price": "500"
               },
               {
                 "type": "iosdl",
-                "price": "2180",
-                "list_price": "2180"
+                "price": "1180",
+                "list_price": "1180"
               },
               {
                 "type": "androiddl",
-                "price": "2180",
-                "list_price": "2180"
+                "price": "1180",
+                "list_price": "1180"
               }
             ]
           }
@@ -13645,29 +13650,34 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "2680~",
-          "list_price": "2680~",
+          "price": "500~",
+          "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "3180",
-                "list_price": "3180"
+                "price": "1980",
+                "list_price": "1980"
               },
               {
                 "type": "download",
-                "price": "2680",
-                "list_price": "2680"
+                "price": "1480",
+                "list_price": "1480"
+              },
+              {
+                "type": "stream",
+                "price": "500",
+                "list_price": "500"
               },
               {
                 "type": "iosdl",
-                "price": "2680",
-                "list_price": "2680"
+                "price": "1480",
+                "list_price": "1480"
               },
               {
                 "type": "androiddl",
-                "price": "2680",
-                "list_price": "2680"
+                "price": "1480",
+                "list_price": "1480"
               }
             ]
           }
@@ -13816,29 +13826,34 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "2180~",
-          "list_price": "2180~",
+          "price": "500~",
+          "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "2680",
-                "list_price": "2680"
+                "price": "1680",
+                "list_price": "1680"
               },
               {
                 "type": "download",
-                "price": "2180",
-                "list_price": "2180"
+                "price": "1180",
+                "list_price": "1180"
+              },
+              {
+                "type": "stream",
+                "price": "500",
+                "list_price": "500"
               },
               {
                 "type": "iosdl",
-                "price": "2180",
-                "list_price": "2180"
+                "price": "1180",
+                "list_price": "1180"
               },
               {
                 "type": "androiddl",
-                "price": "2180",
-                "list_price": "2180"
+                "price": "1180",
+                "list_price": "1180"
               }
             ]
           }
@@ -13970,29 +13985,34 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "2180~",
-          "list_price": "2180~",
+          "price": "500~",
+          "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "2680",
-                "list_price": "2680"
+                "price": "1680",
+                "list_price": "1680"
               },
               {
                 "type": "download",
-                "price": "2180",
-                "list_price": "2180"
+                "price": "1180",
+                "list_price": "1180"
+              },
+              {
+                "type": "stream",
+                "price": "500",
+                "list_price": "500"
               },
               {
                 "type": "iosdl",
-                "price": "2180",
-                "list_price": "2180"
+                "price": "1180",
+                "list_price": "1180"
               },
               {
                 "type": "androiddl",
-                "price": "2180",
-                "list_price": "2180"
+                "price": "1180",
+                "list_price": "1180"
               }
             ]
           }
@@ -14147,29 +14167,34 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "2180~",
-          "list_price": "2180~",
+          "price": "500~",
+          "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "2680",
-                "list_price": "2680"
+                "price": "1680",
+                "list_price": "1680"
               },
               {
                 "type": "download",
-                "price": "2180",
-                "list_price": "2180"
+                "price": "1180",
+                "list_price": "1180"
+              },
+              {
+                "type": "stream",
+                "price": "500",
+                "list_price": "500"
               },
               {
                 "type": "iosdl",
-                "price": "2180",
-                "list_price": "2180"
+                "price": "1180",
+                "list_price": "1180"
               },
               {
                 "type": "androiddl",
-                "price": "2180",
-                "list_price": "2180"
+                "price": "1180",
+                "list_price": "1180"
               }
             ]
           }
@@ -14318,29 +14343,34 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "2180~",
-          "list_price": "2180~",
+          "price": "500~",
+          "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "2680",
-                "list_price": "2680"
+                "price": "1680",
+                "list_price": "1680"
               },
               {
                 "type": "download",
-                "price": "2180",
-                "list_price": "2180"
+                "price": "1180",
+                "list_price": "1180"
+              },
+              {
+                "type": "stream",
+                "price": "500",
+                "list_price": "500"
               },
               {
                 "type": "iosdl",
-                "price": "2180",
-                "list_price": "2180"
+                "price": "1180",
+                "list_price": "1180"
               },
               {
                 "type": "androiddl",
-                "price": "2180",
-                "list_price": "2180"
+                "price": "1180",
+                "list_price": "1180"
               }
             ]
           }
@@ -14495,29 +14525,34 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "2980~",
-          "list_price": "2980~",
+          "price": "500~",
+          "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "3480",
-                "list_price": "3480"
+                "price": "1980",
+                "list_price": "1980"
               },
               {
                 "type": "download",
-                "price": "2980",
-                "list_price": "2980"
+                "price": "1480",
+                "list_price": "1480"
+              },
+              {
+                "type": "stream",
+                "price": "500",
+                "list_price": "500"
               },
               {
                 "type": "iosdl",
-                "price": "2980",
-                "list_price": "2980"
+                "price": "1480",
+                "list_price": "1480"
               },
               {
                 "type": "androiddl",
-                "price": "2980",
-                "list_price": "2980"
+                "price": "1480",
+                "list_price": "1480"
               }
             ]
           }
@@ -18805,33 +18840,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "350~",
+          "price": "500~",
           "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "1175",
+                "price": "1680",
                 "list_price": "1680"
               },
               {
                 "type": "download",
-                "price": "826",
+                "price": "1180",
                 "list_price": "1180"
               },
               {
                 "type": "stream",
-                "price": "350",
+                "price": "500",
                 "list_price": "500"
               },
               {
                 "type": "iosdl",
-                "price": "826",
+                "price": "1180",
                 "list_price": "1180"
               },
               {
                 "type": "androiddl",
-                "price": "826",
+                "price": "1180",
                 "list_price": "1180"
               }
             ]
@@ -18905,14 +18940,7 @@
               "name": "Fitch"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-02 10:00:00",
-            "date_end": "2026-11-04 09:59:59",
-            "title": "こだわりのドラマ30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -20985,7 +21013,7 @@
         "title": "麻縄解禁！美しい天然爆乳妻を縛り上げる油緊縛 マッサージ師の執拗なSM教育 桃園怜奈",
         "volume": "173",
         "review": {
-          "count": 7,
+          "count": 8,
           "average": "5.00"
         },
         "URL": "https://video.dmm.co.jp/av/content/?id=fpre00219",
@@ -22079,36 +22107,36 @@
         "iteminfo": {
           "genre": [
             {
-              "id": 2001,
-              "name": "巨乳"
-            },
-            {
-              "id": 1027,
-              "name": "美少女"
-            },
-            {
-              "id": 5002,
-              "name": "フェラ"
-            },
-            {
-              "id": 5001,
-              "name": "中出し"
-            },
-            {
-              "id": 4025,
-              "name": "単体作品"
-            },
-            {
-              "id": 4138,
-              "name": "原作コラボ"
+              "id": 6533,
+              "name": "ハイビジョン"
             },
             {
               "id": 6548,
               "name": "独占配信"
             },
             {
-              "id": 6533,
-              "name": "ハイビジョン"
+              "id": 4138,
+              "name": "原作コラボ"
+            },
+            {
+              "id": 4025,
+              "name": "単体作品"
+            },
+            {
+              "id": 5001,
+              "name": "中出し"
+            },
+            {
+              "id": 5002,
+              "name": "フェラ"
+            },
+            {
+              "id": 1027,
+              "name": "美少女"
+            },
+            {
+              "id": 2001,
+              "name": "巨乳"
             }
           ],
           "maker": [
@@ -22426,36 +22454,36 @@
         "iteminfo": {
           "genre": [
             {
-              "id": 6533,
-              "name": "ハイビジョン"
-            },
-            {
-              "id": 6548,
-              "name": "独占配信"
-            },
-            {
-              "id": 5016,
-              "name": "潮吹き"
-            },
-            {
-              "id": 2001,
-              "name": "巨乳"
-            },
-            {
-              "id": 4059,
-              "name": "キス・接吻"
-            },
-            {
-              "id": 4025,
-              "name": "単体作品"
+              "id": 6002,
+              "name": "ハメ撮り"
             },
             {
               "id": 5001,
               "name": "中出し"
             },
             {
-              "id": 6002,
-              "name": "ハメ撮り"
+              "id": 4025,
+              "name": "単体作品"
+            },
+            {
+              "id": 4059,
+              "name": "キス・接吻"
+            },
+            {
+              "id": 2001,
+              "name": "巨乳"
+            },
+            {
+              "id": 5016,
+              "name": "潮吹き"
+            },
+            {
+              "id": 6548,
+              "name": "独占配信"
+            },
+            {
+              "id": 6533,
+              "name": "ハイビジョン"
             }
           ],
           "series": [
@@ -22565,33 +22593,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "500~",
+          "price": "350~",
           "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "1680",
+                "price": "1175",
                 "list_price": "1680"
               },
               {
                 "type": "download",
-                "price": "1180",
+                "price": "826",
                 "list_price": "1180"
               },
               {
                 "type": "stream",
-                "price": "500",
+                "price": "350",
                 "list_price": "500"
               },
               {
                 "type": "iosdl",
-                "price": "1180",
+                "price": "826",
                 "list_price": "1180"
               },
               {
                 "type": "androiddl",
-                "price": "1180",
+                "price": "826",
                 "list_price": "1180"
               }
             ]
@@ -22665,7 +22693,14 @@
               "name": "プレシャス"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-11-04 10:00:00",
+            "date_end": "2026-11-06 09:59:59",
+            "title": "こだわりのドラマ30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -24458,8 +24493,8 @@
         "title": "【VR】【Fitch高画質8K肉感VR】 VR解禁！甘えん坊でキスが大好きな巨乳発情メイド 由衣陽菜",
         "volume": "107",
         "review": {
-          "count": 19,
-          "average": "4.47"
+          "count": 20,
+          "average": "4.50"
         },
         "URL": "https://video.dmm.co.jp/av/content/?id=fcvr00061",
         "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Dfcvr00061&af_id=saaaaaaya-990&ch=api",
@@ -40446,33 +40481,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "350~",
+          "price": "500~",
           "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "1175",
+                "price": "1680",
                 "list_price": "1680"
               },
               {
                 "type": "download",
-                "price": "826",
+                "price": "1180",
                 "list_price": "1180"
               },
               {
                 "type": "stream",
-                "price": "350",
+                "price": "500",
                 "list_price": "500"
               },
               {
                 "type": "iosdl",
-                "price": "826",
+                "price": "1180",
                 "list_price": "1180"
               },
               {
                 "type": "androiddl",
-                "price": "826",
+                "price": "1180",
                 "list_price": "1180"
               }
             ]
@@ -40564,14 +40599,7 @@
               "name": "Fitch"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-02 10:00:00",
-            "date_end": "2026-11-04 09:59:59",
-            "title": "こだわりのドラマ30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -41499,8 +41527,8 @@
         "title": "半年間の地方出張から帰ってみると…婚約者がだらしないアへ顔で体液を漏らしながら僕の会社の同僚達とのキメセク乱交で何度も絶頂していました… 桃園怜奈",
         "volume": "155",
         "review": {
-          "count": 5,
-          "average": "4.40"
+          "count": 6,
+          "average": "4.50"
         },
         "URL": "https://video.dmm.co.jp/av/content/?id=fpre00185",
         "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Dfpre00185&af_id=saaaaaaya-990&ch=api",
@@ -42616,36 +42644,36 @@
         "iteminfo": {
           "genre": [
             {
-              "id": 6937,
-              "name": "ヘルス・ソープ"
-            },
-            {
-              "id": 4025,
-              "name": "単体作品"
-            },
-            {
-              "id": 6948,
-              "name": "男の潮吹き"
-            },
-            {
-              "id": 5001,
-              "name": "中出し"
-            },
-            {
-              "id": 1034,
-              "name": "ギャル"
-            },
-            {
-              "id": 1031,
-              "name": "痴女"
+              "id": 6533,
+              "name": "ハイビジョン"
             },
             {
               "id": 6548,
               "name": "独占配信"
             },
             {
-              "id": 6533,
-              "name": "ハイビジョン"
+              "id": 1031,
+              "name": "痴女"
+            },
+            {
+              "id": 1034,
+              "name": "ギャル"
+            },
+            {
+              "id": 5001,
+              "name": "中出し"
+            },
+            {
+              "id": 6948,
+              "name": "男の潮吹き"
+            },
+            {
+              "id": 4025,
+              "name": "単体作品"
+            },
+            {
+              "id": 6937,
+              "name": "ヘルス・ソープ"
             }
           ],
           "series": [
@@ -43960,33 +43988,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "300~",
+          "price": "210~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "1180",
+                "price": "826",
                 "list_price": "1180"
               },
               {
                 "type": "download",
-                "price": "780",
+                "price": "546",
                 "list_price": "780"
               },
               {
                 "type": "stream",
-                "price": "300",
+                "price": "210",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "780",
+                "price": "546",
                 "list_price": "780"
               },
               {
                 "type": "androiddl",
-                "price": "780",
+                "price": "546",
                 "list_price": "780"
               }
             ]
@@ -44056,7 +44084,14 @@
               "name": "プレシャス"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-11-04 10:00:00",
+            "date_end": "2026-11-06 09:59:59",
+            "title": "こだわりのドラマ30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -49395,33 +49430,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "300~",
+          "price": "210~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "1180",
+                "price": "826",
                 "list_price": "1180"
               },
               {
                 "type": "download",
-                "price": "780",
+                "price": "546",
                 "list_price": "780"
               },
               {
                 "type": "stream",
-                "price": "300",
+                "price": "210",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "780",
+                "price": "546",
                 "list_price": "780"
               },
               {
                 "type": "androiddl",
-                "price": "780",
+                "price": "546",
                 "list_price": "780"
               }
             ]
@@ -49500,7 +49535,14 @@
               "name": "春のパンツまつり"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-11-04 10:00:00",
+            "date_end": "2026-11-06 09:59:59",
+            "title": "こだわりのドラマ30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -52145,33 +52187,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "300~",
+          "price": "210~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "1480",
+                "price": "1036",
                 "list_price": "1480"
               },
               {
                 "type": "download",
-                "price": "1180",
+                "price": "826",
                 "list_price": "1180"
               },
               {
                 "type": "stream",
-                "price": "300",
+                "price": "210",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "1180",
+                "price": "826",
                 "list_price": "1180"
               },
               {
                 "type": "androiddl",
-                "price": "1180",
+                "price": "826",
                 "list_price": "1180"
               }
             ]
@@ -52239,7 +52281,14 @@
               "name": "肉漫"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-11-04 10:00:00",
+            "date_end": "2026-11-06 09:59:59",
+            "title": "こだわりのドラマ30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -57114,32 +57163,32 @@
         "iteminfo": {
           "genre": [
             {
-              "id": 6533,
-              "name": "ハイビジョン"
-            },
-            {
-              "id": 6548,
-              "name": "独占配信"
-            },
-            {
-              "id": 4010,
-              "name": "その他フェチ"
-            },
-            {
-              "id": 5001,
-              "name": "中出し"
-            },
-            {
-              "id": 4011,
-              "name": "尻フェチ"
+              "id": 6003,
+              "name": "ベスト・総集編"
             },
             {
               "id": 2024,
               "name": "巨尻"
             },
             {
-              "id": 6003,
-              "name": "ベスト・総集編"
+              "id": 4011,
+              "name": "尻フェチ"
+            },
+            {
+              "id": 5001,
+              "name": "中出し"
+            },
+            {
+              "id": 4010,
+              "name": "その他フェチ"
+            },
+            {
+              "id": 6548,
+              "name": "独占配信"
+            },
+            {
+              "id": 6533,
+              "name": "ハイビジョン"
             }
           ],
           "maker": [
@@ -61022,33 +61071,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "1036",
+                "price": "1480",
                 "list_price": "1480"
               },
               {
                 "type": "download",
-                "price": "826",
+                "price": "1180",
                 "list_price": "1180"
               },
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "826",
+                "price": "1180",
                 "list_price": "1180"
               },
               {
                 "type": "androiddl",
-                "price": "826",
+                "price": "1180",
                 "list_price": "1180"
               }
             ]
@@ -61122,14 +61171,7 @@
               "name": "肉漫"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-02 10:00:00",
-            "date_end": "2026-11-04 09:59:59",
-            "title": "こだわりのドラマ30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -75450,36 +75492,36 @@
         "iteminfo": {
           "genre": [
             {
-              "id": 6533,
-              "name": "ハイビジョン"
-            },
-            {
-              "id": 6548,
-              "name": "独占配信"
-            },
-            {
-              "id": 2001,
-              "name": "巨乳"
-            },
-            {
-              "id": 5001,
-              "name": "中出し"
-            },
-            {
-              "id": 6955,
-              "name": "セレブ"
-            },
-            {
-              "id": 1031,
-              "name": "痴女"
+              "id": 5004,
+              "name": "手コキ"
             },
             {
               "id": 4025,
               "name": "単体作品"
             },
             {
-              "id": 5004,
-              "name": "手コキ"
+              "id": 1031,
+              "name": "痴女"
+            },
+            {
+              "id": 6955,
+              "name": "セレブ"
+            },
+            {
+              "id": 5001,
+              "name": "中出し"
+            },
+            {
+              "id": 2001,
+              "name": "巨乳"
+            },
+            {
+              "id": 6548,
+              "name": "独占配信"
+            },
+            {
+              "id": 6533,
+              "name": "ハイビジョン"
             }
           ],
           "series": [
@@ -79232,33 +79274,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "300~",
+          "price": "150~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "1180",
+                "price": "590",
                 "list_price": "1180"
               },
               {
                 "type": "download",
-                "price": "780",
+                "price": "390",
                 "list_price": "780"
               },
               {
                 "type": "stream",
-                "price": "300",
+                "price": "150",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "780",
+                "price": "390",
                 "list_price": "780"
               },
               {
                 "type": "androiddl",
-                "price": "780",
+                "price": "390",
                 "list_price": "780"
               }
             ]
@@ -79332,7 +79374,14 @@
               "name": "プレシャス"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-11-04 10:00:00",
+            "date_end": "2026-11-06 09:59:59",
+            "title": "働くお姉さん50％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -80220,33 +80269,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "150~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "590",
+                "price": "1180",
                 "list_price": "1180"
               },
               {
                 "type": "download",
-                "price": "390",
+                "price": "780",
                 "list_price": "780"
               },
               {
                 "type": "stream",
-                "price": "150",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "390",
+                "price": "780",
                 "list_price": "780"
               },
               {
                 "type": "androiddl",
-                "price": "390",
+                "price": "780",
                 "list_price": "780"
               }
             ]
@@ -80321,14 +80370,7 @@
               "name": "Fitch"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-02 10:00:00",
-            "date_end": "2026-11-04 09:59:59",
-            "title": "働くお姉さん50％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -80408,33 +80450,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "300~",
+          "price": "210~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "1180",
+                "price": "826",
                 "list_price": "1180"
               },
               {
                 "type": "download",
-                "price": "780",
+                "price": "546",
                 "list_price": "780"
               },
               {
                 "type": "stream",
-                "price": "300",
+                "price": "210",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "780",
+                "price": "546",
                 "list_price": "780"
               },
               {
                 "type": "androiddl",
-                "price": "780",
+                "price": "546",
                 "list_price": "780"
               }
             ]
@@ -80508,7 +80550,14 @@
               "name": "プレシャス"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-11-04 10:00:00",
+            "date_end": "2026-11-06 09:59:59",
+            "title": "こだわりのドラマ30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -81280,36 +81329,36 @@
         "iteminfo": {
           "genre": [
             {
-              "id": 6012,
-              "name": "4時間以上作品"
-            },
-            {
-              "id": 6533,
-              "name": "ハイビジョン"
-            },
-            {
-              "id": 6548,
-              "name": "独占配信"
-            },
-            {
-              "id": 5002,
-              "name": "フェラ"
-            },
-            {
-              "id": 2001,
-              "name": "巨乳"
-            },
-            {
-              "id": 1031,
-              "name": "痴女"
+              "id": 5001,
+              "name": "中出し"
             },
             {
               "id": 6003,
               "name": "ベスト・総集編"
             },
             {
-              "id": 5001,
-              "name": "中出し"
+              "id": 1031,
+              "name": "痴女"
+            },
+            {
+              "id": 2001,
+              "name": "巨乳"
+            },
+            {
+              "id": 5002,
+              "name": "フェラ"
+            },
+            {
+              "id": 6548,
+              "name": "独占配信"
+            },
+            {
+              "id": 6533,
+              "name": "ハイビジョン"
+            },
+            {
+              "id": 6012,
+              "name": "4時間以上作品"
             }
           ],
           "maker": [
@@ -81900,33 +81949,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "150~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "590",
+                "price": "1180",
                 "list_price": "1180"
               },
               {
                 "type": "download",
-                "price": "390",
+                "price": "780",
                 "list_price": "780"
               },
               {
                 "type": "stream",
-                "price": "150",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "390",
+                "price": "780",
                 "list_price": "780"
               },
               {
                 "type": "androiddl",
-                "price": "390",
+                "price": "780",
                 "list_price": "780"
               }
             ]
@@ -82000,14 +82049,7 @@
               "name": "プレシャス"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-02 10:00:00",
-            "date_end": "2026-11-04 09:59:59",
-            "title": "働くお姉さん50％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -84024,36 +84066,36 @@
         "iteminfo": {
           "genre": [
             {
-              "id": 5057,
-              "name": "ローション・オイル"
-            },
-            {
-              "id": 4025,
-              "name": "単体作品"
-            },
-            {
-              "id": 5001,
-              "name": "中出し"
-            },
-            {
-              "id": 5009,
-              "name": "ごっくん"
-            },
-            {
-              "id": 2001,
-              "name": "巨乳"
-            },
-            {
-              "id": 6937,
-              "name": "ヘルス・ソープ"
+              "id": 6533,
+              "name": "ハイビジョン"
             },
             {
               "id": 6548,
               "name": "独占配信"
             },
             {
-              "id": 6533,
-              "name": "ハイビジョン"
+              "id": 6937,
+              "name": "ヘルス・ソープ"
+            },
+            {
+              "id": 2001,
+              "name": "巨乳"
+            },
+            {
+              "id": 5009,
+              "name": "ごっくん"
+            },
+            {
+              "id": 5001,
+              "name": "中出し"
+            },
+            {
+              "id": 4025,
+              "name": "単体作品"
+            },
+            {
+              "id": 5057,
+              "name": "ローション・オイル"
             }
           ],
           "series": [
@@ -86730,33 +86772,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "150~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "590",
+                "price": "1180",
                 "list_price": "1180"
               },
               {
                 "type": "download",
-                "price": "390",
+                "price": "780",
                 "list_price": "780"
               },
               {
                 "type": "stream",
-                "price": "150",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "390",
+                "price": "780",
                 "list_price": "780"
               },
               {
                 "type": "androiddl",
-                "price": "390",
+                "price": "780",
                 "list_price": "780"
               }
             ]
@@ -86830,14 +86872,7 @@
               "name": "プレシャス"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-02 10:00:00",
-            "date_end": "2026-11-04 09:59:59",
-            "title": "働くお姉さん50％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -87386,8 +87421,8 @@
         "title": "イヤラしい剛毛オマ〇コをぐっしょり濡らして何度も絶頂しちゃう超敏感体質でむっちりカワイイお漏らし新米風俗嬢 一色さら",
         "volume": "151",
         "review": {
-          "count": 15,
-          "average": "4.67"
+          "count": 16,
+          "average": "4.69"
         },
         "URL": "https://video.dmm.co.jp/av/content/?id=fpre00067",
         "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Dfpre00067&af_id=saaaaaaya-990&ch=api",
@@ -89394,8 +89429,8 @@
         "title": "美しい人妻のねっとり甘い接吻と高級ランジェリーSEX 田舎育ちの僕を誘惑する都会暮らしの叔父の妻 黒木奈美",
         "volume": "146",
         "review": {
-          "count": 4,
-          "average": "3.75"
+          "count": 5,
+          "average": "4.00"
         },
         "URL": "https://video.dmm.co.jp/av/content/?id=jufe00559",
         "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Djufe00559&af_id=saaaaaaya-990&ch=api",
@@ -90875,33 +90910,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "150~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "590",
+                "price": "1180",
                 "list_price": "1180"
               },
               {
                 "type": "download",
-                "price": "390",
+                "price": "780",
                 "list_price": "780"
               },
               {
                 "type": "stream",
-                "price": "150",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "390",
+                "price": "780",
                 "list_price": "780"
               },
               {
                 "type": "androiddl",
-                "price": "390",
+                "price": "780",
                 "list_price": "780"
               }
             ]
@@ -90975,14 +91010,7 @@
               "name": "プレシャス"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-02 10:00:00",
-            "date_end": "2026-11-04 09:59:59",
-            "title": "働くお姉さん50％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -96248,33 +96276,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "826",
+                "price": "1180",
                 "list_price": "1180"
               },
               {
                 "type": "download",
-                "price": "546",
+                "price": "780",
                 "list_price": "780"
               },
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "546",
+                "price": "780",
                 "list_price": "780"
               },
               {
                 "type": "androiddl",
-                "price": "546",
+                "price": "780",
                 "list_price": "780"
               }
             ]
@@ -96348,14 +96376,7 @@
               "name": "Fitch"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-02 10:00:00",
-            "date_end": "2026-11-04 09:59:59",
-            "title": "こだわりのドラマ30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -99142,32 +99163,32 @@
         "iteminfo": {
           "genre": [
             {
-              "id": 5025,
-              "name": "淫語"
-            },
-            {
-              "id": 5063,
-              "name": "主観"
-            },
-            {
-              "id": 6938,
-              "name": "オナサポ"
-            },
-            {
-              "id": 4016,
-              "name": "パンチラ"
-            },
-            {
-              "id": 2001,
-              "name": "巨乳"
+              "id": 6533,
+              "name": "ハイビジョン"
             },
             {
               "id": 6548,
               "name": "独占配信"
             },
             {
-              "id": 6533,
-              "name": "ハイビジョン"
+              "id": 2001,
+              "name": "巨乳"
+            },
+            {
+              "id": 4016,
+              "name": "パンチラ"
+            },
+            {
+              "id": 6938,
+              "name": "オナサポ"
+            },
+            {
+              "id": 5063,
+              "name": "主観"
+            },
+            {
+              "id": 5025,
+              "name": "淫語"
             }
           ],
           "series": [
@@ -99763,33 +99784,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "150~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "590",
+                "price": "1180",
                 "list_price": "1180"
               },
               {
                 "type": "download",
-                "price": "390",
+                "price": "780",
                 "list_price": "780"
               },
               {
                 "type": "stream",
-                "price": "150",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "390",
+                "price": "780",
                 "list_price": "780"
               },
               {
                 "type": "androiddl",
-                "price": "390",
+                "price": "780",
                 "list_price": "780"
               }
             ]
@@ -99857,14 +99878,7 @@
               "name": "プレシャス"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-02 10:00:00",
-            "date_end": "2026-11-04 09:59:59",
-            "title": "働くお姉さん50％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -100368,7 +100382,7 @@
         "title": "実写版！新、僕の妻と巨根の元AV男優部長 ～真面目な妻がナゼここまで変えられたのか～ 菊乃らん",
         "volume": "146",
         "review": {
-          "count": 178,
+          "count": 179,
           "average": "3.88"
         },
         "URL": "https://video.dmm.co.jp/av/content/?id=nima00027",
@@ -101298,33 +101312,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "300~",
+          "price": "150~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "1180",
+                "price": "590",
                 "list_price": "1180"
               },
               {
                 "type": "download",
-                "price": "780",
+                "price": "390",
                 "list_price": "780"
               },
               {
                 "type": "stream",
-                "price": "300",
+                "price": "150",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "780",
+                "price": "390",
                 "list_price": "780"
               },
               {
                 "type": "androiddl",
-                "price": "780",
+                "price": "390",
                 "list_price": "780"
               }
             ]
@@ -101398,7 +101412,14 @@
               "name": "プレシャス"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-11-04 10:00:00",
+            "date_end": "2026-11-06 09:59:59",
+            "title": "働くお姉さん50％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -102005,36 +102026,36 @@
         "iteminfo": {
           "genre": [
             {
-              "id": 6006,
-              "name": "デビュー作品"
-            },
-            {
-              "id": 4025,
-              "name": "単体作品"
-            },
-            {
-              "id": 2001,
-              "name": "巨乳"
-            },
-            {
-              "id": 5016,
-              "name": "潮吹き"
-            },
-            {
-              "id": 5022,
-              "name": "3P・4P"
-            },
-            {
-              "id": 1017,
-              "name": "女子アナ"
+              "id": 6533,
+              "name": "ハイビジョン"
             },
             {
               "id": 6548,
               "name": "独占配信"
             },
             {
-              "id": 6533,
-              "name": "ハイビジョン"
+              "id": 1017,
+              "name": "女子アナ"
+            },
+            {
+              "id": 5022,
+              "name": "3P・4P"
+            },
+            {
+              "id": 5016,
+              "name": "潮吹き"
+            },
+            {
+              "id": 2001,
+              "name": "巨乳"
+            },
+            {
+              "id": 4025,
+              "name": "単体作品"
+            },
+            {
+              "id": 6006,
+              "name": "デビュー作品"
             }
           ],
           "maker": [
@@ -104846,7 +104867,7 @@
         "title": "すぺしゃるじー＆チンジャオ娘の大ヒット作品を実写化！！ 「優しいだけの男」と妻に捨てられたので…前編 有岡みう 皆月ひかる",
         "volume": "118",
         "review": {
-          "count": 168,
+          "count": 169,
           "average": "3.96"
         },
         "URL": "https://video.dmm.co.jp/av/content/?id=nima00024",
@@ -106456,8 +106477,8 @@
         "title": "「先っぽ3cmだけ貸して」社長の愛人の強引な要求に耐え切れず…デカ尻騎乗位に発展し中出し！！ 菊乃らん",
         "volume": "148",
         "review": {
-          "count": 20,
-          "average": "4.65"
+          "count": 21,
+          "average": "4.62"
         },
         "URL": "https://video.dmm.co.jp/av/content/?id=fpre00008",
         "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Dfpre00008&af_id=saaaaaaya-990&ch=api",
@@ -109377,36 +109398,36 @@
         "iteminfo": {
           "genre": [
             {
-              "id": 6533,
-              "name": "ハイビジョン"
-            },
-            {
-              "id": 6548,
-              "name": "独占配信"
-            },
-            {
-              "id": 4025,
-              "name": "単体作品"
-            },
-            {
-              "id": 3014,
-              "name": "ランジェリー"
-            },
-            {
-              "id": 5001,
-              "name": "中出し"
-            },
-            {
-              "id": 2001,
-              "name": "巨乳"
+              "id": 4059,
+              "name": "キス・接吻"
             },
             {
               "id": 1039,
               "name": "人妻・主婦"
             },
             {
-              "id": 4059,
-              "name": "キス・接吻"
+              "id": 2001,
+              "name": "巨乳"
+            },
+            {
+              "id": 5001,
+              "name": "中出し"
+            },
+            {
+              "id": 3014,
+              "name": "ランジェリー"
+            },
+            {
+              "id": 4025,
+              "name": "単体作品"
+            },
+            {
+              "id": 6548,
+              "name": "独占配信"
+            },
+            {
+              "id": 6533,
+              "name": "ハイビジョン"
             }
           ],
           "series": [
@@ -109523,33 +109544,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "1036",
+                "price": "1480",
                 "list_price": "1480"
               },
               {
                 "type": "download",
-                "price": "826",
+                "price": "1180",
                 "list_price": "1180"
               },
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "826",
+                "price": "1180",
                 "list_price": "1180"
               },
               {
                 "type": "androiddl",
-                "price": "826",
+                "price": "1180",
                 "list_price": "1180"
               }
             ]
@@ -109617,14 +109638,7 @@
               "name": "肉漫"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-02 10:00:00",
-            "date_end": "2026-11-04 09:59:59",
-            "title": "こだわりのドラマ30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -111481,33 +111495,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "300~",
+          "price": "150~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "1180",
+                "price": "590",
                 "list_price": "1180"
               },
               {
                 "type": "download",
-                "price": "780",
+                "price": "390",
                 "list_price": "780"
               },
               {
                 "type": "stream",
-                "price": "300",
+                "price": "150",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "780",
+                "price": "390",
                 "list_price": "780"
               },
               {
                 "type": "androiddl",
-                "price": "780",
+                "price": "390",
                 "list_price": "780"
               }
             ]
@@ -111574,7 +111588,14 @@
               "name": "Fitch"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-11-04 10:00:00",
+            "date_end": "2026-11-06 09:59:59",
+            "title": "働くお姉さん50％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -112532,33 +112553,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "300~",
+          "price": "150~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "1180",
+                "price": "590",
                 "list_price": "1180"
               },
               {
                 "type": "download",
-                "price": "780",
+                "price": "390",
                 "list_price": "780"
               },
               {
                 "type": "stream",
-                "price": "300",
+                "price": "150",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "780",
+                "price": "390",
                 "list_price": "780"
               },
               {
                 "type": "androiddl",
-                "price": "780",
+                "price": "390",
                 "list_price": "780"
               }
             ]
@@ -112632,7 +112653,14 @@
               "name": "プレシャス"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-11-04 10:00:00",
+            "date_end": "2026-11-06 09:59:59",
+            "title": "働くお姉さん50％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -115341,33 +115369,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "150~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "590",
+                "price": "1180",
                 "list_price": "1180"
               },
               {
                 "type": "download",
-                "price": "390",
+                "price": "780",
                 "list_price": "780"
               },
               {
                 "type": "stream",
-                "price": "150",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "390",
+                "price": "780",
                 "list_price": "780"
               },
               {
                 "type": "androiddl",
-                "price": "390",
+                "price": "780",
                 "list_price": "780"
               }
             ]
@@ -115441,14 +115469,7 @@
               "name": "プレシャス"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-02 10:00:00",
-            "date_end": "2026-11-04 09:59:59",
-            "title": "働くお姉さん50％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -115461,8 +115482,8 @@
         "title": "オヤジのハメ撮りドキュメント ねっとり濃厚に貪り尽くす体液ドロドロ汗だく性交 有栖舞衣",
         "volume": "155",
         "review": {
-          "count": 6,
-          "average": "4.50"
+          "count": 7,
+          "average": "4.43"
         },
         "URL": "https://video.dmm.co.jp/av/content/?id=jufe00517",
         "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Djufe00517&af_id=saaaaaaya-990&ch=api",
@@ -116211,33 +116232,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "150~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "590",
+                "price": "1180",
                 "list_price": "1180"
               },
               {
                 "type": "download",
-                "price": "390",
+                "price": "780",
                 "list_price": "780"
               },
               {
                 "type": "stream",
-                "price": "150",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "390",
+                "price": "780",
                 "list_price": "780"
               },
               {
                 "type": "androiddl",
-                "price": "390",
+                "price": "780",
                 "list_price": "780"
               }
             ]
@@ -116305,14 +116326,7 @@
               "name": "プレシャス"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-02 10:00:00",
-            "date_end": "2026-11-04 09:59:59",
-            "title": "働くお姉さん50％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -119091,7 +119105,7 @@
         "title": "オヤジのハメ撮りドキュメント ねっとり濃厚に貪り尽くす体液ドロドロ汗だく性交 五日市芽依",
         "volume": "150",
         "review": {
-          "count": 234,
+          "count": 236,
           "average": "4.00"
         },
         "URL": "https://video.dmm.co.jp/av/content/?id=jufe00495",
@@ -120878,33 +120892,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "300~",
+          "price": "150~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "1480",
+                "price": "740",
                 "list_price": "1480"
               },
               {
                 "type": "download",
-                "price": "1180",
+                "price": "590",
                 "list_price": "1180"
               },
               {
                 "type": "stream",
-                "price": "300",
+                "price": "150",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "1180",
+                "price": "590",
                 "list_price": "1180"
               },
               {
                 "type": "androiddl",
-                "price": "1180",
+                "price": "590",
                 "list_price": "1180"
               }
             ]
@@ -120971,7 +120985,14 @@
               "name": "NIKUYOKU"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-11-04 10:00:00",
+            "date_end": "2026-11-06 09:59:59",
+            "title": "働くお姉さん50％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -125628,33 +125649,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "150~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "590",
+                "price": "1180",
                 "list_price": "1180"
               },
               {
                 "type": "download",
-                "price": "390",
+                "price": "780",
                 "list_price": "780"
               },
               {
                 "type": "stream",
-                "price": "150",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "390",
+                "price": "780",
                 "list_price": "780"
               },
               {
                 "type": "androiddl",
-                "price": "390",
+                "price": "780",
                 "list_price": "780"
               }
             ]
@@ -125717,14 +125738,7 @@
               "name": "Fitch"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-02 10:00:00",
-            "date_end": "2026-11-04 09:59:59",
-            "title": "働くお姉さん50％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -134245,36 +134259,36 @@
         "iteminfo": {
           "genre": [
             {
-              "id": 6533,
-              "name": "ハイビジョン"
-            },
-            {
-              "id": 6548,
-              "name": "独占配信"
-            },
-            {
-              "id": 5001,
-              "name": "中出し"
-            },
-            {
-              "id": 1031,
-              "name": "痴女"
-            },
-            {
-              "id": 4059,
-              "name": "キス・接吻"
-            },
-            {
-              "id": 2001,
-              "name": "巨乳"
+              "id": 4025,
+              "name": "単体作品"
             },
             {
               "id": 1039,
               "name": "人妻・主婦"
             },
             {
-              "id": 4025,
-              "name": "単体作品"
+              "id": 2001,
+              "name": "巨乳"
+            },
+            {
+              "id": 4059,
+              "name": "キス・接吻"
+            },
+            {
+              "id": 1031,
+              "name": "痴女"
+            },
+            {
+              "id": 5001,
+              "name": "中出し"
+            },
+            {
+              "id": 6548,
+              "name": "独占配信"
+            },
+            {
+              "id": 6533,
+              "name": "ハイビジョン"
             }
           ],
           "series": [
@@ -137587,33 +137601,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "150~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "490",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "download",
-                "price": "340",
+                "price": "680",
                 "list_price": "680"
               },
               {
                 "type": "stream",
-                "price": "150",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "340",
+                "price": "680",
                 "list_price": "680"
               },
               {
                 "type": "androiddl",
-                "price": "340",
+                "price": "680",
                 "list_price": "680"
               }
             ]
@@ -137680,14 +137694,7 @@
               "name": "Fitch"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-02 10:00:00",
-            "date_end": "2026-11-04 09:59:59",
-            "title": "働くお姉さん50％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -139461,33 +139468,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "download",
-                "price": "476",
+                "price": "680",
                 "list_price": "680"
               },
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "476",
+                "price": "680",
                 "list_price": "680"
               },
               {
                 "type": "androiddl",
-                "price": "476",
+                "price": "680",
                 "list_price": "680"
               }
             ]
@@ -139565,14 +139572,7 @@
               "name": "Fitch"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-02 10:00:00",
-            "date_end": "2026-11-04 09:59:59",
-            "title": "こだわりのドラマ30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -139775,33 +139775,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "150~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "640",
+                "price": "1280",
                 "list_price": "1280"
               },
               {
                 "type": "download",
-                "price": "490",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "stream",
-                "price": "150",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "490",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "androiddl",
-                "price": "490",
+                "price": "980",
                 "list_price": "980"
               }
             ]
@@ -139866,14 +139866,7 @@
               "name": "NIKUYOKU"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-02 10:00:00",
-            "date_end": "2026-11-04 09:59:59",
-            "title": "働くお姉さん50％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -144834,33 +144827,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "300~",
+          "price": "210~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "1280",
+                "price": "896",
                 "list_price": "1280"
               },
               {
                 "type": "download",
-                "price": "980",
+                "price": "686",
                 "list_price": "980"
               },
               {
                 "type": "stream",
-                "price": "300",
+                "price": "210",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "980",
+                "price": "686",
                 "list_price": "980"
               },
               {
                 "type": "androiddl",
-                "price": "980",
+                "price": "686",
                 "list_price": "980"
               }
             ]
@@ -144921,7 +144914,14 @@
               "name": "NIKUYOKU"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-11-05 00:00:00",
+            "date_end": "2026-11-05 23:59:59",
+            "title": "日替わりセール◆"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -145634,33 +145634,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "150~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "490",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "download",
-                "price": "340",
+                "price": "680",
                 "list_price": "680"
               },
               {
                 "type": "stream",
-                "price": "150",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "340",
+                "price": "680",
                 "list_price": "680"
               },
               {
                 "type": "androiddl",
-                "price": "340",
+                "price": "680",
                 "list_price": "680"
               }
             ]
@@ -145727,14 +145727,7 @@
               "name": "Fitch"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-02 10:00:00",
-            "date_end": "2026-11-04 09:59:59",
-            "title": "働くお姉さん50％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -145896,8 +145889,8 @@
         "title": "爆乳キメセク潮吹き絶頂 彼氏が居るすぐ隣で整体師に寝取られて… 桃園怜奈",
         "volume": "159",
         "review": {
-          "count": 22,
-          "average": "4.73"
+          "count": 23,
+          "average": "4.74"
         },
         "URL": "https://video.dmm.co.jp/av/content/?id=jufe00404",
         "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Djufe00404&af_id=saaaaaaya-990&ch=api",
@@ -148274,33 +148267,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "150~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "490",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "download",
-                "price": "340",
+                "price": "680",
                 "list_price": "680"
               },
               {
                 "type": "stream",
-                "price": "150",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "340",
+                "price": "680",
                 "list_price": "680"
               },
               {
                 "type": "androiddl",
-                "price": "340",
+                "price": "680",
                 "list_price": "680"
               }
             ]
@@ -148367,14 +148360,7 @@
               "name": "Fitch"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-02 10:00:00",
-            "date_end": "2026-11-04 09:59:59",
-            "title": "働くお姉さん50％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -150120,33 +150106,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "download",
-                "price": "476",
+                "price": "680",
                 "list_price": "680"
               },
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "476",
+                "price": "680",
                 "list_price": "680"
               },
               {
                 "type": "androiddl",
-                "price": "476",
+                "price": "680",
                 "list_price": "680"
               }
             ]
@@ -150156,36 +150142,36 @@
         "iteminfo": {
           "genre": [
             {
-              "id": 6533,
-              "name": "ハイビジョン"
-            },
-            {
-              "id": 6548,
-              "name": "独占配信"
-            },
-            {
-              "id": 4025,
-              "name": "単体作品"
-            },
-            {
-              "id": 2001,
-              "name": "巨乳"
-            },
-            {
-              "id": 3033,
-              "name": "バニーガール"
-            },
-            {
-              "id": 5057,
-              "name": "ローション・オイル"
+              "id": 5001,
+              "name": "中出し"
             },
             {
               "id": 1036,
               "name": "キャバ嬢・風俗嬢"
             },
             {
-              "id": 5001,
-              "name": "中出し"
+              "id": 5057,
+              "name": "ローション・オイル"
+            },
+            {
+              "id": 3033,
+              "name": "バニーガール"
+            },
+            {
+              "id": 2001,
+              "name": "巨乳"
+            },
+            {
+              "id": 4025,
+              "name": "単体作品"
+            },
+            {
+              "id": 6548,
+              "name": "独占配信"
+            },
+            {
+              "id": 6533,
+              "name": "ハイビジョン"
             }
           ],
           "series": [
@@ -150213,14 +150199,7 @@
               "name": "Fitch"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-02 10:00:00",
-            "date_end": "2026-11-04 09:59:59",
-            "title": "こだわりのドラマ30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -152609,32 +152588,32 @@
         "iteminfo": {
           "genre": [
             {
-              "id": 6533,
-              "name": "ハイビジョン"
-            },
-            {
-              "id": 6548,
-              "name": "独占配信"
-            },
-            {
-              "id": 4119,
-              "name": "エステ"
-            },
-            {
-              "id": 1031,
-              "name": "痴女"
-            },
-            {
-              "id": 2001,
-              "name": "巨乳"
+              "id": 5057,
+              "name": "ローション・オイル"
             },
             {
               "id": 4011,
               "name": "尻フェチ"
             },
             {
-              "id": 5057,
-              "name": "ローション・オイル"
+              "id": 2001,
+              "name": "巨乳"
+            },
+            {
+              "id": 1031,
+              "name": "痴女"
+            },
+            {
+              "id": 4119,
+              "name": "エステ"
+            },
+            {
+              "id": 6548,
+              "name": "独占配信"
+            },
+            {
+              "id": 6533,
+              "name": "ハイビジョン"
             }
           ],
           "series": [
@@ -154278,33 +154257,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "300~",
+          "price": "150~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "1280",
+                "price": "640",
                 "list_price": "1280"
               },
               {
                 "type": "download",
-                "price": "980",
+                "price": "490",
                 "list_price": "980"
               },
               {
                 "type": "stream",
-                "price": "300",
+                "price": "150",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "980",
+                "price": "490",
                 "list_price": "980"
               },
               {
                 "type": "androiddl",
-                "price": "980",
+                "price": "490",
                 "list_price": "980"
               }
             ]
@@ -154371,7 +154350,14 @@
               "name": "NIKUYOKU"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-11-04 10:00:00",
+            "date_end": "2026-11-06 09:59:59",
+            "title": "働くお姉さん50％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -156301,33 +156287,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "150~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "490",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "download",
-                "price": "340",
+                "price": "680",
                 "list_price": "680"
               },
               {
                 "type": "stream",
-                "price": "150",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "340",
+                "price": "680",
                 "list_price": "680"
               },
               {
                 "type": "androiddl",
-                "price": "340",
+                "price": "680",
                 "list_price": "680"
               }
             ]
@@ -156394,14 +156380,7 @@
               "name": "Fitch"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-02 10:00:00",
-            "date_end": "2026-11-04 09:59:59",
-            "title": "働くお姉さん50％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -158869,8 +158848,8 @@
         "title": "絶対親には知られたくない妹の弱みを握った僕はずっと嫌な顔されながらむっちり柔らかいパイパンマ○コに中出ししてやりました… 川北メイサ",
         "volume": "147",
         "review": {
-          "count": 48,
-          "average": "4.15"
+          "count": 49,
+          "average": "4.14"
         },
         "URL": "https://video.dmm.co.jp/av/content/?id=jufe00358",
         "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Djufe00358&af_id=saaaaaaya-990&ch=api",
@@ -158922,33 +158901,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "300~",
+          "price": "150~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "980",
+                "price": "490",
                 "list_price": "980"
               },
               {
                 "type": "download",
-                "price": "680",
+                "price": "340",
                 "list_price": "680"
               },
               {
                 "type": "stream",
-                "price": "300",
+                "price": "150",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "680",
+                "price": "340",
                 "list_price": "680"
               },
               {
                 "type": "androiddl",
-                "price": "680",
+                "price": "340",
                 "list_price": "680"
               }
             ]
@@ -159015,7 +158994,14 @@
               "name": "Fitch"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-11-04 10:00:00",
+            "date_end": "2026-11-06 09:59:59",
+            "title": "働くお姉さん50％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -159400,33 +159386,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "300~",
+          "price": "150~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "980",
+                "price": "490",
                 "list_price": "980"
               },
               {
                 "type": "download",
-                "price": "680",
+                "price": "340",
                 "list_price": "680"
               },
               {
                 "type": "stream",
-                "price": "300",
+                "price": "150",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "680",
+                "price": "340",
                 "list_price": "680"
               },
               {
                 "type": "androiddl",
-                "price": "680",
+                "price": "340",
                 "list_price": "680"
               }
             ]
@@ -159493,7 +159479,14 @@
               "name": "Fitch"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-11-04 10:00:00",
+            "date_end": "2026-11-06 09:59:59",
+            "title": "働くお姉さん50％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -161405,32 +161398,32 @@
         "iteminfo": {
           "genre": [
             {
-              "id": 6533,
-              "name": "ハイビジョン"
-            },
-            {
-              "id": 6548,
-              "name": "独占配信"
-            },
-            {
-              "id": 5071,
-              "name": "ハーレム"
-            },
-            {
-              "id": 5001,
-              "name": "中出し"
-            },
-            {
-              "id": 2001,
-              "name": "巨乳"
+              "id": 5019,
+              "name": "パイズリ"
             },
             {
               "id": 1031,
               "name": "痴女"
             },
             {
-              "id": 5019,
-              "name": "パイズリ"
+              "id": 2001,
+              "name": "巨乳"
+            },
+            {
+              "id": 5001,
+              "name": "中出し"
+            },
+            {
+              "id": 5071,
+              "name": "ハーレム"
+            },
+            {
+              "id": 6548,
+              "name": "独占配信"
+            },
+            {
+              "id": 6533,
+              "name": "ハイビジョン"
             }
           ],
           "series": [
@@ -163227,28 +163220,28 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "150~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "download",
-                "price": "340",
+                "price": "680",
                 "list_price": "680"
               },
               {
                 "type": "stream",
-                "price": "150",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "340",
+                "price": "680",
                 "list_price": "680"
               },
               {
                 "type": "androiddl",
-                "price": "340",
+                "price": "680",
                 "list_price": "680"
               }
             ]
@@ -163489,14 +163482,7 @@
               "name": "Fitch"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-02 10:00:00",
-            "date_end": "2026-11-04 09:59:59",
-            "title": "働くお姉さん50％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -164143,33 +164129,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "150~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "490",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "download",
-                "price": "340",
+                "price": "680",
                 "list_price": "680"
               },
               {
                 "type": "stream",
-                "price": "150",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "340",
+                "price": "680",
                 "list_price": "680"
               },
               {
                 "type": "androiddl",
-                "price": "340",
+                "price": "680",
                 "list_price": "680"
               }
             ]
@@ -164232,14 +164218,7 @@
               "name": "Fitch"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-02 10:00:00",
-            "date_end": "2026-11-04 09:59:59",
-            "title": "働くお姉さん50％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -168541,7 +168520,7 @@
         "title": "遂に解禁！白ムチ大絶頂爆尻快感アナルファック ジューン・ラブジョイ",
         "volume": "159",
         "review": {
-          "count": 31,
+          "count": 32,
           "average": "4.84"
         },
         "URL": "https://video.dmm.co.jp/av/content/?id=juny00042",
@@ -169560,33 +169539,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "150~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "490",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "download",
-                "price": "340",
+                "price": "680",
                 "list_price": "680"
               },
               {
                 "type": "stream",
-                "price": "150",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "340",
+                "price": "680",
                 "list_price": "680"
               },
               {
                 "type": "androiddl",
-                "price": "340",
+                "price": "680",
                 "list_price": "680"
               }
             ]
@@ -169653,14 +169632,7 @@
               "name": "Fitch"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-02 10:00:00",
-            "date_end": "2026-11-04 09:59:59",
-            "title": "働くお姉さん50％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -173583,36 +173555,36 @@
         "iteminfo": {
           "genre": [
             {
-              "id": 6012,
-              "name": "4時間以上作品"
-            },
-            {
-              "id": 6548,
-              "name": "独占配信"
-            },
-            {
-              "id": 6004,
-              "name": "デジモ"
-            },
-            {
-              "id": 4106,
-              "name": "騎乗位"
-            },
-            {
-              "id": 5025,
-              "name": "淫語"
-            },
-            {
-              "id": 1031,
-              "name": "痴女"
+              "id": 6003,
+              "name": "ベスト・総集編"
             },
             {
               "id": 2001,
               "name": "巨乳"
             },
             {
-              "id": 6003,
-              "name": "ベスト・総集編"
+              "id": 1031,
+              "name": "痴女"
+            },
+            {
+              "id": 5025,
+              "name": "淫語"
+            },
+            {
+              "id": 4106,
+              "name": "騎乗位"
+            },
+            {
+              "id": 6004,
+              "name": "デジモ"
+            },
+            {
+              "id": 6548,
+              "name": "独占配信"
+            },
+            {
+              "id": 6012,
+              "name": "4時間以上作品"
             }
           ],
           "maker": [
@@ -174248,28 +174220,28 @@
         "iteminfo": {
           "genre": [
             {
-              "id": 6006,
-              "name": "デビュー作品"
-            },
-            {
-              "id": 1034,
-              "name": "ギャル"
-            },
-            {
-              "id": 2001,
-              "name": "巨乳"
-            },
-            {
-              "id": 2002,
-              "name": "長身"
+              "id": 6533,
+              "name": "ハイビジョン"
             },
             {
               "id": 6548,
               "name": "独占配信"
             },
             {
-              "id": 6533,
-              "name": "ハイビジョン"
+              "id": 2002,
+              "name": "長身"
+            },
+            {
+              "id": 2001,
+              "name": "巨乳"
+            },
+            {
+              "id": 1034,
+              "name": "ギャル"
+            },
+            {
+              "id": 6006,
+              "name": "デビュー作品"
             }
           ],
           "maker": [
@@ -174786,40 +174758,40 @@
         "iteminfo": {
           "genre": [
             {
-              "id": 4059,
-              "name": "キス・接吻"
-            },
-            {
-              "id": 5001,
-              "name": "中出し"
-            },
-            {
-              "id": 6608,
-              "name": "女優ベスト・総集編"
-            },
-            {
-              "id": 4111,
-              "name": "寝取り・寝取られ・NTR"
-            },
-            {
-              "id": 6004,
-              "name": "デジモ"
-            },
-            {
-              "id": 4025,
-              "name": "単体作品"
-            },
-            {
-              "id": 1033,
-              "name": "お姉さん"
+              "id": 6012,
+              "name": "4時間以上作品"
             },
             {
               "id": 6548,
               "name": "独占配信"
             },
             {
-              "id": 6012,
-              "name": "4時間以上作品"
+              "id": 1033,
+              "name": "お姉さん"
+            },
+            {
+              "id": 4025,
+              "name": "単体作品"
+            },
+            {
+              "id": 6004,
+              "name": "デジモ"
+            },
+            {
+              "id": 4111,
+              "name": "寝取り・寝取られ・NTR"
+            },
+            {
+              "id": 6608,
+              "name": "女優ベスト・総集編"
+            },
+            {
+              "id": 5001,
+              "name": "中出し"
+            },
+            {
+              "id": 4059,
+              "name": "キス・接吻"
             }
           ],
           "maker": [
@@ -181446,33 +181418,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "300~",
+          "price": "150~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "980",
+                "price": "490",
                 "list_price": "980"
               },
               {
                 "type": "download",
-                "price": "680",
+                "price": "340",
                 "list_price": "680"
               },
               {
                 "type": "stream",
-                "price": "300",
+                "price": "150",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "680",
+                "price": "340",
                 "list_price": "680"
               },
               {
                 "type": "androiddl",
-                "price": "680",
+                "price": "340",
                 "list_price": "680"
               }
             ]
@@ -181539,7 +181511,14 @@
               "name": "Fitch"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-11-04 10:00:00",
+            "date_end": "2026-11-06 09:59:59",
+            "title": "働くお姉さん50％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -182028,28 +182007,28 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "300~",
+          "price": "150~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "download",
-                "price": "680",
+                "price": "340",
                 "list_price": "680"
               },
               {
                 "type": "stream",
-                "price": "300",
+                "price": "150",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "680",
+                "price": "340",
                 "list_price": "680"
               },
               {
                 "type": "androiddl",
-                "price": "680",
+                "price": "340",
                 "list_price": "680"
               }
             ]
@@ -182110,7 +182089,14 @@
               "name": "Fitch"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-11-04 10:00:00",
+            "date_end": "2026-11-06 09:59:59",
+            "title": "働くお姉さん50％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -184533,28 +184519,28 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "300~",
+          "price": "150~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "download",
-                "price": "680",
+                "price": "340",
                 "list_price": "680"
               },
               {
                 "type": "stream",
-                "price": "300",
+                "price": "150",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "680",
+                "price": "340",
                 "list_price": "680"
               },
               {
                 "type": "androiddl",
-                "price": "680",
+                "price": "340",
                 "list_price": "680"
               }
             ]
@@ -184622,7 +184608,14 @@
               "name": "Fitch"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-11-04 10:00:00",
+            "date_end": "2026-11-06 09:59:59",
+            "title": "働くお姉さん50％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -185887,33 +185880,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "150~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "490",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "download",
-                "price": "340",
+                "price": "680",
                 "list_price": "680"
               },
               {
                 "type": "stream",
-                "price": "150",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "340",
+                "price": "680",
                 "list_price": "680"
               },
               {
                 "type": "androiddl",
-                "price": "340",
+                "price": "680",
                 "list_price": "680"
               }
             ]
@@ -185923,36 +185916,36 @@
         "iteminfo": {
           "genre": [
             {
-              "id": 6533,
-              "name": "ハイビジョン"
-            },
-            {
-              "id": 6548,
-              "name": "独占配信"
-            },
-            {
-              "id": 1001,
-              "name": "OL"
-            },
-            {
-              "id": 2001,
-              "name": "巨乳"
-            },
-            {
-              "id": 5019,
-              "name": "パイズリ"
-            },
-            {
-              "id": 6002,
-              "name": "ハメ撮り"
+              "id": 5001,
+              "name": "中出し"
             },
             {
               "id": 4025,
               "name": "単体作品"
             },
             {
-              "id": 5001,
-              "name": "中出し"
+              "id": 6002,
+              "name": "ハメ撮り"
+            },
+            {
+              "id": 5019,
+              "name": "パイズリ"
+            },
+            {
+              "id": 2001,
+              "name": "巨乳"
+            },
+            {
+              "id": 1001,
+              "name": "OL"
+            },
+            {
+              "id": 6548,
+              "name": "独占配信"
+            },
+            {
+              "id": 6533,
+              "name": "ハイビジョン"
             }
           ],
           "series": [
@@ -185980,14 +185973,7 @@
               "name": "Fitch"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-02 10:00:00",
-            "date_end": "2026-11-04 09:59:59",
-            "title": "働くお姉さん50％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -187627,32 +187613,32 @@
         "iteminfo": {
           "genre": [
             {
-              "id": 4025,
-              "name": "単体作品"
-            },
-            {
-              "id": 3006,
-              "name": "パンスト・タイツ"
-            },
-            {
-              "id": 4116,
-              "name": "着エロ"
-            },
-            {
-              "id": 2001,
-              "name": "巨乳"
-            },
-            {
-              "id": 2002,
-              "name": "長身"
+              "id": 6533,
+              "name": "ハイビジョン"
             },
             {
               "id": 6548,
               "name": "独占配信"
             },
             {
-              "id": 6533,
-              "name": "ハイビジョン"
+              "id": 2002,
+              "name": "長身"
+            },
+            {
+              "id": 2001,
+              "name": "巨乳"
+            },
+            {
+              "id": 4116,
+              "name": "着エロ"
+            },
+            {
+              "id": 3006,
+              "name": "パンスト・タイツ"
+            },
+            {
+              "id": 4025,
+              "name": "単体作品"
             }
           ],
           "series": [
@@ -188484,33 +188470,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "300~",
+          "price": "150~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "980",
+                "price": "490",
                 "list_price": "980"
               },
               {
                 "type": "download",
-                "price": "680",
+                "price": "340",
                 "list_price": "680"
               },
               {
                 "type": "stream",
-                "price": "300",
+                "price": "150",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "680",
+                "price": "340",
                 "list_price": "680"
               },
               {
                 "type": "androiddl",
-                "price": "680",
+                "price": "340",
                 "list_price": "680"
               }
             ]
@@ -188584,7 +188570,14 @@
               "name": "Fitch"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-11-04 10:00:00",
+            "date_end": "2026-11-06 09:59:59",
+            "title": "働くお姉さん50％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -193510,40 +193503,40 @@
         "iteminfo": {
           "genre": [
             {
-              "id": 6608,
-              "name": "女優ベスト・総集編"
-            },
-            {
-              "id": 4025,
-              "name": "単体作品"
-            },
-            {
-              "id": 5001,
-              "name": "中出し"
-            },
-            {
-              "id": 5005,
-              "name": "アナル"
-            },
-            {
-              "id": 2001,
-              "name": "巨乳"
-            },
-            {
-              "id": 6004,
-              "name": "デジモ"
-            },
-            {
-              "id": 2024,
-              "name": "巨尻"
+              "id": 6012,
+              "name": "4時間以上作品"
             },
             {
               "id": 6548,
               "name": "独占配信"
             },
             {
-              "id": 6012,
-              "name": "4時間以上作品"
+              "id": 2024,
+              "name": "巨尻"
+            },
+            {
+              "id": 6004,
+              "name": "デジモ"
+            },
+            {
+              "id": 2001,
+              "name": "巨乳"
+            },
+            {
+              "id": 5005,
+              "name": "アナル"
+            },
+            {
+              "id": 5001,
+              "name": "中出し"
+            },
+            {
+              "id": 4025,
+              "name": "単体作品"
+            },
+            {
+              "id": 6608,
+              "name": "女優ベスト・総集編"
             }
           ],
           "maker": [
@@ -204404,36 +204397,36 @@
         "iteminfo": {
           "genre": [
             {
-              "id": 5067,
-              "name": "顔面騎乗"
-            },
-            {
-              "id": 1026,
-              "name": "職業色々"
-            },
-            {
-              "id": 2024,
-              "name": "巨尻"
-            },
-            {
-              "id": 1039,
-              "name": "人妻・主婦"
-            },
-            {
-              "id": 2012,
-              "name": "白人女優"
-            },
-            {
-              "id": 4025,
-              "name": "単体作品"
+              "id": 6533,
+              "name": "ハイビジョン"
             },
             {
               "id": 6548,
               "name": "独占配信"
             },
             {
-              "id": 6533,
-              "name": "ハイビジョン"
+              "id": 4025,
+              "name": "単体作品"
+            },
+            {
+              "id": 2012,
+              "name": "白人女優"
+            },
+            {
+              "id": 1039,
+              "name": "人妻・主婦"
+            },
+            {
+              "id": 2024,
+              "name": "巨尻"
+            },
+            {
+              "id": 1026,
+              "name": "職業色々"
+            },
+            {
+              "id": 5067,
+              "name": "顔面騎乗"
             }
           ],
           "maker": [
@@ -209314,33 +209307,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "150~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "490",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "download",
-                "price": "340",
+                "price": "680",
                 "list_price": "680"
               },
               {
                 "type": "stream",
-                "price": "150",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "340",
+                "price": "680",
                 "list_price": "680"
               },
               {
                 "type": "androiddl",
-                "price": "340",
+                "price": "680",
                 "list_price": "680"
               }
             ]
@@ -209408,14 +209401,7 @@
               "name": "Fitch"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-02 10:00:00",
-            "date_end": "2026-11-04 09:59:59",
-            "title": "働くお姉さん50％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -209866,8 +209852,8 @@
         "title": "【VR】【Fitch肉感VR】川原かなえVR解禁！研修先のビジネスホテルでむっちむちの太ももとデカ尻がハンパない後輩の女の子とまさかの相部屋！ 新婚の僕は手を出しちゃいけないのに一緒に飲んでいたら小悪魔のように誘ってくるから酔った勢いでめちゃくちゃ…",
         "volume": "99",
         "review": {
-          "count": 31,
-          "average": "4.10"
+          "count": 32,
+          "average": "4.09"
         },
         "URL": "https://video.dmm.co.jp/av/content/?id=fcvr00016",
         "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Dfcvr00016&af_id=saaaaaaya-990&ch=api",
@@ -209907,23 +209893,23 @@
           }
         },
         "prices": {
-          "price": "150~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "490",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "download",
-                "price": "340",
+                "price": "680",
                 "list_price": "680"
               },
               {
                 "type": "rp",
-                "price": "150",
+                "price": "300",
                 "list_price": "300"
               }
             ]
@@ -210001,14 +209987,7 @@
               "name": "Fitch肉感VR"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-02 10:00:00",
-            "date_end": "2026-11-04 09:59:59",
-            "title": "働くお姉さん50％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -215720,33 +215699,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "300~",
+          "price": "150~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "980",
+                "price": "490",
                 "list_price": "980"
               },
               {
                 "type": "download",
-                "price": "680",
+                "price": "340",
                 "list_price": "680"
               },
               {
                 "type": "stream",
-                "price": "300",
+                "price": "150",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "680",
+                "price": "340",
                 "list_price": "680"
               },
               {
                 "type": "androiddl",
-                "price": "680",
+                "price": "340",
                 "list_price": "680"
               }
             ]
@@ -215813,7 +215792,14 @@
               "name": "Fitch"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-11-04 10:00:00",
+            "date_end": "2026-11-06 09:59:59",
+            "title": "働くお姉さん50％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -224542,33 +224528,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "150~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "640",
+                "price": "1280",
                 "list_price": "1280"
               },
               {
                 "type": "download",
-                "price": "490",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "stream",
-                "price": "150",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "490",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "androiddl",
-                "price": "490",
+                "price": "980",
                 "list_price": "980"
               }
             ]
@@ -224618,14 +224604,7 @@
               "name": "グラこれ"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-02 10:00:00",
-            "date_end": "2026-11-04 09:59:59",
-            "title": "働くお姉さん50％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -229540,33 +229519,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "300~",
+          "price": "150~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "1280",
+                "price": "640",
                 "list_price": "1280"
               },
               {
                 "type": "download",
-                "price": "980",
+                "price": "490",
                 "list_price": "980"
               },
               {
                 "type": "stream",
-                "price": "300",
+                "price": "150",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "980",
+                "price": "490",
                 "list_price": "980"
               },
               {
                 "type": "androiddl",
-                "price": "980",
+                "price": "490",
                 "list_price": "980"
               }
             ]
@@ -229633,7 +229612,14 @@
               "name": "NAMADORE本舗"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-11-04 10:00:00",
+            "date_end": "2026-11-06 09:59:59",
+            "title": "働くお姉さん50％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -231130,33 +231116,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "150~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "640",
+                "price": "1280",
                 "list_price": "1280"
               },
               {
                 "type": "download",
-                "price": "490",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "stream",
-                "price": "150",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "490",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "androiddl",
-                "price": "490",
+                "price": "980",
                 "list_price": "980"
               }
             ]
@@ -231212,14 +231198,7 @@
               "name": "NAMADORE本舗"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-02 10:00:00",
-            "date_end": "2026-11-04 09:59:59",
-            "title": "働くお姉さん50％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -231448,33 +231427,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "150~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "640",
+                "price": "1280",
                 "list_price": "1280"
               },
               {
                 "type": "download",
-                "price": "490",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "stream",
-                "price": "150",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "490",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "androiddl",
-                "price": "490",
+                "price": "980",
                 "list_price": "980"
               }
             ]
@@ -231541,14 +231520,7 @@
               "name": "NIKUYOKU"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-02 10:00:00",
-            "date_end": "2026-11-04 09:59:59",
-            "title": "働くお姉さん50％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -234413,33 +234385,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "300~",
+          "price": "150~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "1280",
+                "price": "640",
                 "list_price": "1280"
               },
               {
                 "type": "download",
-                "price": "980",
+                "price": "490",
                 "list_price": "980"
               },
               {
                 "type": "stream",
-                "price": "300",
+                "price": "150",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "980",
+                "price": "490",
                 "list_price": "980"
               },
               {
                 "type": "androiddl",
-                "price": "980",
+                "price": "490",
                 "list_price": "980"
               }
             ]
@@ -234489,7 +234461,14 @@
               "name": "グラこれ"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-11-04 10:00:00",
+            "date_end": "2026-11-06 09:59:59",
+            "title": "働くお姉さん50％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -242100,36 +242079,36 @@
         "iteminfo": {
           "genre": [
             {
-              "id": 6533,
-              "name": "ハイビジョン"
-            },
-            {
-              "id": 6548,
-              "name": "独占配信"
-            },
-            {
-              "id": 6002,
-              "name": "ハメ撮り"
-            },
-            {
-              "id": 6006,
-              "name": "デビュー作品"
-            },
-            {
-              "id": 5025,
-              "name": "淫語"
-            },
-            {
-              "id": 2007,
-              "name": "ぽっちゃり"
+              "id": 5008,
+              "name": "オナニー"
             },
             {
               "id": 4025,
               "name": "単体作品"
             },
             {
-              "id": 5008,
-              "name": "オナニー"
+              "id": 2007,
+              "name": "ぽっちゃり"
+            },
+            {
+              "id": 5025,
+              "name": "淫語"
+            },
+            {
+              "id": 6006,
+              "name": "デビュー作品"
+            },
+            {
+              "id": 6002,
+              "name": "ハメ撮り"
+            },
+            {
+              "id": 6548,
+              "name": "独占配信"
+            },
+            {
+              "id": 6533,
+              "name": "ハイビジョン"
             }
           ],
           "maker": [
@@ -246195,33 +246174,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "300~",
+          "price": "150~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "300",
+                "price": "150",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "980",
+                "price": "490",
                 "list_price": "980"
               },
               {
                 "type": "hd",
-                "price": "1280",
+                "price": "640",
                 "list_price": "1280"
               },
               {
                 "type": "iosdl",
-                "price": "980",
+                "price": "490",
                 "list_price": "980"
               },
               {
                 "type": "androiddl",
-                "price": "980",
+                "price": "490",
                 "list_price": "980"
               }
             ]
@@ -246288,7 +246267,14 @@
               "name": "Fitch"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-11-04 10:00:00",
+            "date_end": "2026-11-06 09:59:59",
+            "title": "働くお姉さん50％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -248581,36 +248567,36 @@
         "iteminfo": {
           "genre": [
             {
-              "id": 6006,
-              "name": "デビュー作品"
-            },
-            {
-              "id": 6002,
-              "name": "ハメ撮り"
-            },
-            {
-              "id": 1027,
-              "name": "美少女"
-            },
-            {
-              "id": 25,
-              "name": "拘束"
-            },
-            {
-              "id": 2001,
-              "name": "巨乳"
-            },
-            {
-              "id": 4025,
-              "name": "単体作品"
+              "id": 6533,
+              "name": "ハイビジョン"
             },
             {
               "id": 6548,
               "name": "独占配信"
             },
             {
-              "id": 6533,
-              "name": "ハイビジョン"
+              "id": 4025,
+              "name": "単体作品"
+            },
+            {
+              "id": 2001,
+              "name": "巨乳"
+            },
+            {
+              "id": 25,
+              "name": "拘束"
+            },
+            {
+              "id": 1027,
+              "name": "美少女"
+            },
+            {
+              "id": 6002,
+              "name": "ハメ撮り"
+            },
+            {
+              "id": 6006,
+              "name": "デビュー作品"
             }
           ],
           "maker": [
@@ -249482,36 +249468,36 @@
         "iteminfo": {
           "genre": [
             {
-              "id": 5019,
-              "name": "パイズリ"
-            },
-            {
-              "id": 4119,
-              "name": "エステ"
-            },
-            {
-              "id": 2001,
-              "name": "巨乳"
-            },
-            {
-              "id": 6149,
-              "name": "超乳"
-            },
-            {
-              "id": 5001,
-              "name": "中出し"
-            },
-            {
-              "id": 4025,
-              "name": "単体作品"
+              "id": 6533,
+              "name": "ハイビジョン"
             },
             {
               "id": 6548,
               "name": "独占配信"
             },
             {
-              "id": 6533,
-              "name": "ハイビジョン"
+              "id": 4025,
+              "name": "単体作品"
+            },
+            {
+              "id": 5001,
+              "name": "中出し"
+            },
+            {
+              "id": 6149,
+              "name": "超乳"
+            },
+            {
+              "id": 2001,
+              "name": "巨乳"
+            },
+            {
+              "id": 4119,
+              "name": "エステ"
+            },
+            {
+              "id": 5019,
+              "name": "パイズリ"
             }
           ],
           "series": [
@@ -250388,33 +250374,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "300~",
+          "price": "150~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "300",
+                "price": "150",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "980",
+                "price": "490",
                 "list_price": "980"
               },
               {
                 "type": "hd",
-                "price": "1280",
+                "price": "640",
                 "list_price": "1280"
               },
               {
                 "type": "iosdl",
-                "price": "980",
+                "price": "490",
                 "list_price": "980"
               },
               {
                 "type": "androiddl",
-                "price": "980",
+                "price": "490",
                 "list_price": "980"
               }
             ]
@@ -250475,7 +250461,14 @@
               "name": "Fitch"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-11-04 10:00:00",
+            "date_end": "2026-11-06 09:59:59",
+            "title": "働くお姉さん50％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -251892,33 +251885,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "300~",
+          "price": "150~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "300",
+                "price": "150",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "980",
+                "price": "490",
                 "list_price": "980"
               },
               {
                 "type": "hd",
-                "price": "1280",
+                "price": "640",
                 "list_price": "1280"
               },
               {
                 "type": "iosdl",
-                "price": "980",
+                "price": "490",
                 "list_price": "980"
               },
               {
                 "type": "androiddl",
-                "price": "980",
+                "price": "490",
                 "list_price": "980"
               }
             ]
@@ -251985,7 +251978,14 @@
               "name": "Fitch"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-11-04 10:00:00",
+            "date_end": "2026-11-06 09:59:59",
+            "title": "働くお姉さん50％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -257788,33 +257788,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "300~",
+          "price": "150~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "300",
+                "price": "150",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "980",
+                "price": "490",
                 "list_price": "980"
               },
               {
                 "type": "hd",
-                "price": "1280",
+                "price": "640",
                 "list_price": "1280"
               },
               {
                 "type": "iosdl",
-                "price": "980",
+                "price": "490",
                 "list_price": "980"
               },
               {
                 "type": "androiddl",
-                "price": "980",
+                "price": "490",
                 "list_price": "980"
               }
             ]
@@ -257875,7 +257875,14 @@
               "name": "Fitch"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-11-04 10:00:00",
+            "date_end": "2026-11-06 09:59:59",
+            "title": "働くお姉さん50％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -258902,36 +258909,36 @@
         "iteminfo": {
           "genre": [
             {
-              "id": 4059,
-              "name": "キス・接吻"
-            },
-            {
-              "id": 1031,
-              "name": "痴女"
-            },
-            {
-              "id": 2024,
-              "name": "巨尻"
-            },
-            {
-              "id": 1027,
-              "name": "美少女"
-            },
-            {
-              "id": 5001,
-              "name": "中出し"
-            },
-            {
-              "id": 4025,
-              "name": "単体作品"
+              "id": 6533,
+              "name": "ハイビジョン"
             },
             {
               "id": 6548,
               "name": "独占配信"
             },
             {
-              "id": 6533,
-              "name": "ハイビジョン"
+              "id": 4025,
+              "name": "単体作品"
+            },
+            {
+              "id": 5001,
+              "name": "中出し"
+            },
+            {
+              "id": 1027,
+              "name": "美少女"
+            },
+            {
+              "id": 2024,
+              "name": "巨尻"
+            },
+            {
+              "id": 1031,
+              "name": "痴女"
+            },
+            {
+              "id": 4059,
+              "name": "キス・接吻"
             }
           ],
           "series": [
@@ -259545,8 +259552,8 @@
         "title": "接吻乳首責めレズビアン～人妻の卑猥なレズキスニップル調教～ 君島みお 桐嶋りの",
         "volume": "164",
         "review": {
-          "count": 22,
-          "average": "4.14"
+          "count": 23,
+          "average": "4.13"
         },
         "URL": "https://video.dmm.co.jp/av/content/?id=jufd00847",
         "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Djufd00847&af_id=saaaaaaya-990&ch=api",
@@ -268191,33 +268198,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "300~",
+          "price": "150~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "300",
+                "price": "150",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "980",
+                "price": "490",
                 "list_price": "980"
               },
               {
                 "type": "hd",
-                "price": "1280",
+                "price": "640",
                 "list_price": "1280"
               },
               {
                 "type": "iosdl",
-                "price": "980",
+                "price": "490",
                 "list_price": "980"
               },
               {
                 "type": "androiddl",
-                "price": "980",
+                "price": "490",
                 "list_price": "980"
               }
             ]
@@ -268284,7 +268291,14 @@
               "name": "Fitch"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-11-04 10:00:00",
+            "date_end": "2026-11-06 09:59:59",
+            "title": "働くお姉さん50％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -278755,40 +278769,40 @@
         "iteminfo": {
           "genre": [
             {
-              "id": 5025,
-              "name": "淫語"
-            },
-            {
-              "id": 5019,
-              "name": "パイズリ"
-            },
-            {
-              "id": 1031,
-              "name": "痴女"
-            },
-            {
-              "id": 4119,
-              "name": "エステ"
-            },
-            {
-              "id": 4009,
-              "name": "巨乳フェチ"
-            },
-            {
-              "id": 4025,
-              "name": "単体作品"
-            },
-            {
-              "id": 6004,
-              "name": "デジモ"
+              "id": 6533,
+              "name": "ハイビジョン"
             },
             {
               "id": 6548,
               "name": "独占配信"
             },
             {
-              "id": 6533,
-              "name": "ハイビジョン"
+              "id": 6004,
+              "name": "デジモ"
+            },
+            {
+              "id": 4025,
+              "name": "単体作品"
+            },
+            {
+              "id": 4009,
+              "name": "巨乳フェチ"
+            },
+            {
+              "id": 4119,
+              "name": "エステ"
+            },
+            {
+              "id": 1031,
+              "name": "痴女"
+            },
+            {
+              "id": 5019,
+              "name": "パイズリ"
+            },
+            {
+              "id": 5025,
+              "name": "淫語"
             }
           ],
           "series": [
@@ -285446,33 +285460,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "300~",
+          "price": "150~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "300",
+                "price": "150",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "980",
+                "price": "490",
                 "list_price": "980"
               },
               {
                 "type": "hd",
-                "price": "1280",
+                "price": "640",
                 "list_price": "1280"
               },
               {
                 "type": "iosdl",
-                "price": "980",
+                "price": "490",
                 "list_price": "980"
               },
               {
                 "type": "androiddl",
-                "price": "980",
+                "price": "490",
                 "list_price": "980"
               }
             ]
@@ -285550,7 +285564,14 @@
               "name": "Fitch"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-11-04 10:00:00",
+            "date_end": "2026-11-06 09:59:59",
+            "title": "働くお姉さん50％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -302546,40 +302567,40 @@
         "iteminfo": {
           "genre": [
             {
-              "id": 2001,
-              "name": "巨乳"
-            },
-            {
-              "id": 28,
-              "name": "羞恥"
-            },
-            {
-              "id": 5011,
-              "name": "放尿・お漏らし"
-            },
-            {
-              "id": 4021,
-              "name": "盗撮・のぞき"
-            },
-            {
-              "id": 4124,
-              "name": "マッサージ・リフレ"
-            },
-            {
-              "id": 6004,
-              "name": "デジモ"
-            },
-            {
-              "id": 4025,
-              "name": "単体作品"
+              "id": 6533,
+              "name": "ハイビジョン"
             },
             {
               "id": 6548,
               "name": "独占配信"
             },
             {
-              "id": 6533,
-              "name": "ハイビジョン"
+              "id": 4025,
+              "name": "単体作品"
+            },
+            {
+              "id": 6004,
+              "name": "デジモ"
+            },
+            {
+              "id": 4124,
+              "name": "マッサージ・リフレ"
+            },
+            {
+              "id": 4021,
+              "name": "盗撮・のぞき"
+            },
+            {
+              "id": 5011,
+              "name": "放尿・お漏らし"
+            },
+            {
+              "id": 28,
+              "name": "羞恥"
+            },
+            {
+              "id": 2001,
+              "name": "巨乳"
             }
           ],
           "series": [
@@ -318336,40 +318357,40 @@
         "iteminfo": {
           "genre": [
             {
-              "id": 6004,
-              "name": "デジモ"
-            },
-            {
-              "id": 6533,
-              "name": "ハイビジョン"
-            },
-            {
-              "id": 6548,
-              "name": "独占配信"
-            },
-            {
-              "id": 4025,
-              "name": "単体作品"
-            },
-            {
-              "id": 4106,
-              "name": "騎乗位"
-            },
-            {
-              "id": 1016,
-              "name": "女教師"
-            },
-            {
-              "id": 1031,
-              "name": "痴女"
+              "id": 5001,
+              "name": "中出し"
             },
             {
               "id": 2001,
               "name": "巨乳"
             },
             {
-              "id": 5001,
-              "name": "中出し"
+              "id": 1031,
+              "name": "痴女"
+            },
+            {
+              "id": 1016,
+              "name": "女教師"
+            },
+            {
+              "id": 4106,
+              "name": "騎乗位"
+            },
+            {
+              "id": 4025,
+              "name": "単体作品"
+            },
+            {
+              "id": 6548,
+              "name": "独占配信"
+            },
+            {
+              "id": 6533,
+              "name": "ハイビジョン"
+            },
+            {
+              "id": 6004,
+              "name": "デジモ"
             }
           ],
           "series": [

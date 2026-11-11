@@ -29131,33 +29131,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "500~",
+          "price": "350~",
           "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "1980",
+                "price": "1386",
                 "list_price": "1980"
               },
               {
                 "type": "download",
-                "price": "1480",
+                "price": "1036",
                 "list_price": "1480"
               },
               {
                 "type": "stream",
-                "price": "500",
+                "price": "350",
                 "list_price": "500"
               },
               {
                 "type": "iosdl",
-                "price": "1480",
+                "price": "1036",
                 "list_price": "1480"
               },
               {
                 "type": "androiddl",
-                "price": "1480",
+                "price": "1036",
                 "list_price": "1480"
               }
             ]
@@ -29225,7 +29225,14 @@
               "name": "肉漫"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-11-12 00:00:00",
+            "date_end": "2026-11-12 23:59:59",
+            "title": "日替わりセール◆"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -54165,6 +54172,10 @@
         "iteminfo": {
           "genre": [
             {
+              "id": 4111,
+              "name": "寝取り・寝取られ・NTR"
+            },
+            {
               "id": 6012,
               "name": "4時間以上作品"
             },
@@ -54191,10 +54202,6 @@
             {
               "id": 6003,
               "name": "ベスト・総集編"
-            },
-            {
-              "id": 4111,
-              "name": "寝取り・寝取られ・NTR"
             }
           ],
           "series": [
@@ -54231,11 +54238,6 @@
               "ruby": "とつきるいさ"
             },
             {
-              "id": 1086156,
-              "name": "川上れいあ",
-              "ruby": "かわかみれいあ"
-            },
-            {
               "id": 1072691,
               "name": "優里なお",
               "ruby": "ゆうりなお"
@@ -54244,6 +54246,11 @@
               "id": 1069005,
               "name": "朝倉ここな",
               "ruby": "あさくらここな"
+            },
+            {
+              "id": 1086156,
+              "name": "川上れいあ",
+              "ruby": "かわかみれいあ"
             }
           ],
           "label": [

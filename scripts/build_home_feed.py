@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
+from datetime import datetime, timezone
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
@@ -84,6 +85,7 @@ def load_items(path: Path) -> tuple[list[dict], int]:
 def build() -> None:
     # Compute all outputs in memory first. No partial or incomplete feed updates.
     outputs: dict[Path, str] = {}
+    generated_at = int(datetime.now(timezone.utc).timestamp())
     for sort, filename in SOURCES.items():
         original = DATA / filename
         items, total = load_items(original)
@@ -91,7 +93,7 @@ def build() -> None:
         if len(top) != LIMIT or any(not x.get("content_id") or not x.get("title") for x in top):
             raise ValueError(f"{filename}: malformed first {LIMIT} product records")
         payload = {"result": {
-            "status": 200, "fast_feed": True,
+            "status": 200, "fast_feed": True, "generated_at": generated_at,
             "sort": sort, "items": top,
             "total_count": total, "result_count": len(top),
         }}

@@ -25,3 +25,8 @@
 .seo-age-card button{background:#c72855;border:0;cursor:pointer}.seo-age-card a{background:#333;text-decoration:none}
 .seo-age-locked{overflow:hidden}
 @media(max-width:670px){.seo-detail{grid-template-columns:1fr;padding:16px}.seo-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.seo-grid img{height:138px}}
+
+.seo-filter-label{display:block;margin:18px 0 7px;font-weight:700;color:#eee}
+.seo-filter{display:block;width:100%;max-width:520px;background:#181818;color:#fff;border:1px solid #656565;border-radius:9px;padding:13px 15px;font:inherit}
+.seo-filter:focus-visible{outline:2px solid #ff92b0;outline-offset:2px}
+.seo-grid li[hidden]{display:none!important}

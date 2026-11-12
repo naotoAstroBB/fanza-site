@@ -34,7 +34,7 @@ html{scroll-padding-top:165px}
 .home-redesign .site-search-button{
   position:absolute;right:5px;top:5px;bottom:5px;min-width:76px;
   background:#ff537b;border:0;border-radius:9px;color:white;
-  font:700 13px/1.2 inherit;cursor:pointer;transition:background .15s;
+  font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;transition:background .15s;
 }
 .home-redesign .site-search-button:hover{background:#f13a6b}
 .home-redesign .suggest-dropdown{right:0;top:calc(100% + 6px);border-color:#3b4657;box-shadow:0 18px 35px rgba(0,0,0,.7)}
@@ -52,7 +52,7 @@ html{scroll-padding-top:165px}
 .home-redesign .nav-btn{
   display:grid;place-items:center;appearance:none;background:transparent;border:0;
   border-bottom:3px solid transparent;border-radius:0;
-  color:#b6bfcc;padding:13px 24px;font:700 14px/1.4 inherit;cursor:pointer;min-height:50px;
+  color:#b6bfcc;padding:13px 24px;font-family:inherit;font-size:14px;font-weight:700;line-height:1.4;cursor:pointer;min-height:50px;
   transition:color .15s,border-color .15s;
 }
 .home-redesign .nav-btn:hover{color:#fff}
@@ -67,7 +67,7 @@ html{scroll-padding-top:165px}
   border:1px solid #344052;background:#1b2330;color:#e8edf5;text-decoration:none;
   display:inline-flex;align-items:center;justify-content:center;gap:7px;flex-shrink:0;
   min-height:40px;padding:8px 15px;border-radius:999px;white-space:nowrap;
-  font:700 13px/1.25 inherit;cursor:pointer;
+  font-family:inherit;font-size:13px;font-weight:700;line-height:1.25;cursor:pointer;
 }
 .home-redesign .explore-rail button:hover,.home-redesign .explore-rail a:hover{
   border-color:#ff6083;background:#262536;
@@ -137,6 +137,12 @@ html{scroll-padding-top:165px}
 .home-redesign .card-actress-link{color:#ffafc3}
 .home-redesign .card-review{color:#bdc5d0}
 .home-redesign .card-bottom{min-height:28px}
+.home-redesign .card-detail-link{
+  display:block;margin:9px 0 0;text-align:center;
+  text-decoration:none;color:#ffafc5;font-weight:700;font-size:.74rem;line-height:1.5;
+}
+.home-redesign .card-detail-link:hover{color:#fff;text-decoration:underline}
+.home-redesign .product-card:focus-visible{outline:2px solid #ff91ab;outline-offset:2px}
 .home-redesign .btn-buy{
   background:#ef416e;box-shadow:none;padding:11px 9px;margin-top:10px;
   min-height:41px;border-radius:9px;font-size:.8rem;letter-spacing:.01em;
@@ -201,7 +207,7 @@ html{scroll-padding-top:165px}
   .home-redesign .mobile-filter-button{
     display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;
     background:#212938;border:1px solid #414c60;color:#f3f3f8;border-radius:10px;
-    font:700 .8rem/1.2 inherit;min-height:39px;padding:8px 11px;cursor:pointer;
+    font-family:inherit;font-size:.8rem;font-weight:700;line-height:1.2;min-height:39px;padding:8px 11px;cursor:pointer;
   }
   .home-redesign .listing-helper{font-size:.72rem;flex-wrap:wrap;margin:7px 0 12px}
   .home-redesign .rank-tabs{gap:4px;overflow-x:auto;padding-bottom:0}

@@ -48,21 +48,29 @@
 </script>
 
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/home-redesign.css">
 </head>
-<body>
+<body class="home-redesign">
 
 <div class="sticky-bar">
 <header class="site-header">
   <div class="header-inner">
-    <div class="site-logo"><a href="home.html" style="color:inherit;text-decoration:none">AV動画ランキング</a><span> - 厳選</span></div>
-    <div class="suggest-wrap">
-      <input type="text" id="searchInput" placeholder="女優名・タイトル・キーワードで検索..." autocomplete="off">
+    <div class="brand-heading">
+      <a class="brand-link" href="home.html" aria-label="AV動画ランキング ホーム">
+        <span class="brand-symbol" aria-hidden="true">▶</span>
+        <span class="brand-text"><strong>AV動画ランキング</strong><small>FANZA作品をもっと探しやすく</small></span>
+      </a>
+    </div>
+    <div class="suggest-wrap" role="search">
+      <label class="sr-only" for="searchInput">作品名、出演者名、品番で検索</label>
+      <svg class="search-leading-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+      <input type="search" id="searchInput" placeholder="作品名・出演者・品番で検索" autocomplete="off" enterkeyhint="search">
       <div class="suggest-dropdown" id="suggestDropdown"></div>
-      <button onclick="App.doSearch()">🔍</button>
+      <button type="button" class="site-search-button" onclick="App.doSearch()" aria-label="作品を検索">検索</button>
     </div>
     <div class="header-btns">
-      <button class="fav-header-btn" onclick="App.toggleFavPanel()" title="お気に入りを開く">
-        <span class="fav-icon">⭐</span>
+      <button type="button" class="fav-header-btn" onclick="App.toggleFavPanel()" title="お気に入りを開く" aria-label="お気に入り一覧">
+        <span class="fav-icon" aria-hidden="true">☆</span>
         <span class="fav-label">お気に入り</span>
         <span class="fav-badge" id="favBadge" style="display:none">0</span>
       </button>
@@ -70,22 +78,13 @@
   </div>
 </header>
 
-<nav class="site-nav">
+<nav class="site-nav" aria-label="作品カテゴリ">
   <div class="nav-inner">
-    <!-- フロア切替グループ -->
     <div class="nav-group nav-group-floor">
-      <div class="nav-btn active" onclick="App.setFloor('videoa',this)">🎬 動画</div>
-      <div class="nav-btn" onclick="App.setFloor('anime',this)">🎌 アニメ</div>
-      <div class="nav-btn" onclick="App.setFloor('book',this)">📚 マンガ</div>
-      <div class="nav-btn" onclick="App.setFloor('goods',this)">🛍️ グッズ</div>
-    </div>
-    <div class="nav-divider"></div>
-    <!-- 特集/ソート グループ -->
-    <div class="nav-group nav-group-feature">
-      <div class="nav-btn" onclick="App.setSort('rank',this)">🏆 ランキング</div>
-      <div class="nav-btn" onclick="App.setSort('date',this)">🆕 新作</div>
-      <div class="nav-btn nav-btn-sale" onclick="App.setSale(this)">🔥 SALE</div>
-      <a href="actresses.html" class="nav-btn nav-btn-actress">👑 女優</a>
+      <button type="button" class="nav-btn active" data-floor="videoa" onclick="App.setFloor('videoa',this)">動画</button>
+      <button type="button" class="nav-btn" data-floor="anime" onclick="App.setFloor('anime',this)">アニメ</button>
+      <button type="button" class="nav-btn" data-floor="book" onclick="App.setFloor('book',this)">マンガ</button>
+      <button type="button" class="nav-btn" data-floor="goods" onclick="App.setFloor('goods',this)">グッズ</button>
     </div>
   </div>
 </nav>
@@ -103,15 +102,21 @@
 
 </div>
 
-<div class="ticker">
-  <div class="ticker-label">🔥 INFO</div>
-  <div class="ticker-wrap">
-    <span class="ticker-text">
-      厳選アダルト動画を毎日更新中！人気女優・新作・セール情報をお届けします。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      厳選アダルト動画を毎日更新中！人気女優・新作・セール情報をお届けします。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    </span>
-  </div>
-</div>
+<section class="explore-rail" aria-label="作品の探し方">
+ <div class="explore-rail-inner">
+  <button type="button" onclick="App.setSort('rank');document.getElementById('catalogue').scrollIntoView({behavior:'smooth'})">
+   <span class="explore-icon" aria-hidden="true">♛</span>ランキング
+  </button>
+  <button type="button" onclick="App.setSort('date');document.getElementById('catalogue').scrollIntoView({behavior:'smooth'})">
+   <span class="explore-icon" aria-hidden="true">✦</span>新着作品
+  </button>
+  <button type="button" onclick="App.setSale();document.getElementById('catalogue').scrollIntoView({behavior:'smooth'})">
+   <span class="explore-icon" aria-hidden="true">%</span>セール
+  </button>
+  <a href="actresses.html"><span class="explore-icon" aria-hidden="true">♙</span>出演者</a>
+  <button type="button" onclick="App.openGenreDrawer()"><span class="explore-icon" aria-hidden="true">☷</span>ジャンル</button>
+ </div>
+</section>
 
 <div class="hero">
   <div class="hero-inner">
@@ -140,51 +145,7 @@
   </div>
 </div>
 
-<!-- 最近見た作品（折りたたみ式・デフォルト閉じ） -->
-<section class="actress-section section-collapsible" id="historySection" style="display:none">
-  <div class="actress-section-inner">
-    <div class="actress-section-header collapsible-header" onclick="App.toggleHistory()">
-      <span class="actress-section-title">🕐 最近見た作品 <span class="collapse-count" id="historyCount"></span></span>
-      <span class="collapse-arrow" id="historyArrow">▼</span>
-    </div>
-    <div class="actress-scroll collapsible-body" id="historyList" style="display:none"></div>
-  </div>
-</section>
-
-
-<!-- 女優ランキング（プレビュー：詳細は actresses.html へ） -->
-<section class="actress-section">
-  <div class="actress-section-inner">
-    <div class="actress-tabs-row">
-      <div class="actress-tabs">
-        <button class="actress-tab active" onclick="App.switchActressTab('popular',this)">🔥 ランキング</button>
-        <button class="actress-tab" onclick="App.switchActressTab('monthly',this)">📅 月間人気</button>
-        <button class="actress-tab" onclick="App.switchActressTab('new',this)">🌸 新人女優</button>
-      </div>
-      <a href="actresses.html?tab=popular" class="actress-more-link" id="actressMoreLink">一覧へ →</a>
-    </div>
-    <div class="actress-tab-desc" id="actressTabDesc">今週の人気出演女優</div>
-    <div class="actress-scroll" id="actressList">
-      <span class="actress-loading">読み込み中...</span>
-    </div>
-    <!-- 各タブへの常時表示ショートカット -->
-    <div class="actress-shortcut-row">
-      <span class="actress-shortcut-label">一覧で見る</span>
-      <a href="actresses.html?tab=popular" class="actress-shortcut-chip">🏆 人気ランキング</a>
-      <a href="actresses.html?tab=monthly" class="actress-shortcut-chip">📅 月間人気</a>
-      <a href="actresses.html?tab=new" class="actress-shortcut-chip actress-shortcut-new">🌸 新人女優</a>
-    </div>
-  </div>
-</section>
-
-
-<!-- Helpful, static, crawler-readable introduction; existing product UI remains untouched -->
-<section class="seo-guide-intro" aria-label="サイトの使い方" style="max-width:1120px;margin:16px auto 26px;padding:16px 20px;border:1px solid var(--border);border-radius:12px;background:var(--bg2);line-height:1.8">
-  <h2 style="font-size:1.12rem;margin:0 0 8px">FANZA作品を比較して探す</h2>
-  <p style="margin:0 0 8px;color:var(--mute)">当サイトではFANZAの作品情報から、ランキング・発売日・出演者・ジャンル別に候補を探せます。表示価格や配信条件は変わるため、購入前に公式の商品ページで最新情報をご確認ください。</p>
-  <a href="guide.html" style="color:var(--accent2)">作品番号・配信形式・価格の確認方法を見る →</a>
-</section>
-<div class="page-wrapper">
+<div class="page-wrapper" id="catalogue">
   <aside class="sidebar">
     <div class="sidebar-section">
       <h3>並び替え</h3>
@@ -230,8 +191,15 @@
 
   <main class="main-content">
     <div class="section-header">
-      <h1 class="section-title" id="sectionTitle" style="margin:0">人気作品ランキング</h1>
+      <div class="listing-headline">
+        <span class="listing-eyebrow">DISCOVER WORKS</span>
+        <h1 class="section-title" id="sectionTitle">人気作品ランキング</h1>
+      </div>
+      <button type="button" class="mobile-filter-button" onclick="App.openGenreDrawer()">
+        <span aria-hidden="true">☷</span> 絞り込む
+      </button>
     </div>
+    <div class="listing-helper"><span>人気・新着・評価から作品を探せます</span><a href="works/index.html">品番から探す</a></div>
     <!-- ジャンルアクティブバッジ（モバイル等でも現在のジャンルを表示） -->
     <div class="genre-active-badge" id="genreActiveBadge" style="display:none"></div>
     <!-- ランキングタブ（videoa時のみ表示） -->
@@ -272,6 +240,45 @@
 <!-- SEO_ACTRESS_LINKS_END -->
   </main>
 </div>
+
+
+<!-- 最近見た作品（折りたたみ式・デフォルト閉じ） -->
+<section class="actress-section section-collapsible" id="historySection" style="display:none">
+  <div class="actress-section-inner">
+    <div class="actress-section-header collapsible-header" onclick="App.toggleHistory()">
+      <span class="actress-section-title">🕐 最近見た作品 <span class="collapse-count" id="historyCount"></span></span>
+      <span class="collapse-arrow" id="historyArrow">▼</span>
+    </div>
+    <div class="actress-scroll collapsible-body" id="historyList" style="display:none"></div>
+  </div>
+</section>
+
+
+<!-- 女優ランキング（プレビュー：詳細は actresses.html へ） -->
+<section class="actress-section">
+  <div class="actress-section-inner">
+    <div class="actress-tabs-row">
+      <div class="actress-tabs">
+        <button class="actress-tab active" onclick="App.switchActressTab('popular',this)">🔥 ランキング</button>
+        <button class="actress-tab" onclick="App.switchActressTab('monthly',this)">📅 月間人気</button>
+        <button class="actress-tab" onclick="App.switchActressTab('new',this)">🌸 新人女優</button>
+      </div>
+      <a href="actresses.html?tab=popular" class="actress-more-link" id="actressMoreLink">一覧へ →</a>
+    </div>
+    <div class="actress-tab-desc" id="actressTabDesc">今週の人気出演女優</div>
+    <div class="actress-scroll" id="actressList">
+      <span class="actress-loading">読み込み中...</span>
+    </div>
+    <!-- 各タブへの常時表示ショートカット -->
+    <div class="actress-shortcut-row">
+      <span class="actress-shortcut-label">一覧で見る</span>
+      <a href="actresses.html?tab=popular" class="actress-shortcut-chip">🏆 人気ランキング</a>
+      <a href="actresses.html?tab=monthly" class="actress-shortcut-chip">📅 月間人気</a>
+      <a href="actresses.html?tab=new" class="actress-shortcut-chip actress-shortcut-new">🌸 新人女優</a>
+    </div>
+  </div>
+</section>
+
 
 <!-- ジャンルドロワーオーバーレイ -->
 <div class="genre-overlay" id="genreOverlay" onclick="App.closeGenreDrawer()"></div>
@@ -346,21 +353,21 @@
 </div>
 
 <!-- ボトムナビゲーション（スマホのみ表示） -->
-<nav class="bottom-nav">
+<nav class="bottom-nav" aria-label="スマートフォン用メニュー">
   <a href="home.html" class="bottom-nav-item active">
-    <span class="bn-icon">🏠</span><span>ホーム</span>
+    <span class="bn-icon" aria-hidden="true">⌂</span><span>ホーム</span>
   </a>
-  <button class="bottom-nav-item" onclick="App.setSort('rank',this)">
-    <span class="bn-icon">🏆</span><span>ランキング</span>
+  <button class="bottom-nav-item" onclick="App.setSort('rank',this);document.getElementById('catalogue').scrollIntoView({behavior:'smooth'})">
+    <span class="bn-icon" aria-hidden="true">♛</span><span>ランキング</span>
   </button>
   <a href="actresses.html" class="bottom-nav-item">
-    <span class="bn-icon">👑</span><span>女優</span>
+    <span class="bn-icon" aria-hidden="true">♙</span><span>出演者</span>
   </a>
-  <button class="bottom-nav-item" onclick="App.setSale(this)">
-    <span class="bn-icon">🔥</span><span>SALE</span>
+  <button class="bottom-nav-item" onclick="App.setSale(this);document.getElementById('catalogue').scrollIntoView({behavior:'smooth'})">
+    <span class="bn-icon" aria-hidden="true">%</span><span>セール</span>
   </button>
   <button class="bottom-nav-item" onclick="App.openGenreDrawer()">
-    <span class="bn-icon">🎯</span><span>ジャンル</span>
+    <span class="bn-icon" aria-hidden="true">☷</span><span>ジャンル</span>
   </button>
 </nav>
 

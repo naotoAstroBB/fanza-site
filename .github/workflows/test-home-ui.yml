@@ -1,0 +1,42 @@
+name: Home UX Structure Checks
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "home.html"
+      - "css/home-redesign.css"
+      - "js/app.js"
+      - "scripts/test_home_layout.py"
+      - ".github/workflows/test-home-ui.yml"
+  pull_request:
+    paths:
+      - "home.html"
+      - "css/home-redesign.css"
+      - "js/app.js"
+      - "scripts/test_home_layout.py"
+      - ".github/workflows/test-home-ui.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          filter: blob:none
+          sparse-checkout: |
+            home.html
+            css
+            js
+            scripts
+      - name: Test homepage structure
+        run: python3 scripts/test_home_layout.py
+      - name: Check interactive JS syntax
+        run: node --check js/app.js
+      - name: Check existing DMM client syntax
+        run: node --check js/dmm-api.js

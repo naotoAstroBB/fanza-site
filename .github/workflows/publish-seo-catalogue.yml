@@ -1,0 +1,102 @@
+name: Publish SEO Catalogue From Existing Data
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/publish-seo-catalogue.yml'
+      - 'scripts/build_product_pages.py'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: fanza-seo-catalogue-publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Fetch only required catalogue sources
+        uses: actions/checkout@v4
+        with:
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /data/rank.json
+            /data/new.json
+            /data/review.json
+            /data/rank_prev.json
+            /scripts/build_home_feed.py
+            /scripts/build_product_pages.py
+            /scripts/test_home_feed.py
+            /scripts/test_build_product_pages.py
+            /home.html
+            /sitemap.xml
+            /works/
+
+      - name: Validate source JSON and Python
+        run: |
+          set -euo pipefail
+          python3 -m py_compile scripts/build_home_feed.py scripts/build_product_pages.py
+          python3 scripts/test_home_feed.py
+          python3 scripts/test_build_product_pages.py
+          for file in rank new review; do
+            test -s "data/${file}.json"
+          done
+
+      - name: Generate small homepage feeds
+        run: python3 scripts/build_home_feed.py
+
+      - name: Generate static works and sitemap
+        run: python3 scripts/build_product_pages.py
+
+      - name: Validate output before publishing
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          from xml.etree import ElementTree
+          expected = {"rank", "date", "review"}
+          for name in expected:
+              file = Path(f"data/home_{name}.json")
+              result = json.loads(file.read_text(encoding="utf-8"))["result"]
+              assert result.get("fast_feed") is True, name
+              assert len(result["items"]) == 72, name
+          pages = list(Path("works").glob("*.html"))
+          assert len(pages) >= 9, "No generated catalogue pages"
+          sitemap = ElementTree.parse("sitemap.xml")
+          ns = "{http://www.sitemaps.org/schemas/sitemap/0.9}"
+          urls = {item.text for item in sitemap.getroot().findall(f"{ns}url/{ns}loc")}
+          assert "https://douga-adult.com/works/index.html" in urls
+          assert len([u for u in urls if u and "/works/" in u]) == len(pages)
+          for page in pages:
+              doc = page.read_text(encoding="utf-8")
+              assert '<link rel="canonical"' in doc and "<h1" in doc, page
+          home = Path("home.html").read_text(encoding="utf-8")
+          assert 'href="works/index.html"' in home
+          assert 'seo-guide-intro' not in home
+          print("Validated static works, sitemap, home links, and compact feeds")
+          PY
+
+      - name: Commit generated files only
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A -- works/ sitemap.xml home.html data/home_rank.json data/home_date.json data/home_review.json
+          if [ -f data/home_prev_ids.json ]; then
+            git add -- data/home_prev_ids.json
+          fi
+          if git diff --cached --quiet; then
+            echo "No catalogue changes to publish"
+            exit 0
+          fi
+          git commit -m "build: publish static work pages and compact home feeds"
+          git fetch origin main
+          git rebase origin/main
+          git push origin HEAD:main

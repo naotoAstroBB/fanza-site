@@ -28,8 +28,14 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - name: Checkout
+      - name: Checkout (only source needed for tests)
         uses: actions/checkout@v4
+        with:
+          filter: blob:none
+          sparse-checkout: |
+            scripts
+            js
+            css
       - name: Configure Python
         uses: actions/setup-python@v5
         with:

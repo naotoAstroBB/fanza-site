@@ -216,7 +216,9 @@ const DMM = {
             try {
                 const fastData = await this._loadFile(fastFile);
                 const result = fastData?.result;
-                if (result?.fast_feed === true && result.items?.length >= 24 &&
+                const ageSec = Math.floor(Date.now() / 1000) - Number(result?.generated_at);
+                if (result?.fast_feed === true && Number.isFinite(ageSec) &&
+                    ageSec >= -300 && ageSec <= 86400 && result.items?.length >= 24 &&
                     result.items.every(i => i.content_id && i.title)) return fastData;
             } catch(e) { /* legacy full feed is always available as fallback */ }
         }

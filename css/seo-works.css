@@ -1,0 +1,27 @@
+/* Isolated additive styling for /works pages. Existing store layout is unaffected. */
+.seo-container{max-width:1120px;margin:28px auto 76px;padding:0 18px;color:#f2f2f2;line-height:1.8}
+.seo-container h1{font-size:clamp(1.45rem,3vw,2.2rem);line-height:1.5;overflow-wrap:anywhere}
+.seo-container h2{font-size:1.18rem;margin:0 0 12px}
+.seo-container a{color:#ff92b0}
+.seo-container a:focus-visible{outline:2px solid #fff;outline-offset:3px}
+.seo-muted{color:#b8b8b8;font-size:.86rem}
+.seo-detail{display:grid;grid-template-columns:minmax(180px,340px) 1fr;gap:28px;padding:24px;background:#171717;border:1px solid #343434;border-radius:16px}
+.seo-detail img{display:block;width:100%;max-width:340px;height:auto;border-radius:10px}
+.seo-details{display:grid;gap:8px;margin:0 0 20px}
+.seo-details div{display:grid;grid-template-columns:92px 1fr;gap:10px;border-bottom:1px solid #363636;padding:6px 0}
+.seo-details dt{color:#aaa}.seo-details dd{margin:0;overflow-wrap:anywhere}
+.seo-buy,.seo-secondary{display:block;border-radius:10px;padding:13px 16px;text-align:center;margin:12px 0;text-decoration:none;font-weight:700}
+.seo-buy{background:#ce2855;color:#fff!important}.seo-secondary{background:#303030;color:#fff!important}
+.seo-related{padding-left:24px}.seo-related li{margin-bottom:10px;overflow-wrap:anywhere}
+.seo-grid{list-style:none;display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));gap:14px;padding:0;margin:22px 0}
+.seo-grid li{border:1px solid #363636;background:#191919;border-radius:12px;padding:12px}
+.seo-grid li a{display:flex;flex-direction:column;gap:8px;text-decoration:none}
+.seo-grid img{width:100%;height:180px;object-fit:contain;display:block}
+.seo-grid span{font-size:.88rem;line-height:1.6;overflow-wrap:anywhere}
+.seo-age-overlay[hidden]{display:none!important}
+.seo-age-overlay{position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.97);display:grid;place-items:center;padding:20px}
+.seo-age-card{width:min(480px,100%);background:#1b1b1b;color:#fff;border:1px solid #cf335d;border-radius:16px;padding:30px;text-align:center}
+.seo-age-card button,.seo-age-card a{display:block;width:100%;box-sizing:border-box;border-radius:9px;padding:13px;margin-top:12px;color:#fff}
+.seo-age-card button{background:#c72855;border:0;cursor:pointer}.seo-age-card a{background:#333;text-decoration:none}
+.seo-age-locked{overflow:hidden}
+@media(max-width:670px){.seo-detail{grid-template-columns:1fr;padding:16px}.seo-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.seo-grid img{height:138px}}

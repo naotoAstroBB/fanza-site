@@ -59,6 +59,17 @@ class GeneratorTests(unittest.TestCase):
                 self.assertEqual((root / "home.html").read_text(encoding="utf-8").count(gen.START), 1)
                 gen.main()  # rerun must not duplicate navigation
                 self.assertEqual((root / "home.html").read_text(encoding="utf-8").count(gen.START), 1)
+                self.assertIn('id="worksSearch"', (root / "works/index.html").read_text(encoding="utf-8"))
+                self.assertEqual(len(list((root / "works").glob("*.html"))), 9)
+                # An existing URL remains published when a different product ranks first.
+                source.reverse()
+                (data / "rank.json").write_text(
+                    json.dumps({"result": {"items": source}}, ensure_ascii=False), encoding="utf-8"
+                )
+                gen.main()
+                self.assertTrue((root / "works/example00000.html").exists())
+                self.assertIn("https://douga-adult.com/works/example00000.html",
+                              (root / "sitemap.xml").read_text(encoding="utf-8"))
             finally:
                 gen.ROOT, gen.DATA, gen.OUT, gen.SITEMAP, gen.HOME, gen.LIMIT = original
 

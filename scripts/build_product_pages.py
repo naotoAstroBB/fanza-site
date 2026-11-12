@@ -305,7 +305,7 @@ def main() -> None:
         _, after = rest.split(END, 1)
         page = begin + block + after
     else:
-        marker = '    <div class="pagination" id="pagination"></div>'
+        marker = '<div class="pagination" id="pagination"></div>'
         if page.count(marker) != 1:
             raise RuntimeError("home.html injection anchor missing; refusing home update")
         page = page.replace(marker, marker + "\n" + block)

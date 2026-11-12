@@ -1,0 +1,44 @@
+name: SEO Static Page Smoke Tests
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/test-seo.yml'
+      - 'scripts/build_product_pages.py'
+      - 'scripts/test_build_product_pages.py'
+      - 'js/seo-works.js'
+      - 'js/seo-analytics.js'
+      - 'css/seo-works.css'
+  pull_request:
+    paths:
+      - '.github/workflows/test-seo.yml'
+      - 'scripts/build_product_pages.py'
+      - 'scripts/test_build_product_pages.py'
+      - 'js/seo-works.js'
+      - 'js/seo-analytics.js'
+      - 'css/seo-works.css'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test-seo:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Configure Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile generator and tests
+        run: python -m py_compile scripts/build_product_pages.py scripts/test_build_product_pages.py
+      - name: Test generator with synthetic FANZA-like fixtures
+        run: python scripts/test_build_product_pages.py
+      - name: Check JavaScript syntax
+        run: |
+          node --check js/seo-works.js
+          node --check js/seo-analytics.js

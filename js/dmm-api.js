@@ -208,6 +208,21 @@ const DMM = {
         // cid指定は横断検索へ
         if (params.cid) return this.fetchByCid(params.cid, params.floor);
 
+        // Home screen only: avoid fetching 10,000 full products to draw 24 cards.
+        // Missing/invalid compact feeds always fall back to the original data files.
+        const fastSort = {rank:'data/home_rank.json',date:'data/home_date.json',review:'data/home_review.json'};
+        const fastFile = fastSort[params.sort || 'rank'];
+        if (params.fast && fastFile && (!params.floor || params.floor === 'videoa') && !params.article_id) {
+            try {
+                const fastData = await this._loadFile(fastFile);
+                const result = fastData?.result;
+                const ageSec = Math.floor(Date.now() / 1000) - Number(result?.generated_at);
+                if (result?.fast_feed === true && Number.isFinite(ageSec) &&
+                    ageSec >= -300 && ageSec <= 86400 && result.items?.length >= 24 &&
+                    result.items.every(i => i.content_id && i.title)) return fastData;
+            } catch(e) { /* legacy full feed is always available as fallback */ }
+        }
+
         let file;
         if (params.article_id && this.genreFiles[params.article_id]) {
             // ジャンル指定：ソート別ファイルを使用（なければrankにフォールバック）

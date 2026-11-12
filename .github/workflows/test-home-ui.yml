@@ -7,6 +7,9 @@ on:
       - "home.html"
       - "css/home-redesign.css"
       - "js/app.js"
+      - "js/dmm-api.js"
+      - "scripts/build_home_feed.py"
+      - "scripts/test_home_feed.py"
       - "scripts/test_home_layout.py"
       - ".github/workflows/test-home-ui.yml"
   pull_request:
@@ -14,6 +17,9 @@ on:
       - "home.html"
       - "css/home-redesign.css"
       - "js/app.js"
+      - "js/dmm-api.js"
+      - "scripts/build_home_feed.py"
+      - "scripts/test_home_feed.py"
       - "scripts/test_home_layout.py"
       - ".github/workflows/test-home-ui.yml"
   workflow_dispatch:
@@ -36,6 +42,10 @@ jobs:
             scripts
       - name: Test homepage structure
         run: python3 scripts/test_home_layout.py
+      - name: Test lightweight feed builder
+        run: |
+          python3 -m py_compile scripts/build_home_feed.py scripts/test_home_feed.py
+          python3 scripts/test_home_feed.py
       - name: Check interactive JS syntax
         run: node --check js/app.js
       - name: Check existing DMM client syntax

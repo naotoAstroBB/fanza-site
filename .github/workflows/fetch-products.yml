@@ -456,6 +456,23 @@ jobs:
           validate_actresses data/actress_monthly.json actress_monthly
           validate_actresses data/actress_new.json actress_new
 
+      - name: Build lightweight home feeds
+        id: home_feed
+        continue-on-error: true
+        run: |
+          python3 -m py_compile scripts/build_home_feed.py
+          python3 scripts/build_home_feed.py
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          for name in ("home_rank.json", "home_date.json", "home_review.json"):
+              payload = json.loads((Path("data") / name).read_text(encoding="utf-8"))
+              result = payload["result"]
+              assert result["fast_feed"] is True and len(result["items"]) == 72, name
+              assert result["total_count"] >= 72, name
+          print("Verified all three lightweight feeds")
+          PY
+
       - name: Build crawlable actress navigation
         run: python3 scripts/build_seo_navigation.py
 

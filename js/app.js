@@ -410,7 +410,7 @@ const App = {
     // ===== ヒーローバナー =====
     async loadHero() {
         try {
-            const data = await DMM.fetch({ sort: 'rank' });
+            const data = await DMM.fetch({ sort: 'rank', fast: true });
             const items = data?.result?.items;
             if (!items?.length) return;
 
@@ -532,6 +532,10 @@ const App = {
 
         const params = { floor: this.floor, sort: this.sort };
         if (this.genre) { params.article = 'genre'; params.article_id = this.genre; }
+        // A 72-item compact feed is enough for the first three pages.
+        // Filters, other floors, and pages four onward use the original full dataset.
+        if (!this.genre && !this.singleWork && this.floor === 'videoa' && this.page <= 3 &&
+            ['rank','date','review'].includes(this.sort)) params.fast = true;
 
         // ランキングタブ状態を更新
         this.updateRankTabs();
@@ -539,10 +543,10 @@ const App = {
         // 順位変動データ（rank表示時のみ）
         if (this.sort === 'rank' && this.floor === 'videoa' && !this.genre) {
             try {
-                const prev = await DMM._loadFile('data/rank_prev.json');
+                const prev = await DMM._loadFile('data/home_prev_ids.json');
                 this._prevRankMap = {};
-                (prev?.result?.items || []).forEach((item, i) => {
-                    this._prevRankMap[item.content_id] = i + 1;
+                (prev?.result?.ids || []).forEach((cid, i) => {
+                    if (cid) this._prevRankMap[cid] = i + 1;
                 });
             } catch(e) { this._prevRankMap = {}; }
         } else {
@@ -612,7 +616,7 @@ const App = {
             }
 
             this._currentItems = items;
-            this.total = items.length;
+            this.total = result.fast_feed === true ? Math.max(items.length, result.total_count || 0) : items.length;
             const start = (this.page - 1) * this.hitsPerPage;
             this.renderGrid(grid, items.slice(start, start + this.hitsPerPage));
             this.renderPagination();
@@ -626,7 +630,7 @@ const App = {
 
     // ===== キーワード全データ横断検索 =====
     async _searchAllByKeyword(keyword) {
-        const kw = keyword.toLowerCase();
+        const kw = keyword.trim().normalize('NFKC').toLowerCase();
         // rank.json（65MB）+ makerFiles（各12MB）を逐次ロード
         // 処理後にキャッシュを即削除することで 1ファイル分のメモリしか保持しない
         const searchFiles = [
@@ -647,7 +651,8 @@ const App = {
                     const series    = (item.iteminfo?.series  || []).map(s => s.name || '').join(' ');
                     const makers    = (item.iteminfo?.maker   || []).map(m => m.name || '').join(' ');
                     const labels    = (item.iteminfo?.label   || []).map(l => l.name || '').join(' ');
-                    const haystack  = (title + ' ' + actresses + ' ' + genres + ' ' + series + ' ' + makers + ' ' + labels).toLowerCase();
+                    const ids = [item.content_id, item.product_id, item.productId].filter(Boolean).join(' ');
+                    const haystack = (ids + ' ' + title + ' ' + actresses + ' ' + genres + ' ' + series + ' ' + makers + ' ' + labels).normalize('NFKC').toLowerCase();
                     if (haystack.includes(kw)) {
                         seen.add(item.content_id);
                         matches.push(item);

@@ -163,6 +163,8 @@ def render(item: dict, neighbors: list[dict], updated: str) -> str:
 <div class="seo-age-card"><h2 id="ageTitle">年齢確認</h2><p>このサイトは成人向け情報を含みます。18歳以上（高校生不可）ですか？</p>
 <button id="ageYes" type="button">18歳以上です</button>
 <a href="https://www.google.co.jp/" rel="nofollow">18歳未満・退出する</a></div></div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-90ZV8JH151"></script>
+<script src="../js/seo-analytics.js" defer></script>
 <script src="../js/seo-works.js" defer></script>
 </body></html>
 """
@@ -193,6 +195,8 @@ def render_index(items: list[dict], updated: str) -> str:
 <div class="seo-age-overlay" id="ageLayer" hidden role="dialog" aria-modal="true" aria-labelledby="ageTitle"><div class="seo-age-card">
 <h2 id="ageTitle">年齢確認</h2><p>このサイトは成人向け情報を含みます。18歳以上（高校生不可）ですか？</p>
 <button id="ageYes" type="button">18歳以上です</button><a href="https://www.google.co.jp/" rel="nofollow">18歳未満・退出する</a></div></div>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-90ZV8JH151"></script>
+<script src="../js/seo-analytics.js" defer></script>
 <script src="../js/seo-works.js" defer></script></body></html>"""
 
 

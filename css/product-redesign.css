@@ -1,0 +1,139 @@
+/* Product detail identity aligned with the homepage. Scoped to body.detail-redesign. */
+body.detail-redesign {
+  --bg:#0c0f15;--bg2:#161d29;--bg3:#222b39;
+  --card-bg:#161d29;--border:#334052;
+  --text:#f3f5f8;--mute:#abb6c5;--text-mute:#abb6c5;
+  --accent:#ff537b;--accent2:#ffa0b6;
+  background:#0c0f15;color:#f3f5f8;-webkit-font-smoothing:antialiased;
+}
+.detail-redesign .site-header{background:#121923;border:0;border-bottom:1px solid #303c4e}
+.detail-redesign .header-inner{max-width:1180px;gap:24px;padding:14px 20px}
+.detail-redesign .detail-brand{
+  display:flex;align-items:center;gap:10px;min-width:0;color:#fff;text-decoration:none
+}
+.detail-redesign .detail-brand-icon{
+  width:40px;height:40px;display:grid;place-items:center;
+  border-radius:11px;background:linear-gradient(135deg,#ff7196,#c52e5a);
+  color:#fff;font-size:18px;font-weight:900
+}
+.detail-redesign .detail-brand-name{font-size:1.07rem;font-weight:850;letter-spacing:-.04em;white-space:nowrap}
+.detail-redesign .detail-search-bar{display:flex;flex:1;gap:7px;max-width:520px}
+.detail-redesign .detail-search-bar input{
+  flex:1;min-width:0;border-radius:10px;background:#242d3c;
+  border:1px solid #455367;padding:11px 14px;color:white;font-size:16px;font-family:inherit
+}
+.detail-redesign .detail-search-bar button{
+  background:#eb4772;border:0;border-radius:10px;color:white;padding:10px 19px;
+  font-size:.86rem;font-family:inherit;font-weight:750;cursor:pointer
+}
+.detail-redesign .page-back-bar{max-width:1180px;margin:0 auto;padding:13px 20px 0}
+.detail-redesign .page-back-bar .back-btn{
+  background:#1e2938;border:1px solid #39465a;border-radius:9px;color:#d8dfea;
+  padding:9px 15px;font-size:.84rem;cursor:pointer
+}
+.detail-redesign .page-wrapper{
+  display:block;max-width:1180px;margin:auto;padding:14px 20px 64px;
+}
+.detail-redesign .main-content{max-width:none}
+.detail-redesign .breadcrumb{
+  display:flex;gap:7px;flex-wrap:wrap;color:#9eacbd;
+  line-height:1.5;font-size:.77rem;margin:0 0 18px
+}
+.detail-redesign .breadcrumb a{color:#d4dae5}
+.detail-redesign .detail-title{
+  color:#f7f8fb;font-size:clamp(1.14rem,2.1vw,1.7rem);
+  letter-spacing:-.025em;line-height:1.55;margin:0 0 18px;overflow-wrap:anywhere
+}
+.detail-redesign .product-detail{
+  display:grid;grid-template-columns:minmax(0,440px) minmax(0,1fr);
+  align-items:start;gap:28px;
+  background:#171e2a;border:1px solid #354153;border-radius:17px;
+  padding:25px;box-shadow:0 8px 26px rgba(0,0,0,.18);
+}
+.detail-redesign .detail-img{
+  background:#0e131c;border:1px solid #283243;border-radius:13px;padding:12px;
+  text-align:center
+}
+.detail-redesign .detail-img img{
+  display:block;width:100%;max-width:400px;max-height:560px;
+  object-fit:contain;border-radius:8px;margin:0 auto
+}
+.detail-redesign .detail-price-big{
+  font-size:clamp(1.4rem,3vw,1.9rem);font-weight:850;color:#fff;margin-bottom:10px
+}
+.detail-redesign .detail-price-unavailable{color:#c5cbd6;font-size:.93rem;margin-bottom:16px}
+.detail-redesign .detail-price-caption{
+  color:#aeb9c7;font-size:.74rem;margin:-4px 0 17px;
+}
+.detail-redesign .btn-buy-large{
+  padding:14px;background:#ea4771;border:1px solid #f0597e;
+  border-radius:11px;text-align:center;box-shadow:none;font-size:1rem;line-height:1.5;
+  font-weight:800;transition:background .2s;
+}
+.detail-redesign .btn-buy-large:hover{background:#ff5c85}
+.detail-redesign .detail-meta-heading{
+  font-size:1.05rem;margin:24px 0 13px;padding-left:11px;
+  border-left:4px solid #f2547f
+}
+.detail-redesign .detail-meta{
+  display:grid;grid-template-columns:114px minmax(0,1fr);
+  gap:0 10px;margin:10px 0 15px;
+}
+.detail-redesign .detail-meta dt,.detail-redesign .detail-meta dd{
+  margin:0;padding:12px 0;border-bottom:1px solid #374052;
+  min-width:0;line-height:1.6;overflow-wrap:anywhere;
+}
+.detail-redesign .detail-meta dt{color:#a7b1c2;font-size:.78rem}
+.detail-redesign .detail-meta dd{color:#f0f2f6;font-size:.87rem}
+.detail-redesign .detail-meta a{color:#ff9bb6;text-decoration:none}
+.detail-redesign .review-box{background:#232d3e;border:1px solid #37445a;border-radius:11px}
+.detail-redesign .campaign-box{background:#30212e;border:1px solid #794459;color:#ffb1c5}
+.detail-redesign .share-row{flex-wrap:wrap}
+.detail-redesign .share-bsky{background:#1565c0;color:#fff}
+.detail-redesign .video-wrap{background:#111720;border-radius:11px;padding:12px;margin-top:15px}
+.detail-redesign .video-wrap iframe{max-width:100%;background:#080b10}
+.detail-redesign .sample-images img{
+  width:calc(33.333% - 7px);min-height:70px;object-fit:cover;border-radius:9px;
+  border:1px solid #3c4a5c
+}
+.detail-redesign .related-section{
+  background:#171e2a;border:1px solid #354153;border-radius:15px;
+  margin-top:22px;padding:19px;
+}
+.detail-redesign .related-title{font-size:1.05rem;margin-bottom:12px}
+.detail-redesign .site-footer{border-top:1px solid #354153;margin-top:30px}
+.detail-redesign .detail-mobile-cta{display:none}
+.detail-redesign :is(a,button,input):focus-visible{outline:2px solid #ffa3bb;outline-offset:3px}
+@media(max-width:760px){
+  .detail-redesign .header-inner{
+    display:grid;grid-template-columns:1fr;gap:10px;padding:12px 14px
+  }
+  .detail-redesign .detail-brand-icon{width:35px;height:35px;border-radius:10px;font-size:15px}
+  .detail-redesign .detail-brand-name{font-size:1rem}
+  .detail-redesign .detail-search-bar{width:100%;max-width:none}
+  .detail-redesign .detail-search-bar input{height:44px}
+  .detail-redesign .page-back-bar{padding:10px 14px 0}
+  .detail-redesign .page-wrapper{padding:11px 14px 105px}
+  .detail-redesign .breadcrumb{font-size:.72rem;margin-bottom:12px}
+  .detail-redesign .detail-title{font-size:1.14rem;margin:0 0 14px}
+  .detail-redesign .product-detail{
+    grid-template-columns:1fr;gap:15px;padding:14px;border-radius:13px
+  }
+  .detail-redesign .detail-img{padding:8px}
+  .detail-redesign .detail-img img{max-height:430px}
+  .detail-redesign .detail-price-big{font-size:1.5rem}
+  .detail-redesign .btn-buy-large{min-height:48px;font-size:.9rem}
+  .detail-redesign .detail-meta{grid-template-columns:94px minmax(0,1fr)}
+  .detail-redesign .detail-meta dt,.detail-redesign .detail-meta dd{padding:10px 0}
+  .detail-redesign .related-section{margin-top:18px;padding:14px}
+  .detail-redesign .detail-mobile-cta:not([hidden]){
+    display:block;position:fixed;bottom:0;left:0;right:0;z-index:450;
+    background:#111824;border-top:1px solid #384459;
+    padding:9px 13px calc(9px + env(safe-area-inset-bottom,0));
+    box-shadow:0 -6px 22px rgba(0,0,0,.34)
+  }
+  .detail-redesign .detail-mobile-cta a{
+    display:block;text-align:center;background:#e94671;color:#fff;
+    font-size:.92rem;font-weight:800;text-decoration:none;padding:12px 16px;border-radius:10px
+  }
+}

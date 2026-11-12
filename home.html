@@ -209,6 +209,34 @@
       <button class="rank-tab" onclick="App.setSort('review',this)">⭐ 高評価</button>
       <button class="rank-tab" onclick="App.setSort('date',this)">🆕 新作</button>
     </div>
+    <details class="advanced-filters" id="advancedFilters">
+      <summary><span>詳細条件で絞り込む</span><span class="advanced-count" id="advancedFilterCount" hidden></span></summary>
+      <form class="advanced-filter-form" id="advancedFilterForm" onsubmit="event.preventDefault();App.applyAdvancedFilters()">
+        <div class="advanced-filter-grid">
+          <label>発売年
+            <select id="filterYear" name="year"><option value="">指定なし</option></select>
+          </label>
+          <label>最低価格
+            <input id="filterMinPrice" name="minPrice" type="number" min="0" step="100" inputmode="numeric" placeholder="例：500">
+          </label>
+          <label>最高価格
+            <input id="filterMaxPrice" name="maxPrice" type="number" min="0" step="100" inputmode="numeric" placeholder="例：1500">
+          </label>
+          <label>最低収録時間（分）
+            <input id="filterMinMinutes" name="minMinutes" type="number" min="0" step="10" inputmode="numeric" placeholder="例：120">
+          </label>
+          <label class="advanced-maker">メーカー名
+            <input id="filterMaker" name="maker" type="search" maxlength="100" placeholder="メーカー名の一部">
+          </label>
+        </div>
+        <p class="advanced-filter-note">価格・収録時間などの情報が登録されていない作品は、該当する条件では表示されません。収録時間は動画・アニメ向けです。</p>
+        <p class="advanced-filter-error" id="filterError" role="status" aria-live="polite"></p>
+        <div class="advanced-filter-actions">
+          <button class="advanced-apply" type="submit">この条件で検索</button>
+          <button class="advanced-reset" type="button" onclick="App.resetAdvancedFilters()">条件をリセット</button>
+        </div>
+      </form>
+    </details>
     <div class="single-work-bar" id="singleWorkBar">
       <button class="single-work-toggle" id="singleWorkBtn" onclick="App.toggleSingleWork(this)">
         👑 単体作品のみ
@@ -414,6 +442,7 @@
 
 <script src="js/storage.js"></script>
 <script src="js/dmm-api.js"></script>
+<script src="js/catalogue-filters.js"></script>
 <script src="js/app.js"></script>
 <script>
 // PWA Service Worker 登録

@@ -17,6 +17,7 @@ const App = {
     total:        0,
     showSale:     false,
     singleWork:   false,
+    filters:      { year:'', minPrice:'', maxPrice:'', minMinutes:'', maker:'' },
     _saleItems:   [],
     _currentItems:[],
 
@@ -27,6 +28,9 @@ const App = {
         this.sort    = p.get('sort')    || 'rank';
         this.keyword = p.get('keyword') || '';
         this.page    = parseInt(p.get('page') || '1');
+        this.filters = Object.fromEntries(['year','minPrice','maxPrice','minMinutes','maker']
+            .map(key => [key, (p.get(key) || '').slice(0,100)]));
+        this.initAdvancedFilters();
 
         const searchEl = document.getElementById('searchInput');
         if (searchEl) {
@@ -56,6 +60,100 @@ const App = {
         this.initActressTabs();
         await this.fetchProducts();
         this.checkSaleToast();  // お気に入りセール通知
+    },
+
+    // ===== 複数条件フィルタ =====
+    initAdvancedFilters() {
+        const yearSelect = document.getElementById('filterYear');
+        if (yearSelect) {
+            const current = new Date().getFullYear();
+            for (let year = current; year >= current - 20; year--) {
+                const option = document.createElement('option');
+                option.value = String(year);
+                option.textContent = String(year) + '年';
+                yearSelect.appendChild(option);
+            }
+        }
+        this.syncAdvancedFilters();
+    },
+
+    syncAdvancedFilters() {
+        const fields = {
+            year:'filterYear', minPrice:'filterMinPrice',
+            maxPrice:'filterMaxPrice', minMinutes:'filterMinMinutes', maker:'filterMaker'
+        };
+        for (const [key, id] of Object.entries(fields)) {
+            const el = document.getElementById(id);
+            if (el) el.value = this.filters[key] || '';
+        }
+        const minutes = document.getElementById('filterMinMinutes');
+        if (minutes) minutes.disabled = !['videoa','anime','vr'].includes(this.floor);
+        const count = Object.values(this.filters).filter(Boolean).length;
+        const badge = document.getElementById('advancedFilterCount');
+        if (badge) {
+            badge.hidden = !count;
+            badge.textContent = count + '条件';
+        }
+        if (count) {
+            const details = document.getElementById('advancedFilters');
+            if (details) details.open = true;
+        }
+    },
+
+    get hasAdvancedFilters() {
+        return typeof CatalogueFilters !== 'undefined' && CatalogueFilters.hasActive(this.filters);
+    },
+
+    filterResults(items) {
+        return typeof CatalogueFilters === 'undefined' ? items :
+            CatalogueFilters.filter(items, this.filters, this.floor);
+    },
+
+    applyAdvancedFilters() {
+        const form = document.getElementById('advancedFilterForm');
+        if (form && !form.reportValidity()) return;
+        const next = {};
+        const fields = {
+            year:'filterYear', minPrice:'filterMinPrice',
+            maxPrice:'filterMaxPrice', minMinutes:'filterMinMinutes', maker:'filterMaker'
+        };
+        for (const [key, id] of Object.entries(fields)) {
+            next[key] = (document.getElementById(id)?.value || '').trim();
+        }
+        const error = document.getElementById('filterError');
+        if (next.minPrice && next.maxPrice && Number(next.minPrice) > Number(next.maxPrice)) {
+            if (error) error.textContent = '最低価格は最高価格以下で指定してください。';
+            return;
+        }
+        if (error) error.textContent = '';
+        this.filters = next;
+        this.page = 1;
+        this.syncAdvancedFilters();
+        this.updateFilterUrl();
+        if (this.showSale) this.setSale();
+        else this.fetchProducts();
+    },
+
+    resetAdvancedFilters(refresh=true) {
+        this.filters = { year:'', minPrice:'', maxPrice:'', minMinutes:'', maker:'' };
+        this.page = 1;
+        const error = document.getElementById('filterError');
+        if (error) error.textContent = '';
+        this.syncAdvancedFilters();
+        this.updateFilterUrl();
+        if (refresh) {
+            if (this.showSale) this.setSale();
+            else this.fetchProducts();
+        }
+    },
+
+    updateFilterUrl() {
+        const url = new URL(location.href);
+        for (const key of ['year','minPrice','maxPrice','minMinutes','maker']) {
+            if (this.filters[key]) url.searchParams.set(key, this.filters[key]);
+            else url.searchParams.delete(key);
+        }
+        history.replaceState(null, '', url.pathname + url.search + url.hash);
     },
 
     // ===== 検索サジェスト =====
@@ -495,7 +593,9 @@ const App = {
         // 動画/アニメ/マンガ/グッズ/全ジャンル × rank/date/review 全variant
         // タイトル・女優名・ジャンル名・シリーズ名・メーカー名のいずれかにヒットすれば対象
         if (this.keyword) {
-            const items = await this._searchAllByKeyword(this.keyword);
+            let items = await this._searchAllByKeyword(this.keyword);
+            // 検索結果にも詳細条件を適用する
+            items = this.filterResults(items);
             // 並び替え（新作優先）
             items.sort((a, b) => (b.date || '').localeCompare(a.date || ''));
             this._currentItems = items;
@@ -534,7 +634,7 @@ const App = {
         if (this.genre) { params.article = 'genre'; params.article_id = this.genre; }
         // A 72-item compact feed is enough for the first three pages.
         // Filters, other floors, and pages four onward use the original full dataset.
-        if (!this.genre && !this.singleWork && this.floor === 'videoa' && this.page <= 3 &&
+        if (!this.genre && !this.singleWork && !this.hasAdvancedFilters && this.floor === 'videoa' && this.page <= 3 &&
             ['rank','date','review'].includes(this.sort)) params.fast = true;
 
         // ランキングタブ状態を更新
@@ -615,6 +715,7 @@ const App = {
                 );
             }
 
+            items = this.filterResults(items);
             this._currentItems = items;
             this.total = result.fast_feed === true ? Math.max(items.length, result.total_count || 0) : items.length;
             const start = (this.page - 1) * this.hitsPerPage;
@@ -695,13 +796,14 @@ const App = {
                 }
             } catch(e) {}
         }
-        this._saleItems   = saleItems;
-        this._currentItems = saleItems;
-        this.total = saleItems.length;
-        this.renderGrid(grid, saleItems.slice(0, this.hitsPerPage));
+        const filteredSale = this.filterResults(saleItems);
+        this._saleItems   = filteredSale;
+        this._currentItems = filteredSale;
+        this.total = filteredSale.length;
+        this.renderGrid(grid, filteredSale.slice(0, this.hitsPerPage));
         this.renderPagination();
         const title = document.getElementById('sectionTitle');
-        if (title) title.textContent = `🔥 セール中 — ${saleItems.length}件`;
+        if (title) title.textContent = `🔥 セール中 — ${this.total}件`;
     },
 
     renderGrid(grid, items, emptyMsg) {
@@ -1005,6 +1107,7 @@ const App = {
         this.page       = 1;
         this.showSale   = false;
         this.singleWork = false; // フロア変更時に単体作品フィルタをリセット
+        this.resetAdvancedFilters(false);
         document.querySelectorAll('.nav-group-floor .nav-btn').forEach(b =>
             b.classList.toggle('active', b.dataset.floor === floor));
         this.updateRankTabs();
@@ -1059,6 +1162,7 @@ const App = {
         this.singleWork = false;
         this.page       = 1;
         this.showSale   = false;
+        this.resetAdvancedFilters(false);
         const searchEl = document.getElementById('searchInput');
         if (searchEl) searchEl.value = '';
         if (el) {

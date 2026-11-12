@@ -459,11 +459,32 @@ jobs:
       - name: Build crawlable actress navigation
         run: python3 scripts/build_seo_navigation.py
 
+      - name: Build crawlable product catalogue
+        run: python3 scripts/build_product_pages.py
+
+      - name: Verify generated SEO pages
+        run: |
+          python3 - <<'PY'
+          import pathlib
+          import xml.etree.ElementTree as ET
+          root = ET.parse("sitemap.xml").getroot()
+          ns = "{http://www.sitemaps.org/schemas/sitemap/0.9}"
+          urls = [e.text for e in root.findall(f"{ns}url/{ns}loc")]
+          pages = list(pathlib.Path("works").glob("*.html"))
+          assert len(pages) >= 9, "Too few generated pages"
+          assert "https://douga-adult.com/works/index.html" in urls
+          assert len([u for u in urls if "/works/" in u]) == len(pages)
+          for p in pages:
+              text = p.read_text(encoding="utf-8")
+              assert '<link rel="canonical"' in text and '<h1>' in text, p
+          print(f"Verified {len(pages)} generated pages and sitemap entries")
+          PY
+
       - name: Commit
         run: |
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git config user.name "github-actions[bot]"
-          git add data/ icons/ home.html actresses.html
+          git add data/ icons/ home.html actresses.html sitemap.xml works/
           git diff --staged --quiet || git commit -m "chore: update product data $(date +'%Y-%m-%d %H:%M')"
           git pull --rebase origin main
           git push

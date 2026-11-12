@@ -5,7 +5,7 @@
   const parseAmount = value => {
     if (value === undefined || value === null || value === '') return null;
     const text = normal(value).replace(/,/g, '');
-    const match = text.match(/[¥￥]\s*([0-9][0-9,]*)/) || text.match(/([0-9][0-9,]*)\s*円/) || text.match(/^([0-9][0-9,]*)/);
+    const match = text.match(/[¥￥]\s*([0-9][0-9,]*)/) || text.match(/([0-9][0-9,]*)\s*円/) || text.match(/^([0-9][0-9,]*)(?:\s*(?:[~〜～]|$))/);
     if (!match) return null;
     const num = Number(match[1]);
     return Number.isFinite(num) ? num : null;

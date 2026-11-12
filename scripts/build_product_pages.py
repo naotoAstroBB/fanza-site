@@ -291,23 +291,24 @@ def main() -> None:
             old.unlink()
     sitemap(urls)
     page = HOME.read_text(encoding="utf-8-sig")
+    # Keep product discovery first: never insert a large explanatory block.
+    # The redesigned homepage already links to works/index.html next to the results.
+    # For older home layouts, add only a compact navigation link.
     block = "\n".join([
         START,
-        '<section aria-labelledby="seoWorksHeading" style="margin:26px 0;padding:16px;border:1px solid var(--border);border-radius:12px">',
-        '<h2 id="seoWorksHeading" style="font-size:1.1rem;margin:0 0 10px">FANZA掲載作品を作品番号から探す</h2>',
-        '<p style="color:var(--mute);font-size:.9rem">公式データを基に作品番号・出演者などの基本情報を確認できます。</p>',
-        '<p><a href="works/index.html" style="color:var(--accent2)">作品一覧を見る →</a></p>',
-        '</section>',
+        '<nav class="seo-catalogue-shortcut" aria-label="品番から探す">',
+        '<a href="works/index.html">作品番号別の一覧を見る →</a>',
+        '</nav>',
         END,
     ])
     if START in page and END in page:
-        begin, rest = page.split(START, 1)
+        before, rest = page.split(START, 1)
         _, after = rest.split(END, 1)
-        page = begin + block + after
-    else:
+        page = before + block + after
+    elif 'href="works/index.html"' not in page:
         marker = '<div class="pagination" id="pagination"></div>'
         if page.count(marker) != 1:
-            raise RuntimeError("home.html injection anchor missing; refusing home update")
+            raise RuntimeError("Missing compact-link insertion anchor; refusing home update")
         page = page.replace(marker, marker + "\n" + block)
     write_changed(HOME, page)
     print(f"Created {len(selected)} indexed product pages and catalogue")

@@ -151,6 +151,20 @@ const DMM = {
 
     // ===== 商品IDで全JSONを横断検索 =====
     async fetchByCid(cid, floor) {
+        // Start with the small home feeds for items opened from the landing page.
+        // Non-video categories still use their own canonical full datasets.
+        if (!floor || floor === 'videoa') {
+            for (const file of ['data/home_rank.json','data/home_date.json','data/home_review.json']) {
+                try {
+                    const compact = await this._loadFile(file);
+                    const result = compact?.result;
+                    const age = Math.floor(Date.now()/1000) - Number(result?.generated_at);
+                    if (result?.fast_feed !== true || !Number.isFinite(age) || age < -300 || age > 86400) continue;
+                    const item = (result.items || []).find(x => x.content_id === cid);
+                    if (item) return { result: {status:200, items:[item], total_count:1, result_count:1} };
+                } catch (_) { /* Full sources remain the fallback. */ }
+            }
+        }
         // Step1: フロアに応じたファイルのみ逐次検索（余分なフロアファイルをロードしない）
         const floorFiles = (floor && floor !== 'videoa' && this.floorSortFiles[floor])
             ? Object.values(this.floorSortFiles[floor])

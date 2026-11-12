@@ -112,10 +112,15 @@ def render(item: dict, neighbors: list[dict], updated: str) -> str:
     maker = ((item.get("iteminfo") or {}).get("maker") or [])
     makers = ", ".join(short(a.get("name"), 60) for a in maker[:4] if isinstance(a, dict))
     actors = actresses(item)
-    description = short(f"{title}。FANZA掲載作品の作品情報、出演者、発売日、関連作品、公式配信ページを確認。", 150)
+    raw_genres = ((item.get("iteminfo") or {}).get("genre") or [])
+    genres = [short(g.get("name"), 45) for g in raw_genres[:6] if isinstance(g, dict) and g.get("name")]
+    duration = short(item.get("volume"), 20)
+    if duration.isdecimal():
+        duration += "分"
+    description = short(f"{title}。品番{cid}、出演者、メーカー、発売日、収録時間などを確認。", 150)
     actor_html = ("、".join(f'<a href="../actress.html?id={quote(aid)}&amp;name={quote(name)}">{esc(name)}</a>' for aid, name in actors) if actors else "公式商品ページでご確認ください")
     details = []
-    for label, val in (("作品番号", cid), ("発売日", release), ("メーカー", makers)):
+    for label, val in (("作品番号", cid), ("発売日", release), ("メーカー", makers), ("収録時間", duration), ("ジャンル", "、".join(genres))):
         if val:
             details.append(f'<div><dt>{esc(label)}</dt><dd>{esc(val)}</dd></div>')
     image_html = (f'<img src="{esc(img)}" alt="{esc(title)}の公式掲載画像" loading="lazy" width="320" decoding="async">' if img else "")
@@ -156,7 +161,7 @@ def render(item: dict, neighbors: list[dict], updated: str) -> str:
 <a class="seo-secondary" href="{esc(dynamic)}">サイト内の詳しい商品情報・サンプルを見る</a>
 <p class="seo-muted">配信条件、価格、在庫、サンプルの有無はFANZA公式の最新情報が優先されます。</p>
 </div></div>
-<section><h2>関連する掲載作品</h2><ul class="seo-related">{related}</ul></section>
+<section><h2>同じランキングの掲載作品</h2><p class="seo-muted">下記はランキングで近くに掲載されていた作品であり、出演者・シリーズ等の一致を保証するものではありません。</p><ul class="seo-related">{related}</ul></section>
 <section><h2>購入前に確認したいこと</h2><p>商品番号や出演者、配信形式、利用条件を確認しましょう。<a href="../guide.html">作品の探し方・購入前の確認事項</a>も参考にできます。</p></section>
 </main><footer class="site-footer"><p>当サイトはFANZA（DMM.com）のアフィリエイトプログラムを利用しています。18歳未満（高校生を含む）の方は利用できません。</p><a href="../disclaimer.html">免責事項</a></footer>
 <div class="seo-age-overlay" id="ageLayer" hidden role="dialog" aria-modal="true" aria-labelledby="ageTitle">

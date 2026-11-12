@@ -88,9 +88,9 @@ jobs:
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add -A -- works/ sitemap.xml home.html data/home_rank.json data/home_date.json data/home_review.json
+          git add --sparse -A -- works/ sitemap.xml home.html data/home_rank.json data/home_date.json data/home_review.json
           if [ -f data/home_prev_ids.json ]; then
-            git add -- data/home_prev_ids.json
+            git add --sparse -- data/home_prev_ids.json
           fi
           if git diff --cached --quiet; then
             echo "No catalogue changes to publish"

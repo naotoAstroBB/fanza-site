@@ -74,15 +74,17 @@
 .btn-fav-detail:hover,.btn-fav-detail.active{background:#1e2a1e;border-color:#4a8;color:#6c6;}
 @media(max-width:700px){.product-detail{grid-template-columns:1fr}}
 </style>
+<link rel="stylesheet" href="css/product-redesign.css">
 </head>
-<body>
+<body class="detail-redesign">
 
 <header class="site-header">
   <div class="header-inner">
-    <div class="site-logo"><a href="home.html" style="color:inherit;text-decoration:none">AV動画ランキング</a></div>
-    <div class="search-bar">
-      <input type="text" id="searchInput" placeholder="検索..." autocomplete="off">
-      <button onclick="doSearch()">🔍 検索</button>
+    <a class="detail-brand" href="home.html" aria-label="ホームに戻る"><span class="detail-brand-icon" aria-hidden="true">▶</span><span class="detail-brand-name">AV動画ランキング</span></a>
+    <div class="detail-search-bar" role="search">
+      <label for="searchInput" class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)">作品名・出演者・品番で探す</label>
+      <input type="search" id="searchInput" placeholder="作品名・出演者・品番で検索" autocomplete="off" enterkeyhint="search">
+      <button type="button" onclick="doSearch()">検索</button>
     </div>
   </div>
 </header>
@@ -91,7 +93,7 @@
   <button class="back-btn" onclick="appBack()">← 戻る</button>
 </div>
 
-<div class="page-wrapper" style="grid-template-columns:1fr">
+<div class="page-wrapper">
   <main class="main-content">
     <div class="breadcrumb">
       <a href="home.html">TOP</a> › <a href="home.html" id="floorLink">動画</a> › <span id="breadTitle">読み込み中...</span>
@@ -101,6 +103,7 @@
     </div>
   </main>
 </div>
+<div class="detail-mobile-cta" id="mobilePurchaseBar" hidden><a id="mobileOfficialBtn" href="#" target="_blank" rel="sponsored noopener noreferrer">FANZA公式で作品を見る</a></div>
 
 <footer class="site-footer">
   <p>当サイトはFANZA（DMM.com）のアフィリエイトプログラムを利用しています。</p>
@@ -176,6 +179,9 @@ async function loadProduct(){
         const imgList   = safeUrl(item.imageURL?.list   || '');
         const price     = item.prices?.price    || '';
         const listPrice = item.prices?.list_price || '';
+        const priceHtml = price ?
+          `<div class="detail-price-big">¥${esc(price)}${listPrice && listPrice !== price ? `<span style="font-size:.8rem;color:var(--mute);text-decoration:line-through;margin-left:8px">¥${esc(listPrice)}</span>` : ''}</div>` :
+          '<p class="detail-price-unavailable">価格はFANZA公式の商品ページで確認できます。</p>';
         const url       = safeUrl(item.affiliateURL || item.URL || '', '#');
         const tachiyomiUrl = floor === 'book' ? safeUrl(item.tachiyomi?.affiliateURL || item.tachiyomi?.URL || '') : '';
         const review    = item.review;
@@ -205,6 +211,7 @@ async function loadProduct(){
 
         const pageUrl  = location.href;
         const shareText= encodeURIComponent(item.title + ' #アダルト動画');
+        const blueskyText = encodeURIComponent((item.title.slice(0,100) + '\n' + pageUrl).slice(0,260));
         const shareUrl = 'https://twitter.com/intent/tweet?text=' + shareText + '&url=' + encodeURIComponent(pageUrl);
         const isFav    = Fav.has(item.content_id);
 
@@ -222,9 +229,15 @@ async function loadProduct(){
             return `<div class="campaign-box">🎉 <strong>キャンペーン${t ? '：' : '実施中'}</strong>${esc(t)}${dateStr}</div>`;
         })() : '';
 
+        const purchaseBar = document.getElementById('mobilePurchaseBar');
+        const mobilePurchase = document.getElementById('mobileOfficialBtn');
+        if (purchaseBar && mobilePurchase && url !== '#') {
+            mobilePurchase.href = url;
+            purchaseBar.hidden = false;
+        }
         document.getElementById('content').innerHTML = `
         ${campaignHtml}
-
+        <h1 class="detail-title">${esc(item.title)}</h1>
         <div class="product-detail">
           <div>
             ${imgLarge ? `<div class="detail-img"><img src="${esc(imgLarge)}" alt="${esc(item.title)}"></div>` : ''}
@@ -232,7 +245,7 @@ async function loadProduct(){
             ${movieSrc ? `
             <div class="video-wrap">
               <p style="font-size:.8rem;color:var(--mute);margin-bottom:6px">▶ サンプル動画</p>
-              <iframe src="${esc(movieSrc)}" allowfullscreen frameborder="0" scrolling="no"
+              <iframe src="${esc(movieSrc)}" title="FANZA公式のサンプル動画" loading="lazy" allowfullscreen frameborder="0" scrolling="no"
                 style="width:100%;height:300px;border-radius:8px;background:#000"></iframe>
             </div>` : ''}
 
@@ -244,15 +257,11 @@ async function loadProduct(){
           </div>
 
           <div>
-            <h1 class="detail-title">${esc(item.title)}</h1>
+            ${priceHtml}
+            <p class="detail-price-caption">表示金額は参考情報です。販売価格・配信条件は公式ページでご確認ください。</p>
 
-            <div class="detail-price-big">
-              ¥${esc(price)}
-              ${listPrice && listPrice!==price ? `<span style="font-size:1rem;color:var(--mute);text-decoration:line-through;margin-left:8px">¥${esc(listPrice)}</span>` : ''}
-            </div>
-
-            ${tachiyomiUrl ? `<a class="btn-buy-large" href="${esc(tachiyomiUrl)}" target="_blank" rel="noopener" style="display:block;margin-bottom:10px">📖 FANZA公式で試し読み</a>` : ''}
-            <a class="btn-buy-large" href="${esc(url)}" target="_blank" rel="noopener">${buyText}</a>
+            ${tachiyomiUrl ? `<a class="btn-buy-large" href="${esc(tachiyomiUrl)}" target="_blank" rel="sponsored noopener noreferrer" style="display:block;margin-bottom:10px">📖 FANZA公式で試し読み</a>` : ''}
+            <a class="btn-buy-large" href="${esc(url)}" target="_blank" rel="sponsored noopener noreferrer">${buyText}</a>
 
             <!-- いいね / お気に入り -->
             <div style="display:flex;gap:10px;margin-bottom:12px;flex-wrap:wrap">
@@ -269,7 +278,8 @@ async function loadProduct(){
 
             <!-- シェアボタン（複数SNS対応・閲覧者本人のアカウントで投稿） -->
             <div class="share-row">
-              <span class="share-label-text">シェア:</span>
+              <span class="share-label-text">作品を共有:</span>
+              <a class="share-btn share-bsky" href="https://bsky.app/intent/compose?text=${blueskyText}" target="_blank" rel="noopener noreferrer" title="Blueskyで共有">Bluesky</a>
               <a class="share-btn share-x" href="https://twitter.com/intent/tweet?text=${shareText}&url=${encodeURIComponent(pageUrl)}" target="_blank" rel="noopener" title="Xでシェア">
                 <span class="share-icon-x">X</span>
               </a>
@@ -291,6 +301,7 @@ async function loadProduct(){
               <span style="color:var(--mute);font-size:.82rem">（${esc(String(review.count))}件のレビュー）</span>
             </div>` : ''}
 
+            <h2 class="detail-meta-heading">作品の基本情報</h2>
             <dl class="detail-meta">
               ${(item.iteminfo?.actress||[]).length ? `<dt>出演女優</dt><dd>${(item.iteminfo.actress).map(a=>`<a class="tag-link" href="actress.html?id=${encodeURIComponent(String(a.id))}&name=${encodeURIComponent(a.name)}">${esc(a.name)}</a>`).join('、 ')}</dd>` : ''}
               ${(item.iteminfo?.maker||[]).length   ? `<dt>メーカー</dt><dd>${(item.iteminfo.maker).map(m=>`<a class="tag-link" href="home.html?keyword=${encodeURIComponent(m.name)}">${esc(m.name)}</a>`).join('、 ')}</dd>` : ''}
@@ -307,7 +318,7 @@ async function loadProduct(){
               ${item.content_id ? `<dt>品番</dt><dd>${esc(item.content_id)}</dd>` : ''}
             </dl>
 
-            <a class="btn-buy-large" href="${esc(url)}" target="_blank" rel="noopener" style="margin-top:24px">✓ ${buyText.replace(/^.{2}\s*/, '')}</a>
+            <a class="btn-buy-large" href="${esc(url)}" target="_blank" rel="sponsored noopener noreferrer" style="margin-top:24px">FANZA公式で最新情報を確認</a>
             <p style="font-size:.75rem;color:var(--mute);text-align:center;margin-top:8px">※ 当サイトはアフィリエイトプログラムを利用しています</p>
           </div>
         </div>`;

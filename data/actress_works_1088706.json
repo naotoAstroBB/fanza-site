@@ -7147,36 +7147,36 @@
         "iteminfo": {
           "genre": [
             {
-              "id": 6533,
-              "name": "ハイビジョン"
-            },
-            {
-              "id": 6548,
-              "name": "独占配信"
-            },
-            {
-              "id": 1018,
-              "name": "女子校生"
-            },
-            {
-              "id": 6002,
-              "name": "ハメ撮り"
-            },
-            {
-              "id": 1031,
-              "name": "痴女"
-            },
-            {
-              "id": 5023,
-              "name": "顔射"
+              "id": 4025,
+              "name": "単体作品"
             },
             {
               "id": 6968,
               "name": "アクメ・オーガズム"
             },
             {
-              "id": 4025,
-              "name": "単体作品"
+              "id": 5023,
+              "name": "顔射"
+            },
+            {
+              "id": 1031,
+              "name": "痴女"
+            },
+            {
+              "id": 6002,
+              "name": "ハメ撮り"
+            },
+            {
+              "id": 1018,
+              "name": "女子校生"
+            },
+            {
+              "id": 6548,
+              "name": "独占配信"
+            },
+            {
+              "id": 6533,
+              "name": "ハイビジョン"
             }
           ],
           "series": [
@@ -10067,13 +10067,13 @@
             "delivery": [
               {
                 "type": "hd",
-                "price": "1950",
-                "list_price": "1950"
+                "price": "1450",
+                "list_price": "1450"
               },
               {
                 "type": "download",
-                "price": "1480",
-                "list_price": "1480"
+                "price": "980",
+                "list_price": "980"
               },
               {
                 "type": "stream",
@@ -10082,13 +10082,13 @@
               },
               {
                 "type": "iosdl",
-                "price": "1480",
-                "list_price": "1480"
+                "price": "980",
+                "list_price": "980"
               },
               {
                 "type": "androiddl",
-                "price": "1480",
-                "list_price": "1480"
+                "price": "980",
+                "list_price": "980"
               }
             ]
           }
@@ -10234,29 +10234,34 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "2180~",
-          "list_price": "2180~",
+          "price": "500~",
+          "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "2680",
-                "list_price": "2680"
+                "price": "1680",
+                "list_price": "1680"
               },
               {
                 "type": "download",
-                "price": "2180",
-                "list_price": "2180"
+                "price": "1180",
+                "list_price": "1180"
+              },
+              {
+                "type": "stream",
+                "price": "500",
+                "list_price": "500"
               },
               {
                 "type": "iosdl",
-                "price": "2180",
-                "list_price": "2180"
+                "price": "1180",
+                "list_price": "1180"
               },
               {
                 "type": "androiddl",
-                "price": "2180",
-                "list_price": "2180"
+                "price": "1180",
+                "list_price": "1180"
               }
             ]
           }

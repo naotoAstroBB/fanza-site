@@ -70,8 +70,11 @@ def pick() -> list[dict]:
     ranked = products(DATA / "rank.json")
     if len(ranked) < 48:
         raise ValueError("rank.json missing/too small: refusing to replace generated catalogue")
+    # Keep published URLs stable while those products remain in the source feed.
+    # Replacing all top-ranked items every 6 hours would create repeated 404s.
+    prior_ids = {p.stem for p in OUT.glob("*.html") if p.name != "index.html"}
+    valid = []
     seen = set()
-    chosen = []
     for item in ranked:
         cid = item_id(item)
         title = short(item.get("title"))
@@ -79,9 +82,15 @@ def pick() -> list[dict]:
         if not cid or not title or not affiliate or cid in seen:
             continue
         seen.add(cid)
-        chosen.append(item)
+        valid.append(item)
+    chosen = [item for item in valid if item_id(item) in prior_ids][:LIMIT]
+    chosen_ids = {item_id(item) for item in chosen}
+    for item in valid:
         if len(chosen) >= LIMIT:
             break
+        if item_id(item) not in chosen_ids:
+            chosen.append(item)
+            chosen_ids.add(item_id(item))
     if len(chosen) < 8:
         raise ValueError("Not enough valid, linkable products; refusing output")
     return chosen
@@ -100,6 +109,33 @@ def actresses(item: dict) -> list[tuple[str, str]]:
         if name and aid.isdecimal():
             result.append((aid, name))
     return result
+
+
+def topic_ids(item: dict, field: str) -> set[str]:
+    group = (item.get("iteminfo") or {}).get(field) or []
+    return {str(value.get("id")) for value in group if isinstance(value, dict) and value.get("id") is not None} if isinstance(group, list) else set()
+
+
+def relevant_items(item: dict, catalogue: list[dict]) -> list[dict]:
+    """Recommend only known matches; no arbitrary ranking neighbors presented as related."""
+    own_actresses = topic_ids(item, "actress")
+    own_series = topic_ids(item, "series")
+    own_makers = topic_ids(item, "maker")
+    matches = []
+    for other in catalogue:
+        if item_id(item) == item_id(other):
+            continue
+        score = 0
+        if own_series & topic_ids(other, "series"):
+            score += 3
+        if own_actresses & topic_ids(other, "actress"):
+            score += 2
+        if own_makers & topic_ids(other, "maker"):
+            score += 1
+        if score:
+            matches.append((score, other))
+    matches.sort(key=lambda pair: -pair[0])
+    return [item for _, item in matches[:4]]
 
 
 def render(item: dict, neighbors: list[dict], updated: str) -> str:
@@ -125,6 +161,12 @@ def render(item: dict, neighbors: list[dict], updated: str) -> str:
             details.append(f'<div><dt>{esc(label)}</dt><dd>{esc(val)}</dd></div>')
     image_html = (f'<img src="{esc(img)}" alt="{esc(title)}の公式掲載画像" loading="lazy" width="320" decoding="async">' if img else "")
     related = "".join(f'<li><a href="{quote(item_id(x))}.html">{esc(short(x["title"], 85))}</a></li>' for x in neighbors if item_id(x) != cid)
+    related_html = (
+        '<section><h2>同じ出演者・シリーズ・メーカーの作品</h2>'
+        '<p class="seo-muted">掲載データの出演者・シリーズ・メーカー情報に基づく候補です。</p>'
+        f'<ul class="seo-related">{related}</ul></section>'
+        if neighbors else '<p><a href="index.html">掲載作品一覧から探す</a></p>'
+    )
     schema = {
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
@@ -161,7 +203,7 @@ def render(item: dict, neighbors: list[dict], updated: str) -> str:
 <a class="seo-secondary" href="{esc(dynamic)}">サイト内の詳しい商品情報・サンプルを見る</a>
 <p class="seo-muted">配信条件、価格、在庫、サンプルの有無はFANZA公式の最新情報が優先されます。</p>
 </div></div>
-<section><h2>同じランキングの掲載作品</h2><p class="seo-muted">下記はランキングで近くに掲載されていた作品であり、出演者・シリーズ等の一致を保証するものではありません。</p><ul class="seo-related">{related}</ul></section>
+{related_html}
 <section><h2>購入前に確認したいこと</h2><p>商品番号や出演者、配信形式、利用条件を確認しましょう。<a href="../guide.html">作品の探し方・購入前の確認事項</a>も参考にできます。</p></section>
 </main><footer class="site-footer"><p>当サイトはFANZA（DMM.com）のアフィリエイトプログラムを利用しています。18歳未満（高校生を含む）の方は利用できません。</p><a href="../disclaimer.html">免責事項</a></footer>
 <div class="seo-age-overlay" id="ageLayer" hidden role="dialog" aria-modal="true" aria-labelledby="ageTitle">
@@ -194,7 +236,10 @@ def render_index(items: list[dict], updated: str) -> str:
 <main class="seo-container"><nav aria-label="パンくず"><a href="../home.html">ホーム</a> › 作品一覧</nav>
 <h1>FANZA掲載作品一覧</h1><p>作品番号やタイトルを確認して、詳細ページへ進めます。掲載順は取得元のランキングデータによります。順位は作品の品質を保証するものではありません。</p>
 <p class="seo-muted">データ更新：{esc(updated)}（UTC）</p>
-<ul class="seo-grid">{"".join(cards)}</ul>
+<label class="seo-filter-label" for="worksSearch">タイトル・作品番号から絞り込む</label>
+<input id="worksSearch" class="seo-filter" type="search" placeholder="作品名・作品番号を入力" autocomplete="off">
+<p id="worksCount" class="seo-muted" aria-live="polite">{len(items)}作品を表示中</p>
+<ul class="seo-grid" id="worksGrid">{"".join(cards)}</ul>
 <p><a href="../guide.html">作品の探し方を見る</a>　<a href="../actresses.html">出演者から探す</a></p>
 </main><footer class="site-footer"><p>FANZA（DMM.com）アフィリエイトプログラムを利用しています。</p></footer>
 <div class="seo-age-overlay" id="ageLayer" hidden role="dialog" aria-modal="true" aria-labelledby="ageTitle"><div class="seo-age-card">
@@ -237,7 +282,7 @@ def main() -> None:
         cid = item_id(item)
         filename = cid + ".html"
         expected.add(filename)
-        neighbors = [selected[j] for j in range(max(0, i-2), min(len(selected), i+4)) if j != i][:4]
+        neighbors = relevant_items(item, selected)
         write_changed(OUT / filename, render(item, neighbors, updated))
         urls.append(BASE + "/works/" + quote(filename))
     write_changed(OUT / "index.html", render_index(selected, updated))

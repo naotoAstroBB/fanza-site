@@ -736,9 +736,11 @@ const App = {
         const campaign  = item.campaign?.title || '';
         const avg       = parseFloat(review?.average || 0);
         const stars     = avg ? '★'.repeat(Math.round(avg)) + '☆'.repeat(5 - Math.round(avg)) : '';
-        const rankBadge = i < 3
-            ? `<div class="rank-badge ${['rank-1','rank-2','rank-3'][i]}">${['🥇','🥈','🥉'][i]}</div>`
-            : (i < 10 ? `<div class="rank-badge rank-other">${i+1}</div>` : '');
+        const isRanking = this.sort === 'rank' && !this.keyword && !this.showSale;
+        const displayedRank = (this.page - 1) * this.hitsPerPage + i + 1;
+        const rankBadge = !isRanking ? '' : displayedRank <= 3
+            ? `<div class="rank-badge ${['rank-1','rank-2','rank-3'][displayedRank-1]}">${displayedRank}</div>`
+            : (displayedRank <= 10 ? `<div class="rank-badge rank-other">${displayedRank}</div>` : '');
         const mv        = item.sampleMovieURL;
         const sampleUrl = this.safeUrl(mv ? (mv.size_560_360 || mv.size_476_306 || mv.size_644_414 || '') : '');
         // マンガの試し読みURL（FANZA公式のtachiyomiページへのリンク）
@@ -757,7 +759,10 @@ const App = {
             anime: '動画を見る →',
             videoa:'動画を見る →',
         };
-        const buyText = buyLabels[this.floor] || '作品を見る →';
+        const buyText = 'FANZAで詳細を見る';
+        const detailHref = `product.html?cid=${encodeURIComponent(item.content_id || '')}&floor=${encodeURIComponent(this.floor)}`;
+        const rawPrice = String(item.prices?.price || '').replace(/[〜~～\s]+$/, '').trim();
+        const priceLabel = rawPrice ? `<div class="card-price">¥${this.esc(rawPrice)}</div>` : '';
 
         // マンガは必ず公式tachiyomiリンクを優先。通常の作品購入URLを試し読みと誤表示しない
         let sampleBtnHtml = '';
@@ -784,7 +789,7 @@ const App = {
             if (diff > 0)      changeBadge = `<div class="rank-change rank-up">▲${diff}</div>`;
             else if (diff < 0) changeBadge = `<div class="rank-change rank-down">▼${Math.abs(diff)}</div>`;
         }
-        const showChange = Object.keys(this._prevRankMap).length > 0;
+        const showChange = isRanking && Object.keys(this._prevRankMap).length > 0;
 
         // 女優リンク（女優名クリックで女優ページへ）
         const actressLinks = actressObjs.map(a =>
@@ -795,7 +800,9 @@ const App = {
         const isLiked   = Like.has(item.content_id);
         const likeCount = Like.count(item.content_id);
         return `
-        <div class="product-card" data-href="${this.esc(`product.html?cid=${encodeURIComponent(item.content_id || '')}&floor=${encodeURIComponent(this.floor)}`)}" onclick="location.href=this.dataset.href">
+        <article class="product-card" role="link" tabindex="0" aria-label="${title}の作品詳細へ" data-href="${this.esc(detailHref)}"
+          onclick="if(event.target.closest('a,button'))return;location.href=this.dataset.href"
+          onkeydown="if(event.target===this && event.key==='Enter')location.href=this.dataset.href">
           <div class="card-img-wrap">
             ${img
                 ? `<img src="${this.esc(img)}" alt="${title}" loading="lazy">`
@@ -810,6 +817,7 @@ const App = {
           </div>
           <div class="card-body">
             <div class="card-title">${title}</div>
+            ${priceLabel}
             ${actressLinks ? `<div class="card-actress">${actressLinks}</div>` : ''}
             <div class="card-bottom">
               ${stars ? `<div class="card-review"><span class="stars">${stars}</span></div>` : ''}
@@ -820,11 +828,12 @@ const App = {
               </button>
             </div>
             ${review?.count ? `<div class="card-review" style="margin-bottom:6px">${avg.toFixed(1)} (${review.count}件)</div>` : ''}
-            <a class="btn-buy" href="${this.esc(url)}" target="_blank" rel="noopener" onclick="event.stopPropagation()">
+            <a class="card-detail-link" href="${this.esc(detailHref)}" onclick="event.stopPropagation()">作品情報・サンプルを見る ›</a>
+            <a class="btn-buy" href="${this.esc(url)}" target="_blank" rel="sponsored noopener noreferrer" onclick="event.stopPropagation()">
               ${buyText}
             </a>
           </div>
-        </div>`;
+        </article>`;
     },
 
     // ===== いいね（トグル＋累計カウント表示）=====
@@ -981,6 +990,7 @@ const App = {
         document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
         this._updateGenreBadge();
         this.fetchProducts();
+        document.getElementById('catalogue')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     },
 
     setFloor(floor, el) {
@@ -990,10 +1000,8 @@ const App = {
         this.page       = 1;
         this.showSale   = false;
         this.singleWork = false; // フロア変更時に単体作品フィルタをリセット
-        if (el) {
-            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-            el.classList.add('active');
-        }
+        document.querySelectorAll('.nav-group-floor .nav-btn').forEach(b =>
+            b.classList.toggle('active', b.dataset.floor === floor));
         this.updateRankTabs();
         this.fetchProducts();
     },

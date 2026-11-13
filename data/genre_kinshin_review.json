@@ -38334,7 +38334,14 @@
               "name": "OPPAI"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-11-13 10:00:00",
+            "date_end": "2026-11-16 09:59:59",
+            "title": "中出し50％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -47365,14 +47372,29 @@
           }
         },
         "prices": {
-          "price": "100",
-          "list_price": "1180",
+          "price": "305~",
+          "list_price": "305~",
           "deliveries": {
             "delivery": [
               {
                 "type": "8k",
-                "price": "100",
+                "price": "1180",
                 "list_price": "1180"
+              },
+              {
+                "type": "hd",
+                "price": "693",
+                "list_price": "693"
+              },
+              {
+                "type": "download",
+                "price": "590",
+                "list_price": "590"
+              },
+              {
+                "type": "rp",
+                "price": "305",
+                "list_price": "305"
               }
             ]
           }
@@ -47453,14 +47475,7 @@
               "name": "KMPVR-彩-"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-11 10:00:00",
-            "date_end": "2026-11-13 09:59:59",
-            "title": "KMP25周年100円セール"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",

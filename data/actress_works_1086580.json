@@ -99,6 +99,10 @@
         "iteminfo": {
           "genre": [
             {
+              "id": 6012,
+              "name": "4時間以上作品"
+            },
+            {
               "id": 6533,
               "name": "ハイビジョン"
             },
@@ -125,10 +129,6 @@
             {
               "id": 4106,
               "name": "騎乗位"
-            },
-            {
-              "id": 6012,
-              "name": "4時間以上作品"
             }
           ],
           "maker": [
@@ -3298,8 +3298,8 @@
         "title": "9つのシチュエーションで世界を揺らすダイナミMカップ みなみ羽琉",
         "volume": "122",
         "review": {
-          "count": 3,
-          "average": "3.00"
+          "count": 4,
+          "average": "3.50"
         },
         "URL": "https://video.dmm.co.jp/av/content/?id=snos00396",
         "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Dsnos00396&af_id=saaaaaaya-990&ch=api",
@@ -18861,38 +18861,38 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "500~",
+          "price": "350~",
           "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "4k",
-                "price": "2680",
+                "price": "1876",
                 "list_price": "2680"
               },
               {
                 "type": "hd",
-                "price": "1980",
+                "price": "1386",
                 "list_price": "1980"
               },
               {
                 "type": "download",
-                "price": "1480",
+                "price": "1036",
                 "list_price": "1480"
               },
               {
                 "type": "stream",
-                "price": "500",
+                "price": "350",
                 "list_price": "500"
               },
               {
                 "type": "iosdl",
-                "price": "1480",
+                "price": "1036",
                 "list_price": "1480"
               },
               {
                 "type": "androiddl",
-                "price": "1480",
+                "price": "1036",
                 "list_price": "1480"
               }
             ]
@@ -18965,7 +18965,14 @@
               "name": "MOODYZ REAL"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-11-15 00:00:00",
+            "date_end": "2026-11-15 23:59:59",
+            "title": "日替わりセール★"
+          }
+        ]
       },
       {
         "service_code": "digital",

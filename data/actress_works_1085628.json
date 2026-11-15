@@ -106,6 +106,14 @@
         "iteminfo": {
           "genre": [
             {
+              "id": 6533,
+              "name": "ハイビジョン"
+            },
+            {
+              "id": 79015,
+              "name": "4K"
+            },
+            {
               "id": 6548,
               "name": "独占配信"
             },
@@ -132,14 +140,6 @@
             {
               "id": 5001,
               "name": "中出し"
-            },
-            {
-              "id": 79015,
-              "name": "4K"
-            },
-            {
-              "id": 6533,
-              "name": "ハイビジョン"
             }
           ],
           "series": [
@@ -1507,56 +1507,6 @@
               "ruby": "つきのえすい"
             },
             {
-              "id": 17802,
-              "name": "つぼみ",
-              "ruby": "つぼみ"
-            },
-            {
-              "id": 1084796,
-              "name": "五日市芽依",
-              "ruby": "いつかいちめい"
-            },
-            {
-              "id": 1069952,
-              "name": "新井リマ",
-              "ruby": "あらいりま"
-            },
-            {
-              "id": 1076928,
-              "name": "綾瀬こころ",
-              "ruby": "あやせこころ"
-            },
-            {
-              "id": 1052930,
-              "name": "吉根ゆりあ",
-              "ruby": "よしねゆりあ"
-            },
-            {
-              "id": 1075675,
-              "name": "末広純",
-              "ruby": "すえひろじゅん"
-            },
-            {
-              "id": 1061586,
-              "name": "森日向子",
-              "ruby": "もりひなこ"
-            },
-            {
-              "id": 1068671,
-              "name": "北野未奈",
-              "ruby": "きたのみな"
-            },
-            {
-              "id": 1017139,
-              "name": "蓮実クレア",
-              "ruby": "はすみくれあ"
-            },
-            {
-              "id": 1060141,
-              "name": "木下ひまり（花沢ひまり）",
-              "ruby": "きのしたひまり（はなざわひまり）"
-            },
-            {
               "id": 1068670,
               "name": "花狩まい",
               "ruby": "かがりまい"
@@ -1580,6 +1530,56 @@
               "id": 1044982,
               "name": "水川スミレ",
               "ruby": "みずかわすみれ"
+            },
+            {
+              "id": 1060141,
+              "name": "木下ひまり（花沢ひまり）",
+              "ruby": "きのしたひまり（はなざわひまり）"
+            },
+            {
+              "id": 1017139,
+              "name": "蓮実クレア",
+              "ruby": "はすみくれあ"
+            },
+            {
+              "id": 1075675,
+              "name": "末広純",
+              "ruby": "すえひろじゅん"
+            },
+            {
+              "id": 1052930,
+              "name": "吉根ゆりあ",
+              "ruby": "よしねゆりあ"
+            },
+            {
+              "id": 1076928,
+              "name": "綾瀬こころ",
+              "ruby": "あやせこころ"
+            },
+            {
+              "id": 1069952,
+              "name": "新井リマ",
+              "ruby": "あらいりま"
+            },
+            {
+              "id": 1084796,
+              "name": "五日市芽依",
+              "ruby": "いつかいちめい"
+            },
+            {
+              "id": 17802,
+              "name": "つぼみ",
+              "ruby": "つぼみ"
+            },
+            {
+              "id": 1061586,
+              "name": "森日向子",
+              "ruby": "もりひなこ"
+            },
+            {
+              "id": 1068671,
+              "name": "北野未奈",
+              "ruby": "きたのみな"
             },
             {
               "id": 1037293,
@@ -7601,24 +7601,29 @@
           }
         },
         "prices": {
-          "price": "998~",
-          "list_price": "998~",
+          "price": "509~",
+          "list_price": "509~",
           "deliveries": {
             "delivery": [
               {
                 "type": "8k",
-                "price": "1780",
-                "list_price": "1780"
+                "price": "1580",
+                "list_price": "1580"
               },
               {
                 "type": "hd",
-                "price": "1304",
-                "list_price": "1304"
+                "price": "998",
+                "list_price": "998"
               },
               {
                 "type": "download",
-                "price": "998",
-                "list_price": "998"
+                "price": "795",
+                "list_price": "795"
+              },
+              {
+                "type": "rp",
+                "price": "509",
+                "list_price": "509"
               }
             ]
           }
@@ -7757,24 +7762,29 @@
           }
         },
         "prices": {
-          "price": "998~",
-          "list_price": "998~",
+          "price": "509~",
+          "list_price": "509~",
           "deliveries": {
             "delivery": [
               {
                 "type": "8k",
-                "price": "1780",
-                "list_price": "1780"
+                "price": "1580",
+                "list_price": "1580"
               },
               {
                 "type": "hd",
-                "price": "1304",
-                "list_price": "1304"
+                "price": "998",
+                "list_price": "998"
               },
               {
                 "type": "download",
-                "price": "998",
-                "list_price": "998"
+                "price": "795",
+                "list_price": "795"
+              },
+              {
+                "type": "rp",
+                "price": "509",
+                "list_price": "509"
               }
             ]
           }
@@ -15918,52 +15928,52 @@
         "iteminfo": {
           "genre": [
             {
-              "id": 79015,
-              "name": "4K"
-            },
-            {
-              "id": 4025,
-              "name": "単体作品"
-            },
-            {
-              "id": 6533,
-              "name": "ハイビジョン"
-            },
-            {
-              "id": 5001,
-              "name": "中出し"
-            },
-            {
-              "id": 6958,
-              "name": "バック"
-            },
-            {
-              "id": 5002,
-              "name": "フェラ"
-            },
-            {
-              "id": 5053,
-              "name": "指マン"
-            },
-            {
-              "id": 38,
-              "name": "クンニ"
-            },
-            {
-              "id": 4059,
-              "name": "キス・接吻"
-            },
-            {
-              "id": 2001,
-              "name": "巨乳"
+              "id": 1039,
+              "name": "人妻・主婦"
             },
             {
               "id": 1069,
               "name": "不倫"
             },
             {
-              "id": 1039,
-              "name": "人妻・主婦"
+              "id": 2001,
+              "name": "巨乳"
+            },
+            {
+              "id": 4059,
+              "name": "キス・接吻"
+            },
+            {
+              "id": 38,
+              "name": "クンニ"
+            },
+            {
+              "id": 5053,
+              "name": "指マン"
+            },
+            {
+              "id": 5002,
+              "name": "フェラ"
+            },
+            {
+              "id": 6958,
+              "name": "バック"
+            },
+            {
+              "id": 5001,
+              "name": "中出し"
+            },
+            {
+              "id": 6533,
+              "name": "ハイビジョン"
+            },
+            {
+              "id": 4025,
+              "name": "単体作品"
+            },
+            {
+              "id": 79015,
+              "name": "4K"
             }
           ],
           "maker": [
@@ -17117,8 +17127,8 @@
         "title": "【VR】酔ったノリで女友達と乳首当てゲームしたら…指が乳首かすめるたび漏れる甘エロ声に辛抱たまらず先端カリカリ＆摘みコリコリこねくりハメで朝までヤリまくった 黒島玲衣",
         "volume": "70",
         "review": {
-          "count": 11,
-          "average": "4.36"
+          "count": 12,
+          "average": "4.42"
         },
         "URL": "https://video.dmm.co.jp/av/content/?id=ajvr00314",
         "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Dajvr00314&af_id=saaaaaaya-990&ch=api",
@@ -21892,8 +21902,8 @@
         "title": "羞恥！新任女教師が学習教材にされる男子校の性教育 生徒の目の前で無遠慮な指が膣に挿入される！プライドは崩壊するが、子宮の奥から愛液があふれ出る16",
         "volume": "176",
         "review": {
-          "count": 5,
-          "average": "4.00"
+          "count": 7,
+          "average": "4.14"
         },
         "URL": "https://video.dmm.co.jp/av/content/?id=1svsha00035",
         "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3D1svsha00035&af_id=saaaaaaya-990&ch=api",
@@ -21961,34 +21971,39 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "2480~",
-          "list_price": "2480~",
+          "price": "500~",
+          "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "4k",
-                "price": "3980",
-                "list_price": "3980"
+                "price": "2680",
+                "list_price": "2680"
               },
               {
                 "type": "hd",
-                "price": "2980",
-                "list_price": "2980"
+                "price": "1980",
+                "list_price": "1980"
               },
               {
                 "type": "download",
-                "price": "2480",
-                "list_price": "2480"
+                "price": "1370",
+                "list_price": "1370"
+              },
+              {
+                "type": "stream",
+                "price": "500",
+                "list_price": "500"
               },
               {
                 "type": "iosdl",
-                "price": "2480",
-                "list_price": "2480"
+                "price": "1370",
+                "list_price": "1370"
               },
               {
                 "type": "androiddl",
-                "price": "2480",
-                "list_price": "2480"
+                "price": "1370",
+                "list_price": "1370"
               }
             ]
           }
@@ -22074,8 +22089,8 @@
         "title": "黒人解禁！英会話NTR 極太の黒マラSEXに溺れた美乳妻 黒島玲衣",
         "volume": "148",
         "review": {
-          "count": 6,
-          "average": "3.50"
+          "count": 11,
+          "average": "4.00"
         },
         "URL": "https://video.dmm.co.jp/av/content/?id=jufe00613",
         "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Djufe00613&af_id=saaaaaaya-990&ch=api",
@@ -22143,29 +22158,34 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "2180~",
-          "list_price": "2180~",
+          "price": "500~",
+          "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "2680",
-                "list_price": "2680"
+                "price": "1680",
+                "list_price": "1680"
               },
               {
                 "type": "download",
-                "price": "2180",
-                "list_price": "2180"
+                "price": "1180",
+                "list_price": "1180"
+              },
+              {
+                "type": "stream",
+                "price": "500",
+                "list_price": "500"
               },
               {
                 "type": "iosdl",
-                "price": "2180",
-                "list_price": "2180"
+                "price": "1180",
+                "list_price": "1180"
               },
               {
                 "type": "androiddl",
-                "price": "2180",
-                "list_price": "2180"
+                "price": "1180",
+                "list_price": "1180"
               }
             ]
           }

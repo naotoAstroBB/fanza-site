@@ -106,14 +106,6 @@
         "iteminfo": {
           "genre": [
             {
-              "id": 6533,
-              "name": "ハイビジョン"
-            },
-            {
-              "id": 79015,
-              "name": "4K"
-            },
-            {
               "id": 6548,
               "name": "独占配信"
             },
@@ -140,6 +132,14 @@
             {
               "id": 5015,
               "name": "ドラッグ"
+            },
+            {
+              "id": 79015,
+              "name": "4K"
+            },
+            {
+              "id": 6533,
+              "name": "ハイビジョン"
             }
           ],
           "maker": [
@@ -21966,7 +21966,14 @@
               "name": "エロぼん"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-11-16 00:10:00",
+            "date_end": "2026-11-17 23:59:59",
+            "title": "みんなのお気に入り30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -23684,19 +23691,9 @@
               "ruby": "にじむらゆみ"
             },
             {
-              "id": 1092427,
-              "name": "北岡果林",
-              "ruby": "きたおかかりん"
-            },
-            {
-              "id": 1093790,
-              "name": "小野坂ゆいか",
-              "ruby": "おのさかゆいか"
-            },
-            {
-              "id": 1097983,
-              "name": "依本しおり",
-              "ruby": "よりもとしおり"
+              "id": 1087621,
+              "name": "小那海あや",
+              "ruby": "おなみあや"
             },
             {
               "id": 1088602,
@@ -23704,9 +23701,19 @@
               "ruby": "あいざわみゆ"
             },
             {
-              "id": 1087621,
-              "name": "小那海あや",
-              "ruby": "おなみあや"
+              "id": 1097983,
+              "name": "依本しおり",
+              "ruby": "よりもとしおり"
+            },
+            {
+              "id": 1093790,
+              "name": "小野坂ゆいか",
+              "ruby": "おのさかゆいか"
+            },
+            {
+              "id": 1092427,
+              "name": "北岡果林",
+              "ruby": "きたおかかりん"
             },
             {
               "id": 1075010,
@@ -31612,33 +31619,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "300~",
+          "price": "210~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "1180",
+                "price": "826",
                 "list_price": "1180"
               },
               {
                 "type": "download",
-                "price": "780",
+                "price": "546",
                 "list_price": "780"
               },
               {
                 "type": "stream",
-                "price": "300",
+                "price": "210",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "780",
+                "price": "546",
                 "list_price": "780"
               },
               {
                 "type": "androiddl",
-                "price": "780",
+                "price": "546",
                 "list_price": "780"
               }
             ]
@@ -31855,7 +31862,14 @@
               "name": "S1 NO.1 STYLE"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-11-16 10:00:00",
+            "date_end": "2026-11-18 09:59:59",
+            "title": "エスワンキャンペーン30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -32182,7 +32196,14 @@
               "name": "街角シロウトナンパ"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-11-16 00:10:00",
+            "date_end": "2026-11-17 23:59:59",
+            "title": "みんなのお気に入り30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -32568,28 +32589,28 @@
           }
         },
         "prices": {
-          "price": "500~",
+          "price": "350~",
           "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "8k",
-                "price": "1780",
+                "price": "1246",
                 "list_price": "1780"
               },
               {
                 "type": "hd",
-                "price": "1280",
+                "price": "896",
                 "list_price": "1280"
               },
               {
                 "type": "download",
-                "price": "980",
+                "price": "686",
                 "list_price": "980"
               },
               {
                 "type": "rp",
-                "price": "500",
+                "price": "350",
                 "list_price": "500"
               }
             ]

@@ -285,16 +285,13 @@
 
 <script src="js/storage.js"></script>
 <script src="js/dmm-api.js"></script>
+<script src="js/site-navigation.js?v=20261117"></script>
 <script>
 // 年齢確認は、元URLから遷移せず共通のオーバーレイで実施します。
 
 // 戻るボタン：同一サイト内からの遷移なら履歴を戻る、そうでなければホームへ
 function appBack() {
-    if (document.referrer && new URL(document.referrer).origin === location.origin) {
-        history.back();
-    } else {
-        location.href = 'home.html';
-    }
+    FanzaNavigation.goBack('/home.html');
 }
 
 const esc = s => String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');

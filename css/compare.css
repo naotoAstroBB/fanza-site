@@ -24,7 +24,8 @@ body.compare-page{
 .compare-toolbar button{background:#263244;color:#f4f5fa;border:1px solid #4c5a70;border-radius:9px;padding:8px 14px;font-size:.8rem}
 .compare-scroll{width:100%;overflow-x:auto;overscroll-behavior-inline:contain;border:1px solid #394457;border-radius:14px;background:#181f2d}
 .compare-wide{min-width:max(580px,100%)}
-.compare-grid{display:grid;grid-template-columns:repeat(var(--compare-cols),minmax(0,1fr))}
+.compare-grid{display:grid;grid-template-columns:170px repeat(var(--compare-cols),minmax(0,1fr))}
+.compare-grid-label{display:flex;align-items:end;padding:16px;font-size:.74rem;color:#abbacc;background:#222a39}
 .compare-item{
  display:flex;flex-direction:column;align-items:center;padding:18px;min-width:0;
  border-right:1px solid #3a4557
@@ -59,6 +60,7 @@ body.compare-page{
  .compare-lead{font-size:.8rem}
  .compare-item{padding:12px}
  .compare-item img{height:160px}
+ .compare-grid{grid-template-columns:110px repeat(var(--compare-cols),minmax(0,1fr))}
  .compare-table th{width:110px}
  .compare-table th,.compare-table td{padding:11px 8px}
  .compare-wide{min-width:600px}

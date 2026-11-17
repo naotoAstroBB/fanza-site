@@ -116,6 +116,8 @@
    <span class="explore-icon" aria-hidden="true">%</span>セール
   </button>
   <a href="actresses.html"><span class="explore-icon" aria-hidden="true">♙</span>出演者</a>
+  <button type="button" onclick="App.showPreviewBooks()"><span class="explore-icon" aria-hidden="true">▤</span>試し読み漫画</button>
+  <a href="compare.html"><span class="explore-icon" aria-hidden="true">⇄</span>作品比較</a>
   <button type="button" onclick="App.openGenreDrawer()"><span class="explore-icon" aria-hidden="true">☷</span>ジャンル</button>
  </div>
 </section>
@@ -230,15 +232,24 @@
           <label class="advanced-maker">メーカー名
             <input id="filterMaker" name="maker" type="search" maxlength="100" placeholder="メーカー名の一部">
           </label>
+          <label class="advanced-preview-check" for="filterPreviewOnly">
+            <input id="filterPreviewOnly" type="checkbox" name="previewOnly">
+            <span>漫画の試し読みがある作品だけ</span>
+          </label>
         </div>
         <p class="advanced-filter-note">価格・収録時間などの情報が登録されていない作品は、該当する条件では表示されません。収録時間は動画・アニメ向けです。</p>
         <p class="advanced-filter-error" id="filterError" role="status" aria-live="polite"></p>
         <div class="advanced-filter-actions">
           <button class="advanced-apply" type="submit">この条件で検索</button>
           <button class="advanced-reset" type="button" onclick="App.resetAdvancedFilters()">条件をリセット</button>
+          <button class="advanced-save" type="button" onclick="App.saveCurrentSearch()">この条件を保存</button>
         </div>
       </form>
     </details>
+    <section class="saved-searches" id="savedSearchSection" hidden aria-label="保存した検索条件">
+      <div class="saved-searches-heading">保存した検索条件 <span>この端末内に保存</span></div>
+      <div id="savedSearchList" class="saved-search-list"></div>
+    </section>
     <div class="single-work-bar" id="singleWorkBar">
       <button class="single-work-toggle" id="singleWorkBtn" onclick="App.toggleSingleWork(this)">
         👑 単体作品のみ
@@ -382,6 +393,12 @@
   </div>
 </div>
 
+<aside class="compare-tray" id="compareTray" hidden aria-label="選択した作品の比較">
+  <span id="compareTrayCount" aria-live="polite">0/3作品を選択中</span>
+  <a href="compare.html" class="compare-tray-link">選んだ作品を比較する</a>
+  <button type="button" onclick="App.clearCompare()" aria-label="比較候補をすべて解除">解除</button>
+</aside>
+
 <!-- ボトムナビゲーション（スマホのみ表示） -->
 <nav class="bottom-nav" aria-label="スマートフォン用メニュー">
   <a href="home.html" class="bottom-nav-item active">
@@ -446,7 +463,8 @@
 <script src="js/dmm-api.js"></script>
 <script src="js/catalogue-filters.js"></script>
 <script src="js/site-navigation.js?v=20261117"></script>
-<script src="js/app.js?v=20261117-preview2"></script>
+<script src="js/product-discovery.js?v=20261117"></script>
+<script src="js/app.js?v=20261117-discovery"></script>
 <script>
 // PWA Service Worker 登録
 if ('serviceWorker' in navigator) {

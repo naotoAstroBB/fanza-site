@@ -42,7 +42,7 @@ for element in required:
     assert parser.ids[element] == 1, f"Expected one #{element}, found {parser.ids[element]}"
 assert all(v == 1 for v in parser.ids.values()), "Duplicate IDs in homepage"
 assert "css/home-redesign.css" in parser.links
-assert "js/app.js" in parser.scripts and "js/dmm-api.js" in parser.scripts
+assert any(src.split("?")[0] == "js/app.js" for src in parser.scripts) and "js/dmm-api.js" in parser.scripts
 assert home.index('id="catalogue"') < home.index('id="actressList"')
 assert home.index('id="heroMain"') < home.index('id="catalogue"')
 assert "seo-guide-intro" not in home, "Oversized SEO copy should not be above content"

@@ -10,6 +10,9 @@ on:
       - "js/catalogue-filters.js"
       - "css/product-redesign.css"
       - "product.html"
+      - "actress.html"
+      - "scripts/test_site_navigation.js"
+      - "js/site-navigation.js"
       - "css/home-redesign.css"
       - "js/app.js"
       - "js/dmm-api.js"
@@ -25,6 +28,9 @@ on:
       - "js/catalogue-filters.js"
       - "css/product-redesign.css"
       - "product.html"
+      - "actress.html"
+      - "scripts/test_site_navigation.js"
+      - "js/site-navigation.js"
       - "css/home-redesign.css"
       - "js/app.js"
       - "js/dmm-api.js"
@@ -48,6 +54,7 @@ jobs:
           sparse-checkout: |
             home.html
             product.html
+            actress.html
             css
             js
             scripts
@@ -67,3 +74,7 @@ jobs:
           node scripts/test_catalogue_filters.js
       - name: Verify product detail layout and embedded scripts
         run: python3 scripts/test_product_markup.py
+      - name: Verify direct trial reading and internal back links
+        run: |
+          node --check js/site-navigation.js
+          node scripts/test_site_navigation.js

@@ -1,5 +1,5 @@
 /* ===== FANZA Service Worker ===== */
-const CACHE = 'fanza-v40-age-seo-20261117';
+const CACHE = 'fanza-v41-discovery-20261117';
 const STATIC = [
     '/',
     '/home.html',
@@ -13,6 +13,13 @@ const STATIC = [
     '/js/storage.js',
     '/js/dmm-api.js',
     '/js/app.js',
+    '/js/product-discovery.js',
+    '/js/compare-page.js',
+    '/js/catalogue-filters.js',
+    '/css/home-redesign.css',
+    '/css/product-redesign.css',
+    '/css/compare.css',
+    '/compare.html',
 ];
 
 // インストール：静的アセットをキャッシュ

@@ -114,6 +114,7 @@
 
 <script src="js/storage.js"></script>
 <script src="js/dmm-api.js"></script>
+<script src="js/product-discovery.js?v=20261117"></script>
 <script src="js/site-navigation.js?v=20261117"></script>
 <script>
 // 年齢確認は、元URLから遷移せず共通のオーバーレイで実施します。
@@ -273,8 +274,15 @@ async function loadProduct(){
                 onclick="toggleFavDetail(this,this.dataset.cid)">
                 ${isFav ? '⭐ 保存済み' : '☆ あとで見る'}
               </button>
+              <button type="button" id="compareBtnDetail" class="btn-compare-detail"
+                aria-pressed="${ProductDiscovery.has(item.content_id,floor)?'true':'false'}"
+                onclick="toggleCompareDetail(this)">
+                ${ProductDiscovery.has(item.content_id,floor)?'✓ 比較候補から外す':'+ 比較に追加'}
+              </button>
             </div>
 
+            <div id="detailCompareMessage" class="detail-compare-message" role="status" aria-live="polite"></div>
+            <a href="compare.html" class="detail-compare-link" id="detailCompareLink">保存した作品を比較する（${ProductDiscovery.count()}/3）</a>
             <!-- シェアボタン（複数SNS対応・閲覧者本人のアカウントで投稿） -->
             <div class="share-row">
               <span class="share-label-text">作品を共有:</span>
@@ -349,6 +357,23 @@ function copyShareLink(btn, url) {
         ta.value = url; document.body.appendChild(ta);
         ta.select(); document.execCommand('copy'); ta.remove(); done();
     }
+}
+
+// ===== 作品比較（詳細ページ） =====
+function toggleCompareDetail(btn) {
+    if (!_productItem) return;
+    const result = ProductDiscovery.toggle(_productItem,_productFloor);
+    const message=document.getElementById('detailCompareMessage');
+    if (!result.ok) {
+        if (message) message.textContent=result.reason;
+        return;
+    }
+    const selected=ProductDiscovery.has(_productItem.content_id,_productFloor);
+    btn.textContent=selected?'✓ 比較候補から外す':'+ 比較に追加';
+    btn.setAttribute('aria-pressed',String(selected));
+    if(message)message.textContent=selected?'比較候補に追加しました':'比較候補から外しました';
+    const link=document.getElementById('detailCompareLink');
+    if(link)link.textContent='保存した作品を比較する（'+ProductDiscovery.count()+'/3）';
 }
 
 // ===== いいねトグル（詳細ページ）=====

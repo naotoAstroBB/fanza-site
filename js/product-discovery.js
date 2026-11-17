@@ -8,7 +8,7 @@
   const text = (value, max=160) => String(value ?? '').trim().slice(0,max);
   const validCid = value => /^[a-zA-Z0-9_-]{1,100}$/.test(String(value ?? ''));
   const normalFloor = floor => FLOORS.includes(floor) ? floor : 'videoa';
-  const escape = value => text(value,400).replace(/&/g,'&amp;').replace(/</g,'&lt;')
+  const escape = value => text(value,4096).replace(/&/g,'&amp;').replace(/</g,'&lt;')
     .replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
   const httpsUrl = value => {
     try {
@@ -33,8 +33,12 @@
     } catch (_) { return []; }
   };
   const write = (key, list) => {
-    try { getStorage()?.setItem(key,JSON.stringify(list)); return true; }
-    catch (_) { return false; }
+    try {
+      const store=getStorage();
+      if (!store) return false;
+      store.setItem(key,JSON.stringify(list));
+      return true;
+    } catch (_) { return false; }
   };
   const itemSummary = (item, floor) => {
     if (!item || !validCid(item.content_id)) return null;

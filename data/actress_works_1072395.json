@@ -1477,24 +1477,29 @@
           }
         },
         "prices": {
-          "price": "980~",
-          "list_price": "980~",
+          "price": "500~",
+          "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "8k",
-                "price": "1780",
-                "list_price": "1780"
-              },
-              {
-                "type": "hd",
                 "price": "1280",
                 "list_price": "1280"
               },
               {
-                "type": "download",
+                "type": "hd",
                 "price": "980",
                 "list_price": "980"
+              },
+              {
+                "type": "download",
+                "price": "780",
+                "list_price": "780"
+              },
+              {
+                "type": "rp",
+                "price": "500",
+                "list_price": "500"
               }
             ]
           }
@@ -2856,33 +2861,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "350~",
+          "price": "500~",
           "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "1386",
+                "price": "1980",
                 "list_price": "1980"
               },
               {
                 "type": "download",
-                "price": "966",
+                "price": "1380",
                 "list_price": "1380"
               },
               {
                 "type": "stream",
-                "price": "350",
+                "price": "500",
                 "list_price": "500"
               },
               {
                 "type": "iosdl",
-                "price": "966",
+                "price": "1380",
                 "list_price": "1380"
               },
               {
                 "type": "androiddl",
-                "price": "966",
+                "price": "1380",
                 "list_price": "1380"
               }
             ]
@@ -2942,14 +2947,7 @@
               "name": "FALENO star"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-11 00:10:00",
-            "date_end": "2026-11-17 23:59:59",
-            "title": "SODグループ30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -3121,49 +3119,9 @@
               "ruby": "しらかみえみか"
             },
             {
-              "id": 1080873,
-              "name": "凪ひかる",
-              "ruby": "なぎひかる"
-            },
-            {
-              "id": 1079605,
-              "name": "宮城りえ",
-              "ruby": "みやぎりえ"
-            },
-            {
-              "id": 1072395,
-              "name": "つばさ舞",
-              "ruby": "つばさまい"
-            },
-            {
-              "id": 1074740,
-              "name": "うんぱい",
-              "ruby": "うんぱい"
-            },
-            {
-              "id": 1085934,
-              "name": "村上悠華",
-              "ruby": "むらかみゆか"
-            },
-            {
-              "id": 1092997,
-              "name": "倉木華",
-              "ruby": "くらきはな"
-            },
-            {
-              "id": 1063214,
-              "name": "七ツ森りり",
-              "ruby": "ななつもりりり"
-            },
-            {
-              "id": 1077071,
-              "name": "未歩なな",
-              "ruby": "みほなな"
-            },
-            {
-              "id": 1050542,
-              "name": "乃木蛍",
-              "ruby": "のぎほたる"
+              "id": 1030262,
+              "name": "三上悠亜",
+              "ruby": "みかみゆあ"
             },
             {
               "id": 1048277,
@@ -3171,9 +3129,49 @@
               "ruby": "ほしみやいちか"
             },
             {
-              "id": 1030262,
-              "name": "三上悠亜",
-              "ruby": "みかみゆあ"
+              "id": 1050542,
+              "name": "乃木蛍",
+              "ruby": "のぎほたる"
+            },
+            {
+              "id": 1077071,
+              "name": "未歩なな",
+              "ruby": "みほなな"
+            },
+            {
+              "id": 1063214,
+              "name": "七ツ森りり",
+              "ruby": "ななつもりりり"
+            },
+            {
+              "id": 1092997,
+              "name": "倉木華",
+              "ruby": "くらきはな"
+            },
+            {
+              "id": 1085934,
+              "name": "村上悠華",
+              "ruby": "むらかみゆか"
+            },
+            {
+              "id": 1074740,
+              "name": "うんぱい",
+              "ruby": "うんぱい"
+            },
+            {
+              "id": 1072395,
+              "name": "つばさ舞",
+              "ruby": "つばさまい"
+            },
+            {
+              "id": 1079605,
+              "name": "宮城りえ",
+              "ruby": "みやぎりえ"
+            },
+            {
+              "id": 1080873,
+              "name": "凪ひかる",
+              "ruby": "なぎひかる"
             },
             {
               "id": 1059504,
@@ -4193,33 +4191,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "350~",
+          "price": "500~",
           "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "1386",
+                "price": "1980",
                 "list_price": "1980"
               },
               {
                 "type": "download",
-                "price": "966",
+                "price": "1380",
                 "list_price": "1380"
               },
               {
                 "type": "stream",
-                "price": "350",
+                "price": "500",
                 "list_price": "500"
               },
               {
                 "type": "iosdl",
-                "price": "966",
+                "price": "1380",
                 "list_price": "1380"
               },
               {
                 "type": "androiddl",
-                "price": "966",
+                "price": "1380",
                 "list_price": "1380"
               }
             ]
@@ -4279,14 +4277,7 @@
               "name": "FALENO star"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-11 00:10:00",
-            "date_end": "2026-11-17 23:59:59",
-            "title": "SODグループ30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -6864,8 +6855,8 @@
         "title": "叔母の無防備トレーニングウェア巨乳に我慢できずおっぱい揺らす暴走即ハメピストンで奥イキさせたら痙攣膣締めで何度もザーメン搾り取られた つばさ舞",
         "volume": "132",
         "review": {
-          "count": 7,
-          "average": "2.71"
+          "count": 8,
+          "average": "2.88"
         },
         "URL": "https://video.dmm.co.jp/av/content/?id=1fns00096",
         "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3D1fns00096&af_id=saaaaaaya-990&ch=api",
@@ -6913,38 +6904,38 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "4k",
-                "price": "1386",
+                "price": "1980",
                 "list_price": "1980"
               },
               {
                 "type": "hd",
-                "price": "966",
+                "price": "1380",
                 "list_price": "1380"
               },
               {
                 "type": "download",
-                "price": "756",
+                "price": "1080",
                 "list_price": "1080"
               },
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "756",
+                "price": "1080",
                 "list_price": "1080"
               },
               {
                 "type": "androiddl",
-                "price": "756",
+                "price": "1080",
                 "list_price": "1080"
               }
             ]
@@ -7008,14 +6999,7 @@
               "name": "FALENO star"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-11 00:10:00",
-            "date_end": "2026-11-17 23:59:59",
-            "title": "SODグループ30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -8978,38 +8962,38 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "4k",
-                "price": "1386",
+                "price": "1980",
                 "list_price": "1980"
               },
               {
                 "type": "hd",
-                "price": "966",
+                "price": "1380",
                 "list_price": "1380"
               },
               {
                 "type": "download",
-                "price": "756",
+                "price": "1080",
                 "list_price": "1080"
               },
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "756",
+                "price": "1080",
                 "list_price": "1080"
               },
               {
                 "type": "androiddl",
-                "price": "756",
+                "price": "1080",
                 "list_price": "1080"
               }
             ]
@@ -9073,14 +9057,7 @@
               "name": "FALENO star"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-11 00:10:00",
-            "date_end": "2026-11-17 23:59:59",
-            "title": "SODグループ30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -20797,32 +20774,32 @@
         "iteminfo": {
           "genre": [
             {
-              "id": 6609,
-              "name": "16時間以上作品"
-            },
-            {
-              "id": 6533,
-              "name": "ハイビジョン"
-            },
-            {
-              "id": 6548,
-              "name": "独占配信"
-            },
-            {
-              "id": 6003,
-              "name": "ベスト・総集編"
-            },
-            {
-              "id": 1026,
-              "name": "職業色々"
+              "id": 2001,
+              "name": "巨乳"
             },
             {
               "id": 1027,
               "name": "美少女"
             },
             {
-              "id": 2001,
-              "name": "巨乳"
+              "id": 1026,
+              "name": "職業色々"
+            },
+            {
+              "id": 6003,
+              "name": "ベスト・総集編"
+            },
+            {
+              "id": 6548,
+              "name": "独占配信"
+            },
+            {
+              "id": 6533,
+              "name": "ハイビジョン"
+            },
+            {
+              "id": 6609,
+              "name": "16時間以上作品"
             }
           ],
           "series": [
@@ -28524,7 +28501,7 @@
         "title": "S1史上No.1絶頂ベスト作品気持ちイ゛イ゛！！ ヤッバい程の仰け反りエクスタシーイッた直後の追撃ピストンで腰うねうねマ●コビクビク下半身ガクブル絶頂100本番",
         "volume": "476",
         "review": {
-          "count": 252,
+          "count": 253,
           "average": "4.09"
         },
         "URL": "https://video.dmm.co.jp/av/content/?id=ofje00421",

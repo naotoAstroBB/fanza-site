@@ -20,7 +20,7 @@ age_script = (ROOT / "js/age-gate.js").read_text(encoding="utf-8")
 assert "location.replace" not in age_script and "navigator.userAgent" not in age_script
 assert "age_verified" in age_script and "aria-modal" in age_script
 home = (ROOT / "home.html").read_text(encoding="utf-8")
-assert 'js/app.js?v=20261117' in home
+assert 'js/app.js?v=20261117-preview2' in home
 index = (ROOT / "index.html").read_text(encoding="utf-8-sig")
 assert 'name="robots" content="noindex,follow"' in index, "Age-only landing must stay noindex"
 robots = (ROOT / "robots.txt").read_text(encoding="utf-8")

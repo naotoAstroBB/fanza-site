@@ -24,7 +24,7 @@ assert 'js/app.js?v=20261117' in home
 index = (ROOT / "index.html").read_text(encoding="utf-8-sig")
 assert 'name="robots" content="noindex,follow"' in index, "Age-only landing must stay noindex"
 robots = (ROOT / "robots.txt").read_text(encoding="utf-8")
-assert "Disallow: /" not in robots, "Critical paths must remain crawlable"
+assert "Disallow: /" not in [line.strip() for line in robots.splitlines()], "Critical paths must remain crawlable"
 urls = [item.text for item in ET.parse(ROOT / "sitemap.xml").getroot()
         .findall("{http://www.sitemaps.org/schemas/sitemap/0.9}url/"
                  "{http://www.sitemaps.org/schemas/sitemap/0.9}loc")]

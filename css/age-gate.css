@@ -17,7 +17,7 @@ html.age-check-required, html.age-check-required body {overflow:hidden!important
 .site-age-dialog p{font-size:.94rem;color:#d9dfeb;line-height:1.85;margin:0 0 18px}
 .site-age-dialog #siteAgeAccept,.site-age-dialog #siteAgeDecline{
   display:block;width:100%;min-height:48px;border-radius:10px;
-  font:700 15px/1.4 inherit;cursor:pointer;text-align:center;
+  font-family:inherit;font-weight:700;font-size:15px;line-height:1.4;cursor:pointer;text-align:center;
   padding:13px 12px;text-decoration:none;margin-top:11px;
 }
 .site-age-dialog #siteAgeAccept{

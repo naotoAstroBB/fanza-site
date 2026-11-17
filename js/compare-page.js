@@ -29,7 +29,7 @@ const ComparePage = {
     const floorNames={videoa:'動画',anime:'アニメ',book:'漫画',goods:'グッズ',mono:'グッズ',vr:'VR'};
     const values=[
       ['カテゴリ', item=>floorNames[item.floor]||'—'],
-      ['参考価格', item=>item.price ? item.price.replace(/^[¥￥]/,'')+'円（要公式確認）' : '不明'],
+      ['参考価格', item=>item.price ? item.price.replace(/^[¥￥]/,'').replace(/円\s*$/,'')+'円（要公式確認）' : '不明'],
       ['収録時間・ページ数', item=>item.volume ? item.volume+(item.floor==='book'?'ページ':(['videoa','anime','vr'].includes(item.floor)?'分':'')) : '未掲載'],
       ['発売日', item=>item.date||'未掲載'],
       ['メーカー', item=>item.maker||'未掲載'],
@@ -44,7 +44,7 @@ const ComparePage = {
     }).join('</td><td>');
     target.innerHTML=`<div class="compare-scroll" role="region" aria-label="作品比較表" tabindex="0">
       <div class="compare-wide" style="--compare-cols:${items.length}">
-        <div class="compare-grid">${cards}</div>
+        <div class="compare-grid"><div class="compare-grid-label" aria-hidden="true">比較項目</div>${cards}</div>
         <table class="compare-table"><tbody>${table}<tr><th scope="row">公式ページ</th><td>${official}</td></tr></tbody></table>
       </div></div>`;
     target.querySelectorAll('[data-remove-cid]').forEach(btn=>{

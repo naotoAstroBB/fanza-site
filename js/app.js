@@ -848,7 +848,7 @@ const App = {
         const mv        = item.sampleMovieURL;
         const sampleUrl = this.safeUrl(mv ? (mv.size_560_360 || mv.size_476_306 || mv.size_644_414 || '') : '');
         // マンガの試し読みURL（FANZA公式のtachiyomiページへのリンク）
-        const tachiyomiUrl = this.safeUrl(item.tachiyomi?.affiliateURL || item.tachiyomi?.URL || '');
+        const tachiyomiUrl = FanzaNavigation.previewUrl(item, this.floor);
         // 動画系のサンプル画像（マンガ用は別途tachiyomiで対応）
         const sampleImages = item.sampleImageURL?.sample_l?.image
                           || item.sampleImageURL?.sample_s?.image
@@ -864,14 +864,14 @@ const App = {
             videoa:'動画を見る →',
         };
         const buyText = 'FANZAで詳細を見る';
-        const detailHref = `product.html?cid=${encodeURIComponent(item.content_id || '')}&floor=${encodeURIComponent(this.floor)}`;
+        const detailHref = `product.html?cid=${encodeURIComponent(item.content_id || '')}&floor=${encodeURIComponent(this.floor)}&from=${encodeURIComponent(FanzaNavigation.fromHere())}`;
         const rawPrice = String(item.prices?.price || '').replace(/[〜~～\s]+$/, '').trim();
         const priceLabel = rawPrice ? `<div class="card-price">¥${this.esc(rawPrice)}</div>` : '';
 
         // マンガは必ず公式tachiyomiリンクを優先。通常の作品購入URLを試し読みと誤表示しない
         let sampleBtnHtml = '';
         if (this.floor === 'book' && tachiyomiUrl) {
-            sampleBtnHtml = `<a class="card-sample-btn card-sample-book" href="${this.esc(tachiyomiUrl)}" target="_blank" rel="noopener" onclick="event.stopPropagation()" title="FANZA公式で試し読み">📖</a>`;
+            sampleBtnHtml = `<a class="card-sample-btn card-sample-book" href="${this.esc(tachiyomiUrl)}" target="_blank" rel="sponsored noopener noreferrer" onclick="event.stopPropagation()" title="FANZA公式の試し読みを開く">📖</a>`;
         } else if (this.floor !== 'book' && sampleUrl) {
             // 動画サンプル → モーダル再生
             sampleBtnHtml = `<button class="card-sample-btn" data-url="${this.esc(sampleUrl)}" data-title="${this.esc(item.title || '')}" onclick="event.stopPropagation();App.openSample(this.dataset.url,this.dataset.title)" title="サンプル再生">▶</button>`;

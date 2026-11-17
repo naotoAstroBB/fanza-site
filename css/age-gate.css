@@ -1,0 +1,30 @@
+/* Mandatory adult acknowledgement over the same URL, not a redirect. */
+html.age-check-required, html.age-check-required body {overflow:hidden!important;}
+.site-age-gate {
+  position:fixed;inset:0;z-index:2147483646;
+  display:flex;align-items:center;justify-content:center;
+  padding:20px;background:#0b0d12;color:#f7f8fb;
+  font-family:'Hiragino Kaku Gothic ProN','Meiryo',sans-serif;
+}
+.site-age-dialog {
+  width:min(440px,100%);max-height:calc(100dvh - 40px);
+  overflow-y:auto;text-align:center;padding:30px 23px;
+  background:#171d28;border:1px solid #5f354b;border-radius:17px;
+  box-shadow:0 20px 80px rgba(0,0,0,.5);
+}
+.site-age-logo{font-size:1.24rem;color:#ff789c;font-weight:850;margin-bottom:19px}
+.site-age-dialog h2{font-size:1.38rem;line-height:1.4;margin:0 0 14px}
+.site-age-dialog p{font-size:.94rem;color:#d9dfeb;line-height:1.85;margin:0 0 18px}
+.site-age-dialog #siteAgeAccept,.site-age-dialog #siteAgeDecline{
+  display:block;width:100%;min-height:48px;border-radius:10px;
+  font:700 15px/1.4 inherit;cursor:pointer;text-align:center;
+  padding:13px 12px;text-decoration:none;margin-top:11px;
+}
+.site-age-dialog #siteAgeAccept{
+  background:#ed4b75;color:white;border:1px solid #ff6489;
+}
+.site-age-dialog #siteAgeDecline{
+  background:#252c39;color:#e2e5ec;border:1px solid #445064;
+}
+.site-age-dialog :is(button,a):focus-visible{outline:3px solid white;outline-offset:3px}
+.site-age-dialog .site-age-footnote{font-size:.72rem;color:#9faabb;margin:16px 0 0}

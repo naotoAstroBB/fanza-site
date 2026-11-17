@@ -114,16 +114,13 @@
 
 <script src="js/storage.js"></script>
 <script src="js/dmm-api.js"></script>
+<script src="js/site-navigation.js?v=20261117"></script>
 <script>
 // 年齢確認は、元URLから遷移せず共通のオーバーレイで実施します。
 
 // 戻るボタン：同一サイト内からの遷移なら履歴を戻る、そうでなければホームへ
 function appBack() {
-    if (document.referrer && new URL(document.referrer).origin === location.origin) {
-        history.back();
-    } else {
-        location.href = 'home.html';
-    }
+    FanzaNavigation.goBack('/home.html');
 }
 
 const esc = s => String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
@@ -185,7 +182,7 @@ async function loadProduct(){
           `<div class="detail-price-big">¥${esc(price)}${listPrice && listPrice !== price ? `<span style="font-size:.8rem;color:var(--mute);text-decoration:line-through;margin-left:8px">¥${esc(listPrice)}</span>` : ''}</div>` :
           '<p class="detail-price-unavailable">価格はFANZA公式の商品ページで確認できます。</p>';
         const url       = safeUrl(item.affiliateURL || item.URL || '', '#');
-        const tachiyomiUrl = floor === 'book' ? safeUrl(item.tachiyomi?.affiliateURL || item.tachiyomi?.URL || '') : '';
+        const tachiyomiUrl = FanzaNavigation.previewUrl(item, floor);
         const review    = item.review;
         const campaign  = item.campaign;
         const sampleS   = item.sampleImageURL?.sample_s?.image || item.sampleImageURL?.sample_b?.image || [];
@@ -262,7 +259,7 @@ async function loadProduct(){
             ${priceHtml}
             <p class="detail-price-caption">表示金額は参考情報です。販売価格・配信条件は公式ページでご確認ください。</p>
 
-            ${tachiyomiUrl ? `<a class="btn-buy-large" href="${esc(tachiyomiUrl)}" target="_blank" rel="sponsored noopener noreferrer" style="display:block;margin-bottom:10px">📖 FANZA公式で試し読み</a>` : ''}
+            ${tachiyomiUrl ? `<a class="btn-buy-large" href="${esc(tachiyomiUrl)}" target="_blank" rel="sponsored noopener noreferrer" style="display:block;margin-bottom:10px">📖 FANZA公式の試し読みを開く ↗</a><p class="preview-help">公式の試し読み画面を別タブで開きます。開けない場合は下の作品ページからご確認ください。</p>` : (floor === 'book' ? '<p class="preview-help">この作品にはAPIから取得できる試し読みリンクがありません。公式ページで提供状況をご確認ください。</p>' : '')}
             <a class="btn-buy-large" href="${esc(url)}" target="_blank" rel="sponsored noopener noreferrer">${buyText}</a>
 
             <!-- いいね / お気に入り -->
@@ -413,7 +410,7 @@ async function loadRelated(item, floor) {
             ${related.map(p => {
                 const img   = safeUrl(p.imageURL?.list || '');
                 const ptitle = esc(p.title || '');
-                const href  = `product.html?cid=${encodeURIComponent(p.content_id || '')}&floor=${encodeURIComponent(floor)}`;
+                const href  = `product.html?cid=${encodeURIComponent(p.content_id || '')}&floor=${encodeURIComponent(floor)}&from=${encodeURIComponent(FanzaNavigation.fromHere())}`;
                 return `<a class="mini-card" href="${esc(href)}">
                     ${img ? `<img src="${esc(img)}" alt="${ptitle}" loading="lazy">` : ''}
                     <div class="mini-card-title">${ptitle}</div>

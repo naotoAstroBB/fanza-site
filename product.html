@@ -75,6 +75,7 @@
 @media(max-width:700px){.product-detail{grid-template-columns:1fr}}
 </style>
 <link rel="stylesheet" href="css/product-redesign.css">
+<link rel="stylesheet" href="css/discovery-detail.css?v=20261117">
 <link rel="stylesheet" href="css/age-gate.css?v=20261117">
 <script src="js/age-gate.js?v=20261117"></script>
 </head>
@@ -103,6 +104,8 @@
     <div id="content">
       <div class="loading"><div class="spinner"></div><p>商品情報を取得中...</p></div>
     </div>
+    <div id="discoveryPrices" aria-live="polite"></div>
+    <div id="discoveryRelated"></div>
   </main>
 </div>
 <div class="detail-mobile-cta" id="mobilePurchaseBar" hidden><a id="mobileOfficialBtn" href="#" target="_blank" rel="sponsored noopener noreferrer">FANZA公式で作品を見る</a></div>
@@ -115,6 +118,7 @@
 <script src="js/storage.js"></script>
 <script src="js/dmm-api.js"></script>
 <script src="js/product-discovery.js?v=20261117"></script>
+<script src="js/discovery-detail.js?v=20261117"></script>
 <script src="js/site-navigation.js?v=20261117"></script>
 <script>
 // 年齢確認は、元URLから遷移せず共通のオーバーレイで実施します。
@@ -330,8 +334,9 @@ async function loadProduct(){
           </div>
         </div>`;
 
-        // 関連作品を非同期で読み込む
-        loadRelated(item, floor);
+        // 情報が確認できた価格記録と、シリーズID一致による候補のみ表示
+        DiscoveryDetail.load(item, floor).catch(() => {});
+        // 既存のキャッシュ依存の関連表示は重複を避けるため停止しています。
     } catch(e){
         document.getElementById('content').innerHTML = `<div class="loading"><p style="color:#ff6688">⚠️ 商品情報の取得に失敗しました<br><small>${esc(e.message)}</small></p><a href="home.html" style="color:var(--accent2)">← TOPに戻る</a></div>`;
     }

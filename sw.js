@@ -1,5 +1,5 @@
 /* ===== FANZA Service Worker ===== */
-const CACHE = 'fanza-v41-discovery-20261117';
+const CACHE = 'fanza-v42-price-series-20261117';
 const STATIC = [
     '/',
     '/home.html',
@@ -14,6 +14,8 @@ const STATIC = [
     '/js/dmm-api.js',
     '/js/app.js',
     '/js/product-discovery.js',
+    '/js/discovery-detail.js',
+    '/css/discovery-detail.css',
     '/js/compare-page.js',
     '/js/catalogue-filters.js',
     '/css/home-redesign.css',

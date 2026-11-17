@@ -1,0 +1,50 @@
+/* Scope new evidence-based panels to product details only. */
+.detail-redesign #discoveryPrices:empty,.detail-redesign #discoveryRelated:empty{display:none}
+.detail-redesign .discovery-price-panel,
+.detail-redesign .discovery-related-block{
+ background:#171e2a;border:1px solid #364255;border-radius:15px;
+ margin:22px 0;padding:20px;color:#f1f4fa;
+}
+.detail-redesign .discovery-price-panel h2,
+.detail-redesign .discovery-related-block h2{
+ margin:0 0 8px;font-size:1.1rem;line-height:1.45;color:#f6f7fa;
+ border-left:4px solid #f05a84;padding-left:12px;
+}
+.detail-redesign .discovery-price-lead,
+.detail-redesign .discovery-related-block p{
+ font-size:.81rem;color:#b0bccd;line-height:1.7;margin:8px 0 15px;
+}
+.detail-redesign .discovery-price-kpis{
+ display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+ gap:10px;margin:14px 0;
+}
+.detail-redesign .discovery-price-kpis>div{
+ display:flex;flex-direction:column;gap:8px;min-width:0;
+ background:#222c3a;border:1px solid #3e4b5d;border-radius:10px;padding:15px 13px;
+}
+.detail-redesign .discovery-price-kpis small{font-size:.7rem;color:#b4c0cd}
+.detail-redesign .discovery-price-kpis strong{font-size:clamp(.9rem,1.7vw,1.2rem);color:#fff;overflow-wrap:anywhere}
+.detail-redesign .discovery-price-trend{font-size:.86rem;color:#ffb1c6;font-weight:700;margin:10px 0}
+.detail-redesign .discovery-price-panel details{
+ border-top:1px solid #3d485a;margin-top:12px;padding-top:12px
+}
+.detail-redesign .discovery-price-panel summary{cursor:pointer;font-size:.8rem;color:#f5d2dc;font-weight:750}
+.detail-redesign .discovery-price-history{list-style:none;padding:0;margin:12px 0;max-height:330px;overflow:auto}
+.detail-redesign .discovery-price-history li{display:flex;gap:14px;justify-content:space-between;padding:9px;border-bottom:1px solid #343f52;font-size:.8rem}
+.detail-redesign .discovery-price-disclaimer{font-size:.72rem;color:#a9b4c4;line-height:1.7;margin:16px 0 0}
+.detail-redesign .discovery-related-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px}
+.detail-redesign .discovery-related-card{
+ display:flex;flex-direction:column;gap:8px;min-width:0;background:#222b39;border:1px solid #435064;
+ border-radius:11px;padding:12px;text-decoration:none;color:#f5f7fb
+}
+.detail-redesign .discovery-related-card:hover{border-color:#ff83a5}
+.detail-redesign .discovery-related-card img{height:140px;max-width:100%;width:100%;object-fit:contain;border-radius:7px;background:#0f141d}
+.detail-redesign .discovery-related-card strong{font-size:.76rem;line-height:1.55;overflow-wrap:anywhere;font-weight:700;color:#f4f5f8}
+.detail-redesign .discovery-related-card small{font-size:.7rem;color:#bec9d7}
+@media(max-width:760px){
+ .detail-redesign .discovery-price-panel,.detail-redesign .discovery-related-block{margin:14px 0;padding:14px;border-radius:12px}
+ .detail-redesign .discovery-price-kpis{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+ .detail-redesign .discovery-price-kpis>div{padding:12px 10px}
+ .detail-redesign .discovery-related-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+ .detail-redesign .discovery-related-card img{height:130px}
+}

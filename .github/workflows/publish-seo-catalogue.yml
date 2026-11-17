@@ -6,6 +6,9 @@ on:
     paths:
       - '.github/workflows/publish-seo-catalogue.yml'
       - 'scripts/build_product_pages.py'
+      - 'scripts/build_discovery_indexes.py'
+  schedule:
+    - cron: '25 4 * * *'
   workflow_dispatch:
 
 permissions:
@@ -30,6 +33,11 @@ jobs:
             /data/new.json
             /data/review.json
             /data/rank_prev.json
+            /data/manga.json
+            /data/anime.json
+            /data/discovery_index.json
+            /data/price_history.json
+            /scripts/build_discovery_indexes.py
             /scripts/build_home_feed.py
             /scripts/build_product_pages.py
             /scripts/test_home_feed.py
@@ -54,6 +62,11 @@ jobs:
       - name: Generate static works and sitemap
         run: python3 scripts/build_product_pages.py
 
+      - name: Generate evidence-based series and price history
+        run: |
+          python3 -m py_compile scripts/build_discovery_indexes.py
+          python3 scripts/build_discovery_indexes.py
+
       - name: Validate output before publishing
         run: |
           python3 - <<'PY'
@@ -76,6 +89,11 @@ jobs:
           for page in pages:
               doc = page.read_text(encoding="utf-8")
               assert '<link rel="canonical"' in doc and "<h1" in doc, page
+          history = json.loads(Path("data/price_history.json").read_text(encoding="utf-8"))
+          discovery = json.loads(Path("data/discovery_index.json").read_text(encoding="utf-8"))
+          assert history["version"] == 1 and history.get("items"), "No saved price observations"
+          assert discovery["version"] == 1 and len(discovery["items"]) >= 20, "Incomplete series data"
+          assert all(isinstance(points,list) and points for points in history["items"].values())
           home = Path("home.html").read_text(encoding="utf-8")
           assert 'href="works/index.html"' in home
           assert 'seo-guide-intro' not in home
@@ -92,6 +110,7 @@ jobs:
           if [ -f data/home_prev_ids.json ]; then
             git add --sparse -- data/home_prev_ids.json
           fi
+          git add --sparse -A -- data/discovery_index.json data/price_history.json
           if git diff --cached --quiet; then
             echo "No catalogue changes to publish"
             exit 0

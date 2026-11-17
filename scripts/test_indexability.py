@@ -33,5 +33,5 @@ assert "https://douga-adult.com/home.html" in urls
 assert "https://douga-adult.com/actresses.html" in urls
 assert "https://douga-adult.com/index.html" not in urls and "https://douga-adult.com/xpost.html" not in urls
 sw = (ROOT / "sw.js").read_text(encoding="utf-8")
-assert "fanza-v41-discovery-20261117" in sw
+assert "fanza-v42-price-series-20261117" in sw
 print("SEO safeguards passed: no forced redirects, age verification maintained, sitemap and cache valid")

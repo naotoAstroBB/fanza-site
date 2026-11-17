@@ -5,6 +5,11 @@ on:
     branches: [main]
     paths:
       - "home.html"
+      - "css/discovery-detail.css"
+      - "js/discovery-detail.js"
+      - "scripts/test_discovery_detail.js"
+      - "scripts/test_discovery_indexes.py"
+      - "scripts/build_discovery_indexes.py"
       - "scripts/test_discovery_markup.py"
       - "scripts/test_product_discovery.js"
       - "js/product-discovery.js"
@@ -29,6 +34,11 @@ on:
   pull_request:
     paths:
       - "home.html"
+      - "css/discovery-detail.css"
+      - "js/discovery-detail.js"
+      - "scripts/test_discovery_detail.js"
+      - "scripts/test_discovery_indexes.py"
+      - "scripts/build_discovery_indexes.py"
       - "scripts/test_discovery_markup.py"
       - "scripts/test_product_discovery.js"
       - "js/product-discovery.js"
@@ -98,3 +108,11 @@ jobs:
           node scripts/test_product_discovery.js
       - name: Verify comparison pages and accessible entry points
         run: python3 scripts/test_discovery_markup.py
+      - name: Verify price history source and snapshot retention
+        run: |
+          python3 -m py_compile scripts/build_discovery_indexes.py scripts/test_discovery_indexes.py
+          python3 scripts/test_discovery_indexes.py
+      - name: Verify related series and recorded price handling
+        run: |
+          node --check js/discovery-detail.js
+          node scripts/test_discovery_detail.js

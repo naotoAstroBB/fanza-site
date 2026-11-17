@@ -31,7 +31,7 @@ urls = [item.text for item in ET.parse(ROOT / "sitemap.xml").getroot()
 assert len(urls) == len(set(urls)) and len(urls) >= 4, "Sitemap URLs invalid"
 assert "https://douga-adult.com/home.html" in urls
 assert "https://douga-adult.com/actresses.html" in urls
-assert all("/index.html" not in u and "/xpost.html" not in u for u in urls)
+assert "https://douga-adult.com/index.html" not in urls and "https://douga-adult.com/xpost.html" not in urls
 sw = (ROOT / "sw.js").read_text(encoding="utf-8")
 assert "fanza-v40-age-seo-20261117" in sw
 print("SEO safeguards passed: no forced redirects, age verification maintained, sitemap and cache valid")

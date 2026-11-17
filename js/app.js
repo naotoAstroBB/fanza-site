@@ -14,7 +14,7 @@ const App = {
     total:        0,
     showSale:     false,
     singleWork:   false,
-    filters:      { year:'', minPrice:'', maxPrice:'', minMinutes:'', maker:'' },
+    filters:      { year:'', minPrice:'', maxPrice:'', minMinutes:'', maker:'', previewOnly:'' },
     _saleItems:   [],
     _currentItems:[],
 
@@ -25,7 +25,7 @@ const App = {
         this.sort    = p.get('sort')    || 'rank';
         this.keyword = p.get('keyword') || '';
         this.page    = parseInt(p.get('page') || '1');
-        this.filters = Object.fromEntries(['year','minPrice','maxPrice','minMinutes','maker']
+        this.filters = Object.fromEntries(['year','minPrice','maxPrice','minMinutes','maker','previewOnly']
             .map(key => [key, (p.get(key) || '').slice(0,100)]));
         this.initAdvancedFilters();
 
@@ -51,6 +51,8 @@ const App = {
         });
         this.initSwipe();
         this.loadStorageSections();
+        this.renderSavedSearches();
+        ProductDiscovery.renderTray();
         this.updateRankTabs();
 
         await this.loadHero();
@@ -85,6 +87,11 @@ const App = {
         }
         const minutes = document.getElementById('filterMinMinutes');
         if (minutes) minutes.disabled = !['videoa','anime','vr'].includes(this.floor);
+        const preview = document.getElementById('filterPreviewOnly');
+        if (preview) {
+            preview.disabled = this.floor !== 'book';
+            preview.checked = this.floor === 'book' && this.filters.previewOnly === '1';
+        }
         const count = Object.values(this.filters).filter(Boolean).length;
         const badge = document.getElementById('advancedFilterCount');
         if (badge) {
@@ -123,16 +130,18 @@ const App = {
             return;
         }
         if (error) error.textContent = '';
+        next.previewOnly = this.floor === 'book' && document.getElementById('filterPreviewOnly')?.checked ? '1' : '';
         this.filters = next;
         this.page = 1;
         this.syncAdvancedFilters();
         this.updateFilterUrl();
         if (this.showSale) this.setSale();
         else this.fetchProducts();
+        return true;
     },
 
     resetAdvancedFilters(refresh=true) {
-        this.filters = { year:'', minPrice:'', maxPrice:'', minMinutes:'', maker:'' };
+        this.filters = { year:'', minPrice:'', maxPrice:'', minMinutes:'', maker:'', previewOnly:'' };
         this.page = 1;
         const error = document.getElementById('filterError');
         if (error) error.textContent = '';
@@ -146,11 +155,130 @@ const App = {
 
     updateFilterUrl() {
         const url = new URL(location.href);
-        for (const key of ['year','minPrice','maxPrice','minMinutes','maker']) {
+        for (const key of ['year','minPrice','maxPrice','minMinutes','maker','previewOnly']) {
             if (this.filters[key]) url.searchParams.set(key, this.filters[key]);
             else url.searchParams.delete(key);
         }
         history.replaceState(null, '', url.pathname + url.search + url.hash);
+    },
+
+    // ===== 試し読み・比較・検索条件の保存 =====
+    showPreviewBooks() {
+        this.floor = 'book';
+        this.keyword = '';
+        this.genre = '';
+        this.page = 1;
+        this.showSale = false;
+        this.singleWork = false;
+        this.filters = {year:'',minPrice:'',maxPrice:'',minMinutes:'',maker:'',previewOnly:'1'};
+        const search = document.getElementById('searchInput');
+        if (search) search.value = '';
+        document.querySelectorAll('.nav-group-floor .nav-btn').forEach(b =>
+            b.classList.toggle('active', b.dataset.floor === 'book'));
+        this.syncAdvancedFilters();
+        const url = new URL(location.href);
+        for (const key of ['keyword','genre','page','year','minPrice','maxPrice','minMinutes','maker','previewOnly']) {
+            url.searchParams.delete(key);
+        }
+        url.searchParams.set('floor','book');
+        url.searchParams.set('previewOnly','1');
+        history.replaceState(null, '', url.pathname+url.search+url.hash);
+        this.updateRankTabs();
+        this.fetchProducts();
+        document.getElementById('catalogue')?.scrollIntoView({behavior:'smooth',block:'start'});
+    },
+
+    saveCurrentSearch() {
+        if (!this.applyAdvancedFilters()) return;
+        const result = ProductDiscovery.saveSearch({
+            floor:this.floor,sort:this.sort,keyword:this.keyword,genre:this.genre,
+            showSale:this.showSale,filters:this.filters
+        });
+        this.renderSavedSearches();
+        this.showToast(result.ok ? '検索条件をこの端末に保存しました' : result.reason);
+    },
+
+    renderSavedSearches() {
+        const section = document.getElementById('savedSearchSection');
+        const list = document.getElementById('savedSearchList');
+        if (!section || !list) return;
+        const saved = ProductDiscovery.searches();
+        section.hidden = saved.length === 0;
+        list.innerHTML = saved.map(entry => {
+            const id = ProductDiscovery.escape(entry.id);
+            const title = ProductDiscovery.escape(ProductDiscovery.label(entry.state));
+            return `<div class="saved-search-entry">
+                <button type="button" onclick="App.restoreSavedSearch('${id}')">${title}</button>
+                <button type="button" class="saved-search-delete" aria-label="${title}を削除"
+                    onclick="App.deleteSavedSearch('${id}')">×</button>
+            </div>`;
+        }).join('');
+    },
+
+    restoreSavedSearch(id) {
+        const entry = ProductDiscovery.getSearch(id);
+        if (!entry) return;
+        const state = ProductDiscovery.normalizeSearch(entry.state);
+        this.floor = state.floor;
+        this.sort = state.sort;
+        this.keyword = state.keyword;
+        this.genre = state.genre;
+        this.page = 1;
+        this.showSale = state.showSale;
+        this.singleWork = false;
+        this.filters = state.filters;
+        const input = document.getElementById('searchInput');
+        if (input) input.value = this.keyword;
+        const select = document.getElementById('sortSelect');
+        if (select) select.value = this.sort;
+        document.querySelectorAll('.nav-group-floor .nav-btn').forEach(b =>
+            b.classList.toggle('active',b.dataset.floor===this.floor));
+        this.syncAdvancedFilters();
+        this.updateRankTabs();
+        const url=new URL(location.href);
+        for(const key of ['floor','sort','keyword','genre','page','previewOnly',
+            'year','minPrice','maxPrice','minMinutes','maker'])url.searchParams.delete(key);
+        url.searchParams.set('floor',this.floor);
+        if (this.sort !== 'rank')url.searchParams.set('sort',this.sort);
+        if (this.keyword)url.searchParams.set('keyword',this.keyword);
+        if (this.genre)url.searchParams.set('genre',this.genre);
+        for(const [key,value] of Object.entries(this.filters)) {
+            if(value)url.searchParams.set(key,value);
+        }
+        history.replaceState(null,'',url.pathname+url.search+url.hash);
+        if(this.showSale) this.setSale();
+        else this.fetchProducts();
+        document.getElementById('catalogue')?.scrollIntoView({behavior:'smooth',block:'start'});
+    },
+
+    deleteSavedSearch(id) {
+        ProductDiscovery.deleteSearch(id);
+        this.renderSavedSearches();
+    },
+
+    toggleCompare(btn,cid) {
+        const item=this._currentItems.find(x=>String(x.content_id)===String(cid));
+        if(!item) return;
+        const result=ProductDiscovery.toggle(item,this.floor);
+        if(!result.ok){this.showToast(result.reason);return;}
+        for(const button of document.querySelectorAll('[data-compare-cid]')) {
+            if(button.dataset.compareCid!==String(cid) ||
+               button.dataset.compareFloor!==this.floor)continue;
+            const selected=ProductDiscovery.has(cid,this.floor);
+            button.classList.toggle('selected',selected);
+            button.setAttribute('aria-pressed',String(selected));
+            button.textContent=selected?'✓ 比較候補から外す':'+ 比較に追加';
+        }
+        ProductDiscovery.renderTray();
+    },
+
+    clearCompare() {
+        ProductDiscovery.clear();
+        for (const button of document.querySelectorAll('[data-compare-cid]')) {
+            button.classList.remove('selected');
+            button.setAttribute('aria-pressed','false');
+            button.textContent='+ 比較に追加';
+        }
     },
 
     // ===== 検索サジェスト =====
@@ -840,7 +968,7 @@ const App = {
         const campaign  = item.campaign?.title || '';
         const avg       = parseFloat(review?.average || 0);
         const stars     = avg ? '★'.repeat(Math.round(avg)) + '☆'.repeat(5 - Math.round(avg)) : '';
-        const isRanking = this.sort === 'rank' && !this.keyword && !this.showSale;
+        const isRanking = this.sort === 'rank' && !this.keyword && !this.showSale && !this.hasAdvancedFilters;
         const displayedRank = (this.page - 1) * this.hitsPerPage + i + 1;
         const rankBadge = !isRanking ? '' : displayedRank <= 3
             ? `<div class="rank-badge ${['rank-1','rank-2','rank-3'][displayedRank-1]}">${displayedRank}</div>`
@@ -903,6 +1031,7 @@ const App = {
 
         const isLiked   = Like.has(item.content_id);
         const likeCount = Like.count(item.content_id);
+        const isCompared = ProductDiscovery.has(item.content_id,this.floor);
         return `
         <article class="product-card" role="link" tabindex="0" aria-label="${title}の作品詳細へ" data-href="${this.esc(detailHref)}"
           onclick="if(event.target.closest('a,button'))return;location.href=this.dataset.href"
@@ -932,6 +1061,11 @@ const App = {
               </button>
             </div>
             ${review?.count ? `<div class="card-review" style="margin-bottom:6px">${avg.toFixed(1)} (${review.count}件)</div>` : ''}
+            <button type="button" class="card-compare-btn ${isCompared?'selected':''}"
+              data-compare-cid="${this.esc(item.content_id)}" data-compare-floor="${this.esc(this.floor)}"
+              aria-pressed="${isCompared?'true':'false'}"
+              onclick="event.stopPropagation();App.toggleCompare(this,this.dataset.compareCid)">
+              ${isCompared?'✓ 比較候補から外す':'+ 比較に追加'}</button>
             <a class="card-detail-link" href="${this.esc(detailHref)}" onclick="event.stopPropagation()">作品情報・サンプルを見る ›</a>
             <a class="btn-buy" href="${this.esc(url)}" target="_blank" rel="sponsored noopener noreferrer" onclick="event.stopPropagation()">
               ${buyText}
@@ -1105,6 +1239,12 @@ const App = {
         this.showSale   = false;
         this.singleWork = false; // フロア変更時に単体作品フィルタをリセット
         this.resetAdvancedFilters(false);
+        const floorUrl = new URL(location.href);
+        floorUrl.searchParams.set('floor',floor);
+        floorUrl.searchParams.delete('keyword');
+        floorUrl.searchParams.delete('genre');
+        floorUrl.searchParams.delete('page');
+        history.replaceState(null,'',floorUrl.pathname+floorUrl.search+floorUrl.hash);
         document.querySelectorAll('.nav-group-floor .nav-btn').forEach(b =>
             b.classList.toggle('active', b.dataset.floor === floor));
         this.updateRankTabs();

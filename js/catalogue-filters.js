@@ -18,8 +18,18 @@
     const number = Number(match[1]);
     return Number.isFinite(number) ? number : null;
   };
+  const hasPreview = item => {
+    if (!item || !item.content_id) return false;
+    try {
+      const url = new URL(String(item.tachiyomi?.URL || ''));
+      return url.protocol === 'https:' && url.hostname === 'book.dmm.co.jp'
+        && /^\/product\/[a-zA-Z0-9_-]+\/[a-zA-Z0-9_-]+\/tachiyomi\/?$/.test(url.pathname)
+        && url.pathname.split('/')[3] === String(item.content_id);
+    } catch (_) {return false;}
+  };
   const hasActive = filters => Boolean(
-    filters && (filters.year || filters.minPrice || filters.maxPrice || filters.minMinutes || filters.maker)
+    filters && (filters.year || filters.minPrice || filters.maxPrice ||
+                filters.minMinutes || filters.maker || filters.previewOnly === '1')
   );
   const filter = (items, filters, floor) => {
     if (!Array.isArray(items) || !hasActive(filters)) return items || [];
@@ -28,7 +38,10 @@
     const minPrice = parseAmount(filters.minPrice);
     const maxPrice = parseAmount(filters.maxPrice);
     const minMinutes = parseDuration(filters.minMinutes);
+    const previewOnly = filters.previewOnly === '1';
+    if (previewOnly && floor !== 'book') return [];
     return items.filter(item => {
+      if (previewOnly && !hasPreview(item)) return false;
       if (!item || typeof item !== 'object') return false;
       if (selectedYear && !String(item.date || '').startsWith(selectedYear)) return false;
       const price = parseAmount(item.prices && item.prices.price);
@@ -46,6 +59,6 @@
       return true;
     });
   };
-  root.CatalogueFilters = {filter, hasActive, parseAmount, parseDuration};
+  root.CatalogueFilters = {filter, hasActive, hasPreview, parseAmount, parseDuration};
   if (typeof module === 'object' && module.exports) module.exports = root.CatalogueFilters;
 })(typeof window === 'undefined' ? globalThis : window);

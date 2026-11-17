@@ -140,3 +140,18 @@ body.detail-redesign {
 
 /* Describe direct FANZA reader link without suggesting the sale link is a preview. */
 .detail-redesign .preview-help{color:#b9c5d2;font-size:.76rem;line-height:1.65;margin:0 0 15px}
+
+.detail-redesign .btn-compare-detail{
+ display:inline-flex;align-items:center;justify-content:center;min-height:44px;
+ color:#e9eff8;background:#293447;border:1px solid #59677d;
+ border-radius:10px;padding:10px 15px;font-family:inherit;font-size:.8rem;font-weight:750;cursor:pointer
+}
+.detail-redesign .btn-compare-detail[aria-pressed="true"]{
+ color:#ffd1de;border-color:#ec7ba1;background:#42283e
+}
+.detail-redesign .detail-compare-message{font-size:.78rem;color:#f7b5c7;margin:8px 0}
+.detail-redesign .detail-compare-message:empty{display:none}
+.detail-redesign .detail-compare-link{
+ display:inline-block;font-weight:750;font-size:.8rem;color:#ffa3bd;
+ text-decoration:underline;margin:0 0 14px
+}

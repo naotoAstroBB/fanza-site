@@ -323,9 +323,9 @@ html{scroll-padding-top:165px}
 .home-redesign .saved-searches-heading span{color:#97a6ba;font-size:.67rem;margin-left:5px;font-weight:500}
 .home-redesign .saved-search-list{display:flex;flex-wrap:wrap;gap:8px}
 .home-redesign .saved-search-entry{display:inline-flex;align-items:stretch;border:1px solid #49556b;border-radius:9px;background:#202a3a;max-width:100%}
-.home-redesign .saved-search-entry button{border:0;color:#edf2fa;background:transparent;font:700 .76rem/1.5 inherit;padding:9px 11px;cursor:pointer;white-space:normal;overflow-wrap:anywhere}
+.home-redesign .saved-search-entry button{border:0;color:#edf2fa;background:transparent;font-family:inherit;font-size:.76rem;font-weight:700;line-height:1.5;padding:9px 11px;cursor:pointer;white-space:normal;overflow-wrap:anywhere}
 .home-redesign .saved-search-entry .saved-search-delete{border-left:1px solid #49556b;font-size:18px;padding:3px 11px;color:#ffb0c4}
-.home-redesign .card-compare-btn{display:block;width:100%;margin-top:10px;padding:10px 8px;min-height:40px;border-radius:9px;background:#252e3d;border:1px solid #566478;color:#e0e7f2;font:700 .77rem/1.3 inherit;cursor:pointer}
+.home-redesign .card-compare-btn{display:block;width:100%;margin-top:10px;padding:10px 8px;min-height:40px;border-radius:9px;background:#252e3d;border:1px solid #566478;color:#e0e7f2;font-family:inherit;font-size:.77rem;font-weight:700;line-height:1.3;cursor:pointer}
 .home-redesign .card-compare-btn.selected{border-color:#f17ca0;color:#ffc1d0;background:#342638}
 .home-redesign .compare-tray{
   position:fixed;bottom:14px;left:50%;transform:translateX(-50%);z-index:500;

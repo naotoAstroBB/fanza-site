@@ -1,5 +1,5 @@
 /* ===== FANZA Service Worker ===== */
-const CACHE  = 'fanza-v39';
+const CACHE = 'fanza-v40-age-seo-20261117';
 const STATIC = [
     '/',
     '/home.html',
@@ -8,6 +8,8 @@ const STATIC = [
     '/actresses.html',
     '/index.html',
     '/css/style.css',
+    '/css/age-gate.css',
+    '/js/age-gate.js',
     '/js/storage.js',
     '/js/dmm-api.js',
     '/js/app.js',

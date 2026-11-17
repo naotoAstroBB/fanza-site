@@ -5,6 +5,12 @@ on:
     branches: [main]
     paths:
       - "home.html"
+      - "scripts/test_discovery_markup.py"
+      - "scripts/test_product_discovery.js"
+      - "js/product-discovery.js"
+      - "js/compare-page.js"
+      - "css/compare.css"
+      - "compare.html"
       - "scripts/test_product_markup.py"
       - "scripts/test_catalogue_filters.js"
       - "js/catalogue-filters.js"
@@ -23,6 +29,12 @@ on:
   pull_request:
     paths:
       - "home.html"
+      - "scripts/test_discovery_markup.py"
+      - "scripts/test_product_discovery.js"
+      - "js/product-discovery.js"
+      - "js/compare-page.js"
+      - "css/compare.css"
+      - "compare.html"
       - "scripts/test_product_markup.py"
       - "scripts/test_catalogue_filters.js"
       - "js/catalogue-filters.js"
@@ -55,6 +67,7 @@ jobs:
             home.html
             product.html
             actress.html
+            compare.html
             css
             js
             scripts
@@ -78,3 +91,10 @@ jobs:
         run: |
           node --check js/site-navigation.js
           node scripts/test_site_navigation.js
+      - name: Verify comparison, preview filtering and saved searches
+        run: |
+          node --check js/product-discovery.js
+          node --check js/compare-page.js
+          node scripts/test_product_discovery.js
+      - name: Verify comparison pages and accessible entry points
+        run: python3 scripts/test_discovery_markup.py

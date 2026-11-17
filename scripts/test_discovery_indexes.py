@@ -31,9 +31,12 @@ class IndexTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temp:
             path=Path(temp)
             old=gen.DATA
+            old_index, old_history=gen.INDEX_FILE,gen.HISTORY_FILE
             src=gen.SOURCE_LIMITS
             try:
                 gen.DATA=path
+                gen.INDEX_FILE=path/"discovery_index.json"
+                gen.HISTORY_FILE=path/"price_history.json"
                 gen.SOURCE_LIMITS={
                     "videoa":("rank.json",2),
                     "book":("manga.json",3),
@@ -75,6 +78,7 @@ class IndexTests(unittest.TestCase):
                 self.assertNotIn("videoa:comic00001",history["items"]) # ranged price
             finally:
                 gen.DATA=old
+                gen.INDEX_FILE,gen.HISTORY_FILE=old_index,old_history
                 gen.SOURCE_LIMITS=src
 
 if __name__=="__main__":

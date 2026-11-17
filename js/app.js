@@ -177,9 +177,11 @@ const App = {
             b.classList.toggle('active', b.dataset.floor === 'book'));
         this.syncAdvancedFilters();
         const url = new URL(location.href);
+        for (const key of ['keyword','genre','page','year','minPrice','maxPrice','minMinutes','maker','previewOnly']) {
+            url.searchParams.delete(key);
+        }
         url.searchParams.set('floor','book');
         url.searchParams.set('previewOnly','1');
-        for (const key of ['keyword','genre','page']) url.searchParams.delete(key);
         history.replaceState(null, '', url.pathname+url.search+url.hash);
         this.updateRankTabs();
         this.fetchProducts();
@@ -966,7 +968,7 @@ const App = {
         const campaign  = item.campaign?.title || '';
         const avg       = parseFloat(review?.average || 0);
         const stars     = avg ? '★'.repeat(Math.round(avg)) + '☆'.repeat(5 - Math.round(avg)) : '';
-        const isRanking = this.sort === 'rank' && !this.keyword && !this.showSale;
+        const isRanking = this.sort === 'rank' && !this.keyword && !this.showSale && !this.hasAdvancedFilters;
         const displayedRank = (this.page - 1) * this.hitsPerPage + i + 1;
         const rankBadge = !isRanking ? '' : displayedRank <= 3
             ? `<div class="rank-badge ${['rank-1','rank-2','rank-3'][displayedRank-1]}">${displayedRank}</div>`
@@ -1237,6 +1239,12 @@ const App = {
         this.showSale   = false;
         this.singleWork = false; // フロア変更時に単体作品フィルタをリセット
         this.resetAdvancedFilters(false);
+        const floorUrl = new URL(location.href);
+        floorUrl.searchParams.set('floor',floor);
+        floorUrl.searchParams.delete('keyword');
+        floorUrl.searchParams.delete('genre');
+        floorUrl.searchParams.delete('page');
+        history.replaceState(null,'',floorUrl.pathname+floorUrl.search+floorUrl.hash);
         document.querySelectorAll('.nav-group-floor .nav-btn').forEach(b =>
             b.classList.toggle('active', b.dataset.floor === floor));
         this.updateRankTabs();

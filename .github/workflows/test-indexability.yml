@@ -1,0 +1,73 @@
+name: Indexability and Age Gate Checks
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/test-indexability.yml'
+      - 'home.html'
+      - 'product.html'
+      - 'actress.html'
+      - 'actresses.html'
+      - 'index.html'
+      - 'js/age-gate.js'
+      - 'js/app.js'
+      - 'css/age-gate.css'
+      - 'sw.js'
+      - 'robots.txt'
+      - 'sitemap.xml'
+      - 'scripts/test_indexability.py'
+      - 'scripts/test_age_gate.js'
+  pull_request:
+    paths:
+      - '.github/workflows/test-indexability.yml'
+      - 'home.html'
+      - 'product.html'
+      - 'actress.html'
+      - 'actresses.html'
+      - 'index.html'
+      - 'js/age-gate.js'
+      - 'js/app.js'
+      - 'css/age-gate.css'
+      - 'sw.js'
+      - 'robots.txt'
+      - 'sitemap.xml'
+      - 'scripts/test_indexability.py'
+      - 'scripts/test_age_gate.js'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  age-gate-and-crawl:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /index.html
+            /home.html
+            /product.html
+            /actress.html
+            /actresses.html
+            /robots.txt
+            /sitemap.xml
+            /sw.js
+            /js/age-gate.js
+            /js/app.js
+            /css/age-gate.css
+            /scripts/test_indexability.py
+            /scripts/test_age_gate.js
+      - name: Check scripts compile
+        run: |
+          node --check js/age-gate.js
+          node --check js/app.js
+          node --check scripts/test_age_gate.js
+      - name: Verify same-URL age confirmation
+        run: node scripts/test_age_gate.js
+      - name: Verify indexability contract
+        run: python3 scripts/test_indexability.py

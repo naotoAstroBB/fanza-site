@@ -59,6 +59,8 @@
     .actress-page-tabs .actress-tab { padding: 9px 14px; font-size: .82rem; }
 }
 </style>
+<link rel="stylesheet" href="css/age-gate.css?v=20261117">
+<script src="js/age-gate.js?v=20261117"></script>
 </head>
 <body>
 
@@ -167,7 +169,7 @@
 <script src="js/storage.js"></script>
 <script src="js/dmm-api.js"></script>
 <script>
-if (localStorage.getItem('age_verified') !== 'yes') location.replace('index.html?next=' + encodeURIComponent(location.pathname + location.search + location.hash));
+// 年齢確認は、元URLから遷移せず共通のオーバーレイで実施します。
 
 const esc = s => String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
 const safeUrl = value => {

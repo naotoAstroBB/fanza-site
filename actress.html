@@ -200,6 +200,8 @@
     .actress-hero-photo, .actress-hero-no-img { width: 120px; height: 120px; }
 }
 </style>
+<link rel="stylesheet" href="css/age-gate.css?v=20261117">
+<script src="js/age-gate.js?v=20261117"></script>
 </head>
 <body>
 
@@ -223,12 +225,13 @@
   <a href="home.html" style="color:var(--mute)">TOP</a> › <span id="breadName">女優ページ</span>
 </div>
 
+<main id="actressMain">
 <!-- 女優プロフィール -->
 <div class="actress-hero" id="actressHero">
   <div class="actress-hero-inner">
     <div class="actress-hero-no-img">👩</div>
     <div class="actress-hero-info">
-      <div class="actress-hero-name" id="actressName">読み込み中...</div>
+      <h1 class="actress-hero-name" id="actressName">読み込み中...</h1>
       <div class="actress-hero-ruby" id="actressRuby"></div>
       <div class="actress-hero-meta" id="actressMeta"></div>
       <a class="actress-fanza-btn" id="actressLink" href="#" target="_blank" rel="noopener">🎬 全作品を見る</a>
@@ -247,6 +250,8 @@
   </div>
   <div class="pagination" id="pagination"></div>
 </div>
+
+</main>
 
 <!-- ボトムナビゲーション（スマホのみ表示） -->
 <nav class="bottom-nav">
@@ -281,7 +286,7 @@
 <script src="js/storage.js"></script>
 <script src="js/dmm-api.js"></script>
 <script>
-if (localStorage.getItem('age_verified') !== 'yes') location.replace('index.html?next=' + encodeURIComponent(location.pathname + location.search + location.hash));
+// 年齢確認は、元URLから遷移せず共通のオーバーレイで実施します。
 
 // 戻るボタン：同一サイト内からの遷移なら履歴を戻る、そうでなければホームへ
 function appBack() {

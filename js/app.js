@@ -1,11 +1,8 @@
 // ===== FANZA アフィリエイトサイト メインJS =====
 
-// 年齢確認チェック
-if (location.pathname.includes('home') || location.pathname.includes('product')) {
-    if (localStorage.getItem('age_verified') !== 'yes') {
-        location.replace('index.html?next=' + encodeURIComponent(location.pathname + location.search + location.hash));
-    }
-}
+// 年齢確認は js/age-gate.js が同じURL上のオーバーレイで実施します。
+// 年齢確認前の訪問を index.html にリダイレクトすると、Googleに
+// 商品・出演者ページのURLを取得してもらえなくなるため転送しません。
 
 const App = {
     floor:        'videoa',

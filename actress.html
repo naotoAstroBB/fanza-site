@@ -200,6 +200,8 @@
     .actress-hero-photo, .actress-hero-no-img { width: 120px; height: 120px; }
 }
 </style>
+<link rel="stylesheet" href="css/age-gate.css?v=20261117">
+<script src="js/age-gate.js?v=20261117"></script>
 </head>
 <body>
 
@@ -281,7 +283,7 @@
 <script src="js/storage.js"></script>
 <script src="js/dmm-api.js"></script>
 <script>
-if (localStorage.getItem('age_verified') !== 'yes') location.replace('index.html?next=' + encodeURIComponent(location.pathname + location.search + location.hash));
+// 年齢確認は、元URLから遷移せず共通のオーバーレイで実施します。
 
 // 戻るボタン：同一サイト内からの遷移なら履歴を戻る、そうでなければホームへ
 function appBack() {

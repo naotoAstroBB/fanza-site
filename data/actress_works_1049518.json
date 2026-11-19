@@ -4975,24 +4975,29 @@
           }
         },
         "prices": {
-          "price": "998~",
-          "list_price": "998~",
+          "price": "509~",
+          "list_price": "509~",
           "deliveries": {
             "delivery": [
               {
                 "type": "8k",
-                "price": "1780",
-                "list_price": "1780"
+                "price": "1580",
+                "list_price": "1580"
               },
               {
                 "type": "hd",
-                "price": "1304",
-                "list_price": "1304"
+                "price": "998",
+                "list_price": "998"
               },
               {
                 "type": "download",
-                "price": "998",
-                "list_price": "998"
+                "price": "795",
+                "list_price": "795"
+              },
+              {
+                "type": "rp",
+                "price": "509",
+                "list_price": "509"
               }
             ]
           }
@@ -39130,33 +39135,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "300~",
+          "price": "210~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "1480",
+                "price": "1036",
                 "list_price": "1480"
               },
               {
                 "type": "download",
-                "price": "1180",
+                "price": "826",
                 "list_price": "1180"
               },
               {
                 "type": "stream",
-                "price": "300",
+                "price": "210",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "1180",
+                "price": "826",
                 "list_price": "1180"
               },
               {
                 "type": "androiddl",
-                "price": "1180",
+                "price": "826",
                 "list_price": "1180"
               }
             ]
@@ -39224,7 +39229,14 @@
               "name": "えむっ娘ラボ"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-11-20 00:00:00",
+            "date_end": "2026-11-20 23:59:59",
+            "title": "日替わりセール！"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -40512,33 +40524,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "826",
+                "price": "1180",
                 "list_price": "1180"
               },
               {
                 "type": "download",
-                "price": "546",
+                "price": "780",
                 "list_price": "780"
               },
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "546",
+                "price": "780",
                 "list_price": "780"
               },
               {
                 "type": "androiddl",
-                "price": "546",
+                "price": "780",
                 "list_price": "780"
               }
             ]
@@ -40607,14 +40619,7 @@
               "name": "ビビアン"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-19 00:00:00",
-            "date_end": "2026-11-19 23:59:59",
-            "title": "日替わりセール◆"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",

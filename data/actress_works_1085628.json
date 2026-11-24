@@ -242,6 +242,14 @@
             ]
           }
         },
+        "sampleMovieURL": {
+          "size_476_306": "https://www.dmm.co.jp/litevideo/-/part/=/cid=cemd00927/size=476_306/affi_id=saaaaaaya-990/",
+          "size_560_360": "https://www.dmm.co.jp/litevideo/-/part/=/cid=cemd00927/size=560_360/affi_id=saaaaaaya-990/",
+          "size_644_414": "https://www.dmm.co.jp/litevideo/-/part/=/cid=cemd00927/size=644_414/affi_id=saaaaaaya-990/",
+          "size_720_480": "https://www.dmm.co.jp/litevideo/-/part/=/cid=cemd00927/size=720_480/affi_id=saaaaaaya-990/",
+          "pc_flag": 1,
+          "sp_flag": 1
+        },
         "prices": {
           "price": "1980~",
           "list_price": "1980~",
@@ -279,14 +287,6 @@
         "iteminfo": {
           "genre": [
             {
-              "id": 6533,
-              "name": "ハイビジョン"
-            },
-            {
-              "id": 79015,
-              "name": "4K"
-            },
-            {
               "id": 6548,
               "name": "独占配信"
             },
@@ -313,6 +313,14 @@
             {
               "id": 5001,
               "name": "中出し"
+            },
+            {
+              "id": 79015,
+              "name": "4K"
+            },
+            {
+              "id": 6533,
+              "name": "ハイビジョン"
             }
           ],
           "series": [
@@ -1680,6 +1688,56 @@
               "ruby": "つきのえすい"
             },
             {
+              "id": 17802,
+              "name": "つぼみ",
+              "ruby": "つぼみ"
+            },
+            {
+              "id": 1084796,
+              "name": "五日市芽依",
+              "ruby": "いつかいちめい"
+            },
+            {
+              "id": 1069952,
+              "name": "新井リマ",
+              "ruby": "あらいりま"
+            },
+            {
+              "id": 1076928,
+              "name": "綾瀬こころ",
+              "ruby": "あやせこころ"
+            },
+            {
+              "id": 1052930,
+              "name": "吉根ゆりあ",
+              "ruby": "よしねゆりあ"
+            },
+            {
+              "id": 1075675,
+              "name": "末広純",
+              "ruby": "すえひろじゅん"
+            },
+            {
+              "id": 1061586,
+              "name": "森日向子",
+              "ruby": "もりひなこ"
+            },
+            {
+              "id": 1068671,
+              "name": "北野未奈",
+              "ruby": "きたのみな"
+            },
+            {
+              "id": 1017139,
+              "name": "蓮実クレア",
+              "ruby": "はすみくれあ"
+            },
+            {
+              "id": 1060141,
+              "name": "木下ひまり（花沢ひまり）",
+              "ruby": "きのしたひまり（はなざわひまり）"
+            },
+            {
               "id": 1068670,
               "name": "花狩まい",
               "ruby": "かがりまい"
@@ -1703,56 +1761,6 @@
               "id": 1044982,
               "name": "水川スミレ",
               "ruby": "みずかわすみれ"
-            },
-            {
-              "id": 1060141,
-              "name": "木下ひまり（花沢ひまり）",
-              "ruby": "きのしたひまり（はなざわひまり）"
-            },
-            {
-              "id": 1017139,
-              "name": "蓮実クレア",
-              "ruby": "はすみくれあ"
-            },
-            {
-              "id": 1075675,
-              "name": "末広純",
-              "ruby": "すえひろじゅん"
-            },
-            {
-              "id": 1052930,
-              "name": "吉根ゆりあ",
-              "ruby": "よしねゆりあ"
-            },
-            {
-              "id": 1076928,
-              "name": "綾瀬こころ",
-              "ruby": "あやせこころ"
-            },
-            {
-              "id": 1069952,
-              "name": "新井リマ",
-              "ruby": "あらいりま"
-            },
-            {
-              "id": 1084796,
-              "name": "五日市芽依",
-              "ruby": "いつかいちめい"
-            },
-            {
-              "id": 17802,
-              "name": "つぼみ",
-              "ruby": "つぼみ"
-            },
-            {
-              "id": 1061586,
-              "name": "森日向子",
-              "ruby": "もりひなこ"
-            },
-            {
-              "id": 1068671,
-              "name": "北野未奈",
-              "ruby": "きたのみな"
             },
             {
               "id": 1037293,
@@ -6650,24 +6658,29 @@
           }
         },
         "prices": {
-          "price": "998~",
-          "list_price": "998~",
+          "price": "509~",
+          "list_price": "509~",
           "deliveries": {
             "delivery": [
               {
                 "type": "8k",
-                "price": "1780",
-                "list_price": "1780"
+                "price": "1580",
+                "list_price": "1580"
               },
               {
                 "type": "hd",
-                "price": "1304",
-                "list_price": "1304"
+                "price": "998",
+                "list_price": "998"
               },
               {
                 "type": "download",
-                "price": "998",
-                "list_price": "998"
+                "price": "795",
+                "list_price": "795"
+              },
+              {
+                "type": "rp",
+                "price": "509",
+                "list_price": "509"
               }
             ]
           }
@@ -25142,11 +25155,6 @@
               "ruby": "こんのみいな"
             },
             {
-              "id": 1072126,
-              "name": "花崎こはる",
-              "ruby": "はなさきこはる"
-            },
-            {
               "id": 1043123,
               "name": "有村のぞみ",
               "ruby": "ありむらのぞみ"
@@ -26694,38 +26702,38 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "500~",
+          "price": "350~",
           "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "4k",
-                "price": "1980",
+                "price": "1386",
                 "list_price": "1980"
               },
               {
                 "type": "hd",
-                "price": "1480",
+                "price": "1036",
                 "list_price": "1480"
               },
               {
                 "type": "download",
-                "price": "1280",
+                "price": "896",
                 "list_price": "1280"
               },
               {
                 "type": "stream",
-                "price": "500",
+                "price": "350",
                 "list_price": "500"
               },
               {
                 "type": "iosdl",
-                "price": "1280",
+                "price": "896",
                 "list_price": "1280"
               },
               {
                 "type": "androiddl",
-                "price": "1280",
+                "price": "896",
                 "list_price": "1280"
               }
             ]
@@ -26800,7 +26808,14 @@
               "name": "街角シロウトナンパ"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-11-23 00:10:00",
+            "date_end": "2026-11-24 23:59:59",
+            "title": "売れ筋！ビデオ30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -35635,33 +35650,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "350~",
+          "price": "500~",
           "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "1175",
+                "price": "1680",
                 "list_price": "1680"
               },
               {
                 "type": "download",
-                "price": "826",
+                "price": "1180",
                 "list_price": "1180"
               },
               {
                 "type": "stream",
-                "price": "350",
+                "price": "500",
                 "list_price": "500"
               },
               {
                 "type": "iosdl",
-                "price": "826",
+                "price": "1180",
                 "list_price": "1180"
               },
               {
                 "type": "androiddl",
-                "price": "826",
+                "price": "1180",
                 "list_price": "1180"
               }
             ]
@@ -35983,14 +35998,7 @@
               "name": "S1 NO.1 STYLE"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-20 10:00:00",
-            "date_end": "2026-11-24 09:59:59",
-            "title": "エスワンキャンペーン30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -49909,33 +49917,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "826",
+                "price": "1180",
                 "list_price": "1180"
               },
               {
                 "type": "download",
-                "price": "546",
+                "price": "780",
                 "list_price": "780"
               },
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "546",
+                "price": "780",
                 "list_price": "780"
               },
               {
                 "type": "androiddl",
-                "price": "546",
+                "price": "780",
                 "list_price": "780"
               }
             ]
@@ -50227,14 +50235,7 @@
               "name": "S1 NO.1 STYLE"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-20 10:00:00",
-            "date_end": "2026-11-24 09:59:59",
-            "title": "エスワンキャンペーン30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -50302,33 +50303,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "826",
+                "price": "1180",
                 "list_price": "1180"
               },
               {
                 "type": "download",
-                "price": "546",
+                "price": "780",
                 "list_price": "780"
               },
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "546",
+                "price": "780",
                 "list_price": "780"
               },
               {
                 "type": "androiddl",
-                "price": "546",
+                "price": "780",
                 "list_price": "780"
               }
             ]
@@ -50392,14 +50393,7 @@
               "name": "S1 NO.1 STYLE"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-20 10:00:00",
-            "date_end": "2026-11-24 09:59:59",
-            "title": "エスワンキャンペーン30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -50777,33 +50771,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "300~",
+          "price": "210~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "1180",
+                "price": "826",
                 "list_price": "1180"
               },
               {
                 "type": "download",
-                "price": "780",
+                "price": "546",
                 "list_price": "780"
               },
               {
                 "type": "stream",
-                "price": "300",
+                "price": "210",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "780",
+                "price": "546",
                 "list_price": "780"
               },
               {
                 "type": "androiddl",
-                "price": "780",
+                "price": "546",
                 "list_price": "780"
               }
             ]
@@ -50867,7 +50861,14 @@
               "name": "S1 NO.1 STYLE"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-11-24 10:00:00",
+            "date_end": "2026-11-27 09:59:59",
+            "title": "エスワンキャンペーン30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -50880,8 +50881,8 @@
         "title": "日本で最も美しい顔トップ100 2023年度版",
         "volume": "962",
         "review": {
-          "count": 4,
-          "average": "3.50"
+          "count": 5,
+          "average": "3.80"
         },
         "URL": "https://video.dmm.co.jp/av/content/?id=ofje00565",
         "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Dofje00565&af_id=saaaaaaya-990&ch=api",
@@ -50929,33 +50930,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "300~",
+          "price": "210~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "1180",
+                "price": "826",
                 "list_price": "1180"
               },
               {
                 "type": "download",
-                "price": "780",
+                "price": "546",
                 "list_price": "780"
               },
               {
                 "type": "stream",
-                "price": "300",
+                "price": "210",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "780",
+                "price": "546",
                 "list_price": "780"
               },
               {
                 "type": "androiddl",
-                "price": "780",
+                "price": "546",
                 "list_price": "780"
               }
             ]
@@ -51482,7 +51483,14 @@
               "name": "S1 NO.1 STYLE"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-11-24 10:00:00",
+            "date_end": "2026-11-27 09:59:59",
+            "title": "エスワンキャンペーン30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -51966,8 +51974,8 @@
         "title": "気持ぢいいぃー！とイッた直後に下から突き上げ激ピストン97本番",
         "volume": "467",
         "review": {
-          "count": 4,
-          "average": "4.50"
+          "count": 5,
+          "average": "4.40"
         },
         "URL": "https://video.dmm.co.jp/av/content/?id=ofje00557",
         "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Dofje00557&af_id=saaaaaaya-990&ch=api",
@@ -52383,33 +52391,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "300~",
+          "price": "210~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "1180",
+                "price": "826",
                 "list_price": "1180"
               },
               {
                 "type": "download",
-                "price": "780",
+                "price": "546",
                 "list_price": "780"
               },
               {
                 "type": "stream",
-                "price": "300",
+                "price": "210",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "780",
+                "price": "546",
                 "list_price": "780"
               },
               {
                 "type": "androiddl",
-                "price": "780",
+                "price": "546",
                 "list_price": "780"
               }
             ]
@@ -52479,7 +52487,14 @@
               "name": "S1 NO.1 STYLE"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-11-24 10:00:00",
+            "date_end": "2026-11-27 09:59:59",
+            "title": "エスワンキャンペーン30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -52974,33 +52989,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "300~",
+          "price": "210~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "1180",
+                "price": "826",
                 "list_price": "1180"
               },
               {
                 "type": "download",
-                "price": "780",
+                "price": "546",
                 "list_price": "780"
               },
               {
                 "type": "stream",
-                "price": "300",
+                "price": "210",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "780",
+                "price": "546",
                 "list_price": "780"
               },
               {
                 "type": "androiddl",
-                "price": "780",
+                "price": "546",
                 "list_price": "780"
               }
             ]
@@ -53064,7 +53079,14 @@
               "name": "S1 NO.1 STYLE"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-11-24 10:00:00",
+            "date_end": "2026-11-27 09:59:59",
+            "title": "エスワンキャンペーン30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -53903,38 +53925,38 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "4k",
-                "price": "1316",
+                "price": "1880",
                 "list_price": "1880"
               },
               {
                 "type": "hd",
-                "price": "826",
+                "price": "1180",
                 "list_price": "1180"
               },
               {
                 "type": "download",
-                "price": "546",
+                "price": "780",
                 "list_price": "780"
               },
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "546",
+                "price": "780",
                 "list_price": "780"
               },
               {
                 "type": "androiddl",
-                "price": "546",
+                "price": "780",
                 "list_price": "780"
               }
             ]
@@ -54004,14 +54026,7 @@
               "name": "S1 NO.1 STYLE"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-20 10:00:00",
-            "date_end": "2026-11-24 09:59:59",
-            "title": "エスワンキャンペーン30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",

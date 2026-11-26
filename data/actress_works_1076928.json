@@ -1407,56 +1407,6 @@
               "ruby": "つきのえすい"
             },
             {
-              "id": 17802,
-              "name": "つぼみ",
-              "ruby": "つぼみ"
-            },
-            {
-              "id": 1084796,
-              "name": "五日市芽依",
-              "ruby": "いつかいちめい"
-            },
-            {
-              "id": 1069952,
-              "name": "新井リマ",
-              "ruby": "あらいりま"
-            },
-            {
-              "id": 1076928,
-              "name": "綾瀬こころ",
-              "ruby": "あやせこころ"
-            },
-            {
-              "id": 1052930,
-              "name": "吉根ゆりあ",
-              "ruby": "よしねゆりあ"
-            },
-            {
-              "id": 1075675,
-              "name": "末広純",
-              "ruby": "すえひろじゅん"
-            },
-            {
-              "id": 1061586,
-              "name": "森日向子",
-              "ruby": "もりひなこ"
-            },
-            {
-              "id": 1068671,
-              "name": "北野未奈",
-              "ruby": "きたのみな"
-            },
-            {
-              "id": 1017139,
-              "name": "蓮実クレア",
-              "ruby": "はすみくれあ"
-            },
-            {
-              "id": 1060141,
-              "name": "木下ひまり（花沢ひまり）",
-              "ruby": "きのしたひまり（はなざわひまり）"
-            },
-            {
               "id": 1068670,
               "name": "花狩まい",
               "ruby": "かがりまい"
@@ -1480,6 +1430,56 @@
               "id": 1044982,
               "name": "水川スミレ",
               "ruby": "みずかわすみれ"
+            },
+            {
+              "id": 1060141,
+              "name": "木下ひまり（花沢ひまり）",
+              "ruby": "きのしたひまり（はなざわひまり）"
+            },
+            {
+              "id": 1017139,
+              "name": "蓮実クレア",
+              "ruby": "はすみくれあ"
+            },
+            {
+              "id": 1075675,
+              "name": "末広純",
+              "ruby": "すえひろじゅん"
+            },
+            {
+              "id": 1052930,
+              "name": "吉根ゆりあ",
+              "ruby": "よしねゆりあ"
+            },
+            {
+              "id": 1076928,
+              "name": "綾瀬こころ",
+              "ruby": "あやせこころ"
+            },
+            {
+              "id": 1069952,
+              "name": "新井リマ",
+              "ruby": "あらいりま"
+            },
+            {
+              "id": 1084796,
+              "name": "五日市芽依",
+              "ruby": "いつかいちめい"
+            },
+            {
+              "id": 17802,
+              "name": "つぼみ",
+              "ruby": "つぼみ"
+            },
+            {
+              "id": 1061586,
+              "name": "森日向子",
+              "ruby": "もりひなこ"
+            },
+            {
+              "id": 1068671,
+              "name": "北野未奈",
+              "ruby": "きたのみな"
             },
             {
               "id": 1037293,
@@ -3630,38 +3630,38 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "500~",
+          "price": "350~",
           "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "4k",
-                "price": "1280",
+                "price": "896",
                 "list_price": "1280"
               },
               {
                 "type": "hd",
-                "price": "980",
+                "price": "686",
                 "list_price": "980"
               },
               {
                 "type": "download",
-                "price": "780",
+                "price": "546",
                 "list_price": "780"
               },
               {
                 "type": "stream",
-                "price": "500",
+                "price": "350",
                 "list_price": "500"
               },
               {
                 "type": "iosdl",
-                "price": "780",
+                "price": "546",
                 "list_price": "780"
               },
               {
                 "type": "androiddl",
-                "price": "780",
+                "price": "546",
                 "list_price": "780"
               }
             ]
@@ -3732,7 +3732,14 @@
               "name": "短縮FunCity"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-11-25 00:10:00",
+            "date_end": "2026-12-01 23:59:59",
+            "title": "妄想族30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -3802,38 +3809,38 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "500~",
+          "price": "350~",
           "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "4k",
-                "price": "1280",
+                "price": "896",
                 "list_price": "1280"
               },
               {
                 "type": "hd",
-                "price": "980",
+                "price": "686",
                 "list_price": "980"
               },
               {
                 "type": "download",
-                "price": "780",
+                "price": "546",
                 "list_price": "780"
               },
               {
                 "type": "stream",
-                "price": "500",
+                "price": "350",
                 "list_price": "500"
               },
               {
                 "type": "iosdl",
-                "price": "780",
+                "price": "546",
                 "list_price": "780"
               },
               {
                 "type": "androiddl",
-                "price": "780",
+                "price": "546",
                 "list_price": "780"
               }
             ]
@@ -3904,7 +3911,14 @@
               "name": "短縮FunCity"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-11-25 00:10:00",
+            "date_end": "2026-12-01 23:59:59",
+            "title": "妄想族30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -6488,23 +6502,23 @@
           }
         },
         "prices": {
-          "price": "356~",
+          "price": "509~",
           "list_price": "509~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "698",
+                "price": "998",
                 "list_price": "998"
               },
               {
                 "type": "download",
-                "price": "556",
+                "price": "795",
                 "list_price": "795"
               },
               {
                 "type": "rp",
-                "price": "356",
+                "price": "509",
                 "list_price": "509"
               }
             ]
@@ -6714,14 +6728,7 @@
               "name": "KMPVR"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -7637,7 +7644,7 @@
         "content_id": "mmlb00003",
         "product_id": "mmlb00003",
         "title": "大満足 1618分！発育途中のウブな美少女に禁断のナマ中出しスペシャル おじさんあそぼ 全12タイトル完全収録 コンプリートDX",
-        "volume": "1622",
+        "volume": "1620",
         "review": {
           "count": 5,
           "average": "4.20"
@@ -9313,29 +9320,34 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "2180~",
-          "list_price": "2180~",
+          "price": "500~",
+          "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "2680",
-                "list_price": "2680"
+                "price": "1680",
+                "list_price": "1680"
               },
               {
                 "type": "download",
-                "price": "2180",
-                "list_price": "2180"
+                "price": "1180",
+                "list_price": "1180"
+              },
+              {
+                "type": "stream",
+                "price": "500",
+                "list_price": "500"
               },
               {
                 "type": "iosdl",
-                "price": "2180",
-                "list_price": "2180"
+                "price": "1180",
+                "list_price": "1180"
               },
               {
                 "type": "androiddl",
-                "price": "2180",
-                "list_price": "2180"
+                "price": "1180",
+                "list_price": "1180"
               }
             ]
           }
@@ -11632,28 +11644,28 @@
           }
         },
         "prices": {
-          "price": "213~",
+          "price": "305~",
           "list_price": "305~",
           "deliveries": {
             "delivery": [
               {
                 "type": "8k",
-                "price": "826",
+                "price": "1180",
                 "list_price": "1180"
               },
               {
                 "type": "hd",
-                "price": "556",
+                "price": "795",
                 "list_price": "795"
               },
               {
                 "type": "download",
-                "price": "413",
+                "price": "590",
                 "list_price": "590"
               },
               {
                 "type": "rp",
-                "price": "213",
+                "price": "305",
                 "list_price": "305"
               }
             ]
@@ -11759,14 +11771,7 @@
               "name": "P-BOX VR"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -14329,23 +14334,23 @@
           }
         },
         "prices": {
-          "price": "356~",
+          "price": "509~",
           "list_price": "509~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "698",
+                "price": "998",
                 "list_price": "998"
               },
               {
                 "type": "download",
-                "price": "556",
+                "price": "795",
                 "list_price": "795"
               },
               {
                 "type": "rp",
-                "price": "356",
+                "price": "509",
                 "list_price": "509"
               }
             ]
@@ -14489,14 +14494,7 @@
               "name": "KMPVR"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -15232,28 +15230,28 @@
           }
         },
         "prices": {
-          "price": "213~",
+          "price": "305~",
           "list_price": "305~",
           "deliveries": {
             "delivery": [
               {
                 "type": "8k",
-                "price": "826",
+                "price": "1180",
                 "list_price": "1180"
               },
               {
                 "type": "hd",
-                "price": "556",
+                "price": "795",
                 "list_price": "795"
               },
               {
                 "type": "download",
-                "price": "413",
+                "price": "590",
                 "list_price": "590"
               },
               {
                 "type": "rp",
-                "price": "213",
+                "price": "305",
                 "list_price": "305"
               }
             ]
@@ -15359,14 +15357,7 @@
               "name": "P-BOX VR"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -15699,9 +15690,9 @@
               "ruby": "ながせゆい"
             },
             {
-              "id": 1057837,
-              "name": "七瀬いおり",
-              "ruby": "ななせいおり"
+              "id": 1073512,
+              "name": "及川うみ",
+              "ruby": "おいかわうみ"
             },
             {
               "id": 1058573,
@@ -15739,6 +15730,11 @@
               "ruby": "もりさわかな（いいおかかなこ）"
             },
             {
+              "id": 1057837,
+              "name": "七瀬いおり",
+              "ruby": "ななせいおり"
+            },
+            {
               "id": 1063674,
               "name": "百瀬あすか",
               "ruby": "ももせあすか"
@@ -15754,29 +15750,9 @@
               "ruby": "はまさきまお"
             },
             {
-              "id": 1064775,
-              "name": "田中美矢",
-              "ruby": "たなかみや"
-            },
-            {
-              "id": 1072781,
-              "name": "夏木なるみ",
-              "ruby": "なつきなるみ"
-            },
-            {
-              "id": 1049172,
-              "name": "若宮穂乃",
-              "ruby": "わかみやほの"
-            },
-            {
-              "id": 1066778,
-              "name": "本田瞳",
-              "ruby": "ほんだひとみ"
-            },
-            {
-              "id": 1064143,
-              "name": "沙月恵奈",
-              "ruby": "さつきえな"
+              "id": 1074352,
+              "name": "佐久良咲希",
+              "ruby": "さくらさき"
             },
             {
               "id": 1065526,
@@ -15784,14 +15760,24 @@
               "ruby": "ういねんね"
             },
             {
-              "id": 1074352,
-              "name": "佐久良咲希",
-              "ruby": "さくらさき"
+              "id": 1064143,
+              "name": "沙月恵奈",
+              "ruby": "さつきえな"
             },
             {
-              "id": 1073512,
-              "name": "及川うみ",
-              "ruby": "おいかわうみ"
+              "id": 1066778,
+              "name": "本田瞳",
+              "ruby": "ほんだひとみ"
+            },
+            {
+              "id": 1049172,
+              "name": "若宮穂乃",
+              "ruby": "わかみやほの"
+            },
+            {
+              "id": 1064775,
+              "name": "田中美矢",
+              "ruby": "たなかみや"
             },
             {
               "id": 1091230,
@@ -15804,9 +15790,9 @@
               "ruby": "ながせまみ"
             },
             {
-              "id": 1076928,
-              "name": "綾瀬こころ",
-              "ruby": "あやせこころ"
+              "id": 1012910,
+              "name": "本真ゆり",
+              "ruby": "ほんまゆり"
             },
             {
               "id": 1058559,
@@ -15854,6 +15840,11 @@
               "ruby": "めろでぃーひいなまーくす"
             },
             {
+              "id": 1076928,
+              "name": "綾瀬こころ",
+              "ruby": "あやせこころ"
+            },
+            {
               "id": 1052636,
               "name": "松ゆきの",
               "ruby": "まつゆきの"
@@ -15862,11 +15853,6 @@
               "id": 1085066,
               "name": "内田すみれ",
               "ruby": "うちだすみれ"
-            },
-            {
-              "id": 1012910,
-              "name": "本真ゆり",
-              "ruby": "ほんまゆり"
             },
             {
               "id": 1067531,
@@ -18834,28 +18820,28 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "500~",
+          "price": "350~",
           "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "download",
-                "price": "980",
+                "price": "686",
                 "list_price": "980"
               },
               {
                 "type": "stream",
-                "price": "500",
+                "price": "350",
                 "list_price": "500"
               },
               {
                 "type": "iosdl",
-                "price": "980",
+                "price": "686",
                 "list_price": "980"
               },
               {
                 "type": "androiddl",
-                "price": "980",
+                "price": "686",
                 "list_price": "980"
               }
             ]
@@ -19121,7 +19107,14 @@
               "name": "BoinBB/ABC"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-11-25 00:10:00",
+            "date_end": "2026-12-01 23:59:59",
+            "title": "妄想族30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -20273,28 +20266,28 @@
           }
         },
         "prices": {
-          "price": "356~",
+          "price": "509~",
           "list_price": "509~",
           "deliveries": {
             "delivery": [
               {
                 "type": "8k",
-                "price": "1106",
+                "price": "1580",
                 "list_price": "1580"
               },
               {
                 "type": "hd",
-                "price": "698",
+                "price": "998",
                 "list_price": "998"
               },
               {
                 "type": "download",
-                "price": "556",
+                "price": "795",
                 "list_price": "795"
               },
               {
                 "type": "rp",
-                "price": "356",
+                "price": "509",
                 "list_price": "509"
               }
             ]
@@ -20376,14 +20369,7 @@
               "name": "P-BOX VR"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -21845,28 +21831,28 @@
           }
         },
         "prices": {
-          "price": "213~",
+          "price": "305~",
           "list_price": "305~",
           "deliveries": {
             "delivery": [
               {
                 "type": "8k",
-                "price": "826",
+                "price": "1180",
                 "list_price": "1180"
               },
               {
                 "type": "hd",
-                "price": "485",
+                "price": "693",
                 "list_price": "693"
               },
               {
                 "type": "download",
-                "price": "413",
+                "price": "590",
                 "list_price": "590"
               },
               {
                 "type": "rp",
-                "price": "213",
+                "price": "305",
                 "list_price": "305"
               }
             ]
@@ -21948,14 +21934,7 @@
               "name": "P-BOX VR"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -22705,33 +22684,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "300~",
+          "price": "210~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "780",
+                "price": "546",
                 "list_price": "780"
               },
               {
                 "type": "download",
-                "price": "480",
+                "price": "336",
                 "list_price": "480"
               },
               {
                 "type": "stream",
-                "price": "300",
+                "price": "210",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "480",
+                "price": "336",
                 "list_price": "480"
               },
               {
                 "type": "androiddl",
-                "price": "480",
+                "price": "336",
                 "list_price": "480"
               }
             ]
@@ -22912,7 +22891,14 @@
               "name": "BoinBB/ABC"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-11-25 00:10:00",
+            "date_end": "2026-12-01 23:59:59",
+            "title": "妄想族30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -24149,28 +24135,28 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "300~",
+          "price": "210~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "download",
-                "price": "480",
+                "price": "336",
                 "list_price": "480"
               },
               {
                 "type": "stream",
-                "price": "300",
+                "price": "210",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "480",
+                "price": "336",
                 "list_price": "480"
               },
               {
                 "type": "androiddl",
-                "price": "480",
+                "price": "336",
                 "list_price": "480"
               }
             ]
@@ -24393,7 +24379,14 @@
               "name": "BoinBB/ABC"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-11-25 00:10:00",
+            "date_end": "2026-12-01 23:59:59",
+            "title": "妄想族30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -30442,23 +30435,23 @@
           }
         },
         "prices": {
-          "price": "213~",
+          "price": "305~",
           "list_price": "305~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "485",
+                "price": "693",
                 "list_price": "693"
               },
               {
                 "type": "download",
-                "price": "413",
+                "price": "590",
                 "list_price": "590"
               },
               {
                 "type": "rp",
-                "price": "213",
+                "price": "305",
                 "list_price": "305"
               }
             ]
@@ -30669,14 +30662,7 @@
               "name": "KMPVR"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -34754,23 +34740,23 @@
           }
         },
         "prices": {
-          "price": "213~",
+          "price": "305~",
           "list_price": "305~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "485",
+                "price": "693",
                 "list_price": "693"
               },
               {
                 "type": "download",
-                "price": "413",
+                "price": "590",
                 "list_price": "590"
               },
               {
                 "type": "rp",
-                "price": "213",
+                "price": "305",
                 "list_price": "305"
               }
             ]
@@ -34989,14 +34975,7 @@
               "name": "KMPVR"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -39254,38 +39233,38 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "4k",
-                "price": "1379",
+                "price": "1970",
                 "list_price": "1970"
               },
               {
                 "type": "hd",
-                "price": "890",
+                "price": "1270",
                 "list_price": "1270"
               },
               {
                 "type": "download",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "androiddl",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               }
             ]
@@ -39359,14 +39338,7 @@
               "name": "ダメいきっ！"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "MINAMO引退30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -43376,23 +43348,23 @@
           }
         },
         "prices": {
-          "price": "213~",
+          "price": "305~",
           "list_price": "305~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "485",
+                "price": "693",
                 "list_price": "693"
               },
               {
                 "type": "download",
-                "price": "413",
+                "price": "590",
                 "list_price": "590"
               },
               {
                 "type": "rp",
-                "price": "213",
+                "price": "305",
                 "list_price": "305"
               }
             ]
@@ -43611,14 +43583,7 @@
               "name": "KMPVR"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -44507,38 +44472,38 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "4k",
-                "price": "1036",
+                "price": "1480",
                 "list_price": "1480"
               },
               {
                 "type": "hd",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "download",
-                "price": "476",
+                "price": "680",
                 "list_price": "680"
               },
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "476",
+                "price": "680",
                 "list_price": "680"
               },
               {
                 "type": "androiddl",
-                "price": "476",
+                "price": "680",
                 "list_price": "680"
               }
             ]
@@ -44616,14 +44581,7 @@
               "name": "KSB企画/エマニエル"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "エマニエル30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -44857,7 +44815,7 @@
         "title": "kawaii* ヒットシリーズコレクション 終電なくなり可愛い女子の部屋に… 無防備すぎる部屋着、すっぴんとおっぱいに興奮した僕は一晩中モウレツにハメ狂った… コンプリート8時間BEST",
         "volume": "481",
         "review": {
-          "count": 1,
+          "count": 2,
           "average": "5.00"
         },
         "URL": "https://video.dmm.co.jp/av/content/?id=kwbd00376",
@@ -46258,33 +46216,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "download",
-                "price": "476",
+                "price": "680",
                 "list_price": "680"
               },
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "476",
+                "price": "680",
                 "list_price": "680"
               },
               {
                 "type": "androiddl",
-                "price": "476",
+                "price": "680",
                 "list_price": "680"
               }
             ]
@@ -46341,14 +46299,7 @@
               "name": "あたご屋/エマニエル"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "エマニエル30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -46622,23 +46573,23 @@
           }
         },
         "prices": {
-          "price": "213~",
+          "price": "305~",
           "list_price": "305~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "485",
+                "price": "693",
                 "list_price": "693"
               },
               {
                 "type": "download",
-                "price": "413",
+                "price": "590",
                 "list_price": "590"
               },
               {
                 "type": "rp",
-                "price": "213",
+                "price": "305",
                 "list_price": "305"
               }
             ]
@@ -46747,14 +46698,7 @@
               "name": "P-BOX VR"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -48449,23 +48393,23 @@
           }
         },
         "prices": {
-          "price": "213~",
+          "price": "305~",
           "list_price": "305~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "485",
+                "price": "693",
                 "list_price": "693"
               },
               {
                 "type": "download",
-                "price": "413",
+                "price": "590",
                 "list_price": "590"
               },
               {
                 "type": "rp",
-                "price": "213",
+                "price": "305",
                 "list_price": "305"
               }
             ]
@@ -48551,14 +48495,7 @@
               "name": "P-BOX VR"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -48787,33 +48724,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "224~",
+          "price": "320~",
           "list_price": "320~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "735",
+                "price": "1050",
                 "list_price": "1050"
               },
               {
                 "type": "download",
-                "price": "595",
+                "price": "850",
                 "list_price": "850"
               },
               {
                 "type": "stream",
-                "price": "224",
+                "price": "320",
                 "list_price": "320"
               },
               {
                 "type": "iosdl",
-                "price": "595",
+                "price": "850",
                 "list_price": "850"
               },
               {
                 "type": "androiddl",
-                "price": "595",
+                "price": "850",
                 "list_price": "850"
               }
             ]
@@ -48891,14 +48828,7 @@
               "name": "MEGATORA DREAM"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "ブランドストア30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -50133,23 +50063,23 @@
           }
         },
         "prices": {
-          "price": "141~",
+          "price": "204~",
           "list_price": "204~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "413",
+                "price": "590",
                 "list_price": "590"
               },
               {
                 "type": "download",
-                "price": "285",
+                "price": "408",
                 "list_price": "408"
               },
               {
                 "type": "rp",
-                "price": "141",
+                "price": "204",
                 "list_price": "204"
               }
             ]
@@ -50245,14 +50175,7 @@
               "name": "P-BOX VR"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -50320,23 +50243,23 @@
           }
         },
         "prices": {
-          "price": "141~",
+          "price": "204~",
           "list_price": "204~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "413",
+                "price": "590",
                 "list_price": "590"
               },
               {
                 "type": "download",
-                "price": "285",
+                "price": "408",
                 "list_price": "408"
               },
               {
                 "type": "rp",
-                "price": "141",
+                "price": "204",
                 "list_price": "204"
               }
             ]
@@ -50422,14 +50345,7 @@
               "name": "P-BOX VR"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -50499,23 +50415,23 @@
           }
         },
         "prices": {
-          "price": "213~",
+          "price": "305~",
           "list_price": "305~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "485",
+                "price": "693",
                 "list_price": "693"
               },
               {
                 "type": "download",
-                "price": "413",
+                "price": "590",
                 "list_price": "590"
               },
               {
                 "type": "rp",
-                "price": "213",
+                "price": "305",
                 "list_price": "305"
               }
             ]
@@ -50589,14 +50505,7 @@
               "name": "P-BOX VR"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -50670,23 +50579,23 @@
           }
         },
         "prices": {
-          "price": "141~",
+          "price": "204~",
           "list_price": "204~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "413",
+                "price": "590",
                 "list_price": "590"
               },
               {
                 "type": "download",
-                "price": "285",
+                "price": "408",
                 "list_price": "408"
               },
               {
                 "type": "rp",
-                "price": "141",
+                "price": "204",
                 "list_price": "204"
               }
             ]
@@ -50905,14 +50814,7 @@
               "name": "KMPVR"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -55701,33 +55603,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "300~",
+          "price": "210~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "download",
-                "price": "980",
+                "price": "686",
                 "list_price": "980"
               },
               {
                 "type": "stream",
-                "price": "300",
+                "price": "210",
                 "list_price": "300"
               },
               {
                 "type": "hd",
-                "price": "1270",
+                "price": "890",
                 "list_price": "1270"
               },
               {
                 "type": "iosdl",
-                "price": "980",
+                "price": "686",
                 "list_price": "980"
               },
               {
                 "type": "androiddl",
-                "price": "980",
+                "price": "686",
                 "list_price": "980"
               }
             ]
@@ -55794,7 +55696,14 @@
               "name": "バビロン/妄想族"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-11-25 00:10:00",
+            "date_end": "2026-12-01 23:59:59",
+            "title": "妄想族30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -61113,23 +61022,23 @@
           }
         },
         "prices": {
-          "price": "141~",
+          "price": "204~",
           "list_price": "204~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "413",
+                "price": "590",
                 "list_price": "590"
               },
               {
                 "type": "download",
-                "price": "285",
+                "price": "408",
                 "list_price": "408"
               },
               {
                 "type": "rp",
-                "price": "141",
+                "price": "204",
                 "list_price": "204"
               }
             ]
@@ -61230,14 +61139,7 @@
               "name": "KMPVR"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -62528,9 +62430,9 @@
               "ruby": "せりなりく"
             },
             {
-              "id": 1051011,
-              "name": "朝倉桃菜",
-              "ruby": "あさくらももな"
+              "id": 1061763,
+              "name": "神坂朋子",
+              "ruby": "かみさかともこ"
             },
             {
               "id": 1053857,
@@ -62578,11 +62480,6 @@
               "ruby": "はなぶちなつ"
             },
             {
-              "id": 1063721,
-              "name": "工藤もも",
-              "ruby": "くどうもも"
-            },
-            {
               "id": 1063722,
               "name": "凪沙ゆきの",
               "ruby": "なぎさゆきの"
@@ -62598,14 +62495,19 @@
               "ruby": "あさくらゆあ"
             },
             {
-              "id": 1061763,
-              "name": "神坂朋子",
-              "ruby": "かみさかともこ"
-            },
-            {
               "id": 1073439,
               "name": "夏海さや",
               "ruby": "なつみさや"
+            },
+            {
+              "id": 1078107,
+              "name": "聖璃とあ",
+              "ruby": "ひじりとあ"
+            },
+            {
+              "id": 1051011,
+              "name": "朝倉桃菜",
+              "ruby": "あさくらももな"
             },
             {
               "id": 1052930,
@@ -62666,11 +62568,6 @@
               "id": 1065808,
               "name": "舞奈みく",
               "ruby": "まいなみく"
-            },
-            {
-              "id": 1078107,
-              "name": "聖璃とあ",
-              "ruby": "ひじりとあ"
             },
             {
               "id": 1078617,
@@ -65384,33 +65281,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "300~",
+          "price": "210~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "780",
+                "price": "546",
                 "list_price": "780"
               },
               {
                 "type": "download",
-                "price": "590",
+                "price": "413",
                 "list_price": "590"
               },
               {
                 "type": "stream",
-                "price": "300",
+                "price": "210",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "590",
+                "price": "413",
                 "list_price": "590"
               },
               {
                 "type": "androiddl",
-                "price": "590",
+                "price": "413",
                 "list_price": "590"
               }
             ]
@@ -65477,7 +65374,14 @@
               "name": "BoinBB/ABC"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-11-25 00:10:00",
+            "date_end": "2026-12-01 23:59:59",
+            "title": "妄想族30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -66684,23 +66588,23 @@
           }
         },
         "prices": {
-          "price": "141~",
+          "price": "204~",
           "list_price": "204~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "413",
+                "price": "590",
                 "list_price": "590"
               },
               {
                 "type": "download",
-                "price": "285",
+                "price": "408",
                 "list_price": "408"
               },
               {
                 "type": "rp",
-                "price": "141",
+                "price": "204",
                 "list_price": "204"
               }
             ]
@@ -66801,14 +66705,7 @@
               "name": "KMPVR"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -67097,38 +66994,38 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "300~",
+          "price": "210~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "download",
-                "price": "980",
+                "price": "686",
                 "list_price": "980"
               },
               {
                 "type": "stream",
-                "price": "300",
+                "price": "210",
                 "list_price": "300"
               },
               {
                 "type": "4k",
-                "price": "1770",
+                "price": "1239",
                 "list_price": "1770"
               },
               {
                 "type": "hd",
-                "price": "1270",
+                "price": "890",
                 "list_price": "1270"
               },
               {
                 "type": "iosdl",
-                "price": "980",
+                "price": "686",
                 "list_price": "980"
               },
               {
                 "type": "androiddl",
-                "price": "980",
+                "price": "686",
                 "list_price": "980"
               }
             ]
@@ -67213,7 +67110,14 @@
               "name": "SEX Agent"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-11-25 00:10:00",
+            "date_end": "2026-12-01 23:59:59",
+            "title": "妄想族30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -67295,38 +67199,38 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "300~",
+          "price": "210~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "download",
-                "price": "980",
+                "price": "686",
                 "list_price": "980"
               },
               {
                 "type": "stream",
-                "price": "300",
+                "price": "210",
                 "list_price": "300"
               },
               {
                 "type": "4k",
-                "price": "1770",
+                "price": "1239",
                 "list_price": "1770"
               },
               {
                 "type": "hd",
-                "price": "1270",
+                "price": "890",
                 "list_price": "1270"
               },
               {
                 "type": "iosdl",
-                "price": "980",
+                "price": "686",
                 "list_price": "980"
               },
               {
                 "type": "androiddl",
-                "price": "980",
+                "price": "686",
                 "list_price": "980"
               }
             ]
@@ -67424,7 +67328,14 @@
               "name": "SEX Agent"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-11-25 00:10:00",
+            "date_end": "2026-12-01 23:59:59",
+            "title": "妄想族30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -67502,38 +67413,38 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "300~",
+          "price": "210~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "download",
-                "price": "980",
+                "price": "686",
                 "list_price": "980"
               },
               {
                 "type": "stream",
-                "price": "300",
+                "price": "210",
                 "list_price": "300"
               },
               {
                 "type": "4k",
-                "price": "1770",
+                "price": "1239",
                 "list_price": "1770"
               },
               {
                 "type": "hd",
-                "price": "1270",
+                "price": "890",
                 "list_price": "1270"
               },
               {
                 "type": "iosdl",
-                "price": "980",
+                "price": "686",
                 "list_price": "980"
               },
               {
                 "type": "androiddl",
-                "price": "980",
+                "price": "686",
                 "list_price": "980"
               }
             ]
@@ -67631,7 +67542,14 @@
               "name": "SEX Agent"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-11-25 00:10:00",
+            "date_end": "2026-12-01 23:59:59",
+            "title": "妄想族30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -67699,23 +67617,23 @@
           }
         },
         "prices": {
-          "price": "213~",
+          "price": "305~",
           "list_price": "305~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "485",
+                "price": "693",
                 "list_price": "693"
               },
               {
                 "type": "download",
-                "price": "413",
+                "price": "590",
                 "list_price": "590"
               },
               {
                 "type": "rp",
-                "price": "213",
+                "price": "305",
                 "list_price": "305"
               }
             ]
@@ -67785,14 +67703,7 @@
               "name": "KMPVR"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -68999,23 +68910,23 @@
           }
         },
         "prices": {
-          "price": "213~",
+          "price": "305~",
           "list_price": "305~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "485",
+                "price": "693",
                 "list_price": "693"
               },
               {
                 "type": "download",
-                "price": "413",
+                "price": "590",
                 "list_price": "590"
               },
               {
                 "type": "rp",
-                "price": "213",
+                "price": "305",
                 "list_price": "305"
               }
             ]
@@ -69083,14 +68994,7 @@
               "name": "KMPVR"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -69605,33 +69509,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "300~",
+          "price": "210~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "download",
-                "price": "590",
+                "price": "413",
                 "list_price": "590"
               },
               {
                 "type": "stream",
-                "price": "300",
+                "price": "210",
                 "list_price": "300"
               },
               {
                 "type": "hd",
-                "price": "780",
+                "price": "546",
                 "list_price": "780"
               },
               {
                 "type": "iosdl",
-                "price": "590",
+                "price": "413",
                 "list_price": "590"
               },
               {
                 "type": "androiddl",
-                "price": "590",
+                "price": "413",
                 "list_price": "590"
               }
             ]
@@ -69698,7 +69602,14 @@
               "name": "BoinBB/ABC"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-11-25 00:10:00",
+            "date_end": "2026-12-01 23:59:59",
+            "title": "妄想族30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -69766,23 +69677,23 @@
           }
         },
         "prices": {
-          "price": "213~",
+          "price": "305~",
           "list_price": "305~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "485",
+                "price": "693",
                 "list_price": "693"
               },
               {
                 "type": "download",
-                "price": "413",
+                "price": "590",
                 "list_price": "590"
               },
               {
                 "type": "rp",
-                "price": "213",
+                "price": "305",
                 "list_price": "305"
               }
             ]
@@ -69850,14 +69761,7 @@
               "name": "KMPVR"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -76722,6 +76626,11 @@
               "ruby": "かとうろぜ"
             },
             {
+              "id": 1073437,
+              "name": "大島ありあ",
+              "ruby": "おおしまありあ"
+            },
+            {
               "id": 1073439,
               "name": "夏海さや",
               "ruby": "なつみさや"
@@ -76745,16 +76654,6 @@
               "id": 1070484,
               "name": "好実ほの",
               "ruby": "このみほの"
-            },
-            {
-              "id": 1078105,
-              "name": "星乃夏月",
-              "ruby": "ほしのなつき"
-            },
-            {
-              "id": 1073437,
-              "name": "大島ありあ",
-              "ruby": "おおしまありあ"
             },
             {
               "id": 1076422,
@@ -76792,6 +76691,16 @@
               "ruby": "あすかりいな"
             },
             {
+              "id": 1069006,
+              "name": "夜空あみ",
+              "ruby": "よぞらあみ"
+            },
+            {
+              "id": 1078105,
+              "name": "星乃夏月",
+              "ruby": "ほしのなつき"
+            },
+            {
               "id": 1077520,
               "name": "つくし桜（九十九メイ）",
               "ruby": "つくしさくら（つくもめい）"
@@ -76800,11 +76709,6 @@
               "id": 1078616,
               "name": "恵沙也香",
               "ruby": "めぐみさやか"
-            },
-            {
-              "id": 1069253,
-              "name": "瀬田一花",
-              "ruby": "せたいちか"
             },
             {
               "id": 1066231,
@@ -76825,11 +76729,6 @@
               "id": 1063722,
               "name": "凪沙ゆきの",
               "ruby": "なぎさゆきの"
-            },
-            {
-              "id": 1063721,
-              "name": "工藤もも",
-              "ruby": "くどうもも"
             },
             {
               "id": 1063720,
@@ -76877,9 +76776,9 @@
               "ruby": "やのさえ"
             },
             {
-              "id": 1069006,
-              "name": "夜空あみ",
-              "ruby": "よぞらあみ"
+              "id": 1069253,
+              "name": "瀬田一花",
+              "ruby": "せたいちか"
             },
             {
               "id": 1060892,
@@ -81224,11 +81123,6 @@
               "id": 1075252,
               "name": "星宮ゆのん",
               "ruby": "ほしみやゆのん"
-            },
-            {
-              "id": 1063721,
-              "name": "工藤もも",
-              "ruby": "くどうもも"
             },
             {
               "id": 1067807,

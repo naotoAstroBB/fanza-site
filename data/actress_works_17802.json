@@ -1156,56 +1156,6 @@
               "ruby": "つきのえすい"
             },
             {
-              "id": 17802,
-              "name": "つぼみ",
-              "ruby": "つぼみ"
-            },
-            {
-              "id": 1084796,
-              "name": "五日市芽依",
-              "ruby": "いつかいちめい"
-            },
-            {
-              "id": 1069952,
-              "name": "新井リマ",
-              "ruby": "あらいりま"
-            },
-            {
-              "id": 1076928,
-              "name": "綾瀬こころ",
-              "ruby": "あやせこころ"
-            },
-            {
-              "id": 1052930,
-              "name": "吉根ゆりあ",
-              "ruby": "よしねゆりあ"
-            },
-            {
-              "id": 1075675,
-              "name": "末広純",
-              "ruby": "すえひろじゅん"
-            },
-            {
-              "id": 1061586,
-              "name": "森日向子",
-              "ruby": "もりひなこ"
-            },
-            {
-              "id": 1068671,
-              "name": "北野未奈",
-              "ruby": "きたのみな"
-            },
-            {
-              "id": 1017139,
-              "name": "蓮実クレア",
-              "ruby": "はすみくれあ"
-            },
-            {
-              "id": 1060141,
-              "name": "木下ひまり（花沢ひまり）",
-              "ruby": "きのしたひまり（はなざわひまり）"
-            },
-            {
               "id": 1068670,
               "name": "花狩まい",
               "ruby": "かがりまい"
@@ -1229,6 +1179,56 @@
               "id": 1044982,
               "name": "水川スミレ",
               "ruby": "みずかわすみれ"
+            },
+            {
+              "id": 1060141,
+              "name": "木下ひまり（花沢ひまり）",
+              "ruby": "きのしたひまり（はなざわひまり）"
+            },
+            {
+              "id": 1017139,
+              "name": "蓮実クレア",
+              "ruby": "はすみくれあ"
+            },
+            {
+              "id": 1075675,
+              "name": "末広純",
+              "ruby": "すえひろじゅん"
+            },
+            {
+              "id": 1052930,
+              "name": "吉根ゆりあ",
+              "ruby": "よしねゆりあ"
+            },
+            {
+              "id": 1076928,
+              "name": "綾瀬こころ",
+              "ruby": "あやせこころ"
+            },
+            {
+              "id": 1069952,
+              "name": "新井リマ",
+              "ruby": "あらいりま"
+            },
+            {
+              "id": 1084796,
+              "name": "五日市芽依",
+              "ruby": "いつかいちめい"
+            },
+            {
+              "id": 17802,
+              "name": "つぼみ",
+              "ruby": "つぼみ"
+            },
+            {
+              "id": 1061586,
+              "name": "森日向子",
+              "ruby": "もりひなこ"
+            },
+            {
+              "id": 1068671,
+              "name": "北野未奈",
+              "ruby": "きたのみな"
             },
             {
               "id": 1037293,
@@ -12547,33 +12547,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "300~",
+          "price": "210~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "1090",
+                "price": "763",
                 "list_price": "1090"
               },
               {
                 "type": "download",
-                "price": "590",
+                "price": "413",
                 "list_price": "590"
               },
               {
                 "type": "stream",
-                "price": "300",
+                "price": "210",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "590",
+                "price": "413",
                 "list_price": "590"
               },
               {
                 "type": "androiddl",
-                "price": "590",
+                "price": "413",
                 "list_price": "590"
               }
             ]
@@ -12639,7 +12639,14 @@
               "name": "ROCKET"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-11-25 00:10:00",
+            "date_end": "2026-12-01 23:59:59",
+            "title": "SODグループ30％OFF第1弾"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -14570,33 +14577,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "300~",
+          "price": "210~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "1480",
+                "price": "1036",
                 "list_price": "1480"
               },
               {
                 "type": "download",
-                "price": "480",
+                "price": "336",
                 "list_price": "480"
               },
               {
                 "type": "stream",
-                "price": "300",
+                "price": "210",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "480",
+                "price": "336",
                 "list_price": "480"
               },
               {
                 "type": "androiddl",
-                "price": "480",
+                "price": "336",
                 "list_price": "480"
               }
             ]
@@ -14660,7 +14667,14 @@
               "name": "SODクリエイト"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-11-25 00:10:00",
+            "date_end": "2026-12-01 23:59:59",
+            "title": "SODグループ30％OFF第1弾"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -14730,28 +14744,28 @@
           }
         },
         "prices": {
-          "price": "350~",
+          "price": "500~",
           "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "download",
-                "price": "693",
+                "price": "990",
                 "list_price": "990"
               },
               {
                 "type": "stream",
-                "price": "350",
+                "price": "500",
                 "list_price": "500"
               },
               {
                 "type": "iosdl",
-                "price": "693",
+                "price": "990",
                 "list_price": "990"
               },
               {
                 "type": "androiddl",
-                "price": "693",
+                "price": "990",
                 "list_price": "990"
               }
             ]
@@ -15008,14 +15022,7 @@
               "name": "million（ミリオン）"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -15547,33 +15554,33 @@
           }
         },
         "prices": {
-          "price": "350~",
+          "price": "500~",
           "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "896",
+                "price": "1280",
                 "list_price": "1280"
               },
               {
                 "type": "download",
-                "price": "693",
+                "price": "990",
                 "list_price": "990"
               },
               {
                 "type": "stream",
-                "price": "350",
+                "price": "500",
                 "list_price": "500"
               },
               {
                 "type": "iosdl",
-                "price": "693",
+                "price": "990",
                 "list_price": "990"
               },
               {
                 "type": "androiddl",
-                "price": "693",
+                "price": "990",
                 "list_price": "990"
               }
             ]
@@ -15824,14 +15831,7 @@
               "name": "REAL（レアルワークス）"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -15901,33 +15901,33 @@
           }
         },
         "prices": {
-          "price": "350~",
+          "price": "500~",
           "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "896",
+                "price": "1280",
                 "list_price": "1280"
               },
               {
                 "type": "download",
-                "price": "693",
+                "price": "990",
                 "list_price": "990"
               },
               {
                 "type": "stream",
-                "price": "350",
+                "price": "500",
                 "list_price": "500"
               },
               {
                 "type": "iosdl",
-                "price": "693",
+                "price": "990",
                 "list_price": "990"
               },
               {
                 "type": "androiddl",
-                "price": "693",
+                "price": "990",
                 "list_price": "990"
               }
             ]
@@ -16403,14 +16403,7 @@
               "name": "BAZOOKA（バズーカ）"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -16492,33 +16485,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "300~",
+          "price": "210~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "1090",
+                "price": "763",
                 "list_price": "1090"
               },
               {
                 "type": "download",
-                "price": "590",
+                "price": "413",
                 "list_price": "590"
               },
               {
                 "type": "stream",
-                "price": "300",
+                "price": "210",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "590",
+                "price": "413",
                 "list_price": "590"
               },
               {
                 "type": "androiddl",
-                "price": "590",
+                "price": "413",
                 "list_price": "590"
               }
             ]
@@ -16599,7 +16592,14 @@
               "name": "ROCKET"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-11-25 00:10:00",
+            "date_end": "2026-12-01 23:59:59",
+            "title": "SODグループ30％OFF第1弾"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -18013,28 +18013,28 @@
           }
         },
         "prices": {
-          "price": "350~",
+          "price": "500~",
           "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "download",
-                "price": "693",
+                "price": "990",
                 "list_price": "990"
               },
               {
                 "type": "stream",
-                "price": "350",
+                "price": "500",
                 "list_price": "500"
               },
               {
                 "type": "iosdl",
-                "price": "693",
+                "price": "990",
                 "list_price": "990"
               },
               {
                 "type": "androiddl",
-                "price": "693",
+                "price": "990",
                 "list_price": "990"
               }
             ]
@@ -18745,14 +18745,7 @@
               "name": "million（ミリオン）"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -21482,33 +21475,33 @@
           }
         },
         "prices": {
-          "price": "350~",
+          "price": "500~",
           "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "896",
+                "price": "1280",
                 "list_price": "1280"
               },
               {
                 "type": "download",
-                "price": "693",
+                "price": "990",
                 "list_price": "990"
               },
               {
                 "type": "stream",
-                "price": "350",
+                "price": "500",
                 "list_price": "500"
               },
               {
                 "type": "iosdl",
-                "price": "693",
+                "price": "990",
                 "list_price": "990"
               },
               {
                 "type": "androiddl",
-                "price": "693",
+                "price": "990",
                 "list_price": "990"
               }
             ]
@@ -21753,14 +21746,7 @@
               "name": "million（ミリオン）"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -26976,8 +26962,8 @@
         "title": "いやぁ！！だめだめだめぇぇぇっ！！！！ 中出しを嫌がり必死に抵抗する女を完全絶望させる中出し8時間（RBB-277）",
         "volume": "476",
         "review": {
-          "count": 152,
-          "average": "3.45"
+          "count": 153,
+          "average": "3.46"
         },
         "URL": "https://video.dmm.co.jp/av/content/?id=rbb00277",
         "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Drbb00277&af_id=saaaaaaya-990&ch=api",
@@ -41280,33 +41266,33 @@
           }
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "665",
+                "price": "950",
                 "list_price": "950"
               },
               {
                 "type": "download",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "androiddl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               }
             ]
@@ -41500,14 +41486,7 @@
               "name": "REAL（レアルワークス）"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -43093,33 +43072,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "500~",
+          "price": "350~",
           "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "1580",
+                "price": "1106",
                 "list_price": "1580"
               },
               {
                 "type": "download",
-                "price": "980",
+                "price": "686",
                 "list_price": "980"
               },
               {
                 "type": "stream",
-                "price": "500",
+                "price": "350",
                 "list_price": "500"
               },
               {
                 "type": "iosdl",
-                "price": "980",
+                "price": "686",
                 "list_price": "980"
               },
               {
                 "type": "androiddl",
-                "price": "980",
+                "price": "686",
                 "list_price": "980"
               }
             ]
@@ -43168,7 +43147,14 @@
               "name": "TMA"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-11-25 00:10:00",
+            "date_end": "2026-12-01 23:59:59",
+            "title": "ブランドストア30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -72094,28 +72080,28 @@
         "iteminfo": {
           "genre": [
             {
-              "id": 6548,
-              "name": "独占配信"
-            },
-            {
-              "id": 6003,
-              "name": "ベスト・総集編"
-            },
-            {
-              "id": 1027,
-              "name": "美少女"
-            },
-            {
-              "id": 2001,
-              "name": "巨乳"
+              "id": 5023,
+              "name": "顔射"
             },
             {
               "id": 5003,
               "name": "ぶっかけ"
             },
             {
-              "id": 5023,
-              "name": "顔射"
+              "id": 2001,
+              "name": "巨乳"
+            },
+            {
+              "id": 1027,
+              "name": "美少女"
+            },
+            {
+              "id": 6003,
+              "name": "ベスト・総集編"
+            },
+            {
+              "id": 6548,
+              "name": "独占配信"
             }
           ],
           "maker": [
@@ -78164,28 +78150,28 @@
         "iteminfo": {
           "genre": [
             {
-              "id": 1027,
-              "name": "美少女"
-            },
-            {
-              "id": 6003,
-              "name": "ベスト・総集編"
-            },
-            {
-              "id": 1033,
-              "name": "お姉さん"
-            },
-            {
-              "id": 5001,
-              "name": "中出し"
+              "id": 6548,
+              "name": "独占配信"
             },
             {
               "id": 4030,
               "name": "淫乱・ハード系"
             },
             {
-              "id": 6548,
-              "name": "独占配信"
+              "id": 5001,
+              "name": "中出し"
+            },
+            {
+              "id": 1033,
+              "name": "お姉さん"
+            },
+            {
+              "id": 6003,
+              "name": "ベスト・総集編"
+            },
+            {
+              "id": 1027,
+              "name": "美少女"
             }
           ],
           "series": [
@@ -88690,8 +88676,8 @@
         "title": "相部屋でメスイキ筆おろしハーレム！2人同時に乳首・亀頭・前立腺責め快楽拷問 つぼみ 松本いちか",
         "volume": "117",
         "review": {
-          "count": 50,
-          "average": "4.54"
+          "count": 51,
+          "average": "4.55"
         },
         "URL": "https://video.dmm.co.jp/av/content/?id=waaa00023",
         "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Dwaaa00023&af_id=saaaaaaya-990&ch=api",
@@ -93120,7 +93106,7 @@
         "title": "喉ボコ悶絶イラマチオ 上下串刺し嗚咽アクメ中出し拘束便女 つぼみ",
         "volume": "151",
         "review": {
-          "count": 65,
+          "count": 66,
           "average": "4.77"
         },
         "URL": "https://video.dmm.co.jp/av/content/?id=mide00849",
@@ -120590,33 +120576,33 @@
           }
         },
         "prices": {
-          "price": "99~",
+          "price": "69~",
           "list_price": "99~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "99",
+                "price": "69",
                 "list_price": "99"
               },
               {
                 "type": "download",
-                "price": "99",
+                "price": "69",
                 "list_price": "99"
               },
               {
                 "type": "stream",
-                "price": "99",
+                "price": "69",
                 "list_price": "99"
               },
               {
                 "type": "iosdl",
-                "price": "99",
+                "price": "69",
                 "list_price": "99"
               },
               {
                 "type": "androiddl",
-                "price": "99",
+                "price": "69",
                 "list_price": "99"
               }
             ]
@@ -120667,7 +120653,14 @@
               "name": "HyakkinTV"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-11-25 00:10:00",
+            "date_end": "2026-12-01 23:59:59",
+            "title": "マックスエー他30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -120707,33 +120700,33 @@
           }
         },
         "prices": {
-          "price": "99~",
+          "price": "69~",
           "list_price": "99~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "99",
+                "price": "69",
                 "list_price": "99"
               },
               {
                 "type": "download",
-                "price": "99",
+                "price": "69",
                 "list_price": "99"
               },
               {
                 "type": "stream",
-                "price": "99",
+                "price": "69",
                 "list_price": "99"
               },
               {
                 "type": "iosdl",
-                "price": "99",
+                "price": "69",
                 "list_price": "99"
               },
               {
                 "type": "androiddl",
-                "price": "99",
+                "price": "69",
                 "list_price": "99"
               }
             ]
@@ -120784,7 +120777,14 @@
               "name": "HyakkinTV"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-11-25 00:10:00",
+            "date_end": "2026-12-01 23:59:59",
+            "title": "マックスエー他30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -120828,33 +120828,33 @@
           }
         },
         "prices": {
-          "price": "99~",
+          "price": "69~",
           "list_price": "99~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "99",
+                "price": "69",
                 "list_price": "99"
               },
               {
                 "type": "download",
-                "price": "99",
+                "price": "69",
                 "list_price": "99"
               },
               {
                 "type": "stream",
-                "price": "99",
+                "price": "69",
                 "list_price": "99"
               },
               {
                 "type": "iosdl",
-                "price": "99",
+                "price": "69",
                 "list_price": "99"
               },
               {
                 "type": "androiddl",
-                "price": "99",
+                "price": "69",
                 "list_price": "99"
               }
             ]
@@ -120905,7 +120905,14 @@
               "name": "HyakkinTV"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-11-25 00:10:00",
+            "date_end": "2026-12-01 23:59:59",
+            "title": "マックスエー他30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -127869,6 +127876,121 @@
               "ruby": "たかすぎまり"
             },
             {
+              "id": 1032130,
+              "name": "佐々木あき",
+              "ruby": "ささきあき"
+            },
+            {
+              "id": 1038702,
+              "name": "星咲セイラ",
+              "ruby": "ほしさきせいら"
+            },
+            {
+              "id": 1032097,
+              "name": "椎名そら",
+              "ruby": "しいなそら"
+            },
+            {
+              "id": 1040946,
+              "name": "君島みお",
+              "ruby": "きみじまみお"
+            },
+            {
+              "id": 1031482,
+              "name": "跡美しゅり",
+              "ruby": "あとみしゅり"
+            },
+            {
+              "id": 1032774,
+              "name": "あおいれな",
+              "ruby": "あおいれな"
+            },
+            {
+              "id": 1014936,
+              "name": "佳苗るか",
+              "ruby": "かなえるか"
+            },
+            {
+              "id": 1024433,
+              "name": "涼川絢音",
+              "ruby": "すずかわあやね"
+            },
+            {
+              "id": 1017715,
+              "name": "きみと歩実",
+              "ruby": "きみとあゆみ"
+            },
+            {
+              "id": 1038799,
+              "name": "霧島さくら",
+              "ruby": "きりしまさくら"
+            },
+            {
+              "id": 26225,
+              "name": "波多野結衣",
+              "ruby": "はたのゆい"
+            },
+            {
+              "id": 1021901,
+              "name": "通野未帆",
+              "ruby": "とおのみほ"
+            },
+            {
+              "id": 1008887,
+              "name": "AIKA",
+              "ruby": "あいか"
+            },
+            {
+              "id": 1034918,
+              "name": "栄川乃亜",
+              "ruby": "えいかわのあ"
+            },
+            {
+              "id": 1002357,
+              "name": "麻倉憂",
+              "ruby": "あさくらゆう"
+            },
+            {
+              "id": 1018785,
+              "name": "吉川あいみ",
+              "ruby": "よしかわあいみ"
+            },
+            {
+              "id": 1039044,
+              "name": "香苗レノン",
+              "ruby": "かなえれのん"
+            },
+            {
+              "id": 1016110,
+              "name": "倉多まお",
+              "ruby": "くらたまお"
+            },
+            {
+              "id": 1041625,
+              "name": "宇野栞菜（阿部栞菜）",
+              "ruby": "うのかんな（あべかんな）"
+            },
+            {
+              "id": 1038230,
+              "name": "河南実里",
+              "ruby": "かわなみのり"
+            },
+            {
+              "id": 1043077,
+              "name": "仲間明日香",
+              "ruby": "なかまあすか"
+            },
+            {
+              "id": 17802,
+              "name": "つぼみ",
+              "ruby": "つぼみ"
+            },
+            {
+              "id": 1043984,
+              "name": "岩瀬りな",
+              "ruby": "いわせりな"
+            },
+            {
               "id": 1041146,
               "name": "南田みさき",
               "ruby": "みなみだみさき"
@@ -127899,124 +128021,9 @@
               "ruby": "しのだゆう"
             },
             {
-              "id": 1043984,
-              "name": "岩瀬りな",
-              "ruby": "いわせりな"
-            },
-            {
-              "id": 17802,
-              "name": "つぼみ",
-              "ruby": "つぼみ"
-            },
-            {
-              "id": 1043077,
-              "name": "仲間明日香",
-              "ruby": "なかまあすか"
-            },
-            {
-              "id": 1038230,
-              "name": "河南実里",
-              "ruby": "かわなみのり"
-            },
-            {
-              "id": 1041625,
-              "name": "宇野栞菜（阿部栞菜）",
-              "ruby": "うのかんな（あべかんな）"
-            },
-            {
-              "id": 1016110,
-              "name": "倉多まお",
-              "ruby": "くらたまお"
-            },
-            {
-              "id": 1039044,
-              "name": "香苗レノン",
-              "ruby": "かなえれのん"
-            },
-            {
-              "id": 1018785,
-              "name": "吉川あいみ",
-              "ruby": "よしかわあいみ"
-            },
-            {
               "id": 1048033,
               "name": "茜はるか",
               "ruby": "あかねはるか"
-            },
-            {
-              "id": 1002357,
-              "name": "麻倉憂",
-              "ruby": "あさくらゆう"
-            },
-            {
-              "id": 1021901,
-              "name": "通野未帆",
-              "ruby": "とおのみほ"
-            },
-            {
-              "id": 26225,
-              "name": "波多野結衣",
-              "ruby": "はたのゆい"
-            },
-            {
-              "id": 1038799,
-              "name": "霧島さくら",
-              "ruby": "きりしまさくら"
-            },
-            {
-              "id": 1017715,
-              "name": "きみと歩実",
-              "ruby": "きみとあゆみ"
-            },
-            {
-              "id": 1024433,
-              "name": "涼川絢音",
-              "ruby": "すずかわあやね"
-            },
-            {
-              "id": 1014936,
-              "name": "佳苗るか",
-              "ruby": "かなえるか"
-            },
-            {
-              "id": 1032774,
-              "name": "あおいれな",
-              "ruby": "あおいれな"
-            },
-            {
-              "id": 1032130,
-              "name": "佐々木あき",
-              "ruby": "ささきあき"
-            },
-            {
-              "id": 1038702,
-              "name": "星咲セイラ",
-              "ruby": "ほしさきせいら"
-            },
-            {
-              "id": 1032097,
-              "name": "椎名そら",
-              "ruby": "しいなそら"
-            },
-            {
-              "id": 1040946,
-              "name": "君島みお",
-              "ruby": "きみじまみお"
-            },
-            {
-              "id": 1031482,
-              "name": "跡美しゅり",
-              "ruby": "あとみしゅり"
-            },
-            {
-              "id": 1008887,
-              "name": "AIKA",
-              "ruby": "あいか"
-            },
-            {
-              "id": 1034918,
-              "name": "栄川乃亜",
-              "ruby": "えいかわのあ"
             },
             {
               "id": 1044814,
@@ -138624,28 +138631,28 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "413",
+                "price": "590",
                 "list_price": "590"
               },
               {
                 "type": "iosdl",
-                "price": "413",
+                "price": "590",
                 "list_price": "590"
               },
               {
                 "type": "androiddl",
-                "price": "413",
+                "price": "590",
                 "list_price": "590"
               }
             ]
@@ -138748,14 +138755,7 @@
               "name": "婦人社"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "エマニエル30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -147343,7 +147343,7 @@
         "title": "つぼみの体内に213発の媚・薬・濃・縮精液注入",
         "volume": "165",
         "review": {
-          "count": 264,
+          "count": 265,
           "average": "3.83"
         },
         "URL": "https://video.dmm.co.jp/av/content/?id=wanz00684",
@@ -148594,33 +148594,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "hd",
-                "price": "665",
+                "price": "950",
                 "list_price": "950"
               },
               {
                 "type": "iosdl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "androiddl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               }
             ]
@@ -148719,14 +148719,7 @@
               "name": "REAL（レアルワークス）"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -149496,33 +149489,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "hd",
-                "price": "665",
+                "price": "950",
                 "list_price": "950"
               },
               {
                 "type": "iosdl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "androiddl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               }
             ]
@@ -149628,14 +149621,7 @@
               "name": "million（ミリオン）"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -150167,33 +150153,33 @@
           }
         },
         "prices": {
-          "price": "308~",
+          "price": "215~",
           "list_price": "308~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "308",
+                "price": "215",
                 "list_price": "308"
               },
               {
                 "type": "download",
-                "price": "1008",
+                "price": "705",
                 "list_price": "1008"
               },
               {
                 "type": "hd",
-                "price": "1522",
+                "price": "1065",
                 "list_price": "1522"
               },
               {
                 "type": "iosdl",
-                "price": "1008",
+                "price": "705",
                 "list_price": "1008"
               },
               {
                 "type": "androiddl",
-                "price": "1008",
+                "price": "705",
                 "list_price": "1008"
               }
             ]
@@ -150263,7 +150249,14 @@
               "name": "Calen"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-11-25 00:10:00",
+            "date_end": "2026-12-01 23:59:59",
+            "title": "マックスエー他30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -152335,33 +152328,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "413",
+                "price": "590",
                 "list_price": "590"
               },
               {
                 "type": "hd",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "iosdl",
-                "price": "413",
+                "price": "590",
                 "list_price": "590"
               },
               {
                 "type": "androiddl",
-                "price": "413",
+                "price": "590",
                 "list_price": "590"
               }
             ]
@@ -152530,14 +152523,7 @@
               "name": "Freja"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "グローリークエスト他30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -157391,322 +157377,6 @@
         "floor_code": "videoa",
         "floor_name": "ビデオ",
         "category_name": "ビデオ (動画)",
-        "content_id": "84mkmp00123",
-        "product_id": "84mkmp00123",
-        "title": "コスプレ天国アイドル大集合8時間スペシャル！",
-        "volume": "481",
-        "review": {
-          "count": 2,
-          "average": "5.00"
-        },
-        "URL": "https://video.dmm.co.jp/av/content/?id=84mkmp00123",
-        "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3D84mkmp00123&af_id=saaaaaaya-990&ch=api",
-        "imageURL": {
-          "large": "https://pics.dmm.co.jp/digital/video/84mkmp00123/84mkmp00123pl.jpg",
-          "small": "https://pics.dmm.co.jp/digital/video/84mkmp00123/84mkmp00123ps.jpg",
-          "list": "https://pics.dmm.co.jp/digital/video/84mkmp00123/84mkmp00123pt.jpg"
-        },
-        "sampleImageURL": {
-          "sample_s": {
-            "image": [
-              "https://pics.dmm.co.jp/digital/video/84mkmp00123/84mkmp00123-1.jpg",
-              "https://pics.dmm.co.jp/digital/video/84mkmp00123/84mkmp00123-2.jpg",
-              "https://pics.dmm.co.jp/digital/video/84mkmp00123/84mkmp00123-3.jpg",
-              "https://pics.dmm.co.jp/digital/video/84mkmp00123/84mkmp00123-4.jpg",
-              "https://pics.dmm.co.jp/digital/video/84mkmp00123/84mkmp00123-5.jpg",
-              "https://pics.dmm.co.jp/digital/video/84mkmp00123/84mkmp00123-6.jpg",
-              "https://pics.dmm.co.jp/digital/video/84mkmp00123/84mkmp00123-7.jpg",
-              "https://pics.dmm.co.jp/digital/video/84mkmp00123/84mkmp00123-8.jpg",
-              "https://pics.dmm.co.jp/digital/video/84mkmp00123/84mkmp00123-9.jpg",
-              "https://pics.dmm.co.jp/digital/video/84mkmp00123/84mkmp00123-10.jpg",
-              "https://pics.dmm.co.jp/digital/video/84mkmp00123/84mkmp00123-11.jpg",
-              "https://pics.dmm.co.jp/digital/video/84mkmp00123/84mkmp00123-12.jpg",
-              "https://pics.dmm.co.jp/digital/video/84mkmp00123/84mkmp00123-13.jpg",
-              "https://pics.dmm.co.jp/digital/video/84mkmp00123/84mkmp00123-14.jpg",
-              "https://pics.dmm.co.jp/digital/video/84mkmp00123/84mkmp00123-15.jpg",
-              "https://pics.dmm.co.jp/digital/video/84mkmp00123/84mkmp00123-16.jpg",
-              "https://pics.dmm.co.jp/digital/video/84mkmp00123/84mkmp00123-17.jpg",
-              "https://pics.dmm.co.jp/digital/video/84mkmp00123/84mkmp00123-18.jpg",
-              "https://pics.dmm.co.jp/digital/video/84mkmp00123/84mkmp00123-19.jpg",
-              "https://pics.dmm.co.jp/digital/video/84mkmp00123/84mkmp00123-20.jpg"
-            ]
-          },
-          "sample_l": {
-            "image": [
-              "https://pics.dmm.co.jp/digital/video/84mkmp00123/84mkmp00123jp-1.jpg",
-              "https://pics.dmm.co.jp/digital/video/84mkmp00123/84mkmp00123jp-2.jpg",
-              "https://pics.dmm.co.jp/digital/video/84mkmp00123/84mkmp00123jp-3.jpg",
-              "https://pics.dmm.co.jp/digital/video/84mkmp00123/84mkmp00123jp-4.jpg",
-              "https://pics.dmm.co.jp/digital/video/84mkmp00123/84mkmp00123jp-5.jpg",
-              "https://pics.dmm.co.jp/digital/video/84mkmp00123/84mkmp00123jp-6.jpg",
-              "https://pics.dmm.co.jp/digital/video/84mkmp00123/84mkmp00123jp-7.jpg",
-              "https://pics.dmm.co.jp/digital/video/84mkmp00123/84mkmp00123jp-8.jpg",
-              "https://pics.dmm.co.jp/digital/video/84mkmp00123/84mkmp00123jp-9.jpg",
-              "https://pics.dmm.co.jp/digital/video/84mkmp00123/84mkmp00123jp-10.jpg",
-              "https://pics.dmm.co.jp/digital/video/84mkmp00123/84mkmp00123jp-11.jpg",
-              "https://pics.dmm.co.jp/digital/video/84mkmp00123/84mkmp00123jp-12.jpg",
-              "https://pics.dmm.co.jp/digital/video/84mkmp00123/84mkmp00123jp-13.jpg",
-              "https://pics.dmm.co.jp/digital/video/84mkmp00123/84mkmp00123jp-14.jpg",
-              "https://pics.dmm.co.jp/digital/video/84mkmp00123/84mkmp00123jp-15.jpg",
-              "https://pics.dmm.co.jp/digital/video/84mkmp00123/84mkmp00123jp-16.jpg",
-              "https://pics.dmm.co.jp/digital/video/84mkmp00123/84mkmp00123jp-17.jpg",
-              "https://pics.dmm.co.jp/digital/video/84mkmp00123/84mkmp00123jp-18.jpg",
-              "https://pics.dmm.co.jp/digital/video/84mkmp00123/84mkmp00123jp-19.jpg",
-              "https://pics.dmm.co.jp/digital/video/84mkmp00123/84mkmp00123jp-20.jpg"
-            ]
-          }
-        },
-        "sampleMovieURL": {
-          "size_476_306": "https://www.dmm.co.jp/litevideo/-/part/=/cid=84mkmp123/size=476_306/affi_id=saaaaaaya-990/",
-          "size_560_360": "https://www.dmm.co.jp/litevideo/-/part/=/cid=84mkmp123/size=560_360/affi_id=saaaaaaya-990/",
-          "size_644_414": "https://www.dmm.co.jp/litevideo/-/part/=/cid=84mkmp123/size=644_414/affi_id=saaaaaaya-990/",
-          "size_720_480": "https://www.dmm.co.jp/litevideo/-/part/=/cid=84mkmp123/size=720_480/affi_id=saaaaaaya-990/",
-          "pc_flag": 1,
-          "sp_flag": 1
-        },
-        "prices": {
-          "price": "210~",
-          "list_price": "300~",
-          "deliveries": {
-            "delivery": [
-              {
-                "type": "stream",
-                "price": "210",
-                "list_price": "300"
-              },
-              {
-                "type": "download",
-                "price": "405",
-                "list_price": "580"
-              },
-              {
-                "type": "hd",
-                "price": "665",
-                "list_price": "950"
-              },
-              {
-                "type": "iosdl",
-                "price": "405",
-                "list_price": "580"
-              },
-              {
-                "type": "androiddl",
-                "price": "405",
-                "list_price": "580"
-              }
-            ]
-          }
-        },
-        "date": "2016-11-11 10:00:08",
-        "iteminfo": {
-          "genre": [
-            {
-              "id": 6533,
-              "name": "ハイビジョン"
-            },
-            {
-              "id": 5001,
-              "name": "中出し"
-            },
-            {
-              "id": 2001,
-              "name": "巨乳"
-            },
-            {
-              "id": 1027,
-              "name": "美少女"
-            },
-            {
-              "id": 4031,
-              "name": "コスプレ"
-            }
-          ],
-          "maker": [
-            {
-              "id": 40071,
-              "name": "ケイ・エム・プロデュース"
-            }
-          ],
-          "actress": [
-            {
-              "id": 1026296,
-              "name": "佐倉絆",
-              "ruby": "さくらきずな"
-            },
-            {
-              "id": 1006266,
-              "name": "星美りか",
-              "ruby": "ほしみりか"
-            },
-            {
-              "id": 1002043,
-              "name": "友田彩也香",
-              "ruby": "ともだあやか"
-            },
-            {
-              "id": 1035159,
-              "name": "河北はるな",
-              "ruby": "かわきたはるな"
-            },
-            {
-              "id": 1023701,
-              "name": "青葉優香",
-              "ruby": "あおばゆうか"
-            },
-            {
-              "id": 1012772,
-              "name": "沙藤ユリ",
-              "ruby": "さとうゆり"
-            },
-            {
-              "id": 1027747,
-              "name": "香山美桜",
-              "ruby": "かやまみお"
-            },
-            {
-              "id": 1016525,
-              "name": "浜崎真緒",
-              "ruby": "はまさきまお"
-            },
-            {
-              "id": 1026287,
-              "name": "松嶋葵",
-              "ruby": "まつしまあおい"
-            },
-            {
-              "id": 1028709,
-              "name": "絢森いちか",
-              "ruby": "あやもりいちか"
-            },
-            {
-              "id": 1024433,
-              "name": "涼川絢音",
-              "ruby": "すずかわあやね"
-            },
-            {
-              "id": 1020522,
-              "name": "愛須心亜",
-              "ruby": "あいすここあ"
-            },
-            {
-              "id": 1023317,
-              "name": "さとう愛理",
-              "ruby": "さとうあいり"
-            },
-            {
-              "id": 1007558,
-              "name": "菜月アンナ",
-              "ruby": "なつきあんな"
-            },
-            {
-              "id": 1029718,
-              "name": "なつめ愛莉",
-              "ruby": "なつめあいり"
-            },
-            {
-              "id": 1028031,
-              "name": "逢沢るる",
-              "ruby": "あいざわるる"
-            },
-            {
-              "id": 1034864,
-              "name": "最上架純",
-              "ruby": "もがみかすみ"
-            },
-            {
-              "id": 1034359,
-              "name": "柚木彩花",
-              "ruby": "ゆずきあやか"
-            },
-            {
-              "id": 1019602,
-              "name": "桜井あゆ",
-              "ruby": "さくらいあゆ"
-            },
-            {
-              "id": 1009531,
-              "name": "神咲詩織",
-              "ruby": "かみさきしおり"
-            },
-            {
-              "id": 1017666,
-              "name": "篠宮ゆり",
-              "ruby": "しのみやゆり"
-            },
-            {
-              "id": 1031477,
-              "name": "綾波ゆめ",
-              "ruby": "あやなみゆめ"
-            },
-            {
-              "id": 1019379,
-              "name": "みほの（坂口みほの）",
-              "ruby": "みほの（さかぐちみほの）"
-            },
-            {
-              "id": 17802,
-              "name": "つぼみ",
-              "ruby": "つぼみ"
-            },
-            {
-              "id": 1016110,
-              "name": "倉多まお",
-              "ruby": "くらたまお"
-            },
-            {
-              "id": 1010133,
-              "name": "さとう遥希",
-              "ruby": "さとうはるき"
-            },
-            {
-              "id": 1032774,
-              "name": "あおいれな",
-              "ruby": "あおいれな"
-            },
-            {
-              "id": 1002357,
-              "name": "麻倉憂",
-              "ruby": "あさくらゆう"
-            },
-            {
-              "id": 1030691,
-              "name": "橋本怜奈",
-              "ruby": "はしもとれいな"
-            },
-            {
-              "id": 1008968,
-              "name": "愛原さえ",
-              "ruby": "あいはらさえ"
-            }
-          ],
-          "director": [
-            {
-              "id": 113230,
-              "name": "おずま",
-              "ruby": "おずま"
-            }
-          ],
-          "label": [
-            {
-              "id": 336,
-              "name": "million（ミリオン）"
-            }
-          ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
-      },
-      {
-        "service_code": "digital",
-        "service_name": "動画",
-        "floor_code": "videoa",
-        "floor_name": "ビデオ",
-        "category_name": "ビデオ (動画)",
         "content_id": "mmb00078",
         "product_id": "mmb00078",
         "title": "不倫にハマるイマドキ美少女の禁断中出し旅行 わけあり男にハマってセックス漬けな美女に密着生撮り4時間10人",
@@ -158954,33 +158624,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "413",
+                "price": "590",
                 "list_price": "590"
               },
               {
                 "type": "hd",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "iosdl",
-                "price": "413",
+                "price": "590",
                 "list_price": "590"
               },
               {
                 "type": "androiddl",
-                "price": "413",
+                "price": "590",
                 "list_price": "590"
               }
             ]
@@ -159059,14 +158729,7 @@
               "name": "不老仙人"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "グローリークエスト他30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -168737,33 +168400,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "hd",
-                "price": "665",
+                "price": "950",
                 "list_price": "950"
               },
               {
                 "type": "iosdl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "androiddl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               }
             ]
@@ -168879,14 +168542,7 @@
               "name": "宇宙企画"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -178642,28 +178298,28 @@
           }
         },
         "prices": {
-          "price": "300~",
+          "price": "210~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "300",
+                "price": "210",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "590",
+                "price": "413",
                 "list_price": "590"
               },
               {
                 "type": "iosdl",
-                "price": "590",
+                "price": "413",
                 "list_price": "590"
               },
               {
                 "type": "androiddl",
-                "price": "590",
+                "price": "413",
                 "list_price": "590"
               }
             ]
@@ -178720,7 +178376,14 @@
               "name": "姦乱者"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-11-25 00:10:00",
+            "date_end": "2026-12-01 23:59:59",
+            "title": "妄想族30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -179560,33 +179223,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "hd",
-                "price": "665",
+                "price": "950",
                 "list_price": "950"
               },
               {
                 "type": "iosdl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "androiddl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               }
             ]
@@ -179679,14 +179342,7 @@
               "name": "million（ミリオン）-ex-"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -180295,33 +179951,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "hd",
-                "price": "665",
+                "price": "950",
                 "list_price": "950"
               },
               {
                 "type": "iosdl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "androiddl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               }
             ]
@@ -180428,14 +180084,7 @@
               "name": "REAL（レアルワークス）-ex-"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -181036,28 +180685,28 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "iosdl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "androiddl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               }
             ]
@@ -181206,14 +180855,7 @@
               "name": "REAL（レアルワークス）-ex-"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -181873,7 +181515,7 @@
         "title": "ミリオンドリーム SUPER BEST 8時間スペシャル",
         "volume": "481",
         "review": {
-          "count": 3,
+          "count": 4,
           "average": "5.00"
         },
         "URL": "https://video.dmm.co.jp/av/content/?id=84mkmp00019",
@@ -181942,33 +181584,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "hd",
-                "price": "665",
+                "price": "950",
                 "list_price": "950"
               },
               {
                 "type": "iosdl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "androiddl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               }
             ]
@@ -182079,14 +181721,7 @@
               "name": "million（ミリオン）-ex-"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -185428,33 +185063,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "hd",
-                "price": "665",
+                "price": "950",
                 "list_price": "950"
               },
               {
                 "type": "iosdl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "androiddl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               }
             ]
@@ -185559,14 +185194,7 @@
               "name": "REAL（レアルワークス）-ex-"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -186312,16 +185940,16 @@
         "iteminfo": {
           "genre": [
             {
-              "id": 5001,
-              "name": "中出し"
+              "id": 6548,
+              "name": "独占配信"
             },
             {
               "id": 6003,
               "name": "ベスト・総集編"
             },
             {
-              "id": 6548,
-              "name": "独占配信"
+              "id": 5001,
+              "name": "中出し"
             }
           ],
           "maker": [
@@ -205102,28 +204730,28 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "iosdl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "androiddl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               }
             ]
@@ -205280,14 +204908,7 @@
               "name": "100人-ex-"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -206495,28 +206116,28 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "iosdl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "androiddl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               }
             ]
@@ -206613,14 +206234,7 @@
               "name": "REAL（レアルワークス）-ex-"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -209230,28 +208844,28 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "iosdl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "androiddl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               }
             ]
@@ -209327,14 +208941,7 @@
               "name": "おかず。-ex-"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -217881,24 +217488,24 @@
         "iteminfo": {
           "genre": [
             {
-              "id": 6003,
-              "name": "ベスト・総集編"
-            },
-            {
-              "id": 5016,
-              "name": "潮吹き"
-            },
-            {
-              "id": 2001,
-              "name": "巨乳"
+              "id": 6548,
+              "name": "独占配信"
             },
             {
               "id": 4030,
               "name": "淫乱・ハード系"
             },
             {
-              "id": 6548,
-              "name": "独占配信"
+              "id": 2001,
+              "name": "巨乳"
+            },
+            {
+              "id": 5016,
+              "name": "潮吹き"
+            },
+            {
+              "id": 6003,
+              "name": "ベスト・総集編"
             }
           ],
           "maker": [
@@ -218152,28 +217759,28 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "iosdl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "androiddl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               }
             ]
@@ -218267,14 +217874,7 @@
               "name": "million（ミリオン）-ex-"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -218356,28 +217956,28 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "iosdl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "androiddl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               }
             ]
@@ -218465,14 +218065,7 @@
               "name": "REAL（レアルワークス）-ex-"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -224704,28 +224297,28 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "iosdl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "androiddl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               }
             ]
@@ -224806,14 +224399,7 @@
               "name": "宇宙企画-ex-"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -227393,28 +226979,28 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "iosdl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "androiddl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               }
             ]
@@ -227470,14 +227056,7 @@
               "name": "宇宙企画-ex-"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -232181,28 +231760,28 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "iosdl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "androiddl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               }
             ]
@@ -232260,14 +231839,7 @@
               "name": "BAZOOKA（バズーカ）"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -235252,28 +234824,28 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "iosdl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "androiddl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               }
             ]
@@ -235376,14 +234948,7 @@
               "name": "宇宙企画-ex-"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -236234,28 +235799,28 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "iosdl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "androiddl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               }
             ]
@@ -236352,14 +235917,7 @@
               "name": "REAL（レアルワークス）-ex-"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -236437,28 +235995,28 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "iosdl",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "androiddl",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               }
             ]
@@ -236505,14 +236063,7 @@
               "name": "GLORY QUEST"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "グローリークエスト他30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -240248,28 +239799,28 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "300~",
+          "price": "210~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "300",
+                "price": "210",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "590",
+                "price": "413",
                 "list_price": "590"
               },
               {
                 "type": "iosdl",
-                "price": "590",
+                "price": "413",
                 "list_price": "590"
               },
               {
                 "type": "androiddl",
-                "price": "590",
+                "price": "413",
                 "list_price": "590"
               }
             ]
@@ -240397,7 +239948,14 @@
               "name": "エンペラー（エンペラー/妄想族）"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-11-25 00:10:00",
+            "date_end": "2026-12-01 23:59:59",
+            "title": "妄想族30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -242293,28 +241851,28 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "iosdl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "androiddl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               }
             ]
@@ -242376,14 +241934,7 @@
               "name": "宇宙企画-ex-"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -246376,28 +245927,28 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "iosdl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "androiddl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               }
             ]
@@ -246475,14 +246026,7 @@
               "name": "BAZOOKA（バズーカ）"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -246564,28 +246108,28 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "iosdl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "androiddl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               }
             ]
@@ -246729,14 +246273,7 @@
               "name": "100人-ex-"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -249925,28 +249462,28 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "iosdl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "androiddl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               }
             ]
@@ -250012,14 +249549,7 @@
               "name": "宇宙企画-ex-"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -250869,28 +250399,28 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "iosdl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "androiddl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               }
             ]
@@ -250960,14 +250490,7 @@
               "name": "million（ミリオン）-ex-"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -252224,28 +251747,28 @@
           }
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "iosdl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "androiddl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               }
             ]
@@ -252319,14 +251842,7 @@
               "name": "宇宙企画-ex-"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -255788,33 +255304,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "hd",
-                "price": "665",
+                "price": "950",
                 "list_price": "950"
               },
               {
                 "type": "iosdl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "androiddl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               }
             ]
@@ -255906,14 +255422,7 @@
               "name": "宇宙企画-ex-"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -255991,33 +255500,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "hd",
-                "price": "665",
+                "price": "950",
                 "list_price": "950"
               },
               {
                 "type": "iosdl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "androiddl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               }
             ]
@@ -256093,14 +255602,7 @@
               "name": "宇宙企画-ex-"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -256555,28 +256057,28 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "iosdl",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "androiddl",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               }
             ]
@@ -256672,14 +256174,7 @@
               "name": "GLORY QUEST"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "グローリークエスト他30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -256925,33 +256420,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "hd",
-                "price": "665",
+                "price": "950",
                 "list_price": "950"
               },
               {
                 "type": "iosdl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "androiddl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               }
             ]
@@ -257019,14 +256514,7 @@
               "name": "million（ミリオン）-ex-"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -257108,28 +256596,28 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "iosdl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "androiddl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               }
             ]
@@ -257174,14 +256662,7 @@
               "name": "REAL（レアルワークス）-ex-"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -259447,33 +258928,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "hd",
-                "price": "665",
+                "price": "950",
                 "list_price": "950"
               },
               {
                 "type": "iosdl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "androiddl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               }
             ]
@@ -259529,14 +259010,7 @@
               "name": "REAL（レアルワークス）-ex-"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -260627,33 +260101,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "hd",
-                "price": "665",
+                "price": "950",
                 "list_price": "950"
               },
               {
                 "type": "iosdl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "androiddl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               }
             ]
@@ -260745,14 +260219,7 @@
               "name": "REAL（レアルワークス）-ex-"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -262404,28 +261871,28 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "iosdl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "androiddl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               }
             ]
@@ -262477,14 +261944,7 @@
               "name": "宇宙企画-ex-"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -262719,33 +262179,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "hd",
-                "price": "665",
+                "price": "950",
                 "list_price": "950"
               },
               {
                 "type": "iosdl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "androiddl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               }
             ]
@@ -262848,14 +262308,7 @@
               "name": "宇宙企画-ex-"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -267352,28 +266805,28 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "iosdl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "androiddl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               }
             ]
@@ -267435,14 +266888,7 @@
               "name": "million（ミリオン）-ex-"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -269864,33 +269310,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "hd",
-                "price": "665",
+                "price": "950",
                 "list_price": "950"
               },
               {
                 "type": "iosdl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "androiddl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               }
             ]
@@ -269997,14 +269443,7 @@
               "name": "宇宙企画-ex-"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -271253,28 +270692,28 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "iosdl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "androiddl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               }
             ]
@@ -271356,14 +270795,7 @@
               "name": "REAL（レアルワークス）-ex-"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -271445,33 +270877,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "hd",
-                "price": "665",
+                "price": "950",
                 "list_price": "950"
               },
               {
                 "type": "iosdl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "androiddl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               }
             ]
@@ -271536,14 +270968,7 @@
               "name": "million（ミリオン）-ex-"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -271788,28 +271213,28 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "iosdl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "androiddl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               }
             ]
@@ -271952,14 +271377,7 @@
               "name": "100人-ex-"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -274307,28 +273725,28 @@
           }
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "iosdl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "androiddl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               }
             ]
@@ -274386,14 +273804,7 @@
               "name": "宇宙企画-ex-"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -274475,33 +273886,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "hd",
-                "price": "665",
+                "price": "950",
                 "list_price": "950"
               },
               {
                 "type": "iosdl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "androiddl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               }
             ]
@@ -274567,14 +273978,7 @@
               "name": "million（ミリオン）-ex-"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -274800,28 +274204,28 @@
           }
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "iosdl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "androiddl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               }
             ]
@@ -274901,14 +274305,7 @@
               "name": "おかず。-ex-"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -275614,28 +275011,28 @@
           }
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "iosdl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "androiddl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               }
             ]
@@ -275697,14 +275094,7 @@
               "name": "M（レアルワークス）"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -278242,28 +277632,28 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "iosdl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "androiddl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               }
             ]
@@ -278340,14 +277730,7 @@
               "name": "おかず。-ex-"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -278429,28 +277812,28 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "iosdl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               },
               {
                 "type": "androiddl",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               }
             ]
@@ -278512,14 +277895,7 @@
               "name": "宇宙企画-ex-"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -279133,33 +278509,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "hd",
-                "price": "1036",
+                "price": "1480",
                 "list_price": "1480"
               },
               {
                 "type": "iosdl",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "androiddl",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               }
             ]
@@ -279238,14 +278614,7 @@
               "name": "GLORY QUEST"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "グローリークエスト他30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -280844,33 +280213,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "hd",
-                "price": "1036",
+                "price": "1480",
                 "list_price": "1480"
               },
               {
                 "type": "iosdl",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "androiddl",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               }
             ]
@@ -280941,14 +280310,7 @@
               "name": "GLORY QUEST"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "グローリークエスト他30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -282526,33 +281888,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "hd",
-                "price": "1036",
+                "price": "1480",
                 "list_price": "1480"
               },
               {
                 "type": "iosdl",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "androiddl",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               }
             ]
@@ -282611,14 +281973,7 @@
               "name": "GLORY QUEST"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "グローリークエスト他30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -284886,18 +284241,18 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               }
             ]
@@ -284954,14 +284309,7 @@
               "name": "GLORY QUEST"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "グローリークエスト他30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -285333,23 +284681,23 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "hd",
-                "price": "1036",
+                "price": "1480",
                 "list_price": "1480"
               }
             ]
@@ -285402,14 +284750,7 @@
               "name": "GLORY QUEST"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "グローリークエスト他30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -285823,23 +285164,23 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "hd",
-                "price": "1036",
+                "price": "1480",
                 "list_price": "1480"
               }
             ]
@@ -285901,14 +285242,7 @@
               "name": "GLORY QUEST"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "グローリークエスト他30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -287366,18 +286700,18 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               }
             ]
@@ -287449,14 +286783,7 @@
               "name": "おかず。-ex-"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -293036,18 +292363,18 @@
           }
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               }
             ]
@@ -293100,14 +292427,7 @@
               "name": "宇宙企画-ex-"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -295805,18 +295125,18 @@
           }
         },
         "prices": {
-          "price": "300~",
+          "price": "210~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "300",
+                "price": "210",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "480",
+                "price": "336",
                 "list_price": "480"
               }
             ]
@@ -295869,7 +295189,14 @@
               "name": "キチックス/妄想族"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-11-25 00:10:00",
+            "date_end": "2026-12-01 23:59:59",
+            "title": "妄想族30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -296873,18 +296200,18 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               }
             ]
@@ -296958,14 +296285,7 @@
               "name": "GLORY QUEST"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "グローリークエスト他30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -297446,18 +296766,18 @@
           }
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               }
             ]
@@ -297519,14 +296839,7 @@
               "name": "宇宙企画-ex-"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -309986,18 +309299,18 @@
           }
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               }
             ]
@@ -310053,14 +309366,7 @@
               "name": "REAL（レアルワークス）-ex-"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -311197,18 +310503,18 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "300~",
+          "price": "210~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "300",
+                "price": "210",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "590",
+                "price": "413",
                 "list_price": "590"
               }
             ]
@@ -311264,7 +310570,14 @@
               "name": "ワレメ"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-11-25 00:10:00",
+            "date_end": "2026-12-01 23:59:59",
+            "title": "妄想族30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -316111,18 +315424,18 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               }
             ]
@@ -316177,14 +315490,7 @@
               "name": "M（レアルワークス）"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -316266,18 +315572,18 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               }
             ]
@@ -316339,14 +315645,7 @@
               "name": "REAL（レアルワークス）-ex-"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -318017,18 +317316,18 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               }
             ]
@@ -318084,14 +317383,7 @@
               "name": "REAL（レアルワークス）-ex-"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -320036,18 +319328,18 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               }
             ]
@@ -320098,14 +319390,7 @@
               "name": "GLORY QUEST"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "グローリークエスト他30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -320679,18 +319964,18 @@
           }
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               }
             ]
@@ -320753,14 +320038,7 @@
               "name": "ECSTASY（レアルワークス）"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -322084,18 +321362,18 @@
           }
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               }
             ]
@@ -322222,14 +321500,7 @@
               "name": "million（ミリオン）-ex-"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -323802,18 +323073,18 @@
           }
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               }
             ]
@@ -323868,14 +323139,7 @@
               "name": "ECSTASY（レアルワークス）"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -323949,18 +323213,18 @@
           }
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               }
             ]
@@ -324020,14 +323284,7 @@
               "name": "ECSTASY（レアルワークス）"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -324991,18 +324248,18 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "300~",
+          "price": "210~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "300",
+                "price": "210",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "750",
+                "price": "525",
                 "list_price": "750"
               }
             ]
@@ -325073,7 +324330,14 @@
               "name": "AKNR"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-11-25 00:10:00",
+            "date_end": "2026-12-01 23:59:59",
+            "title": "SODグループ30％OFF第1弾"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -326205,18 +325469,18 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               }
             ]
@@ -326302,14 +325566,7 @@
               "name": "GQR"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "グローリークエスト他30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -326719,18 +325976,18 @@
           }
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               }
             ]
@@ -326785,14 +326042,7 @@
               "name": "Nadeshiko-ex-"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -332566,18 +331816,18 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "350~",
+          "price": "500~",
           "list_price": "500~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "350",
+                "price": "500",
                 "list_price": "500"
               },
               {
                 "type": "download",
-                "price": "903",
+                "price": "1290",
                 "list_price": "1290"
               }
             ]
@@ -332648,14 +331898,7 @@
               "name": "婦人社"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "エマニエル30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -333806,23 +333049,23 @@
           }
         },
         "prices": {
-          "price": "308~",
+          "price": "215~",
           "list_price": "308~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "308",
+                "price": "215",
                 "list_price": "308"
               },
               {
                 "type": "download",
-                "price": "1008",
+                "price": "705",
                 "list_price": "1008"
               },
               {
                 "type": "hd",
-                "price": "1522",
+                "price": "1065",
                 "list_price": "1522"
               }
             ]
@@ -333882,7 +333125,14 @@
               "name": "UP’S"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-11-25 00:10:00",
+            "date_end": "2026-12-01 23:59:59",
+            "title": "マックスエー他30％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
@@ -339174,18 +338424,18 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "405",
+                "price": "580",
                 "list_price": "580"
               }
             ]
@@ -339232,14 +338482,7 @@
               "name": "ECSTASY（レアルワークス）"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "KMP25周年30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -339321,18 +338564,18 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "download",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               }
             ]
@@ -339413,14 +338656,7 @@
               "name": "GQR"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "グローリークエスト他30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -339761,6 +338997,136 @@
         "floor_code": "videoa",
         "floor_name": "ビデオ",
         "category_name": "ビデオ (動画)",
+        "content_id": "ddt00313",
+        "product_id": "ddt00313",
+        "title": "発情オナニーベスト",
+        "volume": "239",
+        "URL": "https://video.dmm.co.jp/av/content/?id=ddt00313",
+        "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Dddt00313&af_id=saaaaaaya-990&ch=api",
+        "imageURL": {
+          "large": "https://pics.dmm.co.jp/digital/video/ddt00313/ddt00313pl.jpg",
+          "small": "https://pics.dmm.co.jp/digital/video/ddt00313/ddt00313ps.jpg",
+          "list": "https://pics.dmm.co.jp/digital/video/ddt00313/ddt00313pt.jpg"
+        },
+        "sampleImageURL": {
+          "sample_s": {
+            "image": [
+              "https://pics.dmm.co.jp/digital/video/ddt00313/ddt00313-1.jpg",
+              "https://pics.dmm.co.jp/digital/video/ddt00313/ddt00313-2.jpg",
+              "https://pics.dmm.co.jp/digital/video/ddt00313/ddt00313-3.jpg",
+              "https://pics.dmm.co.jp/digital/video/ddt00313/ddt00313-4.jpg",
+              "https://pics.dmm.co.jp/digital/video/ddt00313/ddt00313-5.jpg",
+              "https://pics.dmm.co.jp/digital/video/ddt00313/ddt00313-6.jpg",
+              "https://pics.dmm.co.jp/digital/video/ddt00313/ddt00313-7.jpg",
+              "https://pics.dmm.co.jp/digital/video/ddt00313/ddt00313-8.jpg",
+              "https://pics.dmm.co.jp/digital/video/ddt00313/ddt00313-9.jpg",
+              "https://pics.dmm.co.jp/digital/video/ddt00313/ddt00313-10.jpg",
+              "https://pics.dmm.co.jp/digital/video/ddt00313/ddt00313-11.jpg",
+              "https://pics.dmm.co.jp/digital/video/ddt00313/ddt00313-12.jpg",
+              "https://pics.dmm.co.jp/digital/video/ddt00313/ddt00313-13.jpg",
+              "https://pics.dmm.co.jp/digital/video/ddt00313/ddt00313-14.jpg",
+              "https://pics.dmm.co.jp/digital/video/ddt00313/ddt00313-15.jpg",
+              "https://pics.dmm.co.jp/digital/video/ddt00313/ddt00313-16.jpg",
+              "https://pics.dmm.co.jp/digital/video/ddt00313/ddt00313-17.jpg",
+              "https://pics.dmm.co.jp/digital/video/ddt00313/ddt00313-18.jpg",
+              "https://pics.dmm.co.jp/digital/video/ddt00313/ddt00313-19.jpg",
+              "https://pics.dmm.co.jp/digital/video/ddt00313/ddt00313-20.jpg"
+            ]
+          },
+          "sample_l": {
+            "image": [
+              "https://pics.dmm.co.jp/digital/video/ddt00313/ddt00313jp-1.jpg",
+              "https://pics.dmm.co.jp/digital/video/ddt00313/ddt00313jp-2.jpg",
+              "https://pics.dmm.co.jp/digital/video/ddt00313/ddt00313jp-3.jpg",
+              "https://pics.dmm.co.jp/digital/video/ddt00313/ddt00313jp-4.jpg",
+              "https://pics.dmm.co.jp/digital/video/ddt00313/ddt00313jp-5.jpg",
+              "https://pics.dmm.co.jp/digital/video/ddt00313/ddt00313jp-6.jpg",
+              "https://pics.dmm.co.jp/digital/video/ddt00313/ddt00313jp-7.jpg",
+              "https://pics.dmm.co.jp/digital/video/ddt00313/ddt00313jp-8.jpg",
+              "https://pics.dmm.co.jp/digital/video/ddt00313/ddt00313jp-9.jpg",
+              "https://pics.dmm.co.jp/digital/video/ddt00313/ddt00313jp-10.jpg",
+              "https://pics.dmm.co.jp/digital/video/ddt00313/ddt00313jp-11.jpg",
+              "https://pics.dmm.co.jp/digital/video/ddt00313/ddt00313jp-12.jpg",
+              "https://pics.dmm.co.jp/digital/video/ddt00313/ddt00313jp-13.jpg",
+              "https://pics.dmm.co.jp/digital/video/ddt00313/ddt00313jp-14.jpg",
+              "https://pics.dmm.co.jp/digital/video/ddt00313/ddt00313jp-15.jpg",
+              "https://pics.dmm.co.jp/digital/video/ddt00313/ddt00313jp-16.jpg",
+              "https://pics.dmm.co.jp/digital/video/ddt00313/ddt00313jp-17.jpg",
+              "https://pics.dmm.co.jp/digital/video/ddt00313/ddt00313jp-18.jpg",
+              "https://pics.dmm.co.jp/digital/video/ddt00313/ddt00313jp-19.jpg",
+              "https://pics.dmm.co.jp/digital/video/ddt00313/ddt00313jp-20.jpg"
+            ]
+          }
+        },
+        "prices": {
+          "price": "310~",
+          "list_price": "310~",
+          "deliveries": {
+            "delivery": [
+              {
+                "type": "stream",
+                "price": "310",
+                "list_price": "310"
+              },
+              {
+                "type": "download",
+                "price": "490",
+                "list_price": "490"
+              }
+            ]
+          }
+        },
+        "date": "2010-10-19 10:00:00",
+        "iteminfo": {
+          "genre": [
+            {
+              "id": 5008,
+              "name": "オナニー"
+            },
+            {
+              "id": 6003,
+              "name": "ベスト・総集編"
+            }
+          ],
+          "maker": [
+            {
+              "id": 1398,
+              "name": "ドグマ"
+            }
+          ],
+          "actress": [
+            {
+              "id": 24099,
+              "name": "樹花凜（七咲楓花）",
+              "ruby": "いつきかりん（ななさきふうか）"
+            },
+            {
+              "id": 17802,
+              "name": "つぼみ",
+              "ruby": "つぼみ"
+            }
+          ],
+          "director": [
+            {
+              "id": 101231,
+              "name": "ノーマルKIM",
+              "ruby": "のーまるきむ"
+            }
+          ],
+          "label": [
+            {
+              "id": 1098,
+              "name": "Dogma"
+            }
+          ]
+        }
+      },
+      {
+        "service_code": "digital",
+        "service_name": "動画",
+        "floor_code": "videoa",
+        "floor_name": "ビデオ",
+        "category_name": "ビデオ (動画)",
         "content_id": "kawd00276",
         "product_id": "kawd00276",
         "title": "年下の女の子に叱られたいッ！ つぼみ",
@@ -340056,131 +339422,136 @@
         "floor_code": "videoa",
         "floor_name": "ビデオ",
         "category_name": "ビデオ (動画)",
-        "content_id": "13drs00061",
-        "product_id": "13drs00061",
-        "title": "いいなりレンタル妻3 つぼみ",
-        "volume": "150",
+        "content_id": "h_150upsm00068",
+        "product_id": "h_150upsm00068",
+        "title": "援交 転校生 つぼみ",
+        "volume": "180",
         "review": {
-          "count": 13,
-          "average": "3.92"
+          "count": 9,
+          "average": "4.33"
         },
-        "URL": "https://video.dmm.co.jp/av/content/?id=13drs00061",
-        "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3D13drs00061&af_id=saaaaaaya-990&ch=api",
+        "URL": "https://video.dmm.co.jp/av/content/?id=h_150upsm00068",
+        "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Dh_150upsm00068&af_id=saaaaaaya-990&ch=api",
         "imageURL": {
-          "large": "https://pics.dmm.co.jp/digital/video/13drs00061/13drs00061pl.jpg",
-          "small": "https://pics.dmm.co.jp/digital/video/13drs00061/13drs00061ps.jpg",
-          "list": "https://pics.dmm.co.jp/digital/video/13drs00061/13drs00061pt.jpg"
+          "large": "https://pics.dmm.co.jp/digital/video/h_150upsm00068/h_150upsm00068pl.jpg",
+          "small": "https://pics.dmm.co.jp/digital/video/h_150upsm00068/h_150upsm00068ps.jpg",
+          "list": "https://pics.dmm.co.jp/digital/video/h_150upsm00068/h_150upsm00068pt.jpg"
         },
         "sampleImageURL": {
           "sample_s": {
             "image": [
-              "https://pics.dmm.co.jp/digital/video/13drs00061/13drs00061-1.jpg",
-              "https://pics.dmm.co.jp/digital/video/13drs00061/13drs00061-2.jpg",
-              "https://pics.dmm.co.jp/digital/video/13drs00061/13drs00061-3.jpg",
-              "https://pics.dmm.co.jp/digital/video/13drs00061/13drs00061-4.jpg",
-              "https://pics.dmm.co.jp/digital/video/13drs00061/13drs00061-5.jpg",
-              "https://pics.dmm.co.jp/digital/video/13drs00061/13drs00061-6.jpg",
-              "https://pics.dmm.co.jp/digital/video/13drs00061/13drs00061-7.jpg",
-              "https://pics.dmm.co.jp/digital/video/13drs00061/13drs00061-8.jpg",
-              "https://pics.dmm.co.jp/digital/video/13drs00061/13drs00061-9.jpg",
-              "https://pics.dmm.co.jp/digital/video/13drs00061/13drs00061-10.jpg",
-              "https://pics.dmm.co.jp/digital/video/13drs00061/13drs00061-11.jpg",
-              "https://pics.dmm.co.jp/digital/video/13drs00061/13drs00061-12.jpg",
-              "https://pics.dmm.co.jp/digital/video/13drs00061/13drs00061-13.jpg",
-              "https://pics.dmm.co.jp/digital/video/13drs00061/13drs00061-14.jpg",
-              "https://pics.dmm.co.jp/digital/video/13drs00061/13drs00061-15.jpg",
-              "https://pics.dmm.co.jp/digital/video/13drs00061/13drs00061-16.jpg",
-              "https://pics.dmm.co.jp/digital/video/13drs00061/13drs00061-17.jpg",
-              "https://pics.dmm.co.jp/digital/video/13drs00061/13drs00061-18.jpg",
-              "https://pics.dmm.co.jp/digital/video/13drs00061/13drs00061-19.jpg",
-              "https://pics.dmm.co.jp/digital/video/13drs00061/13drs00061-20.jpg"
+              "https://pics.dmm.co.jp/digital/video/h_150upsm00068/h_150upsm00068-1.jpg",
+              "https://pics.dmm.co.jp/digital/video/h_150upsm00068/h_150upsm00068-2.jpg",
+              "https://pics.dmm.co.jp/digital/video/h_150upsm00068/h_150upsm00068-3.jpg",
+              "https://pics.dmm.co.jp/digital/video/h_150upsm00068/h_150upsm00068-4.jpg",
+              "https://pics.dmm.co.jp/digital/video/h_150upsm00068/h_150upsm00068-5.jpg",
+              "https://pics.dmm.co.jp/digital/video/h_150upsm00068/h_150upsm00068-6.jpg",
+              "https://pics.dmm.co.jp/digital/video/h_150upsm00068/h_150upsm00068-7.jpg",
+              "https://pics.dmm.co.jp/digital/video/h_150upsm00068/h_150upsm00068-8.jpg",
+              "https://pics.dmm.co.jp/digital/video/h_150upsm00068/h_150upsm00068-9.jpg",
+              "https://pics.dmm.co.jp/digital/video/h_150upsm00068/h_150upsm00068-10.jpg",
+              "https://pics.dmm.co.jp/digital/video/h_150upsm00068/h_150upsm00068-11.jpg",
+              "https://pics.dmm.co.jp/digital/video/h_150upsm00068/h_150upsm00068-12.jpg",
+              "https://pics.dmm.co.jp/digital/video/h_150upsm00068/h_150upsm00068-13.jpg",
+              "https://pics.dmm.co.jp/digital/video/h_150upsm00068/h_150upsm00068-14.jpg",
+              "https://pics.dmm.co.jp/digital/video/h_150upsm00068/h_150upsm00068-15.jpg",
+              "https://pics.dmm.co.jp/digital/video/h_150upsm00068/h_150upsm00068-16.jpg",
+              "https://pics.dmm.co.jp/digital/video/h_150upsm00068/h_150upsm00068-17.jpg",
+              "https://pics.dmm.co.jp/digital/video/h_150upsm00068/h_150upsm00068-18.jpg",
+              "https://pics.dmm.co.jp/digital/video/h_150upsm00068/h_150upsm00068-19.jpg",
+              "https://pics.dmm.co.jp/digital/video/h_150upsm00068/h_150upsm00068-20.jpg"
             ]
           },
           "sample_l": {
             "image": [
-              "https://pics.dmm.co.jp/digital/video/13drs00061/13drs00061jp-1.jpg",
-              "https://pics.dmm.co.jp/digital/video/13drs00061/13drs00061jp-2.jpg",
-              "https://pics.dmm.co.jp/digital/video/13drs00061/13drs00061jp-3.jpg",
-              "https://pics.dmm.co.jp/digital/video/13drs00061/13drs00061jp-4.jpg",
-              "https://pics.dmm.co.jp/digital/video/13drs00061/13drs00061jp-5.jpg",
-              "https://pics.dmm.co.jp/digital/video/13drs00061/13drs00061jp-6.jpg",
-              "https://pics.dmm.co.jp/digital/video/13drs00061/13drs00061jp-7.jpg",
-              "https://pics.dmm.co.jp/digital/video/13drs00061/13drs00061jp-8.jpg",
-              "https://pics.dmm.co.jp/digital/video/13drs00061/13drs00061jp-9.jpg",
-              "https://pics.dmm.co.jp/digital/video/13drs00061/13drs00061jp-10.jpg",
-              "https://pics.dmm.co.jp/digital/video/13drs00061/13drs00061jp-11.jpg",
-              "https://pics.dmm.co.jp/digital/video/13drs00061/13drs00061jp-12.jpg",
-              "https://pics.dmm.co.jp/digital/video/13drs00061/13drs00061jp-13.jpg",
-              "https://pics.dmm.co.jp/digital/video/13drs00061/13drs00061jp-14.jpg",
-              "https://pics.dmm.co.jp/digital/video/13drs00061/13drs00061jp-15.jpg",
-              "https://pics.dmm.co.jp/digital/video/13drs00061/13drs00061jp-16.jpg",
-              "https://pics.dmm.co.jp/digital/video/13drs00061/13drs00061jp-17.jpg",
-              "https://pics.dmm.co.jp/digital/video/13drs00061/13drs00061jp-18.jpg",
-              "https://pics.dmm.co.jp/digital/video/13drs00061/13drs00061jp-19.jpg",
-              "https://pics.dmm.co.jp/digital/video/13drs00061/13drs00061jp-20.jpg"
+              "https://pics.dmm.co.jp/digital/video/h_150upsm00068/h_150upsm00068jp-1.jpg",
+              "https://pics.dmm.co.jp/digital/video/h_150upsm00068/h_150upsm00068jp-2.jpg",
+              "https://pics.dmm.co.jp/digital/video/h_150upsm00068/h_150upsm00068jp-3.jpg",
+              "https://pics.dmm.co.jp/digital/video/h_150upsm00068/h_150upsm00068jp-4.jpg",
+              "https://pics.dmm.co.jp/digital/video/h_150upsm00068/h_150upsm00068jp-5.jpg",
+              "https://pics.dmm.co.jp/digital/video/h_150upsm00068/h_150upsm00068jp-6.jpg",
+              "https://pics.dmm.co.jp/digital/video/h_150upsm00068/h_150upsm00068jp-7.jpg",
+              "https://pics.dmm.co.jp/digital/video/h_150upsm00068/h_150upsm00068jp-8.jpg",
+              "https://pics.dmm.co.jp/digital/video/h_150upsm00068/h_150upsm00068jp-9.jpg",
+              "https://pics.dmm.co.jp/digital/video/h_150upsm00068/h_150upsm00068jp-10.jpg",
+              "https://pics.dmm.co.jp/digital/video/h_150upsm00068/h_150upsm00068jp-11.jpg",
+              "https://pics.dmm.co.jp/digital/video/h_150upsm00068/h_150upsm00068jp-12.jpg",
+              "https://pics.dmm.co.jp/digital/video/h_150upsm00068/h_150upsm00068jp-13.jpg",
+              "https://pics.dmm.co.jp/digital/video/h_150upsm00068/h_150upsm00068jp-14.jpg",
+              "https://pics.dmm.co.jp/digital/video/h_150upsm00068/h_150upsm00068jp-15.jpg",
+              "https://pics.dmm.co.jp/digital/video/h_150upsm00068/h_150upsm00068jp-16.jpg",
+              "https://pics.dmm.co.jp/digital/video/h_150upsm00068/h_150upsm00068jp-17.jpg",
+              "https://pics.dmm.co.jp/digital/video/h_150upsm00068/h_150upsm00068jp-18.jpg",
+              "https://pics.dmm.co.jp/digital/video/h_150upsm00068/h_150upsm00068jp-19.jpg",
+              "https://pics.dmm.co.jp/digital/video/h_150upsm00068/h_150upsm00068jp-20.jpg"
             ]
           }
         },
-        "sampleMovieURL": {
-          "size_476_306": "https://www.dmm.co.jp/litevideo/-/part/=/cid=13drs61/size=476_306/affi_id=saaaaaaya-990/",
-          "size_560_360": "https://www.dmm.co.jp/litevideo/-/part/=/cid=13drs61/size=560_360/affi_id=saaaaaaya-990/",
-          "size_644_414": "https://www.dmm.co.jp/litevideo/-/part/=/cid=13drs61/size=644_414/affi_id=saaaaaaya-990/",
-          "size_720_480": "https://www.dmm.co.jp/litevideo/-/part/=/cid=13drs61/size=720_480/affi_id=saaaaaaya-990/",
-          "pc_flag": 1,
-          "sp_flag": 1
-        },
         "prices": {
-          "price": "210~",
-          "list_price": "300~",
+          "price": "215~",
+          "list_price": "308~",
           "deliveries": {
             "delivery": [
               {
                 "type": "stream",
-                "price": "210",
-                "list_price": "300"
+                "price": "215",
+                "list_price": "308"
               },
               {
                 "type": "download",
-                "price": "686",
-                "list_price": "980"
+                "price": "705",
+                "list_price": "1008"
+              },
+              {
+                "type": "hd",
+                "price": "1065",
+                "list_price": "1522"
               }
             ]
           }
         },
-        "date": "2010-05-12 10:00:41",
+        "date": "2010-07-09 10:00:19",
         "iteminfo": {
           "genre": [
+            {
+              "id": 6533,
+              "name": "ハイビジョン"
+            },
+            {
+              "id": 5048,
+              "name": "足コキ"
+            },
+            {
+              "id": 5001,
+              "name": "中出し"
+            },
+            {
+              "id": 1018,
+              "name": "女子校生"
+            },
+            {
+              "id": 3011,
+              "name": "学生服"
+            },
             {
               "id": 4025,
               "name": "単体作品"
             },
             {
-              "id": 5066,
-              "name": "電マ"
-            },
-            {
-              "id": 25,
-              "name": "拘束"
-            },
-            {
-              "id": 1039,
-              "name": "人妻・主婦"
-            },
-            {
-              "id": 27,
-              "name": "辱め"
+              "id": 6004,
+              "name": "デジモ"
             }
           ],
           "series": [
             {
-              "id": 76310,
-              "name": "いいなりレンタル妻"
+              "id": 72911,
+              "name": "援交 転校生"
             }
           ],
           "maker": [
             {
-              "id": 40014,
-              "name": "グローリークエスト"
+              "id": 45313,
+              "name": "アップス"
             }
           ],
           "actress": [
@@ -340190,20 +339561,354 @@
               "ruby": "つぼみ"
             }
           ],
+          "director": [
+            {
+              "id": 103782,
+              "name": "R・G",
+              "ruby": "あーるじー"
+            }
+          ],
           "label": [
             {
-              "id": 7710,
-              "name": "Dangerous Relations"
+              "id": 7564,
+              "name": "UP’S"
             }
           ]
         },
         "campaign": [
           {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "グローリークエスト他30％OFF"
+            "date_begin": "2026-11-25 00:10:00",
+            "date_end": "2026-12-01 23:59:59",
+            "title": "マックスエー他30％OFF"
           }
         ]
+      },
+      {
+        "service_code": "digital",
+        "service_name": "動画",
+        "floor_code": "videoa",
+        "floor_name": "ビデオ",
+        "category_name": "ビデオ (動画)",
+        "content_id": "iptd00587",
+        "product_id": "iptd00587",
+        "title": "100発の精子飲む つぼみ",
+        "volume": "235",
+        "review": {
+          "count": 21,
+          "average": "4.33"
+        },
+        "URL": "https://video.dmm.co.jp/av/content/?id=iptd00587",
+        "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Diptd00587&af_id=saaaaaaya-990&ch=api",
+        "imageURL": {
+          "large": "https://pics.dmm.co.jp/digital/video/iptd00587/iptd00587pl.jpg",
+          "small": "https://pics.dmm.co.jp/digital/video/iptd00587/iptd00587ps.jpg",
+          "list": "https://pics.dmm.co.jp/digital/video/iptd00587/iptd00587pt.jpg"
+        },
+        "sampleImageURL": {
+          "sample_s": {
+            "image": [
+              "https://pics.dmm.co.jp/digital/video/iptd00587/iptd00587-1.jpg",
+              "https://pics.dmm.co.jp/digital/video/iptd00587/iptd00587-2.jpg",
+              "https://pics.dmm.co.jp/digital/video/iptd00587/iptd00587-3.jpg",
+              "https://pics.dmm.co.jp/digital/video/iptd00587/iptd00587-4.jpg",
+              "https://pics.dmm.co.jp/digital/video/iptd00587/iptd00587-5.jpg",
+              "https://pics.dmm.co.jp/digital/video/iptd00587/iptd00587-6.jpg",
+              "https://pics.dmm.co.jp/digital/video/iptd00587/iptd00587-7.jpg",
+              "https://pics.dmm.co.jp/digital/video/iptd00587/iptd00587-8.jpg",
+              "https://pics.dmm.co.jp/digital/video/iptd00587/iptd00587-9.jpg",
+              "https://pics.dmm.co.jp/digital/video/iptd00587/iptd00587-10.jpg",
+              "https://pics.dmm.co.jp/digital/video/iptd00587/iptd00587-11.jpg",
+              "https://pics.dmm.co.jp/digital/video/iptd00587/iptd00587-12.jpg"
+            ]
+          },
+          "sample_l": {
+            "image": [
+              "https://pics.dmm.co.jp/digital/video/iptd00587/iptd00587jp-1.jpg",
+              "https://pics.dmm.co.jp/digital/video/iptd00587/iptd00587jp-2.jpg",
+              "https://pics.dmm.co.jp/digital/video/iptd00587/iptd00587jp-3.jpg",
+              "https://pics.dmm.co.jp/digital/video/iptd00587/iptd00587jp-4.jpg",
+              "https://pics.dmm.co.jp/digital/video/iptd00587/iptd00587jp-5.jpg",
+              "https://pics.dmm.co.jp/digital/video/iptd00587/iptd00587jp-6.jpg",
+              "https://pics.dmm.co.jp/digital/video/iptd00587/iptd00587jp-7.jpg",
+              "https://pics.dmm.co.jp/digital/video/iptd00587/iptd00587jp-8.jpg",
+              "https://pics.dmm.co.jp/digital/video/iptd00587/iptd00587jp-9.jpg",
+              "https://pics.dmm.co.jp/digital/video/iptd00587/iptd00587jp-10.jpg",
+              "https://pics.dmm.co.jp/digital/video/iptd00587/iptd00587jp-11.jpg",
+              "https://pics.dmm.co.jp/digital/video/iptd00587/iptd00587jp-12.jpg"
+            ]
+          }
+        },
+        "sampleMovieURL": {
+          "size_476_306": "https://www.dmm.co.jp/litevideo/-/part/=/cid=iptd00587/size=476_306/affi_id=saaaaaaya-990/",
+          "size_560_360": "https://www.dmm.co.jp/litevideo/-/part/=/cid=iptd00587/size=560_360/affi_id=saaaaaaya-990/",
+          "size_644_414": "https://www.dmm.co.jp/litevideo/-/part/=/cid=iptd00587/size=644_414/affi_id=saaaaaaya-990/",
+          "size_720_480": "https://www.dmm.co.jp/litevideo/-/part/=/cid=iptd00587/size=720_480/affi_id=saaaaaaya-990/",
+          "pc_flag": 1,
+          "sp_flag": 1
+        },
+        "prices": {
+          "price": "300~",
+          "list_price": "300~",
+          "deliveries": {
+            "delivery": [
+              {
+                "type": "stream",
+                "price": "300",
+                "list_price": "300"
+              },
+              {
+                "type": "download",
+                "price": "480",
+                "list_price": "480"
+              },
+              {
+                "type": "hd",
+                "price": "780",
+                "list_price": "780"
+              }
+            ]
+          }
+        },
+        "date": "2010-06-01 10:00:55",
+        "iteminfo": {
+          "genre": [
+            {
+              "id": 4031,
+              "name": "コスプレ"
+            },
+            {
+              "id": 6548,
+              "name": "独占配信"
+            },
+            {
+              "id": 4025,
+              "name": "単体作品"
+            },
+            {
+              "id": 6533,
+              "name": "ハイビジョン"
+            },
+            {
+              "id": 5009,
+              "name": "ごっくん"
+            },
+            {
+              "id": 27,
+              "name": "辱め"
+            },
+            {
+              "id": 6004,
+              "name": "デジモ"
+            }
+          ],
+          "series": [
+            {
+              "id": 8093,
+              "name": "100発の精子飲む"
+            }
+          ],
+          "maker": [
+            {
+              "id": 1219,
+              "name": "アイデアポケット"
+            }
+          ],
+          "actress": [
+            {
+              "id": 17802,
+              "name": "つぼみ",
+              "ruby": "つぼみ"
+            }
+          ],
+          "director": [
+            {
+              "id": 101146,
+              "name": "黒澤あらら",
+              "ruby": "くろさわあらら"
+            }
+          ],
+          "label": [
+            {
+              "id": 1561,
+              "name": "ティッシュ"
+            }
+          ]
+        }
+      },
+      {
+        "service_code": "digital",
+        "service_name": "動画",
+        "floor_code": "videoa",
+        "floor_name": "ビデオ",
+        "category_name": "ビデオ (動画)",
+        "content_id": "feti00001",
+        "product_id": "feti00001",
+        "title": "おっぱいモミモミインタビュー",
+        "volume": "245",
+        "review": {
+          "count": 9,
+          "average": "3.11"
+        },
+        "URL": "https://video.dmm.co.jp/av/content/?id=feti00001",
+        "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3Dfeti00001&af_id=saaaaaaya-990&ch=api",
+        "imageURL": {
+          "large": "https://pics.dmm.co.jp/digital/video/feti00001/feti00001pl.jpg",
+          "small": "https://pics.dmm.co.jp/digital/video/feti00001/feti00001ps.jpg",
+          "list": "https://pics.dmm.co.jp/digital/video/feti00001/feti00001pt.jpg"
+        },
+        "sampleImageURL": {
+          "sample_s": {
+            "image": [
+              "https://pics.dmm.co.jp/digital/video/feti00001/feti00001-1.jpg",
+              "https://pics.dmm.co.jp/digital/video/feti00001/feti00001-2.jpg",
+              "https://pics.dmm.co.jp/digital/video/feti00001/feti00001-3.jpg",
+              "https://pics.dmm.co.jp/digital/video/feti00001/feti00001-4.jpg",
+              "https://pics.dmm.co.jp/digital/video/feti00001/feti00001-5.jpg",
+              "https://pics.dmm.co.jp/digital/video/feti00001/feti00001-6.jpg",
+              "https://pics.dmm.co.jp/digital/video/feti00001/feti00001-7.jpg",
+              "https://pics.dmm.co.jp/digital/video/feti00001/feti00001-8.jpg",
+              "https://pics.dmm.co.jp/digital/video/feti00001/feti00001-9.jpg",
+              "https://pics.dmm.co.jp/digital/video/feti00001/feti00001-10.jpg",
+              "https://pics.dmm.co.jp/digital/video/feti00001/feti00001-11.jpg",
+              "https://pics.dmm.co.jp/digital/video/feti00001/feti00001-12.jpg",
+              "https://pics.dmm.co.jp/digital/video/feti00001/feti00001-13.jpg",
+              "https://pics.dmm.co.jp/digital/video/feti00001/feti00001-14.jpg",
+              "https://pics.dmm.co.jp/digital/video/feti00001/feti00001-15.jpg",
+              "https://pics.dmm.co.jp/digital/video/feti00001/feti00001-16.jpg",
+              "https://pics.dmm.co.jp/digital/video/feti00001/feti00001-17.jpg",
+              "https://pics.dmm.co.jp/digital/video/feti00001/feti00001-18.jpg",
+              "https://pics.dmm.co.jp/digital/video/feti00001/feti00001-19.jpg",
+              "https://pics.dmm.co.jp/digital/video/feti00001/feti00001-20.jpg"
+            ]
+          },
+          "sample_l": {
+            "image": [
+              "https://pics.dmm.co.jp/digital/video/feti00001/feti00001jp-1.jpg",
+              "https://pics.dmm.co.jp/digital/video/feti00001/feti00001jp-2.jpg",
+              "https://pics.dmm.co.jp/digital/video/feti00001/feti00001jp-3.jpg",
+              "https://pics.dmm.co.jp/digital/video/feti00001/feti00001jp-4.jpg",
+              "https://pics.dmm.co.jp/digital/video/feti00001/feti00001jp-5.jpg",
+              "https://pics.dmm.co.jp/digital/video/feti00001/feti00001jp-6.jpg",
+              "https://pics.dmm.co.jp/digital/video/feti00001/feti00001jp-7.jpg",
+              "https://pics.dmm.co.jp/digital/video/feti00001/feti00001jp-8.jpg",
+              "https://pics.dmm.co.jp/digital/video/feti00001/feti00001jp-9.jpg",
+              "https://pics.dmm.co.jp/digital/video/feti00001/feti00001jp-10.jpg",
+              "https://pics.dmm.co.jp/digital/video/feti00001/feti00001jp-11.jpg",
+              "https://pics.dmm.co.jp/digital/video/feti00001/feti00001jp-12.jpg",
+              "https://pics.dmm.co.jp/digital/video/feti00001/feti00001jp-13.jpg",
+              "https://pics.dmm.co.jp/digital/video/feti00001/feti00001jp-14.jpg",
+              "https://pics.dmm.co.jp/digital/video/feti00001/feti00001jp-15.jpg",
+              "https://pics.dmm.co.jp/digital/video/feti00001/feti00001jp-16.jpg",
+              "https://pics.dmm.co.jp/digital/video/feti00001/feti00001jp-17.jpg",
+              "https://pics.dmm.co.jp/digital/video/feti00001/feti00001jp-18.jpg",
+              "https://pics.dmm.co.jp/digital/video/feti00001/feti00001jp-19.jpg",
+              "https://pics.dmm.co.jp/digital/video/feti00001/feti00001jp-20.jpg"
+            ]
+          }
+        },
+        "sampleMovieURL": {
+          "size_476_306": "https://www.dmm.co.jp/litevideo/-/part/=/cid=feti00001/size=476_306/affi_id=saaaaaaya-990/",
+          "size_560_360": "https://www.dmm.co.jp/litevideo/-/part/=/cid=feti00001/size=560_360/affi_id=saaaaaaya-990/",
+          "size_644_414": "https://www.dmm.co.jp/litevideo/-/part/=/cid=feti00001/size=644_414/affi_id=saaaaaaya-990/",
+          "size_720_480": "https://www.dmm.co.jp/litevideo/-/part/=/cid=feti00001/size=720_480/affi_id=saaaaaaya-990/",
+          "pc_flag": 1,
+          "sp_flag": 1
+        },
+        "prices": {
+          "price": "500~",
+          "list_price": "500~",
+          "deliveries": {
+            "delivery": [
+              {
+                "type": "download",
+                "price": "1580",
+                "list_price": "1580"
+              },
+              {
+                "type": "stream",
+                "price": "500",
+                "list_price": "500"
+              }
+            ]
+          }
+        },
+        "date": "2010-03-01 10:00:24",
+        "iteminfo": {
+          "genre": [
+            {
+              "id": 2001,
+              "name": "巨乳"
+            },
+            {
+              "id": 4009,
+              "name": "巨乳フェチ"
+            }
+          ],
+          "maker": [
+            {
+              "id": 6048,
+              "name": "Fetishist"
+            }
+          ],
+          "actress": [
+            {
+              "id": 17802,
+              "name": "つぼみ",
+              "ruby": "つぼみ"
+            },
+            {
+              "id": 17860,
+              "name": "水城奈緒",
+              "ruby": "みずきなお"
+            },
+            {
+              "id": 20883,
+              "name": "灘坂舞",
+              "ruby": "なださかまい"
+            },
+            {
+              "id": 21593,
+              "name": "香椎杏子",
+              "ruby": "かしいきょうこ"
+            },
+            {
+              "id": 28135,
+              "name": "成瀬心美（ここみ）",
+              "ruby": "なるせここみ（ここみ）"
+            },
+            {
+              "id": 23120,
+              "name": "ERIKA（モカ、MOKA）",
+              "ruby": "えりか（もか）"
+            },
+            {
+              "id": 23445,
+              "name": "早乙女ルイ",
+              "ruby": "さおとめるい"
+            },
+            {
+              "id": 24489,
+              "name": "浅田ちち",
+              "ruby": "あさだちち"
+            },
+            {
+              "id": 25914,
+              "name": "天川るる",
+              "ruby": "あまかわるる"
+            },
+            {
+              "id": 26616,
+              "name": "石川みずき",
+              "ruby": "いしかわみずき"
+            }
+          ],
+          "label": [
+            {
+              "id": 20677,
+              "name": "Fetishist"
+            }
+          ]
+        }
       },
       {
         "service_code": "digital",
@@ -341120,23 +340825,23 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "210~",
+          "price": "300~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "download",
-                "price": "686",
+                "price": "980",
                 "list_price": "980"
               },
               {
                 "type": "stream",
-                "price": "210",
+                "price": "300",
                 "list_price": "300"
               },
               {
                 "type": "hd",
-                "price": "1036",
+                "price": "1480",
                 "list_price": "1480"
               }
             ]
@@ -341187,14 +340892,7 @@
               "name": "Et cetera"
             }
           ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "グローリークエスト他30％OFF"
-          }
-        ]
+        }
       },
       {
         "service_code": "digital",
@@ -341738,153 +341436,6 @@
         "floor_code": "videoa",
         "floor_name": "ビデオ",
         "category_name": "ビデオ (動画)",
-        "content_id": "13ssd18",
-        "product_id": "13ssd18",
-        "title": "「家庭教師が美少女にした事の全記録」 隠撮カメラFILE 18",
-        "volume": "120",
-        "review": {
-          "count": 12,
-          "average": "3.25"
-        },
-        "URL": "https://video.dmm.co.jp/av/content/?id=13ssd18",
-        "affiliateURL": "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fvideo.dmm.co.jp%2Fav%2Fcontent%2F%3Fid%3D13ssd18&af_id=saaaaaaya-990&ch=api",
-        "imageURL": {
-          "large": "https://pics.dmm.co.jp/digital/video/13ssd00018/13ssd00018pl.jpg",
-          "small": "https://pics.dmm.co.jp/digital/video/13ssd00018/13ssd00018ps.jpg",
-          "list": "https://pics.dmm.co.jp/digital/video/13ssd00018/13ssd00018pt.jpg"
-        },
-        "sampleImageURL": {
-          "sample_s": {
-            "image": [
-              "https://pics.dmm.co.jp/digital/video/13ssd00018/13ssd00018-1.jpg",
-              "https://pics.dmm.co.jp/digital/video/13ssd00018/13ssd00018-2.jpg",
-              "https://pics.dmm.co.jp/digital/video/13ssd00018/13ssd00018-3.jpg",
-              "https://pics.dmm.co.jp/digital/video/13ssd00018/13ssd00018-4.jpg",
-              "https://pics.dmm.co.jp/digital/video/13ssd00018/13ssd00018-5.jpg",
-              "https://pics.dmm.co.jp/digital/video/13ssd00018/13ssd00018-6.jpg",
-              "https://pics.dmm.co.jp/digital/video/13ssd00018/13ssd00018-7.jpg",
-              "https://pics.dmm.co.jp/digital/video/13ssd00018/13ssd00018-8.jpg",
-              "https://pics.dmm.co.jp/digital/video/13ssd00018/13ssd00018-9.jpg",
-              "https://pics.dmm.co.jp/digital/video/13ssd00018/13ssd00018-10.jpg",
-              "https://pics.dmm.co.jp/digital/video/13ssd00018/13ssd00018-11.jpg",
-              "https://pics.dmm.co.jp/digital/video/13ssd00018/13ssd00018-12.jpg",
-              "https://pics.dmm.co.jp/digital/video/13ssd00018/13ssd00018-13.jpg",
-              "https://pics.dmm.co.jp/digital/video/13ssd00018/13ssd00018-14.jpg",
-              "https://pics.dmm.co.jp/digital/video/13ssd00018/13ssd00018-15.jpg",
-              "https://pics.dmm.co.jp/digital/video/13ssd00018/13ssd00018-16.jpg",
-              "https://pics.dmm.co.jp/digital/video/13ssd00018/13ssd00018-17.jpg",
-              "https://pics.dmm.co.jp/digital/video/13ssd00018/13ssd00018-18.jpg",
-              "https://pics.dmm.co.jp/digital/video/13ssd00018/13ssd00018-19.jpg",
-              "https://pics.dmm.co.jp/digital/video/13ssd00018/13ssd00018-20.jpg",
-              "https://pics.dmm.co.jp/digital/video/13ssd00018/13ssd00018-21.jpg",
-              "https://pics.dmm.co.jp/digital/video/13ssd00018/13ssd00018-22.jpg",
-              "https://pics.dmm.co.jp/digital/video/13ssd00018/13ssd00018-23.jpg",
-              "https://pics.dmm.co.jp/digital/video/13ssd00018/13ssd00018-24.jpg",
-              "https://pics.dmm.co.jp/digital/video/13ssd00018/13ssd00018-25.jpg",
-              "https://pics.dmm.co.jp/digital/video/13ssd00018/13ssd00018-26.jpg",
-              "https://pics.dmm.co.jp/digital/video/13ssd00018/13ssd00018-27.jpg",
-              "https://pics.dmm.co.jp/digital/video/13ssd00018/13ssd00018-28.jpg",
-              "https://pics.dmm.co.jp/digital/video/13ssd00018/13ssd00018-29.jpg",
-              "https://pics.dmm.co.jp/digital/video/13ssd00018/13ssd00018-30.jpg",
-              "https://pics.dmm.co.jp/digital/video/13ssd00018/13ssd00018-31.jpg",
-              "https://pics.dmm.co.jp/digital/video/13ssd00018/13ssd00018-32.jpg",
-              "https://pics.dmm.co.jp/digital/video/13ssd00018/13ssd00018-33.jpg",
-              "https://pics.dmm.co.jp/digital/video/13ssd00018/13ssd00018-34.jpg",
-              "https://pics.dmm.co.jp/digital/video/13ssd00018/13ssd00018-35.jpg",
-              "https://pics.dmm.co.jp/digital/video/13ssd00018/13ssd00018-36.jpg",
-              "https://pics.dmm.co.jp/digital/video/13ssd00018/13ssd00018-37.jpg",
-              "https://pics.dmm.co.jp/digital/video/13ssd00018/13ssd00018-38.jpg",
-              "https://pics.dmm.co.jp/digital/video/13ssd00018/13ssd00018-39.jpg",
-              "https://pics.dmm.co.jp/digital/video/13ssd00018/13ssd00018-40.jpg"
-            ]
-          }
-        },
-        "prices": {
-          "price": "210~",
-          "list_price": "300~",
-          "deliveries": {
-            "delivery": [
-              {
-                "type": "stream",
-                "price": "210",
-                "list_price": "300"
-              },
-              {
-                "type": "download",
-                "price": "686",
-                "list_price": "980"
-              }
-            ]
-          }
-        },
-        "date": "2008-07-26 10:00:39",
-        "iteminfo": {
-          "genre": [
-            {
-              "id": 1027,
-              "name": "美少女"
-            },
-            {
-              "id": 4021,
-              "name": "盗撮・のぞき"
-            },
-            {
-              "id": 5001,
-              "name": "中出し"
-            },
-            {
-              "id": 3003,
-              "name": "セーラー服"
-            },
-            {
-              "id": 5002,
-              "name": "フェラ"
-            },
-            {
-              "id": 4025,
-              "name": "単体作品"
-            }
-          ],
-          "series": [
-            {
-              "id": 6072,
-              "name": "隠撮カメラFILE"
-            }
-          ],
-          "maker": [
-            {
-              "id": 40014,
-              "name": "グローリークエスト"
-            }
-          ],
-          "actress": [
-            {
-              "id": 17802,
-              "name": "つぼみ",
-              "ruby": "つぼみ"
-            }
-          ],
-          "label": [
-            {
-              "id": 5739,
-              "name": "sneak shot"
-            }
-          ]
-        },
-        "campaign": [
-          {
-            "date_begin": "2026-11-18 00:10:00",
-            "date_end": "2026-11-24 23:59:59",
-            "title": "グローリークエスト他30％OFF"
-          }
-        ]
-      },
-      {
-        "service_code": "digital",
-        "service_name": "動画",
-        "floor_code": "videoa",
-        "floor_name": "ビデオ",
-        "category_name": "ビデオ (動画)",
         "content_id": "66sak8474",
         "product_id": "66sak8474",
         "title": "潮吹き絶頂★悶絶アクメ地獄 最終章 つぼみ",
@@ -342020,7 +341571,7 @@
         }
       }
     ],
-    "total_count": 1514,
-    "result_count": 1514
+    "total_count": 1515,
+    "result_count": 1515
   }
 }

@@ -2961,19 +2961,24 @@
           }
         },
         "prices": {
-          "price": "480~",
-          "list_price": "480~",
+          "price": "300~",
+          "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "780",
-                "list_price": "780"
+                "price": "580",
+                "list_price": "580"
               },
               {
                 "type": "download",
-                "price": "480",
-                "list_price": "480"
+                "price": "380",
+                "list_price": "380"
+              },
+              {
+                "type": "rp",
+                "price": "300",
+                "list_price": "300"
               }
             ]
           }
@@ -15248,32 +15253,32 @@
         "iteminfo": {
           "genre": [
             {
-              "id": 6533,
-              "name": "ハイビジョン"
-            },
-            {
-              "id": 64,
-              "name": "ネコミミ・獣系"
-            },
-            {
-              "id": 4059,
-              "name": "キス・接吻"
-            },
-            {
-              "id": 6969,
-              "name": "お風呂"
-            },
-            {
-              "id": 5009,
-              "name": "ごっくん"
+              "id": 5001,
+              "name": "中出し"
             },
             {
               "id": 4025,
               "name": "単体作品"
             },
             {
-              "id": 5001,
-              "name": "中出し"
+              "id": 5009,
+              "name": "ごっくん"
+            },
+            {
+              "id": 6969,
+              "name": "お風呂"
+            },
+            {
+              "id": 4059,
+              "name": "キス・接吻"
+            },
+            {
+              "id": 64,
+              "name": "ネコミミ・獣系"
+            },
+            {
+              "id": 6533,
+              "name": "ハイビジョン"
             }
           ],
           "series": [
@@ -21821,33 +21826,33 @@
           "sp_flag": 1
         },
         "prices": {
-          "price": "300~",
+          "price": "150~",
           "list_price": "300~",
           "deliveries": {
             "delivery": [
               {
                 "type": "hd",
-                "price": "1180",
+                "price": "590",
                 "list_price": "1180"
               },
               {
                 "type": "download",
-                "price": "780",
+                "price": "390",
                 "list_price": "780"
               },
               {
                 "type": "stream",
-                "price": "300",
+                "price": "150",
                 "list_price": "300"
               },
               {
                 "type": "iosdl",
-                "price": "780",
+                "price": "390",
                 "list_price": "780"
               },
               {
                 "type": "androiddl",
-                "price": "780",
+                "price": "390",
                 "list_price": "780"
               }
             ]
@@ -22078,7 +22083,14 @@
               "name": "MOODYZ Best"
             }
           ]
-        }
+        },
+        "campaign": [
+          {
+            "date_begin": "2026-11-27 10:00:00",
+            "date_end": "2026-11-30 09:59:59",
+            "title": "中出し50％OFF"
+          }
+        ]
       },
       {
         "service_code": "digital",
